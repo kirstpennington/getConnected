@@ -10,12 +10,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
+
+
         .login-form {
             width: 800px;
             margin: 50px auto;
-            position: fixed;
-            top: 20%;
-            left: 22%;
+            top: 30%;
+            right: 22%;
+            position:absolute;
+
         }
         .login-form form {
             margin-bottom: 15px;
@@ -25,8 +28,8 @@
             opacity: 0.9;
             filter: alpha(opacity=60); /* For IE8 and earlier */
         }
-        }
-        .login-form h2 {
+
+         h2 {
             margin: 0 0 15px;
             color:  #e83e8c;
 
@@ -51,28 +54,138 @@
 
         body, html {
             height: 100%;
+            position: top right;
             margin: 0;
         }
 
         .bg {
             /* The image used */
-            background-image: url("back.jpg");
+         background-image: url("connecting.jpg");
 
             /* Full height */
             height: 100%;
 
             /* Center and scale the image nicely */
-            background-position: center;
+            background-position: top center;
             background-repeat: no-repeat;
             background-size: cover;
         }
 
+        .bg .logo{
+          position: absolute;
+          left: 50;
+          top: 20;
+        }
+
+        .bg .logo img{
+          height: 60%;
+          width: 60% ;
+
+        }
+
+        .intro-form{
+          width: 800px;
+          margin: 50px auto;
+          top: 30%;
+          right: 22%;
+          position:absolute;
+        }
+
+        .intro-form form{
+          margin-bottom: 15px;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+          padding: 30px;
+          background-color: white;
+          opacity: 0.9;
+          filter: alpha(opacity=60); /* For IE8 and earlier */
+        }
+
+
+
 
     </style>
+
+  <!--  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+    <link href="style.css" type="text/css" rel="stylesheet">-->
 </head>
 <body>
-<div class="bg"></div>
+  <!--the header logo
+
+      <div class="container">
+        <img src="getconnected.png" alt="getconnected logo" align="middle">
+      </div>
+  </div>-->
+
+
+<!--navigation bar under header-->
+<nav class="navbar navbar-inverse"><!--navbar-fixed-top-->
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="#myPage">HOME</a></li>
+        <li><a href="https://www.getsmarter.com/what-we-do">GETSMARTER</a></li>
+        <li><a href="#contact">CONTACT US</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+              <span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+   <div class="bg">
+     <div class ="logo">
+       <br></br>
+      <img src="try.png" class = "img-fluid" alt="getconnected logo" align="middle">
+    </div>
+   </div>
+
+
+<div id="id02">
+  <div class="intro-form">
+  <br></br>
+    <form>
+        <span style="position: top right;" onclick="CloseIntroForm()" class="close" title="Close Modal">&times;</span>
+
+      <h2 class="text-center"> Hey you!</h2>
+      <p class="text-center"> Want to network with fellow high-impact individuals?
+        <br></br>
+      
+        <a href="#" onclick="CloseIntroForm(); OpenLogIn()" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-log-in"></span> Log in
+          </a>
+
+
+
+        <p>
+
+    </form>
+  </div>
+</div>
+
+<div id="id01" class="modal">
 <div class="login-form">
+  <br></br>
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
     <form action="/examples/actions/confirmation.php" method="post">
         <h2 class="text-center">Log In</h2>
         <div class="form-group">
@@ -95,6 +208,49 @@
             <a href="PassRest.html"  class="pull-right label-rem">Forgot Password?</a>
         </div>
     </form>
+
+  </form>
 </div>
+</div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br><br></br>
+
+<form="hi">
+  <a id="facebook_ads_example">This is the Facebook ad example I want to link to.</a>
+</form>
+
+
+<script>
+// Get the modal
+  var modal = document.getElementById('id01');
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+
+  function CloseIntroForm() {
+            document.getElementById('id02').style.display='none';
+         }
+  function OpenLogIn() {
+            document.getElementById('id01').style.display='block';
+         }
+
+</script>
+
+
+
+
+
+
 </body>
 </html>
