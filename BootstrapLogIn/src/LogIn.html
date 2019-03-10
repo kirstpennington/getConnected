@@ -7,6 +7,12 @@
     <title>Bootstrap Sign in Form with Icons</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -60,10 +66,10 @@
 
         .bg {
             /* The image used */
-         background-image: url("connecting.jpg");
+         background-image: url("headerpic.jpg");
 
             /* Full height */
-            height: 100%;
+            height: 60%;
 
             /* Center and scale the image nicely */
             background-position: top center;
@@ -99,6 +105,24 @@
           opacity: 0.9;
           filter: alpha(opacity=60); /* For IE8 and earlier */
         }
+
+        .description p{
+
+        }
+
+        .description .functions img{
+          height: 20%;
+          width: 30% ;
+
+        }
+
+        .footer{
+          background-color: #D3D3D3;
+        }
+
+
+
+
 
 
 
@@ -155,24 +179,20 @@
     </div>
    </div>
 
-
 <div id="id02">
   <div class="intro-form">
-  <br></br>
+
     <form>
         <span style="position: top right;" onclick="CloseIntroForm()" class="close" title="Close Modal">&times;</span>
 
       <h2 class="text-center"> Hey you!</h2>
-      <p class="text-center"> Want to network with fellow high-impact individuals?
+      <p class="text-center"> Welcome to GetSmarter's new networking platform. Where Facebook meets Linkedln, just a lot cooler.
         <br></br>
-      
+
         <a href="#" onclick="CloseIntroForm(); OpenLogIn()" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-log-in"></span> Log in
           </a>
-
-
-
-        <p>
+      <p>
 
     </form>
   </div>
@@ -212,20 +232,28 @@
   </form>
 </div>
 </div>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br><br></br>
 
-<form="hi">
-  <a id="facebook_ads_example">This is the Facebook ad example I want to link to.</a>
+<br></br>
+
+
+
+<form="description">
+  <h2 style="text-align: center;font-size: 60px">Learn. Connect. Innovate </h2>
+
+  <blockquote>
+    <p style="text-align: center; font-size: 30px"> Your network is your net worth.</p>
+    <footer style="text-align: center;">Tim Sanders</footer>
+  </blockquote>
+  <div= "functions" style="text-align:center">
+  <p>   </p>
+  <img style= "height: 55%;
+  width: 100%; text-align:center;position: center;" src="func.jpg" class = "img-fluid" alt="functions offered" align="middle">
+    <br></br>
+</div>
+
+
 </form>
+
 
 
 <script>
@@ -247,10 +275,24 @@
 
 </script>
 
+<!-- Footer -->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+      <div class="container">
 
+        <ul>
+
+            <a href="#myPage" style="color: white;">   HOME   </a>
+            <a href="https://www.getsmarter.com/what-we-do" style="color: white;">  GETSMARTER  </a>
+            <a href="#contact" style="color: white;">CONTACT US</a>
+            <li><a href="#" style="color: white;"><span class="glyphicon glyphicon-search"></span></a><li>
+          </ul>
+          </div>
+      </div>
+    </footer>
 
 
 
 
 </body>
+
 </html>
