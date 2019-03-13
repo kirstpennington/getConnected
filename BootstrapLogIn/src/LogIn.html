@@ -69,30 +69,32 @@
          background-image: url("headerpic.jpg");
 
             /* Full height */
-            height: 60%;
+            height: 45%;
 
             /* Center and scale the image nicely */
             background-position: top center;
             background-repeat: no-repeat;
             background-size: cover;
+
         }
 
         .bg .logo{
           position: absolute;
-          left: 50;
-          top: 20;
+          left: 2%;
+          top: 7%;
+
         }
 
         .bg .logo img{
-          height: 60%;
-          width: 60% ;
+          height: 30%;
+          width: 30% ;
 
         }
 
         .intro-form{
           width: 800px;
           margin: 50px auto;
-          top: 30%;
+          top: 17%;
           right: 22%;
           position:absolute;
         }
@@ -100,10 +102,16 @@
         .intro-form form{
           margin-bottom: 15px;
           box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-          padding: 30px;
+          padding: 20px;
           background-color: white;
           opacity: 0.9;
           filter: alpha(opacity=60); /* For IE8 and earlier */
+        }
+
+        .login-form {
+          top: 17%;
+          right: 22%;
+          position:absolute;
         }
 
         .description p{
@@ -120,13 +128,12 @@
           background-color: #D3D3D3;
         }
 
-
-
-
-
-
-
-
+        .description .function img{
+          position:relative;
+          top:50%;
+          left:50%;
+          transform:translate(-50%, -50%)
+        }
     </style>
 
   <!--  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
@@ -152,7 +159,7 @@
       </button>
 
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" id="myNavbar" >
     <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
       <ul class="nav navbar-nav navbar-left">
         <li><a href="#myPage">HOME</a></li>
@@ -233,25 +240,23 @@
 </div>
 </div>
 
-<br></br>
+ <br></br>
 
 
 
 <form="description">
-  <h2 style="text-align: center;font-size: 60px">Learn. Connect. Innovate </h2>
+  <h2 style="text-align: center;font-size: 30px">Learn. Connect. Innovate </h2>
 
   <blockquote>
-    <p style="text-align: center; font-size: 30px"> Your network is your net worth.</p>
+    <p style="text-align: center; font-size: 15px"> Your network is your net worth.</p>
     <footer style="text-align: center;">Tim Sanders</footer>
   </blockquote>
-  <div= "functions" style="text-align:center">
-  <p>   </p>
-  <img style= "height: 55%;
-  width: 100%; text-align:center;position: center;" src="func.jpg" class = "img-fluid" alt="functions offered" align="middle">
-    <br></br>
-</div>
-
-
+  <div= "functions" >
+    <!--<p>   </p>-->
+      <img style= "height: 40%;
+        width: 75%;" src="func.jpg" class="img-responsive center-block" alt="functions offered">
+      <br></br>
+    </div>
 </form>
 
 
