@@ -1,183 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--NTLMEN003-->
+  <!--links to Bootstrap & to css-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap Sign in Form with Icons</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="loginstyle.css">
 
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+    <!-- footer style -->
     <link href="sticky-footer.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style type="text/css">
 
-
-        .login-form {
-            width: 800px;
-            margin: 50px auto;
-            top: 30%;
-            right: 22%;
-            position:absolute;
-
-        }
-        .login-form form {
-            margin-bottom: 15px;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            background-color: white;
-            opacity: 0.9;
-            filter: alpha(opacity=60); /* For IE8 and earlier */
-        }
-
-         h2 {
-            margin: 0 0 15px;
-            color:  #e83e8c;
-
-        }
-        .form-control, .btn {
-            min-height: 38px;
-            border-radius: 2px;
-        }
-        .input-group-addon .fa {
-            font-size: 18px;
-        }
-
-        .label-rem {
-            color:  #e83e8c;
-        }
-        .btn {
-            font-size: 15px;
-            font-weight: bold;
-            background-color: #e83e8c;
-            border-color: black;
-        }
-
-        body, html {
-            height: 100%;
-            position: top right;
-            margin: 0;
-        }
-
-        .bg {
-            /* The image used
-         background-image: url("headerpic.jpg");*/
-
-            /* Full height */
-            height: 25%;
-
-            /* Center and scale the image nicely */
-            background-position: top center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-color: #D3D3D3;
-
-
-        }
-
-        .bg .logo{
-          position: absolute;
-        /* left: 2%;
-        //  top: 7%;
-        position:relative;*/
-          top:20%;
-          left:57%;
-          transform:translate(-50%, -50%)
-
-        }
-
-        .bg .logo img{
-          height: 80%;
-          width: 80% ;
-
-
-        }
-
-        .intro-form{
-          width: 800px;
-          margin: 50px auto;
-          top: 30%;
-          right: 23%;
-          position:absolute;
-
-        }
-
-        .intro-form form{
-          margin-bottom: 15px;
-          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-          padding: 20px;
-          background-color: white;
-          opacity: 0.9;
-          filter: alpha(opacity=60); /* For IE8 and earlier */
-        }
-
-        .login-form {
-          top: 17%;
-          right: 22%;
-          position:absolute;
-        }
-
-        .description p{
-
-        }
-
-        .description .functions img{
-          height: 8%;
-          width: 15% ;
-
-        }
-
-        .footer{
-          background-color: #D3D3D3;
-        }
-
-        .description .function img{
-          position:relative;
-          top:50%;
-          left:50%;
-          transform:translate(-50%, -50%);
-        }
-
-
-
-       .carousel-inner > .item > img {
-            width:1000px;
-            height:300px;
-
-          }
-
-          /*.carousel-inner img {
-            margin: auto;
-            background-position: center center;
-          }*/
-
-
-
-
-
-    </style>
 
   <!--  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
     <link href="style.css" type="text/css" rel="stylesheet">-->
 </head>
 <body>
-  <!--the header logo
 
-      <div class="container">
-        <img src="getconnected.png" alt="getconnected logo" align="middle">
-      </div>
-  </div>-->
 
 
 <!--navigation bar under header-->
-<nav class="navbar navbar-inverse"><!--navbar-fixed-top-->
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -198,15 +49,13 @@
       <ul class="nav navbar-nav navbar-right">
             <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
               <span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
       </ul>
     </div>
   </div>
 </nav>
 
 
-
-
+<!-- background & logo-->
    <div class="bg">
      <div class ="logo">
        <br></br>
@@ -214,25 +63,25 @@
     </div>
    </div>
 
+<!-- pop up form for introduction on first run-->
+  <!-- glyphicon is a series of icons which are available with bootstrap -->
 <div id="id02">
   <div class="intro-form">
-
     <form>
+      <!-- references the methods (see below)>> form must be closed when button is clicked-->
         <span style="position: top right;" onclick="CloseIntroForm()" class="close" title="Close Modal">&times;</span>
-
       <h2 class="text-center"> Hey you!</h2>
       <p class="text-center"> Welcome to GetSmarter's new networking platform. Where Facebook meets Linkedln, just a lot cooler.
-        <br></br>
-
+        <br></br> <!-- makes a space otherwise elements are too squished-->
         <a href="#" onclick="CloseIntroForm(); OpenLogIn()" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-log-in"></span> Log in
           </a>
       <p>
-
     </form>
   </div>
 </div>
 
+  <!-- pop up for the log in form -->
 <div id="id01" class="modal">
 <div class="login-form">
   <br></br>
@@ -270,11 +119,9 @@
 
 
 
-
-
+  <!-- descriptions under the header-->
 <form="description">
   <h2 style="text-align: center;font-size: 40px; margin-top:1%;">Learn. Connect. Innovate </h2>
-
   <blockquote>
     <p style="text-align: center; font-size: 15px"> Your network is your net worth.</p>
     <footer style="text-align: center;">Tim Sanders</footer>
@@ -288,7 +135,7 @@
 </form>
 
 
-
+  <!-- methods which control the buttons onclick and the pop ups-->
 <script>
 // Get the modal
   var modal = document.getElementById('id01');
@@ -311,7 +158,7 @@
 
 <br></br>
 
-<!--Carousel-->
+<!--Carousel for trending blogs-->
 <div class="container-fluid">
   <h2 class="text-center">Trending</h2>
   <div id="myCarousel" class="carousel slide" data-ride="carousel" >
@@ -366,15 +213,7 @@
 <br></br>
 <!-- Footer -->
 <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
-  <!--    <div class="container">
 
-        <ul class="text-center">
-
-            <a href="#myPage" style="color: white;">HOME</a>
-            <a href="https://www.getsmarter.com/what-we-do" style="color: white;">GETSMARTER</a>
-            <a href="#contact" style="color: white;">CONTACT US</a>
-          </ul>
-        </div>-->
 
         <div class="container">
           <br></br>
