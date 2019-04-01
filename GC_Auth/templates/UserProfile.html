@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--links to Bootstrap & to css-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Sign in Form with Icons</title>
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- footer style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  <!--  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+    <link href="style.css" type="text/css" rel="stylesheet">-->
+
+    <style>
+
+
+.carousel-control {
+  padding-top:10%;
+  width:5%;
+}
+
+
+    .fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 94%;
+    margin-bottom: 10px;
+    height: 300px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    }
+
+    .fb-image-profile
+    {
+        margin: -90px 10px 0px 150px;
+        z-index: 9;
+        width: 20%;
+        rounded: mx-auto d-block;
+
+
+    }
+
+    .inf-content{
+    border:1px solid #DDDDDD;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+
+    </style>
+</head>
+<body>
+
+<!--navigation bar under header-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" >
+    <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="Home.html"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
+        <li><a href="MyNetwork.html"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
+        <li><a href="Forums.html"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
+
+
+
+        </ul>
+      <ul class="nav navbar-nav" style = "text-align: center">
+	<form class="navbar-form navbar-right search-form" role="search">
+				<input type="text" class="form-control" placeholder="Search" />
+			</form>
+        <!-- Search form -->
+      </ul>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right" >
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+              <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                <ul class="dropdown-menu">
+            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+          </ul>
+
+
+            </li>
+
+      </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+              <span class="glyphicon glyphicon-bell"></span> </a></li>
+
+
+
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+              <span class="glyphicon glyphicon-envelope"></span> </a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<div>
+
+<button type="button" onclick="location.href='{% url 'log' %}'">Logout</button>
+</div>
+</div>
+ <!-- User Profile Page -->
+
+
+    <section>
+      <div class="container">
+
+          <div class="row">  <!-- User Profile-->
+
+
+              <div class="col-sm-6"><!-- MIDDLE: Image + Name + Description-->
+
+
+
+                  <div class="container bootstrap snippet">
+
+                      <div class="panel-body inf-content">
+
+                          <div class="container"> <!-- WALLPAPER + PROFILE IMAGE-->
+                              <div class="fb-profile">
+
+                                <!--  <img align="left" class="fb-image-lg" src="images/Wallpaper.png" />-->
+                                  {% load staticfiles %}
+                                  <img src="{% static "GC_Auth/UserProfile_images/wallpaper.png"  %}" align="left" class="fb-image-lg"/>
+
+
+                                   <div class="col-md-3">
+                                       <!--    <img alt="" style="width:100px;height:100px " title="" class=" img-thumbnail " src="../GC_Auth/static/GC_Auth/UserProfile_images/badge_icon.png" >-->
+                                        {% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:100px;height:100px " title="" class=" img-thumbnail " />
+
+
+                                         <ul title="Ratings" class="list-inline ratings text-left">
+                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                         </ul>
+                                   </div>
+
+
+                                <!--   <img align="left" class="fb-image-profile thumbnail" src="../GC_Auth/static/GC_Auth/UserProfile_images/user.png"/>-->
+                                  {% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/user.png"  %}" align="left" class="fb-image-profile thumbnail"  />
+
+
+
+
+
+                                  <button class="btn btn-primary pull-left"><i class="	fa fa-gear"></i></button>
+
+                              </div>
+
+                          </div><br> <!-- /container for WALLAPAPER + PROFILE IMAGE -->
+
+
+                          <div class="col-md-3"></div>
+                          <div class="col-md-7">
+
+                              <div  style = "position:relative; left:100px; top:0px;">
+                                        <h1><strong>Winfreda Mazvidza</strong><br></h1>
+                                  <h8>Connections <span class="label label-default">200</span></h8>
+                                        <h8>Forums <span class="label label-default">200</span></h8>
+
+                              </div><br>
+
+                              <div class="table-responsive">
+                                <table class="table table-condensed table-responsive table-user-information">
+                                    <tbody>
+
+                                        <tr>
+                                            <td><strong><span class="glyphicon glyphicon-bookmark text-primary"></span></strong></td>
+                                            <td class="text-primary"> <p>Driven guidance counselor with 10+ years’ experience teaching and advising high school students. Fluent in Spanish; skilled at communicating and developing relationships with ESL students and their families.</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
+                                            <td class="text-primary">noreply@email.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                              </div>
+
+
+
+
+
+          </div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <!-- Carousel Courses -->
+
+                          <div class="row">
+    <div class="col-md-15">
+         <h3>Courses</h3>
+
+        <div class="well">
+            <div id="myCarousel" class="carousel slide">
+
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+
+
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                    <div class="item">
+                         <div class="row">
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+
+
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                    <div class="item">
+                         <div class="row">
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+
+
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                </div>
+                <!--/carousel-inner-->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div>
+            <!--/myCarousel-->
+        </div>
+        <!--/well-->
+    </div>
+</div>
+
+
+
+                                              <!-- Carousel Courses -->
+                          <div class="row">
+    <div class="col-md-15">
+         <h3>Forums</h3>
+
+        <div class="well">
+            <div id="myCarousel2" class="carousel slide">
+
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+
+
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                    <div class="item">
+                         <div class="row">
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+
+
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                    <div class="item">
+                         <div class="row">
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                            </div>
+
+
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                </div>
+                <!--/carousel-inner-->
+                <a class="left carousel-control" href="#myCarousel2" data-slide="prev">‹</a>
+
+                <a class="right carousel-control" href="#myCarousel2" data-slide="next">›</a>
+            </div>
+            <!--/myCarousel-->
+        </div>
+        <!--/well-->
+    </div>
+</div>
+
+      </div>
+
+
+
+
+
+</div>
+
+
+                      </div>
+
+
+
+                  </div>
+
+
+              </div>
+
+
+    </section>
+
+</body>
+
+
+
+<script>
+
+
+$(document).ready(function() {
+    $('#myCarousel').carousel({
+	interval: 10000
+	})
+
+    $('#myCarousel').on('slid.bs.carousel', function() {
+    	//alert("slid");
+	});
+
+
+});
+
+
+
+$(document).ready(function() {
+    $('#myCarousel2').carousel({
+	interval: 10000
+	})
+
+    $('#myCarousel2').on('slid.bs.carousel', function() {
+    	//alert("slid");
+	});
+
+
+});
+
+
+</script>
