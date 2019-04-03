@@ -66,10 +66,106 @@
     box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
 }
 
+        .settings{
+            top: 325px;
+            right: 70px;
+            position: relative;
+        }
+
+        .well {
+            height: 90%;
+          width: 90% ;
+            border-color: transparent;
+            background-color: #ebebeb;
+
+            top: 15px;
+            left: 50px;
+            position: relative;
+        }
+
+        .headingCourses{
+            top: 0px;
+            right: 895px;
+            position: relative;
+        }
+
+          .headingForums{
+            top: 0px;
+            left: 40px;
+            position: relative;
+        }
+
+
+/* CSS used here will be applied after bootstrap.css */
+
+.dropdown {
+    display:inline-block;
+    margin-left:20px;
+
+  }
+
+
+.glyphicon-bell {
+
+    font-size:1.5rem;
+  }
+
+.notifications {
+   min-width:320px;
+
+  }
+
+  .notifications-wrapper {
+     overflow:auto;
+      max-height:250px;
+
+    }
+
+
+
+.glyphicon-circle-arrow-right {
+      margin-left:10px;
+   }
+
+.item-title {
+
+ font-size:1.5rem;
+ color: black;
+    padding:0px 50px;
+
+}
+
+.notifications a.content {
+ text-decoration:none;
+ background: white;
+
+ }
+
+.notification-item {
+ padding:10px;
+ margin:5px;
+ background: #ebebeb;
+ border-radius:4px;
+    height: 80px;
+ }
+
+ .profile_img {
+	width:25px;
+	display:inline;
+	float:left;
+	border:0px solid #111;
+	border-radius:3px;
+	box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
+}
+
+
+
+
 
     </style>
 </head>
 <body>
+
 
 <!--navigation bar under header-->
 <nav class="navbar navbar-inverse">
@@ -104,39 +200,184 @@
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
               <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-triangle-bottom"></span></a>
                 <ul class="dropdown-menu">
-            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                     <li class="divider"></li>
+                     <li><a href="#">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                     <li class="divider"></li>
+                    <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                    <li class="divider"></li>
+                    <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>
 
 
             </li>
 
       </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
-              <span class="glyphicon glyphicon-bell"></span> </a></li>
+
+
+          <ul class="nav navbar-nav navbar-right ">
+            <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
+              <span class="glyphicon glyphicon-bell"></span> </a>
+
+
+<ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+
+ <div class="notifications-wrapper">
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+  <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+  <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+
+ </div>
+
+  <li class="divider"></li>
+    <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+</ul>
+
+
+
+
+
+
+
+            </li>
 
 
 
       </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
-              <span class="glyphicon glyphicon-envelope"></span> </a></li>
 
-      </ul>
+
+          <ul class="nav navbar-nav navbar-right ">
+            <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
+              <span class="glyphicon glyphicon-envelope"></span> </a>
+
+     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+
+ <div class="notifications-wrapper">
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+  <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+   <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+  <a class="content" href="#">
+
+     <div class="notification-item">
+         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+      <h4 class="item-title">James Coden · day ago</h4>
+      <p class="item-info">Marketing 101, Video Assignment</p>
+    </div>
+
+  </a>
+
+ </div>
+
+  <li class="divider"></li>
+    <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+</ul>
+
+
+
+
     </div>
   </div>
 </nav>
 <div>
 
-<button type="button" onclick="location.href='{% url 'log' %}'">Logout</button>
+ <!-- <button type="button" onclick="location.href='{% url 'log' %}'">Logout</button>-->
 </div>
 </div>
  <!-- User Profile Page -->
@@ -162,6 +403,9 @@
                                 <!--  <img align="left" class="fb-image-lg" src="images/Wallpaper.png" />-->
                                   {% load staticfiles %}
                                   <img src="{% static "GC_Auth/UserProfile_images/wallpaper.png"  %}" align="left" class="fb-image-lg"/>
+                                  <div class = "settings">
+                                      <button class="btn btn-primary pull-right"><i class="	fa fa-gear"></i></button>
+                                  </div>
 
 
                                    <div class="col-md-3">
@@ -187,7 +431,7 @@
 
 
 
-                                  <button class="btn btn-primary pull-left"><i class="	fa fa-gear"></i></button>
+
 
                               </div>
 
@@ -216,6 +460,10 @@
                                             <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
                                             <td class="text-primary">noreply@email.com</td>
                                         </tr>
+                                     <tr>
+                                            <td><strong><span class="fa fa-globe fa-lg text-primary"></span></strong></td>
+                                            <td class="text-primary">Zimbabwe</td>
+                                        </tr>
                                     </tbody>
                                 </table>
 
@@ -226,12 +474,12 @@
 
 
 
-          </div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          </div><br><br><br><br><br><br><br><br><br><br><br>
  <!-- Carousel Courses -->
 
                           <div class="row">
     <div class="col-md-15">
-         <h3>Courses</h3>
+         <h3 class="headingCourses">Courses</h3>
 
         <div class="well">
             <div id="myCarousel" class="carousel slide">
@@ -315,7 +563,7 @@
                                               <!-- Carousel Courses -->
                           <div class="row">
     <div class="col-md-15">
-         <h3>Forums</h3>
+         <h3 class="headingForums">Forums</h3>
 
         <div class="well">
             <div id="myCarousel2" class="carousel slide">
@@ -446,6 +694,10 @@ $(document).ready(function() {
 	});
 
 
+});
+
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
 });
 
 
