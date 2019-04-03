@@ -19,8 +19,14 @@ authe = firebase.auth()
 database = firebase.database()
 
 
+def getUsername(request, user):
+    name = database.child('Users').child(user['localId']).child('Name').get
+    return name
+
+
 def LogIn(request):
     return render(request, "LogIn.html")
+
 
 def passwordReset(request):
 
@@ -36,11 +42,12 @@ def postsign(request):
     except:
         message = "invalid credentials"
         return render(request, "LogIn.html", {"messg": message})
-    print(user['idToken'])
+    print(user['localId'])
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
-    return render(request, "UserProfile.html", {"e": email})
 
+    return render(request, "UserProfile.html", {"e": email, 'n': getUsername(request, user)})
+    # return render(request, "UserProfile.html", {"e": email, 'n': 'Default Value'})
 
 def logout(request):
     auth.logout(request)
@@ -65,4 +72,6 @@ def postsignup(request):
         return render(request, "signup.html", {"messg": message})
 
     return render(request, "signIn.html")
+
+
 
