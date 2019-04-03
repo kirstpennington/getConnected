@@ -47,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GC_Auth/GC_Auth/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+            <state relative-caret-position="565">
+              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
             </state>
           </provider>
         </entry>
@@ -56,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GC_Auth/templates/UserProfile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="444" column="57" selection-start-line="444" selection-start-column="57" selection-end-line="444" selection-end-column="57" />
+            <state relative-caret-position="565">
+              <caret line="703" column="9" selection-start-line="703" selection-start-column="9" selection-end-line="703" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -83,8 +83,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/BootstrapLogIn/src/ChangePassword.py" />
-        <option value="$PROJECT_DIR$/GC_Auth/GC_Auth/views.py" />
         <option value="$PROJECT_DIR$/GC_Auth/templates/UserProfile.html" />
+        <option value="$PROJECT_DIR$/GC_Auth/GC_Auth/views.py" />
       </list>
     </option>
   </component>
@@ -97,7 +97,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,6 +130,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -164,18 +164,19 @@
       <updated>1552859452669</updated>
       <workItem from="1552859457025" duration="1097000" />
       <workItem from="1552862035443" duration="1196000" />
-      <workItem from="1554309822765" duration="262000" />
+      <workItem from="1554309822765" duration="317000" />
+      <workItem from="1554318221270" duration="40000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2555000" />
+    <option name="totallyTimeSpent" value="2650000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1378" height="780" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2572079" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26100153" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -203,6 +204,9 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/launch.html" />
+    <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/userProfileController.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/LogIn.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -223,26 +227,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/PassRest.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/LogIn_dj.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/userProfileController.py">
+    <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/PassRest.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/GC_Auth/GC_Auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="565">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GC_Auth/templates/UserProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="444" column="57" selection-start-line="444" selection-start-column="57" selection-end-line="444" selection-end-column="57" />
+        <state relative-caret-position="565">
+          <caret line="703" column="9" selection-start-line="703" selection-start-column="9" selection-end-line="703" selection-end-column="9" />
         </state>
       </provider>
     </entry>

@@ -402,7 +402,7 @@
 
                                 <!--  <img align="left" class="fb-image-lg" src="images/Wallpaper.png" />-->
                                   {% load staticfiles %}
-                                  <img src="{% static "GC_Auth/UserProfile_images/wallpaper.png"  %}" align="left" class="fb-image-lg"/>
+                                  <img src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
                                   <div class = "settings">
                                       <button class="btn btn-primary pull-right"><i class="	fa fa-gear"></i></button>
                                   </div>
@@ -425,7 +425,7 @@
 
                                 <!--   <img align="left" class="fb-image-profile thumbnail" src="../GC_Auth/static/GC_Auth/UserProfile_images/user.png"/>-->
                                   {% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/user.png"  %}" align="left" class="fb-image-profile thumbnail"  />
+                                       <img src="{{ProfilePic}}" align="left" class="fb-image-profile thumbnail"  />
 
 
 
@@ -442,9 +442,9 @@
                           <div class="col-md-7">
 
                               <div  style = "position:relative; left:100px; top:0px;">
-                                        <h1><strong>{{ n }}</strong><br></h1>
-                                  <h8>Connections <span class="label label-default">200</span></h8>
-                                        <h8>Forums <span class="label label-default">200</span></h8>
+                                        <h1><strong>{{n}}</strong><br></h1>
+                                  <h8>Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                        <h8>Forums <span class="label label-default">{{ numForums }}</span></h8>
 
                               </div><br>
 
@@ -454,15 +454,15 @@
 
                                         <tr>
                                             <td><strong><span class="glyphicon glyphicon-bookmark text-primary"></span></strong></td>
-                                            <td class="text-primary"> <p>Driven guidance counselor with 10+ years’ experience teaching and advising high school students. Fluent in Spanish; skilled at communicating and developing relationships with ESL students and their families.</p></td>
+                                            <td class="text-primary"> <p>{{ bio }}</p></td>
                                         </tr>
                                         <tr>
                                             <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
-                                            <td class="text-primary">noreply@email.com</td>
+                                            <td class="text-primary">{{ email }}</td>
                                         </tr>
                                      <tr>
                                             <td><strong><span class="fa fa-globe fa-lg text-primary"></span></strong></td>
-                                            <td class="text-primary">Zimbabwe</td>
+                                            <td class="text-primary">{{ country }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

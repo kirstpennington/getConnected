@@ -18,10 +18,41 @@ firebase = pyrebase.initialize_app(config)
 authe = firebase.auth()
 database = firebase.database()
 
+#  Badges, profilePic, courses, forums
+
+
+# READ methods
+
 
 def getUsername(request, user):
-    name = database.child('Users').child(user['localId']).child('Name').get
-    return name
+    name = database.child('Users').child(user['localId']).child('Name').get()
+    return name.val()
+
+
+def getBio(request, user):
+    return database.child('Users').child(user['localId']).child('Bio').get().val()
+
+
+def getCountry(request, user):
+    return database.child('Users').child(user['localId']).child('Country').get().val()
+
+
+def getNumConnecions(request, user):
+    return database.child('Users').child(user['localId']).child('numConnections').get().val()
+
+
+def getNumForums(request, user):
+    return database.child('Users').child(user['localId']).child('numForums').get().val()
+
+
+def getProfilePic(request, user):
+    return database.child('Users').child(user['localId']).child('ProfilePic').get().val()
+
+
+def getBackgroundPic(request, user):
+    return database.child('Users').child(user['localId']).child('BackgroundPic').get().val()
+
+# LOGIN methods
 
 
 def LogIn(request):
@@ -46,8 +77,16 @@ def postsign(request):
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
 
-    return render(request, "UserProfile.html", {"e": email, 'n': getUsername(request, user)})
-    # return render(request, "UserProfile.html", {"e": email, 'n': 'Default Value'})
+    return render(request, "UserProfile.html", {"e": email,
+                                                'n': getUsername(request, user),
+                                                'bio': getBio(request, user),
+                                                'email': email,
+                                                'country': getCountry(request, user),
+                                                'numConnections': getNumConnecions(request, user),
+                                                'numForums': getNumForums(request, user),
+                                                'ProfilePic': getProfilePic(request, user),
+                                                'backgroundPic': getBackgroundPic(request, user)})
+
 
 def logout(request):
     auth.logout(request)
