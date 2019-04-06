@@ -4,7 +4,6 @@
     <list default="true" id="dd5e9ccf-0a2e-4cbc-bd22-603e93aad705" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GC_Auth/GC_Auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/GC_Auth/GC_Auth/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GC_Auth/templates/UserProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/GC_Auth/templates/UserProfile.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,20 +43,20 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GC_Auth/GC_Auth/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+            <state relative-caret-position="997">
+              <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GC_Auth/templates/UserProfile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="703" column="9" selection-start-line="703" selection-start-column="9" selection-end-line="703" selection-end-column="9" />
+            <state relative-caret-position="208">
+              <caret line="682" column="3" selection-start-line="682" selection-start-column="3" selection-end-line="682" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -97,6 +96,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -130,7 +130,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -165,18 +164,19 @@
       <workItem from="1552859457025" duration="1097000" />
       <workItem from="1552862035443" duration="1196000" />
       <workItem from="1554309822765" duration="317000" />
-      <workItem from="1554318221270" duration="40000" />
+      <workItem from="1554318221270" duration="378000" />
+      <workItem from="1554553542475" duration="19000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2650000" />
+    <option name="totallyTimeSpent" value="3007000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1378" height="780" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26100153" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26479515" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -233,17 +233,17 @@
     <entry file="file://$PROJECT_DIR$/BootstrapLogIn/src/PassRest.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/GC_Auth/GC_Auth/views.py">
+    <entry file="file://$PROJECT_DIR$/GC_Auth/templates/UserProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+        <state relative-caret-position="208">
+          <caret line="682" column="3" selection-start-line="682" selection-start-column="3" selection-end-line="682" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GC_Auth/templates/UserProfile.html">
+    <entry file="file://$PROJECT_DIR$/GC_Auth/GC_Auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="703" column="9" selection-start-line="703" selection-start-column="9" selection-end-line="703" selection-end-column="9" />
+        <state relative-caret-position="997">
+          <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
         </state>
       </provider>
     </entry>
