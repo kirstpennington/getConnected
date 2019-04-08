@@ -29,6 +29,18 @@ u = ""  # user
 
 # ToDo: read badges for profile
 
+def getProfileData():
+    request = r
+    user = u
+    return render(request, "UserProfile.html", {"e": email,
+                                                'n': getUsername(request, user),
+                                                'bio': getBio(request, user),
+                                                'email': email,
+                                                'country': getCountry(request, user),
+                                                'numConnections': getNumConnecions(request, user),
+                                                'numForums': getNumForums(request, user),
+                                                'ProfilePic': getProfilePic(request, user),
+                                                'backgroundPic': getBackgroundPic(request, user)})
 
 def getUsername(request, user):
     name = database.child('Users').child(user['localId']).child('Name').get()
@@ -93,6 +105,12 @@ def postsign(request):
     print(user['localId'])
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
+
+    if getBackgroundPic(request, user) == "":
+        updateBackgroundPic("https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
+
+    if getProfilePic(request, user) == "":
+        updateProfilePic("https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
 
     return render(request, "UserProfile.html", {"e": email,
                                                 'n': getUsername(request, user),
@@ -190,12 +208,50 @@ def updateBadge():
 
 # ToDo: test update methods
 
+
+
 def updatePrivacySettings(request):
-    # ToDo: code to update privacy settings - similar to update profile code
-    return ""
+    if request.method == "POST":
+        # get data from UI using POST method
+        bioPrivacy = request.POST.get("bioPrivacy")
+        connectionPrivacy = request.POST.get("connectionPrivacy")
+        countryPrivacy = request.POST.get("countryPrivacy")
+        namePrivacy = request.POST.get("namePrivacy")
+        pPicPrivacy = request.POST.get("pPicPrivacy")
+        # ToDo: use the naming conventions in the get() method in the UI - name="name"; name="bio"; name="country"
+
+    # call each method to update elements of the profile in the db
+    updateBioPrivacy(bioPrivacy)
+    updateConnectionPrivacy(connectionPrivacy)
+    updateCountryPrivacy(countryPrivacy)
+    updateNamePrivacy(namePrivacy)
+    updatePicPrivacy(pPicPrivacy)
+
+    # edit return render to show the new data
+    return render(request, "UserProfile.html", {'bioPrivacy': bioPrivacy,
+                                                'connectionPrivacy': connectionPrivacy,
+                                                'countryPrivacy': countryPrivacy,
+                                                'namePrivacy': namePrivacy,
+                                                'pPicPrivacy': pPicPrivacy
+                                                })
+
+def updateBioPrivacy(bioPrivacy):
+    database.child("Users").child(u['localId']).child("UserPrivacy").update({"BioPrivacy": bioPrivacy})
+
+def updateConnectionPrivacy(connectionPrivacy):
+    database.child("Users").child(u['localId']).child("UserPrivacy").update({"ConnectionPrivacy": connectionPrivacy})
+
+def updateCountryPrivacy(countryPrivacy):
+    database.child("Users").child(u['localId']).child("UserPrivacy").update({"CountryPrivacy": countryPrivacy})
+
+def updateNamePrivacy(namePrivacy):
+    database.child("Users").child(u['localId']).child("UserPrivacy").update({"NamePrivacy": namePrivacy})
+
+def updatePicPrivacy(pPicPrivacy):
+    database.child("Users").child(u['localId']).child("UserPrivacy").update({"ProfilePicPrivacy": pPicPrivacy})
 
 
-# ToDo: code to change password - verify through user email
+
 
 # ToDo: code to add ratings to courses
 
