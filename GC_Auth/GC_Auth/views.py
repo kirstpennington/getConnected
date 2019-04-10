@@ -22,25 +22,35 @@ database = firebase.database()
 
 r = ""  # request
 u = ""  # user
-
-
+email = ""
+password = ""
 
 # READ methods
 
 # ToDo: read badges for profile
 
-def getProfileData():
-    request = r
-    user = u
-    return render(request, "UserProfile.html", {"e": email,
-                                                'n': getUsername(request, user),
-                                                'bio': getBio(request, user),
-                                                'email': email,
-                                                'country': getCountry(request, user),
-                                                'numConnections': getNumConnecions(request, user),
-                                                'numForums': getNumForums(request, user),
-                                                'ProfilePic': getProfilePic(request, user),
-                                                'backgroundPic': getBackgroundPic(request, user)})
+def getProfileData(request):
+    return render(request, "UserProfile.html", {"e": r.POST.get('email'),
+                                                'n': getUsername(r, u),
+                                                'bio': getBio(r, u),
+                                                'email': r.POST.get('email'),
+                                                'country': getCountry(r, u),
+                                                'numConnections': getNumConnecions(r, u),
+                                                'numForums': getNumForums(r, u),
+                                                'ProfilePic': getProfilePic(r, u),
+                                                'backgroundPic': getBackgroundPic(r, u)})
+
+
+def getPrivacySettings(request):
+    # Name of html file to be changed
+    return render(request, "PrivacySettings.html", {'bioPrivacy': getBioPrivacy(),
+                                                'connectionPrivacy': getConnectionPrivacy(),
+                                                'countryPrivacy': getCountryPrivacy(),
+                                                'namePrivacy': getNamePrivacy(),
+                                                'pPicPrivacy': getPicPrivacy(),
+    })
+
+     # individual get methods
 
 def getUsername(request, user):
     name = database.child('Users').child(user['localId']).child('Name').get()
@@ -70,14 +80,35 @@ def getProfilePic(request, user):
 def getBackgroundPic(request, user):
     return database.child('Users').child(user['localId']).child('BackgroundPic').get().val()
 
+
+def getBioPrivacy():
+    database.child("Users").child(u['localId']).child("UserPrivacy").child("BioPrivacy").get().val()
+
+
+def getConnectionPrivacy():
+    database.child("Users").child(u['localId']).child("UserPrivacy").child("ConnectionPrivacy").get().val()
+
+
+def getCountryPrivacy():
+    database.child("Users").child(u['localId']).child("CountryPrivacy").child("BioPrivacy").get().val()
+
+
+def getNamePrivacy():
+    database.child("Users").child(u['localId']).child("UserPrivacy").child("NamePrivacy").get().val()
+
+
+def getPicPrivacy():
+    database.child("Users").child(u['localId']).child("ProfilePicPrivacy").child("BioPrivacy").get().val()
+
 # ToDo: code to get data for forums and courses in carousels - list of data
 
 # ToDo: read course info for Courses page
 
 # ToDo: find recommended courses for Courses page
 
-# LOGIN methods
 
+
+# LOGIN methods
 
 def LogIn(request):
     return render(request, "LogIn.html")
@@ -93,14 +124,17 @@ def postsign(request):
     global r
     r = request
 
+    global email
     email = request.POST.get('email')
-    passw = request.POST.get("pass")
+
+    global password
+    password = request.POST.get("pass")
     try:
-        user = authe.sign_in_with_email_and_password(email, passw)
+        user = authe.sign_in_with_email_and_password(email, password)
         global u
         u = user
     except:
-        message = "invalid credentials"
+        message = "Incorrect Username or Password"
         return render(request, "LogIn.html", {"messg": message})
     print(user['localId'])
     session_id = user['idToken']
@@ -182,34 +216,6 @@ def updateProfile(request):
                                                 })
 
 
-def updateUsername(name):
-    database.child("Users").child(u['localId']).update({"Name": name})
-
-
-def updateBio(bio):
-    database.child("Users").child(u['localId']).update({"Bio": bio})
-
-
-def updateCountry(country):
-    database.child("Users").child(u['localId']).update({"Country": country})
-
-
-def updateProfilePic(pPic):
-    database.child("Users").child(u['localId']).update({"ProfilePic": pPic})
-
-
-def updateBackgroundPic(bPic):
-    database.child("Users").child(u['localId']).update({"BackgroundPic": bPic})
-
-
-def updateBadge():
-    # ToDo: create method to update badges in DB - not used in UI
-    return ""
-
-# ToDo: test update methods
-
-
-
 def updatePrivacySettings(request):
     if request.method == "POST":
         # get data from UI using POST method
@@ -234,24 +240,54 @@ def updatePrivacySettings(request):
                                                 'namePrivacy': namePrivacy,
                                                 'pPicPrivacy': pPicPrivacy
                                                 })
+    # individual update methods
+
+def updateUsername(name):
+    database.child("Users").child(u['localId']).update({"Name": name})
+
+
+def updateBio(bio):
+    database.child("Users").child(u['localId']).update({"Bio": bio})
+
+
+def updateCountry(country):
+    database.child("Users").child(u['localId']).update({"Country": country})
+
+
+def updateProfilePic(pPic):
+    database.child("Users").child(u['localId']).update({"ProfilePic": pPic})
+
+
+def updateBackgroundPic(bPic):
+    database.child("Users").child(u['localId']).update({"BackgroundPic": bPic})
+
+
+def updateBadge():
+    # ToDo: create method to update badges in DB - not used in UI
+    return ""
+
 
 def updateBioPrivacy(bioPrivacy):
     database.child("Users").child(u['localId']).child("UserPrivacy").update({"BioPrivacy": bioPrivacy})
 
+
 def updateConnectionPrivacy(connectionPrivacy):
     database.child("Users").child(u['localId']).child("UserPrivacy").update({"ConnectionPrivacy": connectionPrivacy})
+
 
 def updateCountryPrivacy(countryPrivacy):
     database.child("Users").child(u['localId']).child("UserPrivacy").update({"CountryPrivacy": countryPrivacy})
 
+
 def updateNamePrivacy(namePrivacy):
     database.child("Users").child(u['localId']).child("UserPrivacy").update({"NamePrivacy": namePrivacy})
+
 
 def updatePicPrivacy(pPicPrivacy):
     database.child("Users").child(u['localId']).child("UserPrivacy").update({"ProfilePicPrivacy": pPicPrivacy})
 
 
-
-
 # ToDo: code to add ratings to courses
+
+
 
