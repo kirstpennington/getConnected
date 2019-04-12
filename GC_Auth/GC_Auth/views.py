@@ -43,11 +43,11 @@ def getProfileData(request):
 
 def getPrivacySettings(request):
     # Name of html file to be changed
-    return render(request, "PrivacySettings.html", {'bioPrivacy': getBioPrivacy(),
-                                                'connectionPrivacy': getConnectionPrivacy(),
-                                                'countryPrivacy': getCountryPrivacy(),
-                                                'namePrivacy': getNamePrivacy(),
-                                                'pPicPrivacy': getPicPrivacy(),
+    return render(request, "PrivacySettings.html", {'bioPrivacy': getBioPrivacy(u),
+                                                'connectionPrivacy': getConnectionPrivacy(u),
+                                                'countryPrivacy': getCountryPrivacy(u),
+                                                'namePrivacy': getNamePrivacy(u),
+                                                'pPicPrivacy': getPicPrivacy(u),
     })
 
      # individual get methods
@@ -82,24 +82,24 @@ def getBackgroundPic(request, user):
     return database.child('Users').child(user['localId']).child('BackgroundPic').get().val()
 
 
-def getBioPrivacy():
-    return database.child("Users").child(u['localId']).child("UserPrivacy").child("BioPrivacy").get().val()
+def getBioPrivacy(user):
+    return database.child("Users").child(user['localId']).child("UserPrivacy").child("BioPrivacy").get().val()
 
 
-def getConnectionPrivacy():
-    return database.child("Users").child(u['localId']).child("UserPrivacy").child("ConnectionPrivacy").get().val()
+def getConnectionPrivacy(user):
+    return database.child("Users").child(user['localId']).child("UserPrivacy").child("ConnectionPrivacy").get().val()
 
 
-def getCountryPrivacy():
-    return database.child("Users").child(u['localId']).child("CountryPrivacy").child("BioPrivacy").get().val()
+def getCountryPrivacy(user):
+    return database.child("Users").child(user['localId']).child("UserPrivacy").child("CountryPrivacy").get().val()
 
 
-def getNamePrivacy():
-    return database.child("Users").child(u['localId']).child("UserPrivacy").child("NamePrivacy").get().val()
+def getNamePrivacy(user):
+    return database.child("Users").child(user['localId']).child("UserPrivacy").child("NamePrivacy").get().val()
 
 
-def getPicPrivacy():
-    return database.child("Users").child(u['localId']).child("ProfilePicPrivacy").child("BioPrivacy").get().val()
+def getPicPrivacy(user):
+    return database.child("Users").child(user['localId']).child("UserPrivacy").child("ProfilePicPrivacy").get().val()
 
 # ToDo: code to get data for forums and courses in carousels - list of data
 
@@ -202,11 +202,11 @@ def updateProfile(request):
         # ToDo: use the naming conventions in the get() method in the UI - name="name"; name="bio"; name="country"
 
     # call each method to update elements of the profile in the db
-    updateUsername(name)
-    updateBio(bio)
-    updateCountry(country)
-    updateProfilePic(pPic)
-    updateBackgroundPic(bPic)
+    updateUsername(u, name)
+    updateBio(u, bio)
+    updateCountry(u, country)
+    updateProfilePic(u, pPic)
+    updateBackgroundPic(u, bPic)
 
     # edit return render to show the new data
     return render(request, "UserProfile.html", {'n': name,
@@ -228,11 +228,11 @@ def updatePrivacySettings(request):
         # ToDo: use the naming conventions in the get() method in the UI - name="name"; name="bio"; name="country"
 
     # call each method to update elements of the profile in the db
-    updateBioPrivacy(bioPrivacy)
-    updateConnectionPrivacy(connectionPrivacy)
-    updateCountryPrivacy(countryPrivacy)
-    updateNamePrivacy(namePrivacy)
-    updatePicPrivacy(pPicPrivacy)
+    updateBioPrivacy(u, bioPrivacy)
+    updateConnectionPrivacy(u, connectionPrivacy)
+    updateCountryPrivacy(u, countryPrivacy)
+    updateNamePrivacy(u, namePrivacy)
+    updatePicPrivacy(u, pPicPrivacy)
 
     # edit return render to show the new data
     return render(request, "UserProfile.html", {'bioPrivacy': bioPrivacy,
@@ -243,28 +243,24 @@ def updatePrivacySettings(request):
                                                 })
     # individual update methods
 
-def updateUsername(name):
-    try:
-        database.child("Users").child(u['localId']).update({"Name": name})
-        return True
-    except:
-        return False
+def updateUsername(user, name):
+    database.child("Users").child(user['localId']).update({"Name": name})
 
 
-def updateBio(bio):
-    database.child("Users").child(u['localId']).update({"Bio": bio})
+def updateBio(user, bio):
+    database.child("Users").child(user['localId']).update({"Bio": bio})
 
 
-def updateCountry(country):
-    database.child("Users").child(u['localId']).update({"Country": country})
+def updateCountry(user, country):
+    database.child("Users").child(user['localId']).update({"Country": country})
 
 
-def updateProfilePic(pPic):
-    database.child("Users").child(u['localId']).update({"ProfilePic": pPic})
+def updateProfilePic(user, pPic):
+    database.child("Users").child(user['localId']).update({"ProfilePic": pPic})
 
 
-def updateBackgroundPic(bPic):
-    database.child("Users").child(u['localId']).update({"BackgroundPic": bPic})
+def updateBackgroundPic(user, bPic):
+    database.child("Users").child(user['localId']).update({"BackgroundPic": bPic})
 
 
 def updateBadge():
@@ -272,24 +268,24 @@ def updateBadge():
     return ""
 
 
-def updateBioPrivacy(bioPrivacy):
-    database.child("Users").child(u['localId']).child("UserPrivacy").update({"BioPrivacy": bioPrivacy})
+def updateBioPrivacy(user, bioPrivacy):
+    database.child("Users").child(user['localId']).child("UserPrivacy").update({"BioPrivacy": bioPrivacy})
 
 
-def updateConnectionPrivacy(connectionPrivacy):
-    database.child("Users").child(u['localId']).child("UserPrivacy").update({"ConnectionPrivacy": connectionPrivacy})
+def updateConnectionPrivacy(user, connectionPrivacy):
+    database.child("Users").child(user['localId']).child("UserPrivacy").update({"ConnectionPrivacy": connectionPrivacy})
 
 
-def updateCountryPrivacy(countryPrivacy):
-    database.child("Users").child(u['localId']).child("UserPrivacy").update({"CountryPrivacy": countryPrivacy})
+def updateCountryPrivacy(user, countryPrivacy):
+    database.child("Users").child(user['localId']).child("UserPrivacy").update({"CountryPrivacy": countryPrivacy})
 
 
-def updateNamePrivacy(namePrivacy):
-    database.child("Users").child(u['localId']).child("UserPrivacy").update({"NamePrivacy": namePrivacy})
+def updateNamePrivacy(user, namePrivacy):
+    database.child("Users").child(user['localId']).child("UserPrivacy").update({"NamePrivacy": namePrivacy})
 
 
-def updatePicPrivacy(pPicPrivacy):
-    database.child("Users").child(u['localId']).child("UserPrivacy").update({"ProfilePicPrivacy": pPicPrivacy})
+def updatePicPrivacy(user, pPicPrivacy):
+    database.child("Users").child(user['localId']).child("UserPrivacy").update({"ProfilePicPrivacy": pPicPrivacy})
 
 
 # ToDo: code to add ratings to courses
