@@ -31,10 +31,10 @@ password = ""
 
 def getProfileData(request):
     return render(request, "UserProfile.html", {"e": r.POST.get('email'),
-                                                'n': getUsername(r, u),
+                                                'n': getUsername(u),
                                                 'bio': getBio(r, u),
                                                 'email': r.POST.get('email'),
-                                                'country': getCountry(r, u),
+                                                'country': getCountry(u),
                                                 'numConnections': getNumConnecions(r, u),
                                                 'numForums': getNumForums(r, u),
                                                 'ProfilePic': getProfilePic(r, u),
@@ -52,7 +52,8 @@ def getPrivacySettings(request):
 
      # individual get methods
 
-def getUsername(request, user):
+
+def getUsername(user):
     name = database.child('Users').child(user['localId']).child('Name').get()
     return name.val()
 
@@ -61,7 +62,7 @@ def getBio(request, user):
     return database.child('Users').child(user['localId']).child('Bio').get().val()
 
 
-def getCountry(request, user):
+def getCountry(user):
     return database.child('Users').child(user['localId']).child('Country').get().val()
 
 
@@ -82,23 +83,23 @@ def getBackgroundPic(request, user):
 
 
 def getBioPrivacy():
-    database.child("Users").child(u['localId']).child("UserPrivacy").child("BioPrivacy").get().val()
+    return database.child("Users").child(u['localId']).child("UserPrivacy").child("BioPrivacy").get().val()
 
 
 def getConnectionPrivacy():
-    database.child("Users").child(u['localId']).child("UserPrivacy").child("ConnectionPrivacy").get().val()
+    return database.child("Users").child(u['localId']).child("UserPrivacy").child("ConnectionPrivacy").get().val()
 
 
 def getCountryPrivacy():
-    database.child("Users").child(u['localId']).child("CountryPrivacy").child("BioPrivacy").get().val()
+    return database.child("Users").child(u['localId']).child("CountryPrivacy").child("BioPrivacy").get().val()
 
 
 def getNamePrivacy():
-    database.child("Users").child(u['localId']).child("UserPrivacy").child("NamePrivacy").get().val()
+    return database.child("Users").child(u['localId']).child("UserPrivacy").child("NamePrivacy").get().val()
 
 
 def getPicPrivacy():
-    database.child("Users").child(u['localId']).child("ProfilePicPrivacy").child("BioPrivacy").get().val()
+    return database.child("Users").child(u['localId']).child("ProfilePicPrivacy").child("BioPrivacy").get().val()
 
 # ToDo: code to get data for forums and courses in carousels - list of data
 
@@ -147,10 +148,10 @@ def postsign(request):
         updateProfilePic("https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
 
     return render(request, "UserProfile.html", {"e": email,
-                                                'n': getUsername(request, user),
+                                                'n': getUsername(user),
                                                 'bio': getBio(request, user),
                                                 'email': email,
-                                                'country': getCountry(request, user),
+                                                'country': getCountry(user),
                                                 'numConnections': getNumConnecions(request, user),
                                                 'numForums': getNumForums(request, user),
                                                 'ProfilePic': getProfilePic(request, user),
@@ -243,7 +244,11 @@ def updatePrivacySettings(request):
     # individual update methods
 
 def updateUsername(name):
-    database.child("Users").child(u['localId']).update({"Name": name})
+    try:
+        database.child("Users").child(u['localId']).update({"Name": name})
+        return True
+    except:
+        return False
 
 
 def updateBio(bio):

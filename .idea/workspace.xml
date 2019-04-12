@@ -38,7 +38,10 @@
         <entry file="file://$PROJECT_DIR$/GC_Auth/GC_Auth/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="502">
-              <caret line="293" lean-forward="true" selection-start-line="293" selection-end-line="293" />
+              <caret line="298" lean-forward="true" selection-start-line="298" selection-end-line="298" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,18 +148,19 @@
       <workItem from="1554821722474" duration="104000" />
       <workItem from="1554826720665" duration="182000" />
       <workItem from="1554907462421" duration="601000" />
-      <workItem from="1554909266080" duration="36000" />
+      <workItem from="1554909266080" duration="88000" />
+      <workItem from="1555082859330" duration="8000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5600000" />
+    <option name="totallyTimeSpent" value="5660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27155825" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2753404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -214,7 +218,10 @@
     <entry file="file://$PROJECT_DIR$/GC_Auth/GC_Auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="502">
-          <caret line="293" lean-forward="true" selection-start-line="293" selection-end-line="293" />
+          <caret line="298" lean-forward="true" selection-start-line="298" selection-end-line="298" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
