@@ -29,5 +29,8 @@ urlpatterns = [
     url(r'^logout/',views.logout,name="log"),
     url(r'^signup/',views.signUp,name='signup'),
     url(r'^postsignup/',views.postsignup,name='postsignup'),
+    url(r'^goBadges/', views.goBadges, name='goBadges'),
+    url(r'^goHelpUserProfile/', views.goHelpUserProfile, name='helpUserProfile'),
+
 
 ]

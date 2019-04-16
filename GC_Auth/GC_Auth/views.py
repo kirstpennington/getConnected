@@ -187,6 +187,12 @@ def postsignup(request):
 
     return render(request, "signIn.html")
 
+def goBadges(request):
+    return render(request, "badgesStart.html")
+
+def goHelpUserProfile(request):
+    return render(request, "helpUserProfile.html")
+
 
 # UPDATE Methods
 
