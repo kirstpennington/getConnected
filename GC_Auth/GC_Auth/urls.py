@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^postsignup/',views.postsignup,name='postsignup'),
     url(r'^goBadges/', views.goBadges, name='goBadges'),
     url(r'^goHelpUserProfile/', views.goHelpUserProfile, name='helpUserProfile'),
+    url(r'^goIntroHelp/', views.goIntroHelp, name='introHelp'),
+    url(r'^goAccountHelp/', views.goAccountHelp, name='accountHelp'),
 
 
 ]

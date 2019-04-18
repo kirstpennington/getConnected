@@ -193,6 +193,12 @@ def goBadges(request):
 def goHelpUserProfile(request):
     return render(request, "helpUserProfile.html")
 
+def goIntroHelp(request):
+    return render(request, 'introducingHelp.html')
+
+def goAccountHelp(request):
+    return render(request, 'accountHelp.html')
+
 
 # UPDATE Methods
 
