@@ -30,6 +30,42 @@
   <!--  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
     <link href="style.css" type="text/css" rel="stylesheet">-->
 
+
+      <!--Couresale-->
+    <style>
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* Carousel Control */
+.control-box {
+  text-align: right;
+  margin-top: 0;
+  width: auto;
+  top: 3em;
+  right: 40px;
+  position: absolute;
+    }
+.control-box .carousel-control{
+        background-color: #666;
+        background-image: none;
+        border: 0px;
+        border-radius: 0px;
+        display: inline-block;
+        font-size: 34px;
+        font-weight: 200;
+        line-height: 18px;
+        opacity: 0.5;
+        padding: 4px 14px 0px;
+        position: static;
+        height: 30px;
+        width: 15px;
+        }
+
+
+    </style>
+
     <style>
 
 
@@ -73,27 +109,19 @@
         }
 
         .well {
-            height: 90%;
-          width: 90% ;
+            height: 100%;
+            width: 95% ;
             border-color: transparent;
-            background-color: #ebebeb;
+            background-color:  white;
+
+            box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
+
 
             top: 15px;
-            left: 50px;
+            left: 28px;
             position: relative;
         }
 
-        .headingCourses{
-            top: 0px;
-            right: 895px;
-            position: relative;
-        }
-
-          .headingForums{
-            top: 0px;
-            left: 40px;
-            position: relative;
-        }
 
 
 /* CSS used here will be applied after bootstrap.css */
@@ -158,11 +186,158 @@
 	box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
 }
 
+        .header_site {
+            background-color: white;
+            height: 40px;
+            width: 1080px;
+            left: 40px;
+            position: relative;}
+
+        .titlefont {
+            font-size: x-large;
+            font-family: SansSerif;
+            color: gray;
+            margin: auto 40px auto 40px;
+         position: relative;
+         left: 5px;}
+
+    </style>
+
+    <!------ Style for My Courses + My Forums ---------->
+
+    <style>
+
+        .card {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin: 10px 0 20px 0;
+            border-top-width: 0;
+        border-bottom-width: 2px;
+
+
+    box-sizing: border-box;
+
+    position: relative;
+    top: -50px;
+    margin-bottom: -50px;
+    left: 18px;
+    box-shadow: 0 4px 8px 0 silver;
+
+}
+
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: white;
+    border-width: 5px;
+}
+
+.card.Ccard {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    background-color: white;
+    border-width: 5px;
+}
+
+.card.Ccard .info .title {
+    margin-bottom: 4px;
+    font-size: 24px;
+    line-height: 1;
+    color: black;
+    vertical-align: middle;
+    font-family: Arial;
+}
+
+
+.cardheader {
+    background: url("http://lorempixel.com/850/280/nature/4/");
+    background-size: cover;
+    height: 170px;
+    width: 300px;
+
+    position: relative;
+    top: -50px;
+    margin-bottom: -50px;
+    box-shadow: 0 4px 8px 0 silver;
+
+}
+
+.card.hovercard .info .title {
+    margin-bottom: 4px;
+    font-size: 24px;
+    line-height: 1;
+    color: black;
+    vertical-align: middle;
+    font-family: Arial;
+}
+
+.line{
+    left: 40px;
+}
+
+.heartbutton{
+    top: -50px;
+    left: 280px;
+    position: absolute;
+    background: transparent;
+
+}
+
+.heartbutton{
+    top: -50px;
+    left: 280px;
+    position: absolute;
+    background: transparent;
+
+}
+
+
+
+.heartColour{
+    color: #e83e8c;
+border: black;
+border-width: 2px}
+
+.viewForum{
+    color: #e83e8c;
+border: black;
+border-width: 2px}
+
+.ViewMorebutton{
+     border-radius: 8px;
+        color: black;
+       background-color: #e83e8c;
+        border: 0px  solid black;
+        opacity: 0.8;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left:10px;
+        padding-right:10px;
+        font-size: 16px;
+        box-shadow: 0 2px 4px 0 silver;
+    font-family: SansSerif;
+    font-weight: bold;
+
+}
+        .ViewMorebutton:hover{
+        background-color: #e83e8c;
+        color: white;
+    }
+
+    </style>
+
+        <!------ Style for My Courses + My Forums ---------->
+    <style>
+
 
 
 
 
     </style>
+
 </head>
 <body>
 
@@ -181,15 +356,22 @@
     <div class="collapse navbar-collapse" id="myNavbar" >
     <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
       <ul class="nav navbar-nav navbar-left">
+<<<<<<< Updated upstream
         <li><a href="Home.html"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
         <li><a href="MyNetwork.html"><span class="fa fa-globe fa-lg"></span> MyNetwork</a></li>
         <li><a href="Forums.html"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
 
+=======
+        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
+        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
+        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
+          <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span>Courses</a></li>
+>>>>>>> Stashed changes
 
 
         </ul>
-      <ul class="nav navbar-nav" style = "text-align: center">
-	<form class="navbar-form navbar-right search-form" role="search">
+      <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px">
+	<form class="  search-form" role="search">
 				<input type="text" class="form-control" placeholder="Search" />
 			</form>
         <!-- Search form -->
@@ -291,10 +473,6 @@
 
 
 
-
-
-
-
             </li>
 
 
@@ -377,6 +555,8 @@
 
     </div>
   </div>
+                                    <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
+
 </nav>
 <div>
 
@@ -387,9 +567,10 @@
 
 
     <section>
-      <div class="container">
 
           <div class="row">  <!-- User Profile-->
+                    <div class="container">
+
 
 
               <div class="col-sm-6"><!-- MIDDLE: Image + Name + Description-->
@@ -405,7 +586,7 @@
 
                                 <!--  <img align="left" class="fb-image-lg" src="images/Wallpaper.png" />-->
                                   {% load staticfiles %}
-                                  <img src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
+                                  <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
                                   <div class = "settings">
                                       <button class="btn btn-primary pull-right"><i class="	fa fa-gear"></i></button>
                                   </div>
@@ -414,9 +595,13 @@
                                    <div class="col-md-3">
                                        <!--    <img alt="" style="width:100px;height:100px " title="" class=" img-thumbnail " src="../GC_Auth/static/GC_Auth/UserProfile_images/badge_icon.png" >-->
                                         {% load staticfiles %}
+<<<<<<< Updated upstream
                                       <a onclick="location.href='{% url 'goBadges' %}'">
                                           <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:100px;height:100px " title="" class=" img-thumbnail " />
                                       </a>
+=======
+                                       <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:80px;height:80px " title=""  />
+>>>>>>> Stashed changes
 
 
                                          <ul title="Ratings" class="list-inline ratings text-left">
@@ -430,7 +615,7 @@
 
                                 <!--   <img align="left" class="fb-image-profile thumbnail" src="../GC_Auth/static/GC_Auth/UserProfile_images/user.png"/>-->
                                   {% load staticfiles %}
-                                       <img src="{{ProfilePic}}" align="left" class="fb-image-profile thumbnail"  />
+                                       <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ProfilePic}}" align="left" class="fb-image-profile thumbnail"  />
 
 
 
@@ -479,173 +664,989 @@
 
 
 
-          </div><br><br><br><br><br><br><br><br><br><br><br>
+          </div><br><br><br><br><br><br><br><br><br><br><br><br>
  <!-- Carousel Courses -->
 
                           <div class="row">
     <div class="col-md-15">
-         <h3 class="headingCourses">Courses</h3>
+ <div class="row">
 
+
+
+  </div>
         <div class="well">
-            <div id="myCarousel" class="carousel slide">
-
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <div class="row">
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
 
 
-                        </div>
-                        <!--/row-->
+
+
+
+      <p style="font-weight: bold; color: gray; font-size: large; font-family: 'Arial Narrow' ">Suggestions</p>
+<hr align="left" width="100%">
+
+       <div class="control-box" style="top: 10px">
+            <a data-slide="prev" href="#myCarousel" class="carousel-control left">‹</a>
+            <a data-slide="next" href="#myCarousel" class="carousel-control right">›</a>
+        </div><!-- /.control-box -->
+
+
+    <div class="carousel slide" id="myCarousel" >
+        <div class="carousel-inner" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0)">
+            <div class="item active row">
+<!--frreggd -->
+
+ <div class="row">   <!--First Row of cards for  -->
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<div class="container" >
+
+	<div class="row">
+
+		<div class="col-lg-3 col-sm-6">
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+<br>
+
+                <div class="info">
+                    <div class="title">
                     </div>
-                    <!--/item-->
-                    <div class="item">
-                         <div class="row">
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
+                     <div  style = "position: relative; left: 100px; top: 0px">
+                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
 
+                              </div><br>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">Massive Investments in Digital Transformation</div>
+                    <br><span class="badge badge-pill badge-dark">Highly</span>
+                    <span class="badge badge-pill badge-dark">Miami </span>
+                    <span class="badge badge-pill badge-dark">Princess </span>
+                    <span class="badge badge-pill badge-dark">Music </span>
 
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <!--/item-->
-                    <div class="item">
-                         <div class="row">
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-
-
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <!--/item-->
                 </div>
-                <!--/carousel-inner-->
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
 
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+      <p>James Coden · day ago</p>
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        JOIN <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
             </div>
-            <!--/myCarousel-->
+
+
+        </div>
+
+
+	</div>
+</div>      </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+                <div class="avatar">
+<br>
+{% load staticfiles %}
+                                       <img style="padding-top: 15px" src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+                <div class="avatar">
+
+<br>
+{% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/SUGprofile.png"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Bhavita Ragoo</div>
+                    <br><span class="badge badge-pill badge-dark">UCT Graduate </span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW PROFILE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+                          <br>
+
+
+
+</div>
+            </div>
+        </div> <!--End of copy past  -->
+
+
+
+              </div><!-- /Slide1 -->
+            <div class="item">
+
+ <div class="row">   <!--First Row of cards for  -->
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<div class="container">
+
+	<div class="row">
+
+		<div class="col-lg-3 col-sm-6">
+
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+                <div class="avatar">
+<br>
+                    {% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
+
+                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+                <div class="avatar">
+<br>
+{% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+                <div class="avatar">
+<br>
+{% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/UCT.gif"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+                          <br>
+
+
+
+</div>
+            </div>
+        </div> <!--End of copy past  -->
+
+
+
+
+
+              </div><!-- /Slide2 -->
+            <div class="item">
+
+ <div class="row">   <!--First Row of cards for  -->
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<div class="container">
+
+	<div class="row">
+
+		<div class="col-lg-3 col-sm-6">
+
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+                <div class="avatar">
+<br>
+                    {% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
+
+                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+                <div class="avatar">
+<br>
+{% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card Ccard  ">
+
+
+
+                <div class="avatar">
+<br>
+{% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/UCT.gif"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+                          <br>
+
+
+
+</div>
+            </div>
+        </div> <!--End of copy past  -->
+
+
+              </div><!-- /Slide3 -->
+        </div>
+
+
+
+    </div><!-- /#myCarousel -->
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--/myCarouselllllllllllll-->
         </div>
         <!--/well-->
     </div>
 </div>
 
 
+
+
+
+
+
+<div class="row">
+            <span style="position: relative; left: 1050px; top: 40px; color: gray; " class="glyphicon glyphicon-plus-sign fa-3x"></span>
+
+    <div >
+      <h1 class="titlefont" style="font-weight: bold"><span class="fa fa-book fa-lg"></span>&nbsp;My Courses </p> </h1>
+                             <hr style="width: 93%; color: gray; height: 1px; background-color:gray;" />
+
+    </div>
+
+  </div>
+
+          <br><br><br>
 
                                               <!-- Carousel Courses -->
+
+
                           <div class="row">
+
+
     <div class="col-md-15">
-         <h3 class="headingForums">Forums</h3>
 
-        <div class="well">
-            <div id="myCarousel2" class="carousel slide">
+        <!-- Cards section start from here  -->
 
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <div class="row">
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
+<section class="details-card">
+
+    <div class="container">
+        <div class="row">   <!--First Row of cards for  -->
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <!--/item-->
-                    <div class="item">
-                         <div class="row">
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
+
+<div class="container">
+
+	<div class="row">
+
+		<div class="col-lg-3 col-sm-6">
 
 
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <!--/item-->
-                    <div class="item">
-                         <div class="row">
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-2"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
+                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg"  %})"></div>
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
 
 
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <!--/item-->
+
+
+
+
+            <div class="card hovercard  ">
+
+
+
+                <div class="avatar">
+<br>
+                    {% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
+
                 </div>
-                <!--/carousel-inner-->
-                <a class="left carousel-control" href="#myCarousel2" data-slide="prev">‹</a>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
 
-                <a class="right carousel-control" href="#myCarousel2" data-slide="next">›</a>
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
             </div>
-            <!--/myCarousel-->
+
+
         </div>
-        <!--/well-->
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_HAVARD.jpg"  %})"></div>
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card hovercard  ">
+
+
+
+                <div class="avatar">
+<br>
+{% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_UCT.jpg"  %})"></div>
+
+            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+
+
+
+
+
+
+            <div class="card hovercard  ">
+
+
+
+                <div class="avatar">
+<br>
+{% load staticfiles %}
+                                       <img src="{% static "GC_Auth/UserProfile_images/UCT.gif"  %}"   />                </div>
+                <br>
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
+                    <br><span class="badge badge-pill badge-dark">Recommended</span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+                          <br>
+
+
+
+</div>
+            </div>
+        </div> <!--End of copy past  -->
+    </div>
+</section>
+
     </div>
 </div>
+                          <div class="row">
+
+                          <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px" >View More <i class="fa fa-angle-double-right"></i></button>
+                          </div>
+
+                         <div class="row">
+                                         <span style="position: relative; left: 1050px; top: 40px; color: gray; " class="glyphicon glyphicon-plus-sign black fa-3x"></span>
+
+    <div >
+      <h1 class="titlefont" style="font-weight: bold"><span class="fa fa-comments-o fa-lg"></span>&nbsp;My Forums</h1>
+
+                             <hr style="width: 93%; color: black; height: 1px; background-color:black;" />
+
+
+    </div><br><br><br>
+
+
+                             <section class="details-card">
+
+    <div class="container">
+        <div class="row">   <!--First Row of cards for  -->
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<div class="container">
+
+	<div class="row">
+
+		<div class="col-lg-3 col-sm-6">
+
+
+                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Digital.jpeg"  %})"></div>
+
+
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button" class="	fa fa-sign-in fa-2x viewForum"></span></div>
+
+
+
+
+
+
+
+            <div class="card hovercard  ">
+
+
+
+
+
+                <div class="info">
+                    <div class="title">
+                    </div>
+                     <div  style = "position: relative; left: 100px; top: 0px">
+                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
+
+                              </div><br>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">Massive Investments in Digital Transformation</div>
+                    <br><span class="badge badge-pill badge-dark">Highly</span>
+                    <span class="badge badge-pill badge-dark">Miami </span>
+                    <span class="badge badge-pill badge-dark">Princess </span>
+                    <span class="badge badge-pill badge-dark">Music </span>
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+
+      <p>James Coden · day ago</p>
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        OPEN <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+
+                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Time.png"  %})"></div>
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button" class="	fa fa-sign-in fa-2x viewForum"></span></div>
+
+
+
+
+
+
+            <div class="card hovercard  ">
+
+
+
+
+
+                <div class="info">
+                    <div class="title">
+                    </div>
+                     <div  style = "position: relative; left: 100px; top: 0px">
+                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
+
+                              </div><br>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Real-Time Risk Decision Making and bussiness strategies</div>
+                    <br><span class="badge badge-pill badge-dark">Finance</span>
+                    <span class="badge badge-pill badge-dark">Pop Culture </span>
+                    <span class="badge badge-pill badge-dark">Obama </span>
+
+
+                </div>
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+      <p>James Coden · day ago</p>
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        OPEN <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+</div>
+            </div>
+            <div class="col-md-4">
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/NatureBackground.jpeg"  %})"></div>
+
+
+
+
+            <div class="heartbutton"><span style="background: transparent" type="button" class="	fa fa-sign-in fa-2x viewForum"></span></div>
+
+
+
+
+
+
+            <div class="card hovercard  ">
+
+
+
+
+
+                <div class="info">
+                    <div class="title">
+                    </div>
+                    <div  style = "position: relative; left: 100px; top: 0px">
+                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
+
+                              </div><br>
+                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Big Data Gets Even Bigger each year in South africa</div>
+                    <br><span class="badge badge-pill badge-dark">Disney</span>
+                    <span class="badge badge-pill badge-dark">Miami </span>
+                    <span class="badge badge-pill badge-dark">Princess </span>
+                    <span class="badge badge-pill badge-dark">Music </span>
+
+                </div>
+
+
+
+                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+      <p>James Coden · day ago</p>
+
+
+                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
+                        OPEN <i class="fa fa-angle-double-right"></i>
+                    </a>
+
+
+            </div>
+
+
+        </div>
+
+
+	</div>
+                          <br>
+     <br>
+
+
+
+
+</div>
+
+            </div>
+              <div class="row">
+
+                          <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px" >View More <i class="fa fa-angle-double-right"></i></button>
+                          </div>
+        </div>
+    </div>
+</section>
+  </div>
 
       </div>
 
@@ -660,13 +1661,35 @@
 
 
 
-                  </div>
+                  </div><!-- huge first row-->
 
 
-              </div>
+              </div><!--Page Container-->
 
 
     </section>
+<br><br>
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+        <div class="container">
+          <br></br>
+      <!-- Call to action -->
+      <ul class="list-unstyled list-inline text-center py-2">
+        <li class="list-inline-item">
+  <!--     <h5 class="mb-1">Log in now: </h5>-->
+        </li>
+        <li class="list-inline-item">
+          <!--<a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>-->
+      <!--    <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+            <span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+        </li>
+      </ul>
+      <!-- Call to action -->
+
+    </div>
+      </div>
+    </footer>
 
 </body>
 
@@ -675,35 +1698,11 @@
 <script>
 
 
-$(document).ready(function() {
-    $('#myCarousel').carousel({
-	interval: 10000
-	})
-
-    $('#myCarousel').on('slid.bs.carousel', function() {
-    	//alert("slid");
-	});
-
-
-});
-
-
-
-$(document).ready(function() {
-    $('#myCarousel2').carousel({
-	interval: 10000
-	})
-
-    $('#myCarousel2').on('slid.bs.carousel', function() {
-    	//alert("slid");
-	});
-
-
-});
-
-$(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
-});
-
+/ Carousel Auto-Cycle
+  $(document).ready(function() {
+    $('.carousel').carousel({
+      interval: 6000
+    })
+  });
 
 </script>

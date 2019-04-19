@@ -23,6 +23,7 @@ from django.urls import path, include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
     url(r'^$',views.LogIn),
     url(r'^passwordReset/', views.passwordReset, name='Reset'),
     url(r'^postsign/',views.postsign),
@@ -34,5 +35,11 @@ urlpatterns = [
     url(r'^goIntroHelp/', views.goIntroHelp, name='introHelp'),
     url(r'^goAccountHelp/', views.goAccountHelp, name='accountHelp'),
 
+
+
+    url(r'^home/', views.home, name="nav_home"),
+    url(r'^networks/', views.networks, name="nav_networks"),
+    url(r'^forums/', views.forums, name="nav_forums"),
+    url(r'^courses/', views.courses, name="nav_courses"),
 
 ]

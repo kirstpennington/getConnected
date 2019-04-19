@@ -303,4 +303,17 @@ def updatePicPrivacy(user, pPicPrivacy):
 # ToDo: code to add ratings to courses
 
 
+#Navigation bar functionality
+
+def home(request):
+    return render(request, 'Home.html')
+
+def networks(request):
+    return render(request, 'MyNetwork.html')
+
+def forums(request):
+    return render(request, 'Forums.html')
+
+def courses(request):
+    return render(request, 'Courses.html')
 
