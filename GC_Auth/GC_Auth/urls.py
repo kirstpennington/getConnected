@@ -28,8 +28,6 @@ urlpatterns = [
     url(r'^passwordReset/', views.passwordReset, name='Reset'),
     url(r'^postsign/',views.postsign),
     url(r'^logout/',views.logout,name="log"),
-    url(r'^signup/',views.signUp,name='signup'),
-    url(r'^postsignup/',views.postsignup,name='postsignup'),
     url(r'^goBadges/', views.goBadges, name='goBadges'),
     url(r'^goHelpUserProfile/', views.goHelpUserProfile, name='helpUserProfile'),
     url(r'^goIntroHelp/', views.goIntroHelp, name='introHelp'),
@@ -41,5 +39,6 @@ urlpatterns = [
     url(r'^networks/', views.networks, name="nav_networks"),
     url(r'^forums/', views.forums, name="nav_forums"),
     url(r'^courses/', views.courses, name="nav_courses"),
+    url(r'^userprofile/', views.userprofile, name="userprofile")
 
 ]

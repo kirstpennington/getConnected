@@ -1,1708 +1,1289 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!--links to Bootstrap & to css-->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Sign in Form with Icons</title>
+
+    <head>
+
+        <!--*HEAD* 1. Title-->
+
+        <title>Your Profile </title>
+
+        <!--*HEAD* 2. Bootstrap & CSS Links-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+        <!-- footer style -->
+        <link href="sticky-footer.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+        <!--*HEAD-STYLE*  1.1. Navigation Bar Style + Body Style -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+        <style>
 
+         html, body {
+             max-width: 100%;
+             overflow-x: hidden;
+         }
 
-
-
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <!-- footer style -->
-    <link href="sticky-footer.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-  <!--  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
-    <link href="style.css" type="text/css" rel="stylesheet">-->
-
-
-      <!--Couresale-->
-    <style>
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-/* Carousel Control */
-.control-box {
-  text-align: right;
-  margin-top: 0;
-  width: auto;
-  top: 3em;
-  right: 40px;
-  position: absolute;
-    }
-.control-box .carousel-control{
-        background-color: #666;
-        background-image: none;
-        border: 0px;
-        border-radius: 0px;
-        display: inline-block;
-        font-size: 34px;
-        font-weight: 200;
-        line-height: 18px;
-        opacity: 0.5;
-        padding: 4px 14px 0px;
-        position: static;
-        height: 30px;
-        width: 15px;
+        .dropdown {
+            display:inline-block;
+            margin-left:20px;
         }
 
-
-    </style>
-
-    <style>
-
-
-.carousel-control {
-  padding-top:10%;
-  width:5%;
-}
-
-
-    .fb-profile img.fb-image-lg{
-    z-index: 0;
-    width: 94%;
-    margin-bottom: 10px;
-    height: 300px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    }
-
-    .fb-image-profile
-    {
-        margin: -90px 10px 0px 150px;
-        z-index: 9;
-        width: 20%;
-        rounded: mx-auto d-block;
-
-
-    }
-
-    .inf-content{
-    border:1px solid #DDDDDD;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    border-radius:10px;
-    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
-}
-
-        .settings{
-            top: 325px;
-            right: 70px;
-            position: relative;
+        .glyphicon-bell {
+            font-size:1.5rem;
         }
 
-        .well {
-            height: 100%;
-            width: 95% ;
-            border-color: transparent;
-            background-color:  white;
+        .notifications {
+            min-width:320px;
+        }
 
+        .notifications-wrapper {
+            overflow:auto;
+            max-height:250px;
+        }
+
+        .glyphicon-circle-arrow-right {
+            margin-left:10px;
+        }
+
+        .item-title {
+            font-size:1.5rem;
+            color: black;
+            padding:0px 50px;
+        }
+
+        .notifications a.content {
+            text-decoration:none;
+            background: white;
+        }
+
+        .notification-item {
+            padding:10px;
+            margin:5px;
+            background: #ebebeb;
+            border-radius:4px;
+            height: 80px;
+        }
+
+        .profile_img {
+            width:25px;
+            display:inline;
+            float:left;
+            border:0px solid #111;
+            border-radius:3px;
             box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
-
-
-            top: 15px;
-            left: 28px;
-            position: relative;
         }
+        </style>
 
 
+        <!--*HEAD-STYLE*  1.2. Wallpaper + Profile Icon + Badges + Settings + User Description Style-->
 
-/* CSS used here will be applied after bootstrap.css */
+        <style>
 
-.dropdown {
-    display:inline-block;
-    margin-left:20px;
+            .fb-profile img.fb-image-lg{
+                z-index: 0;
+                width: 94%;
+                margin-bottom: 10px;
+                height: 300px;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
 
-  }
+            .fb-image-profile {
+                margin: -90px 10px 0px 150px;
+                z-index: 9;
+                width: 20%;
+                rounded: mx-auto d-block;
+            }
 
+            .inf-content{
+                border:1px solid #DDDDDD;
+                -webkit-border-radius:10px;
+                -moz-border-radius:10px;
+                border-radius:10px;
+                box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+            }
 
-.glyphicon-bell {
+            .settings{
+                top: 325px;
+                right: 70px;
+                position: relative;
+            }
 
-    font-size:1.5rem;
-  }
+            .well {
+                height: 100%;
+                width: 95% ;
+                border-color: transparent;
+                background-color:  white;
+                box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
+                top: 15px;
+                left: 28px;
+                position: relative;
+            }
 
-.notifications {
-   min-width:320px;
+        </style>
 
-  }
+        <!--*HEAD-STYLE*  1.3. Carousel Style-->
 
-  .notifications-wrapper {
-     overflow:auto;
-      max-height:250px;
+        <style>
 
-    }
+            .control-box {
+              text-align: right;
+              margin-top: 0;
+              width: auto;
+              top: 3em;
+              right: 40px;
+              position: absolute;
+            }
 
+            .control-box .carousel-control{
+                    background-color: #666;
+                    background-image: none;
+                    border: 0px;
+                    border-radius: 0px;
+                    display: inline-block;
+                    font-size: 34px;
+                    font-weight: 200;
+                    line-height: 18px;
+                    opacity: 0.5;
+                    padding: 4px 14px 0px;
+                    position: static;
+                    height: 30px;
+                    width: 15px;
+            }
 
+            .carousel-control {
+                padding-top:10%;
+                width:5%;
+            }
 
-.glyphicon-circle-arrow-right {
-      margin-left:10px;
-   }
+        </style>
 
-.item-title {
+        <!--*HEAD-STYLE*  1.4. Cards Style-->
 
- font-size:1.5rem;
- color: black;
-    padding:0px 50px;
+        <style>
 
-}
+            .header_site {
+                background-color: white;
+                height: 40px;
+                width: 1080px;
+                left: 40px;
+                position: relative;
+            }
 
-.notifications a.content {
- text-decoration:none;
- background: white;
+            .titlefont {
+                font-size: x-large;
+                font-family: SansSerif;
+                color: gray;
+                margin: auto 40px auto 40px;
+                 position: relative;
+                 left: 5px;
+            }
 
- }
+            .card {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                margin: 10px 0 20px 0;
+                border-top-width: 0;
+                border-bottom-width: 2px;
+                box-sizing: border-box;
+                position: relative;
+                top: -50px;
+                margin-bottom: -50px;
+                left: 18px;
+                box-shadow: 0 4px 8px 0 silver;
+            }
 
-.notification-item {
- padding:10px;
- margin:5px;
- background: #ebebeb;
- border-radius:4px;
-    height: 80px;
- }
+            .card.hovercard {
+                position: relative;
+                padding-top: 0;
+                overflow: hidden;
+                text-align: center;
+                background-color: white;
+                border-width: 5px;
+            }
 
- .profile_img {
-	width:25px;
-	display:inline;
-	float:left;
-	border:0px solid #111;
-	border-radius:3px;
-	box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
-}
+            .card.Ccard {
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+                background-color: white;
+                border-width: 5px;
+            }
 
-        .header_site {
-            background-color: white;
-            height: 40px;
-            width: 1080px;
-            left: 40px;
-            position: relative;}
+            .card.Ccard .info .title {
+                margin-bottom: 4px;
+                font-size: 24px;
+                line-height: 1;
+                color: black;
+                vertical-align: middle;
+                font-family: Arial;
+            }
 
-        .titlefont {
-            font-size: x-large;
-            font-family: SansSerif;
-            color: gray;
-            margin: auto 40px auto 40px;
-         position: relative;
-         left: 5px;}
+            .cardheader {
+                background: url("http://lorempixel.com/850/280/nature/4/");
+                background-size: cover;
+                height: 170px;
+                width: 300px;
 
-    </style>
+                position: relative;
+                top: -50px;
+                margin-bottom: -50px;
+                box-shadow: 0 4px 8px 0 silver;
+            }
 
-    <!------ Style for My Courses + My Forums ---------->
+            .card.hovercard .info .title {
+                margin-bottom: 4px;
+                font-size: 24px;
+                line-height: 1;
+                color: black;
+                vertical-align: middle;
+                font-family: Arial;
+            }
 
-    <style>
+            .line{
+                left: 40px;
+            }
 
-        .card {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        margin: 10px 0 20px 0;
-            border-top-width: 0;
-        border-bottom-width: 2px;
+            .heartbutton{
+                top: -50px;
+                left: 280px;
+                position: absolute;
+                background: transparent;
 
+            }
 
-    box-sizing: border-box;
+            .heartbutton{
+                top: -50px;
+                left: 280px;
+                position: absolute;
+                background: transparent;
 
-    position: relative;
-    top: -50px;
-    margin-bottom: -50px;
-    left: 18px;
-    box-shadow: 0 4px 8px 0 silver;
-
-}
-
-.card.hovercard {
-    position: relative;
-    padding-top: 0;
-    overflow: hidden;
-    text-align: center;
-    background-color: white;
-    border-width: 5px;
-}
-
-.card.Ccard {
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    background-color: white;
-    border-width: 5px;
-}
-
-.card.Ccard .info .title {
-    margin-bottom: 4px;
-    font-size: 24px;
-    line-height: 1;
-    color: black;
-    vertical-align: middle;
-    font-family: Arial;
-}
-
-
-.cardheader {
-    background: url("http://lorempixel.com/850/280/nature/4/");
-    background-size: cover;
-    height: 170px;
-    width: 300px;
-
-    position: relative;
-    top: -50px;
-    margin-bottom: -50px;
-    box-shadow: 0 4px 8px 0 silver;
-
-}
-
-.card.hovercard .info .title {
-    margin-bottom: 4px;
-    font-size: 24px;
-    line-height: 1;
-    color: black;
-    vertical-align: middle;
-    font-family: Arial;
-}
-
-.line{
-    left: 40px;
-}
-
-.heartbutton{
-    top: -50px;
-    left: 280px;
-    position: absolute;
-    background: transparent;
-
-}
-
-.heartbutton{
-    top: -50px;
-    left: 280px;
-    position: absolute;
-    background: transparent;
-
-}
-
-
-
-.heartColour{
-    color: #e83e8c;
-border: black;
-border-width: 2px}
-
-.viewForum{
-    color: #e83e8c;
-border: black;
-border-width: 2px}
-
-.ViewMorebutton{
-     border-radius: 8px;
-        color: black;
-       background-color: #e83e8c;
-        border: 0px  solid black;
-        opacity: 0.8;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left:10px;
-        padding-right:10px;
-        font-size: 16px;
-        box-shadow: 0 2px 4px 0 silver;
-    font-family: SansSerif;
-    font-weight: bold;
-
-}
-        .ViewMorebutton:hover{
-        background-color: #e83e8c;
-        color: white;
-    }
-
-    </style>
-
-        <!------ Style for My Courses + My Forums ---------->
-    <style>
+            }
 
 
+            .heartColour{
+                color: #e83e8c;
+                border: black;
+                border-width: 2px
+            }
 
+            .viewForum{
+                color: #e83e8c;
+                border: black;
+                border-width: 2px
+            }
 
+            .ViewMorebutton{
+                border-radius: 8px;
+                color: black;
+                background-color: #e83e8c;
+                border: 0px  solid black;
+                opacity: 0.8;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left:10px;
+                padding-right:10px;
+                font-size: 16px;
+                box-shadow: 0 2px 4px 0 silver;
+                font-family: SansSerif;
+                font-weight: bold;
+            }
 
-    </style>
+            .ViewMorebutton:hover{
+                background-color: #e83e8c;
+                color: white;
+            }
 
-</head>
+        </style>
+
+    </head>
+
 <body>
 
+<!--*BODY* 1. Navigation Bar-->
 
-<!--navigation bar under header-->
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar" >
-    <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-      <ul class="nav navbar-nav navbar-left">
-<<<<<<< Updated upstream
-        <li><a href="Home.html"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
-        <li><a href="MyNetwork.html"><span class="fa fa-globe fa-lg"></span> MyNetwork</a></li>
-        <li><a href="Forums.html"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
-
-=======
-        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
-        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
-        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
-          <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span>Courses</a></li>
->>>>>>> Stashed changes
-
-
-        </ul>
-      <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px">
-	<form class="  search-form" role="search">
-				<input type="text" class="form-control" placeholder="Search" />
-			</form>
-        <!-- Search form -->
-      </ul>
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>  <!--navbar-header-->
+
+                <div class="collapse navbar-collapse" id="myNavbar" > <!--Navigation bar contents-->
+
+                    <!--Left-side (including search ) of navigation bar-->
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
+                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
+                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span>Courses</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
+                        <form class="  search-form" role="search">
+                            <input type="text" class="form-control" placeholder="Search" />
+                        </form>
+                    </ul>
+
+                    <!--Right-side (including help button ) of navigation bar-->
+
+                    <!--1. User Profile icon + drop down-->
+
+                    <ul class="nav navbar-nav navbar-right" >
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+
+                            <span  onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+
+                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                                <li class="divider"></li>
+                                <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!--1. Notifications icon + drop down-->
+
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
+                            <span class="glyphicon glyphicon-bell"></span> </a>
+
+                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                                <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+                                </div><!--End of Notifications Dropdown div-->
+
+                                <!--Footer of notification drop down-->
+                                <li class="divider"></li>
+                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                            </ul> <!--Dropdown menu Notification-->
+                        </li><!--dropdown -->
+                    </ul> <!--nav navbar-nav navbar-right-->
+
 
-      </ul>
-      <ul class="nav navbar-nav navbar-right" >
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-              <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-triangle-bottom"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                     <li class="divider"></li>
-                     <li><a href="#">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
-                     <li class="divider"></li>
-                    <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                    <li class="divider"></li>
-                    <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
-                      <li class="divider"></li>
-                    <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    <!--2. Message icon + drop down-->
 
-          </ul>
-
-
-            </li>
-
-      </ul>
-
-
-          <ul class="nav navbar-nav navbar-right ">
-            <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
-              <span class="glyphicon glyphicon-bell"></span> </a>
-
-
-<ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-
- <div class="notifications-wrapper">
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-  <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-  <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-
- </div>
-
-  <li class="divider"></li>
-    <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
-
-</ul>
-
-
-
-            </li>
-
-
-
-      </ul>
-
-
-          <ul class="nav navbar-nav navbar-right ">
-            <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
-              <span class="glyphicon glyphicon-envelope"></span> </a>
-
-     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-
- <div class="notifications-wrapper">
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-  <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-   <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-  <a class="content" href="#">
-
-     <div class="notification-item">
-         <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-      <h4 class="item-title">James Coden · day ago</h4>
-      <p class="item-info">Marketing 101, Video Assignment</p>
-    </div>
-
-  </a>
-
- </div>
-
-  <li class="divider"></li>
-    <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
-
-</ul>
-
-
-
-
-    </div>
-  </div>
-                                    <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
-
-</nav>
-<div>
-
- <!-- <button type="button" onclick="location.href='{% url 'log' %}'">Logout</button>-->
-</div>
-</div>
- <!-- User Profile Page -->
-
-
-    <section>
-
-          <div class="row">  <!-- User Profile-->
-                    <div class="container">
-
-
-
-              <div class="col-sm-6"><!-- MIDDLE: Image + Name + Description-->
-
-
-
-                  <div class="container bootstrap snippet">
-
-                      <div class="panel-body inf-content">
-
-                          <div class="container"> <!-- WALLPAPER + PROFILE IMAGE-->
-                              <div class="fb-profile">
-
-                                <!--  <img align="left" class="fb-image-lg" src="images/Wallpaper.png" />-->
-                                  {% load staticfiles %}
-                                  <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
-                                  <div class = "settings">
-                                      <button class="btn btn-primary pull-right"><i class="	fa fa-gear"></i></button>
-                                  </div>
-
-
-                                   <div class="col-md-3">
-                                       <!--    <img alt="" style="width:100px;height:100px " title="" class=" img-thumbnail " src="../GC_Auth/static/GC_Auth/UserProfile_images/badge_icon.png" >-->
-                                        {% load staticfiles %}
-<<<<<<< Updated upstream
-                                      <a onclick="location.href='{% url 'goBadges' %}'">
-                                          <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:100px;height:100px " title="" class=" img-thumbnail " />
-                                      </a>
-=======
-                                       <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:80px;height:80px " title=""  />
->>>>>>> Stashed changes
-
-
-                                         <ul title="Ratings" class="list-inline ratings text-left">
-                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                                         </ul>
-                                   </div>
-
-
-                                <!--   <img align="left" class="fb-image-profile thumbnail" src="../GC_Auth/static/GC_Auth/UserProfile_images/user.png"/>-->
-                                  {% load staticfiles %}
-                                       <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ProfilePic}}" align="left" class="fb-image-profile thumbnail"  />
-
-
-
-
-
-
-
-                              </div>
-
-                          </div><br> <!-- /container for WALLAPAPER + PROFILE IMAGE -->
-
-
-                          <div class="col-md-3"></div>
-                          <div class="col-md-7">
-
-                              <div  style = "position:relative; left:100px; top:0px;">
-                                        <h1><strong>{{n}}</strong><br></h1>
-                                  <h8>Connections <span class="label label-default">{{ numConnections }}</span></h8>
-                                        <h8>Forums <span class="label label-default">{{ numForums }}</span></h8>
-
-                              </div><br>
-
-                              <div class="table-responsive">
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
+                            <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                                <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                </div><!--End of Messages Dropdown div-->
+                                <li class="divider"></li>
+                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                            </ul><!--Dropdown menu Messages-->
+                        </li><!--dropdown -->
+                    </ul> <!--nav navbar-nav navbar-right-->
+                </div><!--collapse nav-bar collapse-->
+            </div><!--container fluid-->
+        </nav><!--nav navbar-inverse-->
+
+
+        <!--HELP BUTTON-->
+            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
+
+
+<!--*BODY* 2. Everthing else after the Navigation Bar (Except of the help button)-->
+
+<section>
+
+    <div class="row">  <!-- ROW FOR -->
+        <div class="container">
+            <div class="col-sm-6">
+                <div class="container bootstrap snippet">
+
+                    <div class="panel-body inf-content"> <!-- User Profile + User Description +-->
+
+                        <div class="container"> <!-- User Profile + User Description Container-->
+
+                            <div class="fb-profile"> <!-- Wallpaper + Badges + Profile Picture-->
+
+                                <!-- 1. Bckground/Wallpaper  Picture-->
+                                {% load staticfiles %}
+                                <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
+
+                                <div class = "settings">
+                                    <button class="btn btn-primary pull-right"><i class="	fa fa-gear"></i></button>
+                                </div>
+
+                                <!-- 2. Badges and Stars-->
+                                <div class="col-md-3"> <!-- Column Badges + Starts  -->
+                                    {% load staticfiles %}
+                                    <a onclick="location.href='{% url 'goBadges' %}'">
+                                        <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:80px;height:80px " title="" class="  " />
+                                    </a>
+
+                                    <ul title="Ratings" class="list-inline ratings text-left">
+                                        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                    </ul>
+                                </div>
+
+                                 <!-- 3. Profile Picture-->
+                                {% load staticfiles %}
+                                <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ProfilePic}}" align="left" class="fb-image-profile thumbnail"  />
+                            </div> <!-- fb-profile-->
+                        </div><br> <!-- /User Profile Container -->
+
+
+                        <!-- Divs and Columns for positioning-->
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-7"> <!-- User Profile Description-->
+
+                            <div  style = "position:relative; left:100px; top:0px;">
+                                <h1><strong>{{n}}</strong><br></h1>
+                                <h8>Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                <h8>Forums <span class="label label-default">{{ numForums }}</span></h8>
+                            </div><br>
+
+                            <div class="table-responsive">
                                 <table class="table table-condensed table-responsive table-user-information">
                                     <tbody>
-
-                                        <tr>
-                                            <td><strong><span class="glyphicon glyphicon-bookmark text-primary"></span></strong></td>
-                                            <td class="text-primary"> <p>{{ bio }}</p></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
-                                            <td class="text-primary">{{ email }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td><strong><span class="glyphicon glyphicon-bookmark text-primary"></span></strong></td>
+                                        <td class="text-primary"> <p>{{ bio }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
+                                        <td class="text-primary">{{ email }}</td>
+                                    </tr>
                                      <tr>
-                                            <td><strong><span class="fa fa-globe fa-lg text-primary"></span></strong></td>
-                                            <td class="text-primary">{{ country }}</td>
-                                        </tr>
+                                         <td><strong><span class="fa fa-globe fa-lg text-primary"></span></strong></td>
+                                         <td class="text-primary">{{ country }}</td>
+                                     </tr>
                                     </tbody>
                                 </table>
-
-
-                              </div>
-
-
-
-
-
-          </div><br><br><br><br><br><br><br><br><br><br><br><br>
- <!-- Carousel Courses -->
-
-                          <div class="row">
-    <div class="col-md-15">
- <div class="row">
-
-
-
-  </div>
-        <div class="well">
-
-
-
-
-
-      <p style="font-weight: bold; color: gray; font-size: large; font-family: 'Arial Narrow' ">Suggestions</p>
-<hr align="left" width="100%">
-
-       <div class="control-box" style="top: 10px">
-            <a data-slide="prev" href="#myCarousel" class="carousel-control left">‹</a>
-            <a data-slide="next" href="#myCarousel" class="carousel-control right">›</a>
-        </div><!-- /.control-box -->
-
-
-    <div class="carousel slide" id="myCarousel" >
-        <div class="carousel-inner" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0)">
-            <div class="item active row">
-<!--frreggd -->
-
- <div class="row">   <!--First Row of cards for  -->
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-<div class="container" >
-
-	<div class="row">
-
-		<div class="col-lg-3 col-sm-6">
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-<br>
-
-                <div class="info">
-                    <div class="title">
-                    </div>
-                     <div  style = "position: relative; left: 100px; top: 0px">
-                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
-
-                              </div><br>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">Massive Investments in Digital Transformation</div>
-                    <br><span class="badge badge-pill badge-dark">Highly</span>
-                    <span class="badge badge-pill badge-dark">Miami </span>
-                    <span class="badge badge-pill badge-dark">Princess </span>
-                    <span class="badge badge-pill badge-dark">Music </span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-      <p>James Coden · day ago</p>
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        JOIN <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>      </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-                <div class="avatar">
-<br>
-{% load staticfiles %}
-                                       <img style="padding-top: 15px" src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-                <div class="avatar">
-
-<br>
-{% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/SUGprofile.png"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Bhavita Ragoo</div>
-                    <br><span class="badge badge-pill badge-dark">UCT Graduate </span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW PROFILE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-                          <br>
-
-
-
-</div>
-            </div>
-        </div> <!--End of copy past  -->
-
-
-
-              </div><!-- /Slide1 -->
-            <div class="item">
-
- <div class="row">   <!--First Row of cards for  -->
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-<div class="container">
-
-	<div class="row">
-
-		<div class="col-lg-3 col-sm-6">
-
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-                <div class="avatar">
-<br>
-                    {% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
-
-                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-                <div class="avatar">
-<br>
-{% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-                <div class="avatar">
-<br>
-{% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/UCT.gif"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-                          <br>
-
-
-
-</div>
-            </div>
-        </div> <!--End of copy past  -->
-
-
-
-
-
-              </div><!-- /Slide2 -->
-            <div class="item">
-
- <div class="row">   <!--First Row of cards for  -->
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-<div class="container">
-
-	<div class="row">
-
-		<div class="col-lg-3 col-sm-6">
-
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-                <div class="avatar">
-<br>
-                    {% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
-
-                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-                <div class="avatar">
-<br>
-{% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card Ccard  ">
-
-
-
-                <div class="avatar">
-<br>
-{% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/UCT.gif"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-                          <br>
-
-
-
-</div>
-            </div>
-        </div> <!--End of copy past  -->
-
-
-              </div><!-- /Slide3 -->
-        </div>
-
-
-
-    </div><!-- /#myCarousel -->
-
-
-
-
-
-
-
-
-
-
-
-
-            <!--/myCarouselllllllllllll-->
-        </div>
-        <!--/well-->
-    </div>
-</div>
-
-
-
-
-
-
-
-<div class="row">
-            <span style="position: relative; left: 1050px; top: 40px; color: gray; " class="glyphicon glyphicon-plus-sign fa-3x"></span>
-
-    <div >
-      <h1 class="titlefont" style="font-weight: bold"><span class="fa fa-book fa-lg"></span>&nbsp;My Courses </p> </h1>
-                             <hr style="width: 93%; color: gray; height: 1px; background-color:gray;" />
-
-    </div>
-
-  </div>
-
-          <br><br><br>
-
-                                              <!-- Carousel Courses -->
-
-
-                          <div class="row">
-
-
-    <div class="col-md-15">
-
-        <!-- Cards section start from here  -->
-
-<section class="details-card">
-
-    <div class="container">
-        <div class="row">   <!--First Row of cards for  -->
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-<div class="container">
-
-	<div class="row">
-
-		<div class="col-lg-3 col-sm-6">
-
-
-                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg"  %})"></div>
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card hovercard  ">
-
-
-
-                <div class="avatar">
-<br>
-                    {% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
-
-                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_HAVARD.jpg"  %})"></div>
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card hovercard  ">
-
-
-
-                <div class="avatar">
-<br>
-{% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_UCT.jpg"  %})"></div>
-
-            <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
-
-
-
-
-
-
-            <div class="card hovercard  ">
-
-
-
-                <div class="avatar">
-<br>
-{% load staticfiles %}
-                                       <img src="{% static "GC_Auth/UserProfile_images/UCT.gif"  %}"   />                </div>
-                <br>
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div>
-                    <br><span class="badge badge-pill badge-dark">Recommended</span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-                          <br>
-
-
-
-</div>
-            </div>
-        </div> <!--End of copy past  -->
-    </div>
-</section>
-
-    </div>
-</div>
-                          <div class="row">
-
-                          <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px" >View More <i class="fa fa-angle-double-right"></i></button>
-                          </div>
-
-                         <div class="row">
-                                         <span style="position: relative; left: 1050px; top: 40px; color: gray; " class="glyphicon glyphicon-plus-sign black fa-3x"></span>
-
-    <div >
-      <h1 class="titlefont" style="font-weight: bold"><span class="fa fa-comments-o fa-lg"></span>&nbsp;My Forums</h1>
-
-                             <hr style="width: 93%; color: black; height: 1px; background-color:black;" />
-
-
-    </div><br><br><br>
-
-
-                             <section class="details-card">
-
-    <div class="container">
-        <div class="row">   <!--First Row of cards for  -->
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-<div class="container">
-
-	<div class="row">
-
-		<div class="col-lg-3 col-sm-6">
-
-
-                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Digital.jpeg"  %})"></div>
-
-
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button" class="	fa fa-sign-in fa-2x viewForum"></span></div>
-
-
-
-
-
-
-
-            <div class="card hovercard  ">
-
-
-
-
-
-                <div class="info">
-                    <div class="title">
-                    </div>
-                     <div  style = "position: relative; left: 100px; top: 0px">
-                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
-
-                              </div><br>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">Massive Investments in Digital Transformation</div>
-                    <br><span class="badge badge-pill badge-dark">Highly</span>
-                    <span class="badge badge-pill badge-dark">Miami </span>
-                    <span class="badge badge-pill badge-dark">Princess </span>
-                    <span class="badge badge-pill badge-dark">Music </span>
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-
-      <p>James Coden · day ago</p>
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        OPEN <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-
-                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Time.png"  %})"></div>
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button" class="	fa fa-sign-in fa-2x viewForum"></span></div>
-
-
-
-
-
-
-            <div class="card hovercard  ">
-
-
-
-
-
-                <div class="info">
-                    <div class="title">
-                    </div>
-                     <div  style = "position: relative; left: 100px; top: 0px">
-                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
-
-                              </div><br>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Real-Time Risk Decision Making and bussiness strategies</div>
-                    <br><span class="badge badge-pill badge-dark">Finance</span>
-                    <span class="badge badge-pill badge-dark">Pop Culture </span>
-                    <span class="badge badge-pill badge-dark">Obama </span>
-
-
-                </div>
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-      <p>James Coden · day ago</p>
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        OPEN <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-</div>
-            </div>
-            <div class="col-md-4">
-                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-                         <div class="cardheader" style="background-image: url( {% load staticfiles %}{% static "GC_Auth/UserProfile_images/NatureBackground.jpeg"  %})"></div>
-
-
-
-
-            <div class="heartbutton"><span style="background: transparent" type="button" class="	fa fa-sign-in fa-2x viewForum"></span></div>
-
-
-
-
-
-
-            <div class="card hovercard  ">
-
-
-
-
-
-                <div class="info">
-                    <div class="title">
-                    </div>
-                    <div  style = "position: relative; left: 100px; top: 0px">
-                                  <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
-
-                              </div><br>
-                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Big Data Gets Even Bigger each year in South africa</div>
-                    <br><span class="badge badge-pill badge-dark">Disney</span>
-                    <span class="badge badge-pill badge-dark">Miami </span>
-                    <span class="badge badge-pill badge-dark">Princess </span>
-                    <span class="badge badge-pill badge-dark">Music </span>
-
-                </div>
-
-
-
-                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-      <p>James Coden · day ago</p>
-
-
-                    <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">
-                        OPEN <i class="fa fa-angle-double-right"></i>
-                    </a>
-
-
-            </div>
-
-
-        </div>
-
-
-	</div>
-                          <br>
-     <br>
-
-
-
-
-</div>
-
-            </div>
-              <div class="row">
-
-                          <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px" >View More <i class="fa fa-angle-double-right"></i></button>
-                          </div>
-        </div>
-    </div>
-</section>
-  </div>
-
-      </div>
-
-
-
-
-
-</div>
-
-
-                      </div>
-
-
-
-                  </div><!-- huge first row-->
-
-
-              </div><!--Page Container-->
-
-
-    </section>
-<br><br>
+                            </div>
+                        </div><br><br><br><br><br><br><br><br><br><br><br><br>
+
+                        <!-- Suggestions Carousel Courses -->
+                        <!--Row-row  -->
+
+                        <div class="row">
+                            <div class="col-md-15">
+                                <div class="row"></div>
+                                <div class="well"><!--Carousel Contailer  -->
+                                    <p style="font-weight: bold; color: gray; font-size: large; font-family: 'Arial Narrow' ">Suggestions</p>
+                                    <hr align="left" width="100%">
+
+                                    <div class="control-box" style="top: 10px">
+                                        <a data-slide="prev" href="#myCarousel" class="carousel-control left">‹</a>
+                                        <a data-slide="next" href="#myCarousel" class="carousel-control right">›</a>
+                                    </div>
+
+                                    <div class="carousel slide" id="myCarousel" >
+
+                                        <div class="carousel-inner" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0)">
+
+                                            <div class="item active row"> <!--First Slide Through for suggestions  -->
+
+
+                                                <div class="row">
+
+                                                    <!--First Slide Through for suggestions: Item 1  -->
+
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container" >
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="card Ccard  "><br>
+
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div  style = "position: relative; left: 100px; top: 0px">
+                                                                                <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
+                                                                            </div><br>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">Massive Investments in Digital Transformation</div>
+                                                                            <br><span class="badge badge-pill badge-dark">Highly</span>
+                                                                            <span class="badge badge-pill badge-dark">Miami </span>
+                                                                            <span class="badge badge-pill badge-dark">Princess </span>
+                                                                            <span class="badge badge-pill badge-dark">Music </span>
+                                                                        </div>
+
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+                                                                        <p>James Coden · day ago</p>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">JOIN <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--First Slide Through for suggestions: Item 2  -->
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span>
+                                                                    </div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>
+                                                                            {% load staticfiles %}
+                                                                            <img style="padding-top: 15px" src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}"   />
+                                                                        </div><br>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div><br>
+                                                                            <span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--First Slide Through for suggestions: Item 3  -->
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>
+                                                                            {% load staticfiles %}
+                                                                            <img src="{% static "GC_Auth/UserProfile_images/SUGprofile.png"  %}"   /></div><br>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Bhavita Ragoo
+                                                                            </div>
+                                                                            <br><span class="badge badge-pill badge-dark">UCT Graduate </span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW PROFILE <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div><br>
+                                                        </div>
+                                                    </div>
+
+                                                </div> <!--/row -->
+                                            </div><!-- /End of Slide One -->
+
+                                            <!--Second Slide Through for suggestions  -->
+                                            <div class="item">
+                                                <div class="row">   <!--First Row of cards for  -->
+
+                                                    <!--Second Slide Through for suggestions: Item 1  -->
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>
+                                                                            {% load staticfiles %}
+                                                                            <img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"/>
+                                                                        </div><br>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div><br>
+                                                                            <span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/column-md-4  -->
+
+                                                    <!--Second Slide Through for suggestions: Item 2  -->
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span>
+                                                                    </div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>
+                                                                            {% load staticfiles %}
+                                                                            <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png"  %}" />
+                                                                        </div><br>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
+                                                                            </div><br>
+                                                                            <span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/column-md-4  -->
+
+                                                    <!--Second Slide Through for suggestions: Item 3  -->
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span>
+                                                                    </div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>
+                                                                            {% load staticfiles %}
+                                                                            <img src="{% static "GC_Auth/UserProfile_images/UCT.gif"  %}" />
+                                                                        </div><br>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy</div><br>
+                                                                            <span class="badge badge-pill badge-dark">Recommended</span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div><br>
+                                                        </div>
+                                                    </div>
+                                                </div> <!--/column-md-4  -->
+                                            </div><!-- /End of Slide2 -class: item-->
+
+                                            <!--Third Slide Through for suggestions  -->
+                                            <div class="item">
+                                                <div class="row">
+
+                                                    <!--Third Slide Through for suggestions: Item 1  -->
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span>
+                                                                    </div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>
+                                                                            {% load staticfiles %}<img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
+                                                                        </div><br>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
+                                                                            </div>
+                                                                            <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/column-md-4  -->
+
+                                                    <!--Third Slide Through for suggestions: Item 2  -->
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span>
+                                                                    </div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>
+                                                                            {% load staticfiles %} <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png" %}"/>
+                                                                        </div><br>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                            </div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
+                                                                            </div>
+                                                                            <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                                           href="https://twitter.com/webmaniac">VIEW COURSE <i
+                                                                                class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/column-md-4  -->
+
+                                                    <!--Third Slide Through for suggestions: Item 3  -->
+
+                                                    <div class="col-md-4">
+                                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span>
+                                                                    </div>
+                                                                    <div class="card Ccard  ">
+                                                                        <div class="avatar"><br>{% load staticfiles %}
+                                                                            <img src="{% static "GC_Auth/UserProfile_images/UCT.gif" %}"/>
+                                                                        </div><br>
+                                                                        <div class="info">
+                                                                            <div class="title"></div>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
+                                                                            </div>
+                                                                            <br><span class="badge badge-pill badge-dark">Recommended</span>
+                                                                        </div>
+                                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold" href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div><br>
+                                                        </div>
+                                                    </div><!--/column-md-4  -->
+                                                </div> <!--/row  -->
+                                            </div> <!--End of Third Slide Through for suggestions, class-item  -->
+                                        </div><!--cauresel-inner -->
+                                    </div><!-- /#myCarousel -->
+                                </div><!--/well-->
+                            </div><!--/column-md-15  -->
+                        </div><!--/row  -->
+
+                         <!--My Courses Heading-->
+                         <!--Row-row  -->
+                        <div class="row">
+                            <span style="position: relative; left: 1050px; top: 40px; color: gray; " class="glyphicon glyphicon-plus-sign fa-3x"></span>
+                            <div>
+                                <h1 class="titlefont" style="font-weight: bold"><span class="fa fa-book fa-lg"></span>&nbsp;My
+                                    Courses </p> </h1>
+                                <hr style="width: 93%; color: gray; height: 1px; background-color:gray;"/>
+                            </div>
+                        </div><br><br><br>
+
+                         <!--My Courses Container -->
+                         <!--Row-row  -->
+
+                        <div class="row">
+                            <div class="col-md-15">
+                                <!-- Cards for My courses  -->
+
+                                <section class="details-card">
+
+                                    <div class="container">
+                                        <div class="row">
+
+                                              <!-- My Courses: Item 1 -->
+                                            <div class="col-md-4">
+                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+                                                <div class="container">
+
+                                                    <div class="row">
+
+                                                        <div class="col-lg-3 col-sm-6">
+                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %})"></div>
+                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
+                                                            <div class="card hovercard  ">
+                                                                <div class="avatar"><br>
+                                                                    {% load staticfiles %}
+                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
+                                                                </div><br>
+                                                                <div class="info">
+                                                                    <div class="title"></div>
+                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
+                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                </div>
+
+                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                                   href="https://twitter.com/webmaniac">
+                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div><!-- /col-lg-3 col-sm-6 -->
+                                                    </div><!-- /row -->
+                                                </div><!-- /container -->
+                                            </div><!-- /col-md-4 -->
+
+
+                                            <!-- My Courses: Item 2 -->
+                                            <div class="col-md-4">
+                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-sm-6">
+                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_HAVARD.jpg" %})"></div>
+                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span>
+                                                            </div>
+
+                                                            <div class="card hovercard  ">
+
+                                                                <div class="avatar"><br>
+                                                                    {% load staticfiles %}
+                                                                    <img src="{% static "GC_Auth/UserProfile_images/HARVARD.png" %}"/>
+                                                                </div><br>
+
+                                                                <div class="info">
+                                                                    <div class="title"></div>
+                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                                                        Artificial Intelligence: Implications of Business Strategy
+                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                </div>
+
+                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                                   href="https://twitter.com/webmaniac">
+                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                    </a>
+                                                            </div>
+                                                        </div><!-- /col-lg-3 col-sm-6 -->
+                                                    </div><!-- /row -->
+                                                </div><!-- /container -->
+                                            </div><!-- /col-md-4 -->
+
+
+                                            <!-- My Courses: Item 3 -->
+                                            <div class="col-md-4">
+                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+                                                <div class="container">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-sm-6">
+
+                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_UCT.jpg" %})"></div>
+
+                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span>
+                                                            </div>
+                                                            <div class="card hovercard  ">
+
+                                                                <div class="avatar"><br>
+                                                                    {% load staticfiles %}
+                                                                    <img src="{% static "GC_Auth/UserProfile_images/UCT.gif" %}"/>
+                                                                </div><br>
+                                                                <div class="info">
+                                                                    <div class="title"></div>
+                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
+                                                                    </div>
+                                                                    <br><span class="badge badge-pill badge-dark">Recommended</span>
+                                                                </div>
+
+                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                                   href="https://twitter.com/webmaniac">
+                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div><!-- /col-lg-3 col-sm-6 -->
+                                                    </div><br><!-- /row -->
+                                                </div><!-- /container -->
+                                            </div><!-- /col-md-4 -->
+                                        </div> <!-- /row for My Courses -->
+                                    </div><!-- /container-->
+                                </section><!-- /details-cards -->
+                            </div><!-- /col-md-15 -->
+                        </div> <!--/My Courses Container -->
+
+                         <!--View Button + My Forums -->
+                        <div class="row">
+                            <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px">View More <i class="fa fa-angle-double-right"></i></button>
+                        </div>
+
+                        <div class="row">
+                            <span style="position: relative; left: 1050px; top: 40px; color: gray; " class="glyphicon glyphicon-plus-sign black fa-3x"></span>
+
+                             <!--/My Forums Heading  -->
+                            <div>
+                                <h1 class="titlefont" style="font-weight: bold"><span class="fa fa-comments-o fa-lg"></span>&nbsp;My Forums</h1>
+                                <hr style="width: 93%; color: black; height: 1px; background-color:black;"/>
+                            </div>
+                            <br><br><br>
+
+                            <!--/My Forums + Courses Card Cards Container -->
+                            <section class="details-card">
+
+                                <div class="container">
+                                    <div class="row">
+
+                                        <!-- My Forums: Item 1 -->
+                                        <div class="col-md-4">
+                                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                            <div class="container">
+
+                                                <div class="row">
+
+                                                    <div class="col-lg-3 col-sm-6">
+
+
+                                                        <div class="cardheader" style="background-image: url(
+                                                                {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Digital.jpeg" %})"></div>
+
+
+                                                        <div class="heartbutton"><span style="background: transparent"
+                                                                                       type="button"
+                                                                                       class="	fa fa-sign-in fa-2x viewForum"></span>
+                                                        </div>
+
+
+                                                        <div class="card hovercard  ">
+
+
+                                                            <div class="info">
+                                                                <div class="title">
+                                                                </div>
+                                                                <div style="position: relative; left: 100px; top: 0px">
+                                                                    <h8><span class="label label-default"><span
+                                                                            class="fa fa-users"> </span>{{ numConnections }}</span>
+                                                                    </h8>
+
+                                                                </div>
+                                                                <br>
+                                                                <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">
+                                                                    Massive Investments in Digital Transformation
+                                                                </div>
+                                                                <br><span
+                                                                    class="badge badge-pill badge-dark">Highly</span>
+                                                                <span class="badge badge-pill badge-dark">Miami </span>
+                                                                <span class="badge badge-pill badge-dark">Princess </span>
+                                                                <span class="badge badge-pill badge-dark">Music </span>
+
+                                                            </div>
+
+                                                            <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                                            <p>James Coden · day ago</p>
+
+                                                            <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                               href="https://twitter.com/webmaniac">
+                                                                OPEN <i class="fa fa-angle-double-right"></i>
+                                                            </a>
+                                                        </div><!-- /card-hovercard -->
+                                                    </div><!-- /col-lg-3 col-sm-6 -->
+                                                </div><!-- /row -->
+                                            </div><!-- /container-->
+                                        </div><!-- /col-md-4 -->
+
+                                        <!-- My Forums: Item 2 -->
+                                        <div class="col-md-4">
+                                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                                                  rel="stylesheet">
+
+                                            <div class="container">
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-sm-6">
+
+
+                                                        <div class="cardheader" style="background-image: url(
+                                                                {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Time.png" %})"></div>
+
+
+                                                        <div class="heartbutton"><span style="background: transparent"
+                                                                                       type="button"
+                                                                                       class="	fa fa-sign-in fa-2x viewForum"></span>
+                                                        </div>
+
+
+                                                        <div class="card hovercard  ">
+
+
+                                                            <div class="info">
+                                                                <div class="title">
+                                                                </div>
+                                                                <div style="position: relative; left: 100px; top: 0px">
+                                                                    <h8><span class="label label-default"><span
+                                                                            class="fa fa-users"> </span>{{ numConnections }}</span>
+                                                                    </h8>
+
+                                                                </div>
+                                                                <br>
+                                                                <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                                                    Real-Time Risk Decision Making and bussiness
+                                                                    strategies
+                                                                </div>
+                                                                <br><span
+                                                                    class="badge badge-pill badge-dark">Finance</span>
+                                                                <span class="badge badge-pill badge-dark">Pop Culture </span>
+                                                                <span class="badge badge-pill badge-dark">Obama </span>
+
+
+                                                            </div>
+
+                                                            <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+                                                            <p>James Coden · day ago</p>
+
+
+                                                            <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                               href="https://twitter.com/webmaniac">
+                                                                OPEN <i class="fa fa-angle-double-right"></i>
+                                                            </a>
+                                                        </div><!-- /card-hovercard -->
+                                                    </div><!-- /col-lg-3 col-sm-6 -->
+                                                </div><!-- /row -->
+                                            </div><!-- /container-->
+                                        </div><!-- /col-md-4 -->
+
+                                        <!-- My Forums: Item 3 -->
+
+                                        <div class="col-md-4">
+                                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                                                  rel="stylesheet">
+
+                                            <div class="container">
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-sm-6">
+
+                                                        <div class="cardheader" style="background-image: url(
+                                                                {% load staticfiles %}{% static "GC_Auth/UserProfile_images/NatureBackground.jpeg" %})"></div>
+
+
+                                                        <div class="heartbutton"><span style="background: transparent"
+                                                                                       type="button"
+                                                                                       class="	fa fa-sign-in fa-2x viewForum"></span>
+                                                        </div>
+
+
+                                                        <div class="card hovercard  ">
+
+
+                                                            <div class="info">
+                                                                <div class="title">
+                                                                </div>
+                                                                <div style="position: relative; left: 100px; top: 0px">
+                                                                    <h8><span class="label label-default"><span
+                                                                            class="fa fa-users"> </span>{{ numConnections }}</span>
+                                                                    </h8>
+
+                                                                </div>
+                                                                <br>
+                                                                <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                                                    Big Data Gets Even Bigger each year in South africa
+                                                                </div>
+                                                                <br><span
+                                                                    class="badge badge-pill badge-dark">Disney</span>
+                                                                <span class="badge badge-pill badge-dark">Miami </span>
+                                                                <span class="badge badge-pill badge-dark">Princess </span>
+                                                                <span class="badge badge-pill badge-dark">Music </span>
+
+                                                            </div>
+
+
+                                                            <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+                                                            <p>James Coden · day ago</p>
+
+
+                                                            <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                               href="https://twitter.com/webmaniac">
+                                                                OPEN <i class="fa fa-angle-double-right"></i>
+
+                                                                </a>
+                                                        </div><!-- /card-hovercard -->
+                                                    </div><!-- /col-lg-3 col-sm-6 -->
+                                                </div><!-- /row --> <br><br>
+                                            </div><!-- /container-->
+                                        </div><!-- /col-md-4 -->
+
+
+                                        <!-- /View Button -->
+                                        <div class="row">
+
+                                            <button type="button" class="ViewMorebutton"
+                                                    style="position: relative; left: 1000px; top: 0px">View More <i
+                                                    class="fa fa-angle-double-right"></i></button>
+                                        </div>
+                                    </div><!-- /row for forums+ courses container cards -->
+                                </div><!-- /row for forums+ courses container cards -->
+                            </section><!-- /details-card -->
+                        </div><!-- /row  -->
+                    </div><!-- /panel-body inf-content -->
+                </div><!-- /container bootstrap snippet -->
+            </div><!-- /col-sm-6-->
+        </div><!--Profile Container-->
+    </div><!--/row-->
+
+</section><br><br>
+
+<!-- Page Footer-->
 <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
 
 
-        <div class="container">
-          <br></br>
-      <!-- Call to action -->
-      <ul class="list-unstyled list-inline text-center py-2">
-        <li class="list-inline-item">
-  <!--     <h5 class="mb-1">Log in now: </h5>-->
-        </li>
-        <li class="list-inline-item">
-          <!--<a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>-->
-      <!--    <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
-            <span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-        </li>
-      </ul>
-      <!-- Call to action -->
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--     <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+                <!--<a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>-->
+                <!--    <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+                      <span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+            </li>
+        </ul>
+        <!-- Call to action -->
 
     </div>
-      </div>
-    </footer>
+    </div>
+</footer>
 
-</body>
-
-
+<!-- Script for Carousel -->
 
 <script>
 
 
-/ Carousel Auto-Cycle
-  $(document).ready(function() {
-    $('.carousel').carousel({
-      interval: 6000
-    })
-  });
+        / Carousel Auto-Cycle
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 6000
+            })
+        });
 
-</script>
+    </script>
+</body>
+
+
