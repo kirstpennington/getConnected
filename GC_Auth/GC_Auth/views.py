@@ -287,11 +287,7 @@ def updatePicPrivacy(user, pPicPrivacy):
 #Navigation bar functionality
 
 def home(request):
-<<<<<<< HEAD
     return render(request, 'UserProfile.html')
-=======
-    return render(request, 'Home.html')
->>>>>>> master
 
 def networks(request):
     return render(request, 'MyNetwork.html')
@@ -301,10 +297,7 @@ def forums(request):
 
 def courses(request):
     return render(request, 'Courses.html')
-<<<<<<< HEAD
 
 def userprofile(request):
     return render(request, 'UserProfile.html')
-=======
->>>>>>> master
 

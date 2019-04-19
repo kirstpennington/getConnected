@@ -39,9 +39,6 @@ urlpatterns = [
     url(r'^networks/', views.networks, name="nav_networks"),
     url(r'^forums/', views.forums, name="nav_forums"),
     url(r'^courses/', views.courses, name="nav_courses"),
-<<<<<<< HEAD
     url(r'^userprofile/', views.userprofile, name="userprofile")
-=======
->>>>>>> master
 
 ]
