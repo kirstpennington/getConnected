@@ -183,12 +183,12 @@
                 right: 70px;
                 position: relative;
             }
-            .settings:hover{
+            .settings button:hover{
                  -ms-transform: scale(1); /* IE 9 */
                 -webkit-transform: scale(1); /* Safari 3-8 */
                 transform: scale(1);
                 border: 1px solid silver ;
-                box-shadow: 5px 10px 8px #888888;
+                box-shadow: 5px 5px 5px #888888;
             }
 
             .badges{}
@@ -452,10 +452,10 @@
 
                     <!--Left-side (including search ) of navigation bar-->
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
-                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
-                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span>Courses</a></li>
+                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
+                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
@@ -676,11 +676,13 @@
                                 </div>
 
                                  <!-- 3. Profile Picture-->
-                                <div  style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" align="left" class="fb-image-profile thumbnail">
+
+                                <div  style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" align="left" class="fb-image-profile thumbnail">
                                 {% load staticfiles %}
-                                <img class="profileImage" src="{{ProfilePic}}"   />
+                                <img class="profileImage" src="{{ProfilePic}}"  />
                                 <button class="changePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
                                 </div>
+
 
 
                             </div> <!-- fb-profile-->
@@ -692,18 +694,18 @@
 
                         <div class="col-md-7"> <!-- User Profile Description-->
 
-                            <div  style = "position:relative; left:100px; top:0px;">
-                                <h1 style="color: gray"><strong>{{n}}</strong><br></h1>
-                                <h8>Connections <span class="label label-default">{{ numConnections }}</span></h8>
-                                <h8>Forums <span class="label label-default">{{ numForums }}</span></h8>
+                            <div  style = "text-align: center;">
+                                <h1 style="color: gray;display: inline-block;padding-right:50px;"><strong>{{n}}</strong><br></h1><br>
+                                <h8 style="display: inline-block;padding-right:10px;">Connections <span class="label label-default"> {{ numConnections }}</span></h8>
+                                <h8 style="display: inline-block;padding-right:50px;">Forums <span class="label label-default"> {{ numForums }}</span></h8>
                             </div><br>
 
-                            <div class="table-responsive">
+                            <div class="table-responsive" >
                                 <table class="table table-condensed table-responsive table-user-information">
                                     <tbody>
                                     <tr>
                                         <td><strong><span class="glyphicon glyphicon-bookmark text-primary"></span></strong></td>
-                                        <td class="text-primary"> <p>{{ bio }}</p></td>
+                                        <td class="text-primary" > <p>{{ bio }}</p></td>
                                     </tr>
                                     <tr>
                                         <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
