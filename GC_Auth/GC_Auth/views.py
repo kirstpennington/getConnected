@@ -164,7 +164,8 @@ def logout(request):
 
 
 
-
+def goSettings(request):
+    return render(request, "Setttings.html")
 
 
 

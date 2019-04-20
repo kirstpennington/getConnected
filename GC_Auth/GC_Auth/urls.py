@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^postsign/',views.postsign),
     url(r'^logout/',views.logout,name="log"),
     url(r'^goBadges/', views.goBadges, name='goBadges'),
+    url(r'^Settings/', views.goSettings, name='goSettings'),
+
     url(r'^goHelpUserProfile/', views.goHelpUserProfile, name='helpUserProfile'),
     url(r'^goIntroHelp/', views.goIntroHelp, name='introHelp'),
     url(r'^goAccountHelp/', views.goAccountHelp, name='accountHelp'),

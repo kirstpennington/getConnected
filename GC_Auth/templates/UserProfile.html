@@ -93,6 +93,7 @@
 
         <style>
 
+            /* Wallpaper image and container */
             .fb-profile img.fb-image-lg{
                 z-index: 0;
                 width: 94%;
@@ -100,13 +101,73 @@
                 height: 300px;
                 background-position: center center;
                 background-repeat: no-repeat;
+
+                border-radius: 10px;
+                width: 1070px;
+                max-width:1070px;
+                height: 300px;
+                max-height: 300px;
+                display: inline-block;
+                background-color: gray;            }
+
+            .profilediv{
             }
 
+            .WallpaperchangePic{
+                left:1000px;
+                top:290px;
+                position: absolute;
+                width: 130px;
+                display: none;
+            }
+
+            .profilediv:hover .WallpaperchangePic  {
+                opacity: 0.9;
+                display: inline-block;
+            }
+
+            /* Profile Image + Container */
             .fb-image-profile {
                 margin: -90px 10px 0px 150px;
                 z-index: 9;
                 width: 20%;
                 rounded: mx-auto d-block;
+
+                border-radius: 10px;
+
+                width:250px;
+                max-width:250px;
+                height: 250px;
+                max-height: 250px;
+                display: inline-block;
+                background-color: gray;
+            }
+
+            .changePic{
+                left:610px;
+                top:450px;
+                position: absolute;
+                width: 130px;
+                display: none;
+
+            }
+
+            .profileImage{
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .fb-image-profile:hover .changePic  {
+                opacity: 0.9;
+                display: inline-block;
+            }
+
+            /* End Profile Image + Container */
+
+
+            .profile_img:hover  {
+                opacity: 0.9;
             }
 
             .inf-content{
@@ -122,6 +183,23 @@
                 right: 70px;
                 position: relative;
             }
+            .settings:hover{
+                 -ms-transform: scale(1); /* IE 9 */
+                -webkit-transform: scale(1); /* Safari 3-8 */
+                transform: scale(1);
+                border: 1px solid silver ;
+                box-shadow: 5px 10px 8px #888888;
+            }
+
+            .badges{}
+
+            .badges:hover{
+                 -ms-transform: scale(1); /* IE 9 */
+                -webkit-transform: scale(1); /* Safari 3-8 */
+                transform: scale(1);
+                box-shadow: 2px 2px 1px whitesmoke;
+            }
+
 
             .well {
                 height: 100%;
@@ -132,6 +210,13 @@
                 top: 15px;
                 left: 28px;
                 position: relative;
+                width:1080px; /* or whatever width you want. */
+                max-width:1080px; /* or whatever width you want. */
+                height: 360px;
+                max-height: 360px;
+                display: inline-block;
+
+                border-radius: 10px
             }
 
         </style>
@@ -186,7 +271,6 @@
 
             .titlefont {
                 font-size: x-large;
-                font-family: SansSerif;
                 color: gray;
                 margin: auto 40px auto 40px;
                  position: relative;
@@ -214,6 +298,22 @@
                 text-align: center;
                 background-color: white;
                 border-width: 5px;
+                border-radius: 10px
+            }
+
+               .card.hovercard:hover {
+                position: relative;
+                padding-top: 0;
+                overflow: hidden;
+                text-align: center;
+                background-color: white;
+                border-width: 5px;
+
+                   -ms-transform: scale(1); /* IE 9 */
+                -webkit-transform: scale(1); /* Safari 3-8 */
+                transform: scale(1);
+                border: 1px solid silver ;
+                box-shadow: 5px 10px 8px #888888;
             }
 
             .card.Ccard {
@@ -222,6 +322,14 @@
                 text-align: center;
                 background-color: white;
                 border-width: 5px;
+
+                width:255px; /* or whatever width you want. */
+                max-width:255px; /* or whatever width you want. */
+                height: 275px;
+                max-height: 275px;
+                display: inline-block;
+
+                border-radius: 10px
             }
 
             .card.Ccard .info .title {
@@ -231,6 +339,14 @@
                 color: black;
                 vertical-align: middle;
                 font-family: Arial;
+            }
+
+             .card.Ccard:hover {
+                 -ms-transform: scale(1); /* IE 9 */
+                -webkit-transform: scale(1); /* Safari 3-8 */
+                transform: scale(1);
+                border: 1px solid silver ;
+                box-shadow: 5px 10px 8px #888888;
             }
 
             .cardheader {
@@ -254,9 +370,6 @@
                 font-family: Arial;
             }
 
-            .line{
-                left: 40px;
-            }
 
             .heartbutton{
                 top: -50px;
@@ -291,21 +404,29 @@
                 border-radius: 8px;
                 color: black;
                 background-color: #e83e8c;
-                border: 0px  solid black;
+                border: 2px  solid #e83e8c;
                 opacity: 0.8;
                 padding-top: 5px;
                 padding-bottom: 5px;
                 padding-left:10px;
                 padding-right:10px;
                 font-size: 16px;
-                box-shadow: 0 2px 4px 0 silver;
-                font-family: SansSerif;
-                font-weight: bold;
             }
 
             .ViewMorebutton:hover{
                 background-color: #e83e8c;
                 color: white;
+            }
+
+
+
+        /*zoom features*/
+            .zoom:hover {
+                -ms-transform: scale(1); /* IE 9 */
+                -webkit-transform: scale(1); /* Safari 3-8 */
+                transform: scale(1);
+                border: 1px solid silver ;
+                box-shadow: 5px 10px 8px #888888;
             }
 
         </style>
@@ -509,7 +630,7 @@
 
 
         <!--HELP BUTTON-->
-            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
+            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">&nbsp;Help</span></a>
 
 
 <!--*BODY* 2. Everthing else after the Navigation Bar (Except of the help button)-->
@@ -528,18 +649,22 @@
                             <div class="fb-profile"> <!-- Wallpaper + Badges + Profile Picture-->
 
                                 <!-- 1. Bckground/Wallpaper  Picture-->
+                                <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" class="profilediv" >
                                 {% load staticfiles %}
-                                <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
+                                <img  src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
+                                <button class="WallpaperchangePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
+                                </div>
+
 
                                 <div class = "settings">
-                                    <button class="btn btn-primary pull-right"><i class="	fa fa-gear"></i></button>
+                                    <button onclick="location.href='{% url 'goSettings' %}'" style="background-color:hotpink; border-color: transparent " class="btn btn-primary pull-right"><i class="	fa fa-gear"></i></button>
                                 </div>
 
                                 <!-- 2. Badges and Stars-->
                                 <div class="col-md-3"> <!-- Column Badges + Starts  -->
                                     {% load staticfiles %}
                                     <a onclick="location.href='{% url 'goBadges' %}'">
-                                        <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:80px;height:80px " title="" class="  " />
+                                        <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png"  %}" alt="" style="width:80px;height:80px " title="" class="badges  " />
                                     </a>
 
                                     <ul title="Ratings" class="list-inline ratings text-left">
@@ -551,8 +676,13 @@
                                 </div>
 
                                  <!-- 3. Profile Picture-->
+                                <div  style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" align="left" class="fb-image-profile thumbnail">
                                 {% load staticfiles %}
-                                <img style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" src="{{ProfilePic}}" align="left" class="fb-image-profile thumbnail"  />
+                                <img class="profileImage" src="{{ProfilePic}}"   />
+                                <button class="changePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
+                                </div>
+
+
                             </div> <!-- fb-profile-->
                         </div><br> <!-- /User Profile Container -->
 
@@ -563,7 +693,7 @@
                         <div class="col-md-7"> <!-- User Profile Description-->
 
                             <div  style = "position:relative; left:100px; top:0px;">
-                                <h1><strong>{{n}}</strong><br></h1>
+                                <h1 style="color: gray"><strong>{{n}}</strong><br></h1>
                                 <h8>Connections <span class="label label-default">{{ numConnections }}</span></h8>
                                 <h8>Forums <span class="label label-default">{{ numForums }}</span></h8>
                             </div><br>
@@ -595,12 +725,13 @@
                             <div class="col-md-15">
                                 <div class="row"></div>
                                 <div class="well"><!--Carousel Contailer  -->
-                                    <p style="font-weight: bold; color: gray; font-size: large; font-family: 'Arial Narrow' ">Suggestions</p>
+                                    <h2 style="font-weight: bold; color: gray; font-size: large;  ">Suggestions</h2>
                                     <hr align="left" width="100%">
 
                                     <div class="control-box" style="top: 10px">
-                                        <a data-slide="prev" href="#myCarousel" class="carousel-control left">‹</a>
-                                        <a data-slide="next" href="#myCarousel" class="carousel-control right">›</a>
+                                        <a  data-slide="prev" style="background: transparent; color: gray"  href="#myCarousel" class="fa fa-chevron-left badges">&nbsp;</a>
+
+                                        <a data-slide="next" style="background: transparent; color: gray" href="#myCarousel" class="fa fa-chevron-right badges"></a>
                                     </div>
 
                                     <div class="carousel slide" id="myCarousel" >
@@ -680,15 +811,22 @@
                                                                 <div class="col-lg-3 col-sm-6">
                                                                     <div class="heartbutton"><span style="background: transparent" type="button"  class="fa fa-heart fa-2x heartColour"></span></div>
                                                                     <div class="card Ccard  ">
+
                                                                         <div class="avatar"><br>
+                                                                            <div style="position: relative; left: 100px; top: 2px; height: 30px">
+                                                                                <h8><span class="label label-default"><span class="	fa fa-user-plus"> </span></span></h8>
+                                                                            </div>
+
+
                                                                             {% load staticfiles %}
-                                                                            <img src="{% static "GC_Auth/UserProfile_images/SUGprofile.png"  %}"   /></div><br>
+                                                                            <img  style="border-radius: 10px" src="{% static "GC_Auth/UserProfile_images/SUGprofile.png"  %}"   /></div>
+
                                                                         <div class="info">
                                                                             <div class="title">
                                                                             </div>
-                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Bhavita Ragoo
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; top: 5px; position: relative">Bhavita Ragoo
                                                                             </div>
-                                                                            <br><span class="badge badge-pill badge-dark">UCT Graduate </span>
+                                                                            <span class="badge badge-pill badge-dark">UCT Graduate </span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
                                                                         <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW PROFILE <i class="fa fa-angle-double-right"></i>
@@ -806,7 +944,7 @@
                                                                     </div>
                                                                     <div class="card Ccard  ">
                                                                         <div class="avatar"><br>
-                                                                            {% load staticfiles %}<img src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
+                                                                            {% load staticfiles %}<img  src="{% static "GC_Auth/UserProfile_images/MIT.png"  %}"   />
                                                                         </div><br>
                                                                         <div class="info">
                                                                             <div class="title">
@@ -895,8 +1033,8 @@
                         <div class="row">
                             <span style="position: relative; left: 1050px; top: 40px; color: gray; " class="glyphicon glyphicon-plus-sign fa-3x"></span>
                             <div>
-                                <h1 class="titlefont" style="font-weight: bold"><span class="fa fa-book fa-lg"></span>&nbsp;My
-                                    Courses </p> </h1>
+                                <h2 class="titlefont" style="font-weight: bold"><span class="fa fa-book fa-lg"></span>&nbsp;My
+                                    Courses </p> </h2>
                                 <hr style="width: 93%; color: gray; height: 1px; background-color:gray;"/>
                             </div>
                         </div><br><br><br>
@@ -922,7 +1060,7 @@
                                                     <div class="row">
 
                                                         <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %})"></div>
+                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
                                                             <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
                                                             <div class="card hovercard  ">
                                                                 <div class="avatar"><br>
@@ -954,7 +1092,7 @@
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_HAVARD.jpg" %})"></div>
+                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_HAVARD.jpg" %});border-radius: 10px"></div>
                                                             <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span>
                                                             </div>
 
@@ -994,7 +1132,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-3 col-sm-6">
 
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_UCT.jpg" %})"></div>
+                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_UCT.jpg" %});border-radius: 10px"></div>
 
                                                             <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span>
                                                             </div>
@@ -1031,6 +1169,7 @@
                          <!--View Button + My Forums -->
                         <div class="row">
                             <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px">View More <i class="fa fa-angle-double-right"></i></button>
+
                         </div>
 
                         <div class="row">
@@ -1059,8 +1198,7 @@
                                                     <div class="col-lg-3 col-sm-6">
 
 
-                                                        <div class="cardheader" style="background-image: url(
-                                                                {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Digital.jpeg" %})"></div>
+                                                        <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Digital.jpeg" %}); border-radius: 10px"></div>
 
 
                                                         <div class="heartbutton"><span style="background: transparent"
@@ -1118,8 +1256,7 @@
                                                     <div class="col-lg-3 col-sm-6">
 
 
-                                                        <div class="cardheader" style="background-image: url(
-                                                                {% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Time.png" %})"></div>
+                                                        <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Time.png" %});border-radius: 10px"></div>
 
 
                                                         <div class="heartbutton"><span style="background: transparent"
@@ -1179,7 +1316,7 @@
                                                     <div class="col-lg-3 col-sm-6">
 
                                                         <div class="cardheader" style="background-image: url(
-                                                                {% load staticfiles %}{% static "GC_Auth/UserProfile_images/NatureBackground.jpeg" %})"></div>
+                                                                {% load staticfiles %}{% static "GC_Auth/UserProfile_images/NatureBackground.jpeg" %});border-radius: 10px"></div>
 
 
                                                         <div class="heartbutton"><span style="background: transparent"
@@ -1232,9 +1369,7 @@
                                         <!-- /View Button -->
                                         <div class="row">
 
-                                            <button type="button" class="ViewMorebutton"
-                                                    style="position: relative; left: 1000px; top: 0px">View More <i
-                                                    class="fa fa-angle-double-right"></i></button>
+                                            <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px">View More <i class="fa fa-angle-double-right"></i></button>
                                         </div>
                                     </div><!-- /row for forums+ courses container cards -->
                                 </div><!-- /row for forums+ courses container cards -->
