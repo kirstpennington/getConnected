@@ -452,7 +452,10 @@
 
                     <!--Left-side (including search ) of navigation bar-->
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                        <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
+                            <span class="glyphicon glyphicon-home fa-lg"></span>
+                           <strong> Home</strong>
+                        </a></li>
                         <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
                         <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
                         <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a></li>
@@ -630,7 +633,9 @@
 
 
         <!--HELP BUTTON-->
-            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">&nbsp;Help</span></a>
+            <a  onclick="location.href='{% url 'helpUserProfile' %}'">
+                <span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">&nbsp;Help</span></a>
+
 
 
 <!--*BODY* 2. Everthing else after the Navigation Bar (Except of the help button)-->

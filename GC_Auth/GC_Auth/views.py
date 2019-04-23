@@ -187,6 +187,9 @@ def goForumsOpen(request):
 def goSettings(request):
     return render(request, 'Setttings.html')
 
+def goContact(request):
+    return render(request, 'contactus.html')
+
 
 # UPDATE Methods
 
