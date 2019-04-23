@@ -198,9 +198,9 @@
                             <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                                <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
@@ -359,7 +359,7 @@
 </div>
 <!--short intro paragraph in pink strip-->
 <div class="intro">
-    <p> Your GetConnected account is an extension of yourself, your interests and achievements! Learn to manage your privacy settings and personalise you account to your unique style. </p><br>
+    <p style="text-align: center;"> Your GetConnected account is an extension of yourself, your interests and achievements! Learn to manage your privacy settings and personalise you account to your unique style. </p><br>
 
 </div>
 
@@ -368,7 +368,7 @@
 
 
     <!--make a table with  rows for items and 2 coloumns, one coloumn for images and another for text-->
-    <div class="container-fluid">
+    <div class="container-fluid" style= "text-align: center;">
         <!--row1 Personalising the profile -->
          <p>Personalising your Profile</p>
                 <p style="font-size:20px;padding-top: 2px;"> Your profile is opened when you log in. This is how it appears to others on GetConnected.</p><br>
@@ -387,9 +387,8 @@
                 <!--image-->
                 <div class="col-sm-6" style="background-color:white;">
                     {% load staticfiles %}
-                    <img src="{% static "GC_Auth/help/accpic.png" %}" alt= "lock" class="image" >
-                    {% load staticfiles %}
-                    <img src="{% static "GC_Auth/help/accpic.png" %}" alt= "lock" class="image" >
+                    <img src="{% static "GC_Auth/imageholder.png" %}" alt= "lock" class="image" style="width:50%; height:50%;" >
+
 
             </div>
 
@@ -405,7 +404,8 @@
         <!--coloumn-->
         <div class="col-sm-6" style="background-color:white;">
 
-
+             {% load staticfiles %}
+                    <img src="{% static "GC_Auth/imageholder.png" %}" alt= "lock" class="image" style="width:50%; height:50%;" >
 
         </div>
              <!--coloumn-->

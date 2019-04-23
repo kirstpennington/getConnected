@@ -181,6 +181,12 @@ def goIntroHelp(request):
 def goAccountHelp(request):
     return render(request, 'accountHelp.html')
 
+def goForumsOpen(request):
+    return render(request, 'ForumsOpen.html')
+
+def goSettings(request):
+    return render(request, 'Setttings.html')
+
 
 # UPDATE Methods
 

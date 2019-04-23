@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^goHelpUserProfile/', views.goHelpUserProfile, name='helpUserProfile'),
     url(r'^goIntroHelp/', views.goIntroHelp, name='introHelp'),
     url(r'^goAccountHelp/', views.goAccountHelp, name='accountHelp'),
+    url(r'^goForumsOpen/', views.goForumsOpen, name='forumsopen'),
+    url(r'^goSettings/', views.goSettings, name='settings'),
 
 
 
@@ -42,5 +44,6 @@ urlpatterns = [
     url(r'^forums/', views.forums, name="nav_forums"),
     url(r'^courses/', views.courses, name="nav_courses"),
     url(r'^userprofile/', views.userprofile, name="userprofile")
+
 
 ]

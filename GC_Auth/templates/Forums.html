@@ -123,9 +123,9 @@
                             <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                                <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
@@ -277,7 +277,15 @@
 
 
         <!--HELP BUTTON-->
-            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
+            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;"> Help</span></a>
+
+    <div class="wireframes" style="text-align: center;">
+        <!--wireframe-->
+     {% load staticfiles %}
+
+                    <img src="{% static "GC_Auth/Wireframes/Forums_wireframes.png" %}" alt= "lock" class="image" onclick="location.href='{% url 'forumsopen' %}'" style="width:55%; height:55%;display: inline-block;" >
+
+    </div>
 
 
     </body>

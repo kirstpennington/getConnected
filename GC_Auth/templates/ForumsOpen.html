@@ -1,152 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Navigation Bar</title>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap Sign in Form with Icons</title>
+    <!--Links to Bootstrap & to css-->
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
 
-  <!-- <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">-->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <!-- footer style -->
-  <link href="sticky-footer.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
 
-/* specify the font for the page*/
-      body {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 150;
-      }
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-/*align the "your badges" and trophy*/
-      .badgeHeader{
-        position: top center;
-        text-align: center;
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-      }
-/*set font of the title*/
-      .badgeHeader h3 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 100;
-        font-size: 100px;
+    <!-- Footer Bar Style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      }
-      /*set the trophy image at the top's size*/
-      .badgeHeader .logoclass img {
-        width: 650px;
-        height: 290px;
-        margin: auto;
-        display: block;
-        padding-top:0;
+    <!--NavigationBar Style-->
 
-      }
+    <style>
 
-/* the line underneath the heading*/
-      hr{
-
-        background-color: silver;
-        border-color: silver;
-        border-width: 2px;
-        width: 60%;
-        padding-top: 0;
-      }
-
-/* set the row's padding, so they don't spread out to the edges of the page*/
-      .row{
-        padding-left: 200px;
-        padding-right: 200px;
-      }
-
-/*set the info for the images (badges) inside each block*/
-      .row .col-sm-3 img{
-        width: 250px;
-        height: 206px;
-        margin: auto;
-        display: block;
-        opacity: 1;
-        transition: .5s ease;
-        backface-visibility: hidden;
-      }
-/*this is used for the hover over the badges to show badge details*/
-      .middle {
-        transition: .5s ease;
-        opacity: 0;
-        position: absolute;
-        top: 80%;
-        left: 100%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        text-align: center;
-        height: 50px;
-        width: 200px;
+        .dropdown {
+            display:inline-block;
+            margin-left:20px;
         }
 
-/*this is also used for the hover over the badges*/
-        .badgehover{
-            position: relative;
-            width: 50%;
-        }
-/*for the badge hover*/
-        .badgehover:hover .image {
-          opacity: 0.3;
-        }
-/*for the badge hover */
-        .badgehover:hover .middle {
-          opacity: 1;
-        }
-/*the text when you hover over a badge*/
-        .text {
-          background-color: #ce3298;
-          opacity: 0.8;
-          color: white;
-          font-size: 16px;
-          text-align: center;
-          font-family: 'Roboto', sans-serif;
-
+        .glyphicon-bell {
+            font-size:1.5rem;
         }
 
-/*this sets the look of the tooltip '?'*/
-         .tooltip-inner {
-           background-color: #ce3298;
-           opacity: 0.6 ;
-           color: #FFFFFF;
-           border: 1px #ce3298;
-           padding: 15px;
-           font-size: 12px;
-         }
-
-         .inf-content{
-           border:1px solid #DDDDDD;
-           margin: 20px;
-
+        .notifications {
+            min-width:320px;
         }
 
+        .notifications-wrapper {
+            overflow:auto;
+            max-height:250px;
+        }
 
+        .glyphicon-circle-arrow-right {
+            margin-left:10px;
+        }
 
+        .item-title {
+            font-size:1.5rem;
+            color: black;
+            padding:0px 50px;
+        }
 
+        .notifications a.content {
+            text-decoration:none;
+            background: white;
+        }
 
+        .notification-item {
+            padding:10px;
+            margin:5px;
+            background: #ebebeb;
+            border-radius:4px;
+            height: 80px;
+        }
 
-  </style>
-
-
+        .profile_img {
+            width:25px;
+            display:inline;
+            float:left;
+            border:0px solid #111;
+            border-radius:3px;
+            box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
+        }
+    </style>
 
 </head>
+    <body>
 
-<body>
-
-        <!--nav bar-->
-
-      <!--*BODY* 1. Navigation Bar-->
-
-<nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse">
             <div class="container-fluid">
 
                 <div class="navbar-header">
@@ -180,7 +118,7 @@
                     <ul class="nav navbar-nav navbar-right" >
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
 
-                            <span  onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+                            <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
 
                             <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -336,247 +274,18 @@
                 </div><!--collapse nav-bar collapse-->
             </div><!--container fluid-->
         </nav><!--nav navbar-inverse-->
-        <!--end of nav-->
 
 
-<div class="panel-body inf-content">
+        <!--HELP BUTTON-->
+            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
 
-<!--display heading and top part-->
-<div class="badgeHeader">
-<!--  <h3> Your Trophies </h3>
-
-  <hr color =>-->
-    {% load staticfiles %}
-  <img src = "{% static "GC_Auth/badge_icon.png" %}" alt="trohy" height="120" width="120">
-  <h3> Your Badges </h3>
-  <!--tooltip for '?'-->
-  <a href="#" data-toggle="tooltip" title="Here you can see the badges you have earned from interacting with GetConnected."
-  data-placement="right" style="font-size: 30px; position:absolute;right:300px;top:310px;color: #ce3298">
-    <strong>?</strong><!--strong makes it bold-->
-  </a>
-
-  <div class="logoclass">
-
-</div>
-  <hr> <!--line-->
-</div>
-<br>
-<div class="container-fluid">
-<!--row1-->
-    <div class="row">
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-        <div class ="badgehover"> <!--badge hover for the hovering over the badge-->
-            {% load staticfiles %}
-         <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-         <div class="middle">
-           <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-             <!--text for the hover-->
-         </div>
-       </div>
-      </div>
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-             <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-             <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-
+    <div class="wireframes" style="text-align: center;">
+        <!--wireframe-->
+     {% load staticfiles %}
+        <a href="http://www.yahoo.com">
+                    <img src="{% static "GC_Auth/Wireframes/forum_messages.png" %}" alt= "lock" class="image" style="width:55%; height:55%;display: inline-block;" >
+        </a>
     </div>
-  <br>
-  <!--row2-->
-  <div class="row">
-    <!--coloumn-->
-   <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-  </div>
-<br>
-<!--row3-->
-  <div class="row">
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-  </div>
-<br>
-<!--row4-->
-<div class="row">
-  <!--coloumn-->
-  <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-  <!--coloumn-->
- <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-  <!--coloumn-->
-  <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-  <!--coloumn-->
- <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-
-</div>
-
-  </div>
-</div>
 
 
-
-<script>
-<!--tooltip functionality-->
-  $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-  });
-</script>
-
-
-
-<!-- Footer -->
-<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
-
-
-        <div class="container">
-          <br></br>
-
-</body>
-
-
+    </body>
