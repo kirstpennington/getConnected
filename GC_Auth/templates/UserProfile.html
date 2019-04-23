@@ -418,6 +418,16 @@
                 color: white;
             }
 
+            /*footer logo*/
+            footer img{
+
+
+                width:200%;
+                height:200%;
+               text-align: left;
+
+            }
+
 
 
         /*zoom features*/
@@ -428,6 +438,10 @@
                 border: 1px solid silver ;
                 box-shadow: 5px 10px 8px #888888;
             }
+            .well a:hover{
+                 text-decoration: none;
+
+    }
 
         </style>
 
@@ -454,7 +468,7 @@
                     <ul class="nav navbar-nav navbar-left">
                         <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
                             <span class="glyphicon glyphicon-home fa-lg"></span>
-                           <strong> Home</strong>
+                            Home
                         </a></li>
                         <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
                         <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
@@ -1399,12 +1413,68 @@
         <!-- Call to action -->
         <ul class="list-unstyled list-inline text-center py-2">
             <li class="list-inline-item">
-                <!--     <h5 class="mb-1">Log in now: </h5>-->
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
             </li>
             <li class="list-inline-item">
-                <!--<a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>-->
-                <!--    <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
-                      <span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+
+
+
+
+
+                <div class="row" ><!--table row-->
+
+                    <div class="col-sm-3"  style="text-align:left;padding-right: 100px;">
+                        <br>
+                    {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt= "lock" class="image" >
+                    </div>
+
+
+                        <div class="col-sm-3"  style="text-align:left;padding-left: 120px;">
+
+                          <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Home</p></a>
+                                <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"> <p>Connections</p></a>
+                                <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"> <p>Forums</p></a>
+                                <a onclick="location.href='{% url 'nav_courses' %}'"  style="color: white"> <p>Courses</p></a>
+                         </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                              <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                                <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"> <p>What is GetConnected?</p></a>
+                                <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"> <p>Your Account</p></a>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Forum Help</p></a>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Connection Management</p></a>
+                               <a onclick="location.href='{% url 'nav_home' %}'"style="color: white"> <p>Messaging</p></a>
+                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"> <p>GetSmarter</p></a>
+
+
+
+                         </div>
+
+                      <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                              <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                             <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                                <p style="color:white;"> <strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                                 <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+
+
+
+                         </div>
+
+
+
+                </div>
+
+                <br>
+                 <br>
+
+
             </li>
         </ul>
         <!-- Call to action -->

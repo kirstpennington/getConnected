@@ -4,7 +4,7 @@
    <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Help Page for user profile</title>
+  <title>Help</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -47,6 +47,15 @@
     .searchstrip p{
         font-size: 30px;
     }
+     /*footer logo*/
+            footer img{
+
+
+                width:200%;
+                height:200%;
+               text-align: left;
+
+            }
 
     /*search bar alignment and look*/
     .searchstrip .search-form{
@@ -473,11 +482,87 @@
             </form>
 </div>
 
+<br>
 
-    <!-- Footer -->
-    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
-        <div class="container">
-            <br>
+</div>
+
+ <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+
+
+
+                <div class="rowthis" ><!--table row-->
+
+                    <div class="col-sm-3"  style="text-align:left;padding-right: 100px;">
+                        <br>
+                    {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt= "lock" class="image" >
+                    </div>
+
+
+                        <div class="col-sm-3"  style="text-align:left;padding-left: 120px;">
+
+                          <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Home</p></a>
+                                <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"> <p>Connections</p></a>
+                                <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"> <p>Forums</p></a>
+                                <a onclick="location.href='{% url 'nav_courses' %}'"  style="color: white"> <p>Courses</p></a>
+                         </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                              <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                                <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"> <p>What is GetConnected?</p></a>
+                                <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"> <p>Your Account</p></a>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Forum Help</p></a>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Connection Management</p></a>
+                               <a onclick="location.href='{% url 'nav_home' %}'"style="color: white"> <p>Messaging</p></a>
+                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"> <p>GetSmarter</p></a>
+
+
+
+                         </div>
+
+                      <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                              <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                             <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                                <p style="color:white;"> <strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                                 <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+
+
+
+                         </div>
+
+
+
+                </div>
+
+                <br>
+                 <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+
+</footer>
 
 
 

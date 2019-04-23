@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^goForumsOpen/', views.goForumsOpen, name='forumsopen'),
     url(r'^goSettings/', views.goSettings, name='settings'),
     url(r'^goContact/', views.goContact, name='contactus'),
+    url(r'^goLogIn/', views.LogIn, name='login'),
 
 
 
