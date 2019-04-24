@@ -3,6 +3,22 @@
 
     <head>
 
+
+
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+                authDomain: "getconnected-9dac0.firebaseapp.com",
+                databaseURL: "https://getconnected-9dac0.firebaseio.com",
+                projectId: "getconnected-9dac0",
+                storageBucket: "getconnected-9dac0.appspot.com",
+                messagingSenderId: "144309081376"
+            };
+            firebase.initializeApp(config);
+        </script>
+
         <!--*HEAD* 1. Title-->
 
         <title>Your Profile </title>
@@ -130,33 +146,40 @@
             .fb-image-profile {
                 margin: -90px 10px 0px 150px;
                 z-index: 9;
-                width: 20%;
                 rounded: mx-auto d-block;
 
                 border-radius: 10px;
 
-                width:250px;
-                max-width:250px;
-                height: 250px;
-                max-height: 250px;
+
                 display: inline-block;
-                background-color: gray;
+                background-color: white;
+
+                 width: 262px;
+                 height: 245px;
+                overflow: hidden;
             }
 
             .changePic{
                 left:610px;
                 top:450px;
                 position: absolute;
-                width: 130px;
+                width: 143px;
                 display: none;
 
             }
 
             .profileImage{
                 display: block;
-                width: 100%;
-                height: auto;
+
+                width: 575px;
+                height: 540px;
+                margin: -75px 0 0 -100px;
+                border-radius: 10px;
+
+
             }
+
+
 
             .fb-image-profile:hover .changePic  {
                 opacity: 0.9;
@@ -183,12 +206,12 @@
                 right: 70px;
                 position: relative;
             }
-            .settings button:hover{
+            .settings:hover{
                  -ms-transform: scale(1); /* IE 9 */
                 -webkit-transform: scale(1); /* Safari 3-8 */
                 transform: scale(1);
                 border: 1px solid silver ;
-                box-shadow: 5px 5px 5px #888888;
+                box-shadow: 5px 10px 8px #888888;
             }
 
             .badges{}
@@ -418,16 +441,6 @@
                 color: white;
             }
 
-            /*footer logo*/
-            footer img{
-
-
-                width:200%;
-                height:200%;
-               text-align: left;
-
-            }
-
 
 
         /*zoom features*/
@@ -438,12 +451,97 @@
                 border: 1px solid silver ;
                 box-shadow: 5px 10px 8px #888888;
             }
-            .well a:hover{
-                 text-decoration: none;
-
-    }
 
         </style>
+
+<!--*STYLE for pop up model-->
+        <style>
+
+            .modal {
+                text-align: center;
+            }
+
+            @media screen and (min-width: 768px) {
+                .modal:before {
+                    display: inline-block;
+                    vertical-align: middle;
+                    content: " ";
+                    height: 100%;
+
+                }
+            }
+
+            .modal-dialog {
+                display: inline-block;
+                text-align: left;
+                vertical-align: middle;
+
+            }
+
+            /* drag and Drop */
+
+            .files input {
+                outline: 2px dashed #e83e8c;
+                outline-offset: -10px;
+                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                padding: 120px 0px 85px 35%;
+                text-align: center !important;
+                margin: 0;
+                width: 100% !important;
+            }
+
+            .files input:focus {
+                outline: 2px dashed #e83e8c;
+                outline-offset: -10px;
+                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                border: 1px solid #92b0b3;
+            }
+
+            .files {
+                position: relative
+            }
+
+            .files:after {
+                pointer-events: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 50px;
+                right: 0;
+                height: 56px;
+                content: "";
+                background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+                display: block;
+                margin: 0 auto;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+
+            .color input {
+                background-color: silver;
+            }
+
+            .files:before {
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                pointer-events: none;
+                width: 100%;
+                right: 0;
+                height: 57px;
+                content: " or drag and drop it here. ";
+                display: block;
+                margin: 0 auto;
+                color: #e83e8c;
+                font-weight: 600;
+                text-transform: capitalize;
+                text-align: center;
+            }
+
+        </style>
+
 
     </head>
 
@@ -466,13 +564,10 @@
 
                     <!--Left-side (including search ) of navigation bar-->
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
-                            <span class="glyphicon glyphicon-home fa-lg"></span>
-                            Home
-                        </a></li>
-                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
-                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a></li>
+                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
+                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
+                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span>Courses</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
@@ -493,9 +588,9 @@
                             <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
                             <ul class="dropdown-menu">
-                                <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                                <li><a href="#">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
@@ -647,9 +742,7 @@
 
 
         <!--HELP BUTTON-->
-            <a  onclick="location.href='{% url 'helpUserProfile' %}'">
-                <span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">&nbsp;Help</span></a>
-
+            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">&nbsp;Help</span></a>
 
 
 <!--*BODY* 2. Everthing else after the Navigation Bar (Except of the help button)-->
@@ -671,8 +764,64 @@
                                 <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" class="profilediv" >
                                 {% load staticfiles %}
                                 <img  src="{{ backgroundPic }}" align="left" class="fb-image-lg"/>
-                                <button class="WallpaperchangePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
+                                <button type='button' data-toggle="modal" data-target="#exampleModal" class="WallpaperchangePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
                                 </div>
+
+                                <!-- 1.1 Pop Up modal-->
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h3 class="modal-title" style="color: gray" id="exampleModalLabel" ><span class="fa fa-gear fa-lg"></span> Image Settings</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="default-file-upload">
+                                                  <!--  <input id="file-upload1" type="file"/>-->
+
+                                                    <div class="row">
+
+                                                        <form method="post" action="#" id="#">
+
+
+                                                            <div class="form-group files color">
+                                                                <h4 style="color: gray; padding-left: 24px;">Upload Your File </h4>
+                                                                <input type="file" id="uploadZip" name= "icon" class="form-control" multiple="">
+                                                            </div>
+
+
+                                                        </form>
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="ViewMorebutton" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button  type="submit" id = "uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save changes</button>
+                                            </div>
+                                            <!-- Testing-->
+
+
+
+                                            <!-- Testing-->
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of 1.1 Pop Up modal-->
 
 
                                 <div class = "settings">
@@ -695,12 +844,13 @@
                                 </div>
 
                                  <!-- 3. Profile Picture-->
-
-                                <div  style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" align="left" class="fb-image-profile thumbnail">
+                                <div  style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" align="left" class="fb-image-profile thumbnail">
                                 {% load staticfiles %}
-                                <img class="profileImage" src="{{ProfilePic}}"  />
-                                <button class="changePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
+                                <img class="profileImage" src="{{ProfilePic}}"   />
+                                    <button  class="changePic " type='button' data-toggle="modal" data-target="#exampleModal"  style="background-color: hotpink; color: black; border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
+
                                 </div>
+
 
 
 
@@ -713,18 +863,18 @@
 
                         <div class="col-md-7"> <!-- User Profile Description-->
 
-                            <div  style = "text-align: center;">
-                                <h1 style="color: gray;display: inline-block;padding-right:50px;"><strong>{{n}}</strong><br></h1><br>
-                                <h8 style="display: inline-block;padding-right:10px;">Connections <span class="label label-default"> {{ numConnections }}</span></h8>
-                                <h8 style="display: inline-block;padding-right:50px;">Forums <span class="label label-default"> {{ numForums }}</span></h8>
+                            <div  style = "position:relative; left:100px; top:0px;">
+                                <h1 style="color: gray"><strong>{{n}}</strong><br></h1>
+                                <h8>Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                <h8>Forums <span class="label label-default">{{ numForums }}</span></h8>
                             </div><br>
 
-                            <div class="table-responsive" >
+                            <div class="table-responsive">
                                 <table class="table table-condensed table-responsive table-user-information">
                                     <tbody>
                                     <tr>
                                         <td><strong><span class="glyphicon glyphicon-bookmark text-primary"></span></strong></td>
-                                        <td class="text-primary" > <p>{{ bio }}</p></td>
+                                        <td class="text-primary"> <p>{{ bio }}</p></td>
                                     </tr>
                                     <tr>
                                         <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
@@ -1413,68 +1563,12 @@
         <!-- Call to action -->
         <ul class="list-unstyled list-inline text-center py-2">
             <li class="list-inline-item">
-                <!--  <h5 class="mb-1">Log in now: </h5>-->
+                <!--     <h5 class="mb-1">Log in now: </h5>-->
             </li>
             <li class="list-inline-item">
-
-
-
-
-
-                <div class="row" ><!--table row-->
-
-                    <div class="col-sm-3"  style="text-align:left;padding-right: 100px;">
-                        <br>
-                    {% load staticfiles %}
-                        <img src="{% static "GC_Auth/logotrans.png" %}" alt= "lock" class="image" >
-                    </div>
-
-
-                        <div class="col-sm-3"  style="text-align:left;padding-left: 120px;">
-
-                          <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
-                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Home</p></a>
-                                <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"> <p>Connections</p></a>
-                                <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"> <p>Forums</p></a>
-                                <a onclick="location.href='{% url 'nav_courses' %}'"  style="color: white"> <p>Courses</p></a>
-                         </div>
-
-                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
-
-                              <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
-
-                                <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"> <p>What is GetConnected?</p></a>
-                                <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"> <p>Your Account</p></a>
-                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Forum Help</p></a>
-                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Connection Management</p></a>
-                               <a onclick="location.href='{% url 'nav_home' %}'"style="color: white"> <p>Messaging</p></a>
-                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"> <p>GetSmarter</p></a>
-
-
-
-                         </div>
-
-                      <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
-
-                              <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
-                             <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
-                                <p style="color:white;"> <strong>Email: </strong> getConnected@GetSmarter.co.za</p>
-                                 <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
-
-
-
-
-
-                         </div>
-
-
-
-                </div>
-
-                <br>
-                 <br>
-
-
+                <!--<a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>-->
+                <!--    <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+                      <span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
             </li>
         </ul>
         <!-- Call to action -->
@@ -1494,6 +1588,22 @@
                 interval: 6000
             })
         });
+
+       $("input[type='image']").click(function() {
+    $("input[id='my_file']").click();
+});
+
+
+       /*method for uploading files to Firebase
+       * OnChange is for the changing document when the user attempts to upload
+       * uploadFile is the method which will be called when the save button is clicked
+       * */
+
+
+
+
+
+
 
     </script>
 </body>

@@ -44,7 +44,7 @@ class ViewsTest(unittest.TestCase):
         self.assertEqual(GC_Auth.views.getBio("", user), "Kimone is my name")
 
     def test_get_num_forums(self):
-        self.assertEqual(GC_Auth.views.getNumForums("", user), 1)
+        self.assertEqual(GC_Auth.views.getNumForums("", user), 3)
 
     def test_get_profile_pic(self):
         self.assertEqual(GC_Auth.views.getProfilePic("", user), "https://i.pinimg.com/originals/05/63/cd/0563cd1937bea536929a85e33fa6bfbe.jpg")

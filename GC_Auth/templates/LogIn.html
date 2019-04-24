@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>GetConnected</title>
+
     <!--Firebase-->
 
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
@@ -37,7 +37,7 @@
 
     <!-- <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">-->
     {% load staticfiles %}
-    <!--<link href="{% static 'GC_Auth/loginstyle.css' %}" rel="stylesheet" type="text/css">-->
+    <link href="{% static 'GC_Auth/loginstyle.css' %}" rel="stylesheet" type="text/css">
 
 
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -52,203 +52,6 @@
 
   <!--  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
     <link href="style.css" type="text/css" rel="stylesheet">-->
-    <style>
-
-        button:hover{
-             -ms-transform: scale(1); /* IE 9 */
-             -webkit-transform: scale(1); /* Safari 3-8 */
-             transform: scale(1);
-             border: 1px solid silver ;
-            box-shadow: 3px 3px 3px #888888;
-    }
-
-
-        .login-form {
-            width: 800px;
-            margin: 50px auto;
-            top: 30%;
-            right: 22%;
-            position:absolute;
-
-        }
-        .login-form form {
-            margin-bottom: 15px;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            background-color: white;
-            opacity: 0.7;
-            filter: alpha(opacity=60); /* For IE8 and earlier */
-        }
-
-         h2 {
-            margin: 0 0 15px;
-            color:  #e83e8c;
-
-        }
-
-        .form-control, .btn {
-            min-height: 38px;
-            border-radius: 2px;
-        }
-
-        .input-group-addon .fa {
-            font-size: 18px;
-        }
-
-        .label-rem {
-            color:  #e83e8c;
-        }
-
-        .btn {
-            font-size: 15px;
-            font-weight: bold;
-            background-color: #e83e8c;
-            border-color: black;
-        }
-
-        body, html {
-            height: 100%;
-            position: top right;
-            margin: 0;
-        }
-         /*footer logo*/
-            footer img{
-
-
-                width:200%;
-                height:200%;
-               text-align: left;
-
-            }
-
-        .bg {
-            /* The image used
-         background-image: url("headerpic.jpg");*/
-
-            /* Full height */
-            height: 25%;
-             background-image: url("../static/GC_Auth/backgroundbubs.jpg");
-            /* Center and scale the image nicely */
-            background-position: top center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-color: #D3D3D3;
-
-
-        }
-
-
-        .bg .logo{
-          position: absolute;
-        /* left: 2%;
-        //  top: 7%;
-        position:relative;*/
-          top:20%;
-          left:57%;
-          transform:translate(-50%, -50%)
-
-        }
-
-        .bg .logo img{
-          height: 80%;
-          width: 80% ;
-
-
-        }
-
-        .intro-form{
-          width: 800px;
-          margin: 50px auto;
-          top: 30%;
-          right: 23%;
-          position:absolute;
-            padding-top: 10px;
-
-    }
-
-
-
-        .intro-form form{
-          margin-bottom: 15px;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
-          padding: 20px;
-          background-color: white;
-          opacity: 1;
-          border:1px solid gray;
-          filter: alpha(opacity=60); /* For IE8 and earlier */
-        }
-
-        .login-form {
-          top: 17%;
-          right: 22%;
-          position:absolute;
-        }
-
-        .login-form form{
-          opacity: 1;
-          border-color: gray;
-        }
-
-        .description p{
-
-        }
-
-        .description .functions img{
-          height: 8%;
-          width: 15% ;
-
-        }
-
-        .footer{
-          background-color: #D3D3D3;
-        }
-
-        .description .function img{
-          position:relative;
-          top:50%;
-          left:50%;
-          transform:translate(-50%, -50%);
-        }
-
-
-
-       .carousel-inner > .item > img {
-            width:1000px;
-            height:300px;
-
-          }
-
-      button{
-
-            border-radius: 8px;
-            color: white;
-            background-color: #e83e8c;
-            border: 2px  solid #e83e8c;
-            display: inline-block;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left:10px;
-            padding-right:10px;
-            font-size: 16px;
-
-       }
-
-      button:focus{
-          outline:none;
-      }
-
-
-
-          /*.carousel-inner img {
-            margin: auto;
-            background-position: center center;
-          }*/
-
-
-
-    </style>
-
-
 </head>
 <body>
 
@@ -268,17 +71,11 @@
     <div class="collapse navbar-collapse" id="myNavbar" >
     <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="#myPage" style="color:white; border-left: 1px solid white;border-right: 1px solid white;
-      "> <span class="glyphicon glyphicon-home fa-lg"></span> Home </a></li>
-        <li><a href="https://www.getsmarter.com/what-we-do" > <span class="glyphicon glyphicon-education fa-lg"></span> GetSmarter</a></li>
-        <li><a onclick="location.href='{% url 'contactus' %}'">  <span class="glyphicon glyphicon-phone-alt fa-lg"></span> Contact Us</a></li>
-
+        <li><a href="#myPage">HOME</a></li>
+        <li><a href="https://www.getsmarter.com/what-we-do">GETSMARTER</a></li>
+        <li><a href="#contact">CONTACT US</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
-         <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
-                        <form class="  search-form" role="search">
-                            <input type="text" class="form-control" placeholder="Search" />
-                        </form>
-                    </ul>
       <ul class="nav navbar-nav navbar-right">
             <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
               <span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -302,7 +99,6 @@
 <!-- pop up form for introduction on first run-->
   <!-- glyphicon is a series of icons which are available with bootstrap -->
 <div id="id02">
-
   <div class="intro-form">
     <form>
       <!-- references the methods (see below)>> form must be closed when button is clicked-->
@@ -310,17 +106,10 @@
       <h2 class="text-center"> Hey you!</h2>
       <p class="text-center"> Welcome to GetSmarter's new networking platform. Where Facebook meets Linkedln, just a lot cooler.
         <br></br> <!-- makes a space otherwise elements are too squished-->
-        <!--<a href="#" onclick="CloseIntroForm(); OpenLogIn()" class="btn btn-info btn-lg">
+        <a href="#" onclick="CloseIntroForm(); OpenLogIn()" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-log-in"></span> Log in
-          </a>-->
-        <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
-
-            <button onclick="CloseIntroForm(); OpenLogIn()" type="button" >
-                 <span class="glyphicon glyphicon-log-in"></span>
-
-                Log in</button>
-        </div>
-      </p>
+          </a>
+      <p>
     </form>
   </div>
 </div>
@@ -350,9 +139,9 @@
                 <input type="password" name ="pass" class="form-control" placeholder="Password" required="required">
             </div>
         </div>
-        <div class="form-group" style="text-align: center;">
+        <div class="form-group">
              <!--  <input type="submit" value="SignIn">-->
-            <button type="submit" value= "SignIn" >Log in</button>
+            <button type="submit" value= "SignIn" class="btn btn-primary btn-block">Log in</button>
 
         </div>
         <div class="clearfix">
@@ -369,7 +158,6 @@
 
   <!-- descriptions under the header-->
 <form="description">
-<br>
   <h2 style="text-align: center;font-size: 40px; margin-top:1%;">Learn. Connect. Innovate </h2>
   <blockquote>
     <p style="text-align: center; font-size: 15px"> Your network is your net worth.</p>
@@ -485,80 +273,25 @@
 <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
 
 
-    <div class="container">
-        <br></br>
-        <!-- Call to action -->
-        <ul class="list-unstyled list-inline text-center py-2">
-            <li class="list-inline-item">
-                <!--  <h5 class="mb-1">Log in now: </h5>-->
-            </li>
-            <li class="list-inline-item">
-
-
-
-
-
-                <div class="row" ><!--table row-->
-
-                    <div class="col-sm-3"  style="text-align:left;padding-right: 100px;">
-                        <br>
-                    {% load staticfiles %}
-                        <img src="{% static "GC_Auth/logotrans.png" %}" alt= "lock" class="image" >
-                    </div>
-
-
-                        <div class="col-sm-3"  style="text-align:left;padding-left: 120px;">
-
-                          <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
-                                <a onclick="location.href='{% url 'login' %}'" style="color: white"> <p>Home</p></a>
-                                <a style="color: white"> <p>Connections</p></a>
-                                <a  style="color: white"> <p>Forums</p></a>
-                                <a  style="color: white"> <p>Courses</p></a>
-                         </div>
-
-                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
-
-                              <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
-
-                                <a style="color: white"> <p>What is GetConnected?</p></a>
-                                <a style="color: white"> <p>Your Account</p></a>
-                                <a  style="color: white"> <p>Forum Help</p></a>
-                                <a style="color: white"> <p>Connection Management</p></a>
-                               <a style="color: white"> <p>Messaging</p></a>
-                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"> <p>GetSmarter</p></a>
-
-
-
-                         </div>
-
-                      <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
-
-                              <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
-                             <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
-                                <p style="color:white;"> <strong>Email: </strong> getConnected@GetSmarter.co.za</p>
-                                 <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
-
-
-
-
-
-                         </div>
-
-
-
-                </div>
-
-                <br>
-                 <br>
-
-
-            </li>
-        </ul>
-        <!-- Call to action -->
+        <div class="container">
+          <br></br>
+      <!-- Call to action -->
+      <ul class="list-unstyled list-inline text-center py-2">
+        <li class="list-inline-item">
+  <!--     <h5 class="mb-1">Log in now: </h5>-->
+        </li>
+        <li class="list-inline-item">
+          <!--<a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>-->
+      <!--    <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+            <span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+        </li>
+      </ul>
+      <!-- Call to action -->
 
     </div>
-    </div>
-</footer>
+      </div>
+    </footer>
+
 
 
 
