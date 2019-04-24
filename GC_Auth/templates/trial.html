@@ -1,0 +1,125 @@
+
+
+<script>
+
+    var img2fire = angular.module('img2fire', ['firebase', 'angular.filter']);
+
+img2fire.controller("base64Ctrl", function($scope, $firebaseArray) {
+
+  var ref = new Firebase("https://base64images.firebaseio.com/");
+
+  var img = new Firebase("https://base64images.firebaseio.com/images");
+  $scope.imgs = $firebaseArray(img);
+
+  var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
+  $scope.uploadFile = function() {
+    var sFileName = $("#nameImg").val();
+    if (sFileName.length > 0) {
+      var blnValid = false;
+      for (var j = 0; j < _validFileExtensions.length; j++) {
+        var sCurExtension = _validFileExtensions[j];
+        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+          blnValid = true;
+          var filesSelected = document.getElementById("nameImg").files;
+          if (filesSelected.length > 0) {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function(fileLoadedEvent) {
+              var textAreaFileContents = document.getElementById(
+                "textAreaFileContents"
+              );
+
+
+              $scope.imgs.$add({
+                date: Firebase.ServerValue.TIMESTAMP,
+                base64: fileLoadedEvent.target.result
+              });
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
+          }
+          break;
+        }
+      }
+
+      if (!blnValid) {
+        alert('File is not valid');
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  $scope.deleteimg = function(imgid) {
+    var r = confirm("Do you want to remove this image ?");
+    if (r == true) {
+      $scope.imgs.forEach(function(childSnapshot) {
+        if (childSnapshot.$id == imgid) {
+            $scope.imgs.$remove(childSnapshot).then(function(ref) {
+              ref.key() === childSnapshot.$id; // true
+            });
+        }
+      });
+    }
+  }
+
+});
+
+
+    </script>
+
+<style>
+
+    p{
+  font-weight: bold;
+  font-size: 2.5em;
+  padding-top: 40px;
+}
+
+img{
+  cursor:pointer;
+  width: 100%;
+  height: 200px;
+  border-style: solid;
+  border-color: #000000 #000000;
+  border-width: medium;
+}
+
+input[type=file] {
+    margin: 0 auto;
+}
+</style>
+
+
+<!--
+Firebase v2.2.4
+
+Las imágenes toma tiempo en cargar, sea paciente
+The images take time to load, be patient
+
+-->
+<div ng-app='img2fire'>
+  <div ng-controller='base64Ctrl'>
+    <div class="container-fluid">
+      <p class="text-info" align="center">Upload Images to Firebase</p>
+      <hr />
+
+      <form ng-submit="uploadFile()">
+        <input type="file" name="file" class="inputimg" id="nameImg" accept="image/*">
+        <br />
+        <span class="input-group-btn">
+                <button  type="submit" class="btn btn-block">Upload Image
+                  <i class="material-icons">send</i>
+                </button>
+          </span>
+      </form>
+      <hr />
+      <div ng-repeat="img in imgs | toArray | orderBy: '-date'" class="col-xs-12 col-sm-6 col-md-3">
+        <img ng-src="{{img.base64}}">
+        <a class="btn btn-danger btn-block" ng-click="deleteimg(img.$id)">Delete</a>
+      </div>
+    </div>
+  </div>
