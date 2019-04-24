@@ -3,7 +3,7 @@
 
     <head>
 
-
+        <!--*HEAD* Firebase-->
 
         <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
         <script>
@@ -169,17 +169,13 @@
             }
 
             .profileImage{
-                display: block;
+                 display: block;
 
                 width: 575px;
                 height: 540px;
                 margin: -75px 0 0 -100px;
                 border-radius: 10px;
-
-
             }
-
-
 
             .fb-image-profile:hover .changePic  {
                 opacity: 0.9;
@@ -206,12 +202,12 @@
                 right: 70px;
                 position: relative;
             }
-            .settings:hover{
+            .settings button:hover{
                  -ms-transform: scale(1); /* IE 9 */
                 -webkit-transform: scale(1); /* Safari 3-8 */
                 transform: scale(1);
                 border: 1px solid silver ;
-                box-shadow: 5px 10px 8px #888888;
+                box-shadow: 5px 5px 5px #888888;
             }
 
             .badges{}
@@ -441,6 +437,16 @@
                 color: white;
             }
 
+            /*footer logo*/
+            footer img{
+
+
+                width:200%;
+                height:200%;
+               text-align: left;
+
+            }
+
 
 
         /*zoom features*/
@@ -451,10 +457,14 @@
                 border: 1px solid silver ;
                 box-shadow: 5px 10px 8px #888888;
             }
+            .well a:hover{
+                 text-decoration: none;
+
+    }
 
         </style>
 
-<!--*STYLE for pop up model-->
+        <!--*STYLE for pop up model-->
         <style>
 
             .modal {
@@ -542,7 +552,6 @@
 
         </style>
 
-
     </head>
 
 <body>
@@ -564,10 +573,13 @@
 
                     <!--Left-side (including search ) of navigation bar-->
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
-                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
-                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span>Courses</a></li>
+                        <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
+                            <span class="glyphicon glyphicon-home fa-lg"></span>
+                            Home
+                        </a></li>
+                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
+                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
@@ -588,9 +600,9 @@
                             <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                                <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
@@ -742,7 +754,9 @@
 
 
         <!--HELP BUTTON-->
-            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">&nbsp;Help</span></a>
+            <a  onclick="location.href='{% url 'helpUserProfile' %}'">
+                <span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">&nbsp;Help</span></a>
+
 
 
 <!--*BODY* 2. Everthing else after the Navigation Bar (Except of the help button)-->
@@ -767,7 +781,8 @@
                                 <button type='button' data-toggle="modal" data-target="#exampleModal" class="WallpaperchangePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
                                 </div>
 
-                                <!-- 1.1 Pop Up modal-->
+
+                                   <!-- 1.1 Pop Up modal-->
 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -844,13 +859,12 @@
                                 </div>
 
                                  <!-- 3. Profile Picture-->
-                                <div  style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)" align="left" class="fb-image-profile thumbnail">
+
+                                <div  style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" align="left" class="fb-image-profile thumbnail">
                                 {% load staticfiles %}
-                                <img class="profileImage" src="{{ProfilePic}}"   />
-                                    <button  class="changePic " type='button' data-toggle="modal" data-target="#exampleModal"  style="background-color: hotpink; color: black; border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
-
+                                <img class="profileImage" src="{{ProfilePic}}"  />
+                                <button class="changePic" type='button' data-toggle="modal" data-target="#exampleModal"  style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
                                 </div>
-
 
 
 
@@ -863,18 +877,18 @@
 
                         <div class="col-md-7"> <!-- User Profile Description-->
 
-                            <div  style = "position:relative; left:100px; top:0px;">
-                                <h1 style="color: gray"><strong>{{n}}</strong><br></h1>
-                                <h8>Connections <span class="label label-default">{{ numConnections }}</span></h8>
-                                <h8>Forums <span class="label label-default">{{ numForums }}</span></h8>
+                            <div  style = "text-align: center;">
+                                <h1 style="color: gray;display: inline-block;padding-right:50px;"><strong>{{n}}</strong><br></h1><br>
+                                <h8 style="display: inline-block;padding-right:10px;">Connections <span class="label label-default"> {{ numConnections }}</span></h8>
+                                <h8 style="display: inline-block;padding-right:50px;">Forums <span class="label label-default"> {{ numForums }}</span></h8>
                             </div><br>
 
-                            <div class="table-responsive">
+                            <div class="table-responsive" >
                                 <table class="table table-condensed table-responsive table-user-information">
                                     <tbody>
                                     <tr>
                                         <td><strong><span class="glyphicon glyphicon-bookmark text-primary"></span></strong></td>
-                                        <td class="text-primary"> <p>{{ bio }}</p></td>
+                                        <td class="text-primary" > <p>{{ bio }}</p></td>
                                     </tr>
                                     <tr>
                                         <td><strong><span class="glyphicon glyphicon-envelope text-primary"></span></strong></td>
@@ -938,7 +952,7 @@
 
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
                                                                         <p>James Coden · day ago</p>
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">JOIN <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">JOIN <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -966,7 +980,7 @@
                                                                             <span class="badge badge-pill badge-dark">Highly Recommended</span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -1000,7 +1014,7 @@
                                                                             <span class="badge badge-pill badge-dark">UCT Graduate </span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW PROFILE <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW PROFILE <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -1034,7 +1048,7 @@
                                                                             <span class="badge badge-pill badge-dark">Highly Recommended</span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -1063,7 +1077,7 @@
                                                                             <span class="badge badge-pill badge-dark">Highly Recommended</span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -1091,7 +1105,7 @@
                                                                             <span class="badge badge-pill badge-dark">Recommended</span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -1125,7 +1139,7 @@
                                                                             <br><span class="badge badge-pill badge-dark">Highly Recommended</span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -1155,7 +1169,7 @@
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
                                                                         <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                           href="https://twitter.com/webmaniac">VIEW COURSE <i
+                                                                           href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW COURSE <i
                                                                                 class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
@@ -1184,7 +1198,7 @@
                                                                             <br><span class="badge badge-pill badge-dark">Recommended</span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-                                                                        <a style="font-size: smaller; color: gray; font-weight: bold" href="https://twitter.com/webmaniac">VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                        <a style="font-size: smaller; color: gray; font-weight: bold" href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -1247,7 +1261,7 @@
                                                                 <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
 
                                                                 <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://twitter.com/webmaniac">
+                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
                                                                     VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                 </a>
                                                             </div>
@@ -1284,7 +1298,7 @@
                                                                 <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
 
                                                                 <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://twitter.com/webmaniac">
+                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
                                                                     VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                     </a>
                                                             </div>
@@ -1323,7 +1337,7 @@
                                                                 <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
 
                                                                 <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://twitter.com/webmaniac">
+                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
                                                                     VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                 </a>
                                                             </div>
@@ -1339,7 +1353,7 @@
 
                          <!--View Button + My Forums -->
                         <div class="row">
-                            <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px">View More <i class="fa fa-angle-double-right"></i></button>
+                            <button type="button" onclick="location.href='{% url 'nav_courses' %}'"  class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px">View More <i class="fa fa-angle-double-right"></i></button>
 
                         </div>
 
@@ -1407,7 +1421,7 @@
                                                             <p>James Coden · day ago</p>
 
                                                             <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                               href="https://twitter.com/webmaniac">
+                                                               href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
                                                                 OPEN <i class="fa fa-angle-double-right"></i>
                                                             </a>
                                                         </div><!-- /card-hovercard -->
@@ -1466,7 +1480,7 @@
 
 
                                                             <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                               href="https://twitter.com/webmaniac">
+                                                               href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
                                                                 OPEN <i class="fa fa-angle-double-right"></i>
                                                             </a>
                                                         </div><!-- /card-hovercard -->
@@ -1526,7 +1540,7 @@
 
 
                                                             <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                               href="https://twitter.com/webmaniac">
+                                                               href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
                                                                 OPEN <i class="fa fa-angle-double-right"></i>
 
                                                                 </a>
@@ -1540,7 +1554,7 @@
                                         <!-- /View Button -->
                                         <div class="row">
 
-                                            <button type="button" class="ViewMorebutton" style="position: relative; left: 1000px; top: 0px">View More <i class="fa fa-angle-double-right"></i></button>
+                                            <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_forums' %}'" style="position: relative; left: 1000px; top: 0px">View More <i class="fa fa-angle-double-right"></i></button>
                                         </div>
                                     </div><!-- /row for forums+ courses container cards -->
                                 </div><!-- /row for forums+ courses container cards -->
@@ -1563,12 +1577,68 @@
         <!-- Call to action -->
         <ul class="list-unstyled list-inline text-center py-2">
             <li class="list-inline-item">
-                <!--     <h5 class="mb-1">Log in now: </h5>-->
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
             </li>
             <li class="list-inline-item">
-                <!--<a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>-->
-                <!--    <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
-                      <span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+
+
+
+
+
+                <div class="row" ><!--table row-->
+
+                    <div class="col-sm-3"  style="text-align:left;padding-right: 100px;">
+                        <br>
+                    {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt= "lock" class="image" >
+                    </div>
+
+
+                        <div class="col-sm-3"  style="text-align:left;padding-left: 120px;">
+
+                          <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Home</p></a>
+                                <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"> <p>Connections</p></a>
+                                <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"> <p>Forums</p></a>
+                                <a onclick="location.href='{% url 'nav_courses' %}'"  style="color: white"> <p>Courses</p></a>
+                         </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                              <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                                <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"> <p>What is GetConnected?</p></a>
+                                <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"> <p>Your Account</p></a>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Forum Help</p></a>
+                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Connection Management</p></a>
+                               <a onclick="location.href='{% url 'nav_home' %}'"style="color: white"> <p>Messaging</p></a>
+                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"> <p>GetSmarter</p></a>
+
+
+
+                         </div>
+
+                      <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                              <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                             <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                                <p style="color:white;"> <strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                                 <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+
+
+
+                         </div>
+
+
+
+                </div>
+
+                <br>
+                 <br>
+
+
             </li>
         </ul>
         <!-- Call to action -->
@@ -1588,22 +1658,6 @@
                 interval: 6000
             })
         });
-
-       $("input[type='image']").click(function() {
-    $("input[id='my_file']").click();
-});
-
-
-       /*method for uploading files to Firebase
-       * OnChange is for the changing document when the user attempts to upload
-       * uploadFile is the method which will be called when the save button is clicked
-       * */
-
-
-
-
-
-
 
     </script>
 </body>
