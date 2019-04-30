@@ -91,6 +91,14 @@ def getNamePrivacy(user):
 def getPicPrivacy(user):
     return database.child("Users").child(user['localId']).child("UserPrivacy").child("ProfilePicPrivacy").get().val()
 
+
+def getCoursesPrivacy(user):
+    return database.child("Users").child(user['localId']).child("UserPrivacy").child("CoursesPrivacy").get().val()
+
+
+def getForumsPrivacy(user):
+    return database.child("Users").child(user['localId']).child("UserPrivacy").child("ForumsPrivacy").get().val()
+
 # ToDo: code to get data for forums and courses in carousels - list of data
 
 # ToDo: read course info for Courses page
@@ -138,10 +146,10 @@ def postsign(request):
         updateProfilePic("https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
 
     global the_user # create the_user object to store user profile data
-    the_user = User(getUsername(user), getBio(request, user), getNumConnecions(request, user), getNumForums(request, user), email, password, getCountry(user), getProfilePic(request, user),getBackgroundPic(request, user))
+    the_user = User(getUsername(user), getBio(request, user), getNumConnecions(request, user), getNumForums(request, user), email, password, getCountry(user), getProfilePic(request, user),getBackgroundPic(request, user), user['localId'])
 
     global user_privacy # create user_privacy object to store user privacy data
-    user_privacy = Privacy(getBioPrivacy(user), getConnectionPrivacy(user), getCountryPrivacy(user), getNamePrivacy(user), getPicPrivacy(user))
+    user_privacy = Privacy(getBioPrivacy(user), getConnectionPrivacy(user), getCountryPrivacy(user), getNamePrivacy(user), getPicPrivacy(user), getCoursesPrivacy(user), getForumsPrivacy(user))
 
     # navigate to the user profile page and
     return render(request, "UserProfile.html", {"e": the_user.email,
@@ -169,6 +177,7 @@ def updateProfile(request):
         name = request.POST.get("name")
         bio = request.POST.get("bio")
         country = request.POST.get("country")
+        email = request.POST.get("email")
 
         # ToDo: use the naming conventions in the get() method in the UI - name="name"; name="bio"; name="country"
 
@@ -176,9 +185,11 @@ def updateProfile(request):
     updateUsername(u, name)
     updateBio(u, bio)
     updateCountry(u, country)
+    updateEmail(u, email)
 
     # edit return render to show the new data
     return render(request, "UserProfile.html", {'n': name,
+                                                'email': email,
                                                 'bio': bio,
                                                 'country': country,
                                                 'ProfilePic': the_user.profilePic,
@@ -194,6 +205,8 @@ def updatePrivacySettings(request):
         countryPrivacy = request.POST.get("countryPrivacy")
         namePrivacy = request.POST.get("namePrivacy")
         pPicPrivacy = request.POST.get("pPicPrivacy")
+        coursesPrivacy = request.POST.get("coursesPrivacy")
+        forumsPrivacy = request.POST.get("forumsPrivacy")
         # ToDo: use the naming conventions in the get() method in the UI - name="name"; name="bio"; name="country"
 
     # call each method to update elements of the profile in the db
@@ -202,13 +215,18 @@ def updatePrivacySettings(request):
     updateCountryPrivacy(u, countryPrivacy)
     updateNamePrivacy(u, namePrivacy)
     updatePicPrivacy(u, pPicPrivacy)
+    updateCoursesPrivacy(u, coursesPrivacy)
+    updateForumsPrivacy(u, forumsPrivacy)
+
 
     # edit return render to show the new data
     return render(request, "UserProfile.html", {'bioPrivacy': bioPrivacy,
                                                 'connectionPrivacy': connectionPrivacy,
                                                 'countryPrivacy': countryPrivacy,
                                                 'namePrivacy': namePrivacy,
-                                                'pPicPrivacy': pPicPrivacy
+                                                'pPicPrivacy': pPicPrivacy,
+                                                'coursesPrivacy': coursesPrivacy,
+                                                'forumsPrivacy': forumsPrivacy
                                                 })
     # individual update methods
 
@@ -220,6 +238,19 @@ def updateUsername(user, name):
         the_user.username = name        # update element in the local object
     except:
         return ""
+
+def updateEmail(user, e):
+  #  global u
+   # u = auth.update_user(
+    #    the_user.uid,
+     #   email = e
+    #)
+    try:
+        global the_user
+        the_user.email = e
+    except:
+        return ""
+
 
 
 def updateBio(user, bio):
@@ -357,6 +388,24 @@ def updatePicPrivacy(user, pPicPrivacy):
         return ""
 
 
+def updateCoursesPrivacy(user, coursesPrivacy):
+    database.child("Users").child(user['localId']).child("UserPrivacy").update({"CoursesPrivacy": coursesPrivacy})
+    try:  # try except for purpose of unit tests
+        global user_privacy
+        user_privacy.courses = coursesPrivacy
+    except:
+        return ""
+
+
+def updateForumsPrivacy(user, forumsPrivacy):
+    database.child("Users").child(user['localId']).child("UserPrivacy").update({"ForumsPrivacy": forumsPrivacy})
+    try:  # try except for purpose of unit tests
+        global user_privacy
+        user_privacy.forums = forumsPrivacy
+    except:
+        return ""
+
+
 # ToDo: code to add ratings to courses
 
 
@@ -432,7 +481,7 @@ def goContact(request):
 # these objects only store info that the user updates manually-info that is not constantly being updates
 # class with user profile info
 class User:
-    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, ):
+    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id):
         self.username = name
         self.bio = bio
         self.numConnections = numConn
@@ -442,14 +491,17 @@ class User:
         self.country = country
         self.profilePic = profPic
         self.backgroundPic = bPic
+        self.uid = id
 
 
 # class with user privacy info
 class Privacy:
-    def __init__(self, bio, connections, country, name, pic):
+    def __init__(self, bio, connections, country, name, pic, c, f):
         self.bio = bio
         self.connections = connections
         self.country = country
         self.name = name
         self.pic = pic
+        self.course = c
+        self.forums = f
 
