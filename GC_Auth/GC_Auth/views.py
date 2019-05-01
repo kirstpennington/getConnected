@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import pyrebase
-from django.contrib import  auth
+from django.contrib import auth
 
 config = {
 
@@ -27,22 +27,19 @@ user_privacy = ""   # object to store user privacy information
 
 # READ methods
 
-# ToDo: read badges for profile
-
 
 def getPrivacySettings(request):
     # Name of html file to be changed
         return render(request, "PrivacySettings.html", {'bioPrivacy': user_privacy.bio,
-                                                'connectionPrivacy': user_privacy.connections,
-                                                'countryPrivacy': user_privacy.country,
-                                                'namePrivacy': user_privacy.name,
-                                                'pPicPrivacy': user_privacy.pic,
-        })
+                                                        'connectionPrivacy': user_privacy.connections,
+                                                        'countryPrivacy': user_privacy.country,
+                                                        'namePrivacy': user_privacy.name,
+                                                        'pPicPrivacy': user_privacy.pic,
+                                                        })
 
 
 
-     # individual get methods - these methods are only used when the user signs in. Otherwise, data is taken from the the_user object
-
+# individual get methods - these methods are only used when the user signs in. Otherwise, data is taken from the the_user object
 
 def getUsername(user):
     return database.child('Users').child(user['localId']).child('Name').get().val()
@@ -99,7 +96,7 @@ def getCoursesPrivacy(user):
 def getForumsPrivacy(user):
     return database.child("Users").child(user['localId']).child("UserPrivacy").child("ForumsPrivacy").get().val()
 
-# ToDo: code to get data for forums and courses in carousels - list of data
+
 # for filling the Courses blocks
 def getCoursesList(uid):
     # get list of courses IDs that a user takes
@@ -108,7 +105,6 @@ def getCoursesList(uid):
     course_id_list = []     # stores list of course ids for the user
     for i in course_ids:
         course_id_list.append(i)
-    print(course_id_list)   # debug
     return course_id_list
 
 
@@ -129,7 +125,6 @@ def getCoursesInfoList(courses_id_list):
 
     # return a combination of all lists
     combined_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics)
-    print(combined_list)
     return combined_list
 
 
@@ -169,16 +164,70 @@ def getCourseRecommended(course_id):
 
 def getCourseURL(course_id):
     return database.child("Courses").child(course_id).child("CourseURL").get().val()
+# ToDo: does not appear when navigating back to the user profile page
+
+# for filling the Courses blocks
+def getForumssList(uid):
+    # get list of forum IDs that a user takes
+    # code from : https://www.hackanons.com/2018/05/python-django-with-google-firebase_31.html
+    forum_ids = database.child('Users').child(uid).child('ForumVisits').shallow().get().val()
+    forum_id_list = []     # stores list of course ids for the user
+    for i in forum_ids:
+        forum_id_list.append(i)
+    return forum_id_list
 
 
+def getForumsInfoList(forums_id_list):
+    # get data from each course for the user and add them to separate arrays
+    forum_names = []
+    forum_pics = []
+    forum_num_participants = []
+    forum_creators = []
+    forum_topics = []
 
-# ToDo: read course info for Courses page
+    for id in forums_id_list:
+        forum_names.append(getForumName(id))
+        forum_pics.append(getForumPic(id))
+        forum_pics.append(getForumNumParticipants(id))
+        forum_pics.append(getForumCreator(id))
+        forum_pics.append(getForumTopicsString(id))
 
-# ToDo: find recommended courses for Courses page
+    # return a combination of all lists
+    combined_forums_list = zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics)
+    return combined_forums_list
+
+# ToDo: this function is not working at all
+# Individual Forum Data retrieval
+def getForumName(forum_id):
+    return database.child("Forums").child(forum_id).child("Name").get().val()
 
 
+def getForumPic(forum_id):
+    return database.child("Forums").child(forum_id).child("ForumPic").get().val()
 
 
+def getForumNumParticipants(forum_id):
+    return database.child("Forums").child(forum_id).child("NumParticipants").get().val()
+
+
+def getForumCreator(forum_id):
+    return database.child("Forums").child(forum_id).child("Creator").get().val()
+
+
+def getForumTopicsString(forum_id):
+    # gets all topics and puts them into one string
+    topics = database.child("Forums").child(forum_id).child("TopicTags").shallow().get().val()
+    topics_string = ""
+    for topic in topics:
+        topics_string = topics_string + ", " + topic
+
+    return topics_string
+
+
+# ToDo: courses page
+# ToDo: forums page
+# ToDo: suggestions carousel (user profile)
+# ToDo: trending forums carousel (launch page)
 
 
 # UPDATE Methods
@@ -192,7 +241,6 @@ def updateProfile(request):
         country = request.POST.get("country")
         email = request.POST.get("email")
 
-        # ToDo: use the naming conventions in the get() method in the UI - name="name"; name="bio"; name="country"
 
     # call each method to update elements of the profile in the db
     updateUsername(u, name)
@@ -220,7 +268,6 @@ def updatePrivacySettings(request):
         pPicPrivacy = request.POST.get("pPicPrivacy")
         coursesPrivacy = request.POST.get("coursesPrivacy")
         forumsPrivacy = request.POST.get("forumsPrivacy")
-        # ToDo: use the naming conventions in the get() method in the UI - name="name"; name="bio"; name="country"
 
     # call each method to update elements of the profile in the db
     updateBioPrivacy(u, bioPrivacy)
@@ -349,11 +396,6 @@ def updateBackgroundPic(user, bPic):
         return ""
 
 
-def updateBadge():
-    # ToDo: create method to update badges in DB - not used in UI
-    return ""
-
-
 def updateBioPrivacy(user, bioPrivacy):
     database.child("Users").child(user['localId']).child("UserPrivacy").update({"BioPrivacy": bioPrivacy})
     try:  # try except for purpose of unit tests
@@ -432,7 +474,8 @@ def home(request):
                                                 'numForums': the_user.numForums,
                                                 'ProfilePic': the_user.profilePic,
                                                 'backgroundPic': the_user.backgroundPic,
-                                                'courses_list': the_user.coursesInfoList})
+                                                'courses_list': the_user.coursesInfoList,
+                                                'forums_list': the_user.forumsInfoList})
 
 
 def networks(request):
@@ -457,7 +500,8 @@ def userprofile(request):
                                                 'numForums': the_user.numForums,
                                                 'ProfilePic': the_user.profilePic,
                                                 'backgroundPic': the_user.backgroundPic,
-                                                'courses_list': the_user.coursesInfoList})
+                                                'courses_list': the_user.coursesInfoList,
+                                                'forums_list': the_user.forumsInfoList})
 
 def goSettings(request):
     return render(request, "Setttings.html")
@@ -494,7 +538,7 @@ def goContact(request):
 # these objects only store info that the user updates manually-info that is not constantly being updates
 # class with user profile info
 class User:
-    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id, courseList):
+    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id, courseList, forumList):
         self.username = name
         self.bio = bio
         self.numConnections = numConn
@@ -506,6 +550,7 @@ class User:
         self.backgroundPic = bPic
         self.uid = id
         self.coursesInfoList = courseList
+        self.forumsInfoList = forumList
 
 
 # class with user privacy info
@@ -559,7 +604,7 @@ def postsign(request):
     if getProfilePic(request, user) == "":
         updateProfilePic(user, "https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
 
-    global the_user # create the_user object to store user profile data
+    global the_user     # create the_user object to store user profile data
     the_user = User(getUsername(user),
                     getBio(request, user),
                     getNumConnecions(request, user),
@@ -570,7 +615,8 @@ def postsign(request):
                     getProfilePic(request, user),
                     getBackgroundPic(request, user),
                     user['localId'],
-                    getCoursesInfoList(getCoursesList(user['localId'])))
+                    getCoursesInfoList(getCoursesList(user['localId'])),
+                    getForumsInfoList(getForumssList(user['localId'])))
 
     global user_privacy # create user_privacy object to store user privacy data
     user_privacy = Privacy(getBioPrivacy(user),
@@ -591,7 +637,8 @@ def postsign(request):
                                                 'numForums': the_user.numForums,
                                                 'ProfilePic': the_user.profilePic,
                                                 'backgroundPic': the_user.backgroundPic,
-                                                'courses_list': the_user.coursesInfoList})
+                                                'courses_list': the_user.coursesInfoList,
+                                                'forums_list': the_user.forumsInfoList})
 
 
 def logout(request):
