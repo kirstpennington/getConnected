@@ -117,6 +117,11 @@ class ViewsTest(unittest.TestCase):
         GC_Auth.views.updatePicPrivacy(user, newEntry)
         self.assertEqual(GC_Auth.views.getPicPrivacy(user), newEntry)
 
+    def test_get_courses_list(self):
+        uid = "xxQe6gmBPGcj35WLLFw96BG7fkl1"
+        GC_Auth.views.getCoursesInfoList(GC_Auth.views.getCoursesList(uid))
+
+
 if __name__ == '__main__':
     import xmlrunner
 

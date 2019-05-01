@@ -100,6 +100,77 @@ def getForumsPrivacy(user):
     return database.child("Users").child(user['localId']).child("UserPrivacy").child("ForumsPrivacy").get().val()
 
 # ToDo: code to get data for forums and courses in carousels - list of data
+# for filling the Courses blocks
+def getCoursesList(uid):
+    # get list of courses IDs that a user takes
+    # code from : https://www.hackanons.com/2018/05/python-django-with-google-firebase_31.html
+    course_ids = database.child('Users').child(uid).child('Courses').shallow().get().val()
+    course_id_list = []     # stores list of course ids for the user
+    for i in course_ids:
+        course_id_list.append(i)
+    print(course_id_list)   # debug
+    return course_id_list
+
+
+def getCoursesInfoList(courses_id_list):
+    # get data from each course for the user and add them to separate arrays
+    course_names = []
+    course_pictures = []
+    course_recommendations = []
+    course_urls = []
+    course_uni_pics = []
+
+    for id in courses_id_list:
+        course_names.append(getCourseName(id))
+        course_pictures.append(getCoursePicture(id))
+        course_recommendations.append(getCourseRecommended(id))
+        course_urls.append(getCourseURL(id))
+        course_uni_pics.append(getCourseUniPic(id))
+
+    # return a combination of all lists
+    combined_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics)
+    print(combined_list)
+    return combined_list
+
+
+# Individual Course Data retrieval
+
+
+def getCourseName(course_id):
+    return database.child("Courses").child(course_id).child("CourseName").get().val()
+
+
+def getCoursePicture(course_id):
+    return database.child("Courses").child(course_id).child("Picture").get().val()
+
+
+def getCourseUniversity(course_id):
+    return database.child("Courses").child(course_id).child("University").get().val()
+
+
+def getCourseUniPic(course_id):
+    return database.child("Courses").child(course_id).child("UniPic").get().val()
+
+
+def getCourseRecommended(course_id):
+    # determines whether the course is recommended based on the number of hearts or recommednations
+    # can change parameters if required
+    num_rec = int(database.child("Courses").child(course_id).child("NumRecommendations").get().val())
+
+    if num_rec < 200:
+        return ""
+
+    if num_rec>= 200 and num_rec<500:
+        return "Recommended"
+
+    if num_rec >= 500:
+        return "Highly Recommended"
+
+
+def getCourseURL(course_id):
+    return database.child("Courses").child(course_id).child("CourseURL").get().val()
+
+
 
 # ToDo: read course info for Courses page
 
@@ -107,65 +178,7 @@ def getForumsPrivacy(user):
 
 
 
-# LOGIN methods
 
-def LogIn(request):
-    return render(request, "LogIn.html")
-
-
-def passwordReset(request):
-
-    # ... your python code/script
-    return render(request,"passwordReset.html")
-
-
-def postsign(request):
-
-    # user authentication with Firebase
-    global r
-    r = request
-
-    email = request.POST.get('email')
-    password = request.POST.get("pass")
-
-    try:
-        user = authe.sign_in_with_email_and_password(email, password)
-        global u
-        u = user
-    except:
-        message = "Incorrect Username or Password"
-        return render(request, "LogIn.html", {"messg": message})
-    session_id = user['idToken']
-    request.session['uid'] = str(session_id)
-
-    # if the user image or background is blank, set it to a default value
-    if getBackgroundPic(request, user) == "":
-        updateBackgroundPic("https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
-
-    if getProfilePic(request, user) == "":
-        updateProfilePic("https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
-
-    global the_user # create the_user object to store user profile data
-    the_user = User(getUsername(user), getBio(request, user), getNumConnecions(request, user), getNumForums(request, user), email, password, getCountry(user), getProfilePic(request, user),getBackgroundPic(request, user), user['localId'])
-
-    global user_privacy # create user_privacy object to store user privacy data
-    user_privacy = Privacy(getBioPrivacy(user), getConnectionPrivacy(user), getCountryPrivacy(user), getNamePrivacy(user), getPicPrivacy(user), getCoursesPrivacy(user), getForumsPrivacy(user))
-
-    # navigate to the user profile page and
-    return render(request, "UserProfile.html", {"e": the_user.email,
-                                                'n': the_user.username,
-                                                'bio': the_user.bio,
-                                                'email': the_user.email,
-                                                'country': the_user.country,
-                                                'numConnections': the_user.numConnections,
-                                                'numForums': the_user.numForums,
-                                                'ProfilePic':the_user.profilePic,
-                                                'backgroundPic': the_user.backgroundPic})
-
-
-def logout(request):
-    auth.logout(request)
-    return render(request, 'LogIn.html')
 
 
 # UPDATE Methods
@@ -240,11 +253,7 @@ def updateUsername(user, name):
         return ""
 
 def updateEmail(user, e):
-  #  global u
-   # u = auth.update_user(
-    #    the_user.uid,
-     #   email = e
-    #)
+  # insert code to update email address (optional)
     try:
         global the_user
         the_user.email = e
@@ -302,7 +311,8 @@ def updateProfilePicRequest(request):
                                                 'numConnections': the_user.numConnections,
                                                 'numForums': the_user.numForums,
                                                 'ProfilePic': the_user.profilePic,
-                                                'backgroundPic': the_user.backgroundPic})
+                                                'backgroundPic': the_user.backgroundPic,
+                                                'courses_list': the_user.coursesInfoList})
 
 # method for updating only the background pic
 def updateBackgroundPicRequest(request):
@@ -326,7 +336,8 @@ def updateBackgroundPicRequest(request):
                                                 'numConnections': the_user.numConnections,
                                                 'numForums': the_user.numForums,
                                                 'ProfilePic': the_user.profilePic,
-                                                'backgroundPic': the_user.backgroundPic})
+                                                'backgroundPic': the_user.backgroundPic,
+                                                'courses_list': the_user.coursesInfoList})
 
 
 def updateBackgroundPic(user, bPic):
@@ -420,7 +431,8 @@ def home(request):
                                                 'numConnections': the_user.numConnections,
                                                 'numForums': the_user.numForums,
                                                 'ProfilePic': the_user.profilePic,
-                                                'backgroundPic': the_user.backgroundPic})
+                                                'backgroundPic': the_user.backgroundPic,
+                                                'courses_list': the_user.coursesInfoList})
 
 
 def networks(request):
@@ -444,7 +456,8 @@ def userprofile(request):
                                                 'numConnections': the_user.numConnections,
                                                 'numForums': the_user.numForums,
                                                 'ProfilePic': the_user.profilePic,
-                                                'backgroundPic': the_user.backgroundPic})
+                                                'backgroundPic': the_user.backgroundPic,
+                                                'courses_list': the_user.coursesInfoList})
 
 def goSettings(request):
     return render(request, "Setttings.html")
@@ -481,7 +494,7 @@ def goContact(request):
 # these objects only store info that the user updates manually-info that is not constantly being updates
 # class with user profile info
 class User:
-    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id):
+    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id, courseList):
         self.username = name
         self.bio = bio
         self.numConnections = numConn
@@ -492,6 +505,7 @@ class User:
         self.profilePic = profPic
         self.backgroundPic = bPic
         self.uid = id
+        self.coursesInfoList = courseList
 
 
 # class with user privacy info
@@ -504,4 +518,83 @@ class Privacy:
         self.pic = pic
         self.course = c
         self.forums = f
+
+
+
+# LOGIN methods
+
+def LogIn(request):
+    return render(request, "LogIn.html")
+
+
+def passwordReset(request):
+
+    # ... your python code/script
+    return render(request,"passwordReset.html")
+
+
+def postsign(request):
+
+    # user authentication with Firebase
+    global r
+    r = request
+
+    email = request.POST.get('email')
+    password = request.POST.get("pass")
+
+    try:
+        user = authe.sign_in_with_email_and_password(email, password)
+        global u
+        u = user
+    except:
+        message = "Incorrect Username or Password"
+        return render(request, "LogIn.html", {"messg": message})
+    session_id = user['idToken']
+    request.session['uid'] = str(session_id)
+
+    # if the user image or background is blank, set it to a default value
+    if getBackgroundPic(request, user) == "":
+        updateBackgroundPic(user, "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
+
+    if getProfilePic(request, user) == "":
+        updateProfilePic(user, "https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
+
+    global the_user # create the_user object to store user profile data
+    the_user = User(getUsername(user),
+                    getBio(request, user),
+                    getNumConnecions(request, user),
+                    getNumForums(request, user),
+                    email,
+                    password,
+                    getCountry(user),
+                    getProfilePic(request, user),
+                    getBackgroundPic(request, user),
+                    user['localId'],
+                    getCoursesInfoList(getCoursesList(user['localId'])))
+
+    global user_privacy # create user_privacy object to store user privacy data
+    user_privacy = Privacy(getBioPrivacy(user),
+                           getConnectionPrivacy(user),
+                           getCountryPrivacy(user),
+                           getNamePrivacy(user),
+                           getPicPrivacy(user),
+                           getCoursesPrivacy(user),
+                           getForumsPrivacy(user))
+
+    # navigate to the user profile page and
+    return render(request, "UserProfile.html", {"e": the_user.email,
+                                                'n': the_user.username,
+                                                'bio': the_user.bio,
+                                                'email': the_user.email,
+                                                'country': the_user.country,
+                                                'numConnections': the_user.numConnections,
+                                                'numForums': the_user.numForums,
+                                                'ProfilePic': the_user.profilePic,
+                                                'backgroundPic': the_user.backgroundPic,
+                                                'courses_list': the_user.coursesInfoList})
+
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'LogIn.html')
 
