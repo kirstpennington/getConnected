@@ -58,7 +58,10 @@ def getNumConnecions(request, user):
 
 
 def getNumForums(request, user):
-    return database.child('Users').child(user['localId']).child('numForums').get().val()
+    return int(database.child('Users').child(user['localId']).child('numForums').get().val())
+
+def getNumCourses(request, user):
+    return int(database.child('Users').child(user['localId']).child('numCourses').get().val())
 
 
 def getProfilePic(request, user):
@@ -160,6 +163,7 @@ def getCourseRecommended(course_id):
 
     if num_rec >= 500:
         return "Highly Recommended"
+
 
 
 def getCourseURL(course_id):
@@ -508,7 +512,20 @@ def goSettings(request):
 
 
 def goBadges(request):
-    return render(request, "badgesStart.html")
+    # user authentication with Firebase
+    name = getUsername(u)
+    conn = getNumConnecions(request, u)
+    course = getNumCourses(request, u)
+    forum = getNumForums(request, u)
+    biopriv = getBioPrivacy(u)
+    return render(request, "badgesStart.html", {
+                    'n': name,
+                    'numConnections': conn,
+                    'numForums': forum,
+                   'numCourses': course,
+                    'biopriv': biopriv,
+
+    })
 
 
 def goHelpUserProfile(request):

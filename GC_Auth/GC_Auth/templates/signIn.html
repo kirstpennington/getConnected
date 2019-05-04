@@ -1,0 +1,70 @@
+{% if messg %}
+<script>
+    alert('{{ messg }}');
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign</title>
+
+</head>
+<body>
+<form action="/postsign/" method="post">
+    {% csrf_token %}
+    Email :
+    <input type="email" name="email"><br><br>
+    Password:
+    <input type="password" name="pass"><br><br>
+    <input type="submit" value="SignIn">
+    <button type="button" onclick="location.href='{% url 'signup' %}'">SignUp</button>
+</form>
+</body>
+</html>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+    authDomain: "getconnected-9dac0.firebaseapp.com",
+    databaseURL: "https://getconnected-9dac0.firebaseio.com",
+    projectId: "getconnected-9dac0",
+    storageBucket: "getconnected-9dac0.appspot.com",
+    messagingSenderId: "144309081376"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+
+E-mail: <input type="email" id = "email" name="emailaddress">
+<button id = "quick-start-password-reset" onclick = "resetPass()" >Send password reset email</button>
+
+
+<script>
+
+   function resetPass() {
+
+       var email = document.getElementById('email').value;
+       firebase.auth().sendPasswordResetEmail(email).then(function () {
+           alert('Password Reset Email Sent!');
+       }).catch(function (error) {
+           var errorCode = error.code;
+           var errorMessage = error.message;
+           if (errorCode =='auth/invalid-email'){
+               alert(errorMessage);
+           } else if (errorCode == 'auth/uder-not-found'){
+               alert(errorMessage);
+           }
+           console.log(error);
+
+       });
+
+   }
+
+
+
+</script>

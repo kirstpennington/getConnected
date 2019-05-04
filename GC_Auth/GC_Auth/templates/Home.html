@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+
+    <!--links to Bootstrap & to css-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Sign in Form with Icons</title>
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- footer style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+    <!--navigation bar under header-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" >
+    <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="Home.html"><span class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
+        <li><a href="MyNetwork.html"><span class="fa fa-globe fa-lg"></span>MyNetwork</a></li>
+        <li><a href="Forums.html"><span class="fa fa-comments-o fa-lg"></span>Forums</a></li>
+
+
+
+        </ul>
+      <ul class="nav navbar-nav" style = "text-align: center">
+	<form class="navbar-form navbar-right search-form" role="search">
+				<input type="text" class="form-control" placeholder="Search" />
+			</form>
+        <!-- Search form -->
+      </ul>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right" >
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+              <span class="glyphicon glyphicon-user">Winfreda</span><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+ <ul class="dropdown-menu">
+            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+          </ul>
+
+
+            </li>
+
+      </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+              <span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+
+
+
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="CloseIntroForm(); OpenLogIn();">
+              <span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div>
+
+<button type="button" onclick="location.href='{% url 'log' %}'">Logout</button>
+    </div>
+
+
+
+
+<script> var emailadd = {{e}} ; </script>
+Welcome {{e}}
+<br><br>
+<button type="button" >Create Report</button>
+<button type="button">Check Report</button>
+</body>
+</html>
+
+E-mail: <input type="email" id = "email" name="emailaddress">
+<button id = "quick-start-password-reset" onclick = "resetPass()" >Send password reset email</button>
+
+
+<script>
+
+   function resetPass() {
+
+       var email = document.getElementById('email').value;
+       firebase.auth().sendPasswordResetEmail(emailadd).then(function () {
+           alert('Password Reset Email Sent!');
+       }).catch(function (error) {
+           var errorCode = error.code;
+           var errorMessage = error.message;
+           if (errorCode =='auth/invalid-email'){
+               alert(errorMessage);
+           } else if (errorCode == 'auth/uder-not-found'){
+               alert(errorMessage);
+           }
+           console.log(error);
+
+       });
+
+   }
