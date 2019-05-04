@@ -13,6 +13,36 @@ config = {
     'messagingSenderId': "144309081376"
 }
 
+# these objects only store info that the user updates manually-info that is not constantly being updates
+# class with user profile info
+class User:
+    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id, courseList, forumList, topics):
+        self.username = name
+        self.bio = bio
+        self.numConnections = numConn
+        self.numForums = numForum
+        self.email = em
+        self.password = pa
+        self.country = country
+        self.profilePic = profPic
+        self.backgroundPic = bPic
+        self.uid = id
+        self.coursesInfoList = courseList
+        self.forumsInfoList = forumList
+        self.topicsList = topics
+
+
+# class with user privacy info
+class Privacy:
+    def __init__(self, bio, connections, country, name, pic, c, f):
+        self.bio = bio
+        self.connections = connections
+        self.country = country
+        self.name = name
+        self.pic = pic
+        self.course = c
+        self.forums = f
+
 
 # global variables
 firebase = pyrebase.initialize_app(config)
@@ -24,6 +54,96 @@ u = ""  # store user variable for Firebase authentication
 
 the_user = ""       # object to store user information
 user_privacy = ""   # object to store user privacy information
+
+
+
+
+# LOGIN methods
+
+def LogIn(request):
+    return render(request, "LogIn.html")
+
+
+def passwordReset(request):
+
+    # ... your python code/script
+    return render(request,"passwordReset.html")
+
+
+def postsign(request):
+
+    # user authentication with Firebase
+    global r
+    r = request
+
+    email = request.POST.get('email')
+    password = request.POST.get("pass")
+
+    try:
+        user = authe.sign_in_with_email_and_password(email, password)
+        global u
+        u = user
+    except:
+        message = "Incorrect Username or Password"
+        return render(request, "LogIn.html", {"messg": message})
+    session_id = user['idToken']
+    request.session['uid'] = str(session_id)
+
+    # if the user image or background is blank, set it to a default value
+    if getBackgroundPic(request, user['localId']) == "":
+        updateBackgroundPic(user, "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
+
+    if getProfilePic(request, user['localId']) == "":
+        updateProfilePic(user, "https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
+
+    global the_user     # create the_user object to store user profile data
+    the_user = User(getUsername(user['localId']),
+                    getBio(request, user['localId']),
+                    getNumConnecions(request, user['localId']),
+                    getNumForums(request, user['localId']),
+                    email,
+                    password,
+                    getCountry(user['localId']),
+                    getProfilePic(request, user['localId']),
+                    getBackgroundPic(request, user['localId']),
+                    user['localId'],
+                    getCoursesInfoList(getCoursesList(user['localId'])),
+                    getForumsInfoList(getForumssList(user['localId'])),
+                    getUserTopicsList(user['localId'])
+                    )
+
+    global user_privacy # create user_privacy object to store user privacy data
+    user_privacy = Privacy(getBioPrivacy(user['localId']),
+                           getConnectionPrivacy(user['localId']),
+                           getCountryPrivacy(user['localId']),
+                           getNamePrivacy(user['localId']),
+                           getPicPrivacy(user['localId']),
+                           getCoursesPrivacy(user['localId']),
+                           getForumsPrivacy(user['localId']))
+
+    # navigate to the user profile page and
+    return render(request, "UserProfile.html", {"e": the_user.email,
+                                                'n': the_user.username,
+                                                'bio': the_user.bio,
+                                                'email': the_user.email,
+                                                'country': the_user.country,
+                                                'numConnections': the_user.numConnections,
+                                                'numForums': the_user.numForums,
+                                                'ProfilePic': the_user.profilePic,
+                                                'backgroundPic': the_user.backgroundPic,
+                                                'courses_list': the_user.coursesInfoList,
+                                                'forums_list': the_user.forumsInfoList})
+
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'LogIn.html')
+
+
+
+
+
+
 
 # READ methods
 
@@ -41,60 +161,64 @@ def getPrivacySettings(request):
 
 # individual get methods - these methods are only used when the user signs in. Otherwise, data is taken from the the_user object
 
-def getUsername(user):
-    return database.child('Users').child(user['localId']).child('Name').get().val()
+def getUsername(uid):
+    return database.child('Users').child(uid).child('Name').get().val()
 
 
-def getBio(request, user):
-    return database.child('Users').child(user['localId']).child('Bio').get().val()
+def getBio(request, uid):
+    return database.child('Users').child(uid).child('Bio').get().val()
 
 
-def getCountry(user):
-    return database.child('Users').child(user['localId']).child('Country').get().val()
+def getCountry(uid):
+    return database.child('Users').child(uid).child('Country').get().val()
 
 
-def getNumConnecions(request, user):
-    return database.child('Users').child(user['localId']).child('numConnections').get().val()
+def getNumConnecions(request, uid):
+    return database.child('Users').child(uid).child('numConnections').get().val()
 
 
-def getNumForums(request, user):
-    return database.child('Users').child(user['localId']).child('numForums').get().val()
+def getNumForums(request, uid):
+    return database.child('Users').child(uid).child('numForums').get().val()
 
 
-def getProfilePic(request, user):
-    return database.child('Users').child(user['localId']).child('ProfilePic').get().val()
+def getNumCourses(request, uid):
+    return database.child('Users').child(uid).child('numCourses').get().val()
 
 
-def getBackgroundPic(request, user):
-    return database.child('Users').child(user['localId']).child('BackgroundPic').get().val()
+def getProfilePic(request, uid):
+    return database.child('Users').child(uid).child('ProfilePic').get().val()
 
 
-def getBioPrivacy(user):
-    return database.child("Users").child(user['localId']).child("UserPrivacy").child("BioPrivacy").get().val()
+def getBackgroundPic(request, uid):
+    return database.child('Users').child(uid).child('BackgroundPic').get().val()
 
 
-def getConnectionPrivacy(user):
-    return database.child("Users").child(user['localId']).child("UserPrivacy").child("ConnectionPrivacy").get().val()
+def getBioPrivacy(uid):
+    return database.child("Users").child(uid).child("UserPrivacy").child("BioPrivacy").get().val()
 
 
-def getCountryPrivacy(user):
-    return database.child("Users").child(user['localId']).child("UserPrivacy").child("CountryPrivacy").get().val()
+def getConnectionPrivacy(uid):
+    return database.child("Users").child(uid).child("UserPrivacy").child("ConnectionPrivacy").get().val()
 
 
-def getNamePrivacy(user):
-    return database.child("Users").child(user['localId']).child("UserPrivacy").child("NamePrivacy").get().val()
+def getCountryPrivacy(uid):
+    return database.child("Users").child(uid).child("UserPrivacy").child("CountryPrivacy").get().val()
 
 
-def getPicPrivacy(user):
-    return database.child("Users").child(user['localId']).child("UserPrivacy").child("ProfilePicPrivacy").get().val()
+def getNamePrivacy(uid):
+    return database.child("Users").child(uid).child("UserPrivacy").child("NamePrivacy").get().val()
 
 
-def getCoursesPrivacy(user):
-    return database.child("Users").child(user['localId']).child("UserPrivacy").child("CoursesPrivacy").get().val()
+def getPicPrivacy(uid):
+    return database.child("Users").child(uid).child("UserPrivacy").child("ProfilePicPrivacy").get().val()
 
 
-def getForumsPrivacy(user):
-    return database.child("Users").child(user['localId']).child("UserPrivacy").child("ForumsPrivacy").get().val()
+def getCoursesPrivacy(uid):
+    return database.child("Users").child(uid).child("UserPrivacy").child("CoursesPrivacy").get().val()
+
+
+def getForumsPrivacy(uid):
+    return database.child("Users").child(uid).child("UserPrivacy").child("ForumsPrivacy").get().val()
 
 
 # for filling the Courses blocks
@@ -224,9 +348,52 @@ def getForumTopicsString(forum_id):
     return topics_string
 
 
+
+# Suggestions Carousel methods
+# ToDo: suggestions carousel (user profile)
+
+def getConnectionsSuggestions(uid, num_returns):
+    # returns a list of users with the same interests as this user
+    done = False
+
+    results_count = 0   # how many results were found thus far
+    results = []
+    all_users_list = database.child("Users").shallow().get().val()  # list of this user's interests
+    for compare_user_id in all_users_list:
+        if results_count == num_returns:    # if we have the requested number of ids, stop searching
+            break
+        else:
+            # get the topics of the user we are currently comparing this user wih
+            compare_user_interests = database.child("Users").child(compare_user_id).child("Topics").shallow().get().val()
+            if compareLists(compare_user_interests, the_user.topicsList):   # if we find a match, add it to the list of results
+                results.append(compare_user_id)
+                results_count += 1
+
+    # get list of this user connections
+    user_connections_list = database.child("Users").child('Connections').shallow().get().val()
+
+    # remove users that are already connections and return this updated list
+    return removeCommons(results, user_connections_list)
+
+    # combine lists
+
+def removeCommons(remove_from_this_list, search_this_list):
+    Done = False
+    # removes the common values between the 2 lists from the first list
+    # ToDo: Complete this method
+
+def compareLists(list1, list2):
+    Done = False
+    # returns true if there are matching values in the 2 lists
+    # ToDo: complete this method
+
+def getUserTopicsList(uid):
+    # get this user's interests/topics in a list
+    return database.child("Users").child(uid).child("Topics").shallow().get().val()
+
 # ToDo: courses page
 # ToDo: forums page
-# ToDo: suggestions carousel (user profile)
+
 # ToDo: trending forums carousel (launch page)
 
 
@@ -503,13 +670,24 @@ def userprofile(request):
                                                 'courses_list': the_user.coursesInfoList,
                                                 'forums_list': the_user.forumsInfoList})
 
+
 def goSettings(request):
     return render(request, "Setttings.html")
 
 
 def goBadges(request):
+    # user authentication with Firebase
+    name = getUsername(u['localId'])
+    conn = getNumConnecions(request, u['localId'])
+    course = getNumCourses(request, u['localId'])
+    forum = getNumForums(request, u['localId'])
+    return render(request, "badgesStart.html", {
+        'n': name,
+        'numConnections': conn,
+        'numCourses': course,
+        'numForums': forum,
+    })
     return render(request, "badgesStart.html")
-
 
 def goHelpUserProfile(request):
     return render(request, "helpUserProfile.html")
@@ -535,113 +713,6 @@ def goContact(request):
     return render(request, 'contactus.html')
 
 
-# these objects only store info that the user updates manually-info that is not constantly being updates
-# class with user profile info
-class User:
-    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id, courseList, forumList):
-        self.username = name
-        self.bio = bio
-        self.numConnections = numConn
-        self.numForums = numForum
-        self.email = em
-        self.password = pa
-        self.country = country
-        self.profilePic = profPic
-        self.backgroundPic = bPic
-        self.uid = id
-        self.coursesInfoList = courseList
-        self.forumsInfoList = forumList
 
 
-# class with user privacy info
-class Privacy:
-    def __init__(self, bio, connections, country, name, pic, c, f):
-        self.bio = bio
-        self.connections = connections
-        self.country = country
-        self.name = name
-        self.pic = pic
-        self.course = c
-        self.forums = f
-
-
-
-# LOGIN methods
-
-def LogIn(request):
-    return render(request, "LogIn.html")
-
-
-def passwordReset(request):
-
-    # ... your python code/script
-    return render(request,"passwordReset.html")
-
-
-def postsign(request):
-
-    # user authentication with Firebase
-    global r
-    r = request
-
-    email = request.POST.get('email')
-    password = request.POST.get("pass")
-
-    try:
-        user = authe.sign_in_with_email_and_password(email, password)
-        global u
-        u = user
-    except:
-        message = "Incorrect Username or Password"
-        return render(request, "LogIn.html", {"messg": message})
-    session_id = user['idToken']
-    request.session['uid'] = str(session_id)
-
-    # if the user image or background is blank, set it to a default value
-    if getBackgroundPic(request, user) == "":
-        updateBackgroundPic(user, "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
-
-    if getProfilePic(request, user) == "":
-        updateProfilePic(user, "https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
-
-    global the_user     # create the_user object to store user profile data
-    the_user = User(getUsername(user),
-                    getBio(request, user),
-                    getNumConnecions(request, user),
-                    getNumForums(request, user),
-                    email,
-                    password,
-                    getCountry(user),
-                    getProfilePic(request, user),
-                    getBackgroundPic(request, user),
-                    user['localId'],
-                    getCoursesInfoList(getCoursesList(user['localId'])),
-                    getForumsInfoList(getForumssList(user['localId'])))
-
-    global user_privacy # create user_privacy object to store user privacy data
-    user_privacy = Privacy(getBioPrivacy(user),
-                           getConnectionPrivacy(user),
-                           getCountryPrivacy(user),
-                           getNamePrivacy(user),
-                           getPicPrivacy(user),
-                           getCoursesPrivacy(user),
-                           getForumsPrivacy(user))
-
-    # navigate to the user profile page and
-    return render(request, "UserProfile.html", {"e": the_user.email,
-                                                'n': the_user.username,
-                                                'bio': the_user.bio,
-                                                'email': the_user.email,
-                                                'country': the_user.country,
-                                                'numConnections': the_user.numConnections,
-                                                'numForums': the_user.numForums,
-                                                'ProfilePic': the_user.profilePic,
-                                                'backgroundPic': the_user.backgroundPic,
-                                                'courses_list': the_user.coursesInfoList,
-                                                'forums_list': the_user.forumsInfoList})
-
-
-def logout(request):
-    auth.logout(request)
-    return render(request, 'LogIn.html')
 
