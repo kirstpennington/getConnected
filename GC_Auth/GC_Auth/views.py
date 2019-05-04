@@ -508,7 +508,17 @@ def goSettings(request):
 
 
 def goBadges(request):
-    return render(request, "badgesStart.html")
+    # user authentication with Firebase
+    name = getUsername(u)
+    conn = getNumConnecions(request, u)
+    # course = getNumCourses(request, u)
+    # forum = getNumForums(request, u)
+    return render(request, "badgesStart.html", {
+        'n': name,
+        'numConnections': conn,
+        # 'numCourses': course,
+        # 'numForums': forum,
+    })
 
 
 def goHelpUserProfile(request):

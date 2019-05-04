@@ -6,6 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap Sign in Form with Icons</title>
 
+
+
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+                authDomain: "getconnected-9dac0.firebaseapp.com",
+                databaseURL: "https://getconnected-9dac0.firebaseio.com",
+                projectId: "getconnected-9dac0",
+                storageBucket: "getconnected-9dac0.appspot.com",
+                messagingSenderId: "144309081376"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -373,87 +390,193 @@
 <br>
 <div class="container-fluid">
 <!--row1-->
-    <div class="row">
+    <div class="row"><!--connection badges-->
       <!--coloumn-->
       <div class="col-sm-3" style="background-color:white;">
+        {% load staticfiles %}
+          <!--friend finder 1 connection-->
         <div class ="badgehover"> <!--badge hover for the hovering over the badge-->
-            {% load staticfiles %}
-         <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-         <div class="middle">
-           <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-             <!--text for the hover-->
-         </div>
+
+            {% if numConnections >= 1 %}
+
+                <img src="{% static "GC_Auth/Badges/FriendFinder.png" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+
+
        </div>
       </div>
+
+
+
       <!--coloumn-->
       <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-             <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+{% load staticfiles %}
+          <!--coloumn networking ninja-->
+      <div class ="badgehover">
+          {% if numConnections >= 5 %}
 
+                <img src="{% static "GC_Auth/Badges/networkingNinja.jpg" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Networking Ninja</strong> <br> 5 Connections</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+      </div>
+      </div>
+
+
+      <!--coloumn-->
+      <div class="col-sm-3" style="background-color:white;">
+
+<div class ="badgehover">
+           <!--coloumn crazy connector-->
+          {% if numConnections >= 10%}
+
+                <img src="{% static "GC_Auth/Badges/CrazyConnector.png" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Crazy Connector</strong> <br> 10 Connections</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+      </div>
       </div>
       <!--coloumn-->
       <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+        <div class ="badgehover">
+           <!--coloumn popular profiler-->
+          {% if numConnections >= 15 %}
 
-      </div>
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-             <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+                <img src="{% static "GC_Auth/Badges/PopularProfiler.jpg" %}" alt= "lock" class="image" >
 
+                <div class="middle">
+                   <div class="text"><strong>Popular Profiler</strong> <br> 15 Connections</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+        </div>
       </div>
 
     </div>
   <br>
   <!--row2-->
-  <div class="row">
+  <div class="row"><!--courses badges-->
+
     <!--coloumn-->
-   <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+   <div class="col-sm-3" style="background-color:white;"><!-- 3 courses taken-->
+
+
+        <div class ="badgehover">
+           <!--coloumn popular profiler-->
+          {% if numConnections >= 3 %}<!--bright spark 3 courses-->
+
+                <img src="{% static "GC_Auth/Badges/BrigthSpark.png" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Bright Spark</strong> <br> 3 Courses</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+        </div>
+
+
+
+
 
       </div>
     <!--coloumn-->
     <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+          <!--fab academic 5 courses-->
+
+        <div class ="badgehover">
+           <!--coloumn popular profiler-->
+          {% if numConnections >= 5 %}<!--bright spark 3 courses-->
+
+                <img src="{% static "GC_Auth/Badges/FabAcademic.png" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Fab Academic</strong> <br> 5 Courses</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+        </div>
+
+
 
       </div>
     <!--coloumn-->
     <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+         <!--got smarter 10 courses-->
+
+        <div class ="badgehover">
+           <!--coloumn popular profiler-->
+          {% if numConnections >= 10 %}<!--bright spark 3 courses-->
+
+                <img src="{% static "GC_Auth/Badges/GotSmarter.png" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Got-Smarter</strong> <br> 10 Courses</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+        </div>
+
 
       </div>
     <!--coloumn-->
@@ -469,40 +592,86 @@
       </div>
   </div>
 <br>
+
+
 <!--row3-->
-  <div class="row">
+  <div class="row"><!--miscellanous-->
     <!--coloumn-->
     <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+        <!--forum boffin , 1 forum-->
+
+        <div class ="badgehover">
+           <!--coloumn popular profiler-->
+          {% if numConnections >= 1 %}<!--bright spark 3 courses-->
+
+                <img src="{% static "GC_Auth/Badges/ForumBoffin.png" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Forum Boffin</strong> <br>Active in 1 Forum </div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+        </div>
+
+
+
+
+      </div>
+    <!--coloumn-->
+    <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
+
+        <div class ="badgehover">
+           <!--coloumn super security-->
+
+          {% if numConnections >= 3 %}
+
+                <img src="{% static "GC_Auth/Badges/superSecurity.png" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+        </div>
+
 
       </div>
     <!--coloumn-->
     <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
 
-      </div>
-    <!--coloumn-->
-    <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
+ <div class ="badgehover">
+             <!--coloumn popular profiler-->
+          {% if numConnections >= 1 %}<!--decorator update header-->
 
+                <img src="{% static "GC_Auth/Badges/decorator.jpg" %}" alt= "lock" class="image" >
+
+                <div class="middle">
+                   <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
+                     <!--text for the hover-->
+                 </div>
+                {% else %}<!--no badge-->
+                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                    <div class="middle">
+                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                         <!--text for the hover-->
+                     </div>
+             {% endif %}
+
+    </div>
       </div>
     <!--coloumn-->
     <div class="col-sm-3" style="background-color:white;">
