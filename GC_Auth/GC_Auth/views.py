@@ -16,11 +16,12 @@ config = {
 # these objects only store info that the user updates manually-info that is not constantly being updates
 # class with user profile info
 class User:
-    def __init__(self, name, bio, numConn, numForum, em, pa, country, profPic, bPic, id, courseList, forumList, topics):
+    def __init__(self, name, bio, numConn, numForum, numCourse, em, pa, country, profPic, bPic, id, courseList, forumList, topics):
         self.username = name
         self.bio = bio
         self.numConnections = numConn
         self.numForums = numForum
+        self.numCourses = numCourse
         self.email = em
         self.password = pa
         self.country = country
@@ -91,16 +92,17 @@ def postsign(request):
 
     # if the user image or background is blank, set it to a default value
     if getBackgroundPic(request, user['localId']) == "":
-        updateBackgroundPic(user, "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
+        updateBackgroundPic(user,"https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
 
     if getProfilePic(request, user['localId']) == "":
-        updateProfilePic(user, "https://i.kinja-img.com/gawker-media/image/upload/s--hgzsnuUb--/c_scale,f_auto,fl_progressive,q_80,w_800/kwzzpvj7b7f8kc8lfgz3.jpg")
+        updateProfilePic(user,  "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg" )
 
     global the_user     # create the_user object to store user profile data
     the_user = User(getUsername(user['localId']),
                     getBio(request, user['localId']),
                     getNumConnecions(request, user['localId']),
                     getNumForums(request, user['localId']),
+                    getNumCourses(request, user['localId']),
                     email,
                     password,
                     getCountry(user['localId']),
@@ -132,7 +134,10 @@ def postsign(request):
                                                 'ProfilePic': the_user.profilePic,
                                                 'backgroundPic': the_user.backgroundPic,
                                                 'courses_list': the_user.coursesInfoList,
-                                                'forums_list': the_user.forumsInfoList})
+                                                'forums_list': the_user.forumsInfoList,
+                                                'connections_suggestions_list': getConnectionsSuggestions(user['localId'], 1),
+                                                'forums_suggestions_list': getForumSuggestions(user['localId'], 1)
+                                                })
 
 
 def logout(request):
@@ -177,11 +182,11 @@ def getNumConnecions(request, uid):
     return database.child('Users').child(uid).child('numConnections').get().val()
 
 
-def getNumForums(request, user):
-    return int(database.child('Users').child(user['localId']).child('numForums').get().val())
+def getNumForums(request, uid):
+    return int(database.child('Users').child(uid).child('numForums').get().val())
 
-def getNumCourses(request, user):
-    return int(database.child('Users').child(user['localId']).child('numCourses').get().val())
+def getNumCourses(request, uid):
+    return int(database.child('Users').child(uid).child('numCourses').get().val())
 
 
 def getProfilePic(request, user):
@@ -356,13 +361,59 @@ def getForumTopicsString(forum_id):
 # Suggestions Carousel methods
 # ToDo: suggestions carousel (user profile)
 
-def getConnectionsSuggestions(uid, num_returns):
-    # returns a list of users with the same interests as this user
+def getForumSuggestions(uid, num_returns):
+    # returns a combined list of forum information with the same topics as this user's interests
+    results_count = 0  # how many results were found thus far
+    results = []
+    all_forums_list = database.child("Forums").shallow().get().val()  # list of this user's interests
+
+    for compare_forum_id in all_forums_list:
+        if results_count == num_returns:  # if we have the requested number of ids, stop searching
+            break
+        else:
+            # get the topics of the user we are currently comparing this user wih
+            compare_forum_topics = database.child("Forums").child(compare_forum_id).child("TopicTags").shallow().get().val()
+            if compareLists(compare_forum_topics, the_user.topicsList):  # if we find a match, add it to the list of results
+                results.append(compare_forum_id)
+                results_count += 1
+
+    # get list of this user's joined forums - includes forums they created
+    all_user_forums = database.child("Users").child(uid).child("ForumsJoined").shallow().get().val()
+
+    # remove users that are already connections and return this updated list
+    try:
+        final_results = removeCommons(results, all_user_forums)
+    except:
+        # if all_user_forums is empty
+        final_results = results
+
+    forum_names = []
+    forum_pics = []
+    forum_num_participants = []
+    forum_creators = []
+    forum_topics = []
+
+    for forum_id in final_results:
+        forum_names.append(getForumName(forum_id))
+        forum_pics.append(getForumPic(forum_id))
+        forum_num_participants.append(getForumNumParticipants(forum_id))
+        forum_creators.append(getForumCreator(forum_id))
+        forum_topics.append(getForumTopicsString(forum_id))
+    print(forum_names)
+    return zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics)
+
+
+def getCourseSuggestions(uid, num_returns):
     done = False
 
+
+def getConnectionsSuggestions(uid, num_returns):
+    # returns a combined list of user information with the same interests as this user
     results_count = 0   # how many results were found thus far
     results = []
-    all_users_list = database.child("Users").shallow().get().val()  # list of this user's interests
+
+    all_users_list_1 = database.child("Users").shallow().get().val()  # list of this user's interests
+    all_users_list = removeValueFromList(uid, all_users_list_1)
     for compare_user_id in all_users_list:
         if results_count == num_returns:    # if we have the requested number of ids, stop searching
             break
@@ -377,19 +428,71 @@ def getConnectionsSuggestions(uid, num_returns):
     user_connections_list = database.child("Users").child('Connections').shallow().get().val()
 
     # remove users that are already connections and return this updated list
-    return removeCommons(results, user_connections_list)
 
-    # combine lists
+    try:
+        final_results = removeCommons(results, user_connections_list)
+    except:
+        final_results = results
+
+    names = []
+    countries = []
+    pictures = []
+
+    for id in final_results:
+        if getNamePrivacy(id) == "False":   # checks the user's privacy settings before displaying it in the suggestion
+            names.append(getUsername(id))
+        else:
+            names.append("User's Name Private")
+
+        if getCountryPrivacy(id) == "False":   # checks the user's privacy settings before displaying it in the suggestion
+            countries.append(getCountry(id))
+        else:
+            countries.append("User's Country Private")
+
+        if getPicPrivacy(id) == "False":   # checks the user's privacy settings before displaying it in the suggestion
+            pictures.append(getProfilePic("", id))
+        else:
+            pictures.append( "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg" )
+    return zip(names, countries, pictures)
+
 
 def removeCommons(remove_from_this_list, search_this_list):
-    Done = False
     # removes the common values between the 2 lists from the first list
-    # ToDo: Complete this method
+    temp = []    # dummy variable where items from the list will be removed
+    for r in remove_from_this_list:
+        for s in search_this_list:
+            if r != s:
+                temp.append(r)
+    return temp
+
+def removeValuesFromList(values_list, main_list):
+    temp = []
+    for m in main_list:
+        add = True
+        for v in values_list:
+            if m == v:
+                add = False
+                break
+        if add:
+            temp.append(m)
+    return temp
+
+def removeValueFromList(value, list):
+    temp = []
+    for l in list:
+        if l != value:
+            temp.append(l)
+    return temp
+
 
 def compareLists(list1, list2):
-    Done = False
     # returns true if there are matching values in the 2 lists
-    # ToDo: complete this method
+    for a in list1:
+        for b in list2:
+            if a == b:
+                return True
+    return False
+
 
 def getUserTopicsList(uid):
     # get this user's interests/topics in a list
@@ -646,7 +749,10 @@ def home(request):
                                                 'ProfilePic': the_user.profilePic,
                                                 'backgroundPic': the_user.backgroundPic,
                                                 'courses_list': the_user.coursesInfoList,
-                                                'forums_list': the_user.forumsInfoList})
+                                                'forums_list': the_user.forumsInfoList,
+                                                'connections_suggestions_list': getConnectionsSuggestions(the_user.uid, 1),
+                                                'forums_suggestions_list': getForumSuggestions(the_user.uid, 1)
+                                                 })
 
 
 def networks(request):
@@ -672,7 +778,10 @@ def userprofile(request):
                                                 'ProfilePic': the_user.profilePic,
                                                 'backgroundPic': the_user.backgroundPic,
                                                 'courses_list': the_user.coursesInfoList,
-                                                'forums_list': the_user.forumsInfoList})
+                                                'forums_list': the_user.forumsInfoList,
+                                                'connections_suggestions_list': getConnectionsSuggestions(the_user.uid,1),
+                                                'forums_suggestions_list': getForumSuggestions(the_user.uid, 1)
+                                                })
 
 
 def goSettings(request):
@@ -681,17 +790,12 @@ def goSettings(request):
 
 def goBadges(request):
     # user authentication with Firebase
-    name = getUsername(u)
-    conn = getNumConnecions(request, u)
-    course = getNumCourses(request, u)
-    forum = getNumForums(request, u)
-    biopriv = getBioPrivacy(u)
     return render(request, "badgesStart.html", {
-                    'n': name,
-                    'numConnections': conn,
-                    'numForums': forum,
-                   'numCourses': course,
-                    'biopriv': biopriv,
+        'n': the_user.username,
+        'numConnections': the_user.numConnections,
+        'numForums': the_user.numForums,
+        'numCourses': the_user.numCourses,
+        'biopriv': user_privacy.bio,
 
     })
 

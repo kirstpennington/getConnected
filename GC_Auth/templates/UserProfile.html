@@ -966,7 +966,7 @@
                                                 <div class="row">
 
                                                     <!--First Slide Through for suggestions: Item 1  -->
-
+                                                    {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics in forums_list %}
                                                     <div class="col-md-4">
                                                         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
                                                         <div class="container" >
@@ -978,17 +978,17 @@
                                                                             <div class="title">
                                                                             </div>
                                                                             <div  style = "position: relative; left: 100px; top: 0px">
-                                                                                <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ numConnections }}</span></h8>
+                                                                                <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
                                                                             </div><br>
-                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">Massive Investments in Digital Transformation</div>
-                                                                            <br><span class="badge badge-pill badge-dark">Highly</span>
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; ">{{ forum_names }}</div>
+                                                                            <br><span class="badge badge-pill badge-dark">forum_topics</span>
                                                                             <span class="badge badge-pill badge-dark">Miami </span>
                                                                             <span class="badge badge-pill badge-dark">Princess </span>
                                                                             <span class="badge badge-pill badge-dark">Music </span>
                                                                         </div>
 
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
-                                                                        <p>James Coden · day ago</p>
+                                                                        <p>{{ forum_creators }}</p>
                                                                         <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">JOIN <i class="fa fa-angle-double-right"></i>
                                                                         </a>
                                                                     </div>
@@ -996,7 +996,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    {% endfor %}
                                                     <!--First Slide Through for suggestions: Item 2  -->
                                                     <div class="col-md-4">
                                                         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -1026,6 +1026,7 @@
                                                     </div>
 
                                                     <!--First Slide Through for suggestions: Item 3  -->
+                                                    {% for names, countries, pictures in connections_suggestions_list %}
                                                     <div class="col-md-4">
                                                         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
                                                         <div class="container">
@@ -1041,14 +1042,14 @@
 
 
                                                                             {% load staticfiles %}
-                                                                            <img  style="border-radius: 10px" src="{% static "GC_Auth/UserProfile_images/SUGprofile.png"  %}"   /></div>
+                                                                            <img  style="border-radius: 10px" src="{{ pictures }}"   /></div>
 
                                                                         <div class="info">
                                                                             <div class="title">
                                                                             </div>
-                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; top: 5px; position: relative">Bhavita Ragoo
+                                                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium; top: 5px; position: relative">{{ names }}
                                                                             </div>
-                                                                            <span class="badge badge-pill badge-dark">UCT Graduate </span>
+                                                                            <span class="badge badge-pill badge-dark"> {{ countries }}</span>
                                                                         </div>
                                                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;" />
                                                                         <a style="font-size: smaller; color: gray; font-weight: bold"  href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW PROFILE <i class="fa fa-angle-double-right"></i>
@@ -1061,7 +1062,7 @@
 
                                                 </div> <!--/row -->
                                             </div><!-- /End of Slide One -->
-
+                                            {% endfor %}
                                             <!--Second Slide Through for suggestions  -->
                                             <div class="item">
                                                 <div class="row">   <!--First Row of cards for  -->
@@ -1396,66 +1397,6 @@
                                             </div><!-- /container-->
                                         </div><!-- /col-md-4 -->
                                         {% endfor %}
-
-                                        <!-- My Forums: Item 2 -->
-                                        <div class="col-md-4">
-                                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                                                  rel="stylesheet">
-
-                                            <div class="container">
-
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-sm-6">
-
-
-                                                        <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/Forum_Time.png" %});border-radius: 10px"></div>
-
-
-                                                        <div class="heartbutton"><span style="background: transparent"
-                                                                                       type="button"
-                                                                                       class="	fa fa-sign-in fa-2x viewForum"></span>
-                                                        </div>
-
-
-                                                        <div class="card hovercard  ">
-
-
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                </div>
-                                                                <div style="position: relative; left: 100px; top: 0px">
-                                                                    <h8><span class="label label-default"><span
-                                                                            class="fa fa-users"> </span>{{ numConnections }}</span>
-                                                                    </h8>
-
-                                                                </div>
-                                                                <br>
-                                                                <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                                                    Real-Time Risk Decision Making and bussiness
-                                                                    strategies
-                                                                </div>
-                                                                <br><span
-                                                                    class="badge badge-pill badge-dark">Finance</span>
-                                                                <span class="badge badge-pill badge-dark">Pop Culture </span>
-                                                                <span class="badge badge-pill badge-dark">Obama </span>
-
-
-                                                            </div>
-
-                                                            <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-                                                            <p>James Coden · day ago</p>
-
-
-                                                            <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                               href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                OPEN <i class="fa fa-angle-double-right"></i>
-                                                            </a>
-                                                        </div><!-- /card-hovercard -->
-                                                    </div><!-- /col-lg-3 col-sm-6 -->
-                                                </div><!-- /row -->
-                                            </div><!-- /container-->
-                                        </div><!-- /col-md-4 -->
-
 
 
 
