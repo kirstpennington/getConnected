@@ -8,6 +8,22 @@
     <title>Courses</title>
 
 <head>
+
+    <!--*HEAD* Firebase-->
+
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+                authDomain: "getconnected-9dac0.firebaseapp.com",
+                databaseURL: "https://getconnected-9dac0.firebaseio.com",
+                projectId: "getconnected-9dac0",
+                storageBucket: "getconnected-9dac0.appspot.com",
+                messagingSenderId: "144309081376"
+            };
+            firebase.initializeApp(config);
+        </script>
     <!--Links to Bootstrap & to css-->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -15,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
 
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -89,9 +105,160 @@
                text-align: left;
 
             }
+
+            body {
+                font-family: 'Roboto', sans-serif;
+
+              }
+
+
+
+            #overlay {
+
+
+                  width: 100%; /* Full width (cover the whole page) */
+                  height: 30%; /* Full height (cover the whole page) */
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background-color: rgba(0,0,0,1); /* Black background with opacity */
+                  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+
+
+            }
+
+
+
+
+
+
+        .navbar {
+
+            margin-bottom: 0;
+        }
+
+            .back{
+                background-color:  #e83e8c;
+                opacity: 0.9;
+                color: white;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                text-align: left center;
+
+                background-image: url("../static/GC_Auth/uni2.jpg");
+
+                /* Center and scale the image nicely */
+                background-position: left;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+            }
+
+
+            .intro-form{
+              width: 800px;
+              margin: 50px auto;
+
+              position:top center;
+                padding-top: 0px;
+        }
+
+
+
+        .intro-form form{
+          margin-bottom: 15px;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+          padding: 20px;
+          background-color: white;
+          opacity: 0.95;
+          border:1px solid gray;
+          filter: alpha(opacity=60); /* For IE8 and earlier */
+            color: #666666;
+
+        }
+
+        form p{
+            font-size: 20px;
+        }
+
+        .row .courseCard{
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+            background-color: white;
+            opacity: 1;
+            border: 1px solid silver ;
+        }
+
+        .cd-tab-filter-wrapper {
+              background-color: #ffffff;
+              z-index: 1;
+            }
+
+            .cd-filter {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 280px;
+              height: 100%;
+              background: #ffffff;
+              z-index: 2;
+              transform: translateX(-100%);
+              transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+            .cd-filter-trigger {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 50px;
+              width: 60px;
+              z-index: 3;
+            }
+
+            .cd-main-content.is-fixed .cd-tab-filter-wrapper {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+            }
+
+            .cd-main-content.is-fixed .cd-filter {
+              position: fixed;
+              height: 100vh;
+              overflow: hidden;
+            }
+
+            .cd-main-content.is-fixed .cd-filter-trigger {
+              position: fixed;
+            }
+
+            .panel list-group h4 {
+                color: #4f4f4f;
+            }
+
+
+
+
+
     </style>
 
+    <!--filter pane styles-->
+    <style>
+
+        .
+
+    </style>
+
+
+
+
+
+
+
+
+
 </head>
+
     <body>
 
         <nav class="navbar navbar-inverse">
@@ -286,19 +453,391 @@
         </nav><!--nav navbar-inverse-->
 
 
-        <!--HELP BUTTON-->
+        <!--HELP BUTTON
             <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
-<div class="wireframes" style="text-align: center;">
-        <!--wireframe-->
-     {% load staticfiles %}
-                    <img src="{% static "GC_Auth/Wireframes/Courses_wireframes.png" %}" alt= "lock" class="image" style="width:55%; height:55%;display: inline-block;" >
-    </div>
+-->
+
+
+        <!--content of courses page start-->
+        <!--heading-->
+
+
+
+
+
+
+
+        <!--recommended courses-->
+
+<br>
+<!--tab heading-->
+        <ul class="nav nav-tabs" style="padding-right: 500px;padding-left: 20px;">
+            <li class="active">
+                <a data-toggle="pill" href="#Mycourses">
+                       <h2 class="text-center" style="color: silver">
+                           <strong> My Courses</strong>
+                        </h2>
+                </a></li>
+            <li><a data-toggle="pill" href="#allcourses">
+                <h2 class="text-center" style="color: silver">
+                            <strong> All Courses</strong>
+                        </h2>
+            </a></li>
+
+         </ul>
+            <br>
+
+
+
+    <div class="back">
+
+        <div class="intro-form"><!--form at the top with recommendations-->
+           <form>
+                <p style="opacity: 1;"><span class="fa fa-book fa-lg"></span> Recommended for you</p>
+               <hr>
+
+               <!--recommended course cards-->
+
+               <!--make a table of 1 row and 3 coloumns-->
+                <div class="row">
+                    <!--col 1-->
+                    <div class="col-sm-4">
+                        <div class="courseCard">
+                            <p class="text-center"> course card </p>
+                        </div>
+                    </div>
+
+                    <!--col 2-->
+                    <div class="col-sm-4">
+                        <div class="courseCard">
+                            <p class="text-center"> course card </p>
+                        </div>
+                    </div>
+
+                    <!--col 3-->
+                    <div class="col-sm-4">
+                        <div class="courseCard">
+                                <p class="text-center"> course card </p>
+                        </div>
+                    </div>
+
+                </div><!--end row-->
+
+            </form>
+
+        </div>
+
+
+    </div><!--end of header with background-->
+<br>
+
+         <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
+     <div class="tab-content" >
+
+           <!--my courses content-->
+            <div id="Mycourses" class="tab-pane fade in active">
+
+
+                 <!--search bar with icon-->
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 77%;padding-left: 24%;font-family: 'Roboto', sans-serif;" >
+                        <input type="text"  class="form-control" placeholder="Search"/>
+                        <span class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                    </div><!--end search bar-->
+                    </div>
+
+                <!--filter panel-->
+                <div class="row">
+
+                    <div class="col-md-4" >
+                        <div class="container"  >
+                          <h2 style="color: silver;"><strong>Filters </strong></h2>
+
+
+                          <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
+
+                              <!--panel-->
+                              <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject" style = "color:#ce3298">
+                                      <strong>
+                                      Subject
+                                  </strong>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseSubject" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                     <p> All </p>
+                                    <p> Arts & Design </p>
+                                    <p> Business & Management</p>
+                                    <p> Education</p>
+                                    <p> Entrepreneurship </p>
+                                    <p> Executive Education</p>
+                                    <p> Finance</p>
+                                    <p> Health</p>
+                                    <p> Hospitality & Events</p>
+                                    <p> Law</p>
+                                    <p> Marketing </p>
+                                    <p> Project Management</p>
+                                    <p> Real Estate</p>
+                                    <p> Systems & Technology </p>
+                                    <p> Talent Management (HR)</p>
+                                    <p> Writing</p>
+
+
+
+                                </div>
+                              </div>
+                            </div>
+
+                                <!--panel-->
+                              <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion"  href="#collapseInstitution" style = "color:#ce3298">
+                                      <strong>
+                                      Institution
+                                          </strong>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseInstitution" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                    <p> All </p>
+                                    <p>Cambridge CSL</p>
+                                    <p> Harvard University</p>
+                                    <p> LSE</p>
+                                    <p>MIT</p>
+                                    <p>Oxford Saïd</p>
+                                    <p> Rice University</p>
+                                    <p>Stanford Center for Health Education</p>
+                                    <p> The University of Chicago</p>
+                                    <p> UC Berkeley</p>
+                                    <p>UC Davis Graduate School of Management</p>
+                                    <p> UCT Graduate School of Business</p>
+                                    <p>USB-ED</p>
+                                    <p> University of Cape Town</p>
+                                    <p>University of Dayton</p>
+                                    <p> WITS</p>
+                                    <p>Yale SOM Executive Education</p>
+
+                                </div>
+                              </div>
+                            </div>
+
+                              <!--panel-->
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title"><!--panel 1 heading-->
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseRecommendations" style = "color:#ce3298">
+                                        <strong>
+                                      Recommendations
+                                            </strong>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseRecommendations" class="panel-collapse collapse in">
+                                  <!--panel 1 content-->
+                                <div class="panel-body">
+                                    <p> All </p>
+                                    <p> Highly Recommended</p>
+                                    <p> Recommended</p>
+                                    <p> No Recommendations</p>
+
+
+
+                                </div>
+                              </div>
+                            </div><!--end panel-->
+
+
+
+
+                          </div><!--end of accordion-->
+                           <!-- <form class="  search-form" role="search">
+                                    <input type="text" class="form-control" placeholder="Search" />
+
+                                </form>-->
+
+                        </div>
+                        </div><!--end col-->
+                    <div class="col-md-8">
+
+                    </div><!--end col-->
+
+
+                    </div>
+
+
+            </div>
+
+
+
+
+              <!--all coursess-->
+         <div id="allcourses" class="tab-pane fade">
+
+
+                 <!--search bar with icon-->
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 77%;padding-left: 24%;font-family: 'Roboto', sans-serif;" >
+                        <input type="text"  class="form-control" placeholder="Search"/>
+                        <span class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                    </div><!--end search bar-->
+                    </div>
+
+                <!--filter panel-->
+                <div class="row">
+
+                    <div class="col-md-4" >
+                        <div class="container"  >
+                          <h2 style="color: silver;"><strong>Filters </strong></h2>
+
+
+                          <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
+
+                              <!--panel-->
+                              <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSub" style = "color:#ce3298">
+                                      <strong>
+                                      Subject
+                                  </strong>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseSub" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                     <p> All </p>
+                                    <p> Arts & Design </p>
+                                    <p> Business & Management</p>
+                                    <p> Education</p>
+                                    <p> Entrepreneurship </p>
+                                    <p> Executive Education</p>
+                                    <p> Finance</p>
+                                    <p> Health</p>
+                                    <p> Hospitality & Events</p>
+                                    <p> Law</p>
+                                    <p> Marketing </p>
+                                    <p> Project Management</p>
+                                    <p> Real Estate</p>
+                                    <p> Systems & Technology </p>
+                                    <p> Talent Management (HR)</p>
+                                    <p> Writing</p>
+
+
+
+                                </div>
+                              </div>
+                            </div>
+
+                                <!--panel-->
+                              <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion"  href="#collapseInst" style = "color:#ce3298">
+                                      <strong>
+                                      Institution
+                                          </strong>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseInst" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                    <p> All </p>
+                                    <p>Cambridge CSL</p>
+                                    <p> Harvard University</p>
+                                    <p> LSE</p>
+                                    <p>MIT</p>
+                                    <p>Oxford Saïd</p>
+                                    <p> Rice University</p>
+                                    <p>Stanford Center for Health Education</p>
+                                    <p> The University of Chicago</p>
+                                    <p> UC Berkeley</p>
+                                    <p>UC Davis Graduate School of Management</p>
+                                    <p> UCT Graduate School of Business</p>
+                                    <p>USB-ED</p>
+                                    <p> University of Cape Town</p>
+                                    <p>University of Dayton</p>
+                                    <p> WITS</p>
+                                    <p>Yale SOM Executive Education</p>
+
+                                </div>
+                              </div>
+                            </div>
+
+                              <!--panel-->
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title"><!--panel 1 heading-->
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseRecom" style = "color:#ce3298">
+                                        <strong>
+                                      Recommendations
+                                            </strong>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseRecom" class="panel-collapse collapse in">
+                                  <!--panel 1 content-->
+                                <div class="panel-body">
+                                    <p> All </p>
+                                    <p> Highly Recommended</p>
+                                    <p> Recommended</p>
+                                    <p> No Recommendations</p>
+
+
+
+                                </div>
+                              </div>
+                            </div><!--end panel-->
+
+
+
+
+                          </div><!--end of accordion-->
+                           <!-- <form class="  search-form" role="search">
+                                    <input type="text" class="form-control" placeholder="Search" />
+
+                                </form>-->
+
+                        </div>
+                        </div><!--end col-->
+                    <div class="col-md-8">
+
+                    </div><!--end col-->
+
+
+                    </div>
+
+         </div>
+     </div>
+
+
+
+
+
+
+
+
+
+
 
 
 <br>
 
     <!--footer-->
-    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;" >
 
 
     <div class="container">
@@ -375,5 +914,21 @@
     </div>
     </div>
 </footer>
+
+
+    <!--carousel script-->
+    <!-- Script for Carousel -->
+
+<script>
+
+
+        / Carousel Auto-Cycle
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 6000
+            })
+        });
+
+    </script>
 
     </body>

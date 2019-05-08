@@ -126,16 +126,29 @@
          background-image: url("headerpic.jpg");*/
 
             /* Full height */
-            height: 25%;
+            height: 100%;
              background-image: url("../static/GC_Auth/backgroundbubs2.jpg");
             /* Center and scale the image nicely */
-            background-position: top center;
+            background-position: right center;
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: #D3D3D3;
+
 
 
         }
+        #overlay {
+
+
+                  width: 100%; /* Full width (cover the whole page) */
+                  height: 30%; /* Full height (cover the whole page) */
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background-color: rgba(0,0,0,1); /* Black background with opacity */
+                  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+
+}
 
 
         .bg .logo{
@@ -254,7 +267,7 @@
 
 
 
-<!--navigation bar under header-->
+<n!--navigation bar under header-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -289,6 +302,7 @@
 
 
 <!-- background & logo-->
+<div id="overlay">
    <div class="bg">
      <div class ="logo">
        <br></br>
@@ -298,6 +312,7 @@
 
     </div>
    </div>
+</div>
 
 <!-- pop up form for introduction on first run-->
   <!-- glyphicon is a series of icons which are available with bootstrap -->
