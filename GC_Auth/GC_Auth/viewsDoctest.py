@@ -121,6 +121,9 @@ class ViewsTest(unittest.TestCase):
         uid = "xxQe6gmBPGcj35WLLFw96BG7fkl1"
         GC_Auth.views.getCoursesInfoList(GC_Auth.views.getCoursesList(uid))
 
+    def test_trending_forums(self):
+        GC_Auth.views.getTrendingForums("")
+
 
 if __name__ == '__main__':
     import xmlrunner

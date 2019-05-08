@@ -128,9 +128,6 @@ def postsign(request):
 
     return returnUserProfileCarousels(request)
 
-# ToDo: separate these into individual data items for the UI, only 3 of each required
-# ToDo: include individual suggestions as well - 2 of each
-
 
 def logout(request):
     auth.logout(request)
@@ -145,12 +142,35 @@ def logout(request):
 # READ methods
 
 def getTrendingForums(request):
-    all_forums_ids = database.child("Forums").shallow().get().val()                     # get a list of all forum id's
-    # ToDo: find a way to calcuate trending forums
-
-    for forum_id in all_forums_ids:
+    # list of the top 3 public forums with the most participants
+    temp = database.child("Forums").shallow().get().val()                     # get a list of all forum id's
+    all_forums_ids = []                                                       # remove all private forums
+    for forum_id in temp:
         private = database.child("Forums").child(forum_id).child("Private").get().val()
-        # if private == "False" or private == "false":                                    # only consider the public forums
+        if private != "True" or private != "true":  # only consider public forums
+            all_forums_ids.append(forum_id)
+
+    top_forum_ids = []                                                                  # stores the forum with the most number of participants
+
+    if len(all_forums_ids) >= 3:
+        top_forum_ids[0].append(all_forums_ids[0])
+        top_forum_ids[0].append(all_forums_ids[1])
+        top_forum_ids[0].append(all_forums_ids[2])
+
+        count_skip = 0                                                                  # skip the first 3 values because they're already in the top forums list
+        for forum_id in all_forums_ids:
+            if count_skip >= 3:
+                for i in range(len(top_forum_ids)):
+                    if getForumNumParticipants(forum_id) > getForumNumParticipants(top_forum_ids[i]):   # compare which forum has more participants
+                        top_forum_ids[i] = forum_id
+                        break
+            count_skip += 1
+    else:
+        top_forum_ids = all_forums_ids
+
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!", top_forum_ids)
+    return getForumsInfoList(top_forum_ids)
+# ToDo: integrate and test this method
 
 
 def getPrivacySettings(request):
@@ -332,16 +352,19 @@ def getCourseRecommended(course_id):
 
 def getCourseURL(course_id):
     return database.child("Courses").child(course_id).child("CourseURL").get().val()
-# ToDo: does not appear when navigating back to the user profile page
 
-# for filling the Courses blocks
+
+# gets a list of the forums in the order that the user visited them
+# when a forum is visited, it is added to the top of the db tree and the last forum in the tree in removed - tree always contains top 3 recently visited forums
 def getForumssList(uid):
     # get list of forum IDs that a user takes
     # code from : https://www.hackanons.com/2018/05/python-django-with-google-firebase_31.html
     forum_ids = database.child('Users').child(uid).child('ForumVisits').shallow().get().val()
     forum_id_list = []     # stores list of course ids for the user
+
     for i in forum_ids:
         forum_id_list.append(i)
+
     return forum_id_list
 
 
@@ -360,12 +383,11 @@ def getForumsInfoList(forums_id_list):
         forum_creators.append(getForumCreator(id))
         forum_topics.append(getForumTopicsString(id))
 
-    print(forum_pics)
     # return a combination of all lists
     combined_forums_list = zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics)
     return combined_forums_list
 
-# ToDo: this function is not working at all
+
 # Individual Forum Data retrieval
 def getForumName(forum_id):
     return database.child("Forums").child(forum_id).child("Name").get().val()
@@ -524,11 +546,6 @@ def compareLists(list1, list2):
 def getUserTopicsList(uid):
     # get this user's interests/topics in a list
     return database.child("Users").child(uid).child("Topics").shallow().get().val()
-
-# ToDo: courses page
-# ToDo: forums page
-
-# ToDo: trending forums carousel (launch page)
 
 
 # UPDATE Methods
