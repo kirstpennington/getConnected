@@ -1,0 +1,196 @@
+head>
+
+    <!--*HEAD* Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!--*HEAD* 1. Title-->
+
+    <title>Your Profile </title>
+
+    <!--*HEAD* 2. Bootstrap & CSS Links-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- footer style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+ <!--*STYLE for pop up model-->
+        <style>
+
+            .modal {
+                text-align: center;
+            }
+
+            @media screen and (min-width: 768px) {
+                .modal:before {
+                    display: inline-block;
+                    vertical-align: middle;
+                    content: " ";
+                    height: 100%;
+
+                }
+            }
+
+            .modal-dialog {
+                display: inline-block;
+                text-align: left;
+                vertical-align: middle;
+
+            }
+
+            /* drag and Drop */
+
+            .files input {
+                outline: 2px dashed #e83e8c;
+                outline-offset: -10px;
+                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                padding: 120px 0px 85px 35%;
+                text-align: center !important;
+                margin: 0;
+                width: 100% !important;
+            }
+
+            .files input:focus {
+                outline: 2px dashed #e83e8c;
+                outline-offset: -10px;
+                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                border: 1px solid #92b0b3;
+            }
+
+            .files {
+                position: relative
+            }
+
+            .files:after {
+                pointer-events: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 50px;
+                right: 0;
+                height: 56px;
+                content: "";
+                background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+                display: block;
+                margin: 0 auto;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+
+            .color input {
+                background-color: silver;
+            }
+
+            .files:before {
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                pointer-events: none;
+                width: 100%;
+                right: 0;
+                height: 57px;
+                content: " or drag and drop it here. ";
+                display: block;
+                margin: 0 auto;
+                color: #e83e8c;
+                font-weight: 600;
+                text-transform: capitalize;
+                text-align: center;
+            }
+
+        </style>
+
+
+
+
+
+
+
+<button type='button' data-toggle="modal" data-target="#exampleModal" class="WallpaperchangePic" style="background-color: hotpink;border-radius: 8px ">Change image &nbsp;<i class="fa fa-edit"></i></button>
+
+
+
+                                   <!-- 1.1 Pop Up modal-->
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h3 class="modal-title" style="color: gray" id="exampleModalLabel" ><span class="fa fa-gear fa-lg"></span> Image Settings</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="default-file-upload">
+                                                  <!--  <input id="file-upload1" type="file"/>-->
+
+                                                    <div class="row">
+
+                                                        <form method="post" action="#" id="#">
+
+
+                                                            <div class="form-group files color">
+                                                                <h4 style="color: gray; padding-left: 24px;">Upload Your File </h4>
+                                                                <input type="file" id="uploadZip" name= "icon" class="form-control" multiple="">
+                                                            </div>
+
+
+                                                        </form>
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="ViewMorebutton" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button  type="submit" id = "uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save changes</button>
+                                            </div>
+                                            <!-- Testing-->
+
+
+
+                                            <!-- Testing-->
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of 1.1 Pop Up modal-->

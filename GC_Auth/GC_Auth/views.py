@@ -479,7 +479,20 @@ def getConnectionsSuggestions(uid, num_returns):
     except:
         final_results = results
 
+<<<<<<< Updated upstream
     return getConnectionsInfoList(final_results)
+=======
+    # navigate to the user profile page and
+    return render(request, "User_Profile_Page.html", {"e": the_user.email,
+                                                'n': the_user.username,
+                                                'bio': the_user.bio,
+                                                'email': the_user.email,
+                                                'country': the_user.country,
+                                                'numConnections': the_user.numConnections,
+                                                'numForums': the_user.numForums,
+                                                'ProfilePic':the_user.profilePic,
+                                                'backgroundPic': the_user.backgroundPic})
+>>>>>>> Stashed changes
 
 
 # supporting methods for finding suggestions
@@ -552,8 +565,12 @@ def updateProfile(request):
     updateEmail(u, email)
 
     # edit return render to show the new data
+<<<<<<< Updated upstream
     return render(request, "UserProfile.html", {'n': name,
                                                 'email': email,
+=======
+    return render(request, "User_Profile_Page.html", {'n': name,
+>>>>>>> Stashed changes
                                                 'bio': bio,
                                                 'country': country,
                                                 'ProfilePic': the_user.profilePic,
@@ -583,7 +600,7 @@ def updatePrivacySettings(request):
 
 
     # edit return render to show the new data
-    return render(request, "UserProfile.html", {'bioPrivacy': bioPrivacy,
+    return render(request, "User_Profile_Page.html", {'bioPrivacy': bioPrivacy,
                                                 'connectionPrivacy': connectionPrivacy,
                                                 'countryPrivacy': countryPrivacy,
                                                 'namePrivacy': namePrivacy,
@@ -653,7 +670,7 @@ def updateProfilePicRequest(request):
 
     # set new profile pic in DB
     database.child("Users").child(u['localId']).update({"ProfilePic": newPic})
-    return render(request, "UserProfile.html", {"e": the_user.email,
+    return render(request, "User_Profile_Page.html", {"e": the_user.email,
                                                 'n': the_user.username,
                                                 'bio': the_user.bio,
                                                 'email': the_user.email,
@@ -678,7 +695,7 @@ def updateBackgroundPicRequest(request):
 
     # set new profile pic in DB
     database.child("Users").child(u['localId']).update({"BackgroundPic": newPic})
-    return render(request, "UserProfile.html", {"e": the_user.email,
+    return render(request, "User_Profile_Page.html", {"e": the_user.email,
                                                 'n': the_user.username,
                                                 'bio': the_user.bio,
                                                 'email': the_user.email,
@@ -776,7 +793,7 @@ def updateForumsPrivacy(user, forumsPrivacy):
 # Navigation Methods
 
 def home(request):
-     return render(request, "UserProfile.html", {"e": the_user.email,
+     return render(request, "User_Profile_Page.html", {"e": the_user.email,
                                                 'n': the_user.username,
                                                 'bio': the_user.bio,
                                                 'email': the_user.email,
@@ -812,7 +829,7 @@ def connections(request):
 
 
 def userprofile(request):
-    return render(request, "UserProfile.html", {"e": the_user.email,
+    return render(request, "User_Profile_Page.html", {"e": the_user.email,
                                                 'n': the_user.username,
                                                 'bio': the_user.bio,
                                                 'email': the_user.email,
