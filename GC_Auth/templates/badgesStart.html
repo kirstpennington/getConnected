@@ -52,14 +52,15 @@
 /*set font of the title*/
       .badgeHeader h3 {
         font-family: 'Roboto', sans-serif;
-        font-weight: 100;
-        font-size: 100px;
+        font-weight: 80;
+        font-size: 60px;
+          color: #666666;
 
       }
       /*set the trophy image at the top's size*/
       .badgeHeader .logoclass img {
-        width: 650px;
-        height: 290px;
+        width: 600px;
+        height: 250px;
         margin: auto;
         display: block;
         padding-top:0;
@@ -140,10 +141,16 @@
            font-size: 12px;
          }
 
-         .inf-content{
-           border:1px solid #DDDDDD;
-           margin: 20px;
+         .main-raised {
+            margin: -60px 30px 0;
+            border-radius: 6px;
+            box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
 
+        .main {
+            background: #FFF;
+            position: relative;
+            z-index: 3;
         }
 
        /*footer logo*/
@@ -156,6 +163,26 @@
 
             }
 
+        .back{
+                background-color:  #e83e8c;
+                opacity: 0.9;
+                color: white;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                text-align: left center;
+                height: 200px;
+                background-image: url("../static/GC_Auth/trophyBackground.jpg");
+
+                /* Center and scale the image nicely */
+                background-position: left;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+            }
+
+      .navbar{
+          margin-bottom: 0px;
+      }
 
 
 
@@ -173,7 +200,7 @@
 
       <!--*BODY* 1. Navigation Bar-->
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" >
             <div class="container-fluid">
 
                 <div class="navbar-header">
@@ -364,18 +391,25 @@
             </div><!--container fluid-->
         </nav><!--nav navbar-inverse-->
         <!--end of nav-->
+<div class="back">
 
 
-<div class="panel-body inf-content">
+
+        <br><br><br><br>
+    </div><!--end of header with background-->
+
+
+
+<div class="main main-raised">
 
 <!--display heading and top part-->
 <div class="badgeHeader">
 <!--  <h3> Your Trophies </h3>
-
   <hr color =>-->
-    {% load staticfiles %}
-  <img src = "{% static "GC_Auth/badge_icon.png" %}" alt="trohy" height="120" width="120">
-  <h3> Your Badges </h3>
+    <br>
+    <!--{% load staticfiles %}
+  <img src = "{% static "GC_Auth/badge_icon.png" %}" alt="trohy" height="80" width="80">-->
+  <h3 > Your Badges </h3>
   <!--tooltip for '?'-->
   <a href="#" data-toggle="tooltip" title="Here you can see the badges you have earned from interacting with GetConnected."
   data-placement="right" style="font-size: 30px; position:absolute;right:300px;top:310px;color: #ce3298">
@@ -399,7 +433,7 @@
 
             {% if numConnections >= 1 %}
 
-                <img src="{% static "GC_Auth/Badges/FriendFinder.png" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
@@ -428,7 +462,7 @@
       <div class ="badgehover">
           {% if numConnections >= 5 %}
 
-                <img src="{% static "GC_Auth/Badges/networkingNinja.jpg" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/networkingNinja2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Networking Ninja</strong> <br> 5 Connections</div>
@@ -453,7 +487,7 @@
            <!--coloumn crazy connector-->
           {% if numConnections >= 10%}
 
-                <img src="{% static "GC_Auth/Badges/CrazyConnector.png" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/crazyConnector2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Crazy Connector</strong> <br> 10 Connections</div>
@@ -475,7 +509,7 @@
            <!--coloumn popular profiler-->
           {% if numConnections >= 15 %}
 
-                <img src="{% static "GC_Auth/Badges/PopularProfiler.jpg" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/PopularProfiler2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Popular Profiler</strong> <br> 15 Connections</div>
@@ -505,7 +539,7 @@
            <!--coloumn popular profiler-->
           {% if numCourses >= 3 %}<!--bright spark 3 courses-->
 
-                <img src="{% static "GC_Auth/Badges/BrigthSpark.png" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/brightSpark2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Bright Spark</strong> <br> 3 Courses</div>
@@ -534,7 +568,7 @@
 
           {% if numCourses >= 5 %}<!--5 courses-->
 
-                <img src="{% static "GC_Auth/Badges/FabAcademic.png" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/fabAcademic2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Fab Academic</strong> <br> 5 Courses</div>
@@ -561,7 +595,7 @@
            <!--coloumn popular profiler-->
           {% if numCourses >= 10 %}<!--bright spark 3 courses-->
 
-                <img src="{% static "GC_Auth/Badges/GotSmarter.png" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/gotSmarter2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Got-Smarter</strong> <br> 10 Courses</div>
@@ -604,7 +638,7 @@
            <!--coloumn 5 forums-->
           {% if numForums >= 1 %}<!--forums-->
 
-                <img src="{% static "GC_Auth/Badges/ForumBoffin.png" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/forumBoffin2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Forum Boffin</strong> <br>Active in 1 Forum </div>
@@ -630,9 +664,9 @@
         <div class ="badgehover">
            <!--coloumn super security-->
 
-          {% if numConnections == 1%}
+          {% if privacyUp == True %}
 
-                <img src="{% static "GC_Auth/Badges/superSecurity.png" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/supersecurity1.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>
@@ -657,7 +691,7 @@
              <!--coloumn popular profiler-->
           {% if numConnections >= 1 %}<!--decorator update header-->
 
-                <img src="{% static "GC_Auth/Badges/decorator.jpg" %}" alt= "lock" class="image" >
+                <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt= "lock" class="image" >
 
                 <div class="middle">
                    <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
@@ -747,7 +781,7 @@
   });
 </script>
 
-
+<br>
 
 <!-- Footer -->
 <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">

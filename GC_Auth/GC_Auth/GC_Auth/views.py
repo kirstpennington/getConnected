@@ -64,6 +64,12 @@ def getNumForums(request, uid):
 def getNumCourses(request, uid):
     return database.child('Users').child(uid).child('numCourses').get().val()
 
+def getPrivacyUpdated(request, uid):
+    temp = database.child('Users').child(uid).child('privacyUpdated').get().val()
+    if temp == "yes" or temp == "Yes":
+        return True
+    else:
+        return False
 
 def getProfilePic(request, uid):
     return database.child('Users').child(uid).child('ProfilePic').get().val()
@@ -164,6 +170,10 @@ def getCourseRecommended(course_id):
 
     if num_rec >= 500:
         return "Highly Recommended"
+
+
+
+
 
 
 def getCourseURL(course_id):
@@ -534,11 +544,14 @@ def goBadges(request):
     conn = getNumConnecions(request, u['localId'])
     course = getNumCourses(request, u['localId'])
     forum = getNumForums(request, u['localId'])
+    privacyUpdate = getPrivacyUpdated(request, u['localId'])
+
     return render(request, "badgesStart.html", {
         'n': name,
         'numConnections': conn,
         'numCourses': course,
         'numForums': forum,
+        'privacyUp': privacyUpdate
     })
 
 
