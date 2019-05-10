@@ -518,7 +518,13 @@ def forums(request):
 
 
 def courses(request):
-    return render(request, 'Courses.html')
+    global the_user
+    courses_list = getCoursesInfoList(getCoursesList(the_user.uid))
+    suggested_couses = getCourseSuggestions(the_user.uid, 3)
+    course_names, course_pictures, course_recommendations, course_urls, course_uni_pics = zip(*courses_list)
+    print(course_names)
+    return render(request, 'Courses.html', {'courses_list': courses_list,
+                                            'suggested_courses_list': suggested_couses})
 
 
 def userprofile(request):

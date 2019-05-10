@@ -208,6 +208,10 @@ def getNumCourses(request, uid):
     return int(database.child('Users').child(uid).child('numCourses').get().val())
 
 
+def getPrivacyUpdated(request, uid):
+    return database.child('Users').child(uid).child('privacyUpdated').get().val()
+
+
 def getProfilePic(request, user):
     return database.child('Users').child(user['localId']).child('ProfilePic').get().val()
 
@@ -304,11 +308,14 @@ def getCoursesInfoList(courses_id_list):
     course_uni_pics = []
 
     for id in courses_id_list:
-        course_names.append(getCourseName(id))
-        course_pictures.append(getCoursePicture(id))
-        course_recommendations.append(getCourseRecommended(id))
-        course_urls.append(getCourseURL(id))
-        course_uni_pics.append(getCourseUniPic(id))
+        try:
+            course_names.append(getCourseName(id))
+            course_pictures.append(getCoursePicture(id))
+            course_recommendations.append(getCourseRecommended(id))
+            course_urls.append(getCourseURL(id))
+            course_uni_pics.append(getCourseUniPic(id))
+        except:
+            print("")
 
     # return a combination of all lists
     combined_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics)
@@ -467,6 +474,7 @@ def getCourseSuggestions(uid, num_returns):
                 results.append(compare_course_id)                                                       # add the course to the list of suggestions
                 results_count += 1                                                                      # increment number fo results by 1
 
+    print("!!!!!!!!!!!!", results)
     return getCoursesInfoList(results)
 
 
@@ -825,8 +833,12 @@ def forums(request):
 
 def courses(request):
     global the_user
-    return render(request, 'Courses.html', {'courses_list': the_user.coursesInfoList,
-                                            'suggested_courses_list': getCourseSuggestions(the_user.uid, 3)})
+    courses_list = getCoursesInfoList(getCoursesList(the_user.uid))
+    suggested_courses = getCourseSuggestions(the_user.uid, 3)
+    # course_names, course_pictures, course_recommendations, course_urls, course_uni_pics = zip(*suggested_courses)
+    # print(course_names)
+    return render(request, 'Courses.html', {'courses_list': courses_list,
+                                            'suggested_courses_list': suggested_courses})
 
 
 def connections(request):
@@ -845,14 +857,18 @@ def goSettings(request):
 
 def goBadges(request):
     # user authentication with Firebase
-    global the_user
-    return render(request, "badgesStart.html", {
-        'n': the_user.username,
-        'numConnections': the_user.numConnections,
-        'numForums': the_user.numForums,
-        'numCourses': the_user.numCourses,
-        'biopriv': user_privacy.bio,
+    name = getUsername(u['localId'])
+    conn = getNumConnecions(request, u['localId'])
+    course = getNumCourses(request, u['localId'])
+    forum = getNumForums(request, u['localId'])
+    privacyUpdate = getPrivacyUpdated(request, u['localId'])
 
+    return render(request, "badgesStart.html", {
+            'n': name,
+            'numConnections': conn,
+            'numCourses': course,
+            'numForums': forum,
+            'privacyUp': privacyUpdate
     })
 
 

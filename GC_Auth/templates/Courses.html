@@ -847,14 +847,9 @@
              style="width: 850px; position: relative; overflow: hidden; padding-left: 120px;">
 
 
-
-
-
-
-
             <!-- Item 2-->
 
-
+            {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in suggested_courses_list %}
             <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
@@ -865,20 +860,18 @@
                         <div style="height:2px;"><br></div>
 
                         <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                            Artificial Intelligence
+                            {{ course_names }}
                         </div>
-                        <h8 style="display: inline-block;margin-top: 4px; font-size: 11px; color: black">Implications of
-                            Business
-                        </h8>
+
 
                         <div style="height:2px;"><br></div>
 
                         <span class="badge badge-pill badge-dark"
-                              style="color: white; font-size: x-small;  top: 10px">Highly Recommended </span><br>
+                              style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
                         <div style="height:5px;"><br></div>
 
                         <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
-                           href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW
+                           href={{ course_urls }}>VIEW
                             COURSE <i class="fa fa-angle-double-right"></i></a>
                     </div><!-- inf-->
 
@@ -886,76 +879,10 @@
 
 
             </div> <!-- col-sm-3-->
+            {% endfor %}
 
 
-            <!-- Item 3-->
 
-            <div class="col-sm-4  " style=" width: 202px; margin-top: 5px  ">
-
-
-                <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
-
-                    <div class="inf" style="margin-top: -5px; text-align: center; ">
-
-                        <div style="height:2px;"><br></div>
-
-                        <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                            Artificial Intelligence
-                        </div>
-                        <h8 style="display: inline-block;margin-top: 4px; font-size: 11px; color: black">Implications of
-                            Business
-                        </h8>
-
-                        <div style="height:2px;"><br></div>
-
-                        <span class="badge badge-pill badge-dark"
-                              style="color: white; font-size: x-small;  top: 10px">Highly Recommended </span><br>
-                        <div style="height:5px;"><br></div>
-
-                        <a style="font-size: smaller; margin-left: 0px;color:black; font-weight: bold; "
-                           href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW
-                            COURSE <i class="fa fa-angle-double-right"></i></a>
-                     </div><!-- inf-->
-
-                </div><!-- RighColumnContainer-->
-
-
-            </div> <!-- col-sm-3-->
-
-            <!-- Item 4-->
-
-
-            <div class="col-sm-4" style="; width: 202px;margin-top: 5px   ">
-
-
-                <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
-
-                    <div class="inf" style="margin-top: -5px; text-align: center; ">
-
-                        <div style="height:2px;"><br></div>
-
-                        <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                            Artificial Intelligence
-                        </div>
-                        <h8 style="display: inline-block;margin-top: 4px; font-size: 11px; color: black">Implications of
-                            Business
-                        </h8>
-
-                        <div style="height:2px;"><br></div>
-
-                        <span class="badge badge-pill badge-dark"
-                              style="color: white; font-size: x-small;  top: 10px">Highly Recommended </span><br>
-                        <div style="height:5px;"><br></div>
-
-                        <a style="font-size: smaller; margin-left: 0px;color:black; font-weight: bold; "
-                           href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">VIEW
-                            COURSE <i class="fa fa-angle-double-right"></i></a>
-                    </div><!-- inf-->
-
-                </div><!-- RighColumnContainer-->
-
-
-            </div> <!-- col-sm-3-->
 
         </div>
 
@@ -974,6 +901,7 @@
                        <!--placeholder for space by filter-->
                         </div><!--end col-->
 
+                    {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in courses_list %}
                     <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;" >
 
                          <!-- My Courses: Item 1 -->
@@ -985,237 +913,39 @@
                                                     <div class="row">
 
                                                         <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
+                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
                                                             <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
                                                             <div class="card hovercard  ">
                                                                 <div class="avatar"><br>
                                                                     {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
+                                                                    <img src={{ course_pictures }}/>
                                                                 </div><br>
                                                                 <div class="info">
                                                                     <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
+                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                                                    </div><br><span class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                                                 </div>
 
                                                                 <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
 
                                                                 <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
+                                                                   href={{ course_urls }}>
                                                                     VIEW COURSE <i class="fa fa-angle-double-right"></i>
                                                                 </a>
                                                             </div>
                                                         </div><!-- /col-lg-3 col-sm-6 -->
+
                                                     </div><!-- /row -->
                                                 </div><!-- /container -->
 
 
 
                     </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
+                     {% endfor %}
 
 
-
-                    </div><!--end col-->
-                    <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
 
                 </div><!--end row-->
-
-                 <div class="row"><!--row 3 of page-->
-
-                    <div class="col-md-3"  >
-                       <!--placeholder for space by filter-->
-                        </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
-
-                </div><!--end row-->
-
 
             </div>
 
