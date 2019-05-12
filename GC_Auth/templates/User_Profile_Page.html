@@ -46,6 +46,7 @@
 
     <!--*HEAD-STYLE*  1.1. Navigation Bar Style + Body Style -->
 
+
     <style>
 
         .dropdown {
@@ -184,10 +185,11 @@
             font-weight: 300;
         }
 
-        .profileContainerDetails, html {
+        .profileContainerDetails, {
             max-width: 100%;
             overflow-x: hidden;
         }
+        .html{max-width: 100%}
 
         .profileContainerDetails .gallery img {
             width: 100%;
@@ -383,14 +385,29 @@
             border: 1px solid silver;
         }
 
+         .plus:hover {
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+             border-radius: 23px;
+        }
+
+         .plus{}
+
+
+
         .settings {
-            -webkit-transition: all 0.5s ease-in-out;
 
         }
 
         .settings:hover {
-            -webkit-transform: scale(1.01);
-            background: #31708f;
+           -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid white;
+             border-radius: 23px;;
         }
 
         .main-secction {
@@ -515,7 +532,7 @@
             height: 72px;
             width: 280px;
             position: relative;
-            right: 25px;
+            left: 5px;
             top: -5px;
 
         }
@@ -906,9 +923,9 @@
 <div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
 
-    <div class="row"> <!--2. Pic + Description -->
-        <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile">
+    <div class="row" > <!--2. Pic + Description -->
+        <div class="col-md-6 ml-auto mr-auto" >
+            <div class="profile" >
                 <div class="avatar">
                     <img style="margin-left: 200px" src="{{ ProfilePic }}" alt="Circle Image"
                          class="img-raised rounded-circle img-fluid">
@@ -918,19 +935,26 @@
                 </div>
 
 
-                <div class="name" style="margin-left: 58%; margin-top: -23%;background-color: white ; width: 85%">
+                <div class="name" style="margin-left: 58%; margin-top: -22%;background-color: white ; width: 85%">
                     <div class="row" style="">
                         <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
                             <div style="text-align: left;">
                                 <h1 style="color: gray;display: inline-block;padding-right:50px;">
                                     <strong>{{ n }}</strong><br></h1><br><br>
                                 <div class="settings ">
-                                    <button onclick="location.href='{% url 'goSettings' %}'"
+                                    <button onclick="location.href='{% url 'goSettings' %}'" data-toggle="tooltip" title="Settings" data-placement="right"
                                             style="background-color:hotpink; border-color: transparent; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                            class="btn btn-primary pull-right"><i
-                                            class="	fa fa-gear"></i>
+                                            class="btn btn-primary pull-right">
+                                        <a href="#" ><i
+                                            class="	fa fa-gear" style="color: white"></i></a>
                                     </button>
                                 </div>
+
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
 
                                 <h8 style="display: inline-block;padding-right:10px; position: relative; top: -10px; ">
                                     Connections <span class="label label-default">{{ numConnections }}</span></h8>
@@ -969,9 +993,10 @@
                             </table>
 
                             <a onclick="location.href='{% url 'goBadges' %}' ">
-                                <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png" %}"
+
+                               <a href="#" ><img src="{% static "GC_Auth/UserProfile_images/badge_icon.png" %}" data-toggle="tooltip" title="Badges" data-placement="right"
                                      style="width:40px;height:40px; position: relative; top:-30px; left: 434px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
-                                     title="" class="badges  "/>
+                                     title="" class="badges  "/></a>
                             </a>
                             <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: -32px; margin-left: -250px"/>
 
@@ -1025,9 +1050,7 @@
                             </div>
 
                             <h8 style="display: inline-block;margin-left: 10px;margin-top: 4px;font-family: serif; font-size: small; color: black">
-                                 <span
-                                    class="label label-default"
-                                    style="color: white">{{ countries }}</span></h8>
+                                mutual conections &nbsp;<span class="label label-default" style="color: white"> {{ numConnections }} </span></h8>
                             <br>
 
                             <span class="badge badge-pill badge-dark"
@@ -1091,18 +1114,22 @@
 
         </div><!--col-md-4 rightColumnTwo-->
 
-        <!-- My Forums: Item 1 -->
+        <!-- My Forums -->
 
-        <div class="row"
-             style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -420px; overflow: hidden">
+        <div class="row" style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -420px; overflow: hidden">
             <div style="height:10px;"><br></div>
 
             <h5 class="titlefont" style="font-weight: bold; margin-left: 4px"><span
                     class="fa fa-comments-o fa-lg"></span>&nbsp;My Forums</h5>
             <div style="height:10px;"><br></div>
 
+
+            <!-- My Forums: Item  -->
+
+         <a href="#" ><span style="position: absolute;top: 5px; left: 700px; color: gray; " data-toggle="tooltip" title="Add Forum"  data-placement="right" class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
+
             {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics in forums_list|slice:":3" %}
-            <div class="col-sm-3  " style="; width: 180px; margin-left: 10px;  ">
+            <div class="col-sm-3  " style="; width: 180px; margin-left:35px;  ">
                 <!-- forum wallpaper -->
                 <div class="cardheader" style="background-image: {% load staticfiles %}{{ forum_pics }} ; border-radius: 8px"></div>
                 <!-- Go into forum -->
@@ -1132,17 +1159,17 @@
                     <a style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
                        href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">OPEN <i
                             class="fa fa-angle-double-right"></i></a>
-
                 </div><!-- /card-hovercard -->
             </div>
             {% endfor %}
 
-
-
-        </div><!-- /container-->
+        </div><!-- /First View Button fot main body, container-->
         <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_forums' %}'"
-                style="position: relative; left: 430px; top: -410px;">View More <i
+                style="position: relative; left: 425px; top: -410px; font-size: 85%">View More <i
                 class="fa fa-angle-double-right"></i></button>
+
+
+
 
         <!-- My Courses: Item 1 -->
 
@@ -1191,7 +1218,7 @@
         </div>
 
         <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_forums' %}'"
-                style="position: relative; left: 420px; top: -537px; font-size: 85%">View More <i
+                style="position: absolute; left: 810px; top: 600px; font-size: 85%">View More <i
                 class="fa fa-angle-double-right"></i></button>
 
 
@@ -1287,7 +1314,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
                 <h3 class="modal-title" style="color: gray" id="exampleModalLabel"><span
-                        class="fa fa-gear fa-lg"></span> Image Settings</h3>
+                        class="fa fa-gear fa-lg"></span> Image Settings </h3>
             </div>
             <div class="modal-body">
                 <div class="default-file-upload">
@@ -1317,6 +1344,7 @@
     </div>
 </div>
 <!-- End of 1.1 Pop Up modal-->
+
 
 
 </body>
