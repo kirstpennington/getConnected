@@ -63,7 +63,9 @@ email = ""
 # LOGIN methods
 
 def LogIn(request):
-    return render(request, "LogIn.html")
+    return render(request, "LogIn.html",{'trending_forums_list': getTrendingForums(
+
+    )} )
 
 
 def passwordReset(request):
@@ -141,7 +143,7 @@ def logout(request):
 
 # READ methods
 
-def getTrendingForums(request):
+def getTrendingForums():
     # list of the top 3 public forums with the most participants
     temp = database.child("Forums").shallow().get().val()                     # get a list of all forum id's
     all_forums_ids = []                                                       # remove all private forums
@@ -382,6 +384,7 @@ def getForumsInfoList(forums_id_list):
     forum_num_participants = []
     forum_creators = []
     forum_topics = []
+    forum_descriptions = []
 
     for id in forums_id_list:
         forum_names.append(getForumName(id))
@@ -389,9 +392,10 @@ def getForumsInfoList(forums_id_list):
         forum_num_participants.append(getForumNumParticipants(id))
         forum_creators.append(getForumCreator(id))
         forum_topics.append(getForumTopicsString(id))
+        forum_descriptions.append(getForumDescription(id))
 
     # return a combination of all lists
-    combined_forums_list = zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics)
+    combined_forums_list = zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions)
     return combined_forums_list
 
 
@@ -411,6 +415,10 @@ def getForumNumParticipants(forum_id):
 def getForumCreator(forum_id):
     user_id = database.child("Forums").child(forum_id).child("Creator").get().val()     # get the user id of the forum creator
     return database.child("Users").child(user_id).child("Name").get().val()             # get the user's name using the user's id
+
+
+def getForumDescription(forum_id):
+    return database.child("Forums").child(forum_id).child("Description").get().val()
 
 
 def getForumTopicsString(forum_id):
@@ -474,7 +482,6 @@ def getCourseSuggestions(uid, num_returns):
                 results.append(compare_course_id)                                                       # add the course to the list of suggestions
                 results_count += 1                                                                      # increment number fo results by 1
 
-    print("!!!!!!!!!!!!", results)
     return getCoursesInfoList(results)
 
 

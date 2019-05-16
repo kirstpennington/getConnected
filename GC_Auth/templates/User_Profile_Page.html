@@ -1080,7 +1080,7 @@
 
 
 
-                {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics in forums_suggestions_list|slice:":3" %}
+                {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions in forums_suggestions_list|slice:":3" %}
                 <div class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
 
                     <div style="position: relative; left: 235px; top: 3px;">
@@ -1128,7 +1128,7 @@
 
          <a href="#" ><span style="position: absolute;top: 5px; left: 700px; color: gray; " data-toggle="tooltip" title="Add Forum"  data-placement="right" class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
 
-            {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics in forums_list|slice:":3" %}
+            {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions in forums_list|slice:":3" %}
             <div class="col-sm-3  " style="; width: 180px; margin-left:35px;  ">
                 <!-- forum wallpaper -->
                 <div class="cardheader" style="background-image: {% load staticfiles %}{{ forum_pics }} ; border-radius: 8px"></div>
