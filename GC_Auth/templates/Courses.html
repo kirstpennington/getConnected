@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Courses</title>
+<title>Courses</title>
 
 <head>
 
     <!--*HEAD* Firebase-->
 
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-        <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
-                authDomain: "getconnected-9dac0.firebaseapp.com",
-                databaseURL: "https://getconnected-9dac0.firebaseio.com",
-                projectId: "getconnected-9dac0",
-                storageBucket: "getconnected-9dac0.appspot.com",
-                messagingSenderId: "144309081376"
-            };
-            firebase.initializeApp(config);
-        </script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
     <!--Links to Bootstrap & to css-->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -31,8 +31,8 @@
     <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
 
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -47,89 +47,69 @@
     <style>
 
         .dropdown {
-            display:inline-block;
-            margin-left:20px;
+            display: inline-block;
+            margin-left: 20px;
         }
 
         .glyphicon-bell {
-            font-size:1.5rem;
+            font-size: 1.5rem;
         }
 
         .notifications {
-            min-width:320px;
+            min-width: 320px;
         }
 
         .notifications-wrapper {
-            overflow:auto;
-            max-height:250px;
+            overflow: auto;
+            max-height: 250px;
         }
 
         .glyphicon-circle-arrow-right {
-            margin-left:10px;
+            margin-left: 10px;
         }
 
         .item-title {
-            font-size:1.5rem;
+            font-size: 1.5rem;
             color: black;
-            padding:0px 50px;
+            padding: 0px 50px;
         }
 
         .notifications a.content {
-            text-decoration:none;
+            text-decoration: none;
             background: white;
         }
 
         .notification-item {
-            padding:10px;
-            margin:5px;
+            padding: 10px;
+            margin: 5px;
             background: #ebebeb;
-            border-radius:4px;
+            border-radius: 4px;
             height: 80px;
         }
 
         .profile_img {
-            width:25px;
-            display:inline;
-            float:left;
-            border:0px solid #111;
-            border-radius:3px;
-            box-shadow:0 0 3px rgba(0, 0, 0, 0.5) inset;
+            width: 25px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 3px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
         }
 
-         /*footer logo*/
-            footer img{
+        /*footer logo*/
+        footer img {
 
 
-                width:200%;
-                height:200%;
-               text-align: left;
+            width: 200%;
+            height: 200%;
+            text-align: left;
 
-            }
+        }
 
-            body {
-                font-family: 'Roboto', sans-serif;
+        body {
+            font-family: 'Roboto', sans-serif;
 
-              }
-
-
-
-            #overlay {
-
-
-                  width: 100%; /* Full width (cover the whole page) */
-                  height: 30%; /* Full height (cover the whole page) */
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  background-color: rgba(0,0,0,1); /* Black background with opacity */
-                  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-
-
-            }
-
-
-
+        }
 
 
 
@@ -138,272 +118,250 @@
             margin-bottom: 0;
         }
 
-            .back{
-                background-color:  #e83e8c;
-                opacity: 0.9;
-                color: white;
-                padding-top: 40px;
-                padding-bottom: 40px;
-                text-align: left center;
-                height: 200px;
-                background-image: url("../static/GC_Auth/uni2.jpg");
+        .back {
+            background-color: #e83e8c;
+            opacity: 0.9;
+            color: white;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            text-align: left center;
+            height: 200px;
+            background-image: url("../static/GC_Auth/uni2.jpg");
 
-                /* Center and scale the image nicely */
-                background-position: left;
-                background-repeat: no-repeat;
-                background-size: cover;
+            /* Center and scale the image nicely */
+            background-position: left;
+            background-repeat: no-repeat;
+            background-size: cover;
 
-            }
-
-
-            .intro-form{
-              width: 800px;
-              margin: 50px auto;
-
-              position:top center;
-                padding-top: 0px;
         }
 
 
+        .intro-form {
+            width: 800px;
+            margin: 50px auto;
 
-        .intro-form form{
-          margin-bottom: 15px;
-          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-          padding: 20px;
-          background-color: white;
-          opacity: 1;
-          border:1px solid gray;
-          filter: alpha(opacity=60); /* For IE8 and earlier */
+            position: top center;
+            padding-top: 0px;
+        }
+
+
+        .intro-form form {
+            margin-bottom: 15px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            background-color: white;
+            opacity: 1;
+            border: 1px solid gray;
+            filter: alpha(opacity=60); /* For IE8 and earlier */
             color: #666666;
 
         }
 
-        form p{
+        form p {
             font-size: 20px;
         }
 
-        .row .courseCard{
+        .row .courseCard {
             box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
             background-color: white;
             opacity: 1;
-            border: 1px solid silver ;
+            border: 1px solid silver;
         }
 
         .cd-tab-filter-wrapper {
-              background-color: #ffffff;
-              z-index: 1;
-            }
+            background-color: #ffffff;
+            z-index: 1;
+        }
 
-            .cd-filter {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 280px;
-              height: 100%;
-              background: #ffffff;
-              z-index: 2;
-              transform: translateX(-100%);
-              transition: transform 0.3s, box-shadow 0.3s;
-            }
+        .cd-filter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: #ffffff;
+            z-index: 2;
+            transform: translateX(-100%);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-            .cd-filter-trigger {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 50px;
-              width: 60px;
-              z-index: 3;
-            }
+        .cd-filter-trigger {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 50px;
+            width: 60px;
+            z-index: 3;
+        }
 
-            .cd-main-content.is-fixed .cd-tab-filter-wrapper {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-            }
+        .cd-main-content.is-fixed .cd-tab-filter-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
 
-            .cd-main-content.is-fixed .cd-filter {
-              position: fixed;
-              height: 100vh;
-              overflow: hidden;
-            }
+        .cd-main-content.is-fixed .cd-filter {
+            position: fixed;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-            .cd-main-content.is-fixed .cd-filter-trigger {
-              position: fixed;
-            }
+        .cd-main-content.is-fixed .cd-filter-trigger {
+            position: fixed;
+        }
 
-            .panel list-group h4 {
-                color: #4f4f4f;
-            }
-
-
-
+        .panel list-group h4 {
+            color: #4f4f4f;
+        }
 
 
     </style>
 
-   <!--*HEAD-STYLE*  1.4. Cards Style-->
+    <!--*HEAD-STYLE*  1.4. Cards Style-->
 
-        <style>
-
-            .header_site {
-                background-color: white;
-                height: 40px;
-                width: 1080px;
-                left: 40px;
-                position: relative;
-            }
-
-            .titlefont {
-                font-size: x-large;
-                color: gray;
-                margin: auto 40px auto 40px;
-                 position: relative;
-                 left: 5px;
-            }
-
-            .card {
-                padding-top: 20px;
-                padding-bottom: 20px;
-                margin: 10px 0 20px 0;
-                border-top-width: 0;
-                border-bottom-width: 2px;
-                box-sizing: border-box;
-                position: relative;
-                top: -50px;
-                margin-bottom: -50px;
-                left: 18px;
-                box-shadow: 0 4px 8px 0 silver;
-            }
-
-            .card.hovercard {
-                position: relative;
-                padding-top: 0;
-                overflow: hidden;
-                text-align: center;
-                background-color: white;
-                border-width: 5px;
-                border-radius: 10px
-            }
-
-               .card.hovercard:hover {
-                position: relative;
-                padding-top: 0;
-                overflow: hidden;
-                text-align: center;
-                background-color: white;
-                border-width: 5px;
-
-                   -ms-transform: scale(1); /* IE 9 */
-                -webkit-transform: scale(1); /* Safari 3-8 */
-                transform: scale(1);
-                border: 1px solid silver ;
-                box-shadow: 5px 10px 8px #888888;
-            }
-
-            .card.Ccard {
-                position: relative;
-                overflow: hidden;
-                text-align: center;
-                background-color: white;
-                border-width: 5px;
-
-                width:255px; /* or whatever width you want. */
-                max-width:255px; /* or whatever width you want. */
-                height: 275px;
-                max-height: 275px;
-                display: inline-block;
-
-                border-radius: 10px
-            }
-
-            .card.Ccard .info .title {
-                margin-bottom: 4px;
-                font-size: 24px;
-                line-height: 1;
-                color: black;
-                vertical-align: middle;
-                font-family: Arial;
-            }
-
-             .card.Ccard:hover {
-                 -ms-transform: scale(1); /* IE 9 */
-                -webkit-transform: scale(1); /* Safari 3-8 */
-                transform: scale(1);
-                border: 1px solid silver ;
-                box-shadow: 5px 10px 8px #888888;
-            }
-
-            .cardheader {
-                background: url("http://lorempixel.com/850/280/nature/4/");
-                background-size: cover;
-                height: 170px;
-                width: 300px;
-
-                position: relative;
-                top: -50px;
-                margin-bottom: -50px;
-                box-shadow: 0 4px 8px 0 silver;
-            }
-
-            .card.hovercard .info .title {
-                margin-bottom: 4px;
-                font-size: 24px;
-                line-height: 1;
-                color: black;
-                vertical-align: middle;
-                font-family: Arial;
-            }
-
-
-            .heartbutton{
-                top: -50px;
-                left: 280px;
-                position: absolute;
-                background: transparent;
-
-            }
-
-            .heartbutton{
-                top: -50px;
-                left: 280px;
-                position: absolute;
-                background: transparent;
-
-            }
-
-
-            .heartColour{
-                color: #e83e8c;
-                border: black;
-                border-width: 2px
-            }
-
-
-
-            /*footer logo*/
-            footer img{
-
-
-                width:200%;
-                height:200%;
-               text-align: left;
-
-            }
-
-
-
-
-            .well a:hover{
-                 text-decoration: none;
-
-    }
-
-        </style>
-<!--recommendation card styles-->
     <style>
 
-        .inf {        /*Card Information*/
+
+        .card {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin: 10px 0 20px 0;
+            border-top-width: 0;
+            border-bottom-width: 2px;
+            box-sizing: border-box;
+            position: relative;
+            top: -50px;
+            margin-bottom: -50px;
+            left: 18px;
+            box-shadow: 0 4px 8px 0 silver;
+        }
+
+        .card.hovercard {
+            position: relative;
+            padding-top: 0;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+            border-radius: 10px
+        }
+
+        .card.hovercard:hover {
+            position: relative;
+            padding-top: 0;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .card.Ccard {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            width: 255px; /* or whatever width you want. */
+            max-width: 255px; /* or whatever width you want. */
+            height: 275px;
+            max-height: 275px;
+            display: inline-block;
+
+            border-radius: 10px
+        }
+
+        .card.Ccard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+        .card.Ccard:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .cardheader {
+            background: url("http://lorempixel.com/850/280/nature/4/");
+            background-size: cover;
+            height: 170px;
+            width: 300px;
+
+            position: relative;
+            top: -50px;
+            margin-bottom: -50px;
+            box-shadow: 0 4px 8px 0 silver;
+        }
+
+        .card.hovercard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+
+        .heartbutton {
+            top: -50px;
+            left: 280px;
+            position: absolute;
+            background: transparent;
+
+        }
+
+        .heartbutton {
+            top: -50px;
+            left: 280px;
+            position: absolute;
+            background: transparent;
+
+        }
+
+
+        .heartColour {
+            color: #e83e8c;
+            border: black;
+            border-width: 2px
+        }
+
+
+        /*footer logo*/
+        footer img {
+
+
+            width: 200%;
+            height: 200%;
+            text-align: left;
+
+        }
+
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+    </style>
+    <!--recommendation card styles-->
+    <style>
+
+        .inf { /*Card Information*/
 
             border-radius: 8px
         }
@@ -419,10 +377,9 @@
         }
 
 
-
-        .rightColumnContainer_lower {    /*Card Frame*/
-            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset ;
-            border-radius: 8px ;
+        .rightColumnContainer_lower { /*Card Frame*/
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            border-radius: 8px;
             border: solid #e83e8c;
             height: 72px;
             width: 280px;
@@ -435,8 +392,8 @@
         .main-raised {
             margin: -60px 30px 0;
             border-radius: 6px;
-            box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
-}
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+        }
 
         .main {
             background: #FFF;
@@ -444,1039 +401,796 @@
             z-index: 3;
         }
 
-</style>
-
-
-
-
-
-
-
+    </style>
 
 
 </head>
 
-    <body>
+<body>
+<!--navigation bar at top of all pages-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
 
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>  <!--navbar-header-->
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
 
-                <div class="collapse navbar-collapse" id="myNavbar" > <!--Navigation bar contents-->
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span
+                        class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"
+                       style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span
+                        class="fa fa-book fa-lg"></span> Courses</a></li>
+            </ul>
 
-                    <!--Left-side (including search ) of navigation bar-->
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
-                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
-                        <li><a onclick="location.href='{% url 'nav_courses' %}'" style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span class="fa fa-book fa-lg"></span> Courses</a></li>
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                     </ul>
+                </li>
+            </ul>
 
-                    <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
-                        <form class="  search-form" role="search">
-                            <input type="text" class="form-control" placeholder="Search" />
-                        </form>
-                    </ul>
+            <!--1. Notifications icon + drop down-->
 
-                    <!--Right-side (including help button ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-bell"></span> </a>
 
-                    <!--1. User Profile icon + drop down-->
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                    <ul class="nav navbar-nav navbar-right" >
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                        <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <ul class="dropdown-menu">
-                                <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                                <li class="divider"></li>
-                                <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                                <li class="divider"></li>
-                                <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
-                                <li class="divider"></li>
-                                <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                    <!--1. Notifications icon + drop down-->
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                    <ul class="nav navbar-nav navbar-right ">
-                        <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
-                            <span class="glyphicon glyphicon-bell"></span> </a>
+                            </a>
 
-                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                        </div><!--End of Notifications Dropdown div-->
 
-                                <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
-
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
-
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-
-                                    </a>
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-
-                                    </a>
-
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
-                                </div><!--End of Notifications Dropdown div-->
-
-                                <!--Footer of notification drop down-->
-                                <li class="divider"></li>
-                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
-
-                            </ul> <!--Dropdown menu Notification-->
-                        </li><!--dropdown -->
-                    </ul> <!--nav navbar-nav navbar-right-->
+                    </ul> <!--Dropdown menu Notification-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
 
 
-                    <!--2. Message icon + drop down-->
+            <!--2. Message icon + drop down-->
 
-                    <ul class="nav navbar-nav navbar-right ">
-                        <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
-                            <span class="glyphicon glyphicon-envelope"></span> </a>
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
 
-                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                                <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+                        <div class="notifications-wrapper"> <!--Messages Dropdown div-->
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                                    </a>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                                    </a>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                </div><!--End of Messages Dropdown div-->
-                                <li class="divider"></li>
-                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
 
-                            </ul><!--Dropdown menu Messages-->
-                        </li><!--dropdown -->
-                    </ul> <!--nav navbar-nav navbar-right-->
-                </div><!--collapse nav-bar collapse-->
-            </div><!--container fluid-->
-        </nav><!--nav navbar-inverse-->
-
-
-        <!--HELP BUTTON
-            <a href="Courses.html"><span class=" fa fa-question-circle fa-lg" style="position: absolute; left: 1350px; font-size: medium; top: 60px;">Help</span></a>
--->
-
-
-        <!--content of courses page start-->
-        <!--heading-->
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
 
 
 
+<!--content of courses page start-->
 
 
 
-
-        <!--recommended courses-->
- <div class="back">
-
+<!--recommended courses-->
+<div class="back">
 
 
-        <br><br><br><br>
-    </div><!--end of header with background-->
+    <br><br><br><br>
+</div><!--end of header with background-->
 
 
 <!--tab heading-->
-        <div class="main main-raised">
-            <br>
-        <ul class="nav nav-tabs" style="padding-right: 500px;padding-left: 20px;">
-            <li class="active">
-                <a data-toggle="pill" href="#Mycourses">
-                       <h2 class="text-center" style="color: silver">
-                           <strong> My Courses</strong>
-                        </h2>
-                </a></li>
-            <li><a data-toggle="pill" href="#allcourses">
+<div class="main main-raised">
+    <br>
+    <ul class="nav nav-tabs" style="padding-right: 500px;padding-left: 20px;">
+        <!--the two tabs My Courses and All Courses-->
+        <li class="active">
+            <a data-toggle="pill" href="#Mycourses">
                 <h2 class="text-center" style="color: silver">
-                            <strong> All Courses</strong>
-                        </h2>
+                    <strong> My Courses</strong>
+                </h2>
             </a></li>
+        <li><a data-toggle="pill" href="#allcourses">
+            <h2 class="text-center" style="color: silver">
+                <strong> All Courses</strong>
+            </h2>
+        </a></li>
 
-         </ul>
-            <br>
-
-
-
-
-<br>
-
-         <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
-     <div class="tab-content" >
-
-           <!--my courses content-->
-            <div id="Mycourses" class="tab-pane fade in active">
+    </ul>
+    <br>
 
 
-                 <!--search bar with icon-->
-                <div class="centraliser" style="text-align: center">
-                    <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;" >
-                        <input type="text"  class="form-control" placeholder="Search"/>
-                        <span class="input-group-addon" style="color: #e83e8c; ">
+    <br>
+
+    <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
+    <div class="tab-content">
+
+        <!--my courses content-->
+        <!--this is the content for "my courses" so put all the courses the user takes here-->
+        <div id="Mycourses" class="tab-pane fade in active">
+
+
+            <!--search bar with icon-->
+            <div class="centraliser" style="text-align: center">
+                <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                    <span class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
-                    </div><!--end search bar-->
-                    </div>
-
-
-                <div class="row"><!--row one of page-->
- <!--filter panel-->
-                    <div class="col-md-3"  >
-                        <div class="container"  >
-                          <h2 style="color: silver;"><strong>Filters </strong></h2>
-
-
-                          <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
-
-                              <!--panel-->
-                              <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject" style = "color:#ce3298">
-                                      <strong>
-                                      Subject
-                                  </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseSubject" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-                                     <p> All </p>
-                                    <p> Arts & Design </p>
-                                    <p> Business & Management</p>
-                                    <p> Education</p>
-                                    <p> Entrepreneurship </p>
-                                    <p> Executive Education</p>
-                                    <p> Finance</p>
-                                    <p> Health</p>
-                                    <p> Hospitality & Events</p>
-                                    <p> Law</p>
-                                    <p> Marketing </p>
-                                    <p> Project Management</p>
-                                    <p> Real Estate</p>
-                                    <p> Systems & Technology </p>
-                                    <p> Talent Management (HR)</p>
-                                    <p> Writing</p>
-
-
-
-                                </div>
-                              </div>
-                            </div>
-
-                                <!--panel-->
-                              <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion"  href="#collapseInstitution" style = "color:#ce3298">
-                                      <strong>
-                                      Institution
-                                          </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseInstitution" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-                                    <p> All </p>
-                                    <p>Cambridge CSL</p>
-                                    <p> Harvard University</p>
-                                    <p> LSE</p>
-                                    <p>MIT</p>
-                                    <p>Oxford Saïd</p>
-                                    <p> Rice University</p>
-                                    <p>Stanford Center for Health Education</p>
-                                    <p> The University of Chicago</p>
-                                    <p> UC Berkeley</p>
-                                    <p>UC Davis Graduate School of Management</p>
-                                    <p> UCT Graduate School of Business</p>
-                                    <p>USB-ED</p>
-                                    <p> University of Cape Town</p>
-                                    <p>University of Dayton</p>
-                                    <p> WITS</p>
-                                    <p>Yale SOM Executive Education</p>
-
-                                </div>
-                              </div>
-                            </div>
-
-                              <!--panel-->
-                            <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title"><!--panel 1 heading-->
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseRecommendations" style = "color:#ce3298">
-                                        <strong>
-                                      Recommendations
-                                            </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseRecommendations" class="panel-collapse collapse in">
-                                  <!--panel 1 content-->
-                                <div class="panel-body">
-                                    <p> All </p>
-                                    <p> Highly Recommended</p>
-                                    <p> Recommended</p>
-                                    <p> No Recommendations</p>
-
-
-
-                                </div>
-                              </div>
-                            </div><!--end panel-->
-
-
-
-
-                          </div><!--end of accordion-->
-                           <!-- <form class="  search-form" role="search">
-                                    <input type="text" class="form-control" placeholder="Search" />
-
-                                </form>-->
-
-                        </div>
-                        </div><!--end col-->
-
-                    <div class="col-md-9" style="position:absolute;left:325px;">
-                        <div class="intro-form"><!--form at the top with recommendations-->
-           <form>
-                <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span class="fa fa-book fa-lg"></span> Recommended for you</p>
-              <br>
-
-               <!--recommended course cards-->
-
-               <!--make a table of 1 row and 3 coloumns-->
-               <div class="row"
-             style="width: 850px; position: relative; overflow: hidden; padding-left: 120px;">
-
-
-            <!-- Item 2-->
-
-            {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in suggested_courses_list %}
-            <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
-
-
-                <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
-
-                    <div class="inf" style="margin-top: -5px; text-align: center; ">
-
-                        <div style="height:2px;"><br></div>
-
-                        <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                            {{ course_names }}
-                        </div>
-
-
-                        <div style="height:2px;"><br></div>
-
-                        <span class="badge badge-pill badge-dark"
-                              style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
-                        <div style="height:5px;"><br></div>
-
-                        <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
-                           href={{ course_urls }}>VIEW
-                            COURSE <i class="fa fa-angle-double-right"></i></a>
-                    </div><!-- inf-->
-
-                </div><!-- RighColumnContainer-->
-
-
-            </div> <!-- col-sm-3-->
-            {% endfor %}
-
-
-
-
-        </div>
-
-
-            </form>
-
-        </div>
-
-
-                    </div>
-                </div><!--end row-->
-
-                 <div class="row"><!--row two of page-->
-
-                    <div class="col-md-3" >
-                       <!--placeholder for space by filter-->
-                        </div><!--end col-->
-
-                    {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in courses_list %}
-                    <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src={{ course_pictures }}/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                                                    </div><br><span class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href={{ course_urls }}>
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
-                     {% endfor %}
-
-
-
-                </div><!--end row-->
-
+                </div><!--end search bar-->
             </div>
 
 
+            <div class="row"><!--row one of page-->
+
+                <div class="col-md-3"><!--filter panel-->
+                    <div class="container">
+                        <h2 style="color: silver;"><strong>Filters </strong></h2>
 
 
-              <!--all coursess-->
-         <div id="allcourses" class="tab-pane fade">
+                        <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
 
-
-                  <!--search bar with icon-->
-                <div class="centraliser" style="text-align: center">
-                    <div class="input-group" style="width: 77%;padding-left: 24%;font-family: 'Roboto', sans-serif;" >
-                        <input type="text"  class="form-control" placeholder="Search"/>
-                        <span class="input-group-addon" style="color: #e83e8c; ">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </span>
-                    </div><!--end search bar-->
-                    </div>
-
-
-                <div class="row"><!--row one of page-->
- <!--filter panel-->
-                    <div class="col-md-3"  >
-                        <div class="container"  >
-                          <h2 style="color: silver;"><strong>Filters </strong></h2>
-
-
-                          <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
-
-                              <!--panel-->
-                              <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject" style = "color:#ce3298">
-                                      <strong>
-                                      Subject
-                                  </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseSubject" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-                                     <p> All </p>
-                                    <p> Arts & Design </p>
-                                    <p> Business & Management</p>
-                                    <p> Education</p>
-                                    <p> Entrepreneurship </p>
-                                    <p> Executive Education</p>
-                                    <p> Finance</p>
-                                    <p> Health</p>
-                                    <p> Hospitality & Events</p>
-                                    <p> Law</p>
-                                    <p> Marketing </p>
-                                    <p> Project Management</p>
-                                    <p> Real Estate</p>
-                                    <p> Systems & Technology </p>
-                                    <p> Talent Management (HR)</p>
-                                    <p> Writing</p>
-
-
-
-                                </div>
-                              </div>
-                            </div>
-
-                                <!--panel-->
-                              <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion"  href="#collapseInstitution" style = "color:#ce3298">
-                                      <strong>
-                                      Institution
-                                          </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseInstitution" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-                                    <p> All </p>
-                                    <p>Cambridge CSL</p>
-                                    <p> Harvard University</p>
-                                    <p> LSE</p>
-                                    <p>MIT</p>
-                                    <p>Oxford Saïd</p>
-                                    <p> Rice University</p>
-                                    <p>Stanford Center for Health Education</p>
-                                    <p> The University of Chicago</p>
-                                    <p> UC Berkeley</p>
-                                    <p>UC Davis Graduate School of Management</p>
-                                    <p> UCT Graduate School of Business</p>
-                                    <p>USB-ED</p>
-                                    <p> University of Cape Town</p>
-                                    <p>University of Dayton</p>
-                                    <p> WITS</p>
-                                    <p>Yale SOM Executive Education</p>
-
-                                </div>
-                              </div>
-                            </div>
-
-                              <!--panel-->
+                            <!--panel-->
                             <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title"><!--panel 1 heading-->
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseRecommendations" style = "color:#ce3298">
-                                        <strong>
-                                      Recommendations
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Subject
                                             </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseRecommendations" class="panel-collapse collapse in">
-                                  <!--panel 1 content-->
-                                <div class="panel-body">
-                                    <p> All </p>
-                                    <p> Highly Recommended</p>
-                                    <p> Recommended</p>
-                                    <p> No Recommendations</p>
-
-
-
+                                        </a>
+                                    </h4>
                                 </div>
-                              </div>
+                                <div id="collapseSubject" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                        <p> All </p>
+                                        <p> Arts & Design </p>
+                                        <p> Business & Management</p>
+                                        <p> Education</p>
+                                        <p> Entrepreneurship </p>
+                                        <p> Executive Education</p>
+                                        <p> Finance</p>
+                                        <p> Health</p>
+                                        <p> Hospitality & Events</p>
+                                        <p> Law</p>
+                                        <p> Marketing </p>
+                                        <p> Project Management</p>
+                                        <p> Real Estate</p>
+                                        <p> Systems & Technology </p>
+                                        <p> Talent Management (HR)</p>
+                                        <p> Writing</p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseInstitution"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Institution
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseInstitution" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                        <p> All </p>
+                                        <p>Cambridge CSL</p>
+                                        <p> Harvard University</p>
+                                        <p> LSE</p>
+                                        <p>MIT</p>
+                                        <p>Oxford Saïd</p>
+                                        <p> Rice University</p>
+                                        <p>Stanford Center for Health Education</p>
+                                        <p> The University of Chicago</p>
+                                        <p> UC Berkeley</p>
+                                        <p>UC Davis Graduate School of Management</p>
+                                        <p> UCT Graduate School of Business</p>
+                                        <p>USB-ED</p>
+                                        <p> University of Cape Town</p>
+                                        <p>University of Dayton</p>
+                                        <p> WITS</p>
+                                        <p>Yale SOM Executive Education</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><!--panel 1 heading-->
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseRecommendations" style="color:#ce3298">
+                                            <strong>
+                                                Recommendations
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseRecommendations" class="panel-collapse collapse in">
+                                    <!--panel 1 content-->
+                                    <div class="panel-body">
+                                        <p> All </p>
+                                        <p> Highly Recommended</p>
+                                        <p> Recommended</p>
+                                        <p> No Recommendations</p>
+
+
+                                    </div>
+                                </div>
                             </div><!--end panel-->
 
 
+                        </div><!--end of accordion-->
+                        <!-- <form class="  search-form" role="search">
+                                 <input type="text" class="form-control" placeholder="Search" />
+
+                             </form>-->
+
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-md-9" style="position:absolute;left:325px;"><!--courses-->
+                    <div class="intro-form"><!--form at the top with recommendations-->
+                        <form>
+                            <!--recommended course cards-->
+                            <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span
+                                    class="fa fa-book fa-lg"></span> Recommended for you</p>
+                            <br>
 
 
-                          </div><!--end of accordion-->
-                           <!-- <form class="  search-form" role="search">
-                                    <input type="text" class="form-control" placeholder="Search" />
-
-                                </form>-->
-
-                        </div>
-                        </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
+                            <!--make a table of 1 row and 3 coloumns-->
+                            <div class="row"
+                                 style="width: 850px; position: relative; overflow: hidden; padding-left: 120px;">
 
 
+                                <!-- Item 2-->
 
-                    </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
+                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in suggested_courses_list %}
+                                    <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
+                                        <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
 
-                    </div><!--end col-->
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
+                                            <div class="inf" style="margin-top: -5px; text-align: center; ">
 
-                         <!-- My Courses: Item 1 -->
+                                                <div style="height:2px;"><br></div>
 
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                                <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                                    {{ course_names }}
+                                                </div>
 
-                                                <div class="container">
 
-                                                    <div class="row">
+                                                <div style="height:2px;"><br></div>
 
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
+                                                <span class="badge badge-pill badge-dark"
+                                                      style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
+                                                <div style="height:5px;"><br></div>
 
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+                                                <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
+                                                   href={{ course_urls }}>VIEW
+                                                    COURSE <i class="fa fa-angle-double-right"></i></a>
+                                            </div><!-- inf-->
 
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
+                                        </div><!-- RighColumnContainer-->
 
+
+                                    </div> <!-- col-sm-3-->
+                                {% endfor %}
+
+
+                            </div>
+
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div><!--end row-->
+
+            <div class="row"><!--row two of page-->
+
+                <div class="col-md-3">
+                    <!--placeholder for space by filter-->
+                </div><!--end col-->
+
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in courses_list %}
+                    <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
+
+                        <!-- My Courses: Item 1 -->
+
+                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                              rel="stylesheet">
+
+                        <div class="container">
+
+                            <div class="row">
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="cardheader" style="background-image: url(
+                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                    <div class="heartbutton"><span style="background: transparent" type="button"
+                                                                   class="fa fa-heart fa-2x heartColour"></span></div>
+                                    <div class="card hovercard  ">
+                                        <div class="avatar"><br>
+                                            {% load staticfiles %}
+                                            <img src={{ course_pictures }}/>
+                                        </div>
+                                        <br>
+                                        <div class="info">
+                                            <div class="title"></div>
+                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                            </div>
+                                            <br><span
+                                                class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
+                                        </div>
+
+                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                           href={{ course_urls }}>
+                                            VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                        </a>
+                                    </div>
+                                </div><!-- /col-lg-3 col-sm-6 -->
+
+                            </div><!-- /row -->
+                        </div><!-- /container -->
 
 
                     </div><!--end col-->
+                {% endfor %}
 
-                </div><!--end row-->
 
-                 <div class="row"><!--row two of page-->
+            </div><!--end row-->
 
-                    <div class="col-md-3"  >
-                       <!--placeholder for space by filter-->
-                        </div><!--end col-->
+        </div>
 
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
 
-                         <!-- My Courses: Item 1 -->
+        <!-- content for all courses tab-->
+        <div id="allcourses" class="tab-pane fade in active">
 
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-                                                <div class="container">
+            <!--search bar with icon-->
+            <div class="centraliser" style="text-align: center">
+                <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                    <span class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                </div><!--end search bar-->
+            </div>
 
-                                                    <div class="row">
 
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
+            <div class="row"><!--row one of page-->
 
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+                <div class="col-md-3"><!--filter panel-->
+                    <div class="container">
+                        <h2 style="color: silver;"><strong>Filters </strong></h2>
 
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
 
+                        <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Subject
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseSubject" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                        <p> All </p>
+                                        <p> Arts & Design </p>
+                                        <p> Business & Management</p>
+                                        <p> Education</p>
+                                        <p> Entrepreneurship </p>
+                                        <p> Executive Education</p>
+                                        <p> Finance</p>
+                                        <p> Health</p>
+                                        <p> Hospitality & Events</p>
+                                        <p> Law</p>
+                                        <p> Marketing </p>
+                                        <p> Project Management</p>
+                                        <p> Real Estate</p>
+                                        <p> Systems & Technology </p>
+                                        <p> Talent Management (HR)</p>
+                                        <p> Writing</p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseInstitution"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Institution
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseInstitution" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                        <p> All </p>
+                                        <p>Cambridge CSL</p>
+                                        <p> Harvard University</p>
+                                        <p> LSE</p>
+                                        <p>MIT</p>
+                                        <p>Oxford Saïd</p>
+                                        <p> Rice University</p>
+                                        <p>Stanford Center for Health Education</p>
+                                        <p> The University of Chicago</p>
+                                        <p> UC Berkeley</p>
+                                        <p>UC Davis Graduate School of Management</p>
+                                        <p> UCT Graduate School of Business</p>
+                                        <p>USB-ED</p>
+                                        <p> University of Cape Town</p>
+                                        <p>University of Dayton</p>
+                                        <p> WITS</p>
+                                        <p>Yale SOM Executive Education</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><!--panel 1 heading-->
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseRecommendations" style="color:#ce3298">
+                                            <strong>
+                                                Recommendations
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseRecommendations" class="panel-collapse collapse in">
+                                    <!--panel 1 content-->
+                                    <div class="panel-body">
+                                        <p> All </p>
+                                        <p> Highly Recommended</p>
+                                        <p> Recommended</p>
+                                        <p> No Recommendations</p>
+
+
+                                    </div>
+                                </div>
+                            </div><!--end panel-->
+
+
+                        </div><!--end of accordion-->
+                        <!-- <form class="  search-form" role="search">
+                                 <input type="text" class="form-control" placeholder="Search" />
+
+                             </form>-->
+
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-md-9" style="position:absolute;left:325px;"><!--courses-->
+                    <div class="intro-form"><!--form at the top with recommendations-->
+                        <form>
+                            <!--recommended course cards-->
+                            <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span
+                                    class="fa fa-book fa-lg"></span> Recommended for you</p>
+                            <br>
+
+
+                            <!--make a table of 1 row and 3 coloumns-->
+                            <div class="row"
+                                 style="width: 850px; position: relative; overflow: hidden; padding-left: 120px;">
+
+
+                                <!-- Item 2-->
+
+                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in suggested_courses_list %}
+                                    <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
+
+
+                                        <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
+
+                                            <div class="inf" style="margin-top: -5px; text-align: center; ">
+
+                                                <div style="height:2px;"><br></div>
+
+                                                <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                                    {{ course_names }}
+                                                </div>
+
+
+                                                <div style="height:2px;"><br></div>
+
+                                                <span class="badge badge-pill badge-dark"
+                                                      style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
+                                                <div style="height:5px;"><br></div>
+
+                                                <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
+                                                   href={{ course_urls }}>VIEW
+                                                    COURSE <i class="fa fa-angle-double-right"></i></a>
+                                            </div><!-- inf-->
+
+                                        </div><!-- RighColumnContainer-->
+
+
+                                    </div> <!-- col-sm-3-->
+                                {% endfor %}
+
+
+                            </div>
+
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div><!--end row-->
+
+            <div class="row"><!--row two of page-->
+
+                <div class="col-md-3">
+                    <!--placeholder for space by filter-->
+                </div><!--end col-->
+
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in courses_list %}
+                    <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
+
+                        <!-- My Courses: Item 1 -->
+
+                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                              rel="stylesheet">
+
+                        <div class="container">
+
+                            <div class="row">
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="cardheader" style="background-image: url(
+                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                    <div class="heartbutton"><span style="background: transparent" type="button"
+                                                                   class="fa fa-heart fa-2x heartColour"></span></div>
+                                    <div class="card hovercard  ">
+                                        <div class="avatar"><br>
+                                            {% load staticfiles %}
+                                            <img src={{ course_pictures }}/>
+                                        </div>
+                                        <br>
+                                        <div class="info">
+                                            <div class="title"></div>
+                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                            </div>
+                                            <br><span
+                                                class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
+                                        </div>
+
+                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                           href={{ course_urls }}>
+                                            VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                        </a>
+                                    </div>
+                                </div><!-- /col-lg-3 col-sm-6 -->
+
+                            </div><!-- /row -->
+                        </div><!-- /container -->
 
 
                     </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
+                {% endfor %}
 
 
+            </div><!--end row-->
 
-                    </div><!--end col-->
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
+        </div>
+    </div>
 
 
+    <br><br>
 
-                    </div><!--end col-->
-
-                </div><!--end row-->
-
-                 <div class="row"><!--row 3 of page-->
-
-                    <div class="col-md-3"  >
-                       <!--placeholder for space by filter-->
-                        </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
-
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
-
-                         <!-- My Courses: Item 1 -->
-
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-                                                <div class="container">
-
-                                                    <div class="row">
-
-                                                        <div class="col-lg-3 col-sm-6">
-                                                            <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
-                                                            <div class="heartbutton"><span style="background: transparent" type="button" class="fa fa-heart fa-2x heartColour"></span></div>
-                                                            <div class="card hovercard  ">
-                                                                <div class="avatar"><br>
-                                                                    {% load staticfiles %}
-                                                                    <img src="{% static "GC_Auth/UserProfile_images/MIT.png" %}"/>
-                                                                </div><br>
-                                                                <div class="info">
-                                                                    <div class="title"></div>
-                                                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">Artificial Intelligence: Implications of Business Strategy
-                                                                    </div><br><span class="badge badge-pill badge-dark">Highly Recommended</span>
-                                                                </div>
-
-                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                   href="https://www.getsmarter.com/courses/uk/oxford-blockchain-strategy-programme">
-                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /col-lg-3 col-sm-6 -->
-                                                    </div><!-- /row -->
-                                                </div><!-- /container -->
-
-
-
-                    </div><!--end col-->
-
-                </div><!--end row-->
-         </div>
-     </div>
-
-
-        <br><br>
-
-        <!--pagination-->
-<div class="centraliser" style="text-align: center;" >
+    <!--pagination-->
+    <div class="centraliser" style="text-align: center;">
         <nav aria-label="Page navigation example" style="display: inline-block;">
-              <ul class="pagination">
+            <ul class="pagination">
                 <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous" style="color: #e83e8c">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                  </a>
+                    <a class="page-link" href="#" aria-label="Previous" style="color: #e83e8c">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
                 </li>
-                <li class="page-item" ><a class="page-link" href="#" style="color: #e83e8c">1</a></li>
+                <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">1</a></li>
                 <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">2</a></li>
                 <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">3</a></li>
                 <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next" style="color: #e83e8c">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                  </a>
+                    <a class="page-link" href="#" aria-label="Next" style="color: #e83e8c">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </li>
-              </ul>
+            </ul>
         </nav>
     </div>
 
@@ -1484,13 +1198,9 @@
 </div>
 
 
-
-
-
-
 <br>
-    <!--footer-->
-    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;" >
+<!--footer-->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
 
 
     <div class="container">
@@ -1503,61 +1213,57 @@
             <li class="list-inline-item">
 
 
+                <div class="row"><!--table row-->
 
-
-
-                <div class="row" ><!--table row-->
-
-                    <div class="col-sm-3"  style="text-align:left;padding-right: 100px;">
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
                         <br>
-                    {% load staticfiles %}
-                        <img src="{% static "GC_Auth/logotrans.png" %}" alt= "lock" class="image" >
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
                     </div>
 
 
-                        <div class="col-sm-3"  style="text-align:left;padding-left: 120px;">
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
 
-                          <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
-                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Home</p></a>
-                                <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"> <p>Connections</p></a>
-                                <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"> <p>Forums</p></a>
-                                <a onclick="location.href='{% url 'nav_courses' %}'"  style="color: white"> <p>Courses</p></a>
-                         </div>
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
+                    </div>
 
                     <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
 
-                              <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
 
-                                <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"> <p>What is GetConnected?</p></a>
-                                <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"> <p>Your Account</p></a>
-                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Forum Help</p></a>
-                                <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"> <p>Connection Management</p></a>
-                               <a onclick="location.href='{% url 'nav_home' %}'"style="color: white"> <p>Messaging</p></a>
-                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"> <p>GetSmarter</p></a>
-
-
-
-                         </div>
-
-                      <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
-
-                              <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
-                             <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
-                                <p style="color:white;"> <strong>Email: </strong> getConnected@GetSmarter.co.za</p>
-                                 <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
+                            GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Forum Help</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Connection
+                            Management</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Messaging</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
 
 
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
 
 
-
-                         </div>
-
+                    </div>
 
 
                 </div>
 
                 <br>
-                 <br>
+                <br>
 
 
             </li>
@@ -1569,19 +1275,19 @@
 </footer>
 
 
-    <!--carousel script-->
-    <!-- Script for Carousel -->
+<!--carousel script-->
+<!-- Script for Carousel -->
 
 <script>
 
 
-        / Carousel Auto-Cycle
-        $(document).ready(function () {
-            $('.carousel').carousel({
-                interval: 6000
-            })
-        });
+    / Carousel Auto-Cycle
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: 6000
+        })
+    });
 
-    </script>
+</script>
 
-    </body>
+</body>
