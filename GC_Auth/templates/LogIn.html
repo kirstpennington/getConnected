@@ -438,55 +438,109 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-{% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions in trending_forums_list %}
-      <div class="item active">
-       <!--  <img src="../GC_Auth/static/GC_Auth/blog1.jpg" alt="Los Angeles" style="width:100%;"> -->
 
-          {% load staticfiles %}
+            <!-- Item One -->
 
+        <div class="item active">
+            {% load staticfiles %}
+            <img src="{% static "GC_Auth/blog1.jpg" %}" alt="Los Angeles" style="width:100%;"/>
+            <div class="carousel-caption">
 
-        <img src="{{ forum_pics }}" alt="Los Angeles" style="width:100%;"/>
-
-
-
-
-        <div class="carousel-caption">
-          <h3>Title</h3>
-          <p>Description</p>
-              <div class="intro-form">
-
-                  <form style="margin-top: -210px; margin-left: 320px; max-height: 200px; border-radius: 10px; background-color: lightgrey; max-width: 800px">
-                      <!-- references the methods (see below)>> form must be closed when button is clicked-->
-                      <span style="margin-top: -15px;"  onclick="CloseIntroForm()" class="close" title="Close Modal"><h8 style=""><span style="" class="label label-default"><span class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
-
+                <div class="intro-form">
+                    <form style="margin-top: -260px; margin-left: 320px; max-height: 200px; border-radius: 10px; background-color: white; max-width: 800px">
+              <span style="margin-top: -15px;" onclick="CloseIntroForm()" class="close"
+                    title="Close Modal"><h8 style=""><span style="" class="label label-default"><span
+                      class="fa fa-users"> </span>100</span></h8>
 </span>
-                         <br>
-                      <h4 style="color: hotpink" class="text-center">{{ forum_names }}</h4>
-                      <p class="text-center" style="color: black"> {{ forum_descriptions }}
-                          <br></br> <!-- makes a space otherwise elements are too squished-->
-                          <!--<a href="#" onclick="CloseIntroForm(); OpenLogIn()" class="btn btn-info btn-lg">
-                              <span class="glyphicon glyphicon-log-in"></span> Log in
-                            </a>-->
-                      <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
+                        <br>
 
-                          <button style="margin-top: -30px;" onclick="CloseIntroForm(); OpenLogIn()" type="button">
-                              <span class="glyphicon glyphicon-log-in"></span>
-                              Log in
-                          </button>
-                      </div>
-                      </p>
-                  </form>
+                        <h4 style="color: hotpink" class="text-center">Python Programming Discussion</h4>
+                        <p class="text-center" style="color: black">This forum is for people
+                            <br>
 
+                        <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
 
-  </div>
+                            <button style="margin-bottom: -20px;" onclick="CloseIntroForm(); OpenLogIn()"
+                                    type="button">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Log in
+                            </button>
+
+                        </div>
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
 
-      </div>
- {% endfor %}
+        <!-- Item Two -->
 
+
+
+      <div class="item">
+     {% load staticfiles %}
+            <img src="{% static "GC_Auth/blog1.jpg" %}" alt="Los Angeles" style="width:100%;"/>
+            <div class="carousel-caption">
+
+                <div class="intro-form">
+                    <form style="margin-top: -260px; margin-left: 320px; max-height: 200px; border-radius: 10px; background-color: white; max-width: 800px">
+              <span style="margin-top: -15px;" onclick="CloseIntroForm()" class="close"
+                    title="Close Modal"><h8 style=""><span style="" class="label label-default"><span
+                      class="fa fa-users"> </span>100</span></h8>
+</span>
+                        <br>
+
+                        <h4 style="color: hotpink" class="text-center">Python Programming Discussion</h4>
+                        <p class="text-center" style="color: black">This forum is for people
+                            <br>
+
+                        <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
+
+                            <button style="margin-bottom: -20px;" onclick="CloseIntroForm(); OpenLogIn()"
+                                    type="button">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Log in
+                            </button>
+
+                        </div>
+                        </p>
+                    </form>
+                </div>
+            </div>
+      </div>
+
+      <div class="item">
+        {% load staticfiles %}
+            <img src="{% static "GC_Auth/blog1.jpg" %}" alt="Los Angeles" style="width:100%;"/>
+            <div class="carousel-caption">
+
+                <div class="intro-form">
+                    <form style="margin-top: -260px; margin-left: 320px; max-height: 200px; border-radius: 10px; background-color: white; max-width: 800px">
+              <span style="margin-top: -15px;" onclick="CloseIntroForm()" class="close"
+                    title="Close Modal"><h8 style=""><span style="" class="label label-default"><span
+                      class="fa fa-users"> </span>100</span></h8>
+</span>
+                        <br>
+
+                        <h4 style="color: hotpink" class="text-center">Python Programming Discussion</h4>
+                        <p class="text-center" style="color: black">This forum is for people
+                            <br>
+
+                        <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
+
+                            <button style="margin-bottom: -20px;" onclick="CloseIntroForm(); OpenLogIn()"
+                                    type="button">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Log in
+                            </button>
+
+                        </div>
+                        </p>
+                    </form>
+                </div>
+            </div>
 
     </div>
-
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -499,6 +553,9 @@
     </a>
   </div>
 </div>
+
+
+
 
 <br></br>
 <!-- Footer -->
