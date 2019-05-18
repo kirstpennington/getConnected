@@ -813,7 +813,7 @@
 
                                 <!-- Item 2-->
 
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in suggested_courses_list %}
+                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in suggested_courses_list %}
                                     <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
@@ -826,7 +826,8 @@
                                                 <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
                                                     {{ course_names }}
                                                 </div>
-
+                                                <!-- hidden field that stores the id of the entity  -->
+                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
 
                                                 <div style="height:2px;"><br></div>
 
@@ -863,7 +864,7 @@
                     <!--placeholder for space by filter-->
                 </div><!--end col-->
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in courses_list %}
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in courses_list %}
                     <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
@@ -876,8 +877,7 @@
                             <div class="row">
 
                                 <div class="col-lg-3 col-sm-6">
-                                    <div class="cardheader" style="background-image: url(
-                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                    <div class="cardheader" style="background-image: url({% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
                                     <div class="heartbutton"><span style="background: transparent" type="button"
                                                                    class="fa fa-heart fa-2x heartColour"></span></div>
                                     <div class="card hovercard  ">
@@ -890,6 +890,8 @@
                                             <div class="title"></div>
                                             <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
                                             </div>
+                                        <!-- hidden field that stores the id of the entity  -->
+                                         <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
                                             <br><span
                                                 class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                         </div>
@@ -1065,7 +1067,7 @@
 
                                 <!-- Item 2-->
 
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in suggested_courses_list %}
+                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in suggested_courses_list %}
                                     <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
@@ -1078,7 +1080,8 @@
                                                 <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
                                                     {{ course_names }}
                                                 </div>
-
+                                                <!-- hidden field that stores the id of the entity  -->
+                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
 
                                                 <div style="height:2px;"><br></div>
 
@@ -1115,7 +1118,7 @@
                     <!--placeholder for space by filter-->
                 </div><!--end col-->
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics in courses_list %}
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in courses_list %}
                     <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
@@ -1142,6 +1145,8 @@
                                             <div class="title"></div>
                                             <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
                                             </div>
+                                        <!-- hidden field that stores the id of the entity  -->
+                                        <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
                                             <br><span
                                                 class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                         </div>

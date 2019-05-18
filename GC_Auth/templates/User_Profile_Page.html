@@ -1030,7 +1030,7 @@
 
 
 
-                {% for names, countries, pictures, bio in connections_suggestions_list|slice:":3"  %}
+                {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3"  %}
                 <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
 
                     <div style="position: relative; left: 250px; top: 3px;">
@@ -1048,7 +1048,8 @@
                             <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
                                 {{ names }}
                             </div>
-
+                            <!-- hidden field that stores the id of the entity  -->
+                            <div id="connection_id" style="display: none;"> {{ conn_id }}</div>
                             <h8 style="display: inline-block;margin-left: 10px;margin-top: 4px;font-family: serif; font-size: small; color: black">
                                 mutual conections &nbsp;<span class="label label-default" style="color: white"> {{ numConnections }} </span></h8>
                             <br>
@@ -1080,7 +1081,7 @@
 
 
 
-                {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions in forums_suggestions_list|slice:":3" %}
+                {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
                 <div class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
 
                     <div style="position: relative; left: 235px; top: 3px;">
@@ -1096,6 +1097,7 @@
                             <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
                                 {{ forum_names }}
                             </div>
+                        <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
 
                             <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
                                 Creator: {{ forum_creators }}</h8>
@@ -1128,7 +1130,7 @@
 
          <a href="#" ><span style="position: absolute;top: 5px; left: 700px; color: gray; " data-toggle="tooltip" title="Add Forum"  data-placement="right" class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
 
-            {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions in forums_list|slice:":3" %}
+            {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
             <div class="col-sm-3  " style="; width: 180px; margin-left:35px;  ">
                 <!-- forum wallpaper -->
                 <div class="cardheader" style="background-image: {% load staticfiles %}{{ forum_pics }} ; border-radius: 8px"></div>
@@ -1147,6 +1149,7 @@
 
                         <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
                         </div>
+                        <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
                         <!-- forum tags -->
                         <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
 
@@ -1180,7 +1183,7 @@
                 Courses</h5>
             <div style="height:10px;"><br></div>
 
-            {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics in course_list|slice:":4" %}
+            {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics, courses_ids in course_list|slice:":4" %}
              {% load staticfiles %}
              <div class="col-sm-3  " style=" width: 202px; margin-top: 25px; margin-left: 10px; display:{{ course_display_1 }}  ">
 
@@ -1194,7 +1197,8 @@
                         <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
                             {{ course_names }}
                         </div>
-
+                         <!-- hidden field that stores the id of the entity  -->
+                        <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
 
                         <div style="height:2px;"><br></div>
 

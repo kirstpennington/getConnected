@@ -63,9 +63,49 @@ email = ""
 # LOGIN methods
 
 def LogIn(request):
-    return render(request, "LogIn.html",{'trending_forums_list': getTrendingForums(
+    forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(*getTrendingForums())        # unzip all elements of each trending forum
 
-    )} )
+    if len(forum_names) == 0:
+        return render(request, "LogIn.html", {'show_forum_1': 'hidden',
+                                              'show_forum_2': 'hidden',
+                                              'show_forum_3': 'hidden'})
+    if len(forum_names) == 1:
+        return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                              'forum_1_pic': forum_pics[0],
+                                              'forum_1_participants': forum_num_participants[0],
+                                              'forum_1_name': forum_names[0],
+                                              'forum_1_description': forum_descriptions[0],
+                                              'show_forum_2': 'hidden',
+                                              'show_forum_3': 'hidden'})
+    if len(forum_names) == 2:
+        return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                              'forum_1_pic': forum_pics[0],
+                                              'forum_1_participants': forum_num_participants[0],
+                                              'forum_1_name': forum_names[0],
+                                              'forum_1_description': forum_descriptions[0],
+                                              'show_forum_2': 'visible',
+                                              'forum_2_pic': forum_pics[1],
+                                              'forum_2_participants': forum_num_participants[1],
+                                              'forum_2_name': forum_names[1],
+                                              'forum_2_description': forum_descriptions[1],
+                                              'show_forum_3': 'hidden'})
+
+    return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                          'forum_1_pic': forum_pics[0],
+                                          'forum_1_participants': forum_num_participants[0],
+                                          'forum_1_name': forum_names[0],
+                                          'forum_1_description': forum_descriptions[0],
+                                          'show_forum_2': 'visible',
+                                          'forum_2_pic': forum_pics[1],
+                                          'forum_2_participants': forum_num_participants[1],
+                                          'forum_2_name': forum_names[1],
+                                          'forum_2_description': forum_descriptions[1],
+                                          'show_forum_3': 'visible',
+                                          'forum_3_pic': forum_pics[2],
+                                          'forum_3_participants': forum_num_participants[2],
+                                          'forum_3_name': forum_names[2],
+                                          'forum_3_description': forum_descriptions[2]
+                                          })
 
 
 def passwordReset(request):
@@ -273,6 +313,7 @@ def getConnectionsInfoList(connections_id_list):
     countries = []
     pictures = []
     bio = []
+    conn_id = []
 
     for id in connections_id_list:
         if getNamePrivacy(id) == "False":  # checks the user's privacy settings before displaying it in the suggestion
@@ -296,7 +337,9 @@ def getConnectionsInfoList(connections_id_list):
         else:
             bio.append("Bio Private")
 
-    return zip(names, countries, pictures, bio)
+        conn_id.append(id)
+
+    return zip(names, countries, pictures, bio, conn_id)
 
 
 
@@ -308,6 +351,7 @@ def getCoursesInfoList(courses_id_list):
     course_recommendations = []
     course_urls = []
     course_uni_pics = []
+    courses_ids = []
 
     for id in courses_id_list:
         try:
@@ -316,11 +360,12 @@ def getCoursesInfoList(courses_id_list):
             course_recommendations.append(getCourseRecommended(id))
             course_urls.append(getCourseURL(id))
             course_uni_pics.append(getCourseUniPic(id))
+            courses_ids.append(id)
         except:
             print("")
 
     # return a combination of all lists
-    combined_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics)
+    combined_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids)
     return combined_list
 
 
@@ -385,6 +430,7 @@ def getForumsInfoList(forums_id_list):
     forum_creators = []
     forum_topics = []
     forum_descriptions = []
+    forum_ids = []
 
     for id in forums_id_list:
         forum_names.append(getForumName(id))
@@ -393,9 +439,10 @@ def getForumsInfoList(forums_id_list):
         forum_creators.append(getForumCreator(id))
         forum_topics.append(getForumTopicsString(id))
         forum_descriptions.append(getForumDescription(id))
+        forum_ids.append(id)
 
     # return a combination of all lists
-    combined_forums_list = zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions)
+    combined_forums_list = zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids)
     return combined_forums_list
 
 
@@ -564,6 +611,10 @@ def getUserTopicsList(uid):
 
 
 # UPDATE Methods
+
+def heartCourse():
+    print()
+
 
 def updateProfile(request):
 

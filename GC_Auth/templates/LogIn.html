@@ -431,9 +431,9 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel" >
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li style="visibility: {{ show_forum_1 }};" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li style="visibility: {{ show_forum_2 }};" data-target="#myCarousel" data-slide-to="1"></li>
+      <li style="visibility: {{ show_forum_3 }};" data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -441,21 +441,21 @@
 
             <!-- Item One -->
 
-        <div class="item active">
+        <div class="item active" style="visibility: {{ show_forum_1 }};">
             {% load staticfiles %}
-            <img src="{% static "GC_Auth/blog1.jpg" %}" alt="Los Angeles" style="width:100%;"/>
+            <img src={{ forum_1_pic }} alt="LosAngeles" style="width:100%;"/>
             <div class="carousel-caption">
 
                 <div class="intro-form">
                     <form style="margin-top: -260px; margin-left: 320px; max-height: 200px; border-radius: 10px; background-color: white; max-width: 800px">
               <span style="margin-top: -15px;" onclick="CloseIntroForm()" class="close"
                     title="Close Modal"><h8 style=""><span style="" class="label label-default"><span
-                      class="fa fa-users"> </span>100</span></h8>
+                      class="fa fa-users"> </span>{{ forum_1_participants }}</span></h8>
 </span>
                         <br>
 
-                        <h4 style="color: hotpink" class="text-center">Python Programming Discussion</h4>
-                        <p class="text-center" style="color: black">This forum is for people
+                        <h4 style="color: hotpink" class="text-center">{{ forum_1_name }}</h4>
+                        <p class="text-center" style="color: black">{{ forum_1_description }}
                             <br>
 
                         <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
@@ -477,21 +477,21 @@
 
 
 
-      <div class="item">
+      <div class="item" style="visibility: {{ show_forum_2 }};">
      {% load staticfiles %}
-            <img src="{% static "GC_Auth/blog1.jpg" %}" alt="Los Angeles" style="width:100%;"/>
+            <img src={{ forum_2_pic }} alt="LosAngeles" style="width:100%;"/>
             <div class="carousel-caption">
 
                 <div class="intro-form">
                     <form style="margin-top: -260px; margin-left: 320px; max-height: 200px; border-radius: 10px; background-color: white; max-width: 800px">
               <span style="margin-top: -15px;" onclick="CloseIntroForm()" class="close"
                     title="Close Modal"><h8 style=""><span style="" class="label label-default"><span
-                      class="fa fa-users"> </span>100</span></h8>
+                      class="fa fa-users"> </span>{{ forum_2_participants }}</span></h8>
 </span>
                         <br>
 
-                        <h4 style="color: hotpink" class="text-center">Python Programming Discussion</h4>
-                        <p class="text-center" style="color: black">This forum is for people
+                        <h4 style="color: hotpink" class="text-center">{{ forum_2_name }}</h4>
+                        <p class="text-center" style="color: black">{{ forum_2_description }}
                             <br>
 
                         <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
@@ -509,21 +509,21 @@
             </div>
       </div>
 
-      <div class="item">
+      <div class="item" style="visibility: {{ show_forum_3 }};">
         {% load staticfiles %}
-            <img src="{% static "GC_Auth/blog1.jpg" %}" alt="Los Angeles" style="width:100%;"/>
+            <img src={{ forum_3_pic }} alt="LosAngeles" style="width:100%;"/>
             <div class="carousel-caption">
 
                 <div class="intro-form">
                     <form style="margin-top: -260px; margin-left: 320px; max-height: 200px; border-radius: 10px; background-color: white; max-width: 800px">
               <span style="margin-top: -15px;" onclick="CloseIntroForm()" class="close"
                     title="Close Modal"><h8 style=""><span style="" class="label label-default"><span
-                      class="fa fa-users"> </span>100</span></h8>
+                      class="fa fa-users"> </span>{{ forum_3_participants }}</span></h8>
 </span>
                         <br>
 
-                        <h4 style="color: hotpink" class="text-center">Python Programming Discussion</h4>
-                        <p class="text-center" style="color: black">This forum is for people
+                        <h4 style="color: hotpink" class="text-center">{{ forum_3_name }}</h4>
+                        <p class="text-center" style="color: black">{{ forum_3_description }}
                             <br>
 
                         <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
