@@ -403,6 +403,9 @@ def getCourseRecommended(course_id):
         return "Highly Recommended"
 
 
+def getCourseNumRecommendations(course_id):
+    return database.child("Courses").child(course_id).child("NumRecommendations").get().val()
+
 
 def getCourseURL(course_id):
     return database.child("Courses").child(course_id).child("CourseURL").get().val()
@@ -612,8 +615,11 @@ def getUserTopicsList(uid):
 
 # UPDATE Methods
 
-def heartCourse():
-    print()
+def heartCourse(request):
+    if request.method == "POST":
+        course_id = request.POST.get("course_id")                                       # get the id of the course that is being hearted
+        num_rec = int(getCourseNumRecommendations(course_id)) + 1                       # add 1 to the number of course recommendations for the selected course
+        updateCourseNumRecommendations(course_id, num_rec)
 
 
 def updateProfile(request):
@@ -674,6 +680,7 @@ def updatePrivacySettings(request):
                                                 'forumsPrivacy': forumsPrivacy
                                                 })
     # individual update methods
+
 
 
 def updateUsername(user, name):
@@ -841,6 +848,10 @@ def updateCoursesPrivacy(user, coursesPrivacy):
         user_privacy.courses = coursesPrivacy
     except:
         return ""
+
+
+def updateCourseNumRecommendations(course_id, num_rec):
+    database.child("Courses").child(course_id).update({'NumRecommendations': num_rec})
 
 
 def updateForumsPrivacy(user, forumsPrivacy):
