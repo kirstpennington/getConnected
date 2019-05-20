@@ -1183,7 +1183,7 @@
                 Courses</h5>
             <div style="height:10px;"><br></div>
 
-            {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics, courses_ids in course_list|slice:":4" %}
+            {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in course_list|slice:":4" %}
              {% load staticfiles %}
              <div class="col-sm-3  " style=" width: 202px; margin-top: 25px; margin-left: 10px; display:{{ course_display_1 }}  ">
 

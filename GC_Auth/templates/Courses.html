@@ -42,6 +42,34 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+                                        <script>
+
+                                             // replace list of my courses with filtered courses
+                                            function searchByTopic(){
+                                                alert("!!!!!!!!!!");
+                                                topic = document.getElementById('financeFilter').innerText;
+                                                course_list = {{ courses_list|safe }};       // get the list of courses
+                                                alert(course_list + "");
+                                                // remove unwanted items from view
+                                                // new approach: just hide the block that don't appear in the list
+
+                                                // for loop through course_ids
+                                                    // check if topics list for this course_id contains Finance
+                                                    // if not: change html to hide this block - id of element = (course_id)_hide
+
+                                                // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
+                                                document.getElementById('refreshSectionFilter').innerHTML = course_list[0][0];  // debug
+
+                                            }
+                                            // repeat function for all topics
+
+                                            // repeat for recommendations
+                                            // repeat for university
+                                            // repeat for search function to check if name or description contains string typed
+                                        </script>
+
+
     <!--NavigationBar Style-->
 
     <style>
@@ -702,14 +730,13 @@
                                 </div>
                                 <div id="collapseSubject" class="panel-collapse collapse">
                                     <div class="panel-body">
-
                                         <p> All </p>
                                         <p> Arts & Design </p>
                                         <p> Business & Management</p>
                                         <p> Education</p>
                                         <p> Entrepreneurship </p>
                                         <p> Executive Education</p>
-                                        <p> Finance</p>
+                                        <button onclick="searchByTopic()" id='financeFilter' >Finance</button>
                                         <p> Health</p>
                                         <p> Hospitality & Events</p>
                                         <p> Law</p>
@@ -719,7 +746,6 @@
                                         <p> Systems & Technology </p>
                                         <p> Talent Management (HR)</p>
                                         <p> Writing</p>
-
 
                                     </div>
                                 </div>
@@ -813,8 +839,8 @@
 
                                 <!-- Item 2-->
 
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in suggested_courses_list %}
-                                    <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
+                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in suggested_courses_list %}
+                                    <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
                                         <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
@@ -858,17 +884,18 @@
                 </div>
             </div><!--end row-->
 
-            <div class="row"><!--row two of page-->
+            <div id="refreshSectionFilter" class="row"><!--row two of page-->
 
                 <div class="col-md-3">
                     <!--placeholder for space by filter-->
                 </div><!--end col-->
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in courses_list %}
-                    <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in courses_list %}
+                    <div id="{{ courses_ids }}_hide" class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
-
+                                        <div hidden id="{{ courses_ids }}_uni" >course_uni</div>
+                                        <div hidden id="{{ courses_ids }}_topics" >course_topics</div>
                         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
                               rel="stylesheet">
 
@@ -892,7 +919,7 @@
                                             </div>
                                         <!-- hidden field that stores the id of the entity  -->
                                          <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                            <br><span
+                                            <br><span id="{{ courses_ids }}_recommendation"
                                                 class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                         </div>
 
@@ -963,7 +990,7 @@
                                         <p> Education</p>
                                         <p> Entrepreneurship </p>
                                         <p> Executive Education</p>
-                                        <p> Finance</p>
+                                        <p id='financeFilter' onclick='searchByTopic()'> Finance</p>
                                         <p> Health</p>
                                         <p> Hospitality & Events</p>
                                         <p> Law</p>
@@ -973,6 +1000,7 @@
                                         <p> Systems & Technology </p>
                                         <p> Talent Management (HR)</p>
                                         <p> Writing</p>
+
 
 
                                     </div>
@@ -1067,7 +1095,7 @@
 
                                 <!-- Item 2-->
 
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in suggested_courses_list %}
+                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in suggested_courses_list %}
                                     <div class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
@@ -1112,13 +1140,13 @@
                 </div>
             </div><!--end row-->
 
-            <div class="row"><!--row two of page-->
+            <div id="refreshSectionFilter" class="row"><!--row two of page-->
 
                 <div class="col-md-3">
                     <!--placeholder for space by filter-->
                 </div><!--end col-->
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids in courses_list %}
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in courses_list %}
                     <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
@@ -1131,8 +1159,7 @@
                             <div class="row">
 
                                 <div class="col-lg-3 col-sm-6">
-                                    <div class="cardheader" style="background-image: url(
-                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                    <div class="cardheader" style="background-image: url({% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
                                     <div class="heartbutton"><span style="background: transparent" type="button"
                                                                    class="fa fa-heart fa-2x heartColour"></span></div>
                                     <div class="card hovercard  ">
