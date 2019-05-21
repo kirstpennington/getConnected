@@ -33,8 +33,9 @@ user_privacy = ""   # object to store user privacy information
 
 email = ""
 
-short_connections_suggestions = ""
+short_connections_suggestions = ""      # stored all suggested forums, courses and connections for faster loading times
 short_forum_suggestions = ""
+short_course_suggestions = ""
 
 
 
@@ -134,11 +135,13 @@ def postsign(request):
                     user_methods.getProfilePic(user['localId']),
                     user_methods.getBackgroundPic(user['localId']),
                     user['localId'],
-                    course_methods.getCoursesInfoList(user_methods.getCoursesList(user['localId'])),
-                    forum_methods.getForumsInfoList(user_methods.getForumssList(user['localId'])),
+                    user_methods.getCoursesList(user['localId']),
+                    user_methods.getForumssList(user['localId']),
                     user_methods.getUserTopicsList(user['localId'])
                     )
 
+    global short_course_suggestions  # preload course suggestions
+    short_course_suggestions = course_methods.getCourseSuggestions(user['localId'], 3, the_user)
 
     global user_privacy # create user_privacy object to store user privacy data
     user_privacy = Privacy(user_methods.getBioPrivacy(user['localId']),
@@ -169,6 +172,9 @@ def getPrivacySettings(request):
 
 # Called to update Profile Page from Settings.html page - leads to User Profile page
 def updateProfile(request):
+    if "cancel" in request.POST:
+        return returnUserProfileCarousels(request)
+
     if request.method == "POST":
         # get data from UI using POST method
         name = request.POST.get("firstname")
@@ -236,60 +242,19 @@ def updateProfile(request):
     return returnUserProfileCarousels(request)                  # render user profile with updated data
 
 
-"""def updatePrivacySettings(request):
-    if request.method == "POST":
-        # get data from UI using POST method
-        bioPrivacy = request.POST.get("bioPrivacy")
-        connectionPrivacy = request.POST.get("connectionPrivacy")
-        countryPrivacy = request.POST.get("countryPrivacy")
-        namePrivacy = request.POST.get("namePrivacy")
-        pPicPrivacy = request.POST.get("pPicPrivacy")
-        coursesPrivacy = request.POST.get("coursesPrivacy")
-        forumsPrivacy = request.POST.get("forumsPrivacy")
-
-    global the_user
-    # call each method to update elements of the profile in the db
-    user_methods.updateBioPrivacy(the_user.uid, bioPrivacy)
-    user_methods.updateConnectionPrivacy(the_user.uid, connectionPrivacy)
-    user_methods.updateCountryPrivacy(the_user.uid, countryPrivacy)
-    user_methods.updateNamePrivacy(the_user.uid, namePrivacy)
-    user_methods.updatePicPrivacy(the_user.uid, pPicPrivacy)
-    user_methods.updateCoursesPrivacy(the_user.uid, coursesPrivacy)
-    user_methods.updateForumsPrivacy(the_user.uid, forumsPrivacy)
-
-    global user_privacy
-    user_privacy.bio = bioPrivacy
-    user_privacy.connections = connectionPrivacy
-    user_privacy.country = countryPrivacy
-    user_privacy.name = namePrivacy
-    user_privacy.pic = pPicPrivacy
-    user_privacy.courses = coursesPrivacy
-    user_privacy.forums = forumsPrivacy
-
-    # edit return render to show the new data
-    return render(request, "User_Profile_Page.html", {'bioPrivacy': bioPrivacy,
-                                                'connectionPrivacy': connectionPrivacy,
-                                                'countryPrivacy': countryPrivacy,
-                                                'namePrivacy': namePrivacy,
-                                                'pPicPrivacy': pPicPrivacy,
-                                                'coursesPrivacy': coursesPrivacy,
-                                                'forumsPrivacy': forumsPrivacy
-                                                })"""
-
-
 # method for updating only the profile pic
 def updateProfilePicRequest(request):
     if request.method == "POST":                                # get data from UI
         newPic = request.POST.get("newPic")                     # get data from UI using POST method
+        print("newPic", newPic)
+        global the_user                                             # edit the object value for profile pic
+        the_user.profilePic = newPic
 
-    global the_user                                             # edit the object value for profile pic
-    the_user.profilePic = newPic
+        if user_methods.getUpdatedProfilePic(
+                the_user.uid) != "yes":                             # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedProfilePic(the_user.uid)
 
-    if user_methods.getUpdatedProfilePic(
-            the_user.uid) != "yes":                             # tracks whether the user has updated their profile pic before for awarding badges
-        user_methods.updateUpdatedProfilePic(the_user.uid)
-
-    database.child("Users").child(u['localId']).update({"ProfilePic": newPic})  # set new profile pic in DB
+        database.child("Users").child(u['localId']).update({"ProfilePic": newPic})  # set new profile pic in DB
 
     return returnUserProfileCarousels(request)
 
@@ -311,13 +276,13 @@ def updateBackgroundPicRequest(request):
 def returnUserProfileCarousels(request):
     global the_user
 
-    """global short_forum_suggestions      # if the suggested forums has not been determined yet
+    global short_forum_suggestions      # if the suggested forums has not been determined yet
     if short_forum_suggestions == "":
         short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 5, the_user)
 
     global short_connections_suggestions  # if the suggested forums has not been determined yet
     if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)"""
+        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)
 
     return render(request, "User_Profile_Page.html", {"e": email,
                                                       'n': the_user.username,
@@ -329,10 +294,10 @@ def returnUserProfileCarousels(request):
                                                       'ProfilePic': the_user.profilePic,
                                                       'backgroundPic': the_user.backgroundPic,
                                                       'course_list': course_methods.getCoursesInfoList(
-                                                            user_methods.getCoursesList(the_user.uid)),
-                                                      'forums_list': forum_methods.getForumsInfoList(user_methods.getForumssList(the_user.uid)),
-                                                      'connections_suggestions_list': connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user),
-                                                      'forums_suggestions_list': forum_methods.getForumSuggestions(the_user.uid, 5, the_user)
+                                                            the_user.coursesInfoList),
+                                                      'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+                                                      'connections_suggestions_list': connection_methods.getConnectionsInfoList(short_connections_suggestions),
+                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(short_forum_suggestions)
                                                       })
 
 
@@ -348,16 +313,15 @@ def networks(request):
 def forums(request):
     global the_user
     global short_forum_suggestions
-    return render(request, 'Forums.html', {'forums_list': the_user.forumsInfoList,
-                                           'suggested_forums_list': short_forum_suggestions})
+    return render(request, 'Forums.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+                                           'suggested_forums_list': forum_methods.getForumsInfoList(short_forum_suggestions)})
 
 
 def courses(request):
     global the_user
-    courses_list = course_methods.getCoursesInfoList(user_methods.getCoursesList(the_user.uid))
-    suggested_courses = course_methods.getCourseSuggestions(the_user.uid, 3, the_user)
-    return render(request, 'Courses.html', {'courses_list': courses_list,
-                                            'suggested_courses_list': suggested_courses})
+    global short_course_suggestions
+    return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.coursesInfoList),
+                                            'suggested_courses_list': course_methods.getCoursesInfoList(short_course_suggestions)})
 
 
 def connections(request):
@@ -407,7 +371,7 @@ def goBadges(request):
             'numForums': forum,
             'privacyUp': privacyUpdate,
             'connections_suggestions_list': connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user),
-            'forums_suggestions_list': forum_methods.getForumSuggestions(the_user.uid, 5, the_user)
+            'forums_suggestions_list': forum_methods.getForumsInfoList(the_user.forumsInfoList)
     })
 
 

@@ -112,7 +112,7 @@ class course_methods:
                         results.append(compare_course_id)  # add the course to the list of suggestions
                         results_count += 1  # increment number fo results by 1
 
-            return course_methods.getCoursesInfoList(results)
+            return results
 
             # supporting methods for finding suggestions
 

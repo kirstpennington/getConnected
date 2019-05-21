@@ -110,7 +110,7 @@ class forum_methods:
         except:
             final_results = results
 
-        return forum_methods.getForumsInfoList(final_results)
+        return final_results
 
 
     def getTrendingForums(self):

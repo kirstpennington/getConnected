@@ -85,7 +85,7 @@ class connection_methods:
         final_results = connection_methods.removeValuesFromList(user_connections_list,
                                              results)  # remove users that are already connections and return this updated list
 
-        return connection_methods.getConnectionsInfoList(final_results)
+        return final_results
 
 
     # supporting methods for finding suggestions

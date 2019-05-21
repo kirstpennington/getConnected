@@ -47,7 +47,9 @@ urlpatterns = [
     url(r'^courses/', views.courses, name="nav_courses"),
     url(r'^userprofile/', views.userprofile, name="userprofile"),
 
-    url(r'^updateProfile/', views.updateProfile, name="updateProfile")
+    url(r'^updateProfile/', views.updateProfile, name="updateProfile"),
+    url(r'^updateProfilePicRequest/', views.updateProfilePicRequest, name="updateProfilePicRequest"),
+    url(r'^updateBackgroundPicRequest/', views.updateBackgroundPicRequest, name="updateBackgroundPicRequest")
 
 
 ]
