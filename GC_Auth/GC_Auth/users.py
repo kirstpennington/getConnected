@@ -79,6 +79,12 @@ class user_methods:
     def getUserConnectionsList(uid):
         return database.child("Users").child(uid).child("Connections").shallow().get().val()
 
+    def getUpdatedProfilePic(uid):
+        return database.child("Users").child(uid).child("updatedProfilePic").shallow().get().val()
+
+    def getUpdatedPrivacySettings(uid):
+        return database.child("Users").child(uid).child("privacyUpdated").shallow().get().val()
+
     # for filling the Courses blocks
     def getCoursesList(uid):
         # get list of courses IDs that a user takes
@@ -129,7 +135,7 @@ class user_methods:
             return ""
         except:
             return ""
-# user['localId']
+
     def updateCountry(uid, country):
         database.child("Users").child(uid).update({"Country": country})
         try:  # try except for purpose of unit tests
@@ -139,6 +145,8 @@ class user_methods:
 
     def updateProfilePic(uid, pPic):
         database.child("Users").child(uid).update({"ProfilePic": pPic})
+        if user_methods.getUpdatedProfilePic(uid) != "yes":                 # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedProfilePic(uid)
         try:  # try except for purpose of unit tests
             return ""
         except:
@@ -160,6 +168,11 @@ class user_methods:
 
     def updateBioPrivacy(uid, bioPrivacy):
         database.child("Users").child(uid).child("UserPrivacy").update({"BioPrivacy": bioPrivacy})
+
+        if user_methods.getUpdatedPrivacySettings(
+                uid) != "yes":  # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedPrivacySettings(uid)
+
         try:  # try except for purpose of unit tests
             return ""
         except:
@@ -168,6 +181,11 @@ class user_methods:
     def updateConnectionPrivacy(uid, connectionPrivacy):
         database.child("Users").child(uid).child("UserPrivacy").update(
             {"ConnectionPrivacy": connectionPrivacy})
+
+        if user_methods.getUpdatedPrivacySettings(
+                uid) != "yes":  # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedPrivacySettings(uid)
+
         try:  # try except for purpose of unit tests
             return ""
         except:
@@ -175,6 +193,11 @@ class user_methods:
 
     def updateCountryPrivacy(uid, countryPrivacy):
         database.child("Users").child(uid).child("UserPrivacy").update({"CountryPrivacy": countryPrivacy})
+
+        if user_methods.getUpdatedPrivacySettings(
+                uid) != "yes":  # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedPrivacySettings(uid)
+
         try:  # try except for purpose of unit tests
             return ""
         except:
@@ -182,6 +205,11 @@ class user_methods:
 
     def updateNamePrivacy(uid, namePrivacy):
         database.child("Users").child(uid).child("UserPrivacy").update({"NamePrivacy": namePrivacy})
+
+        if user_methods.getUpdatedPrivacySettings(
+                uid) != "yes":  # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedPrivacySettings(uid)
+
         try:
             return ""
         except:
@@ -189,6 +217,11 @@ class user_methods:
 
     def updatePicPrivacy(uid, pPicPrivacy):
         database.child("Users").child(uid).child("UserPrivacy").update({"ProfilePicPrivacy": pPicPrivacy})
+
+        if user_methods.getUpdatedPrivacySettings(
+                uid) != "yes":  # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedPrivacySettings(uid)
+
         try:  # try except for purpose of unit tests
             return ""
         except:
@@ -196,6 +229,11 @@ class user_methods:
 
     def updateCoursesPrivacy(uid, coursesPrivacy):
         database.child("Users").child(uid).child("UserPrivacy").update({"CoursesPrivacy": coursesPrivacy})
+
+        if user_methods.getUpdatedPrivacySettings(
+                uid) != "yes":  # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedPrivacySettings(uid)
+
         try:  # try except for purpose of unit tests
             return ""
         except:
@@ -203,7 +241,18 @@ class user_methods:
 
     def updateForumsPrivacy(uid, forumsPrivacy):
         database.child("Users").child(uid).child("UserPrivacy").update({"ForumsPrivacy": forumsPrivacy})
+
+        if user_methods.getUpdatedPrivacySettings(
+                uid) != "yes":  # tracks whether the user has updated their profile pic before for awarding badges
+            user_methods.updateUpdatedPrivacySettings(uid)
+
         try:  # try except for purpose of unit tests
             return ""
         except:
             return ""
+
+    def updateUpdatedProfilePic(uid):
+        database.child("Users").child(uid).update({"updatedProfilePic": "yes"})
+
+    def updateUpdatedPrivacySettings(uid):
+        database.child("Users").child(uid).update({"privacyUpdated": "yes"})
