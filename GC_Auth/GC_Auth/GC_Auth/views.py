@@ -541,7 +541,7 @@ def userprofile(request):
                                                 'forums_list': the_user.forumsInfoList})
 
 def goSettings(request):
-    return render(request, "Setttings.html")
+    return render(request, "Settings.html")
 
 # ToDo: fix kirsten's errors
 def goBadges(request):
@@ -578,7 +578,7 @@ def goForumsOpen(request):
 
 
 def goSettings(request):
-    return render(request, 'Setttings.html')
+    return render(request, 'Settings.html')
 
 
 def goContact(request):

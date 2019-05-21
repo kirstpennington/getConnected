@@ -1021,22 +1021,15 @@
     <div class="row"><!--row one-->
 
 
-        <div class="col-md-6" style="padding-left: 120px;"><!-coloumn one username -->
-
+        <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one username -->
             <div class="inputformsLeft">
                 <p>Username: </p>
                 <input type="text" class="form-control" name="firstname" value={{ username }}>
-
-
             </div>
-
-
         </div>
 
-        <div class="col-md-6" style="padding-left: 120px; display: none;"><!-coloumn combo boxes -->
-
-            <p>University Attended:</p>
-
+        <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!-coloumn combo boxes -->
+         <!--   <p>University Attended:</p>
             <select id="university" name="university"
                     style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
                 <option value="None">None</option>
@@ -1056,36 +1049,9 @@
                 <option value="Univeristy Dayton">University of Dayton</option>
                 <option value="WITS"> WITS</option>
                 <option value="Yale">Yale SOM Executive Education</option>
-            </select>
+            </select>-->
 
-
-        </div>
-
-
-    </div> <!--row one-->
-    <br>
-    <div class="row"><!--row one-->
-
-
-        <div class="col-md-6" style="padding-left: 120px;"><!-coloumn one username -->
-
-
-            <div style="display: none;" class="inputformsLeft">
-                <p>Email Address: </p>
-                <input type="email" class="form-control" name="email" value={{ email }}>
-
-
-            </div>
-
-
-        </div>
-
-        <div class="col-md-6" style="padding-left: 120px;"><!-coloumn countries -->
-
-
-            <p>Your Country:</p>
-
-
+             <p>Your Country:</p>
             <select id="country" name="country"
                     style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
             <!-- dynamically instantiate options list-->
@@ -1098,45 +1064,39 @@
                     {% endif %}
                 {% endfor %}
             </select>
-
         </div>
 
+    </div> <!--row one-->
 
-    </div><!--row two-->
-    <br>
+    <div class="row"><!--row two-->
+        <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--My Courses -->
+          <!--  <div style="display: none;" class="inputformsLeft">
+                <p>Email Address: </p>
+                <input type="email" class="form-control" name="email" value='{{ email }}'>
+            </div> -->
+                <p>My Courses</p>
+                <!-- courses hide/show hide-->
+                    {% if coursesPrivacy == "True" %}
+                        <label class="radio-inline">
+                            <input type="radio" name="coursesPrivacyGet" value="False"> Show
+                        </label>
 
-    <div class="row"><!--row one-->
+                        <label class="radio-inline">
+                            <input type="radio"  name="coursesPrivacyGet" value="True" checked> Hide
+                        </label>
+                    {% else %}
+                        <label class="radio-inline">
+                            <input type="radio" name="coursesPrivacyGet" value="False" checked> Show
+                        </label>
 
+                        <label class="radio-inline">
+                            <input type="radio" name="coursesPrivacyGet" value="True" > Hide
+                        </label>
+                    {% endif %}
+                <br>
+        </div>
 
-        <!--coloumn with bio-->
-        <div class="col-md-6" style="padding-left: 275px;"><!-coloumn one username -->
-        <form>
-            <p>My Courses</p>
-            <!-- courses hshow hide-->
-                {% if coursesPrivacy == "True" %}
-                    <label class="radio-inline">
-                        <input type="radio" name="coursesPrivacyGet" value="False"> Show
-                    </label>
-
-                    <label class="radio-inline">
-                        <input type="radio"  name="coursesPrivacyGet" value="True" checked> Hide
-                    </label>
-                {% else %}
-                    <label class="radio-inline">
-                        <input type="radio" name="coursesPrivacyGet" value="False" checked> Show
-                    </label>
-
-                    <label class="radio-inline">
-                        <input type="radio" name="coursesPrivacyGet" value="True" > Hide
-                    </label>
-                {% endif %}
-
-            <br>
-
-        </form>
-        </div><!--end col-->
-
-        <div class="col-md-6" style="padding-left: 120px;"><!-forums show hide -->
+         <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--forums show hide -->
            <p>My Forums</p>
             <!-- forums hshow hide-->
                 {% if forumsPrivacy == "True" %}
@@ -1156,26 +1116,24 @@
                         <input type="radio" name="forumPrivacyGet" value="True" > Hide
                     </label>
                 {% endif %}
-
             <br>
-
         </div><!--end col-->
 
-           <div class="row"><!--row one-->
+    </div><!--row two-->
 
+    <div class="row"><!--row three-->
 
         <!--coloumn with bio-->
-        <div class="col-md-6" style="padding-left: 275px;"><!-coloumn one username -->
-        <form>
-            <p>My Connections</p>
-            <!-- preselect the user's current privacy settings-->
+        <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;">
+         <p>My Connections</p>
+            <!-- connections hshow hide-->
                 {% if connectionsPrivacy == "True" %}
                     <label class="radio-inline">
                         <input type="radio" name="connectionPrivacyGet" value="False"> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" name="connectionPrivacyGet" value="True" checked> Hide
+                        <input type="radio"  name="connectionPrivacyGet" value="True" checked> Hide
                     </label>
                 {% else %}
                     <label class="radio-inline">
@@ -1183,89 +1141,74 @@
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" name="connectionPrivacyGet" value="True"> Hide
+                        <input type="radio" name="connectionPrivacyGet" value="True" > Hide
                     </label>
                 {% endif %}
 
             <br>
-
-        </form>
         </div><!--end col-->
 
-        <div class="col-md-6" style="padding-left: 120px;"><!--forums show hide -->
-        <form>
+        <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--forums show hide -->
             <p>Country</p>
+            <!-- country hshow hide-->
                 {% if countryPrivacy == "True" %}
                     <label class="radio-inline">
-                        <input type="radio" value="False" name="countryPrivacyGet" > Show
+                        <input type="radio" name="countryPrivacyGet" value="False"> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" value="True" name="countryPrivacyGet"checked> Hide
+                        <input type="radio"  name="countryPrivacyGet" value="True" checked> Hide
                     </label>
                 {% else %}
                     <label class="radio-inline">
-                        <input type="radio" value="False" name="countryPrivacyGet" checked> Show
+                        <input type="radio" name="countryPrivacyGet" value="False" checked> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" value="True" name="countryPrivacyGet" > Hide
+                        <input type="radio" name="countryPrivacyGet" value="True" > Hide
                     </label>
                 {% endif %}
-
-            <br>
-        </form>
         </div><!--end col-->
-
-
     </div><!--row three-->
 
-    <div class="row"><!--row one-->
-
-
+    <div class="row"><!--row four -->
+          <!-- <div class="row">row one-->
         <!--coloumn with bio-->
-        <div class="col-md-6" style="padding-left: 275px;"><!-coloumn one username -->
-            <form>
+        <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--coloumn one username -->
             <p>Bio</p>
-           <!-- radio buttons to show bio-->
+            <!-- bio hshow hide-->
                 {% if bioPrivacy == "True" %}
                     <label class="radio-inline">
-                        <input type="radio" value="False" name="bioPrivacyGet" > Show
+                        <input type="radio" name="bioPrivacyGet" value="False"> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" value="True" name="bioPrivacyGet"  checked> Hide
+                        <input type="radio"  name="bioPrivacyGet" value="True" checked> Hide
                     </label>
                 {% else %}
                     <label class="radio-inline">
-                        <input type="radio" value="False" name="bioPrivacyGet" checked> Show
+                        <input type="radio" name="bioPrivacyGet" value="False" checked> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" value="True" name="bioPrivacyGet"  > Hide
+                        <input type="radio" name="bioPrivacyGet" value="True" > Hide
                     </label>
                 {% endif %}
 
-            <br>
                 <div class="form-group">
 
                     <textarea name="bioGet" class="form-control" maxlength = "100" rows="5" id="comment" style="width: 70%;">{{ bio }}</textarea>
                 </div>
 
-        </form>
         </div><!--end col-->
 
-        <div class="col-md-6" style="padding-left: 70px;"><!-save button  -->
+        <div class="col-md-6" style="padding-left: 70px; padding-bottom: 30px;"><!--save button  -->
 
             <div class="buttonbot" style="padding-top: 150px;padding-left: 140px;">
-            <button  type="submit">
-
-
-                Save Changes</button>
+            <button  type="submit">Save Changes</button>
             </div>
 
         </div><!--end col-->
-
 
     </div><!--row four-->
 
