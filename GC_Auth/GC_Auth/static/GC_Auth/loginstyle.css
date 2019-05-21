@@ -1,4 +1,14 @@
 
+
+        button:hover{
+             -ms-transform: scale(1); /* IE 9 */
+             -webkit-transform: scale(1); /* Safari 3-8 */
+             transform: scale(1);
+             border: 1px solid silver ;
+            box-shadow: 3px 3px 3px #888888;
+    }
+
+
         .login-form {
             width: 800px;
             margin: 50px auto;
@@ -47,28 +57,45 @@
             position: top right;
             margin: 0;
         }
+         /*footer logo*/
+            footer img{
+
+
+                width:200%;
+                height:200%;
+               text-align: left;
+
+            }
 
         .bg {
             /* The image used
          background-image: url("headerpic.jpg");*/
 
             /* Full height */
-            height: 25%;
-
+            height: 100%;
+             background-image: url("../static/GC_Auth/backgroundbubs2.jpg");
             /* Center and scale the image nicely */
-            background-position: top center;
+            background-position: right center;
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: #D3D3D3;
+
 
 
         }
+        #overlay {
 
-         /*Hover feature for the submit button*/
-      button:hover{
-        background-color: #e83e8c;
-        color: white;
-    }
+
+                  width: 100%; /* Full width (cover the whole page) */
+                  height: 30%; /* Full height (cover the whole page) */
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background-color: rgba(0,0,0,1); /* Black background with opacity */
+                  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+
+}
+
 
         .bg .logo{
           position: absolute;
@@ -94,6 +121,7 @@
           top: 30%;
           right: 23%;
           position:absolute;
+            padding-top: 10px;
 
     }
 
@@ -101,11 +129,11 @@
 
         .intro-form form{
           margin-bottom: 15px;
-          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
           padding: 20px;
           background-color: white;
           opacity: 1;
-          border-color: gray;
+          border:1px solid gray;
           filter: alpha(opacity=60); /* For IE8 and earlier */
         }
 
@@ -149,19 +177,24 @@
 
           }
 
-     .intro-form .logger button{
+      button{
 
             border-radius: 8px;
-            color: black;
-           /* background-color: #e83e8c;*/
+            color: white;
+            background-color: #e83e8c;
             border: 2px  solid #e83e8c;
-            opacity: 0.8;
+            display: inline-block;
             padding-top: 5px;
             padding-bottom: 5px;
             padding-left:10px;
             padding-right:10px;
             font-size: 16px;
+
        }
+
+      button:focus{
+          outline:none;
+      }
 
 
 
@@ -169,3 +202,6 @@
             margin: auto;
             background-position: center center;
           }*/
+
+
+

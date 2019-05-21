@@ -38,47 +38,50 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Footer Bar Style -->
-    <link href="sticky-footer.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-                                        <script>
+    <script>
 
-                                             // replace list of my courses with filtered courses
-                                            function searchByTopic(){
-                                                alert("!!!!!!!!!!");
-                                                topic = document.getElementById('financeFilter').innerText;
-                                                course_list = {{ courses_list|safe }};       // get the list of courses
-                                                alert(course_list + "");
-                                                // remove unwanted items from view
-                                                // new approach: just hide the block that don't appear in the list
+        // replace list of my courses with filtered courses
+        function searchByTopic() {
+            alert("!!!!!!!!!!");
+            topic = document.getElementById('financeFilter').innerText;
+            course_list = {{ courses_list|safe }};       // get the list of courses
+            alert(course_list + "");
+            // remove unwanted items from view
+            // new approach: just hide the block that don't appear in the list
 
-                                                // for loop through course_ids
-                                                    // check if topics list for this course_id contains Finance
-                                                    // if not: change html to hide this block - id of element = (course_id)_hide
+            // for loop through course_ids
+            // check if topics list for this course_id contains Finance
+            // if not: change html to hide this block - id of element = (course_id)_hide
 
-                                                // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-                                                document.getElementById('refreshSectionFilter').innerHTML = course_list[0][0];  // debug
+            // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
+            document.getElementById('refreshSectionFilter').innerHTML = course_list[0][0];  // debug
 
-                                            }
-                                            // repeat function for all topics
+        }
 
-                                            // repeat for recommendations
-                                            // repeat for university
-                                            // repeat for search function to check if name or description contains string typed
-                                        </script>
+        // repeat function for all topics
+
+        // repeat for recommendations
+        // repeat for university
+        // repeat for search function to check if name or description contains string typed
+    </script>
 
 
     <!--NavigationBar Style-->
 
     <style>
 
+        /*Navbar drop down*/
         .dropdown {
             display: inline-block;
             margin-left: 20px;
         }
 
+        /*icon size*/
         .glyphicon-bell {
             font-size: 1.5rem;
         }
@@ -92,6 +95,7 @@
             max-height: 250px;
         }
 
+        /*icon*/
         .glyphicon-circle-arrow-right {
             margin-left: 10px;
         }
@@ -115,6 +119,7 @@
             height: 80px;
         }
 
+        /*user profile image on navbar*/
         .profile_img {
             width: 25px;
             display: inline;
@@ -134,18 +139,19 @@
 
         }
 
+        /*specify font*/
         body {
             font-family: 'Roboto', sans-serif;
 
         }
 
 
-
         .navbar {
 
-            margin-bottom: 0;
+            margin-bottom: 0; /*so there is no space under the nav bar*/
         }
 
+        /* background */
         .back {
             background-color: #e83e8c;
             opacity: 0.9;
@@ -163,7 +169,7 @@
 
         }
 
-
+        /* specify look of intro form*/
         .intro-form {
             width: 800px;
             margin: 50px auto;
@@ -172,7 +178,7 @@
             padding-top: 0px;
         }
 
-
+        /* specify look of intro form*/
         .intro-form form {
             margin-bottom: 15px;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
@@ -185,60 +191,13 @@
 
         }
 
+        /*specify form font size*/
         form p {
             font-size: 20px;
         }
 
-        .row .courseCard {
-            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
-            background-color: white;
-            opacity: 1;
-            border: 1px solid silver;
-        }
 
-        .cd-tab-filter-wrapper {
-            background-color: #ffffff;
-            z-index: 1;
-        }
-
-        .cd-filter {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 280px;
-            height: 100%;
-            background: #ffffff;
-            z-index: 2;
-            transform: translateX(-100%);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cd-filter-trigger {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 50px;
-            width: 60px;
-            z-index: 3;
-        }
-
-        .cd-main-content.is-fixed .cd-tab-filter-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
-
-        .cd-main-content.is-fixed .cd-filter {
-            position: fixed;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .cd-main-content.is-fixed .cd-filter-trigger {
-            position: fixed;
-        }
-
+        /*specify font color*/
         .panel list-group h4 {
             color: #4f4f4f;
         }
@@ -246,11 +205,11 @@
 
     </style>
 
-    <!--*HEAD-STYLE*  1.4. Cards Style-->
+    <!--Course Cards Style-->
 
     <style>
 
-
+        /*style for actual course card*/
         .card {
             padding-top: 20px;
             padding-bottom: 20px;
@@ -275,6 +234,7 @@
             border-radius: 10px
         }
 
+        /*when hover over course card*/
         .card.hovercard:hover {
             position: relative;
             padding-top: 0;
@@ -290,21 +250,6 @@
             box-shadow: 5px 10px 8px #888888;
         }
 
-        .card.Ccard {
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            background-color: white;
-            border-width: 5px;
-
-            width: 255px; /* or whatever width you want. */
-            max-width: 255px; /* or whatever width you want. */
-            height: 275px;
-            max-height: 275px;
-            display: inline-block;
-
-            border-radius: 10px
-        }
 
         .card.Ccard .info .title {
             margin-bottom: 4px;
@@ -315,13 +260,6 @@
             font-family: Arial;
         }
 
-        .card.Ccard:hover {
-            -ms-transform: scale(1); /* IE 9 */
-            -webkit-transform: scale(1); /* Safari 3-8 */
-            transform: scale(1);
-            border: 1px solid silver;
-            box-shadow: 5px 10px 8px #888888;
-        }
 
         .cardheader {
             background: url("http://lorempixel.com/850/280/nature/4/");
@@ -344,6 +282,7 @@
             font-family: Arial;
         }
 
+        /*heart on course card*/
 
         .heartbutton {
             top: -50px;
@@ -368,18 +307,7 @@
             border-width: 2px
         }
 
-
-        /*footer logo*/
-        footer img {
-
-
-            width: 200%;
-            height: 200%;
-            text-align: left;
-
-        }
-
-
+        /* link hover*/
         .well a:hover {
             text-decoration: none;
 
@@ -394,6 +322,7 @@
             border-radius: 8px
         }
 
+        /*hover over card */
         .col-sm-4 .rightColumnContainer_lower:hover {
             -ms-transform: scale(1); /* IE 9 */
             -webkit-transform: scale(1); /* Safari 3-8 */
@@ -652,16 +581,13 @@
 </nav><!--nav navbar-inverse-->
 
 
-
 <!--content of courses page start-->
 
 
-
-<!--recommended courses-->
 <div class="back">
 
 
-    <br><br><br><br>
+    <br><br><br><br><!--BR to move the header down-->
 </div><!--end of header with background-->
 
 
@@ -688,7 +614,7 @@
 
     <br>
 
-    <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
+    <!--content of the two tabs My Courses and All courses-->
     <div class="tab-content">
 
         <!--my courses content-->
@@ -709,14 +635,14 @@
 
             <div class="row"><!--row one of page-->
 
-                <div class="col-md-3"><!--filter panel-->
+                <div class="col-md-3"><!--filter panel on LHS-->
                     <div class="container">
                         <h2 style="color: silver;"><strong>Filters </strong></h2>
 
 
                         <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
 
-                            <!--panel-->
+                            <!--panel for Subject-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
@@ -730,13 +656,14 @@
                                 </div>
                                 <div id="collapseSubject" class="panel-collapse collapse">
                                     <div class="panel-body">
+                                        <!--Items to filter by -->
                                         <p> All </p>
                                         <p> Arts & Design </p>
                                         <p> Business & Management</p>
                                         <p> Education</p>
                                         <p> Entrepreneurship </p>
                                         <p> Executive Education</p>
-                                        <button onclick="searchByTopic()" id='financeFilter' >Finance</button>
+                                        <button onclick="searchByTopic()" id='financeFilter'>Finance</button>
                                         <p> Health</p>
                                         <p> Hospitality & Events</p>
                                         <p> Law</p>
@@ -751,7 +678,7 @@
                                 </div>
                             </div>
 
-                            <!--panel-->
+                            <!--panel for Institution-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
@@ -765,7 +692,7 @@
                                 </div>
                                 <div id="collapseInstitution" class="panel-collapse collapse">
                                     <div class="panel-body">
-
+                                        <!--Items to filter by -->
                                         <p> All </p>
                                         <p>Cambridge CSL</p>
                                         <p> Harvard University</p>
@@ -788,7 +715,7 @@
                                 </div>
                             </div>
 
-                            <!--panel-->
+                            <!--panel for recommendations-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title"><!--panel 1 heading-->
@@ -801,7 +728,7 @@
                                     </h4>
                                 </div>
                                 <div id="collapseRecommendations" class="panel-collapse collapse in">
-                                    <!--panel 1 content-->
+                                    <!--Items to filter by -->
                                     <div class="panel-body">
                                         <p> All </p>
                                         <p> Highly Recommended</p>
@@ -814,11 +741,8 @@
                             </div><!--end panel-->
 
 
-                        </div><!--end of accordion-->
-                        <!-- <form class="  search-form" role="search">
-                                 <input type="text" class="form-control" placeholder="Search" />
+                        </div><!--end of accordion for filtering -->
 
-                             </form>-->
 
                     </div>
                 </div><!--end col-->
@@ -891,11 +815,12 @@
                 </div><!--end col-->
 
                 {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in courses_list %}
-                    <div id="{{ courses_ids }}_hide" class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
+                    <div id="{{ courses_ids }}_hide" class="col-md-3"
+                         style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
-                                        <div hidden id="{{ courses_ids }}_uni" >course_uni</div>
-                                        <div hidden id="{{ courses_ids }}_topics" >course_topics</div>
+                        <div hidden id="{{ courses_ids }}_uni">course_uni</div>
+                        <div hidden id="{{ courses_ids }}_topics">course_topics</div>
                         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
                               rel="stylesheet">
 
@@ -904,7 +829,8 @@
                             <div class="row">
 
                                 <div class="col-lg-3 col-sm-6">
-                                    <div class="cardheader" style="background-image: url({% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                    <div class="cardheader" style="background-image: url(
+                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
                                     <div class="heartbutton"><span style="background: transparent" type="button"
                                                                    class="fa fa-heart fa-2x heartColour"></span></div>
                                     <div class="card hovercard  ">
@@ -917,10 +843,10 @@
                                             <div class="title"></div>
                                             <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
                                             </div>
-                                        <!-- hidden field that stores the id of the entity  -->
-                                         <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+                                            <!-- hidden field that stores the id of the entity  -->
+                                            <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
                                             <br><span id="{{ courses_ids }}_recommendation"
-                                                class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
+                                                      class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                         </div>
 
                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
@@ -1000,7 +926,6 @@
                                         <p> Systems & Technology </p>
                                         <p> Talent Management (HR)</p>
                                         <p> Writing</p>
-
 
 
                                     </div>
@@ -1159,7 +1084,8 @@
                             <div class="row">
 
                                 <div class="col-lg-3 col-sm-6">
-                                    <div class="cardheader" style="background-image: url({% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                    <div class="cardheader" style="background-image: url(
+                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
                                     <div class="heartbutton"><span style="background: transparent" type="button"
                                                                    class="fa fa-heart fa-2x heartColour"></span></div>
                                     <div class="card hovercard  ">
@@ -1172,8 +1098,8 @@
                                             <div class="title"></div>
                                             <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
                                             </div>
-                                        <!-- hidden field that stores the id of the entity  -->
-                                        <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+                                            <!-- hidden field that stores the id of the entity  -->
+                                            <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
                                             <br><span
                                                 class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                         </div>

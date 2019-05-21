@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Help</title>
+    <title>Course Help</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,37 +15,53 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!-- footer style -->
-
+    <link href="sticky-footer.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     <style>
 
         /* specify the font for the page*/
         body {
             font-family: 'Roboto', sans-serif;
-
-        }
-
-        /*the pink strip with the search bar*/
-        .searchstrip {
-            background-color: #e83e8c;
-            opacity: 0.9;
-            color: white;
-            padding-top: 20px;
-            padding-bottom: 20px;
             text-align: center;
+
         }
 
-        /*text on searchstrip*/
-        .searchstrip h3 {
+        /*specifiy the font for the header*/
+        .header p {
+
             font-size: 40px;
+            color: gray;
+            text-align: center;
+            padding-top: 0px;
 
         }
 
-        /*text on searchstrip*/
-        .searchstrip p {
-            font-size: 30px;
+        /*specify the look for the pink strip*/
+        .intro {
+            background-color: #e83e8c;
+            opacity: 0.8;
+            color: white;
+            font-size: 20px;
+            text-align: left;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+        }
+
+        /*css for the block text*/
+
+        .features p {
+            text-align: center;
+
+            font-size: 25px;
+            padding-top: 20px;
+            font-size: 40px;
+            color: gray;
+
+
         }
 
         /*footer logo*/
@@ -58,118 +74,97 @@
 
         }
 
-        /*search bar alignment and look*/
-        .searchstrip .search-form {
-            height: 20%;
-            width: 30%;
-            text-align: center;
-            padding-top: 30px;
-            position: center;
-            display: inline-block;
-        }
-
-        /*container which has the table */
-        .container-fluid {
-            padding-left: 60px;
-            padding-right: 60px;
-            text-align: center;
-        }
-
-        /*the text in the rows*/
+        /*text for the blocks which show the features*/
         .row p {
             font-size: 20px;
-            color: gray;
+            color: #e83e8c;
             text-align: left;
             padding-top: 0px;
-
-
         }
 
-        /*heading for the items in the blocks*/
+        /*headings for the blocks*/
         .row h1 {
-            font-size: 15px;
-            color: black;
+            font-size: 18px;
+            color: gray;
             text-align: left;
         }
 
-        /*zoom features set the look of the block before you hover*/
-        .zoom {
-            padding: 30px;
-            transition: transform .2s;
-            margin: 0 auto;
-            border: 0px solid silver;
+        /*move the row away from the edges*/
+        .row {
+            padding-left: 40px;
+            padding-right: 40px;
         }
 
-        /*zoom features that enlarge the blocks when hovered over*/
-        .zoom:hover {
-            -ms-transform: scale(1); /* IE 9 */
-            -webkit-transform: scale(1); /* Safari 3-8 */
-            transform: scale(1);
-            border: 1px solid silver;
-            box-shadow: 5px 10px 8px #888888;
 
+        /*removes the underlining for the links in the blocks*/
+        a:hover {
+            text-decoration: none;
 
         }
 
-        /*set the size of the icons in the blocks*/
-        .row p img {
-            height: 10%;
-            width: 10%;
+        /*specify the look for the Freq asked Questions*/
+        .faq {
+            background-color: #9d9d9d;
+
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 10px;
+            text-align: left;
+            width: 80%;
+            position: center;
+            display: inline-block;
+
         }
 
-        /*set the look of the block with the email forms*/
-        .email-block {
-            background-color: silver;
-            padding-top: 5px;
+        /*specify the heading for the FAQ*/
+        .faq h1 {
+            font-size: 20px;
+            color: white; /*#e83e8c*/
+            text-align: left;
+
+        }
+
+        /*text qualities for the FAQ*/
+        .faq p {
+            font-size: 18px;
+            color: silver;
+            text-align: left;
+            padding-top: 0;
+
+        }
+
+        /*numbers in FAQ*/
+        .numbercircles {
+            border-radius: 50%;
+            behavior: url(PIE.htc);
+            width: 36px;
+            height: 36px;
+            padding: 8px;
+            background: #9d9d9d;
+            border: 2px solid white;
             color: white;
-            padding-bottom: 20px;
-
-        }
-
-        /*the input forms*/
-        .email-block .form-control {
-            width: 20%;
-            height: 200%;
+            text-align: center;
+            font-size: 20px;
             display: inline-block;
         }
 
-        /*the submit button looks*/
-        .email-block form button {
-            border-radius: 8px;
-            color: black;
-            /* background-color: #e83e8c;*/
-            border: 2px solid #e83e8c;
-            opacity: 0.8;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 16px;
-
-        }
-
-        /*Hover feature for the submit button*/
-        .email-block button:hover {
+        /*strip for badges*/
+        .badges {
             background-color: #e83e8c;
-            color: white;
-        }
-
-        /*remove underlining when hover over the blocks as a link*/
-        a:hover {
-            text-decoration: none;
+            opacity: 0.8;
 
         }
 
 
     </style>
 
+
 </head>
 
 
 <body>
 
-<!--nav bar-->
-
+<!--Navigation Bar-->
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -276,7 +271,6 @@
                                     <h4 class="item-title">James Coden · day ago</h4>
                                     <p class="item-info">Marketing 101, Video Assignment</p>
                                 </div>
-
                             </a>
                             <a class="content" href="#">
                                 <div class="notification-item">
@@ -383,145 +377,221 @@
             </ul> <!--nav navbar-nav navbar-right-->
         </div><!--collapse nav-bar collapse-->
     </div><!--container fluid-->
-</nav>
-<!--end of nav-->
+</nav><!--nav navbar-inverse-->
 
-<!--top of page with search bar and intro-->
+<!--heading and content-->
 
-<div class="searchstrip">
-    <h3 class="text-center"><strong> Welcome to GetConnected Support </strong></h3>
-    <p class="text-center"> How can we help you?</p>
+<div class="header">
+    {% load staticfiles %}
+    <p><img src="{% static "GC_Auth/help/accpic.png" %}" alt="lock" class="image"> <strong> Courses </strong></p>
 
-    <form class="search-form" role="search">
-        <input type="text" class="form-control" placeholder="Search" autofocus/>
-    </form>
+</div>
+<!--short intro paragraph in pink strip-->
+<div class="intro">
+    <p style="text-align: center;"> You wouldn't be using GetConnected if you didn't love your GetSmarter experience! So
+        why not use the courses
+        page to find new courses, to keep your brain active... or recommend any courses you've already completed, </p>
+    <br>
+
 </div>
 
-<!--split into a table with 2 coloumns with 3 rows for options-->
+<!--create accordion with different sections -->
 <br>
+<div class=" features">
+    <div class="panel-group text" id="accordion" style="width: 100%;padding-left: 0px;"><!--accordion of details-->
 
-<div class="container-fluid">
-    <!--row1-->
-    <div class="row">
-        <!--coloumn - the blocks with information-->
-        <div class="col-sm-6" style="background-color:white;">
-            <!--Zoom effect-->
-            <div class="zoom">
-                <a onclick="location.href='{% url 'introHelp' %}'"> <!--link to the specific page-->
-                    {% load staticfiles %}
-                    <p><img src="{% static "GC_Auth/help/introgetconn.png" %}" alt="lock" class="image"> <strong>
-                        Introducing GetConnected </strong>
-                    </p>
-                    <h1>Learn more about the GetConnected Platform, it's connection to GetSmarter and why you need to
-                        start using it regularly.</h1>
-
-                </a>
+        <!--panel Viewing courses -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseViewingCourses"
+                       style="color:#ce3298">
+                        <strong>
+                            Viewing your Courses
+                        </strong>
+                    </a>
+                </h4>
             </div>
+            <div id="collapseViewingCourses" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    <p>Viewing your Courses</p>
+
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Viewing Courses</p>
+                            <h1 style="color:grey;"> The GetConnected platform has a record of all the courses you have
+                                completed with GetSmarter.
+                                Which you can easily view by clicking "Courses" on the navigation bar. Be sure to select
+                                "My Courses"
+                                at the top of the page, to view only your completed courses ( see image on the right) If
+                                you select "All Courses",
+                                all courses offered by GetSmarter can be viewed</h1>
 
 
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/coursetabs.png" %}" alt="lock" class="image"
+                                 style="width:60%; height:60%;border: 1px solid silver;">
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                </div>
+                <!--row 2nd paragraph on right-->
+
+                <div class="row">
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/help/coursefilters.png" %}" alt="lock" class="image"
+                             style="width:40%; height:40%; border: 1px solid silver;">
+
+
+                    </div>
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <br><br>
+                        <h1 style="color:grey;">You can use the search bar to find a specific course you are looking for
+                            or the filter pane to filter by
+                            Subject, Institution or Recommendation</h1>
+                        <h1>If you click on a course, you will be redirected to the GetSmarter website where you can
+                            read up
+                            additional information on that particular course.</h1>
+
+                    </div>
+
+
+                </div>
+
+                <br>
+            </div><!--end-->
         </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <div class="zoom">
-                <a onclick="location.href='{% url 'accountHelp' %}'"><!--link to the specific page-->
 
-                    {% load staticfiles %}
-                    <p><img src="{% static "GC_Auth/help/accpic.png" %}" alt="lock" class="image"> <strong> Your
-                        Account </strong>
-                    </p>
-                    <h1> Explore your GetConnected account, how to manage what is shown to the public and how to utilise
-                        it to network in the best way possible.</h1>
-                </a>
+        <!--panel Recommending courses -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseRecommending"
+                       style="color:#ce3298">
+                        <strong>
+                            Recommending Courses
+                        </strong>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseRecommending" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    <!--row1 Personalising the profile -->
+
+
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Recommending Courses </p>
+                            <h1 style="color:grey;"> If you have completed a course, you will have the opportunity to
+                                "like" or recommend it.
+                                All you need to do is click the heart icon see on the right. </h1>
+                            <h1>Once this is clicked, it will show the heart filled in. You can always return at a later
+                                stage to unlike, simply by
+                                clicking on the heart again. The heart will then appear hollow. Courses which have many
+                                hearts, from many different users are
+                                "Highly recommended". </h1>
+
+
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/courseheart.png" %}" alt="lock" class="image"
+                                 style="width:25%; height:25%;">
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+
+
+                </div>
             </div>
         </div>
 
 
-    </div>
-    <br>
-    <!--row2-->
-    <div class="row">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <div class="zoom">
-
-                {% load staticfiles %}
-                <p><img src="{% static "GC_Auth/help/forums.png" %}" alt="lock" class="image"> <strong> Forums </strong>
-                </p>
-                <h1> Create and use the GetConnected Forums to build your network. Find out how to attach articles to
-                    your forums and adjust privacy settings to suit your needs. </h1>
+        <!--panel FAQ-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><!--panel 1 heading-->
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseFaq" style="color:#ce3298">
+                        <strong>
+                            Frequently Asked Questions
+                        </strong>
+                    </a>
+                </h4>
             </div>
-        </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <div class="zoom">
-                {% load staticfiles %}
-                <p><img src="{% static "GC_Auth/help/connections.png" %}" alt="lock" class="image"> <strong>
-                    Connections </strong>
-                </p>
-                <h1> Build you GetConnected community with Connections. Find tips for managing your connections,
-                    improving your privacy settings and meeting new people.</h1>
+            <div id="collapseFaq" class="panel-collapse collapse">
+                <!--panel 1 content-->
+                <div class="panel-body">
+
+                    <!--Frequently asked questions section-->
+                    <p style="font-size: 40px;color:gray;text-align: center;"> Frequently Asked Questions</p>
+                    <!--grey block with questions & answers-->
+                    <div class="faq">
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">1</div>
+                            <i>
+                                What happens if I do not pass a course?</i></h1>
+                        <!--padding left indents the answer to the right-->
+                        <p style="padding-left: 40px;"> If a course is not passed, it will not show up under "My
+                            Courses" and you will be unable to recommend it.
+                        </p>
+
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">2</div>
+                            <i>
+                                Is it possible for me to add my own courses to "My courses"? </i></h1>
+                        <p style="padding-left: 40px;">No, your courses are added automatically once you have completed
+                            them. </p>
+
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">3</div>
+                            <i>
+                                How do I view more information about a course? </i></h1>
+                        <p style="padding-left: 40px;">Click on the course's card and you will be redirected to
+                            GetSmarter's website to view more information.</p>
 
 
+                    </div>
+
+                </div>
             </div>
-        </div>
+        </div><!--end panel-->
 
 
-    </div>
-    <br>
-    <!--row 3-->
-    <div class="row">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <div class="zoom">
-                {% load staticfiles %}
-                <p><img src="{% static "GC_Auth/help/messaging.png" %}" alt="lock" class="image"> <strong>
-                    Messaging </strong>
-                </p>
-                <h1> Use your GetConnected profile to message your connections. Find out how to start direct messages
-                    and create group chats. </h1>
-
-            </div>
-        </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <div class="zoom">
-                <a href="https://www.getsmarter.com/what-we-do">
-                    {% load staticfiles %}
-                    <p><img src="{% static "GC_Auth/help/getSmarter.png" %}" alt="lock" class="image"
-                            style="text-decoration:none;"> <strong> GetSmarter </strong>
-                    </p>
-                    <h1 style="text-decoration: none;"> GetConnected is a product of GetSmarter. Click here to find out
-                        more about GetSmarter. </h1>
-                </a>
-            </div>
-        </div>
-    </div>
-    <br>
-
-
-    <!--send us an email-->
-
-    <div class="email-block">
-
-        <h3 class="text-center"><strong> Couldn't find what you needed? </strong></h3>
-        <p class="text-center"> Send us an email and we will get back to you:</p><br>
-        <form>
-            <!--email input form-->
-            <input type="email" class="form-control" placeholder="Your Email Address" autofocus><br><br>
-            <!--text area for your message-->
-            <textarea class="form-control" type="text" rows="5" id="comment" placeholder="How can we help?"
-                      style="padding-left: 20px;text-align: left;"></textarea>
-            <!--submit button with hover functionality-->
-            <br><br>
-            <button type="button" style="padding-top=10px;">Submit</button>
-
-        </form>
-    </div>
-
-    <br>
-
+    </div><!--end of accordion-->
 </div>
 
+<!--footer-->
 <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
 
 
