@@ -34,28 +34,20 @@ class connection_methods:
         conn_id = []
 
         for id in connections_id_list:
-            if user_methods.getNamePrivacy(
-                    id) == "False":  # checks the user's privacy settings before displaying it in the suggestion
-                names.append(user_methods.getUsername(id))
-            else:
-                names.append("User's Name Private")
+            names.append(user_methods.getUsername(id))
 
             if user_methods.getCountryPrivacy(
-                    id) == "False":  # checks the user's privacy settings before displaying it in the suggestion
-                countries.append(user_methods.getCountry(id))
-            else:
+                    id) == "True":  # checks the user's privacy settings before displaying it in the suggestion
                 countries.append("User's Country Private")
-
-            if user_methods.getPicPrivacy(
-                    id) == "False":  # checks the user's privacy settings before displaying it in the suggestion
-                pictures.append(user_methods.getProfilePic(id))
             else:
-                pictures.append("https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
+                countries.append(user_methods.getCountry(id))
 
-            if user_methods.getBioPrivacy(id) == "False" or user_methods.getBioPrivacy(id) == "false":
-                bio.append(user_methods.getBio(id))
-            else:
+            pictures.append(user_methods.getProfilePic(id))
+
+            if user_methods.getBioPrivacy(id) == "True" or user_methods.getBioPrivacy(id) == "true":
                 bio.append("Bio Private")
+            else:
+                bio.append(user_methods.getBio(id))
 
             conn_id.append(id)
 

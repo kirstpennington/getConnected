@@ -80,10 +80,10 @@ class user_methods:
         return database.child("Users").child(uid).child("Connections").shallow().get().val()
 
     def getUpdatedProfilePic(uid):
-        return database.child("Users").child(uid).child("updatedProfilePic").shallow().get().val()
+        return database.child("Users").child(uid).child("updatedProfilePic").get().val()
 
     def getUpdatedPrivacySettings(uid):
-        return database.child("Users").child(uid).child("privacyUpdated").shallow().get().val()
+        return database.child("Users").child(uid).child("privacyUpdated").get().val()
 
     # for filling the Courses blocks
     def getCoursesList(uid):

@@ -137,6 +137,7 @@ def postsign(request):
                     user['localId'],
                     user_methods.getCoursesList(user['localId']),
                     user_methods.getForumssList(user['localId']),
+                    user_methods.getUserConnectionsList(user['localId']),
                     user_methods.getUserTopicsList(user['localId'])
                     )
 
@@ -234,10 +235,17 @@ def updateProfile(request):
 
 # method for updating only the profile pic
 def updateProfilePicRequest(request):
+    global the_user
     if request.method == "POST":                                # get data from UI
-        newPic = request.POST.get("url")                     # get data from UI using POST method
+        """pic = request.FILES.get("files[]")
+        
+        storage.child("images/", the_user.uid).put(pic)"""
+        storage = firebase.storage()
+        url = storage.child(the_user.uid).get_url()
+        print("url: " + url)
+        """newPic = request.POST.get("url")                     # get data from UI using POST method
         print("!newPic", newPic)
-        """global the_user                                             # edit the object value for profile pic
+        global the_user                                             # edit the object value for profile pic
         the_user.profilePic = newPic
 
         if user_methods.getUpdatedProfilePic(
@@ -297,10 +305,6 @@ def home(request):
     return returnUserProfileCarousels(request)
 
 
-def networks(request):
-    return render(request, 'MyNetwork.html')
-
-
 def forums(request):
     global the_user
     global short_forum_suggestions
@@ -319,8 +323,9 @@ def courses(request):
 
 def connections(request):
     global the_user
-    return render(request, 'Connections.html', {'connections_list': connection_methods.getConnectionsInfoList(user_methods.getUserConnectionsList(the_user.uid)),
-                                                'suggested_connections_list': connection_methods.getConnectionsSuggestions(the_user, 3),
+    global short_connections_suggestions
+    return render(request, 'Connections.html', {'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
+                                                'suggested_connections_list': connection_methods.getConnectionsInfoList(short_connections_suggestions),
                                                 'this_uid': the_user.uid})
 
 
@@ -355,7 +360,6 @@ def goBadges(request):
     forum = user_methods.getNumForums(u['localId'])
     privacyUpdate = user_methods.getPrivacyUpdated(u['localId'])
 
-    global short_connections_suggestions
     global short_connections_suggestions
     global the_user
 
