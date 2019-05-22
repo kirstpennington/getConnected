@@ -185,7 +185,7 @@
             font-weight: 300;
         }
 
-        .profileContainerDetails, {
+        .profileContainerDetails {
             max-width: 100%;
             overflow-x: hidden;
         }
@@ -1305,11 +1305,13 @@
         <!-- Call to action -->
 
     </div>
-    </div>
+    </divname>
 </footer>
 <!-- 1.1 Pop Up modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="post" action="/updateProfilePicRequest/">
+            {% csrf_token %}
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -1324,31 +1326,60 @@
                 <div class="default-file-upload">
                     <!--  <input id="file-upload1" type="file"/>-->
                     <div class="row">
-                        <form method="post" action="#" id="#">
                             <div class="form-group files color">
                                 <h4 style="color: gray; padding-left: 24px;">Upload Your File </h4>
-                                <input type="file" id="uploadZip" name="icon" class="form-control" multiple="">
+                                <input type="file" id="uploadZip" name="newPic" class="form-control" multiple="">
                             </div>
-                        </form>
                     </div>
                 </div>
+                <input type="text" id="url" name="url" style="display: none">
+                <!-- hidden field to store the url of the image in Firebase storage-->
             </div>
             <div class="modal-footer">
                 <button type="button" class="ViewMorebutton" data-dismiss="modal">
                     Close
                 </button>
+                <script>
+                    // uploads file to Firebase storage
+                    function uploadFile(){
+                        var storage = firebase.storage();
+                        var file = document.getElementById("uploadZip").files[0];
+                        var storgaeRef = storage.ref();
+                        var thisref = storgaeRef.child(file.name).put(file);
 
+                        thisref.on('state_changed', function(snapshot){
+                            console.log("file upload successful");
+
+                            },
+
+                            function(error){
+                                alert('Upload Failed. Please Try Again.');
+                            },
+
+                            function(){
+                                var downloadURL = thisref.snapshot.downloadURL;
+                                console.log("got url");
+                                document.getElementById("url").value = downloadURL;
+
+                            }
+
+                        );
+                    }
+
+                </script>
                  <!-- BUTTONT CHANGE IMAGE-->
-                <button type="submit" id="uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save changes
+                <button type="submit" id="uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save
                 </button>
             </div>
             <!-- Testing-->
             <!-- Testing-->
         </div>
     </div>
+    </form>
 </div>
+
 <!-- End of 1.1 Pop Up modal-->
 
-
+<div name="this_uid" id="this_uid" style="display:none;">{{ this_uid }}</div>
 
 </body>

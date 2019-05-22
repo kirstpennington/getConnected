@@ -160,16 +160,6 @@ def logout(request):
     return render(request, 'LogIn.html')
 
 
-def getPrivacySettings(request):
-    # Name of html file to be changed
-        return render(request, "PrivacySettings.html", {'bioPrivacy': user_privacy.bio,
-                                                        'connectionPrivacy': user_privacy.connections,
-                                                        'countryPrivacy': user_privacy.country,
-                                                        'namePrivacy': user_privacy.name,
-                                                        'pPicPrivacy': user_privacy.pic,
-                                                        })
-
-
 # Called to update Profile Page from Settings.html page - leads to User Profile page
 def updateProfile(request):
     if "cancel" in request.POST:
@@ -245,16 +235,16 @@ def updateProfile(request):
 # method for updating only the profile pic
 def updateProfilePicRequest(request):
     if request.method == "POST":                                # get data from UI
-        newPic = request.POST.get("newPic")                     # get data from UI using POST method
-        print("newPic", newPic)
-        global the_user                                             # edit the object value for profile pic
+        newPic = request.POST.get("url")                     # get data from UI using POST method
+        print("!newPic", newPic)
+        """global the_user                                             # edit the object value for profile pic
         the_user.profilePic = newPic
 
         if user_methods.getUpdatedProfilePic(
                 the_user.uid) != "yes":                             # tracks whether the user has updated their profile pic before for awarding badges
             user_methods.updateUpdatedProfilePic(the_user.uid)
 
-        database.child("Users").child(u['localId']).update({"ProfilePic": newPic})  # set new profile pic in DB
+        database.child("Users").child(u['localId']).update({"ProfilePic": newPic})  # set new profile pic in DB"""
 
     return returnUserProfileCarousels(request)
 
@@ -297,7 +287,8 @@ def returnUserProfileCarousels(request):
                                                             the_user.coursesInfoList),
                                                       'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
                                                       'connections_suggestions_list': connection_methods.getConnectionsInfoList(short_connections_suggestions),
-                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(short_forum_suggestions)
+                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(short_forum_suggestions),
+                                                      'this_uid': the_user.uid
                                                       })
 
 
@@ -314,20 +305,23 @@ def forums(request):
     global the_user
     global short_forum_suggestions
     return render(request, 'Forums.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
-                                           'suggested_forums_list': forum_methods.getForumsInfoList(short_forum_suggestions)})
+                                           'suggested_forums_list': forum_methods.getForumsInfoList(short_forum_suggestions),
+                                           'this_uid': the_user.uid})
 
 
 def courses(request):
     global the_user
     global short_course_suggestions
     return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.coursesInfoList),
-                                            'suggested_courses_list': course_methods.getCoursesInfoList(short_course_suggestions)})
+                                            'suggested_courses_list': course_methods.getCoursesInfoList(short_course_suggestions),
+                                            'this_uid': the_user.uid})
 
 
 def connections(request):
     global the_user
     return render(request, 'Connections.html', {'connections_list': connection_methods.getConnectionsInfoList(user_methods.getUserConnectionsList(the_user.uid)),
-                                                'suggested_connections_list': connection_methods.getConnectionsSuggestions(the_user, 3)})
+                                                'suggested_connections_list': connection_methods.getConnectionsSuggestions(the_user, 3),
+                                                'this_uid': the_user.uid})
 
 
 def userprofile(request):
@@ -348,7 +342,8 @@ def goSettings(request):
                                              'forumsPrivacy': user_privacy.forums,
                                              'countryPrivacy': user_privacy.country,
                                              'connectionsPrivacy': user_privacy.connections,
-                                             'total_country_list': country_list
+                                             'total_country_list': country_list,
+                                             'this_uid': the_user.uid
                                             })
 
 
@@ -370,7 +365,7 @@ def goBadges(request):
             'numCourses': course,
             'numForums': forum,
             'privacyUp': privacyUpdate,
-            'connections_suggestions_list': connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user),
+            'connections_suggestions_list': connection_methods.getConnectionsInfoList(connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)),
             'forums_suggestions_list': forum_methods.getForumsInfoList(the_user.forumsInfoList)
     })
 
