@@ -3,7 +3,7 @@
 
 <head>
 
-    <!--*HEAD* Firebase-->
+    <!--Firebase-->
 
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
     <script>
@@ -44,19 +44,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!--*HEAD-STYLE*  1.1. Navigation Bar Style + Body Style -->
-
+    <!--Dropdown Notifications-->
 
     <style>
 
         .dropdown {
             display: inline-block;
             margin-left: 20px;
-        }
-
-
-        .glyphicon-bell {
-            font-size: 1.5rem;
         }
 
         .notifications {
@@ -69,16 +63,12 @@
 
         }
 
-        .glyphicon-circle-arrow-right {
-            margin-left: 10px;
-        }
-
-
-
         .notifications a.content {
             text-decoration: none;
             background: white;
         }
+
+        /*Each item on the notification dropdown*/
 
         .notification-item {
             padding: 5px;
@@ -89,6 +79,7 @@
             height: 80px;
         }
 
+        /*Image on dropdown notification*/
         .profile_img {
             width: 50px;
             display: inline;
@@ -99,17 +90,11 @@
             margin-right: -20px;
 
         }
-        .profile_img_small {
-            display: inline;
-            float: left;
-            border: 0px solid #111;
-            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
-            margin-right: -20px;
 
-        }
+
     </style>
 
-    <!--Page format-->
+    <!--Page format + wallaper + oage container-->
 
     <style>
 
@@ -131,17 +116,12 @@
         }
 
         .parallax {
-            /* The image used */
-
-            /* Set a specific height */
-
-            /* Create the parallax scrolling effect */
+            /* Parallax effect for image wallpaper */
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-
 
         .profileContainerLift {
             margin: -280px 30px 0; /* Up and down control */
@@ -182,14 +162,6 @@
             border-radius: 50% !important;
         }
 
-         .rounded-circle_small { /* Profile Picture 2/3 */
-            border-radius: 50% !important;
-        }
-
-         .img-fluid_small { /* Profile Picture 3/3 */
-            max-width: 100%;
-            max-height: 160px;
-        }
 
         .img-fluid { /* Profile Picture 3/3 */
             max-width: 100%;
@@ -207,10 +179,6 @@
             max-width: 100%;
             overflow-x: hidden;
         }
-        .html{max-width: 100%;
-
-
-        }
 
         .profileContainerDetails .gallery img {
             width: 100%;
@@ -224,18 +192,9 @@
 
     </style>
 
-    <!--*HEAD-STYLE*  1.4. Cards Style-->
+    <!-- 1.4. Cards Style-->
 
     <style>
-
-        .header_site {
-            background-color: white;
-            height: 40px;
-            width: 1080px;
-            left: 40px;
-            position: relative;
-        }
-
 
         .titlefont {
             font-size: medium;
@@ -379,12 +338,9 @@
 
         /*footer logo*/
         footer img {
-
-
             width: 200%;
             height: 200%;
             text-align: left;
-
         }
 
 
@@ -398,9 +354,7 @@
         }
 
         .well a:hover {
-            text-decoration: none;
-
-        }
+            text-decoration: none;}
 
     </style>
 
@@ -417,20 +371,20 @@
             border-radius: 10px;
         }
 
-         .badges_plus {
+        .badges_plus {
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
             background-color: white;
             border-radius: 10px;
-             border-color: white;
+            border-color: white;
         }
 
-         .plus:hover{
-             -ms-transform: scale(0.5); /* IE 9 */
+        .plus:hover {
+            -ms-transform: scale(0.5); /* IE 9 */
             -webkit-transform: scale(1); /* Safari 3-8 */
             transform: scale(1);
             border: 1px solid silver;
-             border-radius: 23px;
-}
+            border-radius: 23px;
+        }
 
         .badges:hover {
 
@@ -440,17 +394,17 @@
             border: 1px solid silver;
         }
 
-         .badges_plus:hover {
+        .badges_plus:hover {
 
             -ms-transform: scale(0.5); /* IE 9 */
             -webkit-transform: scale(1); /* Safari 3-8 */
             transform: scale(1);
             border: 1px solid silver;
-             border-radius: 23px;
+            border-radius: 23px;
         }
 
-         .plus{}
-
+        .plus {
+        }
 
 
         .settings {
@@ -458,11 +412,11 @@
         }
 
         .settings:hover {
-           -ms-transform: scale(0.5); /* IE 9 */
+            -ms-transform: scale(0.5); /* IE 9 */
             -webkit-transform: scale(1); /* Safari 3-8 */
             transform: scale(1);
             border: 1px solid white;
-             border-radius: 23px;;
+            border-radius: 23px;;
         }
 
         .main-secction {
@@ -756,6 +710,7 @@
 </head>
 
 <body class="profileContainerDetails">
+
 <!--*BODY* 1. Navigation Bar-->
 
 <nav class="navbar navbar-inverse  ">
@@ -821,29 +776,32 @@
                 </li>
             </ul>
 
-           <!--1. Notifications icon + drop down-->
+            <!--1. Notifications icon + drop down-->
 
             <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
-                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
-        <div id="counter_number_notifications"> </div>
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <div id="counter_number_notifications"></div>
 
-                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
 
-                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">   <!--Notifications Dropdown div-->
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
 
-                           <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
-                            <ul  id="comment"></ul>
+                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
+                            <ul id="comment"></ul>
 
 
-                       <!--      <a class="content" href="#">
-                                <div class="notification-item">
-                                    <img class="profile_img"
-                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                    <h4 class="item-title">James Coden · day ago</h4>
-                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                </div>
-                            </a>-->
+                            <!--      <a class="content" href="#">
+                                     <div class="notification-item">
+                                         <img class="profile_img"
+                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                         <h4 class="item-title">James Coden · day ago</h4>
+                                         <p class="item-info">Marketing 101, Video Assignment</p>
+                                     </div>
+                                 </a>-->
 
 
                         </div><!--End of Notifications Dropdown div-->
@@ -858,25 +816,27 @@
 
             <!--2. Message icon + drop down-->
 
-            <ul  class="nav navbar-nav navbar-right ">
-                <li  class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
                                         onclick="CloseIntroForm(); OpenLogIn();">
                     <span class="glyphicon glyphicon-envelope"></span> </a>
 
-                    <ul  class="dropdown-menu notifications"  role="menu" aria-labelledby="dLabel">
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
                         <div class="notifications-wrapper" style="overflow-x: hidden"> <!--Messages Dropdown div-->
 
 
-                            <a  >
+                            <a>
                                 <div class="notification-item">
 
                                     <img class="profile_img" src="{{ ProfilePic }}"/>
-                                  <!--  <img style="" alt="Circle Image" class="img-raised rounded-circle_small img-fluid_small profile_img_small">-->
+                                    <!--  <img style="" alt="Circle Image" class="img-raised rounded-circle_small img-fluid_small profile_img_small">-->
 
                                     <p style="margin-left: 240px; color: black">14:50</p>
-                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
-                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">Sent connection request to Kimone</p>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">Winfreda
+                                        Mazvidza</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Sent connection request to Kimone</p>
                                     <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
 
                                 </div>
@@ -887,12 +847,20 @@
                                 <div class="notification-item">
                                     <img class="profile_img" src="{{ ProfilePic }}"/>
                                     <p style="margin-left: 240px; color: black">14:50</p>
-                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">Kimone</h5>
-                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">Connection Request</p>
-                                     <div style="margin-top: -10px">
-                                    <button  id="dntrigger" class="AcceptDeclinebutton" style=" font-size: 85%; position: relative;left: 80px;color: white">Accept</button>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">
+                                        Kimone</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Connection Request</p>
+                                    <div style="margin-top: -10px">
+                                        <button id="dntrigger" class="AcceptDeclinebutton"
+                                                style=" font-size: 85%; position: relative;left: 80px;color: white">
+                                            Accept
+                                        </button>
 
-                                    <button class="AcceptDeclinebutton" style="; font-size: 85%;position: relative;left: 80px;color: white ">Decline </button>
+                                        <button class="AcceptDeclinebutton"
+                                                style="; font-size: 85%;position: relative;left: 80px;color: white ">
+                                            Decline
+                                        </button>
                                     </div>
                                     <hr style="width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px"/>
 
@@ -909,12 +877,17 @@
     </div><!--container fluid-->
 </nav><!--nav navbar-inverse-->
 
-<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<!--End of Navigation Bar-->
+
+<!--User Profile Container-->
+<!--Background Image-->
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
 
-    <div class="row" > <!--2. Pic + Description -->
-        <div class="col-md-6 ml-auto mr-auto" >
-            <div class="profile" >
+    <div class="row"> <!--2. Pic + Description -->
+        <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
                 <div class="avatar">
                     <img style="margin-left: 200px" src="{{ ProfilePic }}" alt="Circle Image"
                          class="img-raised rounded-circle img-fluid">
@@ -929,13 +902,15 @@
                         <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
                             <div style="text-align: left;">
                                 <h1 style="color: gray;display: inline-block;padding-right:50px;">
-                                    <strong>{{ n }}</strong><br></h1><br><br>
+                                    <strong>{{ n }}</strong><br></h1><br><br> <!--Name of User-->
                                 <div class="settings ">
-                                    <button onclick="location.href='{% url 'goSettings' %}'" data-toggle="tooltip" title="Settings" data-placement="right"
+                                    <!--Settings Bar-->
+                                    <button onclick="location.href='{% url 'goSettings' %}'" data-toggle="tooltip"
+                                            title="Settings" data-placement="right"
                                             style="background-color:hotpink; border-color: transparent; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
                                             class="btn btn-primary pull-right">
-                                        <a href="#" ><i
-                                            class=" fa fa-gear" style="color: white"></i></a>
+                                        <a href="#"><i
+                                                class=" fa fa-gear" style="color: white"></i></a>
                                     </button>
                                 </div>
 
@@ -947,38 +922,46 @@
 
                                 </script>
 
-
+                                <!--Number of Connections and Forums-->
                                 <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px; ">
                                     Connections <span class="label label-default">{{ numConnections }}</span></h8>
                                 <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px">
                                     Forums <span
                                         class="label label-default">{{ numForums }}</span></h8>
                             </div>
-
+                            <!--Container for bio, email, country-->
                             <div style="margin-top:-5px">
 
-                                <span style="color: black;position: relative;" class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;<strong><span style="font-size: small;color: grey">{{ bio }} </span></strong><br>
-                                <span style="color: black;position: relative;" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<strong><span style="font-size: small;color: grey">{{ email }} </span></strong><br>
-                                <span style="color: black;position: relative;" class="fa fa-globe fa-lg text-primary"></span>&nbsp;&nbsp;<strong><span style="font-size: small;color: grey">{{ country }} </span></strong><br>
+                                <span style="color: black;position: relative;"
+                                      class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;<strong><span
+                                    style="font-size: small;color: grey">{{ bio }} </span></strong><br>
+                                <span style="color: black;position: relative;"
+                                      class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<strong><span
+                                    style="font-size: small;color: grey">{{ email }} </span></strong><br>
+                                <span style="color: black;position: relative;"
+                                      class="fa fa-globe fa-lg text-primary"></span>&nbsp;&nbsp;<strong><span
+                                    style="font-size: small;color: grey">{{ country }} </span></strong><br>
 
                             </div>
-
+                            <!--Badges Icon-->
                             <a onclick="location.href='{% url 'goBadges' %}' ">
 
-                              <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png" %}" data-toggle="tooltip" title="Badges" data-placement="right"
+                                <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png" %}"
+                                     data-toggle="tooltip" title="Badges" data-placement="right"
                                      style="width:40px;height:40px; position: absolute; top:100px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
                                      title="" class="badges  "/>
                             </a>
                             <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
 
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--2. Everything else-->
+                        </div><!--profile-header-page1-->
+                    </div><!--row-->
+                </div><!--name-->
+            </div><!--profile-->
+        </div><!--col-md-6-->
+    </div><!--row-->
+
+    <!--Righhand side and middle of page-->
     <div class="description text-left">
 
 
@@ -991,188 +974,177 @@
             <div style="height:5px;"><br></div>
 
 
-            <a onclick="location.href='{% url 'nav_networks' %}'" style="font-size: smaller;position: relative;top: 245px; left: 200px; color: gray; font-weight: bold;"
-                 >
-                View More <i class="fa fa-angle-double-right"></i>
+            <a onclick="location.href='{% url 'nav_networks' %}'"
+               style="font-size: smaller;position: relative;top: 245px; left: 200px; color: gray; font-weight: bold;"
+            >
+                View More <i class="fa fa-angle-double-right"></i><!--View moew connections-->
             </a>
 
 
             <div class="col-md-12">
 
 
+                {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
+                    <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
 
-                {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3"  %}
-                <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                        <button class="badges_plus" type="button" id="btnGetMessage" value="Get Message"
+                                style="position: relative; left: 240px; top: 3px;  "><i style="color: grey" class="fa fa-user-plus "></i>
+                        </button>
 
-                   <button class="badges_plus" type="button" id="btnGetMessage" value="Get Message" style="position: relative; left: 240px; top: 3px;  "><i style="color: grey" class="fa fa-user-plus "></i></button>
 
+                        <div class="row" style="margin-top: -15px">
+                            <img class=" pull-left"
+                                 style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
+                                 src={{ pictures }}/>
 
-                    <div class="row" style="margin-top: -15px">
-                        <img class=" pull-left"
-                             style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
-                             src={{ pictures }}/>
+                            <div class="connection_container">
+                                <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                    {{ names }}
+                                </div>
+                                <!-- hidden field that stores the id of the entity  -->
+                                <div id="connection_id" style="display: none;"> {{ conn_id }}</div>
+                                <h8 style="display: inline-block;margin-left: 10px;margin-top: 4px;font-family: serif; font-size: small; color: black">
+                                    mutual conections &nbsp;<span class="label label-default"
+                                                                  style="color: white"> {{ numConnections }} </span>
+                                </h8>
+                                <br>
 
-                        <div class="connection_container">
-                            <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                {{ names }}
+                                <span class="badge badge-pill badge-dark"
+                                      style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ bio }}</span>
                             </div>
-                            <!-- hidden field that stores the id of the entity  -->
-                            <div id="connection_id" style="display: none;"> {{ conn_id }}</div>
-                            <h8 style="display: inline-block;margin-left: 10px;margin-top: 4px;font-family: serif; font-size: small; color: black">
-                                mutual conections &nbsp;<span class="label label-default" style="color: white"> {{ numConnections }} </span></h8>
-                            <br>
 
-                            <span class="badge badge-pill badge-dark"
-                                  style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ bio }}</span>
                         </div>
-
-                    </div>
-                </div><!--end of Connections Suggestions Card--><br style="height: 2px">
+                    </div><!--end of Connections Suggestions Card--><br style="height: 2px">
                 {% endfor %}
 
             </div><!--col-md-12-->
 
         </div><!--col-md-4 rightColumn-->
 
-     <script>
+    <!--Messaging Implementation-->
 
-                var user = firebase.auth().currentUser;
-                /*Firebase Reference*/
+        <script>
 
-                var database = firebase.database().ref().child("Users/{{this_uid}}/RequestsSent");
-                var database_target = firebase.database().ref().child("Users/xxQe6gmBPGcj35WLLFw96BG7fkl1/RequestsReceived");
-                var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");
+            var user = firebase.auth().currentUser;
+            /*Firebase Reference*/
 
-
-                /*User Clicks on GetMessages time Firebase button*/
-
-                $('#btnGetMessage').click(function () {
-
-                        $(this).find("i").removeClass("fa fa-user-plus").addClass("fa fa-hourglass");
-
-                    var d = new Date(),
-                        minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
-                        hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
-                        ampm = d.getHours() >= 12 ? 'pm' : 'am',
-                        months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                        days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-                        /*dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;*/
-                        dateTime =  hours + ':' + minutes + ampm;
-
-                    writeUserData(dateTime,"{{ n }}","Connection Request,");
-                    dateTime;
-                    "Connection Request";
-                    "{{ n }}";
+            var database = firebase.database().ref().child("Users/{{this_uid}}/RequestsSent");/*Current users account*/
+            var database_target = firebase.database().ref().child("Users/xxQe6gmBPGcj35WLLFw96BG7fkl1/RequestsReceived");/*Where the message is going*/
+            var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
 
 
+            /*User Clicks on GetMessages time Firebase button*/
+
+            $('#btnGetMessage').click(function () {
+
+                $(this).find("i").removeClass("fa fa-user-plus").addClass("fa fa-hourglass");
+                /*Fetching time when items were pushed*/
+
+                var d = new Date(),
+                    minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+                    hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+                    ampm = d.getHours() >= 12 ? 'pm' : 'am',
+                    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                /*dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;*/
+                dateTime = hours + ':' + minutes + ampm;
+               /*Changing items in the db*/
+                writeUserData(dateTime, "{{ n }}", "Connection Request,");
+                dateTime;
+                "Connection Request";
+                "{{ n }}";
+
+
+            });
+
+            /*Push time entered and Message entered from textboxes, creates entry in firebase
+            * push gives a unique key*/
+
+            function writeUserData(message_time, messageTo, actual_message) {/*Pushes to current users*/
+                database.push().set({
+                    time: message_time,
+                    receiver: messageTo,
+                    message: actual_message,
                 });
 
-                /*Push time entered and Message entered from textboxes, creates entry in firebase
-                * push gives a unique key*/
-
-                function writeUserData(message_time, messageTo,actual_message) {
-                    database.push().set({
-                        time: message_time,
-                        receiver: messageTo,
-                        message:actual_message,
-                    });
-
-                    database_target.push().set({
-                        time: message_time,
-                        receiver: messageTo,
-                        message: actual_message,
-
-                    });
-
-
-                }
-
-                /*Whenever items changes (added, modified, deleted) in database, this event is called*/
-
-               /* database.on('value', function (snapshot) {
-                    renderUI(snapshot.val());
-
-                });*/
-
-                database_counter.on('value', function (snapshot) {
-                    renderCount(snapshot.val());
-                    renderUI(snapshot.val());
-                    //alert("Connection Request Received");
-
-
+                database_target.push().set({ /*Pushes to receiver*/
+                    time: message_time,
+                    receiver: messageTo,
+                    message: actual_message,
 
                 });
 
 
+            }
+
+            /*Whenever items changes (added, modified, deleted) in database, this event is called*/
+
+            /* database.on('value', function (snapshot) {
+                 renderUI(snapshot.val());
+
+             });*/
+
+            /*Whenever items changes (added, modified, deleted) in database, this event is called*/
+
+            database_counter.on('value', function (snapshot) {
+                renderCount(snapshot.val());
+                renderUI(snapshot.val());
+                //alert("Connection Request Received");
 
 
+            });
 
-               /* database_count.on('value', function (snapshot) {
-                    renderCount(snapshot.val());
-                });*/
 
-                /*Always refreshing data being loaded*/
+            /* database_count.on('value', function (snapshot) {
+                 renderCount(snapshot.val());
+             });*/
 
-                function renderUI(obj) {
-                    var html = '';
-                    var keys = Object.keys(obj);
-                    for (var i = 0; i < keys.length-1; i++) {
-                       /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+            /*Always refreshing data being loaded*/
 
-                        html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img\" src=\"{{ ProfilePic }}\"/> <p style=\"margin-left: 240px; color: black;text-decoration: none\">" + obj[keys[i]].time + "</p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">"+ obj[keys[i]].receiver+"</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+            function renderUI(obj) {
+                var html = '';
+                var keys = Object.keys(obj);
+                for (var i = 0; i < keys.length - 1; i++) {
+                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+                    /*Creating notification item*/
+
+
+                    html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img\" src=\"{{ ProfilePic }}\"/> <p style=\"margin-left: 240px; color: black;text-decoration: none\">" + obj[keys[i]].time + "</p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].receiver + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
                         "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
 
 
-
-                    }
-                    $('#comment').html(html);
                 }
+                $('#comment').html(html);
+            }
 
-                function renderCount(obj) {
-                    var html = '';
-                    var countholder = 0;
+            /*Updating notification count*/
 
-                    var keys = Object.keys(obj);
-                    for (var i = 0; i < keys.length; i++) {countholder++;}
-                    countholder--;
-                    database_counter.update({'counter': countholder});
+            function renderCount(obj) {
+                var html = '';
+                var countholder = 0;
 
-
-
-
-                    html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-
-
-                    $('#counter_number_notifications').html(html);
-
-
-
+                var keys = Object.keys(obj);
+                for (var i = 0; i < keys.length; i++) {
+                    countholder++;
                 }
+                countholder--;
+                database_counter.update({'counter': countholder});
+                 /*Creating notification icon*/
 
 
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
 
-                /*NOTIFICATION ON ADD: Specific to Add: Whenever items changes (added because of child_added) in database, this event is called, getKey is unique id of pop up*/
-                database.on('child_added', function (data) {
-                    var notify;
 
-                    if (Notification.permission !== 'default') {
+                $('#counter_number_notifications').html(html);
 
-                        notify = new Notification('New message time ' + data.val().time, {
-                            'body': data.val().receiver,
-                            'icon': 'images.jpeg',
-                            'tag': data.getKey()
-                        });
 
-                        notify.onclick = function () {
-                            alert(this.tag);
-                        }
+            }
 
-                    } else {
-                        alert('Please allow the notification first');
-                    }
-                });
 
-            </script>
+            /*NOTIFICATION ON ADD (to be places here): Specific to Add: Whenever items changes (added because of child_added) in database, this event is called, getKey is unique id of pop up*/
+
+
+        </script>
 
 
         <div class="col-md-4 rightColumnTwo">
@@ -1180,45 +1152,46 @@
             <div><p class="rightColumnfont"><span
                     class="fa fa-comments-o"></span>&nbsp;Forums you may want to join</p></div>
 
-            <a onclick="location.href='{% url 'nav_forums' %}'" style="font-size: smaller;position: relative;top: 175px; left: 200px; color: gray; font-weight: bold;"
-                 >
-                View More <i class="fa fa-angle-double-right"></i>
+            <a onclick="location.href='{% url 'nav_forums' %}'"
+               style="font-size: smaller;position: relative;top: 175px; left: 200px; color: gray; font-weight: bold;"
+            >
+                View More <i class="fa fa-angle-double-right"></i> <!--View More Forums-->
             </a>
 
 
             <div class="col-md-12" style="margin-top: -3px">
 
 
-
                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
-                <div class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
+                    <div class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
 
-                    <div style="position: relative; left: 235px; top: 3px;">
-                        <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
-                    </div>
-
-                    <div class="row" style="margin-top: -15px">
-                        <img class=" pull-left"
-                             style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
-                             src={{ forum_pics }}/>
-
-                        <div class="connection_container">
-                            <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                {{ forum_names }}
-                            </div>
-                        <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
-
-                            <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
-                                Creator: {{ forum_creators }}</h8>
-                            <br>
-
-                            <span class="badge badge-pill badge-dark"
-                                  style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ forum_topics }} </span>
-
+                        <div style="position: relative; left: 235px; top: 3px;">
+                            <h8><span class="label label-default"><span
+                                    class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
                         </div>
 
-                    </div>
-                </div><!--end of Forum Suggestions Card--><br>
+                        <div class="row" style="margin-top: -15px">
+                            <img class=" pull-left"
+                                 style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
+                                 src={{ forum_pics }}/>
+
+                            <div class="connection_container">
+                                <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                    {{ forum_names }}
+                                </div>
+                                <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+
+                                <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
+                                    Creator: {{ forum_creators }}</h8>
+                                <br>
+
+                                <span class="badge badge-pill badge-dark"
+                                      style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ forum_topics }} </span>
+
+                            </div>
+
+                        </div>
+                    </div><!--end of Forum Suggestions Card--><br>
                 {% endfor %}
 
             </div><!--col-md-12-->
@@ -1227,7 +1200,8 @@
 
         <!-- My Forums -->
 
-        <div class="row" style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -420px; overflow: hidden">
+        <div class="row"
+             style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -420px; overflow: hidden">
             <div style="height:10px;"><br></div>
 
             <h5 class="titlefont" style="font-weight: bold; margin-left: 4px"><span
@@ -1236,41 +1210,47 @@
 
             <!-- My Forums: Item  -->
 
-         <a href="#" ><span style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip" title="Add Forum"  data-placement="right" class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
+            <a href="#"><span style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
+                              title="Add Forum" data-placement="right"
+                              class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
 
             {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
-            <div class="col-sm-3  " style="; width: 180px; margin-left:30px;  ">
-                <!-- forum wallpaper -->
-                <div class="cardheader" style="background-image: {% load staticfiles %}{{ forum_pics }} ; border-radius: 8px"></div>
-                <!-- Go into forum -->
-                <div class="heartbutton"><span style="background: transparent; " type="button"
-                                               class="fa fa-sign-in fa-lg viewForum"></span></div>
-                <!-- card with forum detains -->
-                <div class="card hovercard " style="margin-top: -50px; margin-left: 11px">
+                <div class="col-sm-3  " style="; width: 180px; margin-left:30px;  ">
+                    <!-- forum wallpaper -->
+                    <div class="cardheader"
+                         style="background-image: {% load staticfiles %}{{ forum_pics }} ; border-radius: 8px"></div>
+                    <!-- Go into forum -->
+                    <div class="heartbutton"><span style="background: transparent; " type="button"
+                                                   class="fa fa-sign-in fa-lg viewForum"></span></div>
+                    <!-- card with forum detains -->
+                    <div class="card hovercard " style="margin-top: -50px; margin-left: 11px">
 
-                    <div>
-                        <!-- Number fo forum users -->
-                        <div style="top: 2px; margin-left: 70%">
-                            <h8><span class="label label-default"><span class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
-                            <div style="height:5px;"><br></div>
+                        <div>
+                            <!-- Number fo forum users -->
+                            <div style="top: 2px; margin-left: 70%">
+                                <h8><span class="label label-default"><span
+                                        class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                                <div style="height:5px;"><br></div>
+                            </div>
+
+                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                            </div>
+                            <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+                            <!-- forum tags -->
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
+
+
                         </div>
+                        <!-- card line -->
 
-                        <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
-                        </div>
-                        <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
-                        <!-- forum tags -->
-                        <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
-
-
-                    </div>
-                    <!-- card line -->
-
-                    <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
-                    <!-- Open forum button -->
-                    <a onclick="location.href='{% url 'forumsopen' %}'" style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">OPEN <i
-                            class="fa fa-angle-double-right"></i></a>
-                </div><!-- /card-hovercard -->
-            </div>
+                        <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                        <!-- Open forum button -->
+                        <a onclick="location.href='{% url 'forumsopen' %}'"
+                           style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">OPEN
+                            <i
+                                    class="fa fa-angle-double-right"></i></a>
+                    </div><!-- /card-hovercard -->
+                </div>
             {% endfor %}
 
         </div><!-- /First View Button fot main body, container-->
@@ -1279,50 +1259,49 @@
                 class="fa fa-angle-double-right"></i></button>
 
 
-
-
         <!-- My Courses: Item 1 -->
 
         <div class="row"
              style=" height: 250px ; margin-left:-250px; width: 850px; position: relative; top: -390px; overflow: hidden">
 
-            <h5 class="titlefont" style="font-weight: bold; margin-left: -5px"><span class="fa fa-book fa-lg"></span>&nbsp;My Courses</h5>
+            <h5 class="titlefont" style="font-weight: bold; margin-left: -5px"><span class="fa fa-book fa-lg"></span>&nbsp;My
+                Courses</h5>
             <div style="height:10px;"><br></div>
 
             {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in course_list|slice:":4" %}
-             {% load staticfiles %}
-             <div class="col-sm-3  " style=" width: 202px; margin-top: 25px; margin-left: 15px; display:{{ course_display_1 }}  ">
+                {% load staticfiles %}
+                <div class="col-sm-3  "
+                     style=" width: 202px; margin-top: 25px; margin-left: 15px; display:{{ course_display_1 }}  ">
 
 
-                <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
+                    <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
 
-                    <div class="inf" style="margin-top: -15px; text-align: center; ">
+                        <div class="inf" style="margin-top: -15px; text-align: center; ">
 
-                        <div style="height:2px;"><br></div>
+                            <div style="height:2px;"><br></div>
 
-                        <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                            {{ course_names }}
+                            <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                {{ course_names }}
+                            </div>
+                            <!-- hidden field that stores the id of the entity  -->
+                            <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+
+                            <div style="height:2px;"><br></div>
+
+                            <span class="badge badge-pill badge-dark"
+                                  style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
+                            <div style="height:5px;"><br></div>
+
+                            <a style="font-size: smaller; margin-left: 0px;color: hotpink; font-weight: bold; "
+                               href={{ course_urls }}>VIEW
+                                COURSE <i class="fa fa-angle-double-right"></i></a>
                         </div>
-                         <!-- hidden field that stores the id of the entity  -->
-                        <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
 
-                        <div style="height:2px;"><br></div>
-
-                        <span class="badge badge-pill badge-dark"
-                              style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
-                        <div style="height:5px;"><br></div>
-
-                        <a style="font-size: smaller; margin-left: 0px;color: hotpink; font-weight: bold; "
-                           href={{ course_urls }}>VIEW
-                            COURSE <i class="fa fa-angle-double-right"></i></a>
                     </div>
 
+
                 </div>
-
-
-            </div>
             {% endfor %}
-
 
 
         </div>
@@ -1418,70 +1397,69 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form method="post" action="/updateProfilePicRequest/">
-            {% csrf_token %}
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <h3 class="modal-title" style="color: gray" id="exampleModalLabel"><span
-                        class="fa fa-gear fa-lg"></span> Image Settings </h3>
-            </div>
-            <div class="modal-body">
-                <div class="default-file-upload">
-                    <!--  <input id="file-upload1" type="file"/>-->
-                    <div class="row">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h3 class="modal-title" style="color: gray" id="exampleModalLabel"><span
+                            class="fa fa-gear fa-lg"></span> Image Settings </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="default-file-upload">
+                        <!--  <input id="file-upload1" type="file"/>-->
+                        <div class="row">
                             <div class="form-group files color">
                                 <h4 style="color: gray; padding-left: 24px;">Upload Your File </h4>
                                 <input type="file" id="uploadZip" name="newPic" class="form-control" multiple="">
                             </div>
+                        </div>
                     </div>
+                    <input type="text" id="url" name="url" style="display: none">
+                    <!-- hidden field to store the url of the image in Firebase storage-->
                 </div>
-                <input type="text" id="url" name="url" style="display: none">
-                <!-- hidden field to store the url of the image in Firebase storage-->
+                <div class="modal-footer">
+                    <button type="button" class="ViewMorebutton" data-dismiss="modal">
+                        Close
+                    </button>
+                    <script>
+                        // uploads file to Firebase storage
+                        function uploadFile() {
+                            var storage = firebase.storage();
+                            var file = document.getElementById("uploadZip").files[0];
+                            var storgaeRef = storage.ref();
+                            var thisref = storgaeRef.child(file.name).put(file);
+
+                            thisref.on('state_changed', function (snapshot) {
+                                    console.log("file upload successful");
+
+                                },
+
+                                function (error) {
+                                    alert('Upload Failed. Please Try Again.');
+                                },
+
+                                function () {
+                                    var downloadURL = thisref.snapshot.downloadURL;
+                                    console.log("got url");
+                                    document.getElementById("url").value = downloadURL;
+
+                                }
+                            );
+                        }
+
+                    </script>
+                    <!-- BUTTONT CHANGE IMAGE-->
+                    <button type="submit" id="uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save
+                    </button>
+                </div>
+                <!-- Testing-->
+                <!-- Testing-->
             </div>
-            <div class="modal-footer">
-                <button type="button" class="ViewMorebutton" data-dismiss="modal">
-                    Close
-                </button>
-                <script>
-                    // uploads file to Firebase storage
-                    function uploadFile(){
-                        var storage = firebase.storage();
-                        var file = document.getElementById("uploadZip").files[0];
-                        var storgaeRef = storage.ref();
-                        var thisref = storgaeRef.child(file.name).put(file);
-
-                        thisref.on('state_changed', function(snapshot){
-                            console.log("file upload successful");
-
-                            },
-
-                            function(error){
-                                alert('Upload Failed. Please Try Again.');
-                            },
-
-                            function(){
-                                var downloadURL = thisref.snapshot.downloadURL;
-                                console.log("got url");
-                                document.getElementById("url").value = downloadURL;
-
-                            }
-
-                        );
-                    }
-
-                </script>
-                 <!-- BUTTONT CHANGE IMAGE-->
-                <button type="submit" id="uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save
-                </button>
-            </div>
-            <!-- Testing-->
-            <!-- Testing-->
         </div>
-    </div>
     </form>
 </div>
 
@@ -1489,52 +1467,7 @@
 <!-- End of 1.1 Pop Up modal-->
 
 
-
 </body>
 
 
-<script>
 
-var dnperm = document.getElementById('dnperm');
-var dntrigger = document.getElementById('dntrigger');
-
-    dnperm.addEventListener('click',function(e){
-        e.preventDefault();
-        if(!window.Notification){
-            alert('Not supported');
-        }else{
-            Notification.requestPermission().then(function(p){
-                if(p=='denied'){
-                    alert('You denied to show notification');
-                }else if(p=='granted'){
-                    alert('You allowed to show notification');
-                }
-            });
-        }
-    });
-
-     dntrigger.addEventListener('click', function(e){
-        var notify;
-        e.preventDefault();
-        if(Notification.permission!=='default'){
-
-
-                        notify= new Notification('New message from Tanuj',{
-                            'body': 'this is a test message',
-                            'icon': 'images.jpeg',
-                            'tag': '1234'
-                        });
-
-                        notify.onclick = function(){
-                        window.location = '?message'+this.tag;
-                }
-
-
-        }else{
-            alert('Please allow the notification first');
-        }
-
-    });
-
-
-</script>
