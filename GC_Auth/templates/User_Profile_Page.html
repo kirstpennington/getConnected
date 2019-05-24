@@ -1397,7 +1397,7 @@
 <!-- 1.1 Pop Up modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form method="post" action="/updateProfilePicRequest/">
+    <form method="post" action="#">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1429,16 +1429,15 @@
                     <script>
                         // uploads file to Firebase storage
                         function uploadFile() {
-                            // ToDo: get user's uid
-
-                            var storage = firebase.storage();
-
-                            // ToDo: delete old pic with this uid
-
+                            uid = {{ this_uid }};                                                           // this user's user id
+                            var storage = firebase.storage().ref();                                         // reference to Firebase storage
                             var file = document.getElementById("uploadZip").files[0];
                             var storgaeRef = storage.ref();
-                            // ToDo: name file according to uid
-                            var thisref = storgaeRef.child(file.name).put(file);
+
+                            storgaeRef.child("images/profilePics/".concat(uid)).delete();                    // delete old pic with this uid
+
+
+                            var thisref = storgaeRef.child("images/profilePics/".concat(uid)).put(file);    // add new file to Firebase storage
 
                             thisref.on('state_changed', function (snapshot) {
                                     console.log("file upload successful");
@@ -1450,8 +1449,10 @@
                                 },
 
                                 function () {
-                                    var downloadURL = thisref.snapshot.downloadURL;
-                                    // ToDo: update firebase with new url
+                                    var downloadURL = thisref.snapshot.downloadURL;                          //get the link of the pic stored in Firebase storage
+
+                                    var database = firebase.database();
+                                    databare.child("Users").child(uid).update({'ProfilePic': downloadURL} );`// update the url of the profile pic in the db
                                 }
                             );
                         }
