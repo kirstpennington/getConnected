@@ -906,9 +906,10 @@
                         </div><!--end col-->
 
                         <!--connections-->
+                        {% for names, countries, pictures, bio, conn_id in connections_list %}
                         <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
-
-                            <img class="cardheader" src="{% static "GC_Auth/UserProfile_images/kendrick.jpg" %}" >
+                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                            <img class="cardheader" src="{{ pictures }}" >
 
                             <div class="card hovercard ">
                                 <div class="avatar"><br>
@@ -917,121 +918,31 @@
                                 <div class="info">
                                     <div class="title"></div>
                                     <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        Kendrick Potss
+                                        {{ names }}
                                     </div>
-                                    <p>UC Berkeley Student </p>
+                                    <p>{{ countries }}</p>
                                     <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
                                     </Button>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
 
 
-                        <div class="col-md-3" style="margin-top: 50px;margin-right: -10px;margin-left: -10px;">
-
-                            <img class="cardheader" src=" ayo-ogunseinde-93181-unsplash.jpg ">
-                            <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        Kendrick Lamar
-                                    </div>
-                                    <p>UC Berkeley Student </p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div><!--end item-->
 
 
-                        <div class="col-md-3" style="margin-top: 50px;">
 
-                            <img class="cardheader" src=" ayo-ogunseinde-93181-unsplash.jpg ">
-                            <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        Kendrick Lamar
-                                    </div>
-                                    <p>UC Berkeley Student </p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div><!--end item-->
                     </div><!--endrow-->
 
-                    <!--new row-->
-                    <div class="col-md-3"><!--filter pane placeholder-->
 
 
-                    </div>
-
-                    <!--connections-->
-                     <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
-
-                            <img class="cardheader" src=" ayo-ogunseinde-93181-unsplash.jpg ">
-                            <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        Kendrick Lamar
-                                    </div>
-                                    <p>UC Berkeley Student </p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
 
 
-                        <div class="col-md-3" style="margin-top: 50px;margin-right: -10px;margin-left: -10px;">
-
-                            <img class="cardheader" src=" ayo-ogunseinde-93181-unsplash.jpg ">
-                            <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        Kendrick Lamar
-                                    </div>
-                                    <p>UC Berkeley Student </p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div><!--end item-->
 
 
-                        <div class="col-md-3" style="margin-top: 50px;">
 
-                            <img class="cardheader" src=" ayo-ogunseinde-93181-unsplash.jpg ">
-                            <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        Kendrick Lamar
-                                    </div>
-                                    <p>UC Berkeley Student </p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div><!--end item-->
+
+
                 </div><!--end my connections-->
             </div>
 
@@ -1152,9 +1063,11 @@
                         </div><!--end col-->
 
                         <!--connections-->
+                        {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
                         <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
+                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                            <img class="cardheader" src="{{ pictures }}" >
 
-                            <img class="cardheader" src="{% static "GC_Auth/UserProfile_images/khanyi.jpg" %}">
                             <div class="card hovercard ">
                                 <div class="avatar"><br>
                                 </div>
@@ -1162,164 +1075,17 @@
                                 <div class="info">
                                     <div class="title"></div>
                                     <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        Kate
-                                        Popi
+                                        {{ names }}
                                     </div>
-                                    <p> UCT Graduate </p>
-                                    <button class="button">Connect <span
-                                            class="glyphicon glyphicon-plus-sign"><br></span>
-                                    </button>
+                                    <p>{{ countries }}</p>
+                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
+                                    </Button>
                                 </div>
                             </div>
-                        </div><!--end item-->
-
-                        <div class="col-md-3" style="margin-top: 50px;margin-right: -10px;margin-left: -10px;">
-
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-3 col-sm-6">
-                                        <img class="cardheader"
-                                             src=" christopher-campbell-28567-unsplash.jpg            ">
-                                        <div class="card hovercard ">
-                                            <div class="avatar"><br>
-                                            </div>
-                                            <br>
-                                            <div class="info">
-                                                <div class="title"></div>
-                                                <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                                    Emily Roberts
-                                                </div>
-                                                <p> Software Developer</p>
-                                                <button class="button">Connect <span
-                                                        class="glyphicon glyphicon-plus-sign"><br></button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--end item-->
-
-
-                        <div class="col-md-3" style="margin-top: 50px;">
-                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                                  rel="stylesheet">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-3 col-sm-6">
-                                        <img class="cardheader" src="alexandru-zdrobau-195418-Eskimo .jpg ">
-                                        <div class="card hovercard ">
-                                            <div class="avatar"><br>
-                                            </div>
-                                            <br>
-                                            <div class="info">
-                                                <div class="title"></div>
-                                                <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                                    Hailey Bieber
-                                                </div>
-                                                <p> Oxford Student </p>
-                                                <button class="button">Connect <span
-                                                        class="glyphicon glyphicon-plus-sign"><br></button>
-                                                </span>                                   </button>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div><!--end item-->
+                        </div>
+                        {% endfor %}
                     </div><!--endrow-->
-
-                    <!--new row-->
-                    <div class="col-md-3"><!--filter pane placeholder-->
-
-
-                    </div>
-
-                    <!--connections-->
-                    <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
-
-                        <img class="cardheader" src=" photo-1492633423870-43d1cd2775eb Golden Lady .jpg ">
-                        <div class="card hovercard ">
-                            <div class="avatar"><br>
-                            </div>
-                            <br>
-                            <div class="info">
-                                <div class="title"></div>
-                                <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                    Khanyi
-                                    Kardashian
-                                </div>
-                                <p> UCT Graduate </p>
-                                <button class="button">Connect <span class="glyphicon glyphicon-plus-sign"><br></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div><!--end item-->
-
-                    <div class="col-md-3" style="margin-top: 50px;margin-right: -10px;margin-left: -10px;">
-
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <img class="cardheader"
-                                         src=" christopher-campbell-28567-unsplash.jpg            ">
-                                    <div class="card hovercard ">
-                                        <div class="avatar"><br>
-                                        </div>
-                                        <br>
-                                        <div class="info">
-                                            <div class="title"></div>
-                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                                Emily Roberts
-                                            </div>
-                                            <p> Software Developer</p>
-                                            <button class="button">Connect <span
-                                                    class="glyphicon glyphicon-plus-sign"><br></button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--end item-->
-
-
-                    <div class="col-md-3" style="margin-top: 50px;">
-                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                              rel="stylesheet">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <img class="cardheader" src="alexandru-zdrobau-195418-Eskimo .jpg ">
-                                    <div class="card hovercard ">
-                                        <div class="avatar"><br>
-                                        </div>
-                                        <br>
-                                        <div class="info">
-                                            <div class="title"></div>
-                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                                Hailey Bieber
-                                            </div>
-                                            <p> Oxford Student </p>
-                                            <button class="button">Connect <span
-                                                    class="glyphicon glyphicon-plus-sign"><br></button>
-                                            </span>                                   </button>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div><!--end item-->
                 </div><!--end my connections-->
-
 
             </div>
         </div>
