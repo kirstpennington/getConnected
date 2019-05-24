@@ -377,6 +377,8 @@ def goBadges(request):
 def goHelpUserProfile(request):
     return render(request, "helpUserProfile.html")
 
+def goHelpCourses(request):
+    return render(request, "courseHelp.html")
 
 def goIntroHelp(request):
     return render(request, 'introducingHelp.html')
