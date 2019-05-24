@@ -125,9 +125,9 @@ class forum_methods:
         top_forum_ids = []  # stores the forum with the most number of participants
 
         if len(all_forums_ids) >= 3:
-            top_forum_ids[0].append(all_forums_ids[0])
-            top_forum_ids[0].append(all_forums_ids[1])
-            top_forum_ids[0].append(all_forums_ids[2])
+            top_forum_ids.append(all_forums_ids[0])
+            top_forum_ids.append(all_forums_ids[1])
+            top_forum_ids.append(all_forums_ids[2])
 
             count_skip = 0  # skip the first 3 values because they're already in the top forums list
             for forum_id in all_forums_ids:
