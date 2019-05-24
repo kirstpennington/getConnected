@@ -60,6 +60,9 @@ class course_methods:
     def getCourseURL(course_id):
         return database.child("Courses").child(course_id).child("CourseURL").get().val()
 
+    def getAllCoursesList(uid):
+        return database.child("Courses").shallow().get().val()
+
     def getCoursesInfoList(courses_id_list):
         # get data from each course for the user and add them to separate arrays
         course_names = []

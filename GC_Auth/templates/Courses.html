@@ -954,7 +954,7 @@
                     <!--placeholder for space by filter-->
                 </div><!--end col-->
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in courses_list %}
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in all_courses_list %}
                     <div class="col-md-3" style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
@@ -973,7 +973,7 @@
                                     <div class="card hovercard  ">
                                         <div class="avatar"><br>
                                             {% load staticfiles %}
-                                            <img src={{ course_pictures }}/>
+                                            <img src='{{ course_pictures }}'/>
                                         </div>
                                         <br>
                                         <div class="info">

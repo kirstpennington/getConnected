@@ -361,7 +361,8 @@ def courses(request):
     global short_course_suggestions
     return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.coursesInfoList),
                                             'suggested_courses_list': course_methods.getCoursesInfoList(short_course_suggestions),
-                                            'this_uid': the_user.uid})
+                                            'this_uid': the_user.uid,
+                                            'all_courses_list': course_methods.getCoursesInfoList(course_methods.getAllCoursesList(the_user.uid))})
 
 
 def connections(request):
