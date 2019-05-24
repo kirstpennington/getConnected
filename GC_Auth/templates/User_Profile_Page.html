@@ -995,7 +995,7 @@
                         <div class="row" style="margin-top: -15px">
                             <img class=" pull-left"
                                  style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
-                                 src={{ pictures }}/>
+                                 src="{{ pictures }}"/>
 
                             <div class="connection_container">
                                 <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
@@ -1173,7 +1173,7 @@
                         <div class="row" style="margin-top: -15px">
                             <img class=" pull-left"
                                  style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
-                                 src={{ forum_pics }}/>
+                                 src="{{ forum_pics }}"/>
 
                             <div class="connection_container">
                                 <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
@@ -1218,7 +1218,8 @@
                 <div class="col-sm-3  " style="; width: 180px; margin-left:30px;  ">
                     <!-- forum wallpaper -->
                     <div class="cardheader"
-                         style="background-image: {% load staticfiles %}{{ forum_pics }} ; border-radius: 8px"></div>
+                         style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
+                    </div>
                     <!-- Go into forum -->
                     <div class="heartbutton"><span style="background: transparent; " type="button"
                                                    class="fa fa-sign-in fa-lg viewForum"></span></div>
@@ -1268,7 +1269,7 @@
                 Courses</h5>
             <div style="height:10px;"><br></div>
 
-            {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in course_list|slice:":4" %}
+            {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in course_list|slice:":2" %}
                 {% load staticfiles %}
                 <div class="col-sm-3  "
                      style=" width: 202px; margin-top: 25px; margin-left: 15px; display:{{ course_display_1 }}  ">

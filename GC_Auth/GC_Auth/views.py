@@ -158,7 +158,50 @@ def postsign(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request, 'LogIn.html')
+    forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(
+        *forum_methods.getTrendingForums(""))  # unzip all elements of each trending forum
+
+    if len(forum_names) == 0:
+        return render(request, "LogIn.html", {'show_forum_1': 'hidden',
+                                              'show_forum_2': 'hidden',
+                                              'show_forum_3': 'hidden'})
+    if len(forum_names) == 1:
+        return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                              'forum_1_pic': forum_pics[0],
+                                              'forum_1_participants': forum_num_participants[0],
+                                              'forum_1_name': forum_names[0],
+                                              'forum_1_description': forum_descriptions[0],
+                                              'show_forum_2': 'hidden',
+                                              'show_forum_3': 'hidden'})
+    if len(forum_names) == 2:
+        return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                              'forum_1_pic': forum_pics[0],
+                                              'forum_1_participants': forum_num_participants[0],
+                                              'forum_1_name': forum_names[0],
+                                              'forum_1_description': forum_descriptions[0],
+                                              'show_forum_2': 'visible',
+                                              'forum_2_pic': forum_pics[1],
+                                              'forum_2_participants': forum_num_participants[1],
+                                              'forum_2_name': forum_names[1],
+                                              'forum_2_description': forum_descriptions[1],
+                                              'show_forum_3': 'hidden'})
+
+    return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                          'forum_1_pic': forum_pics[0],
+                                          'forum_1_participants': forum_num_participants[0],
+                                          'forum_1_name': forum_names[0],
+                                          'forum_1_description': forum_descriptions[0],
+                                          'show_forum_2': 'visible',
+                                          'forum_2_pic': forum_pics[1],
+                                          'forum_2_participants': forum_num_participants[1],
+                                          'forum_2_name': forum_names[1],
+                                          'forum_2_description': forum_descriptions[1],
+                                          'show_forum_3': 'visible',
+                                          'forum_3_pic': forum_pics[2],
+                                          'forum_3_participants': forum_num_participants[2],
+                                          'forum_3_name': forum_names[2],
+                                          'forum_3_description': forum_descriptions[2]
+                                          })
 
 
 # Called to update Profile Page from Settings.html page - leads to User Profile page
@@ -276,11 +319,11 @@ def returnUserProfileCarousels(request):
 
     global short_forum_suggestions      # if the suggested forums has not been determined yet
     if short_forum_suggestions == "":
-        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 5, the_user)
+        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 4, the_user)
 
     global short_connections_suggestions  # if the suggested forums has not been determined yet
     if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)
+        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 4, the_user)
 
     return render(request, "User_Profile_Page.html", {"e": email,
                                                       'n': the_user.username,
@@ -292,8 +335,8 @@ def returnUserProfileCarousels(request):
                                                       'ProfilePic': the_user.profilePic,
                                                       'backgroundPic': the_user.backgroundPic,
                                                       'course_list': course_methods.getCoursesInfoList(
-                                                            the_user.coursesInfoList),
-                                                      'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+                                                            the_user.coursesInfoList[:3]),
+                                                      'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList[:3]),
                                                       'connections_suggestions_list': connection_methods.getConnectionsInfoList(short_connections_suggestions),
                                                       'forums_suggestions_list': forum_methods.getForumsInfoList(short_forum_suggestions),
                                                       'this_uid': the_user.uid
