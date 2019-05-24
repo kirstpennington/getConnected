@@ -380,6 +380,9 @@ def goHelpUserProfile(request):
 def goHelpCourses(request):
     return render(request, "courseHelp.html")
 
+def goHelpConnections(request):
+    return render(request, "connectionHelp.html")
+
 def goIntroHelp(request):
     return render(request, 'introducingHelp.html')
 

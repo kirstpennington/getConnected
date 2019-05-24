@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^goContact/', views.goContact, name='contactus'),
     url(r'^goLogIn/', views.LogIn, name='login'),
 url(r'^goHelpCourses/', views.goHelpCourses, name='helpcourses'),
+url(r'^goHelpConnections/', views.goHelpConnections, name='helpconnections'),
 
 
 
