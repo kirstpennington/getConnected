@@ -239,10 +239,6 @@ def updateProfile(request):
             user_methods.updateCountry(the_user.uid, country)
             the_user.country = country
 
-        if the_user.email != email:
-            user_methods.updateEmail(the_user.uid, email)
-            the_user.email = email
-
         if user_privacy.bio != bioPrivacy:
             user_methods.updateBioPrivacy(the_user.uid, bioPrivacy)
             user_privacy.bio = bioPrivacy
