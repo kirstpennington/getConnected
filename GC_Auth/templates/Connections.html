@@ -52,16 +52,16 @@
             box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
 
         }
-         .img-fluid { /* Profile Picture 3/3 */
+
+        .img-fluid { /* Profile Picture 3/3 */
             max-width: 100%;
             max-height: 160px;
 
         }
 
-         .rounded-circle { /* Profile Picture 2/3 */
+        .rounded-circle { /* Profile Picture 2/3 */
             border-radius: 50% !important;
         }
-
 
 
         /*dropdown menu on navbar*/
@@ -486,7 +486,7 @@
             display: inline-block;
             padding: 8px;
             color: white;
-            background-color: #ff80bf;
+            background-color: #e83e8c;
             text-align: center;
             cursor: pointer;
             width: 100%;
@@ -911,8 +911,6 @@
                                     </div>
 
 
-
-
                                 </div><!--end of accordion-->
                                 <!-- <form class="  search-form" role="search">
                                          <input type="text" class="form-control" placeholder="Search" />
@@ -924,40 +922,31 @@
 
                         <!--connections-->
                         {% for names, countries, pictures, bio, conn_id in connections_list %}
-                        <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
-                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} " alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
+                                <div style="display: none;" id="conn_id">{{ conn_id }}</div>
+                                <!-- hidden field with the user id for that connection -->
+                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} "
+                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
 
-                            <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        {{ names }}
+                                <div class="card hovercard ">
+                                    <div class="avatar"><br>
                                     </div>
-                                    <p>{{ countries }}</p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                    </Button>
+                                    <br>
+                                    <div class="info">
+                                        <div class="title"></div>
+                                        <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                            {{ names }}
+                                        </div>
+                                        <p>{{ countries }}</p>
+                                       <button class="button">Connect <span class="glyphicon glyphicon-plus-sign"><br></button></span>
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         {% endfor %}
 
 
-
-
-
                     </div><!--endrow-->
-
-
-
-
-
-
-
-
 
 
                 </div><!--end my connections-->
@@ -997,7 +986,7 @@
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                                 <a data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapseSubject"
+                                                   href="#collapseSubjects"
                                                    style="color:#ce3298">
                                                     <strong>
                                                         Subject
@@ -1005,7 +994,7 @@
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseSubject" class="panel-collapse collapse">
+                                        <div id="collapseSubjects" class="panel-collapse collapse">
                                             <div class="panel-body">
 
                                                 <p> All </p>
@@ -1035,14 +1024,14 @@
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                                 <a data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapseInstitution" style="color:#ce3298">
+                                                   href="#collapseInstitutions" style="color:#ce3298">
                                                     <strong>
                                                         Institution
                                                     </strong>
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseInstitution" class="panel-collapse collapse">
+                                        <div id="collapseInstitutions" class="panel-collapse collapse">
                                             <div class="panel-body">
 
                                                 <p> All </p>
@@ -1068,8 +1057,6 @@
                                     </div>
 
 
-
-
                                 </div><!--end of accordion-->
                                 <!-- <form class="  search-form" role="search">
                                          <input type="text" class="form-control" placeholder="Search" />
@@ -1081,26 +1068,28 @@
 
                         <!--connections-->
                         {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
-                        <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
-                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} " alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
+                                <div style="display: none;" id="conn_id">{{ conn_id }}</div>
+                                <!-- hidden field with the user id for that connection -->
+                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} "
+                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
 
-                            <div class="card hovercard ">
+                                <div class="card hovercard ">
 
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        {{ names }}
+                                    <div class="avatar"><br>
                                     </div>
-                                    <p>{{ countries }}</p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                    </Button>
+                                    <br>
+                                    <div class="info">
+                                        <div class="title"></div>
+                                        <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                            {{ names }}
+                                        </div>
+                                        <p>{{ countries }}</p>
+                                        <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         {% endfor %}
                     </div><!--endrow-->
                 </div><!--end my connections-->

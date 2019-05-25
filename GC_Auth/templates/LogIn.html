@@ -412,13 +412,13 @@
 </blockquote>
 <div>
 
-<!--<p>   </p>-->
-<!--   <img  src="../GC_Auth/static/GC_Auth/func.jpg" class="img-responsive center-block" alt="functions offered">-->
-{% load staticfiles %}
-<img style="height: 35%;
+    <!--<p>   </p>-->
+    <!--   <img  src="../GC_Auth/static/GC_Auth/func.jpg" class="img-responsive center-block" alt="functions offered">-->
+    {% load staticfiles %}
+    <img style="height: 35%;
         width: 68%;" src="{% static "GC_Auth/func.jpg" %}" class="img-responsive center-block" alt="functions offered"/>
 
-<br></br>
+    <br></br>
 </div>
 </form>
 
@@ -446,8 +446,6 @@
 
 
 <br></br>
-
-
 
 
 <!--NewCarousel for trending blogs-->
@@ -478,7 +476,8 @@
                         <div class="col-md-5"><!--forum image-->
                             <br>
                             {% load staticfiles %}
-                            <img style="visibility: {{ show_forum_1 }};" class="img-raised img-rounded img-fluid" src={{ forum_1_pic }} style="width: 90%;  height=100%;" />
+                            <img style="visibility: {{ show_forum_1 }};" class="img-raised img-rounded img-fluid"
+                                 src={{ forum_1_pic }} style="width: 90%; height=100%;"/>
 
                         </div><!--end col-->
 
@@ -487,7 +486,8 @@
                             <h2 style="color: white;margin-bottom: 0px;"><strong> <i>{{ forum_1_name }}</i></strong>
                             </h2>
 
-                            <h8 style="margin-top: 0px; visibility: {{ show_forum_1 }};"><span style="" class="label label-default"><span
+                            <h8 style="margin-top: 0px; visibility: {{ show_forum_1 }};"><span style=""
+                                                                                               class="label label-default"><span
                                     class="fa fa-users"> </span>{{ forum_1_participants }}</span></h8>
                             <br><br>
                             <p>{{ forum_1_description }}</p>
@@ -496,7 +496,8 @@
 
                                 <button style="margin-bottom: -20px;" onclick="CloseIntroForm(); OpenLogIn()"
                                         type="button">
-                                    <span style="visibility: {{ show_forum_1 }};" class="glyphicon glyphicon-log-in"></span>
+                                    <span style="visibility: {{ show_forum_1 }};"
+                                          class="glyphicon glyphicon-log-in"></span>
                                     Log in
                                 </button>
 
@@ -523,7 +524,8 @@
                         <div class="col-md-5"><!--forum image-->
                             <br>
                             {% load staticfiles %}
-                            <img style="visibility: {{ show_forum_2 }};" class="img-raised img-rounded img-fluid" src={{ forum_2_pic }} style="width: 90%; height=100%;" />
+                            <img style="visibility: {{ show_forum_2 }};" class="img-raised img-rounded img-fluid"
+                                 src={{ forum_2_pic }} style="width: 90%; height=100%;"/>
 
                         </div><!--end col-->
 
@@ -532,14 +534,16 @@
                             <h2 style="color: white;margin-bottom: 0px;"><strong> <i>{{ forum_2_name }}</i></strong>
                             </h2>
 
-                            <h8 style="margin-top: 0px;"><span style="visibility: {{ show_forum_2 }};" class="label label-default"><span
+                            <h8 style="margin-top: 0px;"><span style="visibility: {{ show_forum_2 }};"
+                                                               class="label label-default"><span
                                     class="fa fa-users"> </span>{{ forum_2_participants }}</span></h8>
                             <br><br>
                             <p>{{ forum_2_description }}</p>
                             <!--log-in button-->
                             <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
 
-                                <button style="margin-bottom: -20px; visibility: {{ show_forum_2 }};" onclick="CloseIntroForm(); OpenLogIn()"
+                                <button style="margin-bottom: -20px; visibility: {{ show_forum_2 }};"
+                                        onclick="CloseIntroForm(); OpenLogIn()"
                                         type="button">
                                     <span class="glyphicon glyphicon-log-in"></span>
                                     Log in
@@ -568,8 +572,9 @@
                         <div class="col-md-5"><!--forum image-->
                             <br>
                             {% load staticfiles %}
-                            <img style="visibility: {{ show_forum_3 }};" class="img-raised img-rounded img-fluid" src={{ forum_3_pic }} style="width: 90%;
-                                 height=100%;" />
+                            <img style="visibility: {{ show_forum_3 }};" class="img-raised img-rounded img-fluid"
+                                 src={{ forum_3_pic }} style="width: 90%;
+                                 height=100%;"/>
 
                         </div><!--end col-->
 
@@ -578,14 +583,16 @@
                             <h2 style="color: white;margin-bottom: 0px;"><strong> <i>{{ forum_3_name }}</i></strong>
                             </h2>
 
-                            <h8 style="margin-top: 0px; visibility: {{ show_forum_3 }};"><span style="" class="label label-default"><span
+                            <h8 style="margin-top: 0px; visibility: {{ show_forum_3 }};"><span style=""
+                                                                                               class="label label-default"><span
                                     class="fa fa-users"> </span>{{ forum_3_participants }}</span></h8>
                             <br><br>
                             <p>{{ forum_3_description }}</p>
                             <!--log-in button-->
                             <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
 
-                                <button style="margin-bottom: -20px; visibility: {{ show_forum_3 }};" onclick="CloseIntroForm(); OpenLogIn()"
+                                <button style="margin-bottom: -20px; visibility: {{ show_forum_3 }};"
+                                        onclick="CloseIntroForm(); OpenLogIn()"
                                         type="button">
                                     <span class="glyphicon glyphicon-log-in"></span>
                                     Log in
@@ -618,7 +625,7 @@
     <br></br>
 
 
- <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
 
 
         <div class="container">
@@ -684,9 +691,9 @@
             </ul>
             <!-- Call to action -->
         </div>
- </footer>
-        </div>
- 
+    </footer>
+</div>
+
 </body>
 
 </html>

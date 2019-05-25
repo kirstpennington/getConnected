@@ -9,7 +9,6 @@ from GC_Auth.forums import forum_methods
 from GC_Auth.users import user_methods
 from GC_Auth.connections import connection_methods
 
-
 config = {
 
     'apiKey': "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
@@ -20,7 +19,6 @@ config = {
     'messagingSenderId': "144309081376"
 }
 
-
 firebase = pyrebase.initialize_app(config)
 authe = firebase.auth()
 database = firebase.database()
@@ -28,21 +26,21 @@ database = firebase.database()
 r = ""  # store initial user request for authentication
 u = ""  # store user variable for Firebase authentication
 
-the_user = ""       # object to store user information
-user_privacy = ""   # object to store user privacy information
+the_user = ""  # object to store user information
+user_privacy = ""  # object to store user privacy information
 
 email = ""
 
-short_connections_suggestions = ""      # stored all suggested forums, courses and connections for faster loading times
+short_connections_suggestions = ""  # stored all suggested forums, courses and connections for faster loading times
 short_forum_suggestions = ""
 short_course_suggestions = ""
-
 
 
 # LOGIN methods
 
 def LogIn(request):
-    forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(*forum_methods.getTrendingForums(""))        # unzip all elements of each trending forum
+    forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(
+        *forum_methods.getTrendingForums(""))  # unzip all elements of each trending forum
 
     if len(forum_names) == 0:
         return render(request, "LogIn.html", {'show_forum_1': 'hidden',
@@ -88,13 +86,11 @@ def LogIn(request):
 
 
 def passwordReset(request):
-
     # ... your python code/script
-    return render(request,"passwordReset.html")
+    return render(request, "passwordReset.html")
 
 
 def postsign(request):
-
     # user authentication with Firebase
     global r
     r = request
@@ -113,15 +109,17 @@ def postsign(request):
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
 
-    global the_user     # create the_user object to store user profile data
+    global the_user  # create the_user object to store user profile data
 
     # if the user image or background is blank, set it to a default value
     if user_methods.getBackgroundPic(user['localId']) == "":
-        user_methods.updateBackgroundPic(user['localId'],"https://cdn.shopify.com/s/files/1/2656/8500/products/galerie-wallpapers-unplugged-textured-plain-grey-wallpaper-2035691716651_1024x.jpg?v=1522251583")
+        user_methods.updateBackgroundPic(user['localId'],
+                                         "https://cdn.shopify.com/s/files/1/2656/8500/products/galerie-wallpapers-unplugged-textured-plain-grey-wallpaper-2035691716651_1024x.jpg?v=1522251583")
         the_user.backgroundPic = "https://cdn.shopify.com/s/files/1/2656/8500/products/galerie-wallpapers-unplugged-textured-plain-grey-wallpaper-2035691716651_1024x.jpg?v=1522251583"
 
     if user_methods.getProfilePic(user['localId']) == "":
-        user_methods.updateProfilePic(user['localId'],  "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg" )
+        user_methods.updateProfilePic(user['localId'],
+                                      "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
         the_user.profilePic = "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg"
 
     the_user = User(user_methods.getUsername(user['localId']),
@@ -144,7 +142,7 @@ def postsign(request):
     global short_course_suggestions  # preload course suggestions
     short_course_suggestions = course_methods.getCourseSuggestions(user['localId'], 3, the_user)
 
-    global user_privacy # create user_privacy object to store user privacy data
+    global user_privacy  # create user_privacy object to store user privacy data
     user_privacy = Privacy(user_methods.getBioPrivacy(user['localId']),
                            user_methods.getConnectionPrivacy(user['localId']),
                            user_methods.getCountryPrivacy(user['localId']),
@@ -228,9 +226,10 @@ def updateProfile(request):
         global the_user
         global user_privacy
 
-        if the_user.username != name:                         # check is there was a change made first
-            user_methods.updateUsername(the_user.uid, name)   # call each method to update elements of the profile in the db
-            the_user.username = name                          # edit the contents of the the_user variable
+        if the_user.username != name:  # check is there was a change made first
+            user_methods.updateUsername(the_user.uid,
+                                        name)  # call each method to update elements of the profile in the db
+            the_user.username = name  # edit the contents of the the_user variable
 
         if the_user.bio != bio:
             user_methods.updateBio(the_user.uid, bio)
@@ -273,13 +272,13 @@ def updateProfile(request):
             user_privacy.forums = forumsPrivacy
 
     # edit return render to show the new data
-    return returnUserProfileCarousels(request)                  # render user profile with updated data
+    return returnUserProfileCarousels(request)  # render user profile with updated data
 
 
 # method for updating only the profile pic
 def updateProfilePicRequest(request):
     global the_user
-    if request.method == "POST":                                # get data from UI
+    if request.method == "POST":  # get data from UI
         """pic = request.FILES.get("files[]")
         
         storage.child("images/", the_user.uid).put(pic)"""
@@ -302,13 +301,13 @@ def updateProfilePicRequest(request):
 
 # method for updating only the background pic
 def updateBackgroundPicRequest(request):
-    if request.method == "POST":                                # get data from UI
-        newPic = request.POST.get("newPic")                     # get data from UI using POST method
+    if request.method == "POST":  # get data from UI
+        newPic = request.POST.get("newPic")  # get data from UI using POST method
 
-    global the_user                                             # edit the object value for profile pic
+    global the_user  # edit the object value for profile pic
     the_user.backgroundPic = newPic
 
-    database.child("Users").child(u['localId']).update({"BackgroundPic": newPic})       # set new profile pic in DB
+    database.child("Users").child(u['localId']).update({"BackgroundPic": newPic})  # set new profile pic in DB
 
     return returnUserProfileCarousels(request)
 
@@ -317,7 +316,7 @@ def updateBackgroundPicRequest(request):
 def returnUserProfileCarousels(request):
     global the_user
 
-    global short_forum_suggestions      # if the suggested forums has not been determined yet
+    global short_forum_suggestions  # if the suggested forums has not been determined yet
     if short_forum_suggestions == "":
         short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 4, the_user)
 
@@ -335,10 +334,13 @@ def returnUserProfileCarousels(request):
                                                       'ProfilePic': the_user.profilePic,
                                                       'backgroundPic': the_user.backgroundPic,
                                                       'course_list': course_methods.getCoursesInfoList(
-                                                            the_user.coursesInfoList[:3]),
-                                                      'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList[:3]),
-                                                      'connections_suggestions_list': connection_methods.getConnectionsInfoList(short_connections_suggestions),
-                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(short_forum_suggestions),
+                                                          the_user.coursesInfoList[:3]),
+                                                      'forums_list': forum_methods.getForumsInfoList(
+                                                          the_user.forumsInfoList[:3]),
+                                                      'connections_suggestions_list': connection_methods.getConnectionsInfoList(
+                                                          short_connections_suggestions),
+                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(
+                                                          short_forum_suggestions),
                                                       'this_uid': the_user.uid
                                                       })
 
@@ -352,7 +354,8 @@ def forums(request):
     global the_user
     global short_forum_suggestions
     return render(request, 'Forums.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
-                                           'suggested_forums_list': forum_methods.getForumsInfoList(short_forum_suggestions),
+                                           'suggested_forums_list': forum_methods.getForumsInfoList(
+                                               short_forum_suggestions),
                                            'this_uid': the_user.uid})
 
 
@@ -360,17 +363,21 @@ def courses(request):
     global the_user
     global short_course_suggestions
     return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.coursesInfoList),
-                                            'suggested_courses_list': course_methods.getCoursesInfoList(short_course_suggestions),
+                                            'suggested_courses_list': course_methods.getCoursesInfoList(
+                                                short_course_suggestions),
                                             'this_uid': the_user.uid,
-                                            'all_courses_list': course_methods.getCoursesInfoList(course_methods.getAllCoursesList(the_user.uid))})
+                                            'all_courses_list': course_methods.getCoursesInfoList(
+                                                course_methods.getAllCoursesList(the_user.uid))})
 
 
 def connections(request):
     global the_user
     global short_connections_suggestions
-    return render(request, 'Connections.html', {'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
-                                                'suggested_connections_list': connection_methods.getConnectionsInfoList(short_connections_suggestions),
-                                                'this_uid': the_user.uid})
+    return render(request, 'Connections.html',
+                  {'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
+                   'suggested_connections_list': connection_methods.getConnectionsInfoList(
+                       short_connections_suggestions),
+                   'this_uid': the_user.uid})
 
 
 def userprofile(request):
@@ -393,7 +400,7 @@ def goSettings(request):
                                              'connectionsPrivacy': user_privacy.connections,
                                              'total_country_list': country_list,
                                              'this_uid': the_user.uid
-                                            })
+                                             })
 
 
 def goBadges(request):
@@ -408,24 +415,28 @@ def goBadges(request):
     global the_user
 
     return render(request, "badgesStart.html", {
-            'n': name,
-            'numConnections': conn,
-            'numCourses': course,
-            'numForums': forum,
-            'privacyUp': privacyUpdate,
-            'connections_suggestions_list': connection_methods.getConnectionsInfoList(connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)),
-            'forums_suggestions_list': forum_methods.getForumsInfoList(the_user.forumsInfoList)
+        'n': name,
+        'numConnections': conn,
+        'numCourses': course,
+        'numForums': forum,
+        'privacyUp': privacyUpdate,
+        'connections_suggestions_list': connection_methods.getConnectionsInfoList(
+            connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)),
+        'forums_suggestions_list': forum_methods.getForumsInfoList(the_user.forumsInfoList)
     })
 
 
 def goHelpUserProfile(request):
     return render(request, "helpUserProfile.html")
 
+
 def goHelpCourses(request):
     return render(request, "courseHelp.html")
 
+
 def goHelpConnections(request):
     return render(request, "connectionHelp.html")
+
 
 def goIntroHelp(request):
     return render(request, 'introducingHelp.html')
@@ -443,7 +454,6 @@ def goContact(request):
     return render(request, 'contactus.html')
 
 
-
 # search and filter functions
 
 def getSearchByTopic(request):
@@ -457,21 +467,57 @@ def getSearchByTopic(request):
     the_user.coursesInfoList = courses_list
 
     # unzip all lists
-    course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni = zip(*courses_list)
+    course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni = zip(
+        *courses_list)
 
     # code to search by topic
     # remove item from all lists if they don't contain the topic
 
     # zip all lists back
-    filtered_courses_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni)
+    filtered_courses_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics,
+                                courses_ids, course_topics, course_uni)
 
     return render(request, 'Courses.html', {'courses_list': filtered_courses_list,
-                                            'suggested_courses_list': suggested_courses})       # return and render courses page with filtered list
+                                            'suggested_courses_list': suggested_courses})  # return and render courses page with filtered list
 
 
-country_list = ['None',"Afghanistan","ÅlandIslands","Albania","Algeria","AmericanSamoa","Andorra","Angola","Anguilla",
-                "Antarctica","AntiguaandBarbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
-                "Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan",
-                "Bolivia","BosniaandHerzegovina","Botswana","BouvetIsland","Brazil","BritishIndianOceanTerritory",
-                "BruneiDarussalam","Bulgaria","BurkinaFaso","Burundi","Cambodia","Cameroon","Canada","CapeVerde",
-                "CaymanIslands","CentralAfricanRepublic","Chad","Chile","China","ChristmasIsland","Cocos(Keeling)Islands","Colombia","Comoros","Congo","Congo,TheDemocraticRepublicofThe","CookIslands","CostaRica","CoteD'ivoire","Croatia","Cuba","Cyprus","CzechRepublic","Denmark","Djibouti","Dominica","DominicanRepublic","Ecuador","Egypt","ElSalvador","EquatorialGuinea","Eritrea","Estonia","Ethiopia","FalklandIslands(Malvinas)""FaroeIslands","Fiji","Finland","France","FrenchGuiana","FrenchPolynesia","FrenchSouthernTerritories","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea","Guinea-bissau","Guyana","Haiti","HeardIslandandMcdonaldIslands","HolySee(VaticanCityState)","Honduras","HongKong","Hungary","Iceland","India","Indonesia","IslamicRepublicofIran","Iraq","Ireland","IsleofMan","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","DemocraticPeople'sRepublicofKorea","RepublicofKorea","Kuwait","Kyrgyzstan","LaoPeople'sDemocraticRepublic","Latvia","Lebanon","Lesotho","Liberia","LibyanArabJamahiriya","Liechtenstein","Lithuania","Luxembourg","Macao","TheFormerYugoslavRepublicofMacedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","MarshallIslands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","FederatedStatesofMicronesia","RepublicofMoldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","NetherlandsAntilles","NewCaledonia","NewZealand","Nicaragua","Niger","Nigeria","Niue","NorfolkIsland","NorthernMarianaIslands","Norway","Oman","Pakistan","Palau","PalestinianTerritory""Panama","PapuaNewGuinea","Paraguay","Peru","Philippines","Pitcairn","Poland","Portugal","PuertoRico","Qatar","Reunion","Romania","RussianFederation","Rwanda","SaintHelena","SaintKittsandNevis","SaintLucia","SaintPierreandMiquelon","SaintVincentandTheGrenadines","Samoa","SanMarino","SaoTomeandPrincipe","SaudiArabia","Senegal","Serbia","Seychelles","SierraLeone","Singapore","Slovakia","Slovenia","SolomonIslands","Somalia","SouthAfrica","SouthGeorgiaandTheSouthSandwichIslands","Spain","SriLanka","Sudan","Suriname","SvalbardandJanMayen","Swaziland","Sweden","Switzerland","SyrianArabRepublic","Taiwan,ProvinceofChina","Tajikistan","Tanzania,UnitedRepublicofCongo","Thailand","Timor-leste","Togo","Tokelau","Tonga","TrinidadandTobago","Tunisia","Turkey","Turkmenistan","TurksandCaicosIslands","Tuvalu","Uganda","Ukraine","UnitedArabEmirates","UnitedKingdom","UnitedStates","UnitedStatesMinorOutlyingIslands","Uruguay","Uzbekistan","Vanuatu","Venezuela","VietNam","VirginIslands,British","VirginIslands,U.S.","WallisandFutuna","WesternSahara","Yemen","Zambia","Zimbabwe"]
+country_list = ['None', "Afghanistan", "ÅlandIslands", "Albania", "Algeria", "AmericanSamoa", "Andorra", "Angola",
+                "Anguilla",
+                "Antarctica", "AntiguaandBarbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria",
+                "Azerbaijan",
+                "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda",
+                "Bhutan",
+                "Bolivia", "BosniaandHerzegovina", "Botswana", "BouvetIsland", "Brazil", "BritishIndianOceanTerritory",
+                "BruneiDarussalam", "Bulgaria", "BurkinaFaso", "Burundi", "Cambodia", "Cameroon", "Canada", "CapeVerde",
+                "CaymanIslands", "CentralAfricanRepublic", "Chad", "Chile", "China", "ChristmasIsland",
+                "Cocos(Keeling)Islands", "Colombia", "Comoros", "Congo", "Congo,TheDemocraticRepublicofThe",
+                "CookIslands", "CostaRica", "CoteD'ivoire", "Croatia", "Cuba", "Cyprus", "CzechRepublic", "Denmark",
+                "Djibouti", "Dominica", "DominicanRepublic", "Ecuador", "Egypt", "ElSalvador", "EquatorialGuinea",
+                "Eritrea", "Estonia", "Ethiopia", "FalklandIslands(Malvinas)""FaroeIslands", "Fiji", "Finland",
+                "France", "FrenchGuiana", "FrenchPolynesia", "FrenchSouthernTerritories", "Gabon", "Gambia", "Georgia",
+                "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala",
+                "Guernsey", "Guinea", "Guinea-bissau", "Guyana", "Haiti", "HeardIslandandMcdonaldIslands",
+                "HolySee(VaticanCityState)", "Honduras", "HongKong", "Hungary", "Iceland", "India", "Indonesia",
+                "IslamicRepublicofIran", "Iraq", "Ireland", "IsleofMan", "Israel", "Italy", "Jamaica", "Japan",
+                "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "DemocraticPeople'sRepublicofKorea",
+                "RepublicofKorea", "Kuwait", "Kyrgyzstan", "LaoPeople'sDemocraticRepublic", "Latvia", "Lebanon",
+                "Lesotho", "Liberia", "LibyanArabJamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao",
+                "TheFormerYugoslavRepublicofMacedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta",
+                "MarshallIslands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico",
+                "FederatedStatesofMicronesia", "RepublicofMoldova", "Monaco", "Mongolia", "Montenegro", "Montserrat",
+                "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "NetherlandsAntilles",
+                "NewCaledonia", "NewZealand", "Nicaragua", "Niger", "Nigeria", "Niue", "NorfolkIsland",
+                "NorthernMarianaIslands", "Norway", "Oman", "Pakistan", "Palau", "PalestinianTerritory""Panama",
+                "PapuaNewGuinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "PuertoRico",
+                "Qatar", "Reunion", "Romania", "RussianFederation", "Rwanda", "SaintHelena", "SaintKittsandNevis",
+                "SaintLucia", "SaintPierreandMiquelon", "SaintVincentandTheGrenadines", "Samoa", "SanMarino",
+                "SaoTomeandPrincipe", "SaudiArabia", "Senegal", "Serbia", "Seychelles", "SierraLeone", "Singapore",
+                "Slovakia", "Slovenia", "SolomonIslands", "Somalia", "SouthAfrica",
+                "SouthGeorgiaandTheSouthSandwichIslands", "Spain", "SriLanka", "Sudan", "Suriname",
+                "SvalbardandJanMayen", "Swaziland", "Sweden", "Switzerland", "SyrianArabRepublic",
+                "Taiwan,ProvinceofChina", "Tajikistan", "Tanzania,UnitedRepublicofCongo", "Thailand", "Timor-leste",
+                "Togo", "Tokelau", "Tonga", "TrinidadandTobago", "Tunisia", "Turkey", "Turkmenistan",
+                "TurksandCaicosIslands", "Tuvalu", "Uganda", "Ukraine", "UnitedArabEmirates", "UnitedKingdom",
+                "UnitedStates", "UnitedStatesMinorOutlyingIslands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela",
+                "VietNam", "VirginIslands,British", "VirginIslands,U.S.", "WallisandFutuna", "WesternSahara", "Yemen",
+                "Zambia", "Zimbabwe"]

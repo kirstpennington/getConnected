@@ -623,33 +623,34 @@
             padding-top: 1000px;
             padding-bottom: 10px;
         }
-        button:hover{
-             -ms-transform: scale(1); /* IE 9 */
-             -webkit-transform: scale(1); /* Safari 3-8 */
-             transform: scale(1);
-             border: 1px solid silver ;
+
+        button:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
             box-shadow: 3px 3px 3px #888888;
-    }
+        }
 
 
-      button{
+        button {
 
             border-radius: 8px;
-            color:  #666666;
+            color: #666666;
             background-color: white;
-            border: 2px  solid #e83e8c;
+            border: 2px solid #e83e8c;
             display: inline-block;
             padding-top: 5px;
             padding-bottom: 5px;
-            padding-left:10px;
-            padding-right:10px;
+            padding-left: 10px;
+            padding-right: 10px;
             font-size: 16px;
 
-       }
+        }
 
-      button:focus{
-          outline:none;
-      }
+        button:focus {
+            outline: none;
+        }
 
     </style>
     <!--*STYLE for pop up model-->
@@ -1005,7 +1006,6 @@
                     class="glyphicon glyphicon-cog"></span></h2>
 
 
-
         </div><!--end col-->
 
 
@@ -1016,96 +1016,96 @@
 
 
     <!--make a table with 2 coloumns and 4 rows-->
-    <form action="/updateProfile/" method="post" >
-    {% csrf_token %}
-    <div class="row"><!--row one-->
+    <form action="/updateProfile/" method="post">
+        {% csrf_token %}
+        <div class="row"><!--row one-->
 
 
-        <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one username -->
-            <div class="inputformsLeft">
-                <p>Username: </p>
-                <input type="text" class="form-control" name="firstname" value={{ username }}>
+            <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one username -->
+                <div class="inputformsLeft">
+                    <p>Username: </p>
+                    <input type="text" class="form-control" name="firstname" value={{ username }}>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!-coloumn combo boxes -->
-         <!--   <p>University Attended:</p>
-            <select id="university" name="university"
-                    style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
-                <option value="None">None</option>
-                <option value="Cambridge CSL">Cambridge CSL</option>
-                <option value="Harvard"> Harvard University</option>
-                <option value="LSE"> LSE</option>
-                <option value="MIT">MIT</option>
-                <option value="Oxford Saïd">Oxford Saïd</option>
-                <option value="Rice University"> Rice University</option>
-                <option value="Stanford health">Stanford Center for Health Education</option>
-                <option value="Chicago Univeristy"> The University of Chicago</option>
-                <option value="UC Berkely"> UC Berkeley</option>
-                <option value="UC Davis">UC Davis Graduate School of Management</option>
-                <option value="UCT GSB"> UCT Graduate School of Business</option>
-                <option value="USB-ED">USB-ED</option>
-                <option value="UCT"> University of Cape Town</option>
-                <option value="Univeristy Dayton">University of Dayton</option>
-                <option value="WITS"> WITS</option>
-                <option value="Yale">Yale SOM Executive Education</option>
-            </select>-->
+            <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!-coloumn combo boxes -->
+                <!--   <p>University Attended:</p>
+                   <select id="university" name="university"
+                           style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
+                       <option value="None">None</option>
+                       <option value="Cambridge CSL">Cambridge CSL</option>
+                       <option value="Harvard"> Harvard University</option>
+                       <option value="LSE"> LSE</option>
+                       <option value="MIT">MIT</option>
+                       <option value="Oxford Saïd">Oxford Saïd</option>
+                       <option value="Rice University"> Rice University</option>
+                       <option value="Stanford health">Stanford Center for Health Education</option>
+                       <option value="Chicago Univeristy"> The University of Chicago</option>
+                       <option value="UC Berkely"> UC Berkeley</option>
+                       <option value="UC Davis">UC Davis Graduate School of Management</option>
+                       <option value="UCT GSB"> UCT Graduate School of Business</option>
+                       <option value="USB-ED">USB-ED</option>
+                       <option value="UCT"> University of Cape Town</option>
+                       <option value="Univeristy Dayton">University of Dayton</option>
+                       <option value="WITS"> WITS</option>
+                       <option value="Yale">Yale SOM Executive Education</option>
+                   </select>-->
 
-             <p>Your Country:</p>
-            <select id="country" name="country"
-                    style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
-            <!-- dynamically instantiate options list-->
-                {% for option in total_country_list %}
-                    <!-- selects only the user's country -->
-                    {% if option == country %}
-                        <option value={{ option }} selected>{{ option }}</option>
-                    {% else %}
-                        <option value={{ option }}>{{ option }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
-        </div>
+                <p>Your Country:</p>
+                <select id="country" name="country"
+                        style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
+                    <!-- dynamically instantiate options list-->
+                    {% for option in total_country_list %}
+                        <!-- selects only the user's country -->
+                        {% if option == country %}
+                            <option value={{ option }} selected>{{ option }}</option>
+                        {% else %}
+                            <option value={{ option }}>{{ option }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
 
-    </div> <!--row one-->
+        </div> <!--row one-->
 
-    <div class="row"><!--row two-->
-        <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--My Courses -->
-          <!--  <div style="display: none;" class="inputformsLeft">
+        <div class="row"><!--row two-->
+            <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--My Courses -->
+                <!--  <div style="display: none;" class="inputformsLeft">
                 <p>Email Address: </p>
                 <input type="email" class="form-control" name="email" value='{{ email }}'>
             </div> -->
                 <p>My Courses</p>
                 <!-- courses hide/show hide-->
-                    {% if coursesPrivacy == "True" %}
-                        <label class="radio-inline">
-                            <input type="radio" name="coursesPrivacyGet" value="False"> Show
-                        </label>
+                {% if coursesPrivacy == "True" %}
+                    <label class="radio-inline">
+                        <input type="radio" name="coursesPrivacyGet" value="False"> Show
+                    </label>
 
-                        <label class="radio-inline">
-                            <input type="radio"  name="coursesPrivacyGet" value="True" checked> Hide
-                        </label>
-                    {% else %}
-                        <label class="radio-inline">
-                            <input type="radio" name="coursesPrivacyGet" value="False" checked> Show
-                        </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="coursesPrivacyGet" value="True" checked> Hide
+                    </label>
+                {% else %}
+                    <label class="radio-inline">
+                        <input type="radio" name="coursesPrivacyGet" value="False" checked> Show
+                    </label>
 
-                        <label class="radio-inline">
-                            <input type="radio" name="coursesPrivacyGet" value="True" > Hide
-                        </label>
-                    {% endif %}
+                    <label class="radio-inline">
+                        <input type="radio" name="coursesPrivacyGet" value="True"> Hide
+                    </label>
+                {% endif %}
                 <br>
-        </div>
+            </div>
 
-         <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--forums show hide -->
-           <p>My Forums</p>
-            <!-- forums hshow hide-->
+            <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--forums show hide -->
+                <p>My Forums</p>
+                <!-- forums hshow hide-->
                 {% if forumsPrivacy == "True" %}
                     <label class="radio-inline">
                         <input type="radio" name="forumPrivacyGet" value="False"> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio"  name="forumPrivacyGet" value="True" checked> Hide
+                        <input type="radio" name="forumPrivacyGet" value="True" checked> Hide
                     </label>
                 {% else %}
                     <label class="radio-inline">
@@ -1113,27 +1113,27 @@
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" name="forumPrivacyGet" value="True" > Hide
+                        <input type="radio" name="forumPrivacyGet" value="True"> Hide
                     </label>
                 {% endif %}
-            <br>
-        </div><!--end col-->
+                <br>
+            </div><!--end col-->
 
-    </div><!--row two-->
+        </div><!--row two-->
 
-    <div class="row"><!--row three-->
+        <div class="row"><!--row three-->
 
-        <!--coloumn with bio-->
-        <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;">
-         <p>My Connections</p>
-            <!-- connections hshow hide-->
+            <!--coloumn with bio-->
+            <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;">
+                <p>My Connections</p>
+                <!-- connections hshow hide-->
                 {% if connectionsPrivacy == "True" %}
                     <label class="radio-inline">
                         <input type="radio" name="connectionPrivacyGet" value="False"> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio"  name="connectionPrivacyGet" value="True" checked> Hide
+                        <input type="radio" name="connectionPrivacyGet" value="True" checked> Hide
                     </label>
                 {% else %}
                     <label class="radio-inline">
@@ -1141,23 +1141,23 @@
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" name="connectionPrivacyGet" value="True" > Hide
+                        <input type="radio" name="connectionPrivacyGet" value="True"> Hide
                     </label>
                 {% endif %}
 
-            <br>
-        </div><!--end col-->
+                <br>
+            </div><!--end col-->
 
-        <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--forums show hide -->
-            <p>Country</p>
-            <!-- country hshow hide-->
+            <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--forums show hide -->
+                <p>Country</p>
+                <!-- country hshow hide-->
                 {% if countryPrivacy == "True" %}
                     <label class="radio-inline">
                         <input type="radio" name="countryPrivacyGet" value="False"> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio"  name="countryPrivacyGet" value="True" checked> Hide
+                        <input type="radio" name="countryPrivacyGet" value="True" checked> Hide
                     </label>
                 {% else %}
                     <label class="radio-inline">
@@ -1165,25 +1165,25 @@
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" name="countryPrivacyGet" value="True" > Hide
+                        <input type="radio" name="countryPrivacyGet" value="True"> Hide
                     </label>
                 {% endif %}
-        </div><!--end col-->
-    </div><!--row three-->
+            </div><!--end col-->
+        </div><!--row three-->
 
-    <div class="row"><!--row four -->
-          <!-- <div class="row">row one-->
-        <!--coloumn with bio-->
-        <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--coloumn one username -->
-            <p>Bio</p>
-            <!-- bio hshow hide-->
+        <div class="row"><!--row four -->
+            <!-- <div class="row">row one-->
+            <!--coloumn with bio-->
+            <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--coloumn one username -->
+                <p>Bio</p>
+                <!-- bio hshow hide-->
                 {% if bioPrivacy == "True" %}
                     <label class="radio-inline">
                         <input type="radio" name="bioPrivacyGet" value="False"> Show
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio"  name="bioPrivacyGet" value="True" checked> Hide
+                        <input type="radio" name="bioPrivacyGet" value="True" checked> Hide
                     </label>
                 {% else %}
                     <label class="radio-inline">
@@ -1191,42 +1191,42 @@
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" name="bioPrivacyGet" value="True" > Hide
+                        <input type="radio" name="bioPrivacyGet" value="True"> Hide
                     </label>
                 {% endif %}
 
                 <div class="form-group">
 
-                    <textarea name="bioGet" class="form-control" maxlength = "100" rows="5" id="comment" style="width: 70%;">{{ bio }}</textarea>
+                    <textarea name="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                              style="width: 70%;">{{ bio }}</textarea>
                 </div>
 
-        </div><!--end col-->
+            </div><!--end col-->
 
-        <div class="col-md-6" style="padding-left: 70px; padding-bottom: 30px;"><!--save button  -->
+            <div class="col-md-6" style="padding-left: 70px; padding-bottom: 30px;"><!--save button  -->
 
-            <div class="buttonbot" style="padding-top: 150px;padding-left: 140px;">
-                <button  type="submit">Save Changes</button>
-                <button type="submit" value="cancel" name="cancel">Cancel</button>
-            </div>
-
-
-
-        </div><!--end col-->
-
-    </div><!--row four-->
-
-    <!--2. Everything else-->
-    <div class="description text-left">
+                <div class="buttonbot" style="padding-top: 150px;padding-left: 140px;">
+                    <button type="submit">Save Changes</button>
+                    <button type="submit" value="cancel" name="cancel">Cancel</button>
+                </div>
 
 
-        <!--2.RIGHT-HAND SIDE-->
+            </div><!--end col-->
+
+        </div><!--row four-->
+
+        <!--2. Everything else-->
+        <div class="description text-left">
 
 
-    </div>
+            <!--2.RIGHT-HAND SIDE-->
+
+
+        </div>
 
 
 </div>
-    </form>
+</form>
 </div>
 
 

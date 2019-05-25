@@ -18,16 +18,13 @@ from django.contrib import admin
 from . import views
 from django.urls import path, include
 
-
-
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^$',views.LogIn),
+    url(r'^$', views.LogIn),
     url(r'^passwordReset/', views.passwordReset, name='Reset'),
-    url(r'^postsign/',views.postsign),
-    url(r'^logout/',views.logout,name="log"),
+    url(r'^postsign/', views.postsign),
+    url(r'^logout/', views.logout, name="log"),
     url(r'^goBadges/', views.goBadges, name='goBadges'),
     url(r'^Settings/', views.goSettings, name='goSettings'),
 
@@ -38,10 +35,8 @@ urlpatterns = [
     url(r'^goSettings/', views.goSettings, name='settings'),
     url(r'^goContact/', views.goContact, name='contactus'),
     url(r'^goLogIn/', views.LogIn, name='login'),
-url(r'^goHelpCourses/', views.goHelpCourses, name='helpcourses'),
-url(r'^goHelpConnections/', views.goHelpConnections, name='helpconnections'),
-
-
+    url(r'^goHelpCourses/', views.goHelpCourses, name='helpcourses'),
+    url(r'^goHelpConnections/', views.goHelpConnections, name='helpconnections'),
 
     url(r'^home/', views.home, name="nav_home"),
     url(r'^networks/', views.connections, name="nav_networks"),
@@ -52,6 +47,5 @@ url(r'^goHelpConnections/', views.goHelpConnections, name='helpconnections'),
     url(r'^updateProfile/', views.updateProfile, name="updateProfile"),
     url(r'^updateProfilePicRequest/', views.updateProfilePicRequest, name="updateProfilePicRequest"),
     url(r'^updateBackgroundPicRequest/', views.updateBackgroundPicRequest, name="updateBackgroundPicRequest")
-
 
 ]
