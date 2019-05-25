@@ -196,6 +196,14 @@
 
     <style>
 
+        .col-sm-3 .rightColumnContainer_lower:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            background-color: #e83e8c;
+            color: white;
+        }
+
         .titlefont {
             font-size: medium;
             color: gray;
@@ -546,20 +554,11 @@
 
         }
 
-        .rightColumnContainer_lower:hover {
 
-        }
 
-        .inf {
-            border-radius: 8px
-        }
 
-        .inf:hover {
-            -ms-transform: scale(0.5); /* IE 9 */
-            -webkit-transform: scale(1); /* Safari 3-8 */
-            transform: scale(1);
-            border: 1px solid silver;
-        }
+
+
 
         .rightColumnfont {
             color: gray;
@@ -975,8 +974,7 @@
 
 
             <a onclick="location.href='{% url 'nav_networks' %}'"
-               style="font-size: smaller;position: relative;top: 245px; left: 200px; color: gray; font-weight: bold;"
-            >
+               style="font-size: smaller;position: relative;top: 245px; left: 200px; color: gray; font-weight: bold;">
                 View More <i class="fa fa-angle-double-right"></i><!--View moew connections-->
             </a>
 
@@ -1277,7 +1275,7 @@
 
                     <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
 
-                        <div class="inf" style="margin-top: -15px; text-align: center; ">
+                        <div  style="margin-top: -15px; text-align: center;border-radius: 8px ">
 
                             <div style="height:2px;"><br></div>
 
@@ -1293,7 +1291,7 @@
                                   style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
                             <div style="height:5px;"><br></div>
 
-                            <a style="font-size: smaller; margin-left: 0px;color: hotpink; font-weight: bold; "
+                            <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
                                href={{ course_urls }}>VIEW
                                 COURSE <i class="fa fa-angle-double-right"></i></a>
                         </div>
@@ -1307,7 +1305,7 @@
 
         </div>
 
-        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_forums' %}'"
+        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_networks'  %}'"
                 style="position: absolute; left: 810px; top: 600px; font-size: 85%">View More <i
                 class="fa fa-angle-double-right"></i></button>
 

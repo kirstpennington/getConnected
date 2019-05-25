@@ -47,6 +47,23 @@
     <!-- Navigation Bar Style + Body Style -->
 
     <style>
+
+        .img-raised { /* Profile Picture 1/3 */
+            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+
+        }
+         .img-fluid { /* Profile Picture 3/3 */
+            max-width: 100%;
+            max-height: 160px;
+
+        }
+
+         .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
+
+
         /*dropdown menu on navbar*/
         .dropdown {
             display: inline-block;
@@ -310,8 +327,8 @@
             border-bottom-width: 2px;
             box-sizing: border-box;
             position: relative;
-            top: -50px;
-            margin-bottom: -50px;
+            top: 0px;
+            margin-bottom: 50px;
             left: 18px;
             box-shadow: 0 4px 8px 0 silver;
         }
@@ -366,7 +383,7 @@
             background-size: cover;
             height: 200px;
             width: 300px;
-            border-radius: 9px;
+            border-radius: 200px;
             box-shadow: 0 4px 8px 0 silver;
 
         }
@@ -909,7 +926,7 @@
                         {% for names, countries, pictures, bio, conn_id in connections_list %}
                         <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
                             <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                            <img class="cardheader" src="{{ pictures }}" >
+                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} " alt="Circle Image" class="img-raised rounded-circle img-fluid">
 
                             <div class="card hovercard ">
                                 <div class="avatar"><br>
@@ -1066,9 +1083,10 @@
                         {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
                         <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
                             <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                            <img class="cardheader" src="{{ pictures }}" >
+                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} " alt="Circle Image" class="img-raised rounded-circle img-fluid">
 
                             <div class="card hovercard ">
+
                                 <div class="avatar"><br>
                                 </div>
                                 <br>
