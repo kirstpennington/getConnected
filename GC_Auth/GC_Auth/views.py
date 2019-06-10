@@ -477,6 +477,22 @@ def getSearchByTopic(request):
                                             'suggested_courses_list': suggested_courses})  # return and render courses page with filtered list
 
 
+def heartCourse(request):
+    if request.method == "POST":
+            course_id = request.POST.get("course_id")                   # get the id of the course that is being hearted
+            num_rec = int(course_methods.getCourseNumRecommendations(
+                course_id)) + 1                                         # add 1 to the number of course recommendations for the selected course
+            course_methods.updateCourseNumRecommendations(course_id, num_rec)
+
+
+def unheartCourse(request):
+    if request.method == "POST":
+            course_id = request.POST.get("course_id")                   # get the id of the course that is being hearted
+            num_rec = int(course_methods.getCourseNumRecommendations(
+                course_id)) - 1                                         # subtract 1 to the number of course recommendations for the selected course
+            course_methods.updateCourseNumRecommendations(course_id, num_rec)
+
+
 country_list = ['None', "Afghanistan", "ÅlandIslands", "Albania", "Algeria", "AmericanSamoa", "Andorra", "Angola",
                 "Anguilla",
                 "Antarctica", "AntiguaandBarbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria",

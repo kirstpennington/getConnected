@@ -49,10 +49,10 @@ class course_methods:
             return ""
 
         if num_rec >= 200 and num_rec < 500:
-            return "Recommended"
+            return "Well Rated"
 
         if num_rec >= 500:
-            return "Highly Recommended"
+            return "Highly Rated"
 
     def getCourseNumRecommendations(course_id):
         return database.child("Courses").child(course_id).child("NumRecommendations").get().val()
@@ -165,12 +165,6 @@ class course_methods:
 
 
 # UPDATE Methods
-def heartCourse(request):
-    if request.method == "POST":
-        course_id = request.POST.get("course_id")                                                      # get the id of the course that is being hearted
-        num_rec = int(course_methods.getCourseNumRecommendations(course_id)) + 1                       # add 1 to the number of course recommendations for the selected course
-        updateCourseNumRecommendations(course_id, num_rec)
 
-
-def updateCourseNumRecommendations(course_id, num_rec):
-    database.child("Courses").child(course_id).update({'NumRecommendations': num_rec})
+    def updateCourseNumRecommendations(course_id, num_rec):
+        database.child("Courses").child(course_id).update({'NumRecommendations': num_rec})
