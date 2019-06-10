@@ -136,7 +136,8 @@ def postsign(request):
                     user_methods.getCoursesList(user['localId']),
                     user_methods.getForumssList(user['localId']),
                     user_methods.getUserConnectionsList(user['localId']),
-                    user_methods.getUserTopicsList(user['localId'])
+                    user_methods.getUserTopicsList(user['localId']),
+                    password
                     )
 
     global short_course_suggestions  # preload course suggestions
@@ -363,7 +364,10 @@ def courses(request):
                                                 short_course_suggestions),
                                             'this_uid': the_user.uid,
                                             'all_courses_list': course_methods.getCoursesInfoList(
-                                                course_methods.getAllCoursesList(the_user.uid))})
+                                                course_methods.getAllCoursesList(the_user.uid)),
+                                            'email': the_user.email,
+                                            'password': the_user.password,
+                                            'my_course_ids': convertArrayToString(the_user.coursesInfoList)})
 
 
 def connections(request):
@@ -533,3 +537,10 @@ country_list = ['None', "Afghanistan", "ÅlandIslands", "Albania", "Algeria", "A
                 "UnitedStates", "UnitedStatesMinorOutlyingIslands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela",
                 "VietNam", "VirginIslands,British", "VirginIslands,U.S.", "WallisandFutuna", "WesternSahara", "Yemen",
                 "Zambia", "Zimbabwe"]
+
+# method that converts and array to a string with a , as a delimiter between each item
+def convertArrayToString(arr):
+    arrString = ""
+    for item in arr:
+        arrString = arrString + "," + item
+    return arrString

@@ -43,32 +43,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <script>
 
-        // replace list of my courses with filtered courses
-        function searchByTopic() {
-            alert("!!!!!!!!!!");
-            topic = document.getElementById('financeFilter').innerText;
-            course_list = {{ courses_list|safe }};       // get the list of courses
-            alert(course_list + "");
-            // remove unwanted items from view
-            // new approach: just hide the block that don't appear in the list
-
-            // for loop through course_ids
-            // check if topics list for this course_id contains Finance
-            // if not: change html to hide this block - id of element = (course_id)_hide
-
-            // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-            document.getElementById('refreshSectionFilter').innerHTML = course_list[0][0];  // debug
-
-        }
-
-        // repeat function for all topics
-
-        // repeat for recommendations
-        // repeat for university
-        // repeat for search function to check if name or description contains string typed
-    </script>
 
 
     <!--NavigationBar Style-->
@@ -433,7 +408,7 @@
 
 
 </head>
-
+<div hidden id="this_uid"> {{ this_uid }}</div>
 <body>
 <!--navigation bar at top of all pages-->
 <nav class="navbar navbar-inverse">
@@ -734,7 +709,7 @@
                                         <p> Education</p>
                                         <p> Entrepreneurship </p>
                                         <p> Executive Education</p>
-                                        <button onclick="searchByTopic()" id='financeFilter'>Finance</button>
+                                        <button onclick="searchByTopic('Finance')" id='financeFilter'>Finance</button>
                                         <p> Health</p>
                                         <p> Hospitality & Events</p>
                                         <p> Law</p>
@@ -810,6 +785,7 @@
                                     </div>
                                 </div>
                             </div><!--end panel-->
+
 
 
                         </div><!--end of accordion-->
@@ -893,8 +869,8 @@
                          style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
-                        <div hidden id="{{ courses_ids }}_uni">course_uni</div>
-                        <div hidden id="{{ courses_ids }}_topics">course_topics</div>
+                        <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
+                        <div hidden id="{{ courses_ids }}_topics">{{ course_topics }}</div>
                         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
                               rel="stylesheet">
 
@@ -1117,7 +1093,6 @@
 
 
                     </div><!--end col-->
-
                     <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
 
                          <!-- My Courses: Item 1 -->
@@ -1573,5 +1548,65 @@
     });
 
 </script>
+
+<div hidden id="user_email">{{ email }}</div>
+<div hidden id="user_password">{{ password }}</div>
+<div hidden id="my_course_ids">{{ my_course_ids }}</div>
+
+   <script>
+
+        // replace list of my courses with filtered courses
+        function searchByTopic(searchTopic) {
+
+           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
+           myCourseList =  strCourseList.split(",");        // split string into array by the delimiter ","
+
+            // hide unwanted items from view
+            // hides the block that don't appear in the list
+
+            //  loop through course_ids
+            for (let i = 0; i < myCourseList.length; i++){
+                // check if topics list for this course_id contains Finance
+                elementIdName = myCourseList[i] + "_topics";
+                console.log("myCourseList[i]: " + myCourseList[i]);
+                strTopics1 = document.getElementById(elementIdName).innerText;    // get data from the element that ontains the topics for that course
+                strTopics =  strTopics1.substring(1, strTopics1.length-1);
+                console.log("strTopics: " + strTopics);
+                courseTopicsList = strTopics.split("|");                        // creates an array of the course's topics
+                console.log("courseTopicsList[0]: " + courseTopicsList[0]);
+                if (courseTopicsList.includes(searchTopic)){                           // if the topic searched is in the list
+                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic isnot found in the list, hide the block for the course
+                }
+                else{
+                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                }
+            }
+
+            // if not: change html to hide this block - id of element = (course_id)_hide
+
+            // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
+            //document.getElementById('refreshSectionFilter').innerHTML = course_list[0][0];  // debug
+            function contains(str, arr){    // checks if a string is contained within an array
+                found = false;
+                for (let j = 0; j < arr.length; j++){
+                    console.log("Array Item: " + arr[j]);
+                    console.log("Search topic:" + str);
+                    if (arr[j] == str){
+                        found = true;
+                        break;
+                    }
+                }
+                return found;
+            }
+        }
+
+        // function to convert a JSON list from firebase to an array
+
+        // repeat function for all topics
+
+        // repeat for recommendations
+        // repeat for university
+        // repeat for search function to check if name or description contains string typed
+    </script>
 
 </body>
