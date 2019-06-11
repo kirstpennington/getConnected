@@ -672,7 +672,7 @@
             <!--search bar with icon-->
             <div class="centraliser" style="text-align: center">
                 <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                    <input type="text" class="form-control" placeholder="Search"/>
+                    <input id="searchNameInput" onclick="searchByName()" type="text" class="form-control" placeholder="Search"/>
                     <span class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
@@ -703,22 +703,22 @@
                                 </div>
                                 <div id="collapseSubject" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        <p> All </p>
-                                        <p> Arts & Design </p>
-                                        <p> Business & Management</p>
-                                        <p> Education</p>
-                                        <p> Entrepreneurship </p>
-                                        <p> Executive Education</p>
-                                        <button onclick="searchByTopic('Finance')" id='financeFilter'>Finance</button>
-                                        <p> Health</p>
-                                        <p> Hospitality & Events</p>
-                                        <p> Law</p>
-                                        <p> Marketing </p>
-                                        <p> Project Management</p>
-                                        <p> Real Estate</p>
-                                        <p> Systems & Technology </p>
-                                        <p> Talent Management (HR)</p>
-                                        <p> Writing</p>
+                                        <p onclick="showAll()"> All </p>
+                                        <p onclick="searchByTopic('Arts & Design')"> Arts & Design </p>
+                                        <p onclick="searchByTopic('Business & Management')"> Business & Management</p>
+                                        <p onclick="searchByTopic('Education')"> Education</p>
+                                        <p onclick="searchByTopic('Entrepreneurship')"> Entrepreneurship </p>
+                                        <p onclick="searchByTopic('Executive Education')"> Executive Education</p>
+                                        <p onclick="searchByTopic('Finance')" id='financeFilter'>Finance</p>
+                                        <p onclick="searchByTopic('Health')"> Health</p>
+                                        <p onclick="searchByTopic('Hospitality & Events')"> Hospitality & Events</p>
+                                        <p onclick="searchByTopic('Law')"> Law</p>
+                                        <p onclick="searchByTopic('Marketing')"> Marketing </p>
+                                        <p onclick="searchByTopic('Project Management')"> Project Management</p>
+                                        <p onclick="searchByTopic('Real Estate')"> Real Estate</p>
+                                        <p onclick="searchByTopic('Systems & Technology')"> Systems & Technology </p>
+                                        <p onclick="searchByTopic('Talent Management (HR)')"> Talent Management (HR)</p>
+                                        <p onclick="searchByTopic('Writing')"> Writing</p>
 
                                     </div>
                                 </div>
@@ -739,23 +739,23 @@
                                 <div id="collapseInstitution" class="panel-collapse collapse">
                                     <div class="panel-body">
 
-                                        <p> All </p>
-                                        <p>Cambridge CSL</p>
-                                        <p> Harvard University</p>
-                                        <p> LSE</p>
-                                        <p>MIT</p>
-                                        <p>Oxford Saïd</p>
-                                        <p> Rice University</p>
-                                        <p>Stanford Center for Health Education</p>
-                                        <p> The University of Chicago</p>
-                                        <p> UC Berkeley</p>
-                                        <p>UC Davis Graduate School of Management</p>
-                                        <p> UCT Graduate School of Business</p>
-                                        <p>USB-ED</p>
-                                        <p> University of Cape Town</p>
-                                        <p>University of Dayton</p>
-                                        <p> WITS</p>
-                                        <p>Yale SOM Executive Education</p>
+                                        <p onclick="showAll()"> All </p>
+                                        <p onclick="searchByUniversity('Cambridge CSL')">Cambridge CSL</p>
+                                        <p onclick="searchByUniversity('Harvard University<')"> Harvard University</p>
+                                        <p onclick="searchByUniversity('LSE')"> LSE</p>
+                                        <p onclick="searchByUniversity('MIT')">MIT</p>
+                                        <p onclick="searchByUniversity('Oxford Saïd')">Oxford Saïd</p>
+                                        <p onclick="searchByUniversity('Rice University')"> Rice University</p>
+                                        <p onclick="searchByUniversity('Stanford Center for Health Education')">Stanford Center for Health Education</p>
+                                        <p onclick="searchByUniversity('The University of Chicago')"> The University of Chicago</p>
+                                        <p onclick="searchByUniversity('UC Berkeley')"> UC Berkeley</p>
+                                        <p onclick="searchByUniversity('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
+                                        <p onclick="searchByUniversity('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
+                                        <p onclick="searchByUniversity('USB-ED')">USB-ED</p>
+                                        <p onclick="searchByUniversity('University of Cape Town')"> University of Cape Town</p>
+                                        <p onclick="searchByUniversity('University of Dayton')">University of Dayton</p>
+                                        <p onclick="searchByUniversity('WITS')"> WITS</p>
+                                        <p onclick="searchByUniversity('Yale SOM Executive Education')">Yale SOM Executive Education</p>
 
                                     </div>
                                 </div>
@@ -776,10 +776,10 @@
                                 <div id="collapseRecommendations" class="panel-collapse collapse in">
                                     <!--panel 1 content-->
                                     <div class="panel-body">
-                                        <p> All </p>
-                                        <p> Highly Recommended</p>
-                                        <p> Recommended</p>
-                                        <p> No Recommendations</p>
+                                        <p onclick="showAll()"> All </p>
+                                        <p onclick="searchByRating('Highly Rated')"> Highly Rated</p>
+                                        <p onclick="searchByRating('Well Rated')"> Well Rated</p>
+                                        <p onclick="searchByRating('')"> No Rating</p>
 
 
                                     </div>
@@ -891,11 +891,11 @@
                                         <br>
                                         <div class="info">
                                             <div class="title"></div>
-                                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                            <div id="{{ courses_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
                                             </div>
                                             <!-- hidden field that stores the id of the entity  -->
                                             <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                            <br><span id="{{ courses_ids }}_recommendation"
+                                            <br><span id="{{ courses_ids }}_rating"
                                                       class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                         </div>
 
@@ -1555,11 +1555,23 @@
 
    <script>
 
-        // replace list of my courses with filtered courses
+       // shows all blocks in the list of my courses
+        function showAll(){
+            strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
+            myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+            //  loop through course_ids
+            for (let i = 0; i < myCourseList.length; i++){
+                document.getElementById(myCourseList[i] + "_hide").hidden = false;           // show all blocks
+            }
+        }
+
+
+        // replace list of my courses with filtered courses based on topic selected
         function searchByTopic(searchTopic) {
 
            strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");        // split string into array by the delimiter ","
+           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
 
             // hide unwanted items from view
             // hides the block that don't appear in the list
@@ -1568,45 +1580,84 @@
             for (let i = 0; i < myCourseList.length; i++){
                 // check if topics list for this course_id contains Finance
                 elementIdName = myCourseList[i] + "_topics";
-                console.log("myCourseList[i]: " + myCourseList[i]);
-                strTopics1 = document.getElementById(elementIdName).innerText;    // get data from the element that ontains the topics for that course
+                strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
                 strTopics =  strTopics1.substring(1, strTopics1.length-1);
-                console.log("strTopics: " + strTopics);
-                courseTopicsList = strTopics.split("|");                        // creates an array of the course's topics
-                console.log("courseTopicsList[0]: " + courseTopicsList[0]);
-                if (courseTopicsList.includes(searchTopic)){                           // if the topic searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic isnot found in the list, hide the block for the course
+                courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
+                if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
+                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
                 }
                 else{
                     document.getElementById(myCourseList[i] + "_hide").hidden = true;
                 }
             }
-
-            // if not: change html to hide this block - id of element = (course_id)_hide
-
-            // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-            //document.getElementById('refreshSectionFilter').innerHTML = course_list[0][0];  // debug
-            function contains(str, arr){    // checks if a string is contained within an array
-                found = false;
-                for (let j = 0; j < arr.length; j++){
-                    console.log("Array Item: " + arr[j]);
-                    console.log("Search topic:" + str);
-                    if (arr[j] == str){
-                        found = true;
-                        break;
-                    }
-                }
-                return found;
-            }
+            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
         }
 
-        // function to convert a JSON list from firebase to an array
+        // replace list of my courses with filtered courses based on university selected
+       function searchByUniversity(searchUni) {
 
-        // repeat function for all topics
+           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
+           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
 
-        // repeat for recommendations
-        // repeat for university
-        // repeat for search function to check if name or description contains string typed
+            //  loop through course_ids
+            for (let i = 0; i < myCourseList.length; i++){
+                // check if topics list for this course_id contains Finance
+                elementIdName = myCourseList[i] + "_uni";
+                courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
+                if (courseUniCheck == searchUni){                            // if the topic searched is in the list
+                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                }
+                else{
+                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                }
+            }
+            // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
+        }
+
+
+        // replace list of my courses with filtered courses based on rating selected
+       function searchByRating(searchRating) {
+
+           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
+           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+            //  loop through course_ids
+            for (let i = 0; i < myCourseList.length; i++){
+                // check if topics list for this course_id contains Finance
+                elementIdName = myCourseList[i] + "_rating";
+                courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
+                if (courseRatingCheck == searchRating){                                         // if the rating searched is in the list
+                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                }
+                else{
+                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                }
+            }
+            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
+        }
+
+
+
+        //  check if name contains string typed - search button
+       function searchByName() {
+           searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
+           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
+           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+            //  loop through course_ids
+            for (let i = 0; i < myCourseList.length; i++){
+                // check if topics list for this course_id contains Finance
+                courseName = document.getElementById(myCourseList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
+                    document.getElementById(myCourseList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                }
+                else{
+                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                }
+            }
+            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+        }
+
     </script>
 
 </body>
