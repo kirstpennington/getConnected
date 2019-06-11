@@ -359,15 +359,17 @@ def forums(request):
 def courses(request):
     global the_user
     global short_course_suggestions
+    all_courses = course_methods.getAllCoursesList(the_user.uid)
     return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.coursesInfoList),
                                             'suggested_courses_list': course_methods.getCoursesInfoList(
                                                 short_course_suggestions),
                                             'this_uid': the_user.uid,
                                             'all_courses_list': course_methods.getCoursesInfoList(
-                                                course_methods.getAllCoursesList(the_user.uid)),
+                                                all_courses),
                                             'email': the_user.email,
                                             'password': the_user.password,
-                                            'my_course_ids': convertArrayToString(the_user.coursesInfoList)})
+                                            'my_course_ids': convertArrayToString(the_user.coursesInfoList),
+                                            'all_courses_str': convertArrayToString(all_courses)})
 
 
 def connections(request):
@@ -377,7 +379,9 @@ def connections(request):
                   {'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
                    'suggested_connections_list': connection_methods.getConnectionsInfoList(
                        short_connections_suggestions),
-                   'this_uid': the_user.uid})
+                   'this_uid': the_user.uid,
+                   'my_conn_ids': convertArrayToString(the_user.connectionsInfoList),
+                   'conn_suggestions_ids_str': convertArrayToString(short_connections_suggestions)})
 
 
 def userprofile(request):

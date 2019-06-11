@@ -671,11 +671,12 @@
 
             <!--search bar with icon-->
             <div class="centraliser" style="text-align: center">
-                <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                    <input id="searchNameInput" onclick="searchByName()" type="text" class="form-control" placeholder="Search"/>
-                    <span class="input-group-addon" style="color: #e83e8c; ">
+                <div id="searchNameInput" class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                    <span onclick="searchByName()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
+                    <button onclick="showAll()">Clear</button>
                 </div><!--end search bar-->
             </div>
 
@@ -945,108 +946,107 @@
 
                           <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
 
-                              <!--panel-->
-                              <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject" style = "color:#ce3298">
-                                      <strong>
-                                      Subject
-                                  </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseSubject" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-                                     <p> All </p>
-                                    <p> Arts & Design </p>
-                                    <p> Business & Management</p>
-                                    <p> Education</p>
-                                    <p> Entrepreneurship </p>
-                                    <p> Executive Education</p>
-                                    <p> Finance</p>
-                                    <p> Health</p>
-                                    <p> Hospitality & Events</p>
-                                    <p> Law</p>
-                                    <p> Marketing </p>
-                                    <p> Project Management</p>
-                                    <p> Real Estate</p>
-                                    <p> Systems & Technology </p>
-                                    <p> Talent Management (HR)</p>
-                                    <p> Writing</p>
-
-
-
-                                </div>
-                              </div>
-                            </div>
-
-                                <!--panel-->
-                              <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion"  href="#collapseInstitution" style = "color:#ce3298">
-                                      <strong>
-                                      Institution
-                                          </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseInstitution" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-                                    <p> All </p>
-                                    <p>Cambridge CSL</p>
-                                    <p> Harvard University</p>
-                                    <p> LSE</p>
-                                    <p>MIT</p>
-                                    <p>Oxford Saïd</p>
-                                    <p> Rice University</p>
-                                    <p>Stanford Center for Health Education</p>
-                                    <p> The University of Chicago</p>
-                                    <p> UC Berkeley</p>
-                                    <p>UC Davis Graduate School of Management</p>
-                                    <p> UCT Graduate School of Business</p>
-                                    <p>USB-ED</p>
-                                    <p> University of Cape Town</p>
-                                    <p>University of Dayton</p>
-                                    <p> WITS</p>
-                                    <p>Yale SOM Executive Education</p>
-
-                                </div>
-                              </div>
-                            </div>
-
-                              <!--panel-->
+                            <!--panel-->
                             <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title"><!--panel 1 heading-->
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseRecommendations" style = "color:#ce3298">
-                                        <strong>
-                                      Recommendations
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Subject
                                             </strong>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapseRecommendations" class="panel-collapse collapse in">
-                                  <!--panel 1 content-->
-                                <div class="panel-body">
-                                    <p> All </p>
-                                    <p> Highly Recommended</p>
-                                    <p> Recommended</p>
-                                    <p> No Recommendations</p>
-
-
-
+                                        </a>
+                                    </h4>
                                 </div>
-                              </div>
+                                <div id="collapseSubject" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p onclick="showAllAll()"> All </p>
+                                        <p onclick="searchByTopicAll('Arts & Design')"> Arts & Design </p>
+                                        <p onclick="searchByTopicAll('Business & Management')"> Business & Management</p>
+                                        <p onclick="searchByTopicAll('Education')"> Education</p>
+                                        <p onclick="searchByTopicAll('Entrepreneurship')"> Entrepreneurship </p>
+                                        <p onclick="searchByTopicAll('Executive Education')"> Executive Education</p>
+                                        <p onclick="searchByTopicAll('Finance')" id='financeFilter'>Finance</p>
+                                        <p onclick="searchByTopicAll('Health')"> Health</p>
+                                        <p onclick="searchByTopicAll('Hospitality & Events')"> Hospitality & Events</p>
+                                        <p onclick="searchByTopicAll('Law')"> Law</p>
+                                        <p onclick="searchByTopicAll('Marketing')"> Marketing </p>
+                                        <p onclick="searchByTopicAll('Project Management')"> Project Management</p>
+                                        <p onclick="searchByTopicAll('Real Estate')"> Real Estate</p>
+                                        <p onclick="searchByTopicAll('Systems & Technology')"> Systems & Technology </p>
+                                        <p onclick="searchByTopicAll('Talent Management (HR)')"> Talent Management (HR)</p>
+                                        <p onclick="searchByTopicAll('Writing')"> Writing</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseInstitution"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Institution
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseInstitution" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                        <p onclick="showAllAll()"> All </p>
+                                        <p onclick="searchByUniversityAll('Cambridge CSL')">Cambridge CSL</p>
+                                        <p onclick="searchByUniversityAll('Harvard University<')"> Harvard University</p>
+                                        <p onclick="searchByUniversityAll('LSE')"> LSE</p>
+                                        <p onclick="searchByUniversityAll('MIT')">MIT</p>
+                                        <p onclick="searchByUniversityAll('Oxford Saïd')">Oxford Saïd</p>
+                                        <p onclick="searchByUniversityAll('Rice University')"> Rice University</p>
+                                        <p onclick="searchByUniversityAll('Stanford Center for Health Education')">Stanford Center for Health Education</p>
+                                        <p onclick="searchByUniversityAll('The University of Chicago')"> The University of Chicago</p>
+                                        <p onclick="searchByUniversityAll('UC Berkeley')"> UC Berkeley</p>
+                                        <p onclick="searchByUniversityAll('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
+                                        <p onclick="searchByUniversityAll('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
+                                        <p onclick="searchByUniversityAll('USB-ED')">USB-ED</p>
+                                        <p onclick="searchByUniversityAll('University of Cape Town')"> University of Cape Town</p>
+                                        <p onclick="searchByUniversityAll('University of Dayton')">University of Dayton</p>
+                                        <p onclick="searchByUniversityAll('WITS')"> WITS</p>
+                                        <p onclick="searchByUniversityAll('Yale SOM Executive Education')">Yale SOM Executive Education</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                              <div hidden id="all_courses_str">{{ all_courses_str }}</div>
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><!--panel 1 heading-->
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseRecommendations" style="color:#ce3298">
+                                            <strong>
+                                                Recommendations
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseRecommendations" class="panel-collapse collapse in">
+                                    <!--panel 1 content-->
+                                    <div class="panel-body">
+                                        <p onclick="showAllAll()"> All </p>
+                                        <p onclick="searchByRatingAll('Highly Rated')"> Highly Rated</p>
+                                        <p onclick="searchByRatingAll('Well Rated')"> Well Rated</p>
+                                        <p onclick="searchByRatingAll('')"> No Rating</p>
+
+
+                                    </div>
+                                </div>
                             </div><!--end panel-->
 
 
 
-
-                          </div><!--end of accordion-->
+                        </div><!--end of accordion-->
                            <!-- <form class="  search-form" role="search">
                                     <input type="text" class="form-control" placeholder="Search" />
 
@@ -1064,6 +1064,162 @@
                                                 <div class="container">
 
                                                     <div class="row">
+
+                                                        {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in all_courses_list %}
+                                                            <div id="{{ courses_ids }}_hide" class="col-md-3"
+                                                                 style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
+
+                                                                <!-- My Courses: Item 1 -->
+                                                                <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
+                                                                <div hidden id="{{ courses_ids }}_topics">{{ course_topics }}</div>
+                                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                                                                      rel="stylesheet">
+
+                                                                <div class="container">
+
+                                                                    <div class="row">
+
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                            <div class="cardheader" style="background-image: url(
+                                                                                    {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                                                            <div class="heartbutton"><span style="background: transparent" type="button"
+                                                                                                           class="fa fa-heart fa-2x heartColour"></span></div>
+                                                                            <div class="card hovercard  ">
+                                                                                <div class="avatar"><br>
+                                                                                    {% load staticfiles %}
+                                                                                    <img src='{{ course_pictures }}'/>
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="info">
+                                                                                    <div class="title"></div>
+                                                                                    <div id="{{ courses_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                                                                    </div>
+                                                                                    <!-- hidden field that stores the id of the entity  -->
+                                                                                    <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+                                                                                    <br><span id="{{ courses_ids }}_rating"
+                                                                                              class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
+                                                                                </div>
+
+                                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                                                   href={{ course_urls }}>
+                                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div><!-- /col-lg-3 col-sm-6 -->
+
+                                                                    </div><!-- /row -->
+                                                                </div><!-- /container -->
+
+
+                                                            </div><!--end col-->
+                                                        {% endfor %}
+                                                       <script>
+                                                               // shows all blocks in the list of my courses
+                                                                function showAllAll(){
+                                                                    strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                    myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+                                                                    //  loop through course_ids
+                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                        document.getElementById(myCourseList[i] + "_hide").hidden = false;           // show all blocks
+                                                                    }
+                                                                }
+
+
+                                                                // replace list of my courses with filtered courses based on topic selected
+                                                                function searchByTopicAll(searchTopic) {
+
+                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+                                                                    // hide unwanted items from view
+                                                                    // hides the block that don't appear in the list
+
+                                                                    //  loop through course_ids
+                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                        // check if topics list for this course_id contains Finance
+                                                                        elementIdName = myCourseList[i] + "_topics";
+                                                                        strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
+                                                                        strTopics =  strTopics1.substring(1, strTopics1.length-1);
+                                                                        courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
+                                                                        if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                                                        }
+                                                                        else{
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                                                                        }
+                                                                    }
+                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
+                                                                }
+
+                                                                // replace list of my courses with filtered courses based on university selected
+                                                               function searchByUniversityAll(searchUni) {
+
+                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+                                                                    //  loop through course_ids
+                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                        // check if topics list for this course_id contains Finance
+                                                                        elementIdName = myCourseList[i] + "_uni";
+                                                                        courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
+                                                                        if (courseUniCheck == searchUni){                            // if the topic searched is in the list
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                                                        }
+                                                                        else{
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                                                                        }
+                                                                    }
+                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
+                                                                }
+
+
+                                                                // replace list of my courses with filtered courses based on rating selected
+                                                               function searchByRatingAll(searchRating) {
+
+                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+                                                                    //  loop through course_ids
+                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                        // check if topics list for this course_id contains Finance
+                                                                        elementIdName = myCourseList[i] + "_rating";
+                                                                        courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
+                                                                        if (courseRatingCheck == searchRating){                                         // if the rating searched is in the list
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                                                        }
+                                                                        else{
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                                                                        }
+                                                                    }
+                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
+                                                                }
+
+
+
+                                                                //  check if name contains string typed - search button
+                                                               function searchByNameAll() {
+                                                                   searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
+                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+
+                                                                    //  loop through course_ids
+                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                        // check if topics list for this course_id contains Finance
+                                                                        courseName = document.getElementById(myCourseList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                                                        if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                                                        }
+                                                                        else{
+                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                                                                        }
+                                                                    }
+                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+                                                                }
+
+                                                            </script>
 
                                                         <div class="col-lg-3 col-sm-6">
                                                             <div class="cardheader" style="background-image: url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/COURSES_MIT.jpg" %});border-radius: 10px"></div>
