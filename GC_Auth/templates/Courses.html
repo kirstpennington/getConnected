@@ -671,8 +671,8 @@
 
             <!--search bar with icon-->
             <div class="centraliser" style="text-align: center">
-                <div id="searchNameInput" class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                    <input type="text" class="form-control" placeholder="Search"/>
+                <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                    <input id="searchNameInput" type="text" class="form-control" placeholder="Search"/>
                     <span onclick="searchByName()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
@@ -929,11 +929,12 @@
             <!--search bar with icon-->
                 <div class="centraliser" style="text-align: center">
                     <div class="input-group" style="width: 77%;padding-left: 24%;font-family: 'Roboto', sans-serif;" >
-                        <input type="text"  class="form-control" placeholder="Search"/>
-                        <span class="input-group-addon" style="color: #e83e8c; ">
+                        <input id="searchNameInputAll" type="text"  class="form-control" placeholder="Search"/>
+                        <span onclick="searchByNameAll()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
                     </div><!--end search bar-->
+                    <button onclick="showAllAll()">Clear</button>
                     </div>
 
 
@@ -1201,7 +1202,7 @@
 
                                                                 //  check if name contains string typed - search button
                                                                function searchByNameAll() {
-                                                                   searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
+                                                                   searchTerm = document.getElementById('searchNameInputAll').value;                   // get the value in the search input field
                                                                    strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
                                                                    myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
 
@@ -1799,7 +1800,7 @@
            searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
            strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
            myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
+           console.log("searchTerm: "+searchTerm);
             //  loop through course_ids
             for (let i = 0; i < myCourseList.length; i++){
                 // check if topics list for this course_id contains Finance

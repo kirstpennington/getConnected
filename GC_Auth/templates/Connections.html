@@ -800,8 +800,8 @@
 
                 <!--search bar with icon-->
                 <div class="centraliser" style="text-align: center">
-                    <div id="searchTermInput" class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                        <input type="text" class="form-control" placeholder="Search"/>
+                    <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                        <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
                         <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
@@ -823,7 +823,7 @@
 
                              //  check if name, coutnry or bio contains string typed - search button
                                function searchByTerm() {
-                                   searchTerm = document.getElementById('searchTermInput').innerText;                   // get the value in the search input field
+                                   searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
                                    console.log("searchTerm: " + searchTerm);   // debug
                                    strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
                                    myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
@@ -880,9 +880,9 @@
             <div id="allConnections" class="tab-pane fade">
                 <!--search bar with icon-->
                 <div class="centraliser" style="text-align: center">
-                    <div id="searchTermInputAll" class="input-group"
+                    <div class="input-group"
                          style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                        <input type="text" class="form-control" placeholder="Search"/>
+                        <input id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
                         <span onclick="searchByTermAll()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
@@ -904,7 +904,7 @@
 
                              //  check if name, coutnry or bio contains string typed - search button
                                function searchByTermAll() {
-                                   searchTerm = document.getElementById('searchTermInputAll').innerText;                   // get the value in the search input field
+                                   searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
                                    strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
                                    myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
 
@@ -914,8 +914,14 @@
                                         connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
                                         connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
                                         connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
-                                        if (connName.includes(searchTerm) || connCountry.includes(searchTerm) || connBio.includes(searchTerm)){                                               // if the rating searched is in the list
+                                        if (connName.includes(searchTerm)){                                               // if the rating searched is in the list
                                             document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        }
+                                        else if (connCountry.includes(searchTerm)){
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        }
+                                        else if (connBio.includes(searchTerm)){
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
                                         }
                                         else{
                                             document.getElementById(myConnList[i] + "_hideAll").hidden = true;
