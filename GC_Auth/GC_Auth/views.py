@@ -451,7 +451,7 @@ def goAccountHelp(request):
 
 
 def goForumsOpen(request):
-    return render(request, 'ForumsOpen.html')
+    return render(request, 'ForumsMessaging.html')
 
 
 def goContact(request):
