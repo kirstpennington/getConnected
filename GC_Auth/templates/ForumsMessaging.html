@@ -43,6 +43,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Navigation Bar Style + Body Style -->
 
@@ -107,6 +108,38 @@
             border-radius: 3px;
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
         }
+
+
+
+        /*save changes button hover effects*/
+        button:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 3px 3px 3px #888888;
+        }
+
+        /*save changes button effects*/
+        button {
+
+            border-radius: 8px;
+            color: #666666;
+            background-color: white;
+            border: 2px solid grey;/*#e83e8c*/
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 12px;
+
+        }
+
+        button:focus {
+            outline: none;
+        }
+
     </style>
 
     <!-- background Page format styles-->
@@ -339,8 +372,17 @@
             padding-left: 4px;
             padding-right: 2px;
             padding-top: 4px;
+            box-shadow: 0 2px 2px 0 ;
 
         }
+        /*makes the item stay*/
+        .sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0;
+        }
+
+
     </style>
 
 
@@ -555,86 +597,94 @@
 <div class="profileContainer profileContainerLift"><!--1. Container for page content -->
 
 <div class="forumcontent">
+
     <br>
+
+
+
     <div class="container-fluid gedf-wrapper">
         <div class="row">
+
+            <!--information of the logged in user on LHS-->
             <div class="col-md-3">
-                <div class="card">
-                    <!--LHS item-->
-                    <div class="card-body">
-                        <div class="h5">@LeeCross</div>
-                        <div class="h7 text-muted">Fullname : Miracles Lee Cross</div>
-                        <div class="h7">Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
-                            etc.
+                <div class="sticky">
+                    <div class="card">
+                        <!--LHS item-->
+                        <div class="card-body" style="padding-left: 10px;">
+                            <h5 class="card-title" style="color: #e83e8c;"> <strong>Your Forums</strong></h5>
+                             <!--styling allows for the image and text to be next to one another-->
+
+                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Finance for you</a>
+
+                            <br><br>
+
+                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> UCT alumni on GetSmarter</a>
+
+<br><br>
+
+                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Funtimes yayayay</a>
+                            <br><br>
+                             <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Wow so many forums</a>
+
+                            <br><br>
+                            <a href="#" class="text-right" style="position: absolute; left: 50%;"> View All</a>
+                           <br>
+
                         </div>
+
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Followers</div>
-                            <div class="h5">5.2342</div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Following</div>
-                            <div class="h5">6758</div>
-                        </li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
                 </div>
             </div>
 
             <!--middle item-->
             <div class="col-md-6 gedf-main">
+                <div class="row"><!--table for person info-->
+                <div class="col-sm-1">
+                                    <div class="mr-2" > <!--styling allows for the image and text to be next to one another-->
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
 
-                <!--- Make a new Post-->
-                <div class="card gedf-card" >
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make
-                                    a publication</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Images</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                                <div class="form-group">
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
                                 </div>
 
-                            </div>
-                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                                <div class="form-group">
+                </div>
+                <div class="col-sm-11">
+                                        <div class="ml-2" >
+                                    <div class="h5 m-0" style="text-align: left;"> <strong> Kirsten Pennington</strong> </div>
+
+                                             <!--Number of Connections and Forums-->
+                                <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: darkgray;">
+                                    Connections <span class="label label-default" >2</span></h8>
+                                <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: darkgray;">
+                                    Forums <span
+                                        class="label label-default">2</span></h8>
+
+
+                                </div>
+                </div>
+                </div>
+
+            <div class="form-group"><!--- Make a new Post-->
+
+                                    <label class="sr-only" for="message">post</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="What would you like to share?">
+
+
+                                    </textarea>
+            </div>
+
+                <div class="form-group" style="display: inline-block; vertical-align: top;"><!--attach file button-->
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Upload image</label>
+
                                     </div>
-                                </div>
-                                <div class="py-4"></div>
-                            </div>
-                        </div>
-                        <div class="btn-toolbar justify-content-between">
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-primary">share</button>
-                            </div>
-                            <div class="btn-group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-globe"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                <!--post button-->
+                <div class="buttonbot" style="position:absolute;left: 85%;display: inline-block;">
+                    <button type="button">
+                      <strong>Post</strong>
+                    </button>
+                </div>
+
+               <br><br>
                 <!-- Post /////-->
 
                 <!--- actual Posted message block-->
@@ -820,15 +870,34 @@
             </div>
             <!--rhs item-->
             <div class="col-md-3">
-                <div class="card gedf-card" style="border: solid lightgrey 1px; border-radius: 10px; padding-left: 2px; padding-right: 2px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
+                <div class="card gedf-card" >
+
+                            {% load staticfiles %}
+
+                          <img src="{% static "GC_Auth/blog1.jpg" %}"  style="width:60%; height: 600%;position: absolute;left:15%;">
+
+                </div>
+
+                <div class="form" style="border: 1px solid grey; position: absolute; top: 360%; left: 15%;background-color: white; width: 207px;
+                height: 150px; ">
+
+                     <div style="top: 2px; margin-left: 80%">
+                                <h8><span class="label label-default"><span
+                                        class="fa fa-users"> </span>4</span></h8>
+                                <div style="height:5px;"><br></div>
+                            </div>
+
+                     <div class= "text-center" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">Intro to Fintech
+                            </div>
+
+
+                            <!-- forum tags -->
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 20%;" >Finance | IT | Statistics</span>
+                           <br>
+
+                     <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                    <p style="color: #8c8c8c; padding-left: 2px;text-align: center;"> this is the description of the forum. Look at this forum so fun</p>
+
                 </div>
 
             </div>
