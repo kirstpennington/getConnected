@@ -3,7 +3,7 @@
 
 
 class User:
-    def __init__(self, name, bio, numConn, numForum, numCourse, em, pa, country, profPic, bPic, id, courseList, forumList, connections, topics):
+    def __init__(self, name, bio, numConn, numForum, numCourse, em, pa, country, profPic, bPic, id, courseList, forumList, connections, topics, password):
         self.username = name
         self.bio = bio
         self.numConnections = numConn
@@ -19,3 +19,4 @@ class User:
         self.forumsInfoList = forumList
         self.connectionsInfoList = connections
         self.topicsList = topics
+        self.password = password

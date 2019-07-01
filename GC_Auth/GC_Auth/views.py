@@ -136,7 +136,8 @@ def postsign(request):
                     user_methods.getCoursesList(user['localId']),
                     user_methods.getForumssList(user['localId']),
                     user_methods.getUserConnectionsList(user['localId']),
-                    user_methods.getUserTopicsList(user['localId'])
+                    user_methods.getUserTopicsList(user['localId']),
+                    password
                     )
 
     global short_course_suggestions  # preload course suggestions
@@ -238,10 +239,6 @@ def updateProfile(request):
         if the_user.country != country:
             user_methods.updateCountry(the_user.uid, country)
             the_user.country = country
-
-        if the_user.email != email:
-            user_methods.updateEmail(the_user.uid, email)
-            the_user.email = email
 
         if user_privacy.bio != bioPrivacy:
             user_methods.updateBioPrivacy(the_user.uid, bioPrivacy)
@@ -362,12 +359,17 @@ def forums(request):
 def courses(request):
     global the_user
     global short_course_suggestions
+    all_courses = course_methods.getAllCoursesList(the_user.uid)
     return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.coursesInfoList),
                                             'suggested_courses_list': course_methods.getCoursesInfoList(
                                                 short_course_suggestions),
                                             'this_uid': the_user.uid,
                                             'all_courses_list': course_methods.getCoursesInfoList(
-                                                course_methods.getAllCoursesList(the_user.uid))})
+                                                all_courses),
+                                            'email': the_user.email,
+                                            'password': the_user.password,
+                                            'my_course_ids': convertArrayToString(the_user.coursesInfoList),
+                                            'all_courses_str': convertArrayToString(all_courses)})
 
 
 def connections(request):
@@ -377,7 +379,9 @@ def connections(request):
                   {'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
                    'suggested_connections_list': connection_methods.getConnectionsInfoList(
                        short_connections_suggestions),
-                   'this_uid': the_user.uid})
+                   'this_uid': the_user.uid,
+                   'my_conn_ids': convertArrayToString(the_user.connectionsInfoList),
+                   'conn_suggestions_ids_str': convertArrayToString(short_connections_suggestions)})
 
 
 def userprofile(request):
@@ -447,7 +451,7 @@ def goAccountHelp(request):
 
 
 def goForumsOpen(request):
-    return render(request, 'ForumsOpen.html')
+    return render(request, 'ForumsMessaging.html')
 
 
 def goContact(request):
@@ -479,6 +483,22 @@ def getSearchByTopic(request):
 
     return render(request, 'Courses.html', {'courses_list': filtered_courses_list,
                                             'suggested_courses_list': suggested_courses})  # return and render courses page with filtered list
+
+
+def heartCourse(request):
+    if request.method == "POST":
+            course_id = request.POST.get("course_id")                   # get the id of the course that is being hearted
+            num_rec = int(course_methods.getCourseNumRecommendations(
+                course_id)) + 1                                         # add 1 to the number of course recommendations for the selected course
+            course_methods.updateCourseNumRecommendations(course_id, num_rec)
+
+
+def unheartCourse(request):
+    if request.method == "POST":
+            course_id = request.POST.get("course_id")                   # get the id of the course that is being hearted
+            num_rec = int(course_methods.getCourseNumRecommendations(
+                course_id)) - 1                                         # subtract 1 to the number of course recommendations for the selected course
+            course_methods.updateCourseNumRecommendations(course_id, num_rec)
 
 
 country_list = ['None', "Afghanistan", "ÅlandIslands", "Albania", "Algeria", "AmericanSamoa", "Andorra", "Angola",
@@ -521,3 +541,10 @@ country_list = ['None', "Afghanistan", "ÅlandIslands", "Albania", "Algeria", "A
                 "UnitedStates", "UnitedStatesMinorOutlyingIslands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela",
                 "VietNam", "VirginIslands,British", "VirginIslands,U.S.", "WallisandFutuna", "WesternSahara", "Yemen",
                 "Zambia", "Zimbabwe"]
+
+# method that converts and array to a string with a , as a delimiter between each item
+def convertArrayToString(arr):
+    arrString = ""
+    for item in arr:
+        arrString = arrString + "," + item
+    return arrString

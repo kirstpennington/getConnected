@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--*HEAD* Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!--*HEAD* 1. Title-->
+
+    <title>Forum</title>
+
+    <!--*HEAD* 2. Bootstrap & CSS Links-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- footer style -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Navigation Bar Style + Body Style -->
+
+    <style>
+        /*dropdown menu on navbar*/
+        .dropdown {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        /* specify the font for the page*/
+      body {
+          font-family: 'Roboto', sans-serif;
+
+
+      }
+
+        /*icon for bell*/
+        .glyphicon-bell {
+            font-size: 1.5rem;
+        }
+
+        .notifications {
+            min-width: 320px;
+        }
+
+        .notifications-wrapper {
+            overflow: auto;
+            max-height: 250px;
+        }
+
+        /*icon*/
+        .glyphicon-circle-arrow-right {
+            margin-left: 10px;
+        }
+
+        .item-title {
+            font-size: 1.5rem;
+            color: black;
+            padding: 0px 50px;
+        }
+
+        .notifications a.content {
+            text-decoration: none;
+            background: white;
+        }
+
+        .notification-item {
+            padding: 10px;
+            margin: 5px;
+            background: #ebebeb;
+            border-radius: 4px;
+            height: 80px;
+        }
+
+        /*icon for user profile img*/
+        .profile_img {
+            width: 25px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 3px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+        }
+
+
+
+        /*save changes button hover effects*/
+        button:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 3px 3px 3px #888888;
+        }
+
+        /*save changes button effects*/
+        button {
+
+            border-radius: 8px;
+            color: #666666;
+            background-color: white;
+            border: 2px solid grey;/*#e83e8c*/
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 12px;
+
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+    </style>
+
+    <!-- background Page format styles-->
+
+    <style>
+
+
+        .profileContainerDetails .UserWallpaper {
+            height: 380px;
+            background-position: center;
+        }
+
+        .UserWallpaper {
+            height: 100vh;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .parallax {
+            /* The image used */
+
+            /* Set a specific height */
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        .profileContainerLift {
+            margin: -280px 30px 0; /* Up and down control */
+            border-radius: 8px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+            height: 1500px; /* For Mandy to adjust size of pafe */
+            margin-bottom: 30px;
+        }
+
+        .profileContainer { /* Container Control */
+            background: #FFF;
+            position: relative;
+            z-index: 3;
+        }
+
+        .profileContainerDetails .profile img {
+            max-width: 160px;
+            width: 100%;
+            margin: 0 auto;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -moz-transform: translate3d(0, -50%, 0);
+            -o-transform: translate3d(0, -50%, 0);
+            -ms-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+        }
+
+        .img-raised { /* Profile Picture 1/3 */
+            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+
+        }
+
+        .avatar:hover .changeImageLabel {
+            opacity: 0.9;
+            display: inline-block;
+        }
+
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
+        .img-fluid { /* Profile Picture 3/3 */
+            max-width: 100%;
+            max-height: 160px;
+        }
+
+        .profileContainerDetails .description {
+            margin: 1.071rem auto 0;
+            max-width: 600px;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .profileContainerDetails, html {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .profileContainerDetails .gallery img {
+            width: 100%;
+            margin-bottom: 2.142rem;
+        }
+
+        .profileContainerDetails .profile .name {
+            margin-top: -80px;
+        }
+
+
+    </style>
+
+    <!-- Cards Style-->
+
+    <style>
+
+
+
+
+        /*footer logo*/
+        footer img {
+
+
+            width: 200%;
+            height: 200%;
+            text-align: left;
+
+        }
+
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+    </style>
+
+
+    <!--User profile page-->
+    <style>
+
+
+        .image-section img {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+
+        .user-image img {
+            width: 100px;
+            height: 100px;
+        }
+
+
+        .user-detail-section2 span {
+            color: #7CBBC3;
+            font-size: 20px;
+        }
+
+        .user-detail-section2 small {
+            font-size: 12px;
+            color: #D3A86A;
+        }
+
+
+        .profile-header-section1 h1 {
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        .profile-header-section1 h5 {
+            color: #0062cc;
+        }
+
+
+        .profile-tag i {
+            color: #ADADAD;
+            font-size: 20px;
+        }
+
+
+        .image-right-detail a:hover {
+            text-decoration: none;
+        }
+
+        .image-right img {
+            width: 100%;
+        }
+
+
+        .image-right-detail-section2 span {
+            color: #7F7F7F;
+        }
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+        </style>
+
+    <!--forum content styles-->
+    <style>
+
+        .forumcontent body {
+            background-color: #eeeeee;
+        }
+
+       .forumcontent .h7 {
+            font-size: 0.8rem;
+        }
+
+        .forumcontent .gedf-wrapper {
+            margin-top: 0.97rem;
+        }
+
+       @media (min-width: 992px) {
+            .forumcontent .gedf-main {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            .forumcontent .gedf-card {
+                margin-bottom: 2.77rem;
+            }
+        }
+
+        /**Reset Bootstrap*/
+        .forumcontent .dropdown-toggle::after {
+            content: none;
+            display: none;
+        }
+
+        /*style for each message posted*/
+        .messagePost{
+            border: solid lightgrey 1px;
+            border-radius: 10px;
+            padding-left: 4px;
+            padding-right: 2px;
+            padding-top: 4px;
+            box-shadow: 0 2px 2px 0 ;
+
+        }
+        /*makes the item stay*/
+        .sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0;
+        }
+
+
+    </style>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body class="profileContainerDetails">
+<!--*BODY* 1. Navigation Bar-->
+
+ <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>  <!--navbar-header-->
+
+                <div class="collapse navbar-collapse" id="myNavbar" > <!--Navigation bar contents-->
+
+                    <!--Left-side (including search ) of navigation bar-->
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'" style = "color:white;border-left: 1px solid white;border-right: 1px solid white;"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
+                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
+                        <form class="  search-form" role="search">
+                            <input type="text" class="form-control" placeholder="Search" />
+                        </form>
+                    </ul>
+
+                    <!--Right-side (including help button ) of navigation bar-->
+
+                    <!--1. User Profile icon + drop down-->
+
+                    <ul class="nav navbar-nav navbar-right" >
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+
+                            <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+
+                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                            <ul class="dropdown-menu">
+                                <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                                <li class="divider"></li>
+                                <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!--1. Notifications icon + drop down-->
+
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
+                            <span class="glyphicon glyphicon-bell"></span> </a>
+
+                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                                <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+                                </div><!--End of Notifications Dropdown div-->
+
+                                <!--Footer of notification drop down-->
+                                <li class="divider"></li>
+                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                            </ul> <!--Dropdown menu Notification-->
+                        </li><!--dropdown -->
+                    </ul> <!--nav navbar-nav navbar-right-->
+
+
+                    <!--2. Message icon + drop down-->
+
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
+                            <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                                <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
+                                            <h4 class="item-title">James Coden · day ago</h4>
+                                            <p class="item-info">Marketing 101, Video Assignment</p>
+                                        </div>
+                                    </a>
+
+                                </div><!--End of Messages Dropdown div-->
+                                <li class="divider"></li>
+                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                            </ul><!--Dropdown menu Messages-->
+                        </li><!--dropdown -->
+                    </ul> <!--nav navbar-nav navbar-right-->
+                </div><!--collapse nav-bar collapse-->
+            </div><!--container fluid-->
+        </nav><!--nav navbar-inverse-->
+
+
+<!--used to encapsulate all content items of settings page, excl footer-->
+<!--background wallpaper-->
+<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="profileContainer profileContainerLift"><!--1. Container for page content -->
+
+<div class="forumcontent">
+
+    <br>
+
+
+
+    <div class="container-fluid gedf-wrapper">
+        <div class="row">
+
+            <!--information of the logged in user on LHS-->
+            <div class="col-md-3">
+                <div class="sticky">
+                    <div class="card">
+                        <!--LHS item-->
+                        <div class="card-body" style="padding-left: 10px;">
+                            <h5 class="card-title" style="color: #e83e8c;"> <strong>Your Forums</strong></h5>
+                             <!--styling allows for the image and text to be next to one another-->
+
+                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Finance for you</a>
+
+                            <br><br>
+
+                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> UCT alumni on GetSmarter</a>
+
+<br><br>
+
+                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Funtimes yayayay</a>
+                            <br><br>
+                             <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Wow so many forums</a>
+
+                            <br><br>
+                            <a href="#" class="text-right" style="position: absolute; left: 50%;"> View All</a>
+                           <br>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--middle item-->
+            <div class="col-md-6 gedf-main">
+                <div class="row"><!--table for person info-->
+                <div class="col-sm-1">
+                                    <div class="mr-2" > <!--styling allows for the image and text to be next to one another-->
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                                </div>
+
+                </div>
+                <div class="col-sm-11">
+                                        <div class="ml-2" >
+                                    <div class="h5 m-0" style="text-align: left;"> <strong> Kirsten Pennington</strong> </div>
+
+                                             <!--Number of Connections and Forums-->
+                                <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: darkgray;">
+                                    Connections <span class="label label-default" >2</span></h8>
+                                <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: darkgray;">
+                                    Forums <span
+                                        class="label label-default">2</span></h8>
+
+
+                                </div>
+                </div>
+                </div>
+
+            <div class="form-group"><!--- Make a new Post-->
+
+                                    <label class="sr-only" for="message">post</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="What would you like to share?">
+
+
+                                    </textarea>
+            </div>
+
+                <div class="form-group" style="display: inline-block; vertical-align: top;"><!--attach file button-->
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+
+                                    </div>
+                </div>
+                <!--post button-->
+                <div class="buttonbot" style="position:absolute;left: 85%;display: inline-block;">
+                    <button type="button">
+                      <strong>Post</strong>
+                    </button>
+                </div>
+
+               <br><br>
+                <!-- Post /////-->
+
+                <!--- actual Posted message block-->
+                <div class= "messagePost">
+                <div class="card gedf-card" >
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2" style="display: inline-block; vertical-align: top;"> <!--styling allows for the image and text to be next to one another-->
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                                </div>
+                                <div class="ml-2" style="display:inline-block;">
+                                    <div class="h5 m-0"> <strong> Kirsten Pennington</strong> </div>
+
+                                </div>
+
+                        <div class="dropdownmenu" style="display: inline-block;position: relative; left: 64%;color: #666666; ">
+                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                        <!--more options menu-->
+                                        <span class="glyphicon glyphicon-option-vertical" style="color: lightgrey;"></span></a>
+
+                                        <ul class="dropdown-menu" >
+                                            <li><a>Direct Message <span
+                                                    class="glyphicon glyphicon glyphicon-comment pull-right"></span></a></li>
+                                            <li class="divider"></li>
+
+                                            <li><a>Report<span
+                                                    class="	glyphicon glyphicon-warning-sign pull-right"></span></a></li>
+
+
+                                        </ul>
+                                    </li>
+                            </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div> <!--time the message had been sent-->
+
+                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
+                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                    </div>
+                    <div  style="text-align: right; "> <!--styling ensures the like and comment are next to one another-->
+                         <p style = "color: #e83e8c;display: inline-block;vertical-align: top;"><span class="glyphicon glyphicon-thumbs-up" style = "color: #e83e8c; "></span> Like</p>
+
+                        <p style = "color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;"> <span class="glyphicon glyphicon glyphicon-comment" style = "color: #e83e8c; "></span> Comment</p>
+
+                    </div>
+                </div>
+            </div>
+                <!-- Post /////-->
+                <br><br><!--spaces between posts-->
+ <!--- actual Posted message block-->
+                <div class= "messagePost">
+                <div class="card gedf-card" >
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2" style="display: inline-block; vertical-align: top;"> <!--styling allows for the image and text to be next to one another-->
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                                </div>
+                                <div class="ml-2" style="display:inline-block;">
+                                    <div class="h5 m-0"> <strong> Kirsten Pennington</strong> </div>
+
+                                </div>
+
+                        <div class="dropdownmenu" style="display: inline-block;position: relative; left: 64%;color: #666666; ">
+                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                        <!--more options menu-->
+                                        <span class="glyphicon glyphicon-option-vertical" style="color: lightgrey;"></span></a>
+
+                                        <ul class="dropdown-menu" >
+                                            <li><a>Direct Message <span
+                                                    class="glyphicon glyphicon glyphicon-comment pull-right"></span></a></li>
+                                            <li class="divider"></li>
+
+                                            <li><a>Report<span
+                                                    class="	glyphicon glyphicon-warning-sign pull-right"></span></a></li>
+
+
+                                        </ul>
+                                    </li>
+                            </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div> <!--time the message had been sent-->
+
+                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
+                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                    </div>
+                    <div  style="text-align: right; "> <!--styling ensures the like and comment are next to one another-->
+                         <p style = "color: #e83e8c;display: inline-block;vertical-align: top;"><span class="glyphicon glyphicon-thumbs-up" style = "color: #e83e8c; "></span> Like</p>
+
+                        <p style = "color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;"> <span class="glyphicon glyphicon glyphicon-comment" style = "color: #e83e8c; "></span> Comment</p>
+
+                    </div>
+                </div>
+            </div>
+                <!-- Post /////-->
+ <br><br><!--spaces between posts-->
+                 <!--- actual Posted message block-->
+                <div class= "messagePost">
+                <div class="card gedf-card" >
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2" style="display: inline-block; vertical-align: top;"> <!--styling allows for the image and text to be next to one another-->
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                                </div>
+                                <div class="ml-2" style="display:inline-block;">
+                                    <div class="h5 m-0"> <strong> Kirsten Pennington</strong> </div>
+
+                                </div>
+
+                        <div class="dropdownmenu" style="display: inline-block;position: relative; left: 64%;color: #666666; ">
+                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                        <!--more options menu-->
+                                        <span class="glyphicon glyphicon-option-vertical" style="color: lightgrey;"></span></a>
+
+                                        <ul class="dropdown-menu" >
+                                            <li><a>Direct Message <span
+                                                    class="glyphicon glyphicon glyphicon-comment pull-right"></span></a></li>
+                                            <li class="divider"></li>
+
+                                            <li><a>Report<span
+                                                    class="	glyphicon glyphicon-warning-sign pull-right"></span></a></li>
+
+
+                                        </ul>
+                                    </li>
+                            </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div> <!--time the message had been sent-->
+
+                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
+                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                    </div>
+                    <div  style="text-align: right; "> <!--styling ensures the like and comment are next to one another-->
+                         <p style = "color: #e83e8c;display: inline-block;vertical-align: top;"><span class="glyphicon glyphicon-thumbs-up" style = "color: #e83e8c; "></span> Like</p>
+
+                        <p style = "color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;"> <span class="glyphicon glyphicon glyphicon-comment" style = "color: #e83e8c; "></span> Comment</p>
+
+                    </div>
+                </div>
+            </div>
+                <!-- Post /////-->
+
+
+
+
+            </div>
+            <!--rhs item-->
+            <div class="col-md-3">
+                <div class="card gedf-card" >
+
+                            {% load staticfiles %}
+
+                          <img src="{% static "GC_Auth/blog1.jpg" %}"  style="width:60%; height: 600%;position: absolute;left:15%;">
+
+                </div>
+
+                <div class="form" style="border: 1px solid grey; position: absolute; top: 360%; left: 15%;background-color: white; width: 207px;
+                height: 150px; ">
+
+                     <div style="top: 2px; margin-left: 80%">
+                                <h8><span class="label label-default"><span
+                                        class="fa fa-users"> </span>4</span></h8>
+                                <div style="height:5px;"><br></div>
+                            </div>
+
+                     <div class= "text-center" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">Intro to Fintech
+                            </div>
+
+
+                            <!-- forum tags -->
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 20%;" >Finance | IT | Statistics</span>
+                           <br>
+
+                     <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                    <p style="color: #8c8c8c; padding-left: 2px;text-align: center;"> this is the description of the forum. Look at this forum so fun</p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+<br>
+
+
+</div>
+
+</div>
+
+
+<!-- Page Footer-->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+                <div class="row"><!--table row-->
+
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock"
+                             class="image">
+                    </div>
+
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'"
+                           style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'"
+                           style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'"
+                           style="color: white"><p>Courses</p></a>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;">
+                        <!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong>
+                        </p>
+
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white">
+                            <p>What is
+                                GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'"
+                           style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Forum Help</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Connection
+                                Management</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Messaging</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>
+                            GetSmarter</p></a>
+
+
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;">
+                        <!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong>
+                            getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00
+                            - 17:00</p>
+
+
+                    </div>
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+    </div>
+</footer>
+
+
+</body>

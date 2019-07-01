@@ -47,23 +47,6 @@
     <!-- Navigation Bar Style + Body Style -->
 
     <style>
-
-        .img-raised { /* Profile Picture 1/3 */
-            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
-
-        }
-
-        .img-fluid { /* Profile Picture 3/3 */
-            max-width: 100%;
-            max-height: 160px;
-
-        }
-
-        .rounded-circle { /* Profile Picture 2/3 */
-            border-radius: 50% !important;
-        }
-
-
         /*dropdown menu on navbar*/
         .dropdown {
             display: inline-block;
@@ -327,8 +310,8 @@
             border-bottom-width: 2px;
             box-sizing: border-box;
             position: relative;
-            top: 0px;
-            margin-bottom: 50px;
+            top: -50px;
+            margin-bottom: -50px;
             left: 18px;
             box-shadow: 0 4px 8px 0 silver;
         }
@@ -383,7 +366,7 @@
             background-size: cover;
             height: 200px;
             width: 300px;
-            border-radius: 200px;
+            border-radius: 9px;
             box-shadow: 0 4px 8px 0 silver;
 
         }
@@ -486,7 +469,7 @@
             display: inline-block;
             padding: 8px;
             color: white;
-            background-color: #e83e8c;
+            background-color: #ff80bf;
             text-align: center;
             cursor: pointer;
             width: 100%;
@@ -781,8 +764,7 @@
 
 <!--used to encapsulate all content items of settings page, excl footer-->
 <!--background wallpaper-->
-<div class="UserWallpaper parallax" style="background-image:url(
-        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for page content -->
 
 
@@ -810,6 +792,7 @@
 
         <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
         <div class="tab-content">
+            <div hidden id="my_conn_ids">{{ my_conn_ids }}</div>
 
             <!--my courses content-->
             <div id="MyConnections" class="tab-pane fade in active">
@@ -818,282 +801,163 @@
                 <!--search bar with icon-->
                 <div class="centraliser" style="text-align: center">
                     <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                        <input type="text" class="form-control" placeholder="Search"/>
-                        <span class="input-group-addon" style="color: #e83e8c; ">
+                        <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
+                        <button onclick="showAll()">Clear</button>
+                        <script>
+
+                            // shows all blocks in the list of my connections
+                            function showAll(){
+                                strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
+                                myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++){
+                                    document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
+                                }
+                            }
+
+
+
+                             //  check if name, coutnry or bio contains string typed - search button
+                               function searchByTerm() {
+                                   searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
+                                   console.log("searchTerm: " + searchTerm);   // debug
+                                   strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
+                                   myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++){
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                        connCountry = document.getElementById(myConnList[i] + "_country").innerText;    // check country for matching text
+                                        connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm) || connCountry.includes(searchTerm) || connBio.includes(searchTerm)){                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        }
+                                        else{
+                                            document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                        }
+                                    }
+                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                }
+                        </script>
                     </div><!--end search bar-->
                 </div>
                 <div class="connectionitems">
-
                     <div class="row"><!--row one of page-->
-                        <!--filter panel-->
-                        <div class="col-md-3">
-                            <div class="container">
-                                <h2 style="color: silver;"><strong>Filters </strong></h2>
-
-
-                                <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
-
-                                    <!--panel-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapseSubject"
-                                                   style="color:#ce3298">
-                                                    <strong>
-                                                        Subject
-                                                    </strong>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseSubject" class="panel-collapse collapse">
-                                            <div class="panel-body">
-
-                                                <p> All </p>
-                                                <p> Arts & Design </p>
-                                                <p> Business & Management</p>
-                                                <p> Education</p>
-                                                <p> Entrepreneurship </p>
-                                                <p> Executive Education</p>
-                                                <p> Finance</p>
-                                                <p> Health</p>
-                                                <p> Hospitality & Events</p>
-                                                <p> Law</p>
-                                                <p> Marketing </p>
-                                                <p> Project Management</p>
-                                                <p> Real Estate</p>
-                                                <p> Systems & Technology </p>
-                                                <p> Talent Management (HR)</p>
-                                                <p> Writing</p>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--panel-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapseInstitution" style="color:#ce3298">
-                                                    <strong>
-                                                        Institution
-                                                    </strong>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseInstitution" class="panel-collapse collapse">
-                                            <div class="panel-body">
-
-                                                <p> All </p>
-                                                <p>Cambridge CSL</p>
-                                                <p> Harvard University</p>
-                                                <p> LSE</p>
-                                                <p>MIT</p>
-                                                <p>Oxford Saïd</p>
-                                                <p> Rice University</p>
-                                                <p>Stanford Center for Health Education</p>
-                                                <p> The University of Chicago</p>
-                                                <p> UC Berkeley</p>
-                                                <p>UC Davis Graduate School of Management</p>
-                                                <p> UCT Graduate School of Business</p>
-                                                <p>USB-ED</p>
-                                                <p> University of Cape Town</p>
-                                                <p>University of Dayton</p>
-                                                <p> WITS</p>
-                                                <p>Yale SOM Executive Education</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div><!--end of accordion-->
-                                <!-- <form class="  search-form" role="search">
-                                         <input type="text" class="form-control" placeholder="Search" />
-
-                                     </form>-->
-
-                            </div>
-                        </div><!--end col-->
-
                         <!--connections-->
                         {% for names, countries, pictures, bio, conn_id in connections_list %}
-                            <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
-                                <div style="display: none;" id="conn_id">{{ conn_id }}</div>
-                                <!-- hidden field with the user id for that connection -->
-                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} "
-                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                        <div id="{{ conn_id }}_hide" class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
+                        <div hidden id="{{ conn_id }}_bio">{{ bio }}</div>
+                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                            <img class="cardheader" src="{{ pictures }}" >
 
-                                <div class="card hovercard ">
-                                    <div class="avatar"><br>
+                            <div class="card hovercard ">
+                                <div class="avatar"><br>
+                                </div>
+                                <br>
+                                <div class="info">
+                                    <div class="title"></div>
+                                    <div id="{{ conn_id }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                        {{ names }}
                                     </div>
-                                    <br>
-                                    <div class="info">
-                                        <div class="title"></div>
-                                        <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                            {{ names }}
-                                        </div>
-                                        <p>{{ countries }}</p>
-                                       <button class="button">Connect <span class="glyphicon glyphicon-plus-sign"><br></button></span>
-                                        </Button>
-                                    </div>
+                                    <p id="{{ conn_id }}_country">{{ countries }}</p>
+                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
+                                    </Button>
                                 </div>
                             </div>
+                        </div>
                         {% endfor %}
-
-
                     </div><!--endrow-->
-
-
                 </div><!--end my connections-->
             </div>
 
 
             <!--all connections-->
             <div id="allConnections" class="tab-pane fade">
-
-
                 <!--search bar with icon-->
                 <div class="centraliser" style="text-align: center">
                     <div class="input-group"
                          style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                        <input type="text" class="form-control" placeholder="Search"/>
-                        <span class="input-group-addon" style="color: #e83e8c; ">
+                        <input id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTermAll()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
                     </div><!--end search bar-->
+                    <div hidden id="conn_suggestions_ids_str">{{ conn_suggestions_ids_str }}</div>
+                    <button onclick="showAllAll()">Clear</button>
+                        <script>
+
+                            // shows all blocks in the list of my connections
+                            function showAllAll(){
+                                strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
+                                myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++){
+                                    document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
+                                }
+                            }
+
+                             //  check if name, coutnry or bio contains string typed - search button
+                               function searchByTermAll() {
+                                   searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
+                                   strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
+                                   myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++){
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                        connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
+                                        connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm)){                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        }
+                                        else if (connCountry.includes(searchTerm)){
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        }
+                                        else if (connBio.includes(searchTerm)){
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        }
+                                        else{
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                        }
+                                    }
+                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                }
+                        </script>
                 </div>
 
-
                 <div class="connectionitems">
-
                     <div class="row"><!--row one of page-->
-                        <!--filter panel-->
-                        <div class="col-md-3">
-                            <div class="container">
-                                <h2 style="color: silver;"><strong>Filters </strong></h2>
-
-
-                                <div class="panel-group text" id="accordion"
-                                     style="width: 25%;padding-left: 0px;">
-
-                                    <!--panel-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapseSubjects"
-                                                   style="color:#ce3298">
-                                                    <strong>
-                                                        Subject
-                                                    </strong>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseSubjects" class="panel-collapse collapse">
-                                            <div class="panel-body">
-
-                                                <p> All </p>
-                                                <p> Arts & Design </p>
-                                                <p> Business & Management</p>
-                                                <p> Education</p>
-                                                <p> Entrepreneurship </p>
-                                                <p> Executive Education</p>
-                                                <p> Finance</p>
-                                                <p> Health</p>
-                                                <p> Hospitality & Events</p>
-                                                <p> Law</p>
-                                                <p> Marketing </p>
-                                                <p> Project Management</p>
-                                                <p> Real Estate</p>
-                                                <p> Systems & Technology </p>
-                                                <p> Talent Management (HR)</p>
-                                                <p> Writing</p>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--panel-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapseInstitutions" style="color:#ce3298">
-                                                    <strong>
-                                                        Institution
-                                                    </strong>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseInstitutions" class="panel-collapse collapse">
-                                            <div class="panel-body">
-
-                                                <p> All </p>
-                                                <p>Cambridge CSL</p>
-                                                <p> Harvard University</p>
-                                                <p> LSE</p>
-                                                <p>MIT</p>
-                                                <p>Oxford Saïd</p>
-                                                <p> Rice University</p>
-                                                <p>Stanford Center for Health Education</p>
-                                                <p> The University of Chicago</p>
-                                                <p> UC Berkeley</p>
-                                                <p>UC Davis Graduate School of Management</p>
-                                                <p> UCT Graduate School of Business</p>
-                                                <p>USB-ED</p>
-                                                <p> University of Cape Town</p>
-                                                <p>University of Dayton</p>
-                                                <p> WITS</p>
-                                                <p>Yale SOM Executive Education</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div><!--end of accordion-->
-                                <!-- <form class="  search-form" role="search">
-                                         <input type="text" class="form-control" placeholder="Search" />
-
-                                     </form>-->
-
-                            </div>
-                        </div><!--end col-->
-
                         <!--connections-->
                         {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
-                            <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
-                                <div style="display: none;" id="conn_id">{{ conn_id }}</div>
-                                <!-- hidden field with the user id for that connection -->
-                                <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} "
-                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
-
-                                <div class="card hovercard ">
-
-                                    <div class="avatar"><br>
+                        <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;">
+                            <div id="{{ conn_id }}_hideAll" style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                            <img class="cardheader" src="{{ pictures }}" >
+                            <div hidden id="{{ conn_id }}_bioAll">{{ bio }}</div>
+                            <div class="card hovercard ">
+                                <div class="avatar"><br>
+                                </div>
+                                <br>
+                                <div class="info">
+                                    <div class="title"></div>
+                                    <div id="{{ conn_id }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                        {{ names }}
                                     </div>
-                                    <br>
-                                    <div class="info">
-                                        <div class="title"></div>
-                                        <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                            {{ names }}
-                                        </div>
-                                        <p>{{ countries }}</p>
-                                        <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
-                                        </Button>
-                                    </div>
+                                    <p id="{{ conn_id }}_countryAll">{{ countries }}</p>
+                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
+                                    </Button>
                                 </div>
                             </div>
+                        </div>
                         {% endfor %}
                     </div><!--endrow-->
                 </div><!--end my connections-->
-
             </div>
         </div>
 

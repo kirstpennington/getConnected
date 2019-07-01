@@ -31,6 +31,17 @@ class course_methods:
     def getCourseTopics(course_id):
         return database.child("Courses").child(course_id).child("Topic").shallow().get().val()
 
+    def getCoursesTopicsString(course_id):
+        # gets all topics and puts them into one string
+        topics = database.child("Courses").child(course_id).child("Topic").shallow().get().val()
+        topics_string = ""
+
+        for topic in topics:
+            topics_string = topics_string + "|" + topic
+
+        topics_string += "|"
+        return topics_string
+
     def getCoursePicture(course_id):
         return database.child("Courses").child(course_id).child("Picture").get().val()
 
@@ -49,10 +60,10 @@ class course_methods:
             return ""
 
         if num_rec >= 200 and num_rec < 500:
-            return "Recommended"
+            return "Well Rated"
 
         if num_rec >= 500:
-            return "Highly Recommended"
+            return "Highly Rated"
 
     def getCourseNumRecommendations(course_id):
         return database.child("Courses").child(course_id).child("NumRecommendations").get().val()
@@ -82,7 +93,7 @@ class course_methods:
                 course_urls.append(course_methods.getCourseURL(id))
                 course_uni_pics.append(course_methods.getCourseUniPic(id))
                 courses_ids.append(id)
-                course_topics.append(course_methods.getCourseTopics(id))
+                course_topics.append(course_methods.getCoursesTopicsString(id))
                 course_uni.append(course_methods.getCourseUniversity(id))
             except:
                 print("")
@@ -165,12 +176,6 @@ class course_methods:
 
 
 # UPDATE Methods
-def heartCourse(request):
-    if request.method == "POST":
-        course_id = request.POST.get("course_id")                                                      # get the id of the course that is being hearted
-        num_rec = int(course_methods.getCourseNumRecommendations(course_id)) + 1                       # add 1 to the number of course recommendations for the selected course
-        updateCourseNumRecommendations(course_id, num_rec)
 
-
-def updateCourseNumRecommendations(course_id, num_rec):
-    database.child("Courses").child(course_id).update({'NumRecommendations': num_rec})
+    def updateCourseNumRecommendations(course_id, num_rec):
+        database.child("Courses").child(course_id).update({'NumRecommendations': num_rec})
