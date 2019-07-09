@@ -350,10 +350,16 @@ def home(request):
 def forums(request):
     global the_user
     global short_forum_suggestions
-    return render(request, 'Forums.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
-                                           'suggested_forums_list': forum_methods.getForumsInfoList(
+    all_forums = forum_methods.getAllForumsList(the_user.uid)
+    return render(request, 'ForumList.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+                                              'email': the_user.email,
+                                              'password': the_user.password,
+                                              'suggested_forums_list': forum_methods.getForumsInfoList(
                                                short_forum_suggestions),
-                                           'this_uid': the_user.uid})
+                                              'all_forums_list': forum_methods.getForumsInfoList(all_forums),
+                                              'my_forums_ids': convertArrayToString(the_user.forumsInfoList),
+                                              'all_forums_str': convertArrayToString(all_forums),
+                                              'this_uid': the_user.uid})
 
 
 def courses(request):
