@@ -83,6 +83,10 @@ class forum_methods:
                                    forum_descriptions, forum_ids)
         return combined_forums_list
 
+
+    def getAllForumsList(uid):
+        return database.child("Forums").shallow().get().val()
+
     def getForumSuggestions(uid, num_returns, the_user):
         # returns a combined list of forum information with the same topics as this user's interests
         results_count = 0  # how many results were found thus far

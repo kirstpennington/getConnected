@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Courses</title>
+<title>Forums</title>
 
 <head>
 
@@ -430,10 +430,9 @@
                         class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
                 <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
                     Connections</a></li>
-                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'" style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span class="fa fa-comments-o fa-lg"></span>
                     Forums</a></li>
-                <li><a onclick="location.href='{% url 'nav_courses' %}'"
-                       style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span
                         class="fa fa-book fa-lg"></span> Courses</a></li>
             </ul>
 
@@ -627,10 +626,10 @@
 </nav><!--nav navbar-inverse-->
 
 
-<!--content of courses page start-->
+<!--content of forums page start-->
 
 
-<!--recommended courses-->
+<!--recommended forums-->
 <div class="back">
 
 
@@ -642,16 +641,16 @@
 <div class="main main-raised">
     <br>
     <ul class="nav nav-tabs" style="padding-right: 500px;padding-left: 20px;">
-        <!--the two tabs My Courses and All Courses-->
+        <!--the two tabs My Forums and All Forums-->
         <li class="active">
             <a data-toggle="pill" href="#Mycourses">
                 <h2 class="text-center" style="color: silver">
-                    <strong> My Courses</strong>
+                    <strong> My Forums</strong>
                 </h2>
             </a></li>
         <li><a data-toggle="pill" href="#allcourses">
             <h2 class="text-center" style="color: silver">
-                <strong> All Courses</strong>
+                <strong> All Forums</strong>
             </h2>
         </a></li>
 
@@ -664,8 +663,8 @@
     <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
     <div class="tab-content">
 
-        <!--my courses content-->
-        <!--this is the content for "my courses" so put all the courses the user takes here-->
+        <!--my ForumsForums content-->
+        <!--this is the content for "my Forums" so put all the Forums the user takes here-->
         <div id="Mycourses" class="tab-pane fade in active">
 
 
@@ -727,70 +726,6 @@
                                 </div>
                             </div>
 
-                            <!--panel-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseInstitution"
-                                           style="color:#ce3298">
-                                            <strong>
-                                                Institution
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseInstitution" class="panel-collapse collapse">
-                                    <div class="panel-body">
-
-                                        <p onclick="showAll()"> All </p>
-                                        <p onclick="searchByUniversity('Cambridge CSL')">Cambridge CSL</p>
-                                        <p onclick="searchByUniversity('Harvard University<')"> Harvard University</p>
-                                        <p onclick="searchByUniversity('LSE')"> LSE</p>
-                                        <p onclick="searchByUniversity('MIT')">MIT</p>
-                                        <p onclick="searchByUniversity('Oxford Saïd')">Oxford Saïd</p>
-                                        <p onclick="searchByUniversity('Rice University')"> Rice University</p>
-                                        <p onclick="searchByUniversity('Stanford Center for Health Education')">Stanford Center for Health Education</p>
-                                        <p onclick="searchByUniversity('The University of Chicago')"> The University of Chicago</p>
-                                        <p onclick="searchByUniversity('UC Berkeley')"> UC Berkeley</p>
-                                        <p onclick="searchByUniversity('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
-                                        <p onclick="searchByUniversity('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
-                                        <p onclick="searchByUniversity('USB-ED')">USB-ED</p>
-                                        <p onclick="searchByUniversity('University of Cape Town')"> University of Cape Town</p>
-                                        <p onclick="searchByUniversity('University of Dayton')">University of Dayton</p>
-                                        <p onclick="searchByUniversity('WITS')"> WITS</p>
-                                        <p onclick="searchByUniversity('Yale SOM Executive Education')">Yale SOM Executive Education</p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--panel-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><!--panel 1 heading-->
-                                        <a data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseRecommendations" style="color:#ce3298">
-                                            <strong>
-                                                Recommendations
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseRecommendations" class="panel-collapse collapse in">
-                                    <!--panel 1 content-->
-                                    <div class="panel-body">
-                                        <p onclick="showAll()"> All </p>
-                                        <p onclick="searchByRating('Highly Rated')"> Highly Rated</p>
-                                        <p onclick="searchByRating('Well Rated')"> Well Rated</p>
-                                        <p onclick="searchByRating('')"> No Rating</p>
-
-
-                                    </div>
-                                </div>
-                            </div><!--end panel-->
-
-
-
                         </div><!--end of accordion-->
                         <!-- <form class="  search-form" role="search">
                                  <input type="text" class="form-control" placeholder="Search" />
@@ -800,7 +735,7 @@
                     </div>
                 </div><!--end col-->
 
-                <div class="col-md-9" style="position:absolute;left:325px;"><!--courses-->
+                <div class="col-md-9" style="position:absolute;left:325px;"><!--Forums-->
                     <div class="intro-form"><!--form at the top with recommendations-->
                         <form>
                             <!--recommended course cards-->
@@ -816,7 +751,7 @@
 
                                 <!-- Item 2-->
 
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in suggested_courses_list %}
+                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in suggested_forums_list|slice:":3" %}
                                     <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
@@ -827,20 +762,20 @@
                                                 <div style="height:2px;"><br></div>
 
                                                 <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                                    {{ course_names }}
+                                                    {{ forum_names }}
                                                 </div>
                                                 <!-- hidden field that stores the id of the entity  -->
-                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+                                                <div id="course_id" style="display: none;"> {{ forum_ids }}</div>
 
                                                 <div style="height:2px;"><br></div>
 
                                                 <span class="badge badge-pill badge-dark"
-                                                      style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
+                                                      style="color: white; font-size: x-small;  top: 10px">{{ forum_topics }}</span><br>
                                                 <div style="height:5px;"><br></div>
 
                                                 <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
-                                                   href={{ course_urls }}>VIEW
-                                                    COURSE <i class="fa fa-angle-double-right"></i></a>
+                                                   href="">VIEW
+                                                    FORUM <i class="fa fa-angle-double-right"></i></a>
                                             </div><!-- inf-->
 
                                         </div><!-- RighColumnContainer-->
@@ -867,56 +802,46 @@
                     <!--placeholder for space by filter-->
                 </div><!--end col-->
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in courses_list %}
-                    <div id="{{ courses_ids }}_hide" class="col-md-3"
-                         style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
+                {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
+                <div id="{{ forum_ids }}_hide" class="col-sm-3  " style="margin-top:200px; width: 180px; margin-right:130px;  ">
+                    <!-- forum wallpaper -->
+                    <div class="cardheader"
+                         style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
+                    </div>
+                    <!-- Go into forum -->
+                     <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
+                    <div class="heartbutton"><span style="background: transparent; " type="button"
+                                                   class="fa fa-sign-in fa-lg viewForum"></span></div>
+                    <!-- card with forum detains -->
+                    <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 240px;">
 
-                        <!-- My Courses: Item 1 -->
-                        <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
-                        <div hidden id="{{ courses_ids }}_topics">{{ course_topics }}</div>
-                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                              rel="stylesheet">
+                        <div>
+                            <!-- Number fo forum users -->
+                            <div style="top: 2px; margin-left: 70%">
+                                <h8><span class="label label-default"><span
+                                        class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                                <div style="height:5px;"><br></div>
+                            </div>
 
-                        <div class="container">
-
-                            <div class="row">
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="cardheader" style="background-image: url(
-                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
-                                    <div class="heartbutton"><span style="background: transparent" type="button"
-                                                                   class="fa fa-heart fa-2x heartColour"></span></div>
-                                    <div class="card hovercard  ">
-                                        <div class="avatar"><br>
-                                            {% load staticfiles %}
-                                            <img src='{{ course_pictures }}'/>
-                                        </div>
-                                        <br>
-                                        <div class="info">
-                                            <div class="title"></div>
-                                            <div id="{{ courses_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                            </div>
-                                            <!-- hidden field that stores the id of the entity  -->
-                                            <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                            <br><span id="{{ courses_ids }}_rating"
-                                                      class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                        </div>
-
-                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                        <a style="font-size: smaller; color: gray; font-weight: bold"
-                                           href={{ course_urls }}>
-                                            VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                        </a>
-                                    </div>
-                                </div><!-- /col-lg-3 col-sm-6 -->
-
-                            </div><!-- /row -->
-                        </div><!-- /container -->
+                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                            </div>
+                            <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+                            <!-- forum tags -->
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
 
 
-                    </div><!--end col-->
-                {% endfor %}
+                        </div>
+                        <!-- card line -->
+
+                        <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                        <!-- Open forum button -->
+                        <a onclick="location.href='{% url 'forumsopen' %}'"
+                           style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">OPEN
+                            <i
+                                    class="fa fa-angle-double-right"></i></a>
+                    </div><!-- /card-hovercard -->
+                </div>
+            {% endfor %}
 
 
             </div><!--end row-->
@@ -924,7 +849,7 @@
         </div>
 
 
-        <!-- content for all courses tab-->
+        <!-- content for all Forums tab-->
         <div id="allcourses" class="tab-pane fade in active">
 
 
@@ -987,69 +912,9 @@
                                 </div>
                             </div>
 
-                            <!--panel-->
-                            <div class="panel panel-default">
-                               <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseInstitution"
-                                           style="color:#ce3298">
-                                            <strong>
-                                                Institution
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-                                 <div id="collapseInstitution" class="panel-collapse collapse">
-                                    <div class="panel-body">
-
-                                        <p onclick="showAllAll()"> All </p>
-                                        <p onclick="searchByUniversityAll('Cambridge CSL')">Cambridge CSL</p>
-                                        <p onclick="searchByUniversityAll('Harvard University<')"> Harvard University</p>
-                                        <p onclick="searchByUniversityAll('LSE')"> LSE</p>
-                                        <p onclick="searchByUniversityAll('MIT')">MIT</p>
-                                        <p onclick="searchByUniversityAll('Oxford Saïd')">Oxford Saïd</p>
-                                        <p onclick="searchByUniversityAll('Rice University')"> Rice University</p>
-                                        <p onclick="searchByUniversityAll('Stanford Center for Health Education')">Stanford Center for Health Education</p>
-                                        <p onclick="searchByUniversityAll('The University of Chicago')"> The University of Chicago</p>
-                                        <p onclick="searchByUniversityAll('UC Berkeley')"> UC Berkeley</p>
-                                        <p onclick="searchByUniversityAll('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
-                                        <p onclick="searchByUniversityAll('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
-                                        <p onclick="searchByUniversityAll('USB-ED')">USB-ED</p>
-                                        <p onclick="searchByUniversityAll('University of Cape Town')"> University of Cape Town</p>
-                                        <p onclick="searchByUniversityAll('University of Dayton')">University of Dayton</p>
-                                        <p onclick="searchByUniversityAll('WITS')"> WITS</p>
-                                        <p onclick="searchByUniversityAll('Yale SOM Executive Education')">Yale SOM Executive Education</p>
-
-                                    </div>
-                                </div>
-                            </div>
                               <div hidden id="all_courses_str">{{ all_courses_str }}</div>
 
-                            <!--panel-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><!--panel 1 heading-->
-                                        <a data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseRecommendations" style="color:#ce3298">
-                                            <strong>
-                                                Recommendations
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseRecommendations" class="panel-collapse collapse in">
-                                    <!--panel 1 content-->
-                                    <div class="panel-body">
-                                        <p onclick="showAllAll()"> All </p>
-                                        <p onclick="searchByRatingAll('Highly Rated')"> Highly Rated</p>
-                                        <p onclick="searchByRatingAll('Well Rated')"> Well Rated</p>
-                                        <p onclick="searchByRatingAll('')"> No Rating</p>
-
-
-                                    </div>
-                                </div>
-                            </div><!--end panel-->
-
+                            <div hidden id="all_forums_str">{{ all_forums_str }}</div>
 
 
                         </div><!--end of accordion-->
@@ -1061,6 +926,7 @@
                         </div>
                         </div><!--end col-->
 
+
                     <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
 
                          <!-- My Courses: Item 1 -->
@@ -1071,65 +937,58 @@
 
                                                     <div class="row">
 
-                                                        {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in all_courses_list %}
-                                                            <div id="{{ courses_ids }}_hide" class="col-md-3"
-                                                                 style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-bottom: 14px;">
+                                                       {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in all_forums_list|slice:":3" %}
+                                                            <div id="{{ forum_ids }}_hide" class="col-sm-3" style="width:180px; margin-right:130px;">
+                                                                <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
+                                                                <!-- forum wallpaper -->
+                                                                <div class="cardheader"
+                                                                     style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
+                                                                </div>
+                                                                <!-- Go into forum -->
+                                                                 <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
+                                                                <div class="heartbutton"><span style="background: transparent; " type="button"
+                                                                                               class="fa fa-sign-in fa-lg viewForum"></span></div>
+                                                                <!-- card with forum detains -->
+                                                                <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 240px;">
 
-                                                                <!-- My Courses: Item 1 -->
-                                                                <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
-                                                                <div hidden id="{{ courses_ids }}_topics">{{ course_topics }}</div>
-                                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                                                                      rel="stylesheet">
+                                                                    <div>
+                                                                        <!-- Number fo forum users -->
+                                                                        <div style="top: 2px; margin-left: 70%">
+                                                                            <h8><span class="label label-default"><span
+                                                                                    class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                                                                            <div style="height:5px;"><br></div>
+                                                                        </div>
 
-                                                                <div class="container">
-
-                                                                    <div class="row">
-
-                                                                        <div class="col-lg-3 col-sm-6">
-                                                                            <div class="cardheader" style="background-image: url(
-                                                                                    {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
-                                                                            <div class="heartbutton"><span style="background: transparent" type="button"
-                                                                                                           class="fa fa-heart fa-2x heartColour"></span></div>
-                                                                            <div class="card hovercard  ">
-                                                                                <div class="avatar"><br>
-                                                                                    {% load staticfiles %}
-                                                                                    <img src='{{ course_pictures }}'/>
-                                                                                </div>
-                                                                                <br>
-                                                                                <div class="info">
-                                                                                    <div class="title"></div>
-                                                                                    <div id="{{ courses_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                                                                    </div>
-                                                                                    <!-- hidden field that stores the id of the entity  -->
-                                                                                    <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                                                                    <br><span id="{{ courses_ids }}_rating"
-                                                                                              class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                                                                </div>
-
-                                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                                   href={{ course_urls }}>
-                                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div><!-- /col-lg-3 col-sm-6 -->
-
-                                                                    </div><!-- /row -->
-                                                                </div><!-- /container -->
+                                                                        <div id="{{ forum_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                                                                        </div>
+                                                                        <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+                                                                        <!-- forum tags -->
+                                                                        <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
 
 
-                                                            </div><!--end col-->
+                                                                    </div>
+                                                                    <!-- card line -->
+
+                                                                    <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                                                                    <!-- Open forum button -->
+                                                                    <a onclick="location.href='{% url 'forumsopen' %}'"
+                                                                       style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">OPEN
+                                                                        <i
+                                                                                class="fa fa-angle-double-right"></i></a>
+                                                                </div><!-- /card-hovercard -->
+                                                            </div>
                                                         {% endfor %}
+
+
                                                        <script>
                                                                // shows all blocks in the list of my courses
                                                                 function showAllAll(){
-                                                                    strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                    myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+                                                                    strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                    allForumList =  strForumList.split(",");                                        // split string into array by the delimiter ","
 
                                                                     //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
-                                                                        document.getElementById(myCourseList[i] + "_hide").hidden = false;           // show all blocks
+                                                                    for (let i = 0; i < allForumList.length; i++){
+                                                                        document.getElementById(allForumList[i] + "_hide").hidden = false;           // show all blocks
                                                                     }
                                                                 }
 
@@ -1137,89 +996,44 @@
                                                                 // replace list of my courses with filtered courses based on topic selected
                                                                 function searchByTopicAll(searchTopic) {
 
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+                                                                   strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   allForumList =  strForumList.split(",");                                        // split string into array by the delimiter ","
 
                                                                     // hide unwanted items from view
                                                                     // hides the block that don't appear in the list
 
                                                                     //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                    for (let i = 0; i < allForumList.length; i++){
                                                                         // check if topics list for this course_id contains Finance
-                                                                        elementIdName = myCourseList[i] + "_topics";
+                                                                        elementIdName = allForumList[i] + "_topics";
                                                                         strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
                                                                         strTopics =  strTopics1.substring(1, strTopics1.length-1);
                                                                         courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
                                                                         if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                                                            document.getElementById(allForumList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
                                                                         }
                                                                         else{
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                                                                            document.getElementById(allForumList[i] + "_hide").hidden = true;
                                                                         }
                                                                     }
                                                                     // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
                                                                 }
-
-                                                                // replace list of my courses with filtered courses based on university selected
-                                                               function searchByUniversityAll(searchUni) {
-
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-                                                                    //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
-                                                                        // check if topics list for this course_id contains Finance
-                                                                        elementIdName = myCourseList[i] + "_uni";
-                                                                        courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                                                                        if (courseUniCheck == searchUni){                            // if the topic searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                                                                        }
-                                                                        else{
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
-                                                                        }
-                                                                    }
-                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-                                                                }
-
-
-                                                                // replace list of my courses with filtered courses based on rating selected
-                                                               function searchByRatingAll(searchRating) {
-
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-                                                                    //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
-                                                                        // check if topics list for this course_id contains Finance
-                                                                        elementIdName = myCourseList[i] + "_rating";
-                                                                        courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                                                                        if (courseRatingCheck == searchRating){                                         // if the rating searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                                                                        }
-                                                                        else{
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
-                                                                        }
-                                                                    }
-                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
-                                                                }
-
-
 
                                                                 //  check if name contains string typed - search button
                                                                function searchByNameAll() {
                                                                    searchTerm = document.getElementById('searchNameInputAll').value;                   // get the value in the search input field
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+                                                                   strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   allForumList =  strForumList.split(",");                                        // split string into array by the delimiter ","
 
                                                                     //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                    for (let i = 0; i < allForumList.length; i++){
                                                                         // check if topics list for this course_id contains Finance
-                                                                        courseName = document.getElementById(myCourseList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                                                        courseName = document.getElementById(allForumList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
                                                                         if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                                                            document.getElementById(allForumList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
                                                                         }
                                                                         else{
-                                                                            document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                                                                            document.getElementById(allForumList[i] + "_hide").hidden = true;
                                                                         }
                                                                     }
                                                                     // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
@@ -1366,18 +1180,18 @@
 
 <div hidden id="user_email">{{ email }}</div>
 <div hidden id="user_password">{{ password }}</div>
-<div hidden id="my_course_ids">{{ my_course_ids }}</div>
+<div hidden id="my_forums_ids">{{ my_forums_ids }}</div>
 
    <script>
 
        // shows all blocks in the list of my courses
         function showAll(){
-            strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-            myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+            strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+            myForumsList =  strForumsList.split(",");                                        // split string into array by the delimiter ","
 
             //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
-                document.getElementById(myCourseList[i] + "_hide").hidden = false;           // show all blocks
+            for (let i = 0; i < myForumsList.length; i++){
+                document.getElementById(myForumsList[i] + "_hide").hidden = false;           // show all blocks
             }
         }
 
@@ -1385,89 +1199,43 @@
         // replace list of my courses with filtered courses based on topic selected
         function searchByTopic(searchTopic) {
 
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+           strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+           myForumsList =  strForumsList.split(",");                                        // split string into array by the delimiter ","
 
             // hide unwanted items from view
             // hides the block that don't appear in the list
 
             //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
+            for (let i = 0; i < myForumsList.length; i++){
                 // check if topics list for this course_id contains Finance
-                elementIdName = myCourseList[i] + "_topics";
+                elementIdName = myForumsList[i] + "_topics";
                 strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
                 strTopics =  strTopics1.substring(1, strTopics1.length-1);
-                courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
+                courseTopicsList = strTopics.split(" ");                                // creates an array of the course's topics
                 if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                    document.getElementById(myForumsList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
                 }
                 else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                    document.getElementById(myForumsList[i] + "_hide").hidden = true;
                 }
             }
             // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
         }
-
-        // replace list of my courses with filtered courses based on university selected
-       function searchByUniversity(searchUni) {
-
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-            //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
-                // check if topics list for this course_id contains Finance
-                elementIdName = myCourseList[i] + "_uni";
-                courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                if (courseUniCheck == searchUni){                            // if the topic searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                }
-                else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
-                }
-            }
-            // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-        }
-
-
-        // replace list of my courses with filtered courses based on rating selected
-       function searchByRating(searchRating) {
-
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-            //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
-                // check if topics list for this course_id contains Finance
-                elementIdName = myCourseList[i] + "_rating";
-                courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                if (courseRatingCheck == searchRating){                                         // if the rating searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                }
-                else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
-                }
-            }
-            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
-        }
-
-
 
         //  check if name contains string typed - search button
        function searchByName() {
            searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-           console.log("searchTerm: "+searchTerm);
+           strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+           myForumsList =  strForumsList.split(",");                                        // split string into array by the delimiter ","
             //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
+            for (let i = 0; i < myForumsList.length; i++){
                 // check if topics list for this course_id contains Finance
-                courseName = document.getElementById(myCourseList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                courseName = document.getElementById(myForumsList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
                 if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                    document.getElementById(myForumsList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
                 }
                 else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                    document.getElementById(myForumsList[i] + "_hide").hidden = true;
                 }
             }
             // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
