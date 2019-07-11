@@ -457,7 +457,16 @@ def goAccountHelp(request):
 
 
 def goForumsOpen(request):
-    return render(request, 'ForumsMessaging.html')
+    global the_user
+    return render(request, "ForumsMessaging.html", {'profilePic': the_user.profilePic,
+                                             'country': the_user.country,
+                                             'username': the_user.username,
+                                             'email': the_user.email,
+                                             'bio': the_user.bio,
+                                             'this_uid': the_user.uid,
+                                                    'numConnections': the_user.numConnections,
+                                                    'numForums': the_user.numForums
+                                             })
 
 
 def goContact(request):
