@@ -985,7 +985,7 @@
                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
                     <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
 
-                        <button class="badges_plus" type="button" id="btnGetMessage" value="Get Message"
+                        <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
                                 style="position: relative; left: 240px; top: 3px;  "><i style="color: grey" class="fa fa-user-plus "></i>
                         </button>
 
@@ -1000,7 +1000,7 @@
                                     {{ names }}
                                 </div>
                                 <!-- hidden field that stores the id of the entity  -->
-                                <div id="connection_id" style="display: none;"> {{ conn_id }}</div>
+                                <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                 <h8 style="display: inline-block;margin-left: 10px;margin-top: 4px;font-family: serif; font-size: small; color: black">
                                     mutual conections &nbsp;<span class="label label-default"
                                                                   style="color: white"> {{ numConnections }} </span>
@@ -1023,20 +1023,98 @@
 
         <script>
 
+    const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+
+function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+  const day = date.getDate();
+  const month = MONTH_NAMES[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  if (minutes < 10) {
+    // Adding leading zero to minutes
+    minutes = `0${ minutes }`;
+  }
+
+  if (prefomattedDate) {
+    // Today at 10:20
+    // Yesterday at 10:20
+    return `${ prefomattedDate } at ${ hours }:${ minutes }`;
+  }
+
+  if (hideYear) {
+    // 10. January at 10:20
+    return `${ day }. ${ month } at ${ hours }:${ minutes }`;
+  }
+
+  // 10. January 2017. at 10:20
+  return `${ day }. ${ month } ${ year }. at ${ hours }:${ minutes }`;
+}
+
+
+// --- Main function
+function timeAgo(dateParam) {
+
+  if (!dateParam) {
+    return null;
+  }
+
+  const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+  const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+  const today = new Date();
+  const yesterday = new Date(today - DAY_IN_MS);
+  const seconds = Math.round((today - date) / 1000);
+  const minutes = Math.round(seconds / 60);
+  const isToday = today.toDateString() === date.toDateString();
+  const isYesterday = yesterday.toDateString() === date.toDateString();
+  const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+  if (seconds < 5) {
+    return 'now';
+  } else if (seconds < 60) {
+    return `${ seconds } seconds ago`;
+  } else if (seconds < 90) {
+    return 'about a minute ago';
+  } else if (minutes < 60) {
+    return `${ minutes } minutes ago`;
+  } else if (isToday) {
+    return getFormattedDate(date, 'Today'); // Today at 10:20
+  } else if (isYesterday) {
+    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+  } else if (isThisYear) {
+    return getFormattedDate(date, false, true); // 10. January at 10:20
+  }
+
+  return getFormattedDate(date); // 10. January 2017. at 10:20
+}
+
+;
+
+</script>
+
+        <script>
+
             var user = firebase.auth().currentUser;
             /*Firebase Reference*/
 
-            var database = firebase.database().ref().child("Users/{{this_uid}}/RequestsSent");/*Current users account*/
-            var database_target = firebase.database().ref().child("Users/xxQe6gmBPGcj35WLLFw96BG7fkl1/RequestsReceived");/*Where the message is going*/
             var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
 
 
             /*User Clicks on GetMessages time Firebase button*/
+            function send_friend_request(request_receiver_id) {
 
-            $('#btnGetMessage').click(function () {
+
 
                 $(this).find("i").removeClass("fa fa-user-plus").addClass("fa fa-hourglass");
                 /*Fetching time when items were pushed*/
+
+
 
                 var d = new Date(),
                     minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
@@ -1047,29 +1125,66 @@
                 /*dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;*/
                 dateTime = hours + ':' + minutes + ampm;
                /*Changing items in the db*/
-                writeUserData(dateTime, "{{ n }}", "Connection Request,");
+
+                var date_for_post = Date.now();
+
+
+                writeUserData(date_for_post, "{{ n }}",'{{this_uid}}', "Connection Request", request_receiver_id);
                 dateTime;
                 "Connection Request";
                 "{{ n }}";
+                '{{ this_uid }}';
+                request_receiver_id;
 
 
-            });
+
+            }
 
             /*Push time entered and Message entered from textboxes, creates entry in firebase
             * push gives a unique key*/
 
-            function writeUserData(message_time, messageTo, actual_message) {/*Pushes to current users*/
-                database.push().set({
+            function writeUserData(message_time, messageFrom,request_sender_id, actual_message,request_receiver_id) {/*Pushes to current users*/
+                var database = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent");/*Current users account*/
+
+
+
+                var created_id =  database.push();
+                created_id.set({
                     time: message_time,
-                    receiver: messageTo,
+                    sender: messageFrom,
+                    sender_id:request_sender_id,
                     message: actual_message,
+                    receiver_id:request_receiver_id,
+                    sender_profilePic: '{{ ProfilePic }}'
+
+
                 });
 
-                database_target.push().set({ /*Pushes to receiver*/
-                    time: message_time,
-                    receiver: messageTo,
-                    message: actual_message,
+                 /*Saving_id*/
+                var hope = String(created_id);
+                var result = hope.substring(hope.lastIndexOf("/") + 1);
+                var save_id = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent/"+result);/*Messages*/
+                save_id.update({
+                    post_id: result
+                });
 
+                var database_target = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived");/*Where the message is going*/
+                var created_id_target = database_target.push();
+                created_id_target.set({ /*Pushes to receiver*/
+                    time: message_time,
+                    sender: messageFrom,
+                    sender_id:request_sender_id,
+                    message: actual_message,
+                    receiver_id:request_receiver_id,
+                    sender_profilePic: '{{ ProfilePic }}'
+
+
+                });
+                 hope = String(created_id_target);
+                 result = hope.substring(hope.lastIndexOf("/") + 1);
+                 save_id = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived/"+result);/*Messages*/
+                save_id.update({
+                    post_id: result
                 });
 
 
@@ -1106,9 +1221,15 @@
                     /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
                     /*Creating notification item*/
 
+                    var display_time = obj[keys[i]].time;
+                    display_time = Number(display_time); // cast it to a Number
+                    var ts_display = timeAgo(display_time);
 
-                    html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img\" src=\"{{ ProfilePic }}\"/> <p style=\"margin-left: 240px; color: black;text-decoration: none\">" + obj[keys[i]].time + "</p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].receiver + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
-                        "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+
+                    var decision = "true";
+                    var opp_decison = "false";
+                    html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request("+ "\'"+ obj[keys[i]].sender_id+"\'" + "," + "\'"+ obj[keys[i]].sender + "\'"+ ","+ "\'"+ obj[keys[i]].post_id + "\'" + "," +opp_decison+")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+                        "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request("+ "\'" + obj[keys[i]].sender_id + "\'"  + ","+ "\'"  + obj[keys[i]].sender + "\'"+ ","+  "\'" + obj[keys[i]].post_id + "\'" + "," + decision +  " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request("+ "\'"+ obj[keys[i]].sender_id+"\'" + "," + "\'"+ obj[keys[i]].sender + "\'"+ ","+ "\'"+ obj[keys[i]].post_id + "\'" + "," +opp_decison+")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
 
 
                 }
@@ -1140,6 +1261,39 @@
 
 
             /*NOTIFICATION ON ADD (to be places here): Specific to Add: Whenever items changes (added because of child_added) in database, this event is called, getKey is unique id of pop up*/
+ function Delete_request(post_id){
+
+
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
+
+                different_name.remove();
+                //window.alert( typeof post_id );
+   }
+
+   function Accept_request(sender_id, name, post_id,isAccept){
+
+
+
+     if (String(isAccept).valueOf() == String("true").valueOf()) {
+         var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+
+         var created_id_target = AddConnection.push();
+         created_id_target.set({ /*Pushes to receiver*/
+             name: name,
+             user_id: sender_id,
+         });
+
+         window.alert("You are now connected with " + name);
+
+
+     }
+
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
+
+                different_name.remove();
+                //window.alert( typeof post_id );
+
+   }
 
 
         </script>
