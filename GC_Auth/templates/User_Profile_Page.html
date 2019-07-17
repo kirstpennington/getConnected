@@ -978,15 +978,26 @@
                 View More <i class="fa fa-angle-double-right"></i><!--View moew connections-->
             </a>
 
+         <script>
+             function firebase_check_sent(connecion_id) {
+
+
+                 var firebase_check = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/RequestsSent");
+                 return("true")
+
+
+             }
+         </script>
 
             <div class="col-md-12">
 
 
                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
                     <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                        
 
                         <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
-                                style="position: relative; left: 240px; top: 3px;  "><i style="color: grey" class="fa fa-user-plus "></i>
+                                style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
                         </button>
 
 
@@ -1106,12 +1117,15 @@ function timeAgo(dateParam) {
             var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
 
 
-            /*User Clicks on GetMessages time Firebase button*/
+            /*User Clicks on GetMessages time Firebase button
+            * Will need to do one for hourglass to plus sign for the opposite action, or unconnecting*/
             function send_friend_request(request_receiver_id) {
 
 
+            document.getElementById(request_receiver_id).className = "fa fa-hourglass";
 
-                $(this).find("i").removeClass("fa fa-user-plus").addClass("fa fa-hourglass");
+                //$(this).find("i").removeClass("fa fa-user-plus").addClass("fa fa-hourglass");
+               // document.getElementById('play').classList.add('fa fa-hourglass');
                 /*Fetching time when items were pushed*/
 
 
@@ -1217,7 +1231,7 @@ function timeAgo(dateParam) {
             function renderUI(obj) {
                 var html = '';
                 var keys = Object.keys(obj);
-                for (var i = 0; i < keys.length - 1; i++) {
+                for (var i = keys.length - 2; i >= 0; i--) {
                     /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
                     /*Creating notification item*/
 
