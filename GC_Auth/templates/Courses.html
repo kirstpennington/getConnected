@@ -861,6 +861,31 @@
                 </div>
             </div><!--end row-->
 
+        <script>
+
+            function Like_Unlike_Course(course_id, ishearted) {
+            window.alert("The course id is: " + course_id);
+            var course_hearting = firebase.database().ref().child("Users/"+ '{{ this_uid }}' + "/Courses/"+ course_id);/*locating user's course*/
+
+                 if (ishearted == "true"){
+
+                 course_hearting.update({
+                    hearted: "false"
+                });
+                 document.getElementById(course_id).className = "fa fa-heart fa-2x grey";
+
+
+                 }else{
+                      course_hearting.update({
+                    hearted: "true"
+                });
+                 document.getElementById(course_id).className = "fa fa-heart fa-2x heartColour";
+
+                 }
+             }
+
+        </script>
+
             <div id="refreshSectionFilter" class="row"><!--row two of page-->
 
                 <div class="col-md-3">
@@ -884,8 +909,21 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="cardheader" style="background-image: url(
                                             {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
-                                    <div class="heartbutton"><span style="background: transparent" type="button"
-                                                                   class="fa fa-heart fa-2x heartColour"></span></div>
+
+{% comment %}
+                                   // var isHearted = "false";
+{% endcomment %}
+                                    <!--1. KIMONE: If ishearted == false implement the following div + please replace isHearted below with the actual value in the db-->
+                                    <div  onclick="Like_Unlike_Course('{{ courses_ids }}', isHearted)" class="heartbutton"><span id="{{ courses_ids }}" style="background: transparent" class="fa fa-heart fa-2x grey"></span></div>
+
+                                    <!--2. KIMONE: If ishearted == true implement the following div + please replace isHearted below with the actual value in the db-->
+{% comment %}
+                                    <div  onclick="Like_Unlike_Course('{{ courses_ids }}', isHearted)" class="heartbutton"><span id="{{ courses_ids }}" style="background: transparent" class="fa fa-heart fa-2x heartColour"></span></div>
+{% endcomment %}
+
+
+
+
                                     <div class="card hovercard  ">
                                         <div class="avatar"><br>
                                             {% load staticfiles %}
@@ -906,7 +944,7 @@
 
                                         <a style="font-size: smaller; color: gray; font-weight: bold"
                                            href={{ course_urls }}>
-                                            VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                            VIEW COURSE!<i class="fa fa-angle-double-right"></i>
                                         </a>
                                     </div>
                                 </div><!-- /col-lg-3 col-sm-6 -->
@@ -1353,6 +1391,8 @@
 <!-- Script for Carousel -->
 
 <script>
+
+
 
 
     / Carousel Auto-Cycle
