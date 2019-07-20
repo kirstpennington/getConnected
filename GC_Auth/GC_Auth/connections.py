@@ -54,30 +54,30 @@ class connection_methods:
         return zip(names, countries, pictures, bio, conn_id)
 
     def getConnectionsSuggestions(uid, num_returns, the_user):
-        # returns a combined list of user information with the same interests as this user
-        results_count = 0  # how many results were found thus far
+                                                                                                    # returns a combined list of user information with the same interests as this user
+        results_count = 0                                                                           # how many results were found thus far
         results = []
 
-        all_users_list_1 = database.child("Users").shallow().get().val()  # list of all users in the system
-        all_users_list = connection_methods.removeValueFromList(uid, all_users_list_1)  # remove this user from the list of all users
+        all_users_list_1 = database.child("Users").shallow().get().val()                            # list of all users in the system
+        all_users_list = connection_methods.removeValueFromList(uid, all_users_list_1)              # remove this user from the list of all users
         for compare_user_id in all_users_list:
-            if results_count == num_returns:  # if we have the requested number of ids, stop searching
+            if results_count == num_returns:                                                        # if we have the requested number of ids, stop searching
                 break
             else:
-                # get the topics of the user we are currently comparing this user wih
+                                                                                                    # get the topics of the user we are currently comparing this user wih
                 compare_user_interests = database.child("Users").child(compare_user_id).child(
                     "Topics").shallow().get().val()
                 if connection_methods.compareLists(compare_user_interests,
-                                the_user.topicsList):  # if we find a match, add it to the list of results
+                                the_user.topicsList):                                               # if we find a match, add it to the list of results
                     results.append(compare_user_id)
                     results_count += 1
 
         user_connections_list = database.child("Users").child(uid).child(
-            'Connections').shallow().get().val()  # get list of this user connections
+            'Connections').shallow().get().val()                                                    # get list of this user connections
         final_results = connection_methods.removeValuesFromList(user_connections_list,
-                                             results)  # remove users that are already connections and return this updated list
-
-        return final_results
+                                             results)                                               # remove users that are already connections and return this updated list
+        return_result = connection_methods.removeValueFromList(the_user.uid, final_results)         # remove my id from the list of results
+        return return_result
 
 
     # supporting methods for finding suggestions

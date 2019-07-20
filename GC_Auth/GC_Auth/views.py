@@ -387,7 +387,8 @@ def connections(request):
                        short_connections_suggestions),
                    'this_uid': the_user.uid,
                    'my_conn_ids': convertArrayToString(the_user.connectionsInfoList),
-                   'conn_suggestions_ids_str': convertArrayToString(short_connections_suggestions)})
+                   'conn_suggestions_ids_str': convertArrayToString(short_connections_suggestions),
+                   'my_country': the_user.country})
 
 
 def userprofile(request):
