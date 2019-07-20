@@ -816,7 +816,7 @@
 
                                 <!-- Item 2-->
 
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in suggested_courses_list %}
+                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in suggested_courses_list %}
                                     <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
 
@@ -864,22 +864,19 @@
         <script>
 
             function Like_Unlike_Course(course_id, ishearted) {
-            window.alert("The course id is: " + course_id);
             var course_hearting = firebase.database().ref().child("Users/"+ '{{ this_uid }}' + "/Courses/"+ course_id);/*locating user's course*/
+                 if (ishearted == "true" || ishearted == 'True'){
 
-                 if (ishearted == "true"){
-
-                 course_hearting.update({
-                    hearted: "false"
-                });
-                 document.getElementById(course_id).className = "fa fa-heart fa-2x grey";
-
+                         course_hearting.update({
+                            hearted: "false"
+                        });
+                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x grey";
 
                  }else{
-                      course_hearting.update({
-                    hearted: "true"
-                });
-                 document.getElementById(course_id).className = "fa fa-heart fa-2x heartColour";
+                              course_hearting.update({
+                            hearted: "true"
+                        });
+                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x heartColour";
 
                  }
              }
@@ -892,7 +889,7 @@
                     <!--placeholder for space by filter-->
                 </div><!--end col-->
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in courses_list %}
+                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in courses_list %}
                     <div id="{{ courses_ids }}_hide" class="col-md-3"
                          style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
@@ -914,13 +911,12 @@
                                    // var isHearted = "false";
 {% endcomment %}
                                     <!--1. KIMONE: If ishearted == false implement the following div + please replace isHearted below with the actual value in the db-->
-                                    <div  onclick="Like_Unlike_Course('{{ courses_ids }}', isHearted)" class="heartbutton"><span id="{{ courses_ids }}" style="background: transparent" class="fa fa-heart fa-2x grey"></span></div>
-
+                                    {% if course_hearted == True or course_hearted == 'True' or course_hearted == 'true' %}
+                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton"><span id="{{ courses_ids }}_heart" style="background: transparent" class="fa fa-heart fa-2x heartColour"></span></div>
                                     <!--2. KIMONE: If ishearted == true implement the following div + please replace isHearted below with the actual value in the db-->
-{% comment %}
-                                    <div  onclick="Like_Unlike_Course('{{ courses_ids }}', isHearted)" class="heartbutton"><span id="{{ courses_ids }}" style="background: transparent" class="fa fa-heart fa-2x heartColour"></span></div>
-{% endcomment %}
-
+                                    {% else %}
+                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton"><span id="{{ courses_ids }}_heart" style="background: transparent" class="fa fa-heart fa-2x grey"></span></div>
+                                    {% endif %}
 
 
 
@@ -1109,7 +1105,7 @@
 
                                                     <div class="row">
 
-                                                        {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni in all_courses_list %}
+                                                        {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in all_courses_list %}
                                                             <div id="{{ courses_ids }}_hide" class="col-md-3"
                                                                  style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-bottom: 14px;">
 
@@ -1126,8 +1122,7 @@
                                                                         <div class="col-lg-3 col-sm-6">
                                                                             <div class="cardheader" style="background-image: url(
                                                                                     {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
-                                                                            <div class="heartbutton"><span style="background: transparent" type="button"
-                                                                                                           class="fa fa-heart fa-2x heartColour"></span></div>
+
                                                                             <div class="card hovercard  ">
                                                                                 <div class="avatar"><br>
                                                                                     {% load staticfiles %}

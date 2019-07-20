@@ -331,7 +331,7 @@ def returnUserProfileCarousels(request):
                                                       'ProfilePic': the_user.profilePic,
                                                       'backgroundPic': the_user.backgroundPic,
                                                       'course_list': course_methods.getCoursesInfoList(
-                                                          the_user.coursesInfoList[:3]),
+                                                          the_user.uid, the_user.coursesInfoList[:3]),
                                                       'forums_list': forum_methods.getForumsInfoList(
                                                           the_user.forumsInfoList[:3]),
                                                       'connections_suggestions_list': connection_methods.getConnectionsInfoList(
@@ -366,11 +366,11 @@ def courses(request):
     global the_user
     global short_course_suggestions
     all_courses = course_methods.getAllCoursesList(the_user.uid)
-    return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.coursesInfoList),
-                                            'suggested_courses_list': course_methods.getCoursesInfoList(
+    return render(request, 'Courses.html', {'courses_list': course_methods.getCoursesInfoList(the_user.uid, the_user.coursesInfoList),
+                                            'suggested_courses_list': course_methods.getCoursesInfoList(the_user.uid,
                                                 short_course_suggestions),
                                             'this_uid': the_user.uid,
-                                            'all_courses_list': course_methods.getCoursesInfoList(
+                                            'all_courses_list': course_methods.getCoursesInfoList(the_user.uid,
                                                 all_courses),
                                             'email': the_user.email,
                                             'password': the_user.password,

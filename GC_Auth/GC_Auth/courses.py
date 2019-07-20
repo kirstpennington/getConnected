@@ -74,7 +74,12 @@ class course_methods:
     def getAllCoursesList(uid):
         return database.child("Courses").shallow().get().val()
 
-    def getCoursesInfoList(courses_id_list):
+    def getCourseHearted(uid, course_id):
+        return database.child("Users").child(uid).child("Courses").child(course_id).child('hearted').get().val()
+
+
+
+    def getCoursesInfoList(uid, courses_id_list):
         # get data from each course for the user and add them to separate arrays
         course_names = []
         course_pictures = []
@@ -84,6 +89,7 @@ class course_methods:
         courses_ids = []
         course_topics = []
         course_uni = []
+        course_hearted = []
 
         for id in courses_id_list:
             try:
@@ -95,12 +101,13 @@ class course_methods:
                 courses_ids.append(id)
                 course_topics.append(course_methods.getCoursesTopicsString(id))
                 course_uni.append(course_methods.getCourseUniversity(id))
+                course_hearted.append(course_methods.getCourseHearted(uid, id))
             except:
                 print("")
 
         # return a combination of all lists
         combined_list = zip(course_names, course_pictures, course_recommendations, course_urls, course_uni_pics,
-                            courses_ids, course_topics, course_uni)
+                            courses_ids, course_topics, course_uni, course_hearted)
         return combined_list
 
     def getCourseSuggestions(uid, num_returns, the_user):
