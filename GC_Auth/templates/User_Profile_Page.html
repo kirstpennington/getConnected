@@ -1291,22 +1291,14 @@ function timeAgo(dateParam) {
      if (String(isAccept).valueOf() == String("true").valueOf()) {
          var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
 
-         var created_id_target = AddConnection.push();
-         created_id_target.set({ /*Pushes to receiver*/
-             name: name,
-             user_id: sender_id,
-         });
+         AddConnection.child(sender_id).set(name);
 
          window.alert("You are now connected with " + name);
-
-
      }
-
                 var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
 
                 different_name.remove();
                 //window.alert( typeof post_id );
-
    }
 
 

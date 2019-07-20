@@ -318,7 +318,6 @@
 
 
         .connectionitems .card.hovercard {
-            overflow: hidden;
             text-align: center;
             background-color: white;
             border-width: 5px;
@@ -332,7 +331,6 @@
         }
 
         .connectionitems .card.hovercard:hover {
-            overflow: hidden;
             text-align: center;
             background-color: white;
             border-width: 5px;
@@ -867,6 +865,22 @@
                         </script>
                     </div><!--end search bar-->
                 </div>
+                 <script>
+                function RemoveConnection(connection_id, connection_name){
+
+                    var r  = confirm("Are you sure you want to remove " + connection_name + " from your connections?");
+                    if (r == true) {
+
+                        var delete_ref = firebase.database().ref().child("Users/{{ this_uid }}/Connections");/*Messages*/
+                        delete_ref.child(connection_id).remove();
+
+                    } else {
+
+                    }
+
+
+                }
+            </script>
                 <div class="connectionitems" style="margin-left: 50px">
                     <div class="row"><!--row one of page-->
                         <!--connections-->
@@ -874,19 +888,43 @@
                         <div id="{{ conn_id }}_hide" class="col-md-3" style="margin-top: 50px;margin-right:-10px; margin-left: 50px;">
                         <div hidden id="{{ conn_id }}_bio">{{ bio }}</div>
                             <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                            <img style=" position:relative; top: 30px ; margin-left: 60px;" src="{{ pictures }} "
+                            <img style=" position:relative; top: -15px ; margin-left: 60px;" src="{{ pictures }} "
                                      alt="Circle Image" class="img-raised rounded-circle img-fluid">
+
                             <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
+
+                                <div class="dropdownmenu" style="position: relative; left: 38%;color: #666666; ">
+
+                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                        <!--more options menu-->
+                                        <span  class="glyphicon glyphicon-option-vertical " style="color: lightgrey;font-size:15px;"></span></a>
+
+                                        <ul class="dropdown-menu" >
+                                            <li ><a style="font-size: 11px">Send Message &nbsp;<span style="font-size: 15px"
+                                                    class="fa fa-comments-o pull-right"></span></a></li>
+                                            <li class="divider"></li>
+
+                                            <li><a style="font-size: 11px">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
+                                                    class="	glyphicon glyphicon-user"></span></a></li>
+
+                                            <li class="divider"></li>
+
+                                            <li onclick="RemoveConnection('{{ conn_id }}', '{{ names }}')"><a style="font-size: 11px">Remove Connection&nbsp;&nbsp;<span style="font-size: 15px"
+                                                    class="	fa fa-trash"></span></a></li>
+                                        </ul>
+                                   </li>
+                           </div>
+
                                 <div class="info">
                                     <div class="title"></div>
                                     <div id="{{ conn_id }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
                                         {{ names }}
-                                    </div>
+                                    </div><br>
+                                    <p style="font-size: small;color: grey" id="{{ conn_id }}_country">{{ bio }}</p>
                                     <p id="{{ conn_id }}_country">{{ countries }}</p>
-                                    <button class="button">Remove Connection&nbsp;<i class="fa fa-trash"></i><br>
+                                    <button style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px" class="button">View Profile&nbsp;<i></i><br>
                                     </Button>
                                 </div>
                             </div>
@@ -975,26 +1013,50 @@
                         </script>
                 </div>
 
-                <div class="connectionitems" style="margin-left: 50px">
+                   <div class="connectionitems" style="margin-left: 50px">
                     <div class="row"><!--row one of page-->
                         <!--connections-->
                         {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
-                        <div id="{{ conn_id }}_hideAll" class="col-md-3" style="margin-top: 50px;margin-right:-10px;  margin-left: 50px;">
-                            <div hidden style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                           <img style=" position:relative; top: 30px ; margin-left: 60px" src="{{ pictures }} "
+                        <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;  margin-left: 50px;">
+                            <div id="{{ conn_id }}_hideAll" style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                           <img style=" position:relative; top: -15px ; margin-left: 60px" src="{{ pictures }} "
                                      alt="Circle Image" class="img-raised rounded-circle img-fluid">
                             <div hidden id="{{ conn_id }}_bioAll">{{ bio }}</div>
                             <div class="card hovercard ">
-                                <div class="avatar"><br>
-                                </div>
-                                <br>
+
+                                  <div class="dropdownmenu" style="position: relative; left: 38%;color: #666666; ">
+
+                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                        <!--more options menu-->
+                                        <span  class="glyphicon glyphicon-option-vertical " style="color: lightgrey;font-size:15px;"></span></a>
+
+                                        <ul class="dropdown-menu" >
+                                            <li ><a style="font-size: 11px">Send Message &nbsp;<span style="font-size: 15px"
+                                                    class="fa fa-comments-o pull-right"></span></a></li>
+                                            <li class="divider"></li>
+
+                                            <li><a style="font-size: 11px">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
+                                                    class="	glyphicon glyphicon-user"></span></a></li>
+
+                                            {% comment %}<li class="divider"></li>
+
+                                            <li id="remove_Onclick" onclick="Connect('{{ conn_id }}')"><a  style="font-size: 11px">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
+                                                  class="	fa fa-user-plus"></span></a></li>{% endcomment %}
+                                        </ul>
+                                   </li>
+                           </div>
+
+
                                 <div class="info">
                                     <div class="title"></div>
                                     <div id="{{ conn_id }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
                                         {{ names }}
-                                    </div>
+                                    </div><br>
+                                     <p style="font-size: small;color: grey" id="{{ conn_id }}_country">{{ bio }}</p>
                                     <p id="{{ conn_id }}_countryAll">{{ countries }}</p>
-                                    <button class="button">Connect <i class="fa fa-plus-circle"></i><br>
+                                    <button onclick="Connect('{{ conn_id }}')" style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px" class="button"><i  id="{{ conn_id }}"  class="fa fa-user-plus"></i>&nbsp;Connect<br>
                                     </Button>
                                 </div>
                             </div>
@@ -1003,6 +1065,84 @@
                     </div><!--endrow-->
                 </div><!--end my connections-->
             </div>
+
+
+
+
+        <script>
+
+            function Connect(connection_id) {
+
+
+
+                document.getElementById(connection_id).className = "fa fa-hourglass";
+
+
+
+                var date_for_post = Date.now();
+
+
+                writeUserData(date_for_post, "{{ n }}",'{{this_uid}}', "Connection Request", connection_id);
+                date_for_post;
+                "Connection Request";
+                "{{ n }}";
+                '{{ this_uid }}';
+                connection_id;
+
+
+
+            }
+
+             function writeUserData(message_time, messageFrom,request_sender_id, actual_message,request_receiver_id) {/*Pushes to current users*/
+
+                var database = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent");/*Current users account*/
+
+
+                 var created_id = database.push();
+                 created_id.set({
+                     time: message_time,
+                     sender: messageFrom,
+                     sender_id: request_sender_id,
+                     message: actual_message,
+                     receiver_id: request_receiver_id,
+                     sender_profilePic: '{{ ProfilePic }}'
+
+
+                 });
+
+                 /*Saving_id*/
+                 var hope = String(created_id);
+                 var result = hope.substring(hope.lastIndexOf("/") + 1);
+                 var save_id = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent/" + result);/*Messages*/
+                 save_id.update({
+                     post_id: result
+                 });
+
+                 var database_target = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived");/*Where the message is going*/
+                 var created_id_target = database_target.push();
+                 created_id_target.set({ /*Pushes to receiver*/
+                     time: message_time,
+                     sender: messageFrom,
+                     sender_id: request_sender_id,
+                     message: actual_message,
+                     receiver_id: request_receiver_id,
+                     sender_profilePic: '{{ ProfilePic }}'
+
+
+                 });
+                 hope = String(created_id_target);
+                 result = hope.substring(hope.lastIndexOf("/") + 1);
+                 save_id = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived/" + result);/*Messages*/
+                 save_id.update({
+                     post_id: result
+                 });
+
+             }
+
+
+            </script>
+
+
         </div>
 
     </div>
