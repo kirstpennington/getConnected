@@ -603,20 +603,20 @@
                         <div class="card-body" style="padding-left: 10px;">
                             <h5 class="card-title" style="color: #e83e8c;"> <strong>Your Forums</strong></h5>
                              <!--styling allows for the image and text to be next to one another-->
+                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
 
-                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Finance for you</a>
+                                <form action="/goForumsOpen/" method="post">
+                                    {% csrf_token %}
+                                    <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">{{ forum_ids }}</input>
+                                    <img class="rounded-circle" width="45" src="{{ forum_pics }}" alt="" ><button onclick="location.href='{% url 'forumsopen' %}'"
+                           style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">{{ forum_names }}
+                            <i
+                                    class="fa fa-angle-double-right"></i></button>
+                                    <div hidden id="forum_id">{{ forum_ids }}</div>
+                                </form>
+                                <br><br>
+                            {% endfor %}
 
-                            <br><br>
-
-                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> UCT alumni on GetSmarter</a>
-
-<br><br>
-
-                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Funtimes yayayay</a>
-                            <br><br>
-                             <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" ><a href="#" class="card-link" style="color: #8c8c8c;"> Wow so many forums</a>
-
-                            <br><br>
                             <a href="#" class="text-right" style="position: absolute; left: 50%;"> View All</a>
                            <br>
 
@@ -651,7 +651,7 @@
                                 </div>
                 </div>
                 </div>
-
+                <div hidden id="this_forum_id">{{ forum_id }}</div>
             <div class="form-group"><!--- Make a new Post-->
 
                                     <label class="sr-only" for="message">post</label>
@@ -755,7 +755,7 @@
 
                             {% load staticfiles %}
 
-                          <img src="{% static "GC_Auth/blog1.jpg" %}"  style="width:60%; height: 600%;position: absolute;left:15%;">
+                          <img src="{{ forum_pic }}"  style="width:60%; height: 600%;position: absolute;left:15%;">
 
                 </div>
 
@@ -764,20 +764,20 @@
 
                      <div style="top: 2px; margin-left: 80%">
                                 <h8><span class="label label-default"><span
-                                        class="fa fa-users"> </span>4</span></h8>
+                                        class="fa fa-users"> </span>{{ num_participants }}</span></h8>
                                 <div style="height:5px;"><br></div>
                             </div>
 
-                     <div class= "text-center" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">Intro to Fintech
+                     <div class= "text-center" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">{{ forum_name }}
                             </div>
 
 
                             <!-- forum tags -->
-                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 20%;" >Finance | IT | Statistics</span>
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 20%;" >{{ forum_topics }}</span>
                            <br>
 
                      <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
-                    <p style="color: #8c8c8c; padding-left: 2px;text-align: center;"> this is the description of the forum. Look at this forum so fun</p>
+                    <p style="color: #8c8c8c; padding-left: 2px;text-align: center;">{{ forum_description }}</p>
 
                 </div>
 

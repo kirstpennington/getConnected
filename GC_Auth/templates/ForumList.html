@@ -752,8 +752,10 @@
                                 <!-- Item 2-->
 
                             {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in suggested_forums_list|slice:":3" %}
-                                    <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
 
+                                <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px; ">
+                                    <form class="col-sm-4  " style="border:none;width: 202px;margin-top: 5px; " action="/goForumsOpen/" method="post">
+                                {% csrf_token %}
 
                                         <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
 
@@ -773,15 +775,18 @@
                                                       style="color: white; font-size: x-small;  top: 10px">{{ forum_topics }}</span><br>
                                                 <div style="height:5px;"><br></div>
 
-                                                <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
-                                                   href="">VIEW
-                                                    FORUM <i class="fa fa-angle-double-right"></i></a>
+                                                <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none; visibility: hidden;">{{ forum_ids }}</input>
+
+                                                 <button onclick="location.href='{% url 'forumsopen' %}'"
+                                                   style="border: none; background: rgba(0,0,0,0);font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                    <i class="fa fa-angle-double-right"></i></button>
                                             </div><!-- inf-->
 
                                         </div><!-- RighColumnContainer-->
 
-
+                                    </form>
                                     </div> <!-- col-sm-3-->
+
                                 {% endfor %}
 
 
@@ -804,6 +809,8 @@
 
                 {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
                 <div id="{{ forum_ids }}_hide" class="col-sm-3  " style="margin-top:200px; width: 180px; margin-right:130px;  ">
+                 <form action="/goForumsOpen/" method="post">
+                                {% csrf_token %}
                     <!-- forum wallpaper -->
                     <div class="cardheader"
                          style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
@@ -835,11 +842,13 @@
 
                         <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
                         <!-- Open forum button -->
-                        <a onclick="location.href='{% url 'forumsopen' %}'"
-                           style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">OPEN
-                            <i
-                                    class="fa fa-angle-double-right"></i></a>
+                        <input type='hidden' class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">{{ forum_ids }}</input>
+
+                                                 <button onclick="location.href='{% url 'forumsopen' %}'"
+                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                    <i class="fa fa-angle-double-right"></i></button>
                     </div><!-- /card-hovercard -->
+                 </form>
                 </div>
             {% endfor %}
 
@@ -939,6 +948,8 @@
 
                                                        {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in all_forums_list|slice:":3" %}
                                                             <div id="{{ forum_ids }}_hide" class="col-sm-3" style="width:180px; margin-right:130px;">
+                                                            <form action="/goForumsOpen/" method="post">
+                                {% csrf_token %}
                                                                 <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
                                                                 <!-- forum wallpaper -->
                                                                 <div class="cardheader"
@@ -971,11 +982,13 @@
 
                                                                     <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
                                                                     <!-- Open forum button -->
-                                                                    <a onclick="location.href='{% url 'forumsopen' %}'"
-                                                                       style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">OPEN
-                                                                        <i
-                                                                                class="fa fa-angle-double-right"></i></a>
+                                                                    <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">{{ forum_ids }}</input>
+
+                                                 <button onclick="location.href='{% url 'forumsopen' %}'"
+                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                    <i class="fa fa-angle-double-right"></i></button>
                                                                 </div><!-- /card-hovercard -->
+                                                            </form>
                                                             </div>
                                                         {% endfor %}
 

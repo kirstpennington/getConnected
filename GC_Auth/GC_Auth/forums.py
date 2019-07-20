@@ -46,6 +46,7 @@ class forum_methods:
     def getForumDescription(forum_id):
         return database.child("Forums").child(forum_id).child("Description").get().val()
 
+
     def getForumTopicsString(forum_id):
         # gets all topics and puts them into one string
         topics = database.child("Forums").child(forum_id).child("TopicTags").shallow().get().val()
@@ -57,7 +58,57 @@ class forum_methods:
         topics_string += " | "
         return topics_string
 
+    def getMessageText(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("text").get().val()
+
+
+    def getMessageSenderPic(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("sender_profilePic").get().val()
+
+    def getMessageSenderName(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("sender_name").get().val()
+
+    def getMessageSenderID(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("sender").get().val()
+
+    def getMessageNumComments(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("comments_num").get().val()
+
+    def getMessageNumLikes(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("likes").get().val()
+
+    def getMessageCommentIDs(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("comments").shallow().get().val()
+
+    def getMessageLikeIDs(forum_id, mess_id):
+        return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("likes_ids").shallow().get().val()
+
     # Suggestions Carousel methods
+
+    def getForumMessages(forum_id):
+        print('forum_id',forum_id)
+        mess_ids = database.child("Forums").child(forum_id).child("Messages").shallow().get().val()           # get all message ids
+        texts = []
+        sender_pic = []
+        sender_name = []
+        sender_id = []
+        num_comments = []
+        num_likes = []
+        comment_ids = []
+        like_ids = []
+
+        for mess_id in mess_ids:
+            texts.append(forum_methods.getMessageText(forum_id, mess_id))
+            sender_pic.append(forum_methods.getMessageSenderPic(forum_id, mess_id))
+            sender_name.append(forum_methods.getMessageSenderName(forum_id, mess_id))
+            sender_id.append(forum_methods.getMessageSenderID(forum_id, mess_id))
+            num_comments.append(forum_methods.getMessageNumComments(forum_id, mess_id))
+            num_likes.append(forum_methods.getMessageNumLikes(forum_id, mess_id))
+            comment_ids.append(forum_methods.getMessageCommentIDs(forum_id, mess_id))
+            like_ids.append(forum_methods.getMessageLikeIDs(forum_id, mess_id))
+
+        combined_list =  zip(mess_ids, texts, sender_pic, sender_name, sender_id, num_comments, num_likes, comment_ids, like_ids)
+        return combined_list
 
     def getForumsInfoList(forums_id_list):
         # get data from each course for the user and add them to separate arrays

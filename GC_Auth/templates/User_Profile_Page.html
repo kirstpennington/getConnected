@@ -1381,6 +1381,8 @@ function timeAgo(dateParam) {
                               class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
 
             {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
+                <form action="/goForumsOpen/" method="post">
+                {% csrf_token %}
                 <div class="col-sm-3  " style="; width: 180px; margin-left:30px;  ">
                     <!-- forum wallpaper -->
                     <div class="cardheader"
@@ -1411,13 +1413,16 @@ function timeAgo(dateParam) {
                         <!-- card line -->
 
                         <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+
+                        <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">{{ forum_ids }}</input>
                         <!-- Open forum button -->
-                        <a onclick="location.href='{% url 'forumsopen' %}'"
-                           style="font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">OPEN
+                        <button onclick="location.href='{% url 'forumsopen' %}'"
+                           style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
                             <i
-                                    class="fa fa-angle-double-right"></i></a>
+                                    class="fa fa-angle-double-right"></i></button>
                     </div><!-- /card-hovercard -->
                 </div>
+                </form>
             {% endfor %}
 
         </div><!-- /First View Button fot main body, container-->

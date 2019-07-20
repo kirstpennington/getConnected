@@ -459,15 +459,33 @@ def goAccountHelp(request):
 
 def goForumsOpen(request):
     global the_user
+    global short_forum_suggestions
+
+    forum_id = ""
+    if request.method == "POST":  # get data from UI
+        forum_id = request.POST.get("forum_id")  # get data from UI using POST method
+
     return render(request, "ForumsMessaging.html", {'profilePic': the_user.profilePic,
+                                                    'forum_id': forum_id,
                                              'country': the_user.country,
                                              'username': the_user.username,
                                              'email': the_user.email,
                                              'bio': the_user.bio,
                                              'this_uid': the_user.uid,
-                                                    'numConnections': the_user.numConnections,
-                                                    'numForums': the_user.numForums
+                                                'numConnections': the_user.numConnections,
+                                                'numForums': the_user.numForums,
+                                             'my_forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+                                             'suggested_forums_list': forum_methods.getForumsInfoList(
+                                               short_forum_suggestions),
+                                                    'forum_name': forum_methods.getForumName(forum_id),
+                                                    'forum_description': forum_methods.getForumDescription(forum_id),
+                                                    'num_participants': forum_methods.getForumNumParticipants(forum_id),
+                                                    'forum_topics': forum_methods.getForumTopicsString(forum_id),
+                                                    'forum_creator': forum_methods.getForumCreator(forum_id),
+                                                    'forum_pic': forum_methods.getForumPic(forum_id)
+
                                              })
+
 
 
 def goContact(request):
