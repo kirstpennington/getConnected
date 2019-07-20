@@ -360,6 +360,10 @@
 
         }
 
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
     </style>
     <!--recommendation card styles-->
     <style>
@@ -450,7 +454,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="https://picsum.photos/50/50" alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
