@@ -74,56 +74,74 @@ class connection_methods:
 
         user_connections_list = database.child("Users").child(uid).child(
             'Connections').shallow().get().val()                                                    # get list of this user connections
-        final_results = connection_methods.removeValuesFromList(user_connections_list,
+        remove_my_connections = connection_methods.removeValuesFromList(user_connections_list,
                                              results)                                               # remove users that are already connections and return this updated list
-        return_result = connection_methods.removeValueFromList(the_user.uid, final_results)         # remove my id from the list of results
+        remove_sent_requests = connection_methods.removeValueFromList(
+            connection_methods.getRequestsSent(uid), remove_my_connections)                         # remove the users who I have already sent connections to
+        remove_received_requests = connection_methods.removeValueFromList(
+            connection_methods.getRequestsReceived(uid), remove_sent_requests)                       # remove users who the person has already received requests from
+        return_result = connection_methods.removeValueFromList(the_user.uid, remove_received_requests)# remove my id from the list of results
         return return_result
 
+    def getRequestsSent(uid):     # get a list of the users who I have sent requests to (their user ids)
+        sent_ids = database.child("Users").child(uid).child("RequestsSent").shallow().get().val()       # get a list of the auto generated ids for sent logs
+        sent_user_ids = []
+        for sent_id in sent_ids:                                                                        # search through that list for the user ids of each
+            sent_user_ids.append(sent_id)
+        return sent_user_ids
 
-    # supporting methods for finding suggestions
+    def getRequestsReceived(uid):    # get a list of the users who hav sent me connection requests (their user ids)
+        received_ids = database.child("Users").child(uid).child("RequestsReceived").shallow().get().val()   # get a list of the auto generated ids for received logs
+        rec_user_ids = []
+        for rec_id in received_ids:                                                                     # search through that list for the user ids of each
+            rec_user_ids.append(rec_id)
+        return rec_user_ids
+
+
+        # supporting methods for finding suggestions
     def removeCommons(remove_from_this_list, search_this_list):
-        # removes the common values between the 2 lists from the first list
-        temp = []  # dummy variable where items from the list will be removed
-        for r in remove_from_this_list:
-            for s in search_this_list:
-                if r != s:
-                    temp.append(r)
-        return temp
+            # removes the common values between the 2 lists from the first list
+            temp = []  # dummy variable where items from the list will be removed
+            for r in remove_from_this_list:
+                for s in search_this_list:
+                    if r != s:
+                        temp.append(r)
+            return temp
 
 
-    # converts a python dictionary to a list
+        # converts a python dictionary to a list
     def convertDictToList(dict):
-        temp = []
-        for key, value in dict.items():
-            temp.append(key)
-        return temp
+            temp = []
+            for key, value in dict.items():
+                temp.append(key)
+            return temp
 
 
     def removeValuesFromList(values_list, main_list):
-        temp = []
-        for m in main_list:
-            add = True
-            for v in values_list:
-                if m == v:
-                    add = False
-                    break
-            if add:
-                temp.append(m)
-        return temp
+            temp = []
+            for m in main_list:
+                add = True
+                for v in values_list:
+                    if m == v:
+                        add = False
+                        break
+                if add:
+                    temp.append(m)
+            return temp
 
 
     def removeValueFromList(value, list):
-        temp = []
-        for li in list:
-            if li != value:
-                temp.append(li)
-        return temp
+            temp = []
+            for li in list:
+                if li != value:
+                    temp.append(li)
+            return temp
 
 
     def compareLists(list1, list2):
-        # returns true if there are matching values in the 2 lists
-        for a in list1:
-            for b in list2:
-                if a == b:
-                    return True
-        return False
+            # returns true if there are matching values in the 2 lists
+            for a in list1:
+                for b in list2:
+                    if a == b:
+                        return True
+            return False
