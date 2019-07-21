@@ -652,6 +652,9 @@
                 </div>
                 </div>
                 <div hidden id="this_forum_id">{{ forum_id }}</div>
+                Title: <input type="text" name="title" style="border-radius: 3px;width: 60%;"><br><br>
+
+
             <div class="form-group"><!--- Make a new Post-->
 
                                     <label class="sr-only" for="message">post</label>
@@ -1037,9 +1040,9 @@ function timeAgo(dateParam) {
                         "                        </p>" +
                         " </div>\n" +
                         "                    <div  style=\"text-align: right; \"> <!--styling ensures the like and comment are next to one another-->\n" +
-                        "                         <p onclick=\"Increase_Likes(\'"+ obj[keys[i]].post_id  +"\')\" style = \"color: #e83e8c;display: inline-block;vertical-align: top;\">" + num_likes + "<span class=\"glyphicon glyphicon-thumbs-up\" style = \"color: #e83e8c; \"></span>" +
-                        " Like</p> " +
-                        "                        <p style = \"color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;\">" + getComments_num(obj[keys[i]].post_id) + "<span class=\"glyphicon glyphicon glyphicon-comment\" style = \"color: #e83e8c; \"></span> Comment</p>\n" +
+                        "                         <p onclick=\"Increase_Likes(\'"+ obj[keys[i]].post_id  +"\')\" style = \"color: #e83e8c;display: inline-block;vertical-align: top;\">" + num_likes + "<span class=\" glyphicon glyphicon-thumbs-up\" style = \"color: #e83e8c; \"></span>" +
+                        "</p> " +
+                        "                        <p style = \"color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;\">" + getComments_num(obj[keys[i]].post_id) + "<span class=\"<p> </p> glyphicon glyphicon glyphicon-comment\" style = \"color: #e83e8c; \"></span></p>\n" +
                         "</div><ul>\n" +
                         "\n" +
                         "\n" +
