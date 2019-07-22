@@ -1406,7 +1406,7 @@ function timeAgo(dateParam) {
 
                         <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
 
-                        <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">{{ forum_ids }}</input>
+                        <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
                         <!-- Open forum button -->
                         <button onclick="location.href='{% url 'forumsopen' %}'"
                            style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
