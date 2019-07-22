@@ -1322,6 +1322,9 @@ function timeAgo(dateParam) {
 
                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
                     <div class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
+                         <form action="/goForumsOpen/" method="post">
+                             {% csrf_token %}
+                             <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
 
                         <div style="position: relative; left: 235px; top: 3px;">
                             <h8><span class="label label-default"><span
@@ -1334,9 +1337,10 @@ function timeAgo(dateParam) {
                                  src="{{ forum_pics }}"/>
 
                             <div class="connection_container">
-                                <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                    {{ forum_names }}
-                                </div>
+                                <button onclick="location.href='{% url 'forumsopen' %}'"
+                           style="border: none; font-family: 'Arial Narrow';background: white;left: 15px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit" value="goForumsOpen">{{ forum_names }}
+                            </button>
+
                                 <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
 
                                 <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
@@ -1349,6 +1353,7 @@ function timeAgo(dateParam) {
                             </div>
 
                         </div>
+                         </form>
                     </div><!--end of Forum Suggestions Card--><br>
                 {% endfor %}
 
