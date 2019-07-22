@@ -951,16 +951,16 @@
                                                     <div class="row">
 
                                                        {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in all_forums_list|slice:":3" %}
-                                                            <div id="{{ forum_ids }}_hide" class="col-sm-3" style="width:180px; margin-right:130px;">
+                                                            <div id="{{ forum_ids }}_hideAll" class="col-sm-3" style="width:180px; margin-right:130px;">
                                                             <form action="/goForumsOpen/" method="post">
-                                {% csrf_token %}
-                                                                <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
+                                                            {% csrf_token %}
+                                                                <div hidden id="{{ forum_ids }}_topicsAll">{{ forum_topics }}</div>
                                                                 <!-- forum wallpaper -->
                                                                 <div class="cardheader"
                                                                      style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
                                                                 </div>
                                                                 <!-- Go into forum -->
-                                                                 <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
+                                                                 <div hidden id="{{ forum_ids }}_topicsAll">{{ forum_topics }}</div>
                                                                 <div class="heartbutton"><span style="background: transparent; " type="button"
                                                                                                class="fa fa-sign-in fa-lg viewForum"></span></div>
                                                                 <!-- card with forum detains -->
@@ -974,7 +974,7 @@
                                                                             <div style="height:5px;"><br></div>
                                                                         </div>
 
-                                                                        <div id="{{ forum_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                                                                        <div id="{{ forum_ids }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
                                                                         </div>
                                                                         <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
                                                                         <!-- forum tags -->
@@ -1005,7 +1005,7 @@
 
                                                                     //  loop through course_ids
                                                                     for (let i = 0; i < allForumList.length; i++){
-                                                                        document.getElementById(allForumList[i] + "_hide").hidden = false;           // show all blocks
+                                                                        document.getElementById(allForumList[i] + "_hideAll").hidden = false;           // show all blocks
                                                                     }
                                                                 }
 
@@ -1015,22 +1015,21 @@
 
                                                                    strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
                                                                    allForumList =  strForumList.split(",");                                        // split string into array by the delimiter ","
-
                                                                     // hide unwanted items from view
                                                                     // hides the block that don't appear in the list
 
                                                                     //  loop through course_ids
                                                                     for (let i = 0; i < allForumList.length; i++){
                                                                         // check if topics list for this course_id contains Finance
-                                                                        elementIdName = allForumList[i] + "_topics";
+                                                                        elementIdName = allForumList[i] + "_topicsAll";
                                                                         strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
                                                                         strTopics =  strTopics1.substring(1, strTopics1.length-1);
                                                                         courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
                                                                         if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
-                                                                            document.getElementById(allForumList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
                                                                         }
                                                                         else{
-                                                                            document.getElementById(allForumList[i] + "_hide").hidden = true;
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = true;
                                                                         }
                                                                     }
                                                                     // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
@@ -1045,12 +1044,12 @@
                                                                     //  loop through course_ids
                                                                     for (let i = 0; i < allForumList.length; i++){
                                                                         // check if topics list for this course_id contains Finance
-                                                                        courseName = document.getElementById(allForumList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                                                        courseName = document.getElementById(allForumList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
                                                                         if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
-                                                                            document.getElementById(allForumList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
                                                                         }
                                                                         else{
-                                                                            document.getElementById(allForumList[i] + "_hide").hidden = true;
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = true;
                                                                         }
                                                                     }
                                                                     // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name

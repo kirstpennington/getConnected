@@ -833,6 +833,7 @@
                                     this_country = document.getElementById(myConnList[i] + '_country').innerText;
                                     if (this_country == myCountry){
                                         document.getElementById(myConnList[i] + "_hide").hidden = false;
+
                                     }
                                     else{
                                         document.getElementById(myConnList[i] + "_hide").hidden = true;
@@ -922,7 +923,7 @@
                                     <div id="{{ conn_id }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
                                         {{ names }}
                                     </div><br>
-                                    <p style="font-size: small;color: grey" id="{{ conn_id }}_country">{{ bio }}</p>
+                                    <p style="font-size: small;color: grey" id="{{ conn_id }}_bio">{{ bio }}</p>
                                     <p id="{{ conn_id }}_country">{{ countries }}</p>
                                     <button style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px" class="button">View Profile&nbsp;<i></i><br>
                                     </Button>
@@ -1017,8 +1018,8 @@
                     <div class="row"><!--row one of page-->
                         <!--connections-->
                         {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
-                        <div class="col-md-3" style="margin-top: 50px;margin-right:-10px;  margin-left: 50px;">
-                            <div id="{{ conn_id }}_hideAll" style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                        <div id="{{ conn_id }}_hideAll" class="col-md-3" style="margin-top: 50px;margin-right:-10px;  margin-left: 50px;">
+                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
                            <img style=" position:relative; top: -15px ; margin-left: 60px" src="{{ pictures }} "
                                      alt="Circle Image" class="img-raised rounded-circle img-fluid">
                             <div hidden id="{{ conn_id }}_bioAll">{{ bio }}</div>
@@ -1054,7 +1055,7 @@
                                     <div id="{{ conn_id }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
                                         {{ names }}
                                     </div><br>
-                                     <p style="font-size: small;color: grey" id="{{ conn_id }}_country">{{ bio }}</p>
+                                     <p style="font-size: small;color: grey" id="{{ conn_id }}_bio">{{ bio }}</p>
                                     <p id="{{ conn_id }}_countryAll">{{ countries }}</p>
                                     <button onclick="Connect('{{ conn_id }}')" style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px" class="button"><i  id="{{ conn_id }}"  class="fa fa-user-plus"></i>&nbsp;Connect<br>
                                     </Button>
