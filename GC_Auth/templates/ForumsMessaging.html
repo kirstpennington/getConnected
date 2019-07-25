@@ -33,8 +33,9 @@
     <link rel="stylesheet" type="text/css" href="../GC_Auth/GC_Auth/static/GC_Auth/loginstyle.css">
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>import TimeAgo from 'javascript-time-ago'</script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -139,6 +140,17 @@
 
         button:focus {
             outline: none;
+        }
+
+        .closer button{
+            position: absolute; right: 7% ; top: 25%; font-size: 10px;
+
+        }
+
+        /*save changes button hover effects*/
+        .closer button:hover {
+
+
         }
 
     </style>
@@ -595,6 +607,8 @@
     <div class="container-fluid gedf-wrapper">
         <div class="row">
 
+
+</div>
             <!--information of the logged in user on LHS-->
             <div class="col-md-3">
                 <div class="sticky">
@@ -602,13 +616,16 @@
                         <!--LHS item-->
                         <div class="card-body" style="padding-left: 10px;">
                             <h5 class="card-title" style="color: #e83e8c;"> <strong>Your Forums</strong></h5>
+                        <br>
                              <!--styling allows for the image and text to be next to one another-->
                             {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
 
                                 <form action="/goForumsOpen/" method="post">
                                     {% csrf_token %}
                                     <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
-                                    <img class="rounded-circle" width="30%" src="{{ forum_pics }}" alt="" ><button onclick="location.href='{% url 'forumsopen' %}'"
+                                    <img class="rounded-circle" width="55px" height="50px" src="{{ forum_pics }}" alt="" >
+
+                                    <button onclick="location.href='{% url 'forumsopen' %}'"
                            style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">{{ forum_names }}
                             <i
                                     class="fa fa-angle-double-right"></i></button>
@@ -626,8 +643,10 @@
                 </div>
             </div>
 
+
             <!--middle item-->
             <div class="col-md-6 gedf-main">
+                <div class="makePost" style="border: 1px hotpink;">
                 <div class="row"><!--table for person info-->
                 <div class="col-sm-1">
                                     <div class="mr-2" > <!--styling allows for the image and text to be next to one another-->
@@ -675,77 +694,108 @@
                     <button type="button" ><strong>Post</strong></button>
                 </div>
 
-               <br><br>
+               <br>
+                </div>
+                    <hr style="width: 100%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"><br>
                 <!-- Post /////-->
 
-{#                <!--- actual Posted message block-->#}
-{#                <div class= "messagePost">#}
-{#                <div class="card gedf-card" >#}
-{#                    <div class="card-header">#}
-{#                        <div class="d-flex justify-content-between align-items-center">#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="mr-2" style="display: inline-block; vertical-align: top;"> <!--styling allows for the image and text to be next to one another-->#}
-{#                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">#}
-{##}
-{#                                </div>#}
-{#                                <div class="ml-2" style="display:inline-block;">#}
-{#                                    <div class="h5 m-0"> <strong> Kirsten Pennington</strong><i onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')" class="fa fa-close"></i></div>#}
-{##}
-{#                                </div>#}
-{##}
-{#                        <div class="dropdownmenu" style="display: inline-block;position: relative; left: 60%;color: #666666; ">#}
-{#                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
-{##}
-{##}
-{#                                        <!--more options menu-->#}
-{#                                        <span class="glyphicon glyphicon-option-vertical" style="color: lightgrey;"></span></a>#}
-{##}
-{#                                        <ul class="dropdown-menu" >#}
-{#                                            <li><a>Direct Message <span#}
-{#                                                    class="glyphicon glyphicon glyphicon-comment pull-right"></span></a></li>#}
-{#                                            <li class="divider"></li>#}
-{##}
-{#                                            <li><a>Report<span#}
-{#                                                    class="	glyphicon glyphicon-warning-sign pull-right"></span></a></li>#}
-{#                                        </ul>#}
-{#                                    </li>#}
-{#                            </div>#}
-{##}
-{#                            </div>#}
-{#                        </div>#}
-{##}
-{#                    </div>#}
-{#                    <br>#}
-{#                    <div class="card-body">#}
-{#                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div> <!--time the message had been sent-->#}
-{##}
-{#                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>#}
-{#                        <p class="card-text">#}
-{#                            This card is still a dummy, you can use this to test your designs..#}
-{#                        </p>#}
-{#                    </div>#}
-{#                    <div  style="text-align: right; "> <!--styling ensures the like and comment are next to one another-->#}
-{#                         <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')" style = "color: #e83e8c;display: inline-block;vertical-align: top;">10<span class="glyphicon glyphicon-thumbs-up" style = "color: #e83e8c; "></span>Like</p>#}
-{##}
-{#                        <p style = "color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;">10<span class="glyphicon glyphicon glyphicon-comment" style = "color: #e83e8c; "></span> Comment</p>#}
-{##}
-{#                        <!--Dummy Drop-down for comment_please don't remove-->#}
-{#                    </div>#}
-{##}
-{#                     <ul>#}
-{#                                    <a><img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />Name<i onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')" class="fa fa-close"></i><p style="color: black">Marketing 101, Video Assignment</p></a>#}
-{#                                <!--Footer of notification drop down-->#}
-{#                                 <div><a id=""><textarea  id="-LjHDWtigiRAkkdKO3gw" placeholder="What are you doing right now?" ></textarea></a></div>#}
-{##}
-{#                                <!--post button-->#}
-{#                                    <button class="buttonbot2"  onclick="saveComment('-LjHxLAZzrskdrbwxU1z')" type="button" ><strong>Comment</strong></button>#}
-{##}
-{##}
-{#                            </ul> <!--Dropdown menu Notification-->#}
-{#                </div>#}
-{#            </div>#}
-{#                <br><br><!--spaces between posts-->#}
-                <!-- End of Post /////-->
+<!--- actual Posted message block-->
+   <div class= "messagePost">
+    <div class="card gedf-card" >
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+               <div class="d-flex justify-content-between align-items-center">
+                   <div class="mr-2" style="display: inline-block; vertical-align: top;"> <!--styling allows for the image and text to be next to one another-->
+                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                   </div>
+                    <div class="ml-2" style="display:inline-block;">
+                       <div class="h5 m-0"> <strong> Kirsten Pennington</strong><i onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')" class="fa fa-close"></i></div>
+
+                    </div>
+
+           <div class="dropdownmenu" style="display: inline-block;position: relative; left: 60%;color: #666666; ">
+                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                            <!--more options menu-->
+                           <span class="glyphicon glyphicon-option-vertical" style="color: lightgrey;"></span></a>
+
+                          <ul class="dropdown-menu" >
+                               <li><a>Direct Message <span
+                                       class="glyphicon glyphicon glyphicon-comment pull-right"></span></a></li>
+                                <li class="divider"></li>
+
+                               <li><a>Report<span
+                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a></li>
+                           </ul>
+                        </li>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="card-body">
+           <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div> <!--time the message had been sent-->
+
+                <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+           <p class="card-text">
+               This card is still a dummy, you can use this to test your designs..
+            </p>
+        </div>
+        <div  style="text-align: right; "> <!--styling ensures the like and comment are next to one another-->
+             <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')" style = "color: #e83e8c;display: inline-block;vertical-align: top;">10<span class="glyphicon glyphicon-thumbs-up" style = "color: #e83e8c; "></span>
+        <a type="button" class="btn btn-comment"> <span class="glyphicon glyphicon glyphicon-comment" style = "color: #e83e8c; "></span></a>
+            <!--Dummy Drop-down for comment_please don't remove-->
+       </div>
+
+
+        <div class="container">
+
+  <!--<button type="button" class="btn">Show</button>-->
+
+
+  <div class="collapse" ><!--everthing inside this div is in the collapsible element-->
+
+
+      <a class="btn btn-close" style="position: absolute; right: 7% ; top: 25%; font-size: 10px;">Close <span class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+
+
+     <ul>
+                        <a><img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />Name<i onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')" class="fa fa-close"></i><p style="color: black">Marketing 101, Video Assignment</p></a>
+                    <!--Footer of notification drop down-->
+                    <div><a id=""><textarea  id="-LjHDWtigiRAkkdKO3gw" placeholder="What are you doing right now?" ></textarea></a></div>
+
+                    <!--post button-->
+                       <button class="buttonbot2"  onclick="saveComment('-LjHxLAZzrskdrbwxU1z')" type="button" ><strong></strong></button>
+
+
+                </ul> <!--Dropdown menu Notification-->
+  </div>
+</div>
+
+        <!--script for shwoing and hiding comments-->
+    <script>
+    $(document).ready(function(){
+
+      $(".btn-comment").click(function(){
+        $(".collapse").collapse('show');
+      });
+      $(".btn-close").click(function(){
+        $(".collapse").collapse('hide');
+      });
+    });
+    </script>
+
+
+
+    </div>
+</div>
+
+                    <br><br><!--spaces between posts-->
+    <!-- End of Post /////-->
                 <div id="comment"></div><!--Div for posts from the database-->
 
 
