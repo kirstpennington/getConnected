@@ -744,6 +744,7 @@
            <p class="card-text">
                This card is still a dummy, you can use this to test your designs..
             </p>
+            <hr>
         </div>
         <div  style="text-align: right; "> <!--styling ensures the like and comment are next to one another-->
              <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')" style = "color: #e83e8c;display: inline-block;vertical-align: top;">10<span class="glyphicon glyphicon-thumbs-up" style = "color: #e83e8c; "></span>
@@ -760,16 +761,19 @@
   <div class="collapse" ><!--everthing inside this div is in the collapsible element-->
 
 
-      <a class="btn btn-close" style="position: absolute; right: 7% ; top: 25%; font-size: 10px;">Close <span class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+      <a class="btn btn-close" style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
 
 
      <ul>
                         <a><img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />Name<i onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')" class="fa fa-close"></i><p style="color: black">Marketing 101, Video Assignment</p></a>
                     <!--Footer of notification drop down-->
-                    <div><a id=""><textarea  id="-LjHDWtigiRAkkdKO3gw" placeholder="What are you doing right now?" ></textarea></a></div>
+                    <div>
+                        <a id=""><textarea  id="-LjHDWtigiRAkkdKO3gw" style="width: 35%;height: 20px;border-radius: 5px;"  ></textarea></a>
+                    <button class="buttonbot2"  onclick="saveComment('-LjHxLAZzrskdrbwxU1z')" type="button" >Reply</button>
+                    </div>
 
                     <!--post button-->
-                       <button class="buttonbot2"  onclick="saveComment('-LjHxLAZzrskdrbwxU1z')" type="button" ><strong></strong></button>
+
 
 
                 </ul> <!--Dropdown menu Notification-->
