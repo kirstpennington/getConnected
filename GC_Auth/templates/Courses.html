@@ -699,16 +699,18 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject"
+                                        <a  class="togger"
                                            style="color:#ce3298">
                                             <strong>
                                                 Subject
+
                                             </strong>
+
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseSubject" class="panel-collapse collapse">
-                                    <div class="panel-body">
+
+                                    <div class="collapseSubject" style="margin-left: 6px;">
                                         <p onclick="showAll()"> All </p>
                                         <p onclick="searchByTopic('Arts & Design')"> Arts & Design </p>
                                         <p onclick="searchByTopic('Business & Management')"> Business & Management</p>
@@ -727,14 +729,15 @@
                                         <p onclick="searchByTopic('Writing')"> Writing</p>
 
                                     </div>
-                                </div>
+
                             </div>
+
 
                             <!--panel-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseInstitution"
+                                        <a class="toggertwo"
                                            style="color:#ce3298">
                                             <strong>
                                                 Institution
@@ -742,8 +745,8 @@
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseInstitution" class="panel-collapse collapse">
-                                    <div class="panel-body">
+
+                                    <div class="collapseUniversity" style="margin-left: 6px;">
 
                                         <p onclick="showAll()"> All </p>
                                         <p onclick="searchByUniversity('Cambridge CSL')">Cambridge CSL</p>
@@ -764,24 +767,23 @@
                                         <p onclick="searchByUniversity('Yale SOM Executive Education')">Yale SOM Executive Education</p>
 
                                     </div>
-                                </div>
+
                             </div>
 
                             <!--panel-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title"><!--panel 1 heading-->
-                                        <a data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseRecommendations" style="color:#ce3298">
+                                        <a class="toggerThree" style="color:#ce3298">
                                             <strong>
                                                 Recommendations
                                             </strong>
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseRecommendations" class="panel-collapse collapse in">
+
                                     <!--panel 1 content-->
-                                    <div class="panel-body">
+                                    <div class="collapseRecommendations" style="margin-left: 6px;">
                                         <p onclick="showAll()"> All </p>
                                         <p onclick="searchByRating('Highly Rated')"> Highly Rated</p>
                                         <p onclick="searchByRating('Well Rated')"> Well Rated</p>
@@ -789,12 +791,26 @@
 
 
                                     </div>
-                                </div>
+
                             </div><!--end panel-->
 
 
 
                         </div><!--end of accordion-->
+<script><!--handles opening and closing filter mycourses-->
+$(document).ready(function(){
+  $(".togger").click(function(){
+    $(".collapseSubject").collapse('toggle');
+  });
+  $(".toggertwo").click(function(){
+    $(".collapseUniversity").collapse('toggle');
+  });
+   $(".toggerThree").click(function(){
+    $(".collapseRecommendations").collapse('toggle');
+  });
+
+});
+</script>
                         <!-- <form class="  search-form" role="search">
                                  <input type="text" class="form-control" placeholder="Search" />
 
@@ -993,7 +1009,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordionall" href="#collapsesub"
+                                        <a class="toggeroneall"
                                            style="color:#ce3298">
                                             <strong>
                                                 Subject
@@ -1001,8 +1017,8 @@
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapsesub" class="panel-collapse collapse">
-                                    <div class="panel-body">
+
+                                    <div class="collapseSubjectall" style="margin-left: 6px;">
                                         <p onclick="showAllAll()"> All </p>
                                         <p onclick="searchByTopicAll('Arts & Design')"> Arts & Design </p>
                                         <p onclick="searchByTopicAll('Business & Management')"> Business & Management</p>
@@ -1021,14 +1037,14 @@
                                         <p onclick="searchByTopicAll('Writing')"> Writing</p>
 
                                     </div>
-                                </div>
+
                             </div>
 
                             <!--panel-->
                             <div class="panel panel-default">
                                <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordionall" href="#collapseInst"
+                                        <a class="toggertwoall"
                                            style="color:#ce3298">
                                             <strong>
                                                 Institution
@@ -1036,8 +1052,8 @@
                                         </a>
                                     </h4>
                                 </div>
-                                 <div id="collapseInst" class="panel-collapse collapse">
-                                    <div class="panel-body">
+
+                                    <div class="collapseUniversityall" style="margin-left: 6px;">
 
                                         <p onclick="showAllAll()"> All </p>
                                         <p onclick="searchByUniversityAll('Cambridge CSL')">Cambridge CSL</p>
@@ -1058,7 +1074,7 @@
                                         <p onclick="searchByUniversityAll('Yale SOM Executive Education')">Yale SOM Executive Education</p>
 
                                     </div>
-                                </div>
+
                             </div>
                               <div hidden id="all_courses_str">{{ all_courses_str }}</div>
 
@@ -1066,17 +1082,16 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title"><!--panel 1 heading-->
-                                        <a data-toggle="collapse" data-parent="#accordionall"
-                                           href="#collapseRecomm" style="color:#ce3298">
+                                        <a class="toggerthreeall" style="color:#ce3298">
                                             <strong>
                                                 Recommendations
                                             </strong>
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseRecomm" class="panel-collapse collapse in">
+
                                     <!--panel 1 content-->
-                                    <div class="panel-body">
+                                    <div class="collapseRecommendationsall" style="margin-left: 6px;">
                                         <p onclick="showAllAll()"> All </p>
                                         <p onclick="searchByRatingAll('Highly Rated')"> Highly Rated</p>
                                         <p onclick="searchByRatingAll('Well Rated')"> Well Rated</p>
@@ -1084,12 +1099,26 @@
 
 
                                     </div>
-                                </div>
+
                             </div><!--end panel-->
 
 
 
                         </div><!--end of accordion-->
+                            <script><!--handles opening and closing filter allcourses-->
+$(document).ready(function(){
+  $(".toggeroneall").click(function(){
+    $(".collapseSubjectall").collapse('toggle');
+  });
+  $(".toggertwoall").click(function(){
+    $(".collapseUniversityall").collapse('toggle');
+  });
+   $(".toggerthreeall").click(function(){
+    $(".collapseRecommendationsall").collapse('toggle');
+  });
+
+});
+</script>
                            <!-- <form class="  search-form" role="search">
                                     <input type="text" class="form-control" placeholder="Search" />
 

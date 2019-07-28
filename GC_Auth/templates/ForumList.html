@@ -699,7 +699,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubject"
+                                        <a class="togSubject"
                                            style="color:#ce3298">
                                             <strong>
                                                 Subject
@@ -707,8 +707,9 @@
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseSubject" class="panel-collapse collapse">
-                                    <div class="panel-body">
+
+                                    <div class="collapseSubject" style="margin-left: 6px;">
+
                                         <p onclick="showAll()"> All </p>
                                         <p onclick="searchByTopic('Arts & Design')"> Arts & Design </p>
                                         <p onclick="searchByTopic('Business & Management')"> Business & Management</p>
@@ -727,10 +728,20 @@
                                         <p onclick="searchByTopic('Writing')"> Writing</p>
 
                                     </div>
-                                </div>
+
                             </div>
 
                         </div><!--end of accordion-->
+ <script><!--handles opening and closing filter-->
+$(document).ready(function(){
+  $(".togSubject").click(function(){
+    $(".collapseSubject").collapse('toggle');
+  });
+
+
+});
+</script>
+
                         <!-- <form class="  search-form" role="search">
                                  <input type="text" class="form-control" placeholder="Search" />
 
@@ -738,6 +749,8 @@
 
                     </div>
                 </div><!--end col-->
+
+            <!--start a new row here inside the other row-->
 
                 <div class="col-md-9" style="position:absolute;left:325px;"><!--Forums-->
                     <div class="intro-form"><!--form at the top with recommendations-->
@@ -802,10 +815,10 @@
                     </div>
 
 
-                </div>
-            </div><!--end row-->
+                </div><!--end row one of inside table-->
+            </div><!--end row encapsulation-->
 
-            <div id="refreshSectionFilter" class="row"><!--row two of page-->
+            <div id="refreshSectionFilter" class="row"><!--row two of page--><!--move this inside the encaps row-->
 
                 <div class="col-md-3">
                     <!--placeholder for space by filter-->
@@ -859,7 +872,7 @@
 
             </div><!--end row-->
 
-        </div>
+        </div> <!--end of myforums-->
 
 
         <!-- content for all Forums tab-->
@@ -894,7 +907,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSub"
+                                        <a class="toggerallone"
                                            style="color:#ce3298">
                                             <strong>
                                                 Subject
@@ -902,8 +915,9 @@
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseSub" class="panel-collapse collapse">
-                                    <div class="panel-body">
+
+                                    <div class="collapseSuball" style="margin-left: 6px;">
+
                                         <p onclick="showAllAll()"> All </p>
                                         <p onclick="searchByTopicAll('Arts & Design')"> Arts & Design </p>
                                         <p onclick="searchByTopicAll('Business & Management')"> Business & Management</p>
@@ -922,7 +936,7 @@
                                         <p onclick="searchByTopicAll('Writing')"> Writing</p>
 
                                     </div>
-                                </div>
+
                             </div>
 
                               <div hidden id="all_courses_str">{{ all_courses_str }}</div>
@@ -931,6 +945,17 @@
 
 
                         </div><!--end of accordion-->
+
+<script><!--handles opening and closing filter ->
+$(document).ready(function(){
+  $(".toggerallone").click(function(){
+    $(".collapseSuball").collapse('toggle');
+  });
+
+
+});
+</script>
+
                            <!-- <form class="  search-form" role="search">
                                     <input type="text" class="form-control" placeholder="Search" />
 
