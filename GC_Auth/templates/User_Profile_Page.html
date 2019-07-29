@@ -1383,9 +1383,9 @@ function timeAgo(dateParam) {
 
             <!-- My Forums: Item  -->
 
-            <a href="#"><span style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
+            <button onclick="location.href='{% url 'createForum' %}'"><span style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
                               title="Add Forum" data-placement="right"
-                              class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
+                              class="glyphicon glyphicon-plus-sign fa-3x plus"></span></button>
 
             {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
                 <form action="/goForumsOpen/" method="post">

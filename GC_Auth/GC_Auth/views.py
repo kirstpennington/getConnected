@@ -461,6 +461,13 @@ def goAccountHelp(request):
     return render(request, 'accountHelp.html')
 
 
+def goCreateForum(request):
+    return render(request, 'CreateForum.html')
+
+def goForumsHelp(request):
+    return render(request, 'ForumsHelp.html')
+
+
 def goForumsOpen(request):
     global the_user
     global short_forum_suggestions
