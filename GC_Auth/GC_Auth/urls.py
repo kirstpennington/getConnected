@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^goHelpCourses/', views.goHelpCourses, name='helpcourses'),
     url(r'^goHelpConnections/', views.goHelpConnections, name='helpconnections'),
     url(r'^createForum/', views.goCreateForum, name='createForum'),
+    url(r'^forumsHelp/', views.goForumsHelp, name='forumsHelp'),
 
 
     url(r'^home/', views.home, name="nav_home"),
