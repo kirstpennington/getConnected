@@ -994,7 +994,8 @@
 
                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
                     <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
-                        
+                        <form action="/goConnectionsOpen/" method="post">
+                                                            {% csrf_token %}
 
                         <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
                                 style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
@@ -1007,8 +1008,11 @@
                                  src="{{ pictures }}"/>
 
                             <div class="connection_container">
-                                <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                    {{ names }}
+                                <div>
+                                    <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                                    <button style="background-color:white;font-family: 'Arial Narrow';border:none;left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
+                                        {{ names }}
+                                    </button>
                                 </div>
                                 <!-- hidden field that stores the id of the entity  -->
                                 <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
@@ -1023,7 +1027,10 @@
                             </div>
 
                         </div>
+                        </form>
                     </div><!--end of Connections Suggestions Card--><br style="height: 2px">
+                    {% empty %}
+                    <div>No Connection Suggestions</div>
                 {% endfor %}
 
             </div><!--col-md-12-->
@@ -1337,10 +1344,11 @@ function timeAgo(dateParam) {
                                  src="{{ forum_pics }}"/>
 
                             <div class="connection_container">
-                                <button onclick="location.href='{% url 'forumsopen' %}'"
-                           style="border: none; font-family: 'Arial Narrow';background: white;left: 15px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit" value="goForumsOpen">{{ forum_names }}
-                            </button>
-
+                                <div>
+                                        <button onclick="location.href='{% url 'forumsopen' %}'"
+                                   style="border: none; font-family: 'Arial Narrow';background: white;left: 15px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit" value="goForumsOpen">{{ forum_names }}
+                                    </button>
+                                </div>
                                 <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
 
                                 <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
@@ -1355,6 +1363,8 @@ function timeAgo(dateParam) {
                         </div>
                          </form>
                     </div><!--end of Forum Suggestions Card--><br>
+                    {% empty %}
+                    <div>No Forum Suggestions</div>
                 {% endfor %}
 
             </div><!--col-md-12-->
@@ -1420,6 +1430,8 @@ function timeAgo(dateParam) {
                     </div><!-- /card-hovercard -->
                 </div>
                 </form>
+                {% empty %}
+                    <div>You have no Forums. Try joining one!</div>
             {% endfor %}
 
         </div><!-- /First View Button fot main body, container-->
@@ -1470,6 +1482,8 @@ function timeAgo(dateParam) {
 
 
                 </div>
+                {% empty %}
+                    <div>You have no Courses. Try registering for a Course on GetSmarter's website.</div>
             {% endfor %}
 
 

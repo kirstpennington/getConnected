@@ -38,7 +38,11 @@ class user_methods:
         return database.child('Users').child(uid).child('numConnections').get().val()
 
     def getNumForums(uid):
-        return int(database.child('Users').child(uid).child('numForums').get().val())
+        temp = database.child('Users').child(uid).child('numForums').get().val()
+        if temp is None:
+            return 0
+        else:
+            return int(temp)
 
     def getNumCourses(uid):
         return int(database.child('Users').child(uid).child('numCourses').get().val())
@@ -91,9 +95,12 @@ class user_methods:
         # code from : https://www.hackanons.com/2018/05/python-django-with-google-firebase_31.html
         course_ids = database.child('Users').child(uid).child('Courses').shallow().get().val()
         course_id_list = []  # stores list of course ids for the user
-        for i in course_ids:
-            course_id_list.append(i)
-        return course_id_list
+        if course_ids is None:
+            return []
+        else:
+            for i in course_ids:
+                course_id_list.append(i)
+            return course_id_list
 
     # gets a list of the forums in the order that the user visited them
     # when a forum is visited, it is added to the top of the db tree and the last forum in the tree in removed - tree always contains top 3 recently visited forums
@@ -102,11 +109,13 @@ class user_methods:
         # code from : https://www.hackanons.com/2018/05/python-django-with-google-firebase_31.html
         forum_ids = database.child('Users').child(uid).child('ForumVisits').shallow().get().val()
         forum_id_list = []  # stores list of course ids for the user
+        if forum_ids is None:
+            return []
+        else:
+            for i in forum_ids:
+                forum_id_list.append(i)
 
-        for i in forum_ids:
-            forum_id_list.append(i)
-
-        return forum_id_list
+            return forum_id_list
 
     def getUserTopicsList(uid):
         # get this user's interests/topics in a list

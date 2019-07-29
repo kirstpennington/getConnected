@@ -493,6 +493,11 @@ def goForumsOpen(request):
 def goConnectionsOpen(request):
     global the_user
 
+    # dummy forums and courses for when forums and courses are private - do NOT add these to the database
+    dummy_image_url = "https://i1.wp.com/wrbbradio.org/wp-content/uploads/2016/10/grey-background-06.jpg?fit=2560%2C1600"
+    dummy_forum_list = ["Forum Private", dummy_image_url, "-", "", "", "", ""]
+    dummy_course_list = ["Course is Private", dummy_image_url, "", "", "", "", "", "", ""]
+
     connection_id = ""
     if request.method == "POST":  # get data from UI
         connection_id = request.POST.get("connection_id")  # get data from UI using POST method
@@ -505,24 +510,50 @@ def goConnectionsOpen(request):
     if short_connections_suggestions == "":
         short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 4, the_user)
 
-    return render(request, "User_Profile_Page_Visiting.html", {"e": email,
+    # check privacy settings of connection before displaying their information
+    if user_methods.getBioPrivacy(connection_id) == "True":
+        bio = "Bio is Private"
+    else:
+        bio = user_methods.getBio(connection_id)
+
+    if user_methods.getForumsPrivacy(connection_id) == "True":
+        # places dummy values in the list to indicate that the user's forums are private
+        forums_list_transfer = [dummy_forum_list, dummy_forum_list, dummy_forum_list]
+    else:
+        forums_list_transfer = forum_methods.getForumsInfoList(user_methods.getForumssList(connection_id)[:3])
+
+    if user_methods.getCoursesPrivacy(connection_id) == "True":
+        courses_list_transfer = [dummy_course_list, dummy_course_list, dummy_course_list]
+    else:
+        courses_list_transfer = course_methods.getCoursesInfoList(
+                                                          the_user.uid, user_methods.getCoursesList(connection_id)[:3])
+
+    if user_methods.getCountryPrivacy(connection_id) == "True":
+        country_transfer = "Country is Private"
+    else:
+        country_transfer = user_methods.getCountry(connection_id)
+
+    if user_methods.getPicPrivacy(connection_id) == "True":
+        pic_transfer = "https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofilePics%2FdefaultProfilePic.png?alt=media&token=ef77ab0a-8776-47fa-8894-ff79c659bcb3"
+    else:
+        pic_transfer = user_methods.getProfilePic(connection_id)
+
+    return render(request, "User_Profile_Page_Visiting.html", {"e": "MZVWIN001@myuct.ac.za",
                                                       'n': user_methods.getUsername(connection_id),
-                                                      'bio': user_methods.getBio(connection_id),
+                                                      'bio': bio,
                                                       'email': "MZVWIN001@myuct.ac.za",
-                                                      'country': the_user.country,
+                                                      'country': country_transfer,
                                                       'numConnections': user_methods.getNumConnecions(connection_id),
                                                       'numForums': user_methods.getNumForums(connection_id),
-                                                      'ProfilePic': user_methods.getProfilePic(connection_id),
+                                                      'ProfilePic': pic_transfer,
                                                       'backgroundPic': user_methods.getBackgroundPic(connection_id),
-                                                      'course_list': course_methods.getCoursesInfoList(
-                                                          the_user.uid, the_user.coursesInfoList[:3]),
-                                                      'forums_list': forum_methods.getForumsInfoList(
-                                                          the_user.forumsInfoList[:3]),
+                                                      'course_list': courses_list_transfer,
+                                                      'forums_list': forums_list_transfer,
                                                       'connections_suggestions_list': connection_methods.getConnectionsInfoList(
                                                           short_connections_suggestions),
                                                       'forums_suggestions_list': forum_methods.getForumsInfoList(
                                                           short_forum_suggestions),
-                                                      'this_uid': the_user.uid
+                                                      'this_uid': connection_id
                                                       })
 
 

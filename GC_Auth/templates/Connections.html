@@ -1028,6 +1028,8 @@
                         <!--connections-->
                         {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
                         <div id="{{ conn_id }}_hideAll" class="col-md-3" style="margin-top: 50px;margin-right:-10px;  margin-left: 50px;">
+                         <form action="/goConnectionsOpen/" method="post">
+                                                            {% csrf_token %}
                             <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
                            <img style=" position:relative; top: -15px ; margin-left: 60px" src="{{ pictures }} "
                                      alt="Circle Image" class="img-raised rounded-circle img-fluid">
@@ -1046,9 +1048,9 @@
                                             <li ><a style="font-size: 11px">Send Message &nbsp;<span style="font-size: 15px"
                                                     class="fa fa-comments-o pull-right"></span></a></li>
                                             <li class="divider"></li>
-
-                                            <li><a style="font-size: 11px">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
-                                                    class="	glyphicon glyphicon-user"></span></a></li>
+                                            <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                                            <li><button onclick="location.href='{% url 'connectionsopen' %}'" style="color:black;background-color:white;border:none;font-size: 11px" type="submit" value="goConnectionsOpen">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
+                                                    class="	glyphicon glyphicon-user"></span></button></li>
 
                                             {% comment %}<li class="divider"></li>
 
@@ -1070,6 +1072,7 @@
                                     </Button>
                                 </div>
                             </div>
+                         </form>
                         </div>
                         {% endfor %}
                     </div><!--endrow-->

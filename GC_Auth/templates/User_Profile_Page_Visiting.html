@@ -21,7 +21,7 @@
 
     <!--*HEAD* 1. Title-->
 
-    <title>Your Profile </title>
+    <title>{{ n }}</title>
 
     <!--*HEAD* 2. Bootstrap & CSS Links-->
     <meta charset="utf-8">
@@ -934,13 +934,7 @@
 
                             </div>
                             <!--Badges Icon-->
-                            <a onclick="location.href='{% url 'goBadges' %}' ">
 
-                                <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png" %}"
-                                     data-toggle="tooltip" title="Badges" data-placement="right"
-                                     style="width:40px;height:40px; position: absolute; top:100px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
-                                     title="" class="badges  "/>
-                            </a>
                             <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
 
 
@@ -964,10 +958,7 @@
             <div style="height:5px;"><br></div>
 
 
-            <a onclick="location.href='{% url 'nav_networks' %}'"
-               style="font-size: smaller;position: relative;top: 245px; left: 200px; color: gray; font-weight: bold;">
-                View More <i class="fa fa-angle-double-right"></i><!--View moew connections-->
-            </a>
+
 
          <script>
              function firebase_check_sent(connecion_id) {
@@ -1015,6 +1006,8 @@
 
                         </div>
                     </div><!--end of Connections Suggestions Card--><br style="height: 2px">
+                {% empty %}
+                    <div>No Suggested Connections</div>
                 {% endfor %}
 
             </div><!--col-md-12-->
@@ -1346,6 +1339,8 @@ function timeAgo(dateParam) {
                         </div>
                          </form>
                     </div><!--end of Forum Suggestions Card--><br>
+                    {% empty %}
+                    <div>No Suggested Forums</div>
                 {% endfor %}
 
             </div><!--col-md-12-->
@@ -1364,9 +1359,7 @@ function timeAgo(dateParam) {
 
             <!-- My Forums: Item  -->
 
-            <a href="#"><span style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
-                              title="Add Forum" data-placement="right"
-                              class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
+
 
             {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
                 <form action="/goForumsOpen/" method="post">
@@ -1404,19 +1397,24 @@ function timeAgo(dateParam) {
 
                         <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
                         <!-- Open forum button -->
-                        <button onclick="location.href='{% url 'forumsopen' %}'"
+                        {% if forum_names == "Forum Private" %}
+                        <button disabled onclick="location.href='{% url 'forumsopen' %}'"
                            style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
                             <i
                                     class="fa fa-angle-double-right"></i></button>
+                        {% else %}
+                            <button style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen" >OPEN
+                            <i class="fa fa-angle-double-right"></i></button>
+                        {% endif %}
                     </div><!-- /card-hovercard -->
                 </div>
                 </form>
+                {% empty %}
+                    <div>{{ n }} has no forums</div>
             {% endfor %}
 
         </div><!-- /First View Button fot main body, container-->
-        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_forums' %}'"
-                style="position: absolute; left: 810px; top: 410px; font-size: 85%">View More <i
-                class="fa fa-angle-double-right"></i></button>
+
 
 
         <!-- My Courses: Item 1 -->
@@ -1452,23 +1450,29 @@ function timeAgo(dateParam) {
                                   style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
                             <div style="height:5px;"><br></div>
 
-                            <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
+                            {% if course_names == "Course is Private" %}
+                            <div style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
+                               >VIEW
+                                COURSE <i class="fa fa-angle-double-right"></i></div>
+                            {% else %}
+                                 <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
                                href={{ course_urls }}>VIEW
                                 COURSE <i class="fa fa-angle-double-right"></i></a>
+                            {% endif %}
                         </div>
 
                     </div>
 
 
                 </div>
+                {% empty %}
+                    <div>{{ n }} has no courses</div>
             {% endfor %}
 
 
         </div>
 
-        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_networks'  %}'"
-                style="position: absolute; left: 810px; top: 600px; font-size: 85%">View More <i
-                class="fa fa-angle-double-right"></i></button>
+
 
 
     </div>
