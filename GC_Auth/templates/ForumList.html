@@ -815,14 +815,14 @@ $(document).ready(function(){
                     </div>
 
 
-                </div><!--end row one of inside table-->
-            </div><!--end row encapsulation-->
+                </div><!--end col one of inside table-->
 
-            <div id="refreshSectionFilter" class="row"><!--row two of page--><!--move this inside the encaps row-->
 
-                <div class="col-md-3">
-                    <!--placeholder for space by filter-->
-                </div><!--end col-->
+            <!--row two of inside table-->
+ <div id="refreshSectionFilter" class="row" style="margin-top: 110px;mar" ><!--row two of page--><!--move this inside the encaps row-->
+
+
+
 
                 {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
                 <div id="{{ forum_ids }}_hide" class="col-sm-3  " style="margin-top:200px; width: 180px; margin-right:130px;  ">
@@ -871,6 +871,11 @@ $(document).ready(function(){
 
 
             </div><!--end row-->
+
+
+            </div><!--end row encapsulation-->
+
+
 
         </div> <!--end of myforums-->
 
@@ -967,7 +972,7 @@ $(document).ready(function(){
 
                     <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
 
-                         <!-- My Courses: Item 1 -->
+                         <!-- My forums: Item 1 -->
 
                                                 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 

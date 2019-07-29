@@ -490,6 +490,40 @@ def goForumsOpen(request):
 
                                              })
 
+def goConnectionsOpen(request):
+    global the_user
+
+    connection_id = ""
+    if request.method == "POST":  # get data from UI
+        connection_id = request.POST.get("connection_id")  # get data from UI using POST method
+
+    global short_forum_suggestions  # if the suggested forums has not been determined yet
+    if short_forum_suggestions == "":
+        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 4, the_user)
+
+    global short_connections_suggestions  # if the suggested forums has not been determined yet
+    if short_connections_suggestions == "":
+        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 4, the_user)
+
+    return render(request, "User_Profile_Page_Visiting.html", {"e": email,
+                                                      'n': user_methods.getUsername(connection_id),
+                                                      'bio': user_methods.getBio(connection_id),
+                                                      'email': "MZVWIN001@myuct.ac.za",
+                                                      'country': the_user.country,
+                                                      'numConnections': user_methods.getNumConnecions(connection_id),
+                                                      'numForums': user_methods.getNumForums(connection_id),
+                                                      'ProfilePic': user_methods.getProfilePic(connection_id),
+                                                      'backgroundPic': user_methods.getBackgroundPic(connection_id),
+                                                      'course_list': course_methods.getCoursesInfoList(
+                                                          the_user.uid, the_user.coursesInfoList[:3]),
+                                                      'forums_list': forum_methods.getForumsInfoList(
+                                                          the_user.forumsInfoList[:3]),
+                                                      'connections_suggestions_list': connection_methods.getConnectionsInfoList(
+                                                          short_connections_suggestions),
+                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(
+                                                          short_forum_suggestions),
+                                                      'this_uid': the_user.uid
+                                                      })
 
 
 def goContact(request):

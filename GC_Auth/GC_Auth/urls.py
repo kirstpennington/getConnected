@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^goIntroHelp/', views.goIntroHelp, name='introHelp'),
     url(r'^goAccountHelp/', views.goAccountHelp, name='accountHelp'),
     url(r'^goForumsOpen/', views.goForumsOpen, name='forumsopen'),
+    url(r'^goConnectionsOpen/', views.goConnectionsOpen, name='connectionsopen'),
     url(r'^goSettings/', views.goSettings, name='settings'),
     url(r'^goContact/', views.goContact, name='contactus'),
     url(r'^goLogIn/', views.LogIn, name='login'),

@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!--*HEAD* 1. Title-->
+
+    <title>Your Profile </title>
+
+    <!--*HEAD* 2. Bootstrap & CSS Links-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- footer style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Dropdown Notifications-->
+
+    <style>
+
+        .dropdown {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .notifications {
+            min-width: 320px;
+        }
+
+        .notifications-wrapper {
+            overflow: auto;
+            max-height: 250px;
+
+        }
+
+        .notifications a.content {
+            text-decoration: none;
+            background: white;
+        }
+
+        /*Each item on the notification dropdown*/
+
+        .notification-item {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 4px;
+            border-width: 5px;
+            border-color: black;
+            height: 80px;
+        }
+
+        /*Image on dropdown notification*/
+        .profile_img {
+            width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+
+    </style>
+
+    <!--Page format + wallaper + oage container-->
+
+    <style>
+
+
+        .profileContainerDetails .UserWallpaper {
+            height: 380px;
+            background-position: center;
+        }
+
+        .UserWallpaper {
+            height: 100vh;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .parallax {
+            /* Parallax effect for image wallpaper */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .profileContainerLift {
+            margin: -280px 30px 0; /* Up and down control */
+            border-radius: 8px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+            height: 630px;
+            margin-bottom: 30px;
+        }
+
+        .profileContainer { /* Container Control */
+            background: #FFF;
+            position: relative;
+            z-index: 3;
+        }
+
+        .profileContainerDetails .profile img {
+            max-width: 160px;
+            width: 100%;
+            margin: 0 auto;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -moz-transform: translate3d(0, -50%, 0);
+            -o-transform: translate3d(0, -50%, 0);
+            -ms-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+        }
+
+        .img-raised { /* Profile Picture 1/3 */
+            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+
+        }
+
+        .avatar:hover .changeImageLabel {
+            opacity: 0.9;
+            display: inline-block;
+        }
+
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
+
+        .img-fluid { /* Profile Picture 3/3 */
+            max-width: 100%;
+            max-height: 160px;
+        }
+
+        .profileContainerDetails .description {
+            margin: 1.071rem auto 0;
+            max-width: 600px;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .profileContainerDetails {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .profileContainerDetails .gallery img {
+            width: 100%;
+            margin-bottom: 2.142rem;
+        }
+
+        .profileContainerDetails .profile .name {
+            margin-top: -80px;
+        }
+
+
+    </style>
+
+    <!-- 1.4. Cards Style-->
+
+    <style>
+
+        .col-sm-3 .rightColumnContainer_lower:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            background-color: #e83e8c;
+            color: white;
+        }
+
+        .titlefont {
+            font-size: medium;
+            color: gray;
+            margin: auto 40px auto 40px;
+            position: relative;
+            left: 14px;
+        }
+
+
+        .card {
+            box-shadow: 0 4px 8px 0 silver;
+            width: 180px;
+            height: 140px;
+        }
+
+        .card.hovercard {
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+            border-radius: 10px;
+
+        }
+
+        .card.hovercard:hover {
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+        }
+
+        .card.Ccard {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            width: 255px; /* or whatever width you want. */
+            max-width: 255px; /* or whatever width you want. */
+            height: 275px;
+            max-height: 275px;
+            display: inline-block;
+
+            border-radius: 10px
+        }
+
+        .card.Ccard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+        .card.Ccard:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .cardheader {
+            background: url("http://lorempixel.com/850/280/nature/4/");
+            background-size: cover;
+            height: 100px;
+            width: 200px;
+            border-radius: 8px;
+
+
+            box-shadow: 0 4px 8px 0 silver;
+
+        }
+
+        .heartbutton {
+            background: transparent;
+            position: relative;
+            top: -100px;
+            left: 180px;
+
+        }
+
+
+        .heartColour {
+            color: #e83e8c;
+            border: black;
+            border-width: 2px
+        }
+
+        .viewForum {
+            color: #e83e8c;
+            border: black;
+            border-width: 2px
+        }
+
+        .ViewMorebutton {
+            border-radius: 8px;
+            color: white;
+            background-color: #e83e8c;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .ViewMorebutton:hover {
+            background-color: grey;
+            color: black;
+        }
+
+        .AcceptDeclinebutton {
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: black;
+        }
+
+        .AcceptDeclinebutton:hover {
+            background-color: #e83e8c;
+            color: black;
+
+        }
+
+        /*footer logo*/
+        footer img {
+            width: 200%;
+            height: 200%;
+            text-align: left;
+        }
+
+
+        /*zoom features*/
+        .zoom:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .well a:hover {
+            text-decoration: none;}
+
+    </style>
+
+
+    <!--User profile page-->
+    <style>
+
+        .badges {
+            position: absolute;
+            top: -30px;
+            left: 470px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .badges_plus {
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            background-color: white;
+            border-radius: 10px;
+            border-color: white;
+        }
+
+        .plus:hover {
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            border-radius: 23px;
+        }
+
+        .badges:hover {
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+        }
+
+        .badges_plus:hover {
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            border-radius: 23px;
+        }
+
+        .plus {
+        }
+
+
+        .settings {
+
+        }
+
+        .settings:hover {
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid white;
+            border-radius: 23px;;
+        }
+
+        .main-secction {
+            box-shadow: 5px 5px 5px;
+            border-radius: 8px;
+
+        }
+
+        .image-section {
+            padding: 0px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+
+        .user-left-part {
+            margin: 0px;
+        }
+
+        .user-image img {
+            width: 100px;
+            height: 100px;
+        }
+
+
+        .user-detail-section2 {
+            font-size: 12px;
+            padding: 0px;
+            margin: 0px;
+        }
+
+
+        .user-detail-section2 span {
+            color: #7CBBC3;
+            font-size: 20px;
+        }
+
+        .user-detail-section2 small {
+            font-size: 12px;
+            color: #D3A86A;
+        }
+
+        .profile-right-section {
+            padding: 20px 0px 10px 15px;
+            background-color: #FFFFFF;
+        }
+
+        .profile-right-section-row {
+            margin: 0px;
+        }
+
+        .profile-header-section1 h1 {
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        .profile-header-section1 h5 {
+            color: #0062cc;
+        }
+
+
+        .profile-tag {
+            font-size: 12px;
+            color: black;
+        }
+
+        .profile-tag i {
+            color: #ADADAD;
+            font-size: 20px;
+        }
+
+
+        .rightColumn {
+            background-color: #FCFCFC;
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            width: 290px;
+            margin-left: 570px;
+            margin-top: -133px;
+            height: 300px;
+
+
+        }
+
+        .rightColumnTwo {
+            background-color: #FCFCFC;
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            width: 290px;
+            margin-left: 570px;
+            margin-top: 20px;
+            height: 225px;
+
+        }
+
+        .rightColumnContainer {
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            border-radius: 8px;
+            height: 72px;
+            width: 280px;
+            position: relative;
+            right: 25px;
+            top: -5px
+        }
+
+        .rightColumnContainer:hover {
+            overflow: hidden;
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .rightColumnContainer_lower {
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            border-radius: 8px;
+            height: 72px;
+            width: 280px;
+            position: relative;
+            left: 5px;
+            top: -5px;
+
+        }
+
+
+
+
+
+
+
+        .rightColumnfont {
+            color: gray;
+            position: relative;
+            left: -9px;
+            font-weight: bold;
+            top: 6px;
+            font-size: small;
+        }
+
+
+        .connection_container {
+            margin-left: 40px;
+        }
+
+
+        .image-right-detail {
+            font-size: 12px;
+        }
+
+        .image-right-detail a:hover {
+            text-decoration: none;
+        }
+
+        .image-right img {
+            width: 100%;
+        }
+
+
+        .image-right-detail-section2 {
+            color: #38ACDF;
+            margin: 0px;
+        }
+
+        .image-right-detail-section2 span {
+            color: #7F7F7F;
+        }
+
+
+    </style>
+
+
+    <!--*STYLE for pop up model-->
+    <style>
+
+        .modal {
+            text-align: center;
+        }
+
+        @media screen and (min-width: 768px) {
+            .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+
+            }
+        }
+
+        .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        /* drag and Drop */
+
+        .files input {
+            outline: 2px dashed #e83e8c;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
+        }
+
+        .files input:focus {
+            outline: 2px dashed #e83e8c;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            border: 1px solid #92b0b3;
+        }
+
+        .files {
+            position: relative
+        }
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .color input {
+            background-color: silver;
+        }
+
+        .files:before {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            content: " or drag and drop it here. ";
+            display: block;
+            margin: 0 auto;
+            color: #e83e8c;
+            font-weight: 600;
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        .changeImageLabel {
+            background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+            bottom: 150px;
+            color: #fff;
+            left: 245px;
+            margin: 0;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            transition: 0.1s all;
+            width: 100px;
+            display: none;
+            font-weight: normal;
+
+        }
+
+    </style>
+
+
+</head>
+
+<body class="profileContainerDetails">
+
+<!--*BODY* 1. Navigation Bar-->
+
+<nav class="navbar navbar-inverse  ">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
+
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
+                    <span class="glyphicon glyphicon-home fa-lg"></span>
+                    Home
+                </a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ ProfilePic }}" alt=""></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--1. Notifications icon + drop down-->
+
+            <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <div id="counter_number_notifications"></div>
+
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
+
+                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
+                            <ul id="comment"></ul>
+
+
+                            <!--      <a class="content" href="#">
+                                     <div class="notification-item">
+                                         <img class="profile_img"
+                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                         <h4 class="item-title">James Coden · day ago</h4>
+                                         <p class="item-info">Marketing 101, Video Assignment</p>
+                                     </div>
+                                 </a>-->
+
+
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </a></li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+
+            <!--2. Message icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden"> <!--Messages Dropdown div-->
+
+
+                            <a>
+                                <div class="notification-item">
+
+                                    <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <!--  <img style="" alt="Circle Image" class="img-raised rounded-circle_small img-fluid_small profile_img_small">-->
+
+                                    <p style="margin-left: 240px; color: black">14:50</p>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">Winfreda
+                                        Mazvidza</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Sent connection request to Kimone</p>
+                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
+
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#" style="top: -15px; position:relative">
+                                <div class="notification-item">
+                                    <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <p style="margin-left: 240px; color: black">14:50</p>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">
+                                        Kimone</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Connection Request</p>
+                                    <div style="margin-top: -10px">
+                                        <button id="dntrigger" class="AcceptDeclinebutton"
+                                                style=" font-size: 85%; position: relative;left: 80px;color: white">
+                                            Accept
+                                        </button>
+
+                                        <button class="AcceptDeclinebutton"
+                                                style="; font-size: 85%;position: relative;left: 80px;color: white ">
+                                            Decline
+                                        </button>
+                                    </div>
+                                    <hr style="width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px"/>
+
+                                </div>
+                            </a>
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
+
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
+
+<!--End of Navigation Bar-->
+
+<!--User Profile Container-->
+<!--Background Image-->
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
+
+    <div class="row"> <!--2. Pic + Description -->
+        <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
+                <div class="avatar">
+                    <img style="margin-left: 200px" src="{{ ProfilePic }}" alt="Circle Image"
+                         class="img-raised rounded-circle img-fluid">
+                    <label class="changeImageLabel" type='button' data-toggle="modal" data-target="#exampleModal">Change
+                        Image </label>
+
+                </div>
+
+
+                <div class="name" style="margin-left: 58%; margin-top: -21%;background-color: white ; width: 85%">
+                    <div class="row" style="">
+                        <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                            <div style="text-align: left;">
+                                <h1 style="color: gray;display: inline-block;padding-right:50px;">
+                                    <strong>{{ n }}</strong><br></h1><br><br> <!--Name of User-->
+
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $('[data-toggle="tooltip"]').tooltip();
+                                    });
+
+
+                                </script>
+
+                                <!--Number of Connections and Forums-->
+                                <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px; ">
+                                    Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px">
+                                    Forums <span
+                                        class="label label-default">{{ numForums }}</span></h8>
+                            </div>
+                            <!--Container for bio, email, country-->
+                            <div style="margin-top:-5px">
+
+                                <span style="color: black;position: relative;"
+                                      class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;<strong><span
+                                    style="font-size: small;color: grey">{{ bio }} </span></strong><br>
+                                <span style="color: black;position: relative;"
+                                      class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<strong><span
+                                    style="font-size: small;color: grey">{{ email }} </span></strong><br>
+                                <span style="color: black;position: relative;"
+                                      class="fa fa-globe fa-lg text-primary"></span>&nbsp;&nbsp;<strong><span
+                                    style="font-size: small;color: grey">{{ country }} </span></strong><br>
+
+                            </div>
+                            <!--Badges Icon-->
+                            <a onclick="location.href='{% url 'goBadges' %}' ">
+
+                                <img src="{% static "GC_Auth/UserProfile_images/badge_icon.png" %}"
+                                     data-toggle="tooltip" title="Badges" data-placement="right"
+                                     style="width:40px;height:40px; position: absolute; top:100px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
+                                     title="" class="badges  "/>
+                            </a>
+                            <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
+
+
+                        </div><!--profile-header-page1-->
+                    </div><!--row-->
+                </div><!--name-->
+            </div><!--profile-->
+        </div><!--col-md-6-->
+    </div><!--row-->
+
+    <!--Righhand side and middle of page-->
+    <div class="description text-left">
+
+
+        <!--2.RIGHT-HAND SIDE-->
+        <div class="col-md-4 rightColumn">
+
+            <div><p class="rightColumnfont"><span
+                    class="fa fa-globe"></span>&nbsp;People you may want to
+                connect with</p></div>
+            <div style="height:5px;"><br></div>
+
+
+            <a onclick="location.href='{% url 'nav_networks' %}'"
+               style="font-size: smaller;position: relative;top: 245px; left: 200px; color: gray; font-weight: bold;">
+                View More <i class="fa fa-angle-double-right"></i><!--View moew connections-->
+            </a>
+
+         <script>
+             function firebase_check_sent(connecion_id) {
+
+
+                 var firebase_check = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/RequestsSent");
+                 return("true")
+
+
+             }
+         </script>
+
+            <div class="col-md-12">
+
+
+                {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
+                    <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                        
+
+                        <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
+                                style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
+                        </button>
+
+
+                        <div class="row" style="margin-top: -15px">
+                            <img class=" pull-left"
+                                 style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
+                                 src="{{ pictures }}"/>
+
+                            <div class="connection_container">
+                                <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                    {{ names }}
+                                </div>
+                                <!-- hidden field that stores the id of the entity  -->
+                                <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
+                                <h8 style="display: inline-block;margin-left: 10px;margin-top: 4px;font-family: serif; font-size: small; color: black">
+                                    mutual conections &nbsp;<span class="label label-default"
+                                                                  style="color: white"> {{ numConnections }} </span>
+                                </h8>
+                                <br>
+
+                                <span class="badge badge-pill badge-dark"
+                                      style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ bio }}</span>
+                            </div>
+
+                        </div>
+                    </div><!--end of Connections Suggestions Card--><br style="height: 2px">
+                {% endfor %}
+
+            </div><!--col-md-12-->
+
+        </div><!--col-md-4 rightColumn-->
+
+    <!--Messaging Implementation-->
+
+        <script>
+
+    const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+
+function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+  const day = date.getDate();
+  const month = MONTH_NAMES[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  if (minutes < 10) {
+    // Adding leading zero to minutes
+    minutes = `0${ minutes }`;
+  }
+
+  if (prefomattedDate) {
+    // Today at 10:20
+    // Yesterday at 10:20
+    return `${ prefomattedDate } at ${ hours }:${ minutes }`;
+  }
+
+  if (hideYear) {
+    // 10. January at 10:20
+    return `${ day }. ${ month } at ${ hours }:${ minutes }`;
+  }
+
+  // 10. January 2017. at 10:20
+  return `${ day }. ${ month } ${ year }. at ${ hours }:${ minutes }`;
+}
+
+
+// --- Main function
+function timeAgo(dateParam) {
+
+  if (!dateParam) {
+    return null;
+  }
+
+  const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+  const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+  const today = new Date();
+  const yesterday = new Date(today - DAY_IN_MS);
+  const seconds = Math.round((today - date) / 1000);
+  const minutes = Math.round(seconds / 60);
+  const isToday = today.toDateString() === date.toDateString();
+  const isYesterday = yesterday.toDateString() === date.toDateString();
+  const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+  if (seconds < 5) {
+    return 'now';
+  } else if (seconds < 60) {
+    return `${ seconds } seconds ago`;
+  } else if (seconds < 90) {
+    return 'about a minute ago';
+  } else if (minutes < 60) {
+    return `${ minutes } minutes ago`;
+  } else if (isToday) {
+    return getFormattedDate(date, 'Today'); // Today at 10:20
+  } else if (isYesterday) {
+    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+  } else if (isThisYear) {
+    return getFormattedDate(date, false, true); // 10. January at 10:20
+  }
+
+  return getFormattedDate(date); // 10. January 2017. at 10:20
+}
+
+;
+
+</script>
+
+        <script>
+
+            var user = firebase.auth().currentUser;
+            /*Firebase Reference*/
+
+            var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+
+
+            /*User Clicks on GetMessages time Firebase button
+            * Will need to do one for hourglass to plus sign for the opposite action, or unconnecting*/
+            function send_friend_request(request_receiver_id) {
+
+
+            document.getElementById(request_receiver_id).className = "fa fa-hourglass";
+
+                //$(this).find("i").removeClass("fa fa-user-plus").addClass("fa fa-hourglass");
+               // document.getElementById('play').classList.add('fa fa-hourglass');
+                /*Fetching time when items were pushed*/
+
+
+
+                var d = new Date(),
+                    minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+                    hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+                    ampm = d.getHours() >= 12 ? 'pm' : 'am',
+                    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                /*dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;*/
+                dateTime = hours + ':' + minutes + ampm;
+               /*Changing items in the db*/
+
+                var date_for_post = Date.now();
+
+
+                writeUserData(date_for_post, "{{ n }}",'{{this_uid}}', "Connection Request", request_receiver_id);
+                dateTime;
+                "Connection Request";
+                "{{ n }}";
+                '{{ this_uid }}';
+                request_receiver_id;
+
+
+
+            }
+
+            /*Push time entered and Message entered from textboxes, creates entry in firebase
+            * push gives a unique key*/
+
+            function writeUserData(message_time, messageFrom,request_sender_id, actual_message,request_receiver_id) {/*Pushes to current users*/
+                var database = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent");/*Current users account*/
+
+
+
+                var created_id =  database.push();
+                created_id.set({
+                    time: message_time,
+                    sender: messageFrom,
+                    sender_id:request_sender_id,
+                    message: actual_message,
+                    receiver_id:request_receiver_id,
+                    sender_profilePic: '{{ ProfilePic }}'
+
+
+                });
+
+                 /*Saving_id*/
+                var hope = String(created_id);
+                var result = hope.substring(hope.lastIndexOf("/") + 1);
+                var save_id = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent/"+result);/*Messages*/
+                save_id.update({
+                    post_id: result
+                });
+
+                var database_target = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived");/*Where the message is going*/
+                var created_id_target = database_target.push();
+                created_id_target.set({ /*Pushes to receiver*/
+                    time: message_time,
+                    sender: messageFrom,
+                    sender_id:request_sender_id,
+                    message: actual_message,
+                    receiver_id:request_receiver_id,
+                    sender_profilePic: '{{ ProfilePic }}'
+
+
+                });
+                 hope = String(created_id_target);
+                 result = hope.substring(hope.lastIndexOf("/") + 1);
+                 save_id = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived/"+result);/*Messages*/
+                save_id.update({
+                    post_id: result
+                });
+
+
+            }
+
+            /*Whenever items changes (added, modified, deleted) in database, this event is called*/
+
+            /* database.on('value', function (snapshot) {
+                 renderUI(snapshot.val());
+
+             });*/
+
+            /*Whenever items changes (added, modified, deleted) in database, this event is called*/
+
+            database_counter.on('value', function (snapshot) {
+                renderCount(snapshot.val());
+                renderUI(snapshot.val());
+                //alert("Connection Request Received");
+
+
+            });
+
+
+            /* database_count.on('value', function (snapshot) {
+                 renderCount(snapshot.val());
+             });*/
+
+            /*Always refreshing data being loaded*/
+
+            function renderUI(obj) {
+                var html = '';
+                var keys = Object.keys(obj);
+                for (var i = keys.length - 2; i >= 0; i--) {
+                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+                    /*Creating notification item*/
+
+                    var display_time = obj[keys[i]].time;
+                    display_time = Number(display_time); // cast it to a Number
+                    var ts_display = timeAgo(display_time);
+
+
+                    var decision = "true";
+                    var opp_decison = "false";
+                    html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request("+ "\'"+ obj[keys[i]].sender_id+"\'" + "," + "\'"+ obj[keys[i]].sender + "\'"+ ","+ "\'"+ obj[keys[i]].post_id + "\'" + "," +opp_decison+")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+                        "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request("+ "\'" + obj[keys[i]].sender_id + "\'"  + ","+ "\'"  + obj[keys[i]].sender + "\'"+ ","+  "\'" + obj[keys[i]].post_id + "\'" + "," + decision +  " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request("+ "\'"+ obj[keys[i]].sender_id+"\'" + "," + "\'"+ obj[keys[i]].sender + "\'"+ ","+ "\'"+ obj[keys[i]].post_id + "\'" + "," +opp_decison+")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+
+
+                }
+                $('#comment').html(html);
+            }
+
+            /*Updating notification count*/
+
+            function renderCount(obj) {
+                var html = '';
+                var countholder = 0;
+
+                var keys = Object.keys(obj);
+                for (var i = 0; i < keys.length; i++) {
+                    countholder++;
+                }
+                countholder--;
+                database_counter.update({'counter': countholder});
+                 /*Creating notification icon*/
+
+
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+
+
+                $('#counter_number_notifications').html(html);
+
+
+            }
+
+
+            /*NOTIFICATION ON ADD (to be places here): Specific to Add: Whenever items changes (added because of child_added) in database, this event is called, getKey is unique id of pop up*/
+ function Delete_request(post_id){
+
+
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
+
+                different_name.remove();
+                //window.alert( typeof post_id );
+   }
+
+   function Accept_request(sender_id, name, post_id,isAccept){
+
+
+
+     if (String(isAccept).valueOf() == String("true").valueOf()) {
+         var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+
+         AddConnection.child(sender_id).set(name);
+
+         window.alert("You are now connected with " + name);
+     }
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
+
+                different_name.remove();
+                //window.alert( typeof post_id );
+   }
+
+
+        </script>
+
+
+        <div class="col-md-4 rightColumnTwo">
+
+            <div><p class="rightColumnfont"><span
+                    class="fa fa-comments-o"></span>&nbsp;Forums you may want to join</p></div>
+
+            <a onclick="location.href='{% url 'nav_forums' %}'"
+               style="font-size: smaller;position: relative;top: 175px; left: 200px; color: gray; font-weight: bold;"
+            >
+                View More <i class="fa fa-angle-double-right"></i> <!--View More Forums-->
+            </a>
+
+
+            <div class="col-md-12" style="margin-top: -3px">
+
+
+                {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
+                    <div class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
+                         <form action="/goForumsOpen/" method="post">
+                             {% csrf_token %}
+                             <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
+
+                        <div style="position: relative; left: 235px; top: 3px;">
+                            <h8><span class="label label-default"><span
+                                    class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                        </div>
+
+                        <div class="row" style="margin-top: -15px">
+                            <img class=" pull-left"
+                                 style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
+                                 src="{{ forum_pics }}"/>
+
+                            <div class="connection_container">
+                                <button onclick="location.href='{% url 'forumsopen' %}'"
+                           style="border: none; font-family: 'Arial Narrow';background: white;left: 15px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit" value="goForumsOpen">{{ forum_names }}
+                            </button>
+
+                                <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+
+                                <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
+                                    Creator: {{ forum_creators }}</h8>
+                                <br>
+
+                                <span class="badge badge-pill badge-dark"
+                                      style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ forum_topics }} </span>
+
+                            </div>
+
+                        </div>
+                         </form>
+                    </div><!--end of Forum Suggestions Card--><br>
+                {% endfor %}
+
+            </div><!--col-md-12-->
+
+        </div><!--col-md-4 rightColumnTwo-->
+
+        <!-- My Forums -->
+
+        <div class="row"
+             style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -420px; overflow: hidden">
+            <div style="height:10px;"><br></div>
+
+            <h5 class="titlefont" style="font-weight: bold; margin-left: 4px"><span
+                    class="fa fa-comments-o fa-lg"></span>&nbsp;My Forums</h5>
+            <div style="height:10px;"><br></div>
+
+            <!-- My Forums: Item  -->
+
+            <a href="#"><span style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
+                              title="Add Forum" data-placement="right"
+                              class="glyphicon glyphicon-plus-sign fa-3x plus"></span></a>
+
+            {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
+                <form action="/goForumsOpen/" method="post">
+                {% csrf_token %}
+                <div class="col-sm-3  " style="; width: 180px; margin-left:30px;  ">
+                    <!-- forum wallpaper -->
+                    <div class="cardheader"
+                         style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
+                    </div>
+                    <!-- Go into forum -->
+                    <div class="heartbutton"><span style="background: transparent; " type="button"
+                                                   class="fa fa-sign-in fa-lg viewForum"></span></div>
+                    <!-- card with forum detains -->
+                    <div class="card hovercard " style="margin-top: -50px; margin-left: 11px">
+
+                        <div>
+                            <!-- Number fo forum users -->
+                            <div style="top: 2px; margin-left: 70%">
+                                <h8><span class="label label-default"><span
+                                        class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                                <div style="height:5px;"><br></div>
+                            </div>
+
+                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                            </div>
+                            <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+                            <!-- forum tags -->
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
+
+
+                        </div>
+                        <!-- card line -->
+
+                        <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+
+                        <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
+                        <!-- Open forum button -->
+                        <button onclick="location.href='{% url 'forumsopen' %}'"
+                           style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                            <i
+                                    class="fa fa-angle-double-right"></i></button>
+                    </div><!-- /card-hovercard -->
+                </div>
+                </form>
+            {% endfor %}
+
+        </div><!-- /First View Button fot main body, container-->
+        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_forums' %}'"
+                style="position: absolute; left: 810px; top: 410px; font-size: 85%">View More <i
+                class="fa fa-angle-double-right"></i></button>
+
+
+        <!-- My Courses: Item 1 -->
+
+        <div class="row"
+             style=" height: 250px ; margin-left:-250px; width: 850px; position: relative; top: -390px; overflow: hidden">
+
+            <h5 class="titlefont" style="font-weight: bold; margin-left: -5px"><span class="fa fa-book fa-lg"></span>&nbsp;My
+                Courses</h5>
+            <div style="height:10px;"><br></div>
+
+            {% for course_names,course_pictures,course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in course_list|slice:":2" %}
+                {% load staticfiles %}
+                <div class="col-sm-3  "
+                     style=" width: 202px; margin-top: 25px; margin-left: 15px; display:{{ course_display_1 }}  ">
+
+
+                    <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
+
+                        <div  style="margin-top: -15px; text-align: center;border-radius: 8px ">
+
+                            <div style="height:2px;"><br></div>
+
+                            <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                {{ course_names }}
+                            </div>
+                            <!-- hidden field that stores the id of the entity  -->
+                            <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+
+                            <div style="height:2px;"><br></div>
+
+                            <span class="badge badge-pill badge-dark"
+                                  style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
+                            <div style="height:5px;"><br></div>
+
+                            <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
+                               href={{ course_urls }}>VIEW
+                                COURSE <i class="fa fa-angle-double-right"></i></a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_networks'  %}'"
+                style="position: absolute; left: 810px; top: 600px; font-size: 85%">View More <i
+                class="fa fa-angle-double-right"></i></button>
+
+
+    </div>
+
+
+</div>
+</div>
+
+
+<!-- Page Footer-->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+                <div class="row"><!--table row-->
+
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
+                    </div>
+
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
+                            GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Forum Help</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Connection
+                            Management</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Messaging</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
+
+
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+                    </div>
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+    </divname>
+    <br><br>
+</footer>
+<!-- 1.1 Pop Up modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h3 class="modal-title" style="color: gray" id="exampleModalLabel"><span
+                            class="fa fa-gear fa-lg"></span> Image Settings </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="default-file-upload">
+                        <!--  <input id="file-upload1" type="file"/>-->
+                        <div class="row">
+                            <div class="form-group files color">
+                                <h4 style="color: gray; padding-left: 24px;">Upload Your File </h4>
+                                <input type="file" id="uploadZip" name="newPic" class="form-control" multiple="">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" id="url" name="url" style="display: none">
+                    <!-- hidden field to store the url of the image in Firebase storage-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="ViewMorebutton" data-dismiss="modal">
+                        Close
+                    </button>
+                    <script>
+                        // uploads file to Firebase storage
+                        function uploadFile() {
+                            uid = {{ this_uid }};                                                           // this user's user id
+                            var storage = firebase.storage().ref();                                         // reference to Firebase storage
+                            var file = document.getElementById("uploadZip").files[0];
+                            var storgaeRef = storage.ref();
+
+                            storgaeRef.child("images/profilePics/".concat(uid)).delete();                    // delete old pic with this uid
+
+
+                            var thisref = storgaeRef.child("images/profilePics/".concat(uid)).put(file);    // add new file to Firebase storage
+
+                            thisref.on('state_changed', function (snapshot) {
+                                    console.log("file upload successful");
+
+                                },
+
+                                function (error) {
+                                    alert('Upload Failed. Please Try Again.');
+                                },
+
+                                function () {
+                                    var downloadURL = thisref.snapshot.downloadURL;                          //get the link of the pic stored in Firebase storage
+
+                                    var database = firebase.database();
+                                    databare.child("Users").child(uid).update({'ProfilePic': downloadURL} );`// update the url of the profile pic in the db
+                                }
+                            );
+                        }
+
+                    </script>
+                    <!-- BUTTONT CHANGE IMAGE-->
+                    <button type="submit" id="uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save
+                    </button>
+                </div>
+                <!-- Testing-->
+                <!-- Testing-->
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- End of 1.1 Pop Up modal-->
+
+
+</body>
+
+
+
