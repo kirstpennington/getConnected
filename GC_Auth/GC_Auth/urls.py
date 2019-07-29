@@ -38,6 +38,8 @@ urlpatterns = [
     url(r'^goLogIn/', views.LogIn, name='login'),
     url(r'^goHelpCourses/', views.goHelpCourses, name='helpcourses'),
     url(r'^goHelpConnections/', views.goHelpConnections, name='helpconnections'),
+    url(r'^createForum/', views.goCreateForum, name='createForum'),
+
 
     url(r'^home/', views.home, name="nav_home"),
     url(r'^networks/', views.connections, name="nav_networks"),
