@@ -413,18 +413,15 @@
         <div id="collapseProfile" class="panel-collapse collapse">
             <div class="panel-body">
                 <!--row1 Personalising the profile -->
-        <p>Personalising your Profile</p>
-        <p style="font-size:20px;padding-top: 2px;"> Your profile is opened when you log in. This is how it appears to
-            others on GetConnected.</p><br>
+        <p>Creating a forum</p>
+        <p style="font-size:20px;padding-top: 2px;"> You can create a new forum at anytime and invite other people to participate!</p><br>
         <div class="row">
             <!--coloumn-->
             <div class="col-sm-6" style="background-color:white;">
                 <!--description-->
-                <p> Account Details & Privacy</p>
-                <h1 style="color:grey;"> By default, GetConnected displays your information to other platform users,
-                    this increases your likelihood of making a connection. </h1>
-                <h1>However, you can use the settings tog on the right-hand side of your profile page to change your
-                    details and what is visible to the public. The settings-tog is shown on the right.  </h1>
+                <p> Starting the forum</p>
+                <h1 style="color:grey;"> To make a forum, you can click on the plus icon on your home page (see right) or you can navigate to the forums page and click "create"</h1>
+                <h1>Once you click the plus icon, you will be taken to the "Create Forum" page (see below) where you can start creating and customising your forum!  </h1>
 
 
             </div>
@@ -433,7 +430,7 @@
             <div class="col-sm-6" style="background-color:white;">
                 <br>
                 {% load staticfiles %}
-                <img src="{% static "GC_Auth/help/settingsClick.png" %}" alt="lock" class="image"
+                <img src="{% static "GC_Auth/help/createForum.png" %}" alt="lock" class="image"
                      style="width:25%; height:25%;">
 
 
@@ -449,125 +446,49 @@
     <div class="row">
         <!--coloumn-->
         <div class="col-sm-6" style="background-color:white;">
-
+            <br>
             {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/settingsPage.png" %}" alt="lock" class="image" style="width:50%; height:50%; border: 1px solid silver;">
+            <img src="{% static "GC_Auth/help/createForumPage.png" %}" alt="lock" class="image" style="width:90%; height:90%; border: 1px solid silver;">
 
         </div>
         <!--coloumn-->
         <div class="col-sm-6" style="background-color:white;">
-            <h1 style="color:grey;"> The settings tog takes you to the settings page, where you can manage what your profile looks like to others.
-            Here you can change your profile picture, username, email address, country and bio. As well as hide or show various information. </h1>
+            <h1 style="color:grey;"> On the Create Forum page you can specify the details of your forum and customise it to your preferences. This is your forum so
+            you are able to choose who the participants are, the topics it will discuss and give it a profile picture. The list below gives more details:</h1>
 
-            <h1>Take a look at the image on the left, to see all details that can be updated.</h1>
+            <h1> 1. Give your forum a name and description so participants know what its about
+            <br><br>
+            2. Select if you want your forum public or private - private forums can only be viewed by participants whereas public forums can
+                be seen by anyone on GetConnected
+                <br><br>
+                3.  Choose participants for your forum - participants will be able to add posts, image and partake in discussions
+                <br><br>
+                4. Each forum will also discuss certain information, topics or subjects. Here you can specify which subjects this forum relates to
+
+            </h1>
+            <h1>Click Create to make the forum!</h1>
 
         </div>
 
 
     </div>
     <br><br>
-    <!--row pictures-->
-
-    <div class="row" style="padding-left: 60px;
-            padding-right: 40px;">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <!--description-->
-            <br><br>
-            <p> Profile Pictures</p>
-            <h1>This is your account, you need to make it your own and add some of your own style! Consider updating
-                your profile picture to your latest selfie to really captures the essence of you. </h1>
-            <h1>Hover over your profile picture, click the button seen here on the right and follow the prompts to
-                change or remove it.</h1>
 
 
-        </div>
-        <!--coloumn-->
-        <!--image-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br><br><br>
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/changeImage.png" %}" alt="lock" class="image"
-                 style="height: 30%; width:30%;">
 
 
-        </div>
-
-
-    </div>
-    <br>
 
     <!--row-->
-    <div class="row" style="padding-left: 60px;
-            padding-right: 40px;">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <!--description-->
 
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/uploadimage.png" %}" alt="lock" class="image"
-                 style="height: 50%; width:50%; border: 1px solid silver;">
-
-        </div>
-        <!--coloumn-->
-        <!--image-->
-        <div class="col-sm-6" style="background-color:white;">
-
-            <h1>Once you click "change image", you will see the pop-up, shown on the left. Follow the prompts to upload a picture from your computer.</h1>
-            <h1>As soon as you hit "save changes", you will have a new profile picture!</h1>
-
-        </div>
-
-
-    </div>
-    <br>
-
-    <!--row-->
-    <div class="row" style="padding-left: 60px;
-            padding-right: 40px;">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <!--description-->
-            <br>
-            <p> Your information</p>
-            <h1>By default your profile will show information about you which we have gathered from our GetSmarter
-                databases. Information Shown includes : </h1>
-            <h1>- Full Name</h1>
-            <h1>- Number of Connections you have </h1>
-            <h1>- Number of Forums you are in & the names of these forums</h1>
-            <h1>- Your email address</h1>
-            <h1>- The Country you are from</h1>
-            <h1>- Courses completed at GetSmarter</h1>
-
-            <h1> You can update this information at any time as well as control what is visible on your profile. Click
-                the settings tog and follow the prompts to
-                do so.</h1>
-
-
-        </div>
-        <!--coloumn-->
-        <!--image-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br><br><br><br> <br><br><br><br>
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/profilesummary.png" %}" alt="lock" class="image"
-                 style="width:70%;height:70%;">
-
-
-        </div>
-
-
-    </div>
-    <br>
 
         </div><!--end-->
     </div>
 
-    <!--panel Badges-->
+    <!--panel finding a forum-->
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseBadges"
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFinding"
                    style="color:#ce3298">
                     <strong>
                       Finding a Forum
@@ -575,48 +496,67 @@
                 </a>
             </h4>
         </div>
-        <div id="collapseBadges" class="panel-collapse collapse">
+        <div id="collapseFinding" class="panel-collapse collapse">
             <div class="panel-body">
 
-                <!--earning badges content here-->
+
+<p>Finding a Forum</p>
+        <p style="font-size:20px;padding-top: 2px;"> We know there are tons of Forums to look through, so we've made it easier for you to find what you want.</p><br>
+        <div class="row">
+            <!--coloumn-->
+            <div class="col-sm-6" style="background-color:white;">
+                <!--description-->
+                <p> Searching & Filtering</p>
+                <h1 style="color:grey;"> If you want to see all the forums you are a particpant in you can click the "My Forums" tab.</h1>
+                <h1>Or, if you want to see all the forums on offer in GetConnected click the "All Forums" tab. This let's you find new forums to join! </h1>
 
 
-                <div class="badges">
-                    <p style="color:white;">
-                        {% load staticfiles %}
-                        <img src="{% static "GC_Auth/badge_icon.png" %}" alt="trophy" class="image"
-                             style="width: 5%;height: 5%;">
-                        Earning Badges
-                        {% load staticfiles %}
-                        <img src="{% static "GC_Auth/badge_icon.png" %}" alt="trophy" class="image"
-                             style="width: 5%;height: 5%;">
-                    </p>
-                    <div class="row">
-                        <h1 style="color:white;">Badges are rewards you can earn for using the GetConnected system. You
-                            can view all
-                            the badges you have by clicking the trophy icon
-                            on the user profile page.</h1>
-                        <br>
-                        {% load staticfiles %}
-                        <img src="{% static "GC_Auth/help/badgesLocked.png" %}" alt="trophy" class="image"
-                             style="width: 25%;height: 25%;border: 1px solid silver;">
-                        <h1 style="color:white;">Locks are seen where you have not earned a badge.
-                            Hover over the badges to see what you earned them for. Badges can be
-                            rewarded for
-                            all sorts of engagement such as making connections,
-                            using forums and more! </h1>
-                        <br>
-
-                    </div>
+            </div>
+            <!--coloumn-->
+            <!--image-->
+            <div class="col-sm-6" style="background-color:white;">
+                <br>
+                {% load staticfiles %}
+                <img src="{% static "GC_Auth/help/myallforums.png" %}" alt="lock" class="image"
+                     style="width:90%; height:90%;">
 
 
-                </div>
+            </div>
+
+
+        </div>
+        <br>
+
+    </div>
+    <!--row 2nd paragraph on right-->
+
+    <div class="row">
+        <!--coloumn-->
+        <div class="col-sm-6" style="background-color:white;">
+            <br>
+            {% load staticfiles %}
+            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image" style="width:50%; height:50%; border: 1px solid silver;">
+
+        </div>
+        <!--coloumn-->
+        <div class="col-sm-6" style="background-color:white;">
+            <br><br>
+            <h1 style="color:grey;"> You can use the filter pane on the left to filter forums by subject! This helps you to find forums that relate to your interests. Neat,right?</h1>
+<h1>If you are looking for a specific forum, you could also use the search bar at the top, just type in the name and click search. </h1>
+
+        </div>
+
+
+    </div>
+
+<br><br>
+
 
             </div>
         </div>
-    </div>
 
-    <!--panel Privacy-->
+
+    <!--panel Participating-->
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title"><!--panel 1 heading-->
@@ -632,19 +572,49 @@
             <!--panel 1 content-->
             <div class="panel-body">
                 <div class="row">
-                    <h1 style="text-align: center;">Here at GetConnected, your privacy is of the utmost importance to us. We have put measures in
-                        place to
-                        ensure your continued satisfaction.
-                        You, as the user, have the power to manage your account's level of privacy. You are able to
-                        control what is
-                        shown on your account, block other users
-                        and update their details in order to maintain your privacy. For more detailed information,
-                        please view our
-                        privacy policy .</h1>
+                <!--coloumn-->
+            <div class="col-sm-6" style="background-color:white;">
+                <!--description-->
+                <p> Participating in a Forum</p>
+                <h1 style="color:grey;">Once you are a member of a forum, you can participate in the discussions, like messages, reply and create new posts.</h1>
+                <h1>The image seen on the right is the area of the forums page where you get to make a post. You can add a title to your post,
+                a message and even attach files or images. All forum participants will be able to see your post, like and comment on it. Any
+                inappropriate posts will, however, be removed.</h1>
 
+
+            </div>
+            <!--coloumn-->
+            <!--image-->
+            <div class="col-sm-6" style="background-color:white;">
+                <br>
+                {% load staticfiles %}
+                <img src="{% static "GC_Auth/help/forumpost.png" %}" alt="lock" class="image"
+                     style="width:90%; height:90%;">
+
+
+            </div>
 
                 </div>
 
+
+                <div class="row">
+        <!--coloumn-->
+        <div class="col-sm-6" style="background-color:white;">
+            <br>
+            {% load staticfiles %}
+            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image" style="width:50%; height:50%; border: 1px solid silver;">
+
+        </div>
+        <!--coloumn-->
+        <div class="col-sm-6" style="background-color:white;">
+            <br><br>
+            <h1 style="color:grey;"> The item on the left is an example of a posted message. Here you can see you can reply, like and report other posts.
+            Forums are a great way to stay in touch with collegues and classmates, while also finding new people with shared interests. </h1>
+
+        </div>
+
+
+    </div>
 
             </div>
         </div>
@@ -674,31 +644,25 @@
                     <h1>
                         <div class="numbercircles">1</div>
                         <i>
-                            What happens when I delete my account?</i></h1>
+                            What happens if a message is reported?</i></h1>
                     <!--padding left indents the answer to the right-->
-                    <p style="padding-left: 40px;">GetConnected doesn't delete your account, we just deactivate it. If
-                        you email
-                        GetSmarter they will reactivate it for you.
+                    <p style="padding-left: 40px;">Messages can be reported by any participant in a forum if they feel the message is inappropriate. Should a message be reported
+                        it will then be inspected by a member of the GetConnected team and removed if it is infact inappropriate.
                     </p>
 
                     <!--question-->
                     <h1>
                         <div class="numbercircles">2</div>
                         <i>
-                            Is it possible for me to set my profile picture to nothing? </i></h1>
-                    <p style="padding-left: 40px;">Yes, when changing your profile picture select "default image" and
-                        your profile
-                        picture will become a default icon. </p>
+                            How can I add more people to a forum after creating it?</i></h1>
+                    <p style="padding-left: 40px;">You can edit a forum's information after creation by using the edit forum page. Here you can add or remove participants at anytime. </p>
 
                     <!--question-->
                     <h1>
                         <div class="numbercircles">3</div>
                         <i>
-                            Where can I see all the badges available for me to unlock even if I have not earned
-                            them? </i></h1>
-                    <p style="padding-left: 40px;">Unfortunately, badges are kept a secret until they are unlocked.
-                        Engage with
-                        GetConnected more to earn them!</p>
+                          Is there a limit to the number of forums I can create or be a member in? </i></h1>
+                    <p style="padding-left: 40px;">No ways! Create as many forums and participate in as many forums as you like.</p>
 
 
                 </div>
