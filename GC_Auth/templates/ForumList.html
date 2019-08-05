@@ -771,7 +771,7 @@ $(document).ready(function(){
                             {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in suggested_forums_list|slice:":3" %}
 
                                 <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px; ">
-                                    <form class="col-sm-4  " style="border:none;width: 202px;margin-top: 5px; " action="/goForumsOpen/" method="post">
+                                    <form style="border:none;width: 202px;margin-top: 5px; " action="/goForumsOpen/" method="post">
                                 {% csrf_token %}
 
                                         <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
@@ -819,25 +819,26 @@ $(document).ready(function(){
 
 
             <!--row two of inside table-->
- <div id="refreshSectionFilter" class="row" style="margin-top: 110px;mar" ><!--row two of page--><!--move this inside the encaps row-->
+ <div id="refreshSectionFilter" class="row" style="margin-top: 110px;margin-bottom: 80px;"><!--row two of page--><!--move this inside the encaps row-->
 
 
 
 
                 {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
-                <div id="{{ forum_ids }}_hide" class="col-sm-3  " style="margin-top:200px; width: 180px; margin-right:130px;  ">
+                    <td>
+                        <div id="{{ forum_ids }}_hide" class="col-sm-3  " style="margin-top:200px; width: 180px; margin-right:130px;  ">
                  <form action="/goForumsOpen/" method="post">
                                 {% csrf_token %}
                     <!-- forum wallpaper -->
                     <div class="cardheader"
-                         style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
+                         style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px;width:280px;">
                     </div>
                     <!-- Go into forum -->
                      <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
-                    <div class="heartbutton"><span style="background: transparent; " type="button"
-                                                   class="fa fa-sign-in fa-lg viewForum"></span></div>
+                    <!-- <div class="heartbutton"><span style="background: transparent; " type="button"
+                                                   class="fa fa-sign-in fa-lg viewForum"></span></div>-->
                     <!-- card with forum detains -->
-                    <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 240px;">
+                    <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
 
                         <div>
                             <!-- Number fo forum users -->
@@ -867,7 +868,11 @@ $(document).ready(function(){
                     </div><!-- /card-hovercard -->
                  </form>
                 </div>
-            {% endfor %}
+                    </td>
+                    {% if forloop.counter|divisibleby:3 %}
+                        </div><div class="row" style="margin-bottom: 80px;">
+                    {% endif %}
+                {% endfor %}
 
 
             </div><!--end row-->
@@ -978,23 +983,24 @@ $(document).ready(function(){
 
                                                 <div class="container">
 
-                                                    <div class="row">
+                                                    <div class="row" style="margin-bottom: 80px;">
 
                                                        {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in all_forums_list|slice:":3" %}
+                                                           <td>
                                                             <div id="{{ forum_ids }}_hideAll" class="col-sm-3" style="width:180px; margin-right:130px;">
                                                             <form action="/goForumsOpen/" method="post">
                                                             {% csrf_token %}
                                                                 <div hidden id="{{ forum_ids }}_topicsAll">{{ forum_topics }}</div>
                                                                 <!-- forum wallpaper -->
                                                                 <div class="cardheader"
-                                                                     style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px">
+                                                                     style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px; width:280px;">
                                                                 </div>
                                                                 <!-- Go into forum -->
                                                                  <div hidden id="{{ forum_ids }}_topicsAll">{{ forum_topics }}</div>
-                                                                <div class="heartbutton"><span style="background: transparent; " type="button"
-                                                                                               class="fa fa-sign-in fa-lg viewForum"></span></div>
+                                                                <!--<div class="heartbutton"><span style="background: transparent; " type="button"
+                                                                                               class="fa fa-sign-in fa-lg viewForum"></span></div> -->
                                                                 <!-- card with forum detains -->
-                                                                <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 240px;">
+                                                                <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
 
                                                                     <div>
                                                                         <!-- Number fo forum users -->
@@ -1024,6 +1030,10 @@ $(document).ready(function(){
                                                                 </div><!-- /card-hovercard -->
                                                             </form>
                                                             </div>
+                                                           </td>
+                                                            {% if forloop.counter|divisibleby:3 %}
+                                                                </div><div class="row" style="margin-bottom: 80px;">
+                                                            {% endif %}
                                                         {% endfor %}
 
 

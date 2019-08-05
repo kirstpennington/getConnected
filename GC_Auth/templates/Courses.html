@@ -904,12 +904,9 @@ $(document).ready(function(){
 
             <div id="refreshSectionFilter" class="row"><!--row two of page-->
 
-                <div class="col-md-3">
-                    <!--placeholder for space by filter-->
-                </div><!--end col-->
-
                 {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in courses_list %}
-                    <div id="{{ courses_ids }}_hide" class="col-md-3"
+                    <td>
+                        <div id="{{ courses_ids }}_hide" class="col-md-3"
                          style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
 
                         <!-- My Courses: Item 1 -->
@@ -922,9 +919,9 @@ $(document).ready(function(){
 
                             <div class="row">
 
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-lg-3 col-sm-6" style="margin-right:20px;">
                                     <div class="cardheader" style="background-image: url(
-                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
+                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
 
 {% comment %}
                                    // var isHearted = "false";
@@ -939,7 +936,7 @@ $(document).ready(function(){
 
 
 
-                                    <div class="card hovercard  ">
+                                    <div class="card hovercard  " style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
                                         <div class="avatar"><br>
                                             {% load staticfiles %}
                                             <img src='{{ course_pictures }}'/>
@@ -969,11 +966,14 @@ $(document).ready(function(){
 
 
                     </div><!--end col-->
+                    </td>
+                    {% if forloop.counter|divisibleby:3 %}
+                        </div><div class="row" style="margin-bottom: 60px;">
+                    {% endif %}
                 {% endfor %}
 
 
             </div><!--end row-->
-
         </div>
 
 
@@ -1135,57 +1135,64 @@ $(document).ready(function(){
 
                                                 <div class="container">
 
-                                                    <div class="row">
-
-                                                        {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in all_courses_list %}
-                                                            <div id="{{ courses_ids }}_hideAll" class="col-md-3"
-                                                                 style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-bottom: 14px;">
-
-                                                                <!-- My Courses: Item 1 -->
-                                                                <div hidden id="{{ courses_ids }}_uniAll">{{ course_uni }}</div>
-                                                                <div hidden id="{{ courses_ids }}_topicsAll">{{ course_topics }}</div>
-                                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                                                                      rel="stylesheet">
-
-                                                                <div class="container">
-
-                                                                    <div class="row">
-
-                                                                        <div class="col-lg-3 col-sm-6">
-                                                                            <div class="cardheader" style="background-image: url(
-                                                                                    {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px"></div>
-
-                                                                            <div class="card hovercard  ">
-                                                                                <div class="avatar"><br>
-                                                                                    {% load staticfiles %}
-                                                                                    <img src='{{ course_pictures }}'/>
-                                                                                </div>
-                                                                                <br>
-                                                                                <div class="info">
-                                                                                    <div class="title"></div>
-                                                                                    <div id="{{ courses_ids }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                                                                    </div>
-                                                                                    <!-- hidden field that stores the id of the entity  -->
-                                                                                    <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                                                                    <br><span id="{{ courses_ids }}_ratingAll"
-                                                                                              class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                                                                </div>
-
-                                                                                <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                                <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                                   href={{ course_urls }}>
-                                                                                    VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div><!-- /col-lg-3 col-sm-6 -->
-
-                                                                    </div><!-- /row -->
-                                                                </div><!-- /container -->
+                                                    <div class="row" style="margin-bottom: 60px;">
 
 
-                                                            </div><!--end col-->
-                                                        {% endfor %}
+                                                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in all_courses_list %}
+                                                                    <td>
+                                                                        <div id="{{ courses_ids }}_hideAll" class="col-md-3"
+                                                                             style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-bottom: 14px;">
+
+                                                                            <!-- My Courses: Item 1 -->
+                                                                            <div hidden id="{{ courses_ids }}_uniAll">{{ course_uni }}</div>
+                                                                            <div hidden id="{{ courses_ids }}_topicsAll">{{ course_topics }}</div>
+                                                                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                                                                                  rel="stylesheet">
+
+                                                                            <div class="container">
+
+                                                                                <div class="row">
+
+                                                                                    <div class="col-lg-3 col-sm-6">
+                                                                                        <div class="cardheader" style="background-image: url(
+                                                                                                {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
+
+                                                                                        <div class="card hovercard  " style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
+                                                                                            <div class="avatar"><br>
+                                                                                                {% load staticfiles %}
+                                                                                                <img src='{{ course_pictures }}'/>
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div class="info">
+                                                                                                <div class="title"></div>
+                                                                                                <div id="{{ courses_ids }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                                                                                </div>
+                                                                                                <!-- hidden field that stores the id of the entity  -->
+                                                                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+                                                                                                <br><span id="{{ courses_ids }}_ratingAll"
+                                                                                                          class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
+                                                                                            </div>
+
+                                                                                            <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                                                                            <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                                                               href={{ course_urls }}>
+                                                                                                VIEW COURSE <i class="fa fa-angle-double-right"></i>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div><!-- /col-lg-3 col-sm-6 -->
+
+                                                                                </div><!-- /row -->
+                                                                            </div><!-- /container -->
+                                                                        </div><!--end col-->
+                                                                    </td>
+
+                                                                    {% if forloop.counter|divisibleby:3 %}
+                                                                        </div><div class="row" style="margin-bottom: 60px;">
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                        </div>
+
                                                        <script>
                                                                // shows all blocks in the list of my courses
                                                                 function showAllAll(){
@@ -1293,20 +1300,16 @@ $(document).ready(function(){
                                                             </script>
 
 
-                                                    </div><!-- /row -->
+                                                    <!-- </div> /row -->
+
                                                 </div><!-- /container -->
 
-
-
                     </div><!--end col-->
-
-
 
                 </div><!--end row-->
 
         </div>
     </div>
-
 
     <br><br>
 
