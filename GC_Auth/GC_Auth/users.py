@@ -107,7 +107,7 @@ class user_methods:
     def getForumssList(uid):
         # get list of forum IDs that a user takes
         # code from : https://www.hackanons.com/2018/05/python-django-with-google-firebase_31.html
-        forum_ids = database.child('Users').child(uid).child('ForumVisits').shallow().get().val()
+        forum_ids = database.child('Users').child(uid).child('ForumsJoined').shallow().get().val()
         forum_id_list = []  # stores list of course ids for the user
         if forum_ids is None:
             return []
