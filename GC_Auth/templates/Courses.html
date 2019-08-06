@@ -915,10 +915,10 @@ $(document).ready(function(){
 {% endcomment %}
                                     <!--1. KIMONE: If ishearted == false implement the following div + please replace isHearted below with the actual value in the db-->
                                     {% if course_hearted == True or course_hearted == 'True' or course_hearted == 'true' %}
-                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton"><span id="{{ courses_ids }}_heart" style="background: transparent" class="fa fa-heart fa-2x heartColour"></span></div>
+                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton"><span id="{{ courses_ids }}_heart" style="background: transparent;padding-right: 30px;" class="fa fa-heart fa-2x heartColour"></span></div>
                                     <!--2. KIMONE: If ishearted == true implement the following div + please replace isHearted below with the actual value in the db-->
                                     {% else %}
-                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton"><span id="{{ courses_ids }}_heart" style="background: transparent" class="fa fa-heart fa-2x grey"></span></div>
+                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton"><span id="{{ courses_ids }}_heart" style="background: transparent;padding-right: 30px;" class="fa fa-heart fa-2x grey"></span></div>
                                     {% endif %}
 
 

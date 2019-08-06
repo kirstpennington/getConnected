@@ -687,7 +687,7 @@
 
 
             <div class="row"><!--row one of page-->
-
+<!--filter-->
                 <div class="col-md-3"><!--filter panel-->
                     <div class="container">
                         <h2 style="color: silver;"><strong>Filters </strong></h2>
@@ -752,7 +752,10 @@ $(document).ready(function(){
 
             <!--start a new row here inside the other row-->
 
-                <div class="col-md-9" style="position:absolute;left:325px;"><!--Forums-->
+                <div class="col-md-9"><!--Forums-->
+
+                <div class="row">
+                <div class="col-md-9">
                     <div class="intro-form"><!--form at the top with recommendations-->
                         <form>
                             <!--recommended course cards-->
@@ -813,76 +816,94 @@ $(document).ready(function(){
                         </form>
 
                     </div>
+                </div><!--end col-->
+
+                </div>
+
+                <div class="row" >
+<!--table-->
+<div id="refreshSectionFilter" class="row" style="margin-top: 60px;margin-bottom: 80px;"><!--row two of page--><!--move this inside the encaps row-->
 
 
-                </div><!--end col one of inside table-->
+
+
+               {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
+                   <td>
+                       <div id="{{ forum_ids }}_hide" class="col-sm-3  " style=" width: 180px; margin-right:130px;  ">
+                           <form action="/goForumsOpen/" method="post">
+                               {% csrf_token %}
+                   <!-- forum wallpaper -->
+                   <div class="cardheader"
+                        style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px;width:280px;">
+                   </div>
+                   <!-- Go into forum -->
+                    <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
+                   <!-- <div class="heartbutton"><span style="background: transparent; " type="button"
+                                                  class="fa fa-sign-in fa-lg viewForum"></span></div>-->
+                   <!-- card with forum detains -->
+                   <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
+
+                       <div>
+                           <!-- Number fo forum users -->
+                           <div style="top: 2px; margin-left: 70%">
+                               <h8><span class="label label-default"><span
+                                       class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                               <div style="height:5px;"><br></div>
+                           </div>
+
+                           <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                           </div>
+                           <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+                           <!-- forum tags -->
+                           <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
+
+
+                       </div>
+                       <!-- card line -->
+
+                       <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                       <!-- Open forum button -->
+                       <input type='hidden' class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
+
+                                                <button onclick="location.href='{% url 'forumsopen' %}'"
+                                                  style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                   <i class="fa fa-angle-double-right"></i></button>
+                   </div><!-- /card-hovercard -->
+                </form>
+                       </div>
+                   </td>
+                   {% if forloop.counter|divisibleby:3 %}
+                       </div><div class="row" style="margin-bottom: 80px;">
+                   {% endif %}
+               {% endfor %}
+
+
+
+
+
+
+                </div><!--end row-->
+                </div>
+
+
+                </div><!--end col-9 one of inside table-->
 
 
             <!--row two of inside table-->
- <div id="refreshSectionFilter" class="row" style="margin-top: 110px;margin-bottom: 80px;"><!--row two of page--><!--move this inside the encaps row-->
 
 
 
 
-                {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
-                    <td>
-                        <div id="{{ forum_ids }}_hide" class="col-sm-3  " style=" width: 180px; margin-right:130px;  ">
-                            <form action="/goForumsOpen/" method="post">
-                                {% csrf_token %}
-                    <!-- forum wallpaper -->
-                    <div class="cardheader"
-                         style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px;width:280px;">
-                    </div>
-                    <!-- Go into forum -->
-                     <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
-                    <!-- <div class="heartbutton"><span style="background: transparent; " type="button"
-                                                   class="fa fa-sign-in fa-lg viewForum"></span></div>-->
-                    <!-- card with forum detains -->
-                    <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
-
-                        <div>
-                            <!-- Number fo forum users -->
-                            <div style="top: 2px; margin-left: 70%">
-                                <h8><span class="label label-default"><span
-                                        class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
-                                <div style="height:5px;"><br></div>
-                            </div>
-
-                            <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
-                            </div>
-                            <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
-                            <!-- forum tags -->
-                            <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
-
-
-                        </div>
-                        <!-- card line -->
-
-                        <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
-                        <!-- Open forum button -->
-                        <input type='hidden' class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
-
-                                                 <button onclick="location.href='{% url 'forumsopen' %}'"
-                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
-                                                    <i class="fa fa-angle-double-right"></i></button>
-                    </div><!-- /card-hovercard -->
-                 </form>
-                        </div>
-                    </td>
-                    {% if forloop.counter|divisibleby:3 %}
-                        </div><div class="row" style="margin-bottom: 80px;">
-                    {% endif %}
-                {% endfor %}
 
 
             </div><!--end row-->
 
 
-            </div><!--end row encapsulation-->
+        </div><!--end my forums-->
 
 
 
-        </div> <!--end of myforums-->
+
 
 
         <!-- content for all Forums tab-->
