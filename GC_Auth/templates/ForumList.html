@@ -826,8 +826,8 @@ $(document).ready(function(){
 
                 {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
                     <td>
-                        <div id="{{ forum_ids }}_hide" class="col-sm-3  " style="margin-top:200px; width: 180px; margin-right:130px;  ">
-                 <form action="/goForumsOpen/" method="post">
+                        <div id="{{ forum_ids }}_hide" class="col-sm-3  " style=" width: 180px; margin-right:130px;  ">
+                            <form action="/goForumsOpen/" method="post">
                                 {% csrf_token %}
                     <!-- forum wallpaper -->
                     <div class="cardheader"
@@ -867,7 +867,7 @@ $(document).ready(function(){
                                                     <i class="fa fa-angle-double-right"></i></button>
                     </div><!-- /card-hovercard -->
                  </form>
-                </div>
+                        </div>
                     </td>
                     {% if forloop.counter|divisibleby:3 %}
                         </div><div class="row" style="margin-bottom: 80px;">

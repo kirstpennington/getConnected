@@ -889,12 +889,12 @@ $(document).ready(function(){
             <div class="row" style="padding-top: 30px;">
 
 
-                 <div id="refreshSectionFilter" class="row"><!--row two of page-->
+                 <div id="refreshSectionFilter" class="row" style="margin-bottom: 80px;"><!--row two of page-->
 
                 {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in courses_list %}
                     <td>
                         <div id="{{ courses_ids }}_hide" class="col-md-3"
-                         style="padding-top: 0px;padding-left: 0px;margin-left: -14px;">
+                         style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-right:40px;">
 
                         <!-- My Courses: Item 1 -->
                         <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
