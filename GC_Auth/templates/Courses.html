@@ -686,7 +686,7 @@
             </div>
 
 
-            <div class="row"><!--row one of page-->
+            <div class="row" ><!--row one of page-->
 
                 <div class="col-md-3"><!--filter panel-->
                     <div class="container">
@@ -819,8 +819,11 @@ $(document).ready(function(){
                     </div>
                 </div><!--end col-->
 
-                <div class="col-md-9" style="position:absolute;left:325px;"><!--courses-->
-                    <div class="intro-form"><!--form at the top with recommendations-->
+            <div class="col-md-9">
+                <div class="row">
+
+                    <div class="col-md-9" ><!--courses--><!--form at the top with recommendations-->
+                    <div class="intro-form">
                         <form>
                             <!--recommended course cards-->
                             <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span
@@ -877,32 +880,16 @@ $(document).ready(function(){
                     </div>
 
 
-                </div>
-            </div><!--end row-->
+                </div><!--recommendations-->
 
-        <script>
 
-            function Like_Unlike_Course(course_id, ishearted) {
-            var course_hearting = firebase.database().ref().child("Users/"+ '{{ this_uid }}' + "/Courses/"+ course_id);/*locating user's course*/
-                 if (ishearted == "true" || ishearted == 'True'){
 
-                         course_hearting.update({
-                            hearted: "false"
-                        });
-                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x grey";
+                </div><!--inside row 1 end-->
 
-                 }else{
-                              course_hearting.update({
-                            hearted: "true"
-                        });
-                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x heartColour";
+            <div class="row" style="padding-top: 30px;">
 
-                 }
-             }
 
-        </script>
-
-            <div id="refreshSectionFilter" class="row"><!--row two of page-->
+                 <div id="refreshSectionFilter" class="row"><!--row two of page-->
 
                 {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in courses_list %}
                     <td>
@@ -973,9 +960,48 @@ $(document).ready(function(){
                 {% endfor %}
 
 
-            </div><!--end row-->
-        </div>
 
+
+
+
+            </div>
+
+
+            </div>
+
+        <script>
+
+            function Like_Unlike_Course(course_id, ishearted) {
+            var course_hearting = firebase.database().ref().child("Users/"+ '{{ this_uid }}' + "/Courses/"+ course_id);/*locating user's course*/
+                 if (ishearted == "true" || ishearted == 'True'){
+
+                         course_hearting.update({
+                            hearted: "false"
+                        });
+                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x grey";
+
+                 }else{
+                              course_hearting.update({
+                            hearted: "true"
+                        });
+                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x heartColour";
+
+                 }
+             }
+
+        </script>
+
+
+
+
+
+
+
+
+
+ </div><!--end row encaps-->
+        </div><!--end mycourses-->
+        </div>
 
         <!-- content for all courses tab-->
         <div id="allcourses" class="tab-pane fade">
