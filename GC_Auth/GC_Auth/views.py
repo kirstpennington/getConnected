@@ -347,6 +347,7 @@ def home(request):
     return returnUserProfileCarousels(request)
 
 
+
 def forums(request):
     global the_user
     global short_forum_suggestions
@@ -356,6 +357,10 @@ def forums(request):
                                               'password': the_user.password,
                                               'suggested_forums_list': forum_methods.getForumsInfoList(
                                                short_forum_suggestions),
+                                              'my_country': the_user.country,
+                                              'n': the_user.username,
+                                              'ProfilePic': the_user.profilePic,
+                                              'bio': the_user.bio,
                                               'all_forums_list': forum_methods.getForumsInfoList(all_forums),
                                               'my_forums_ids': convertArrayToString(the_user.forumsInfoList),
                                               'all_forums_str': convertArrayToString(all_forums),
@@ -371,12 +376,18 @@ def courses(request):
                                             'suggested_courses_list': course_methods.getCoursesInfoList(the_user.uid,
                                                 short_course_suggestions),
                                             'this_uid': the_user.uid,
+                                            'my_country': the_user.country,
+                                            'n': the_user.username,
+                                            'ProfilePic': the_user.profilePic,
+                                            'bio': the_user.bio,
                                             'all_courses_list': course_methods.getCoursesInfoList(the_user.uid,
                                                 all_courses),
                                             'email': the_user.email,
                                             'password': the_user.password,
                                             'my_course_ids': convertArrayToString(the_user.coursesInfoList),
-                                            'all_courses_str': convertArrayToString(all_courses)})
+                                            'all_courses_str': convertArrayToString(all_courses)},
+
+    )
 
 
 def connections(request):
@@ -391,7 +402,9 @@ def connections(request):
                    'conn_suggestions_ids_str': convertArrayToString(short_connections_suggestions),
                    'my_country': the_user.country,
                    'n': the_user.username,
-                   'ProfilePic': the_user.profilePic})
+                   'ProfilePic': the_user.profilePic,
+                   'bio': the_user.bio
+                   })
 
 
 
@@ -416,7 +429,6 @@ def goSettings(request):
                                              'total_country_list': country_list,
                                              'this_uid': the_user.uid
                                              })
-
 
 def goBadges(request):
     # user authentication with Firebase
