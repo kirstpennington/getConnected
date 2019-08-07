@@ -1169,44 +1169,53 @@ function timeAgo(dateParam) {
 
 
 
-                var created_id =  database.push();
-                created_id.set({
+               // var created_id =  database.push();
+               // AddConnection.child(request_receiver_id).set({ /*Pushes to receiver*/
+
+                database.child(request_receiver_id).set({
                     time: message_time,
                     sender: messageFrom,
                     sender_id:request_sender_id,
                     message: actual_message,
                     receiver_id:request_receiver_id,
-                    sender_profilePic: '{{ ProfilePic }}'
+                    sender_profilePic: '{{ ProfilePic }}',
+                    post_id: request_receiver_id,
+
 
 
                 });
 
-                 /*Saving_id*/
+
+               {% comment %}  /*Saving_id*/
                 var hope = String(created_id);
                 var result = hope.substring(hope.lastIndexOf("/") + 1);
                 var save_id = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent/"+result);/*Messages*/
                 save_id.update({
                     post_id: result
-                });
+                });{% endcomment %}
+
 
                 var database_target = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived");/*Where the message is going*/
-                var created_id_target = database_target.push();
-                created_id_target.set({ /*Pushes to receiver*/
+                //var created_id_target = database_target.push();
+                database_target.child(request_sender_id).set({ /*Pushes to receiver*/
                     time: message_time,
                     sender: messageFrom,
                     sender_id:request_sender_id,
                     message: actual_message,
                     receiver_id:request_receiver_id,
-                    sender_profilePic: '{{ ProfilePic }}'
+                    sender_profilePic: '{{ ProfilePic }}',
+                    post_id: request_sender_id,
+
 
 
                 });
-                 hope = String(created_id_target);
-                 result = hope.substring(hope.lastIndexOf("/") + 1);
-                 save_id = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived/"+result);/*Messages*/
+
+                {% comment %}hope = String(created_id_target);
+                result = hope.substring(hope.lastIndexOf("/") + 1);
+                save_id = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived/" + result);/*Messages*/
                 save_id.update({
                     post_id: result
-                });
+                });{% endcomment %}
 
 
             }
@@ -1298,12 +1307,31 @@ function timeAgo(dateParam) {
      if (String(isAccept).valueOf() == String("true").valueOf()) {
          var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
 
-         AddConnection.child(sender_id).set(name);
+         //AddConnection.child(sender_id).set(name);
+         var bio;
+         var propic;
+         var country;
+         var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+         getAcceptcon.on("value", function (snapshot) {
+         bio = snapshot.val().Bio;
+         propic = snapshot.val().ProfilePic;
+         country = snapshot.val().Country;
+         });
+
+                //var created_id_target = AddConnection.push();
+                AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                    Name: name,
+                    Bio: bio,
+                    ProfilePic:propic,
+                    Country: country,
+
+                });
 
          window.alert("You are now connected with " + name);
+
+
      }
                 var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
-
                 different_name.remove();
                 //window.alert( typeof post_id );
    }

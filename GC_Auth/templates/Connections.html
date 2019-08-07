@@ -140,7 +140,7 @@
             margin: -280px 30px 0; /* Up and down control */
             border-radius: 8px;
             box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
-            height: 1500px; /* For Mandy to adjust size of pafe */
+            height: auto; /* For Mandy to adjust size of pafe */
             margin-bottom: 30px;
         }
 
@@ -176,8 +176,16 @@
         }
 
         .img-fluid { /* Profile Picture 3/3 */
-            max-width: 100%;
-            max-height: 160px;
+
+            width:150px;
+            max-width:150px;
+            min-width: 150px;
+
+            max-height: 100%;
+            min-height: 160px;
+            height: 160px;
+
+
         }
 
         .profileContainerDetails .description {
@@ -339,6 +347,8 @@
             -webkit-transform: scale(1); /* Safari 3-8 */
             transform: scale(1);
             border: 1px solid silver;
+                        z-index: 3000;
+
         }
 
 
@@ -357,6 +367,7 @@
             transform: scale(1);
             border: 1px solid silver;
             box-shadow: 5px 10px 8px #888888;
+
         }
 
         .connectionitems .cardheader {
@@ -588,7 +599,7 @@
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
-                    <ul class="dropdown-menu">
+                    <ul  class="dropdown-menu">
                         <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
                                 class="glyphicon glyphicon-cog pull-right"></span></a></li>
                         <li class="divider"></li>
@@ -811,6 +822,7 @@
                         </span>
                         <script>
 
+
                             // shows all blocks in the list of my connections
                             function showAll(){
                                 strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
@@ -882,76 +894,240 @@
 
                 }
             </script>
-                <div class="connectionitems" style="margin-left: 50px">
-                    <div class="row"><!--row one of page-->
-                        <!--connections-->
-                        {% for names, countries, pictures, bio, conn_id in connections_list %}
-                        <div id="{{ conn_id }}_hide" class="col-md-3" style="margin-top: 50px;margin-right:-10px; margin-left: 50px;">
-                        <form action="/goConnectionsOpen/" method="post">
-                                                            {% csrf_token %}
-                        <div hidden id="{{ conn_id }}_bio">{{ bio }}</div>
-                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                            <img style=" position:relative; top: -15px ; margin-left: 60px;" src="{{ pictures }} "
-                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
-
-                            <div class="card hovercard ">
-
-                                <div class="dropdownmenu" style="position: relative; left: 38%;color: #666666; ">
-
-                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
 
-                                        <!--more options menu-->
-                                        <span  class="glyphicon glyphicon-option-vertical " style="color: lightgrey;font-size:15px;"></span></a>
+                <!--************My Connections***************-->
 
-                                        <ul class="dropdown-menu" >
-                                            <li ><a style="font-size: 11px">Send Message &nbsp;<span style="font-size: 15px"
-                                                    class="fa fa-comments-o pull-right"></span></a></li>
-                                            <li class="divider"></li>
+                <div class="connectionitems" style="margin-left: 90px">
+                    <div style="" class="row">
 
-                                            <li><a style="font-size: 11px">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
-                                                    class="	glyphicon glyphicon-user"></span></a></li>
+                        <table id="MyConnectionsTable"></table>
 
-                                            <li class="divider"></li>
-
-                                            <li onclick="RemoveConnection('{{ conn_id }}', '{{ names }}')"><a style="font-size: 11px">Remove Connection&nbsp;&nbsp;<span style="font-size: 15px"
-                                                    class="	fa fa-trash"></span></a></li>
-                                        </ul>
-                                   </li>
-                           </div>
-
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div id="{{ conn_id }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        {{ names }}
-                                    </div><br>
-                                    <p style="font-size: small;color: grey" id="{{ conn_id }}_bio">{{ bio }}</p>
-                                    <p id="{{ conn_id }}_country">{{ countries }}</p>
- <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
-                                     <button onclick="location.href='{% url 'connectionsopen' %}'"
-                                               style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px"    type="submit" value="goConnectionsOpen">View Profile
-                                                <i></i>  </button><br>
+                        <!--connection card-->
+                        {% comment %}{% for names, countries, pictures, bio, conn_id in connections_list %}
+                            <div  id="{{ conn_id }}_hide" class="col-md-3"
+                                 style="margin-top: 70px; margin-left: 90px;">
+                                <form action="/goConnectionsOpen/" method="post">
+                                    {% csrf_token %}
+                                    <div hidden id="{{ conn_id }}_bio">{{ bio }}</div>
+                                    <div style="display: none;" id="conn_id">{{ conn_id }}</div>
+                                    <!-- hidden field with the user id for that connection -->
+                                    <img style=" position:relative; top: -15px ; margin-left: 60px;"
+                                         src="{{ pictures }} "
+                                         alt="Circle Image" class="img-raised rounded-circle img-fluid">
 
 
-                                </div>
+                                    <div class="card hovercard ">
+                                        <div class="dropdownmenu"
+                                             style="position: relative; left: 38%;color: #666666; ">
+                                            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                                                    data-toggle="dropdown">
+                                                <!--more options menu-->
+                                                <span class="glyphicon glyphicon-option-vertical "
+                                                      style="color: lightgrey;font-size:15px;"></span></a>
+                                                <ul  class="dropdown-menu">
+                                                    <li><a style="font-size: 11px">Send Message &nbsp;<span
+                                                            style="font-size: 15px"
+                                                            class="fa fa-comments-o pull-right"></span></a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a style="font-size: 11px">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                                            style="font-size: 15px"
+                                                            class=" glyphicon glyphicon-user"></span></a></li>
+                                                    <li class="divider"></li>
+                                                    <li onclick="RemoveConnection('one', 'two')"><a
+                                                            style="font-size: 11px">Remove Connection&nbsp;&nbsp;<span
+                                                            style="font-size: 15px"
+                                                            class=" fa fa-trash"></span></a></li>
+                                                </ul>
+                                            </li>
+                                        </div>
 
+                                        <div class="info">
+                                            <div class="title"></div>
+                                            <div id=""
+                                                 style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                                {{ names }}
+                                            </div>
+                                            <br>
+                                            <p style="font-size: small;color: grey" id="">{{ bio }}</p>
+                                            <p id="">{{ countries }}</p>
+                                            <input class="connection_id" id="connection_id" name="connection_id"
+                                                   value="{{ conn_id }}" hidden style="display: none;">
+                                            <button onclick="location.href='{% url 'connectionsopen' %}'"
+                                                    style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px"
+                                                    type="submit" value="goConnectionsOpen">View Profile
+                                                <i></i></button>
+                                            <br>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </form>
                             </div>
-                        </form>
-                        </div>
 
-                        {% endfor %}
+                        {% endfor %}{% endcomment %}
                     </div><!--endrow-->
-                </div><!--end my connections-->
+
+                </div><!-- ***************end my connections*******************-->
+
+
+<script>
+    /*This JavaScript Section is for creating a table with connection cards. The table is called MyConnectionsTable*/
+
+    var connections_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+
+    connections_fb_location.on("value",function (snapshot) {
+        var isempty = true;
+
+
+        var j = 0;
+        var result = "<table >";
+        result += "<tr>";
+
+        snapshot.forEach( function (childSnapshot) {
+            isempty = false;
+
+            //var key = childSnapshot.key;
+            //var value = childSnapshot.val();
+            var key = childSnapshot.key;
+            var child_name = childSnapshot.val().Name;
+            var child_country = childSnapshot.val().Country;
+            var child_bio = childSnapshot.val().Bio;
+            var child_propic = childSnapshot.val().ProfilePic;
+
+            result += "<td>" +  formCard(key,child_name,child_bio, child_country,child_propic)  + "</td>";
+            if ((j + 1) % 3 == 0) {
+                result += "</tr><tr>";
+            }
+            j++;
+        });
+
+             if (isempty == true){
+
+                        result = "\n" +
+                            "<div class=\"container_2\">\n" +
+                            "    <img  style=\"  height: 400px;width: 1365px; opacity: 0.2; \"\n" +
+                            "         src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
+                            "         alt=\"Snow\" style=\"width:100%;\">\n" +
+                            "    <div  class=\"centered\"><strong><h1\n" +
+                            "            style=\"font-family: 'Roboto', sans-serif; color: deeppink \">Click Explore and GetConnected\n" +
+                            "        with GetSmarter Alumni!</h1></strong></div>\n" +
+                            "</div>\n"
+
+                    }
+
+         $('#MyConnectionsTable').html(result);
+
+
+    });
+
+
+    function formCard (key, name, bio, country, profilepic) {
+
+
+
+        var card = "<div  class=\"col-md-3\"\n" +
+            "                                style=\"margin-top: 70px; margin-left: 90px;\">\n" +
+            "                                <form action=\"/goConnectionsOpen/\" method=\"post\">\n" +
+            "                                    \n" +
+            "                                    <div hidden id=\"\">"+ bio +  "</div>\n" +
+            "                                    <div style=\"display: none;\" id=\"conn_id\">"+ key+"</div>\n" +
+            "                                    <!-- hidden field with the user id for that connection -->\n" +
+            "                                    <img style=\" position:relative; top: -15px ; margin-left: 60px;\"\n" +
+            "                                         src=\" "+ profilepic +" \"\n" +
+            "                                         alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
+            "\n" +
+            "\n" +
+            "                                    <div class=\"card hovercard \">\n" +
+            "                                        <div class=\"dropdownmenu\"\n" +
+            "                                             style=\"position: relative; left: 38%;color: #666666; \">\n" +
+            "                                            <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
+            "                                                                    data-toggle=\"dropdown\">\n" +
+            "                                                <!--more options menu-->\n" +
+            "                                                <span class=\"glyphicon glyphicon-option-vertical \"\n" +
+            "                                                      style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
+            "                                                <ul   class=\"dropdown-menu\">\n" +
+            "                                                    <li><a style=\"font-size: 11px\">Send Message &nbsp;<span\n" +
+            "                                                            style=\"font-size: 15px\"\n" +
+            "                                                            class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
+            "                                                    <li class=\"divider\"></li>\n" +
+            "                                                    <li><a style=\"font-size: 11px\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span\n" +
+            "                                                            style=\"font-size: 15px\"\n" +
+            "                                                            class=\"\tglyphicon glyphicon-user\"></span></a></li>\n" +
+            "                                                    <li class=\"divider\"></li>\n" +
+            "                                                    <li onclick=\"RemoveConnection(\'"+ key +"\',\'" + name + "\')\"><a\n" +
+            "                                                            style=\"font-size: 11px\">Remove Connection&nbsp;&nbsp;<span\n" +
+            "                                                            style=\"font-size: 15px\"\n" +
+            "                                                            class=\"\tfa fa-trash\"></span></a></li>\n" +
+            "                                                </ul>\n" +
+            "                                            </li>\n" +
+            "                                        </div>\n" +
+            "\n" +
+            "                                        <div class=\"info\">\n" +
+            "                                            <div class=\"title\"></div>\n" +
+            "                                            <div id=\"\"\n" +
+            "                                                 style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
+            "                                                " + name + "\n" +
+            "                                            </div>\n" +
+            "                                            <br>\n" +
+            "                                            <p style=\"font-size: small;color: grey\" id=\"\"> " + bio +"</p>\n" +
+            "                                            <p id=\"\">" + country +"</p>\n" +
+            "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\"\n" +
+            "                                                   value=\""+ key +"\" hidden style=\"display: none;\">\n" +
+            "                                            <button onclick=\"location.href='{% url 'connectionsopen' %}'\"\n" +
+            "                                                    style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\"\n" +
+            "                                                    type=\"submit\" value=\"goConnectionsOpen\">View Profile\n" +
+            "                                                <i></i></button>\n" +
+            "                                            <br>\n" +
+            "                                        </div>\n" +
+            "                                    </div>\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "                                </form>\n" +
+            "                            </div>\n";
+
+
+
+
+        return card;
+
+    }
+
+    {% comment %}function helloCatAsync(callback) {
+
+        var connections_fb_location = firebase.database().ref().child("Users/" + "6y4rretCRGftH3avGJfVI6EQm313");
+        connections_fb_location.once('value').then(snapshot => {
+            callback(snapshot.val().Name);
+            $("div").attr("data-stored", snapshot.val().Name);
+
+
+        });
+    }{% endcomment %}
+
+
+    </script>
+
+
+
             </div>
 
 
             <!--all connections-->
             <div id="allConnections" class="tab-pane fade">
+
                 <!--search bar with icon-->
                 <div class="centraliser" style="text-align: center">
                     <div class="input-group"
                          style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                        <input id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
+                        <input  id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
                         <span onclick="searchByTermAll()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
@@ -1023,132 +1199,375 @@
                         </script>
                 </div>
 
-                   <div class="connectionitems" style="margin-left: 50px">
+                   <div class="connectionitems" style="margin-left: 90px">
+
                     <div class="row"><!--row one of page-->
+
+
+                        <table id="ExploreConnectionsTable"></table>
+
+
                         <!--connections-->
-                        {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
-                        <div id="{{ conn_id }}_hideAll" class="col-md-3" style="margin-top: 50px;margin-right:-10px;  margin-left: 50px;">
-                         <form action="/goConnectionsOpen/" method="post">
-                                                            {% csrf_token %}
-                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
-                           <img style=" position:relative; top: -15px ; margin-left: 60px" src="{{ pictures }} "
-                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                            <div hidden id="{{ conn_id }}_bioAll">{{ bio }}</div>
-                            <div class="card hovercard ">
+                       {% comment %} {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
+                            <div id="{{ conn_id }}_hideAll" class="col-md-3"
+                                 style="margin-top: 70px; margin-left: 90px;">
+                                    {% csrf_token %}
+                                    <div style="display: none;" id="conn_id">{{ conn_id }}</div>
+                                    <!-- hidden field with the user id for that connection -->
+                                    <img style=" position:relative; top: -15px ; margin-left: 60px"
+                                         src="{{ pictures }} "
+                                         alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                    <div hidden id="{{ conn_id }}_bioAll">{{ bio }}</div>
+                                    <div style="background-color: #D3D3D3" class="card hovercard ">
 
-                                  <div class="dropdownmenu" style="position: relative; left: 38%;color: #666666; ">
+                                        <div class="dropdownmenu"
+                                             style="position: relative; left: 38%;color: #666666; ">
 
-                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                                                    data-toggle="dropdown">
 
 
-                                        <!--more options menu-->
-                                        <span  class="glyphicon glyphicon-option-vertical " style="color: lightgrey;font-size:15px;"></span></a>
+                                                <!--more options menu-->
+                                                <span class="glyphicon glyphicon-option-vertical "
+                                                      style="color: lightgrey;font-size:15px;"></span></a>
 
-                                        <ul class="dropdown-menu" >
-                                            <li ><a style="font-size: 11px">Send Message &nbsp;<span style="font-size: 15px"
-                                                    class="fa fa-comments-o pull-right"></span></a></li>
-                                            <li class="divider"></li>
-                                            <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
-                                            <li><button onclick="location.href='{% url 'connectionsopen' %}'" style="color:black;background-color:white;border:none;font-size: 11px" type="submit" value="goConnectionsOpen">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
-                                                    class="	glyphicon glyphicon-user"></span></button></li>
+                                                <ul class="dropdown-menu">
+                                                    <li><a style="font-size: 11px">Send Message &nbsp;<span
+                                                            style="font-size: 15px"
+                                                            class="fa fa-comments-o pull-right"></span></a></li>
+                                                    <li class="divider"></li>
+                                                    <input class="connection_id" id="connection_id" name="connection_id"
+                                                           value="{{ conn_id }}" hidden style="display: none;">
+                                                    <li>
+                                                        <button onclick="location.href='{% url 'connectionsopen' %}'"
+                                                                style="color:black;background-color:white;border:none;font-size: 11px"
+                                                                type="submit" value="goConnectionsOpen">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                                                style="font-size: 15px"
+                                                                class=" glyphicon glyphicon-user"></span></button>
+                                                    </li>
 
-                                            {% comment %}<li class="divider"></li>
+                                                    <li class="divider"></li>
 
                                             <li id="remove_Onclick" onclick="Connect('{{ conn_id }}')"><a  style="font-size: 11px">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
-                                                  class="	fa fa-user-plus"></span></a></li>{% endcomment %}
-                                        </ul>
-                                   </li>
-                           </div>
+                                                  class="   fa fa-user-plus"></span></a></li>
+                                                </ul>
+                                            </li>
+                                        </div>
 
-
-                                <div class="info">
-                                    <div class="title"></div>
-                                    <div id="{{ conn_id }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
-                                        {{ names }}
-                                    </div><br>
-                                     <p style="font-size: small;color: grey" id="{{ conn_id }}_bio">{{ bio }}</p>
-                                    <p id="{{ conn_id }}_countryAll">{{ countries }}</p>
-                                    <button onclick="Connect('{{ conn_id }}')" style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px" class="button"><i  id="{{ conn_id }}"  class="fa fa-user-plus"></i>&nbsp;Connect<br>
-                                    </Button>
-                                </div>
+                                        <div class="info">
+                                            <div class="title"></div>
+                                            <div id="{{ conn_id }}_nameAll"
+                                                 style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                                {{ names }}
+                                            </div>
+                                            <br>
+                                            <p style="font-size: small;color: grey" id="{{ conn_id }}_bio">{{ bio }}</p>
+                                            <p id="{{ conn_id }}_countryAll">{{ countries }}</p>
+                                            <button  onclick="Connect('{{ conn_id }}')"
+                                                    style="background-color: lightgrey; width: 90px; height: 30px; font-size: small;  border-radius: 15px"
+                                                    class="button"><i id="{{ conn_id }}" class="fa fa-user-plus"></i>&nbsp;Connect<br>
+                                            </Button>
+                                        </div>
+                                    </div>
                             </div>
-                         </form>
-                        </div>
-                        {% endfor %}
+                        {% endfor %}{% endcomment %}
                     </div><!--endrow-->
                 </div><!--end my connections-->
             </div>
 
+            <script>
 
+                /*This JavaScript Section is for creating a table with connection cards. The table is called ExploreConnectionsTable*/
+
+                var explore_connections = firebase.database().ref().child("Users");
+
+                explore_connections.on("value", function (snapshot) {
+
+                    var myconnectionsArray = [];
+                    var sentrequests = [];
+
+
+                    var connections_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                    var sentrequests_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/RequestsSent");
+
+
+                    //Fetching list of User's connections
+                    connections_fb_location.on("value", function (snapshot_1) {
+                        snapshot_1.forEach(function (childSnapshot_1) {
+                            var w = childSnapshot_1.key;
+                            myconnectionsArray.push(w);
+                        });
+                    });
+
+                    //Fetching list of User's sent requests
+                    sentrequests_fb_location.on("value", function (snapshot_2) {
+                        snapshot_2.forEach(function (childSnapshot_2) {
+                            var g = childSnapshot_2.key;
+                            sentrequests.push(g);
+                        });
+                    });
+
+
+                    var j = 0;
+                    var result = "<table >";
+                    result += "<tr>";
+
+                    snapshot.forEach(function (childSnapshot) {
+
+                        var key = childSnapshot.key;
+
+                        if (myconnectionsArray.includes(key) == false) {
+
+
+                            var child_name = childSnapshot.val().Name;
+                            var child_country = childSnapshot.val().Country;
+                            var child_bio = childSnapshot.val().Bio;
+                            var child_propic = childSnapshot.val().ProfilePic;
+
+                            if (sentrequests.includes(key) == false) {
+
+                                result += "<td>" + ExploreformCard(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                            } else {
+                                result += "<td>" + ExploreformCard_dim(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                            }
+
+
+                            if ((j + 1) % 3 == 0) {
+                                result += "</tr><tr>";
+                            }
+                            j++;
+                        }
+
+                    });
+
+
+                    $('#ExploreConnectionsTable').html(result);
+
+
+                });
+
+
+                //var results = "happy";
+               // $('#ExploreConnectionsTable').append(results);
+
+
+
+
+
+function ExploreformCard(key, child_name, child_bio, child_country, child_propic) {
+
+
+    var card = "<div id=\"\" class=\"col-md-3\"  style=\"margin-top: 70px; margin-left: 90px;\">\n" +
+        "                         \n" +
+        "                                                            \n" +
+        "                            <div style=\"display: none;\" id=\"conn_id\"></div>    <!-- hidden field with the user id for that connection -->\n" +
+        "                           <img style=\" position:relative; top: -15px ; margin-left: 60px\" src=\""+ child_propic+" \"\n" +
+        "                                     alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
+        "                            <div hidden id=\"\"></div>\n" +
+        "                            <div class=\"card hovercard \">\n" +
+        "\n" +
+        "                                  <div class=\"dropdownmenu\" style=\"position: relative; left: 38%;color: #666666; \">\n" +
+        "\n" +
+        "                                     <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+        "\n" +
+        "\n" +
+        "                                        <!--more options menu-->\n" +
+        "                                        <span  class=\"glyphicon glyphicon-option-vertical \" style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
+        "\n" +
+        "                                        <ul class=\"dropdown-menu\" >\n" +
+        "                                            <li ><a style=\"font-size: 11px\">Send Message &nbsp;<span style=\"font-size: 15px\"\n" +
+        "                                                    class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
+        "                                            <li class=\"divider\"></li>\n" +
+        "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\" value=\""+ key+ "\" hidden style=\"display: none;\">\n" +
+        "                                            <li><button onclick=\"location.href='{% url 'connectionsopen' %}'\" style=\"color:black;background-color:white;border:none;font-size: 11px\" type=\"submit\" value=\"goConnectionsOpen\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n" +
+        "                                                    class=\"\tglyphicon glyphicon-user\"></span></button></li>\n" +
+        "\n" +
+        "                                            {% comment %}<li class=\"divider\"></li>\n"+
+"\n"+
+"                                            <li id=\"remove_Onclick\" onclick=\"Connect('{{ conn_id }}')\"><a  style=\"font-size: 11px\">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n"+
+"                                                  class=\"\tfa fa-user-plus\"></span></a></li>{% endcomment %}\n" +
+        "                                        </ul>\n" +
+        "                                   </li>\n" +
+        "                           </div>\n" +
+        "\n" +
+        "                                <div class=\"info\">\n" +
+        "                                    <div class=\"title\"></div>\n" +
+        "                                    <div id=\""+ key+"\" style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
+        "                                        "+ child_name+"\n" +
+        "                                    </div><br>\n" +
+        "                                     <p style=\"font-size: small;color: grey\" id=\""+ key+"\">"+child_bio+"</p>\n" +
+        "                                    <p id=\""+ key+"\">"+ child_country+"</p>\n" +
+        "                                    <button onclick=\"Connect(\'"+ key + "\')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\""+key+"\"  class=\"fa fa-user-plus\"></i>&nbsp;Connect<br>\n" +
+        "                                    </button>\n" +
+        "                                </div>\n" +
+        "                            </div>\n" +
+        "                         \n" +
+        "                        </div>" ;
+
+
+
+    return card;
+
+}
+
+function ExploreformCard_dim(key, child_name, child_bio, child_country, child_propic) {
+
+     var card = "<div id=\"\" class=\"col-md-3\"  style=\"margin-top: 70px; margin-left: 90px;\">\n" +
+        "                         \n" +
+        "                                                            \n" +
+        "                            <div style=\"display: none;\" id=\"conn_id\"></div>    <!-- hidden field with the user id for that connection -->\n" +
+        "                           <img style=\" position:relative; opacity: 0.1; top: -15px ; margin-left: 60px\" src=\""+ child_propic+" \"\n" +
+        "                                     alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
+        "                            <div hidden id=\"\"></div>\n" +
+        "                            <div style=\"background-color: lightgrey;\"  class=\"card hovercard \">\n" +
+        "\n" +
+        "                                  <div class=\"dropdownmenu\" style=\"position: relative; left: 38%;color: #666666; \">\n" +
+        "\n" +
+        "                                     <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+        "\n" +
+        "\n" +
+        "                                        <!--more options menu-->\n" +
+        "                                        <span  class=\"glyphicon glyphicon-option-vertical \" style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
+        "\n" +
+        "                                        <ul class=\"dropdown-menu\" >\n" +
+        "                                            <li ><a style=\"font-size: 11px\">Send Message &nbsp;<span style=\"font-size: 15px\"\n" +
+        "                                                    class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
+        "                                            <li class=\"divider\"></li>\n" +
+        "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\" value=\""+ key+ "\" hidden style=\"display: none;\">\n" +
+        "                                            <li><button onclick=\"location.href='{% url 'connectionsopen' %}'\" style=\"color:black;background-color:white;border:none;font-size: 11px\" type=\"submit\" value=\"goConnectionsOpen\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n" +
+        "                                                    class=\"\tglyphicon glyphicon-user\"></span></button></li>\n" +
+        "\n" +
+        "                                            {% comment %}<li class=\"divider\"></li>\n"+
+"\n"+
+"                                            <li id=\"remove_Onclick\" onclick=\"Connect('{{ conn_id }}')\"><a  style=\"font-size: 11px\">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n"+
+"                                                  class=\"\tfa fa-user-plus\"></span></a></li>{% endcomment %}\n" +
+        "                                        </ul>\n" +
+        "                                   </li>\n" +
+        "                           </div>\n" +
+        "\n" +
+        "                                <div class=\"info\">\n" +
+        "                                    <div class=\"title\"></div>\n" +
+        "                                    <div id=\""+ key+"\" style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
+        "                                        "+ child_name+"\n" +
+        "                                    </div><br>\n" +
+        "                                     <p style=\"font-size: small;color: grey\" id=\""+ key+"\">"+child_bio+"</p>\n" +
+        "                                    <p id=\""+ key+"\">"+ child_country+"</p>\n" +
+        "                                    <button onclick= \"Pending(\' " + key + "\',\'" + child_name+" \')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\""+key+"\"  class=\"fa fa-hourglass\"></i>&nbsp;Pending<br>\n" +
+        "                                    </button>\n" +
+        "                                </div>\n" +
+        "                            </div>\n" +
+        "                         \n" +
+        "                        </div>" ;
+
+
+
+    return card;
+
+
+}
+
+            </script>
 
 
         <script>
 
+
+             function Pending(connection_id,child_name) {
+
+
+
+                 var r  = confirm("Are you sure you want to unsend connection request to  " + child_name + " ?");
+
+                    if (r == true) {
+
+
+                        var removepending_User = firebase.database().ref().child("Users/" + connection_id + "/RequestsReceived" );/*Messages*/
+                        var removepending_Personal = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsSent");/*Messages*/
+                        removepending_User.child('{{this_uid}}').remove();
+                        removepending_Personal.child(connection_id).remove();
+
+
+                    } else {
+
+                    }
+            }
+
+
             function Connect(connection_id) {
-
-
-
-                document.getElementById(connection_id).className = "fa fa-hourglass";
-
 
 
                 var date_for_post = Date.now();
 
 
-                writeUserData(date_for_post, "{{ n }}",'{{this_uid}}', "Connection Request", connection_id);
-                date_for_post;
-                "Connection Request";
-                "{{ n }}";
-                '{{ this_uid }}';
-                connection_id;
 
+                writeUserData(date_for_post, "{{ n }}", '{{this_uid}}', "Connection Request", connection_id);
+
+
+
+
+                //document.getElementById(connection_id).className = "fa fa-hourglass";
+
+                //connection_id;
 
 
             }
 
              function writeUserData(message_time, messageFrom,request_sender_id, actual_message,request_receiver_id) {/*Pushes to current users*/
 
-                var database = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent");/*Current users account*/
+
+                         var database = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent");/*Current users account*/
 
 
-                 var created_id = database.push();
-                 created_id.set({
-                     time: message_time,
-                     sender: messageFrom,
-                     sender_id: request_sender_id,
-                     message: actual_message,
-                     receiver_id: request_receiver_id,
-                     sender_profilePic: '{{ ProfilePic }}'
+
+               // var created_id =  database.push();
+               // AddConnection.child(request_receiver_id).set({ /*Pushes to receiver*/
+
+                database.child(request_receiver_id).set({
+                    time: message_time,
+                    sender: messageFrom,
+                    sender_id:request_sender_id,
+                    message: actual_message,
+                    receiver_id:request_receiver_id,
+                    sender_profilePic: '{{ ProfilePic }}',
+                    post_id: request_receiver_id,
 
 
-                 });
 
-                 /*Saving_id*/
-                 var hope = String(created_id);
-                 var result = hope.substring(hope.lastIndexOf("/") + 1);
-                 var save_id = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent/" + result);/*Messages*/
-                 save_id.update({
-                     post_id: result
-                 });
-
-                 var database_target = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived");/*Where the message is going*/
-                 var created_id_target = database_target.push();
-                 created_id_target.set({ /*Pushes to receiver*/
-                     time: message_time,
-                     sender: messageFrom,
-                     sender_id: request_sender_id,
-                     message: actual_message,
-                     receiver_id: request_receiver_id,
-                     sender_profilePic: '{{ ProfilePic }}'
+                });
 
 
-                 });
-                 hope = String(created_id_target);
-                 result = hope.substring(hope.lastIndexOf("/") + 1);
-                 save_id = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived/" + result);/*Messages*/
-                 save_id.update({
-                     post_id: result
-                 });
+               {% comment %}  /*Saving_id*/
+                var hope = String(created_id);
+                var result = hope.substring(hope.lastIndexOf("/") + 1);
+                var save_id = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent/"+result);/*Messages*/
+                save_id.update({
+                    post_id: result
+                });{% endcomment %}
+
+
+                var database_target = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived");/*Where the message is going*/
+                //var created_id_target = database_target.push();
+                database_target.child(request_sender_id).set({ /*Pushes to receiver*/
+                    time: message_time,
+                    sender: messageFrom,
+                    sender_id:request_sender_id,
+                    message: actual_message,
+                    receiver_id:request_receiver_id,
+                    sender_profilePic: '{{ ProfilePic }}',
+                    post_id: request_sender_id,
+
+
+
+                });
+
+                {% comment %}hope = String(created_id_target);
+                result = hope.substring(hope.lastIndexOf("/") + 1);
+                save_id = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived/" + result);/*Messages*/
+                save_id.update({
+                    post_id: result
+                });{% endcomment %}
+
+
 
              }
 
@@ -1158,7 +1577,7 @@
 
         </div>
 
-    </div>
+    </div>  <!--main main-raised-->
 
 
     <br><br>
@@ -1201,6 +1620,33 @@
 </div>
 
 </div>
+
+
+<style>
+
+    .background {
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a");
+        width: 1000px;
+        height: 200px;
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .container_2 {
+        position: relative;
+        text-align: center;
+        color: white;
+        margin-left: -75px;
+        top: 30px;
+    }
+</style>
+
+
 
 
 <!-- Page Footer-->
