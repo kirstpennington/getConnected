@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Courses</title>
+<title>Forums</title>
 
 <head>
 
@@ -175,9 +175,6 @@
             background-color: #ffffff;
             z-index: 1;
         }
-         .rounded-circle { /* Profile Picture 2/3 */
-            border-radius: 50% !important;
-        }
 
         .cd-filter {
             position: absolute;
@@ -323,11 +320,17 @@
         }
 
 
+        .heartbutton {
+            top: -50px;
+            left: 280px;
+            position: absolute;
+            background: transparent;
 
+        }
 
         .heartbutton {
             top: -50px;
-            left: 260px;
+            left: 280px;
             position: absolute;
             background: transparent;
 
@@ -355,6 +358,10 @@
         .well a:hover {
             text-decoration: none;
 
+        }
+
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
         }
 
     </style>
@@ -401,6 +408,47 @@
             z-index: 3;
         }
 
+          .AcceptDeclinebutton {
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: black;
+        }
+
+        .AcceptDeclinebutton:hover {
+            background-color: #e83e8c;
+            color: black;
+
+        }
+
+         .notification-item {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 4px;
+            border-width: 5px;
+            border-color: black;
+            height: 80px;
+        }
+
+         .profile_img_1 {
+            max-width: 50px;
+            min-width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+
     </style>
 
 
@@ -427,10 +475,9 @@
                         class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
                 <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
                     Connections</a></li>
-                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'" style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span class="fa fa-comments-o fa-lg"></span>
                     Forums</a></li>
-                <li><a onclick="location.href='{% url 'nav_courses' %}'"
-                       style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span
                         class="fa fa-book fa-lg"></span> Courses</a></li>
             </ul>
 
@@ -448,7 +495,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="https://picsum.photos/50/50" alt=""></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src='{{ ProfilePic }}' alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -472,76 +519,40 @@
 
             <!--1. Notifications icon + drop down-->
 
-            <ul class="nav navbar-nav navbar-right ">
-                <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
-                    <span class="glyphicon glyphicon-bell"></span> </a>
+                     <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <div id="counter_number_notifications"></div>
 
-                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
 
-                        <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
-                            <a class="content" href="#">
-                                <div class="notification-item">
-                                    <img class="profile_img"
-                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                    <h4 class="item-title">James Coden · day ago</h4>
-                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                </div>
-                            </a>
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
 
-                            <a class="content" href="#">
-                                <div class="notification-item">
-                                    <img class="profile_img"
-                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                    <h4 class="item-title">James Coden · day ago</h4>
-                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                </div>
-                            </a>
+                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
+                            <ul id="comment"></ul>
 
-                            <a class="content" href="#">
-                                <div class="notification-item">
-                                    <img class="profile_img"
-                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                    <h4 class="item-title">James Coden · day ago</h4>
-                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                </div>
-                            </a>
 
-                            <a class="content" href="#">
-                                <div class="notification-item">
-                                    <img class="profile_img"
-                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                    <h4 class="item-title">James Coden · day ago</h4>
-                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                </div>
+                            <!--      <a class="content" href="#">
+                                     <div class="notification-item">
+                                         <img class="profile_img"
+                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                         <h4 class="item-title">James Coden · day ago</h4>
+                                         <p class="item-info">Marketing 101, Video Assignment</p>
+                                     </div>
+                                 </a>-->
 
-                            </a>
-                            <a class="content" href="#">
-                                <div class="notification-item">
-                                    <img class="profile_img"
-                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                    <h4 class="item-title">James Coden · day ago</h4>
-                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                </div>
 
-                            </a>
-
-                            <a class="content" href="#">
-                                <div class="notification-item">
-                                    <img class="profile_img"
-                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                    <h4 class="item-title">James Coden · day ago</h4>
-                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                </div>
-                            </a>
                         </div><!--End of Notifications Dropdown div-->
 
                         <!--Footer of notification drop down-->
                         <li class="divider"></li>
-                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
 
                     </ul> <!--Dropdown menu Notification-->
-                </li><!--dropdown -->
+                </a></li><!--dropdown -->
             </ul> <!--nav navbar-nav navbar-right-->
 
 
@@ -624,10 +635,10 @@
 </nav><!--nav navbar-inverse-->
 
 
-<!--content of courses page start-->
+<!--content of forums page start-->
 
 
-<!--recommended courses-->
+<!--recommended forums-->
 <div class="back">
 
 
@@ -639,16 +650,16 @@
 <div class="main main-raised">
     <br>
     <ul class="nav nav-tabs" style="padding-right: 500px;padding-left: 20px;">
-        <!--the two tabs My Courses and All Courses-->
+        <!--the two tabs My Forums and All Forums-->
         <li class="active">
-            <a data-toggle="pill" href="#Mycourses">
+            <a data-toggle="pill" href="#Myforums">
                 <h2 class="text-center" style="color: silver">
-                    <strong> My Courses</strong>
+                    <strong> My Forums</strong>
                 </h2>
             </a></li>
-        <li><a data-toggle="pill" href="#allcourses">
+        <li><a data-toggle="pill" href="#allforums">
             <h2 class="text-center" style="color: silver">
-                <strong> All Courses</strong>
+                <strong> All Forums</strong>
             </h2>
         </a></li>
 
@@ -661,9 +672,9 @@
     <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
     <div class="tab-content">
 
-        <!--my courses content-->
-        <!--this is the content for "my courses" so put all the courses the user takes here-->
-        <div id="Mycourses" class="tab-pane fade in active">
+        <!--my ForumsForums content-->
+        <!--this is the content for "my Forums" so put all the Forums the user takes here-->
+        <div id="Myforums" class="tab-pane fade in active">
 
 
             <!--search bar with icon-->
@@ -680,8 +691,8 @@
             </div>
 
 
-            <div class="row" ><!--row one of page-->
-
+            <div class="row"><!--row one of page-->
+<!--filter-->
                 <div class="col-md-3"><!--filter panel-->
                     <div class="container">
                         <h2 style="color: silver;"><strong>Filters </strong></h2>
@@ -693,18 +704,17 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a  class="togger"
+                                        <a class="togSubject"
                                            style="color:#ce3298">
                                             <strong>
                                                 Subject
-
                                             </strong>
-
                                         </a>
                                     </h4>
                                 </div>
 
                                     <div class="collapseSubject" style="margin-left: 6px;">
+
                                         <p onclick="showAll()"> All </p>
                                         <p onclick="searchByTopic('Arts & Design')"> Arts & Design </p>
                                         <p onclick="searchByTopic('Business & Management')"> Business & Management</p>
@@ -726,85 +736,17 @@
 
                             </div>
 
-
-                            <!--panel-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="toggertwo"
-                                           style="color:#ce3298">
-                                            <strong>
-                                                Institution
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-
-                                    <div class="collapseUniversity" style="margin-left: 6px;">
-
-                                        <p onclick="showAll()"> All </p>
-                                        <p onclick="searchByUniversity('Cambridge CSL')">Cambridge CSL</p>
-                                        <p onclick="searchByUniversity('Harvard University<')"> Harvard University</p>
-                                        <p onclick="searchByUniversity('LSE')"> LSE</p>
-                                        <p onclick="searchByUniversity('MIT')">MIT</p>
-                                        <p onclick="searchByUniversity('Oxford Saïd')">Oxford Saïd</p>
-                                        <p onclick="searchByUniversity('Rice University')"> Rice University</p>
-                                        <p onclick="searchByUniversity('Stanford Center for Health Education')">Stanford Center for Health Education</p>
-                                        <p onclick="searchByUniversity('The University of Chicago')"> The University of Chicago</p>
-                                        <p onclick="searchByUniversity('UC Berkeley')"> UC Berkeley</p>
-                                        <p onclick="searchByUniversity('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
-                                        <p onclick="searchByUniversity('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
-                                        <p onclick="searchByUniversity('USB-ED')">USB-ED</p>
-                                        <p onclick="searchByUniversity('University of Cape Town')"> University of Cape Town</p>
-                                        <p onclick="searchByUniversity('University of Dayton')">University of Dayton</p>
-                                        <p onclick="searchByUniversity('WITS')"> WITS</p>
-                                        <p onclick="searchByUniversity('Yale SOM Executive Education')">Yale SOM Executive Education</p>
-
-                                    </div>
-
-                            </div>
-
-                            <!--panel-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><!--panel 1 heading-->
-                                        <a class="toggerThree" style="color:#ce3298">
-                                            <strong>
-                                                Recommendations
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-
-                                    <!--panel 1 content-->
-                                    <div class="collapseRecommendations" style="margin-left: 6px;">
-                                        <p onclick="showAll()"> All </p>
-                                        <p onclick="searchByRating('Highly Rated')"> Highly Rated</p>
-                                        <p onclick="searchByRating('Well Rated')"> Well Rated</p>
-                                        <p onclick="searchByRating('')"> No Rating</p>
-
-
-                                    </div>
-
-                            </div><!--end panel-->
-
-
-
                         </div><!--end of accordion-->
-<script><!--handles opening and closing filter mycourses-->
+ <script><!--handles opening and closing filter-->
 $(document).ready(function(){
-  $(".togger").click(function(){
+  $(".togSubject").click(function(){
     $(".collapseSubject").collapse('toggle');
   });
-  $(".toggertwo").click(function(){
-    $(".collapseUniversity").collapse('toggle');
-  });
-   $(".toggerThree").click(function(){
-    $(".collapseRecommendations").collapse('toggle');
-  });
+
 
 });
 </script>
+
                         <!-- <form class="  search-form" role="search">
                                  <input type="text" class="form-control" placeholder="Search" />
 
@@ -813,11 +755,13 @@ $(document).ready(function(){
                     </div>
                 </div><!--end col-->
 
-            <div class="col-md-9">
-                <div class="row">
+            <!--start a new row here inside the other row-->
 
-                    <div class="col-md-9" ><!--courses--><!--form at the top with recommendations-->
-                    <div class="intro-form">
+                <div class="col-md-9"><!--Forums-->
+
+                <div class="row">
+                <div class="col-md-9">
+                    <div class="intro-form"><!--form at the top with recommendations-->
                         <form>
                             <!--recommended course cards-->
                             <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span
@@ -832,9 +776,11 @@ $(document).ready(function(){
 
                                 <!-- Item 2-->
 
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in suggested_courses_list %}
-                                    <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
+                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in suggested_forums_list|slice:":3" %}
 
+                                <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px; ">
+                                    <form style="border:none;width: 202px;margin-top: 5px; " action="/goForumsOpen/" method="post">
+                                {% csrf_token %}
 
                                         <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
 
@@ -843,26 +789,29 @@ $(document).ready(function(){
                                                 <div style="height:2px;"><br></div>
 
                                                 <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                                    {{ course_names }}
+                                                    {{ forum_names }}
                                                 </div>
                                                 <!-- hidden field that stores the id of the entity  -->
-                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
+                                                <div id="course_id" style="display: none;"> {{ forum_ids }}</div>
 
                                                 <div style="height:2px;"><br></div>
 
                                                 <span class="badge badge-pill badge-dark"
-                                                      style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
+                                                      style="color: white; font-size: x-small;  top: 10px">{{ forum_topics }}</span><br>
                                                 <div style="height:5px;"><br></div>
 
-                                                <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
-                                                   href={{ course_urls }}>VIEW
-                                                    COURSE <i class="fa fa-angle-double-right"></i></a>
+                                                <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none; visibility: hidden;">
+
+                                                 <button onclick="location.href='{% url 'forumsopen' %}'"
+                                                   style="border: none; background: rgba(0,0,0,0);font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                    <i class="fa fa-angle-double-right"></i></button>
                                             </div><!-- inf-->
 
                                         </div><!-- RighColumnContainer-->
 
-
+                                    </form>
                                     </div> <!-- col-sm-3-->
+
                                 {% endfor %}
 
 
@@ -872,133 +821,98 @@ $(document).ready(function(){
                         </form>
 
                     </div>
+                </div><!--end col-->
 
+                </div>
 
-                </div><!--recommendations-->
-
-
-
-                </div><!--inside row 1 end-->
-
-            <div class="row" style="padding-top: 30px;">
-
-
-                 <div id="refreshSectionFilter" class="row" style="margin-bottom: 80px;"><!--row two of page-->
-
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in courses_list %}
-                    <td>
-                        <div id="{{ courses_ids }}_hide" class="col-md-3"
-                         style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-right:40px;">
-
-                        <!-- My Courses: Item 1 -->
-                        <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
-                        <div hidden id="{{ courses_ids }}_topics">{{ course_topics }}</div>
-                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                              rel="stylesheet">
-
-                        <div class="container">
-
-                            <div class="row">
-
-                                <div class="col-lg-3 col-sm-6" style="margin-right:20px;">
-                                    <div class="cardheader" style="background-image: url(
-                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
-
-{% comment %}
-                                   // var isHearted = "false";
-{% endcomment %}
-                                    <!--1. KIMONE: If ishearted == false implement the following div + please replace isHearted below with the actual value in the db-->
-                                    {% if course_hearted == True or course_hearted == 'True' or course_hearted == 'true' %}
-                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton" ><span id="{{ courses_ids }}_heart" style="background: transparent;" class="fa fa-heart fa-2x heartColour"></span></div>
-                                    <!--2. KIMONE: If ishearted == true implement the following div + please replace isHearted below with the actual value in the db-->
-                                    {% else %}
-                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton" ><span id="{{ courses_ids }}_heart" style="background: transparent;padding-right: 60px;" class="fa fa-heart fa-2x grey"></span></div>
-                                    {% endif %}
+                <div class="row" >
+<!--table-->
+<div id="refreshSectionFilter" class="row" style="margin-top: 60px;margin-bottom: 80px;"><!--row two of page--><!--move this inside the encaps row-->
 
 
 
-                                    <div class="card hovercard  " style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
-                                        <div class="avatar"><br>
-                                            {% load staticfiles %}
-                                            <img src='{{ course_pictures }}'/>
-                                        </div>
-                                        <br>
-                                        <div class="info">
-                                            <div class="title"></div>
-                                            <div id="{{ courses_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                            </div>
-                                            <!-- hidden field that stores the id of the entity  -->
-                                            <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                            <br><span id="{{ courses_ids }}_rating"
-                                                      class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                        </div>
 
-                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+               {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
+                   <td>
+                       <div id="{{ forum_ids }}_hide" class="col-sm-3  " style=" width: 180px; margin-right:130px;  ">
+                           <form action="/goForumsOpen/" method="post">
+                               {% csrf_token %}
+                   <!-- forum wallpaper -->
+                   <div class="cardheader"
+                        style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px;width:280px;">
+                   </div>
+                   <!-- Go into forum -->
+                    <div hidden id="{{ forum_ids }}_topics">{{ forum_topics }}</div>
+                   <!-- <div class="heartbutton"><span style="background: transparent; " type="button"
+                                                  class="fa fa-sign-in fa-lg viewForum"></span></div>-->
+                   <!-- card with forum detains -->
+                   <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
 
-                                        <a style="font-size: smaller; color: gray; font-weight: bold"
-                                           href={{ course_urls }}>
-                                            VIEW COURSE!<i class="fa fa-angle-double-right"></i>
-                                        </a>
-                                    </div>
-                                </div><!-- /col-lg-3 col-sm-6 -->
+                       <div>
+                           <!-- Number fo forum users -->
+                           <div style="top: 2px; margin-left: 70%">
+                               <h8><span class="label label-default"><span
+                                       class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                               <div style="height:5px;"><br></div>
+                           </div>
 
-                            </div><!-- /row -->
-                        </div><!-- /container -->
+                           <div style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                           </div>
+                           <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+                           <!-- forum tags -->
+                           <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
 
 
-                    </div><!--end col-->
-                    </td>
-                    {% if forloop.counter|divisibleby:3 %}
-                        </div><div class="row" style="margin-bottom: 60px;">
-                    {% endif %}
-                {% endfor %}
+                       </div>
+                       <!-- card line -->
+
+                       <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                       <!-- Open forum button -->
+                       <input type='hidden' class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
+
+                                                <button onclick="location.href='{% url 'forumsopen' %}'"
+                                                  style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                   <i class="fa fa-angle-double-right"></i></button>
+                   </div><!-- /card-hovercard -->
+                </form>
+                       </div>
+                   </td>
+                   {% if forloop.counter|divisibleby:3 %}
+                       </div><div class="row" style="margin-bottom: 80px;">
+                   {% endif %}
+               {% endfor %}
 
 
 
 
 
 
-            </div>
+                </div><!--end row-->
+                </div>
 
 
-            </div>
+                </div><!--end col-9 one of inside table-->
 
-        <script>
 
-            function Like_Unlike_Course(course_id, ishearted) {
-            var course_hearting = firebase.database().ref().child("Users/"+ '{{ this_uid }}' + "/Courses/"+ course_id);/*locating user's course*/
-                 if (ishearted == "true" || ishearted == 'True'){
-
-                         course_hearting.update({
-                            hearted: "false"
-                        });
-                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x grey";
-
-                 }else{
-                              course_hearting.update({
-                            hearted: "true"
-                        });
-                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x heartColour";
-
-                 }
-             }
-
-        </script>
+            <!--row two of inside table-->
 
 
 
 
 
 
+            </div><!--end row-->
+
+
+        </div><!--end my forums-->
 
 
 
- </div><!--end row encaps-->
-        </div><!--end mycourses-->
-        </div>
 
-        <!-- content for all courses tab-->
-        <div id="allcourses" class="tab-pane fade">
+
+
+        <!-- content for all Forums tab-->
+        <div id="allforums" class="tab-pane fade">
 
 
             <!--search bar with icon-->
@@ -1029,7 +943,7 @@ $(document).ready(function(){
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a class="toggeroneall"
+                                        <a class="toggerallone"
                                            style="color:#ce3298">
                                             <strong>
                                                 Subject
@@ -1038,7 +952,8 @@ $(document).ready(function(){
                                     </h4>
                                 </div>
 
-                                    <div class="collapseSubjectall" style="margin-left: 6px;">
+                                    <div class="collapseSuball" style="margin-left: 6px;">
+
                                         <p onclick="showAllAll()"> All </p>
                                         <p onclick="searchByTopicAll('Arts & Design')"> Arts & Design </p>
                                         <p onclick="searchByTopicAll('Business & Management')"> Business & Management</p>
@@ -1060,85 +975,23 @@ $(document).ready(function(){
 
                             </div>
 
-                            <!--panel-->
-                            <div class="panel panel-default">
-                               <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="toggertwoall"
-                                           style="color:#ce3298">
-                                            <strong>
-                                                Institution
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-
-                                    <div class="collapseUniversityall" style="margin-left: 6px;">
-
-                                        <p onclick="showAllAll()"> All </p>
-                                        <p onclick="searchByUniversityAll('Cambridge CSL')">Cambridge CSL</p>
-                                        <p onclick="searchByUniversityAll('Harvard University<')"> Harvard University</p>
-                                        <p onclick="searchByUniversityAll('LSE')"> LSE</p>
-                                        <p onclick="searchByUniversityAll('MIT')">MIT</p>
-                                        <p onclick="searchByUniversityAll('Oxford Saïd')">Oxford Saïd</p>
-                                        <p onclick="searchByUniversityAll('Rice University')"> Rice University</p>
-                                        <p onclick="searchByUniversityAll('Stanford Center for Health Education')">Stanford Center for Health Education</p>
-                                        <p onclick="searchByUniversityAll('The University of Chicago')"> The University of Chicago</p>
-                                        <p onclick="searchByUniversityAll('UC Berkeley')"> UC Berkeley</p>
-                                        <p onclick="searchByUniversityAll('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
-                                        <p onclick="searchByUniversityAll('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
-                                        <p onclick="searchByUniversityAll('USB-ED')">USB-ED</p>
-                                        <p onclick="searchByUniversityAll('University of Cape Town')"> University of Cape Town</p>
-                                        <p onclick="searchByUniversityAll('University of Dayton')">University of Dayton</p>
-                                        <p onclick="searchByUniversityAll('WITS')"> WITS</p>
-                                        <p onclick="searchByUniversityAll('Yale SOM Executive Education')">Yale SOM Executive Education</p>
-
-                                    </div>
-
-                            </div>
                               <div hidden id="all_courses_str">{{ all_courses_str }}</div>
 
-                            <!--panel-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><!--panel 1 heading-->
-                                        <a class="toggerthreeall" style="color:#ce3298">
-                                            <strong>
-                                                Recommendations
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                </div>
-
-                                    <!--panel 1 content-->
-                                    <div class="collapseRecommendationsall" style="margin-left: 6px;">
-                                        <p onclick="showAllAll()"> All </p>
-                                        <p onclick="searchByRatingAll('Highly Rated')"> Highly Rated</p>
-                                        <p onclick="searchByRatingAll('Well Rated')"> Well Rated</p>
-                                        <p onclick="searchByRatingAll('')"> No Rating</p>
-
-
-                                    </div>
-
-                            </div><!--end panel-->
-
+                            <div hidden id="all_forums_str">{{ all_forums_str }}</div>
 
 
                         </div><!--end of accordion-->
-                            <script><!--handles opening and closing filter allcourses-->
+
+<script><!--handles opening and closing filter ->
 $(document).ready(function(){
-  $(".toggeroneall").click(function(){
-    $(".collapseSubjectall").collapse('toggle');
+  $(".toggerallone").click(function(){
+    $(".collapseSuball").collapse('toggle');
   });
-  $(".toggertwoall").click(function(){
-    $(".collapseUniversityall").collapse('toggle');
-  });
-   $(".toggerthreeall").click(function(){
-    $(".collapseRecommendationsall").collapse('toggle');
-  });
+
 
 });
 </script>
+
                            <!-- <form class="  search-form" role="search">
                                     <input type="text" class="form-control" placeholder="Search" />
 
@@ -1146,6 +999,7 @@ $(document).ready(function(){
 
                         </div>
                         </div><!--end col-->
+
 
                     <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
 
@@ -1155,73 +1009,69 @@ $(document).ready(function(){
 
                                                 <div class="container">
 
-                                                    <div class="row" style="margin-bottom: 60px;">
+                                                    <div class="row" style="margin-bottom: 80px;">
+
+                                                       {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in all_forums_list|slice:":3" %}
+                                                           <td>
+                                                            <div id="{{ forum_ids }}_hideAll" class="col-sm-3" style="width:180px; margin-right:130px;">
+                                                            <form action="/goForumsOpen/" method="post">
+                                                            {% csrf_token %}
+                                                                <div hidden id="{{ forum_ids }}_topicsAll">{{ forum_topics }}</div>
+                                                                <!-- forum wallpaper -->
+                                                                <div class="cardheader"
+                                                                     style="background-image: url({% load staticfiles %}{{ forum_pics }}); border-radius: 8px; width:280px;">
+                                                                </div>
+                                                                <!-- Go into forum -->
+                                                                 <div hidden id="{{ forum_ids }}_topicsAll">{{ forum_topics }}</div>
+                                                                <!--<div class="heartbutton"><span style="background: transparent; " type="button"
+                                                                                               class="fa fa-sign-in fa-lg viewForum"></span></div> -->
+                                                                <!-- card with forum detains -->
+                                                                <div class="card hovercard " style="margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
+
+                                                                    <div>
+                                                                        <!-- Number fo forum users -->
+                                                                        <div style="top: 2px; margin-left: 70%">
+                                                                            <h8><span class="label label-default"><span
+                                                                                    class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                                                                            <div style="height:5px;"><br></div>
+                                                                        </div>
+
+                                                                        <div id="{{ forum_ids }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px ">{{ forum_names }}
+                                                                        </div>
+                                                                        <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+                                                                        <!-- forum tags -->
+                                                                        <span class="badge badge-pill badge-dark" style="font-size: 11px">{{ forum_topics }}</span>
 
 
-                                                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in all_courses_list %}
-                                                                    <td>
-                                                                        <div id="{{ courses_ids }}_hideAll" class="col-md-3"
-                                                                             style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-bottom: 14px;">
+                                                                    </div>
+                                                                    <!-- card line -->
 
-                                                                            <!-- My Courses: Item 1 -->
-                                                                            <div hidden id="{{ courses_ids }}_uniAll">{{ course_uni }}</div>
-                                                                            <div hidden id="{{ courses_ids }}_topicsAll">{{ course_topics }}</div>
-                                                                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                                                                                  rel="stylesheet">
+                                                                    <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                                                                    <!-- Open forum button -->
+                                                                    <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
 
-                                                                            <div class="container">
+                                                 <button onclick="location.href='{% url 'forumsopen' %}'"
+                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                    <i class="fa fa-angle-double-right"></i></button>
+                                                                </div><!-- /card-hovercard -->
+                                                            </form>
+                                                            </div>
+                                                           </td>
+                                                            {% if forloop.counter|divisibleby:3 %}
+                                                                </div><div class="row" style="margin-bottom: 80px;">
+                                                            {% endif %}
+                                                        {% endfor %}
 
-                                                                                <div class="row">
-
-                                                                                    <div class="col-lg-3 col-sm-6">
-                                                                                        <div class="cardheader" style="background-image: url(
-                                                                                                {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
-
-                                                                                        <div class="card hovercard  " style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
-                                                                                            <div class="avatar"><br>
-                                                                                                {% load staticfiles %}
-                                                                                                <img src='{{ course_pictures }}'/>
-                                                                                            </div>
-                                                                                            <br>
-                                                                                            <div class="info">
-                                                                                                <div class="title"></div>
-                                                                                                <div id="{{ courses_ids }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                                                                                </div>
-                                                                                                <!-- hidden field that stores the id of the entity  -->
-                                                                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                                                                                <br><span id="{{ courses_ids }}_ratingAll"
-                                                                                                          class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                                                                            </div>
-
-                                                                                            <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                                            <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                                               href={{ course_urls }}>
-                                                                                                VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </div><!-- /col-lg-3 col-sm-6 -->
-
-                                                                                </div><!-- /row -->
-                                                                            </div><!-- /container -->
-                                                                        </div><!--end col-->
-                                                                    </td>
-
-                                                                    {% if forloop.counter|divisibleby:3 %}
-                                                                        </div><div class="row" style="margin-bottom: 60px;">
-                                                                    {% endif %}
-                                                                {% endfor %}
-                                                        </div>
 
                                                        <script>
                                                                // shows all blocks in the list of my courses
                                                                 function showAllAll(){
-                                                                    strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                    myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+                                                                    strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                    allForumList =  strForumList.split(",");                                        // split string into array by the delimiter ","
 
                                                                     //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = false;           // show all blocks
+                                                                    for (let i = 0; i < allForumList.length; i++){
+                                                                        document.getElementById(allForumList[i] + "_hideAll").hidden = false;           // show all blocks
                                                                     }
                                                                 }
 
@@ -1229,89 +1079,43 @@ $(document).ready(function(){
                                                                 // replace list of my courses with filtered courses based on topic selected
                                                                 function searchByTopicAll(searchTopic) {
 
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
+                                                                   strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   allForumList =  strForumList.split(",");                                        // split string into array by the delimiter ","
                                                                     // hide unwanted items from view
                                                                     // hides the block that don't appear in the list
 
                                                                     //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                    for (let i = 0; i < allForumList.length; i++){
                                                                         // check if topics list for this course_id contains Finance
-                                                                        elementIdName = myCourseList[i] + "_topicsAll";
+                                                                        elementIdName = allForumList[i] + "_topicsAll";
                                                                         strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
                                                                         strTopics =  strTopics1.substring(1, strTopics1.length-1);
                                                                         courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
                                                                         if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
                                                                         }
                                                                         else{
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = true;
                                                                         }
                                                                     }
                                                                     // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
                                                                 }
-
-                                                                // replace list of my courses with filtered courses based on university selected
-                                                               function searchByUniversityAll(searchUni) {
-
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-                                                                    //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
-                                                                        // check if topics list for this course_id contains Finance
-                                                                        elementIdName = myCourseList[i] + "_uniAll";
-                                                                        courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                                                                        if (courseUniCheck == searchUni){                            // if the topic searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                                                                        }
-                                                                        else{
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
-                                                                        }
-                                                                    }
-                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-                                                                }
-
-
-                                                                // replace list of my courses with filtered courses based on rating selected
-                                                               function searchByRatingAll(searchRating) {
-
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-                                                                    //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
-                                                                        // check if topics list for this course_id contains Finance
-                                                                        elementIdName = myCourseList[i] + "_ratingAll";
-                                                                        courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                                                                        if (courseRatingCheck == searchRating){                                         // if the rating searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                                                                        }
-                                                                        else{
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
-                                                                        }
-                                                                    }
-                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
-                                                                }
-
-
 
                                                                 //  check if name contains string typed - search button
                                                                function searchByNameAll() {
                                                                    searchTerm = document.getElementById('searchNameInputAll').value;                   // get the value in the search input field
-                                                                   strCourseList = document.getElementById("all_courses_str").innerText.substr(1);    // removes first letter from string version of array
-                                                                   myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+                                                                   strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
+                                                                   allForumList =  strForumList.split(",");                                        // split string into array by the delimiter ","
 
                                                                     //  loop through course_ids
-                                                                    for (let i = 0; i < myCourseList.length; i++){
+                                                                    for (let i = 0; i < allForumList.length; i++){
                                                                         // check if topics list for this course_id contains Finance
-                                                                        courseName = document.getElementById(myCourseList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                                                        courseName = document.getElementById(allForumList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
                                                                         if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
                                                                         }
                                                                         else{
-                                                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
+                                                                            document.getElementById(allForumList[i] + "_hideAll").hidden = true;
                                                                         }
                                                                     }
                                                                     // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
@@ -1320,16 +1124,20 @@ $(document).ready(function(){
                                                             </script>
 
 
-                                                    <!-- </div> /row -->
-
+                                                    </div><!-- /row -->
                                                 </div><!-- /container -->
 
+
+
                     </div><!--end col-->
+
+
 
                 </div><!--end row-->
 
         </div>
     </div>
+
 
     <br><br>
 
@@ -1443,8 +1251,6 @@ $(document).ready(function(){
 <script>
 
 
-
-
     / Carousel Auto-Cycle
     $(document).ready(function () {
         $('.carousel').carousel({
@@ -1456,18 +1262,18 @@ $(document).ready(function(){
 
 <div hidden id="user_email">{{ email }}</div>
 <div hidden id="user_password">{{ password }}</div>
-<div hidden id="my_course_ids">{{ my_course_ids }}</div>
+<div hidden id="my_forums_ids">{{ my_forums_ids }}</div>
 
    <script>
 
        // shows all blocks in the list of my courses
         function showAll(){
-            strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-            myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+            strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+            myForumsList =  strForumsList.split(",");                                        // split string into array by the delimiter ","
 
             //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
-                document.getElementById(myCourseList[i] + "_hide").hidden = false;           // show all blocks
+            for (let i = 0; i < myForumsList.length; i++){
+                document.getElementById(myForumsList[i] + "_hide").hidden = false;           // show all blocks
             }
         }
 
@@ -1475,94 +1281,235 @@ $(document).ready(function(){
         // replace list of my courses with filtered courses based on topic selected
         function searchByTopic(searchTopic) {
 
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
+           strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+           myForumsList =  strForumsList.split(",");                                        // split string into array by the delimiter ","
 
             // hide unwanted items from view
             // hides the block that don't appear in the list
 
             //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
+            for (let i = 0; i < myForumsList.length; i++){
                 // check if topics list for this course_id contains Finance
-                elementIdName = myCourseList[i] + "_topics";
+                elementIdName = myForumsList[i] + "_topics";
                 strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
                 strTopics =  strTopics1.substring(1, strTopics1.length-1);
-                courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
+                courseTopicsList = strTopics.split(" ");                                // creates an array of the course's topics
                 if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                    document.getElementById(myForumsList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
                 }
                 else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                    document.getElementById(myForumsList[i] + "_hide").hidden = true;
                 }
             }
             // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
         }
-
-        // replace list of my courses with filtered courses based on university selected
-       function searchByUniversity(searchUni) {
-
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-            //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
-                // check if topics list for this course_id contains Finance
-                elementIdName = myCourseList[i] + "_uni";
-                courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                if (courseUniCheck == searchUni){                            // if the topic searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                }
-                else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
-                }
-            }
-            // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-        }
-
-
-        // replace list of my courses with filtered courses based on rating selected
-       function searchByRating(searchRating) {
-
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-
-            //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
-                // check if topics list for this course_id contains Finance
-                elementIdName = myCourseList[i] + "_rating";
-                courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                if (courseRatingCheck == searchRating){                                         // if the rating searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                }
-                else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
-                }
-            }
-            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
-        }
-
-
 
         //  check if name contains string typed - search button
        function searchByName() {
            searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
-           strCourseList = document.getElementById("my_course_ids").innerText.substr(1);    // removes first letter from string version of array
-           myCourseList =  strCourseList.split(",");                                        // split string into array by the delimiter ","
-           console.log("searchTerm: "+searchTerm);
+           strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+           myForumsList =  strForumsList.split(",");                                        // split string into array by the delimiter ","
             //  loop through course_ids
-            for (let i = 0; i < myCourseList.length; i++){
+            for (let i = 0; i < myForumsList.length; i++){
                 // check if topics list for this course_id contains Finance
-                courseName = document.getElementById(myCourseList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                courseName = document.getElementById(myForumsList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
                 if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
-                    document.getElementById(myCourseList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                    document.getElementById(myForumsList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
                 }
                 else{
-                    document.getElementById(myCourseList[i] + "_hide").hidden = true;
+                    document.getElementById(myForumsList[i] + "_hide").hidden = true;
                 }
             }
             // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
         }
 
     </script>
+
+ <script>
+    // Fetching the date
+             const MONTH_NAMES = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+
+            function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+                const day = date.getDate();
+                const month = MONTH_NAMES[date.getMonth()];
+                const year = date.getFullYear();
+                const hours = date.getHours();
+                let minutes = date.getMinutes();
+
+                if (minutes < 10) {
+                    // Adding leading zero to minutes
+                    minutes = `0${minutes}`;
+                }
+
+                if (prefomattedDate) {
+                    // Today at 10:20
+                    // Yesterday at 10:20
+                    return `${prefomattedDate} at ${hours}:${minutes}`;
+                }
+
+                if (hideYear) {
+                    // 10. January at 10:20
+                    return `${day}. ${month} at ${hours}:${minutes}`;
+                }
+
+                // 10. January 2017. at 10:20
+                return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+            }
+
+
+            // --- Main function
+            function timeAgo(dateParam) {
+
+                if (!dateParam) {
+                    return null;
+                }
+
+                const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+                const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+                const today = new Date();
+                const yesterday = new Date(today - DAY_IN_MS);
+                const seconds = Math.round((today - date) / 1000);
+                const minutes = Math.round(seconds / 60);
+                const isToday = today.toDateString() === date.toDateString();
+                const isYesterday = yesterday.toDateString() === date.toDateString();
+                const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+                if (seconds < 5) {
+                    return 'now';
+                } else if (seconds < 60) {
+                    return `${seconds} seconds ago`;
+                } else if (seconds < 90) {
+                    return 'about a minute ago';
+                } else if (minutes < 60) {
+                    return `${minutes} minutes ago`;
+                } else if (isToday) {
+                    return getFormattedDate(date, 'Today'); // Today at 10:20
+                } else if (isYesterday) {
+                    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+                } else if (isThisYear) {
+                    return getFormattedDate(date, false, true); // 10. January at 10:20
+                }
+
+                return getFormattedDate(date); // 10. January 2017. at 10:20
+            };
+
+    // Realtime Updates
+
+    var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+    database_counter.on('value', function (snapshot) {
+        renderCount(snapshot.val());
+        renderUI(snapshot.val());
+    })
+
+
+    function renderUI(obj) {
+                var html = '';
+                var keys = Object.keys(obj);
+                for (var i = keys.length - 1; i >= 0; i--) {
+               // for (var i = 0; i <= keys.length - 1; i++) {
+
+
+                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+                    /*Creating notification item*/
+
+                    if (obj[keys[i]].sender_profilePic != undefined) {
+
+                        var display_time = obj[keys[i]].time;
+                        display_time = Number(display_time); // cast it to a Number
+                        var ts_display = timeAgo(display_time);
+
+
+                        var decision = "true";
+                        var opp_decison = "false";
+                        html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+                            "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+
+
+                    }}
+                $('#comment').html(html);
+            }
+
+
+            function renderCount(obj) {
+                var html = '';
+                var countholder = 0;
+
+                var keys = Object.keys(obj);
+                for (var i = 0; i < keys.length; i++) {
+                    countholder++;
+                }
+                countholder--;
+                database_counter.update({'counter': countholder});
+                 /*Creating notification icon*/
+
+
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+
+
+                $('#counter_number_notifications').html(html);
+
+
+            }
+
+
+              function Accept_request(sender_id, name, post_id,isAccept){
+
+
+                  if (String(isAccept).valueOf() == String("true").valueOf()) {
+                      var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+                      var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+
+
+                      //AddConnection.child(sender_id).set(name);
+                      var bio;
+                      var propic;
+                      var country;
+                      var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+                      getAcceptcon.on("value", function (snapshot) {
+                          bio = snapshot.val().Bio;
+                          propic = snapshot.val().ProfilePic;
+                          country = snapshot.val().Country;
+                      });
+
+                      //var created_id_target = AddConnection.push();
+                      AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                          Name: name,
+                          Bio: bio,
+                          ProfilePic: propic,
+                          Country: country,
+
+                      });
+
+                      AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                          Name: '{{ n }}',
+                          Bio: '{{ bio }}',
+                          ProfilePic: '{{ ProfilePic }}',
+                          Country: '{{ my_country }}',
+
+                      });
+
+
+                      window.alert("You are now connected with " + name);
+
+
+                  }
+                  var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                  different_name.remove();
+
+                  var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+                  removesent.remove();
+              }
+
+
+
+
+
+
+</script>
 
 </body>
