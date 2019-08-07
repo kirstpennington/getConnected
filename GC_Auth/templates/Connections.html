@@ -1452,7 +1452,7 @@ function ExploreformCard_dim(key, child_name, child_bio, child_country, child_pr
         "                                    </div><br>\n" +
         "                                     <p style=\"font-size: small;color: grey\" id=\""+ key+"\">"+child_bio+"</p>\n" +
         "                                    <p id=\""+ key+"\">"+ child_country+"</p>\n" +
-        "                                    <button onclick= \"Pending(\' " + key + "\',\'" + child_name+" \')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\""+key+"\"  class=\"fa fa-hourglass\"></i>&nbsp;Pending<br>\n" +
+        "                                    <button onclick= \"Pending(\'" + key + "\',\'" + child_name +"\')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\""+key+"\"  class=\"fa fa-hourglass\"></i>&nbsp;Pending<br>\n" +
         "                                    </button>\n" +
         "                                </div>\n" +
         "                            </div>\n" +
@@ -1476,15 +1476,23 @@ function ExploreformCard_dim(key, child_name, child_bio, child_country, child_pr
 
 
 
+
                  var r  = confirm("Are you sure you want to unsend connection request to  " + child_name + " ?");
 
                     if (r == true) {
 
 
-                        var removepending_User = firebase.database().ref().child("Users/" + connection_id + "/RequestsReceived" );/*Messages*/
-                        var removepending_Personal = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsSent");/*Messages*/
-                        removepending_User.child('{{this_uid}}').remove();
-                        removepending_Personal.child(connection_id).remove();
+                        var removepending_User = firebase.database().ref().child("Users/" + connection_id + "/RequestsReceived/" + '{{this_uid}}' );/*Messages*/
+
+                        var removepending_Personal = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsSent/" +  connection_id  );/*Messages*/
+
+                        removepending_User.remove();
+
+                        removepending_Personal.remove();
+
+
+
+
 
 
                     } else {
