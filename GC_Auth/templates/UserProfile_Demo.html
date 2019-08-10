@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--*HEAD* Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!--*HEAD* 1. Title-->
+
+    <title>Forum</title>
+
+    <!--*HEAD* 2. Bootstrap & CSS Links-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script>import TimeAgo from 'javascript-time-ago'</script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- footer style -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Navigation Bar Style + Body Style -->
+
+    <style>
+        /*dropdown menu on navbar*/
+        .dropdown {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        /* specify the font for the page*/
+      body {
+          font-family: 'Roboto', sans-serif;
+
+
+      }
+
+        /*icon for bell*/
+        .glyphicon-bell {
+            font-size: 1.5rem;
+        }
+
+        .notifications {
+            min-width: 320px;
+        }
+
+        .notifications-wrapper {
+            overflow: auto;
+            max-height: 250px;
+        }
+
+        /*icon*/
+        .glyphicon-circle-arrow-right {
+            margin-left: 10px;
+        }
+
+        .item-title {
+            font-size: 1.5rem;
+            color: black;
+            padding: 0px 50px;
+        }
+
+        .notifications a.content {
+            text-decoration: none;
+            background: white;
+        }
+
+        .notification-item {
+            padding: 10px;
+            margin: 5px;
+            background: #ebebeb;
+            border-radius: 4px;
+            height: 80px;
+        }
+
+        /*icon for user profile img*/
+        .profile_img {
+            width: 25px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 3px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+        }
+
+
+
+        /*save changes button hover effects*/
+        button:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 3px 3px 3px #888888;
+        }
+
+        /*save changes button effects*/
+        button {
+
+            border-radius: 8px;
+            color: #666666;
+            background-color: white;
+            border: 2px solid grey;/*#e83e8c*/
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 12px;
+
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .closer button{
+            position: absolute; right: 7% ; top: 25%; font-size: 10px;
+
+        }
+
+        /*save changes button hover effects*/
+        .closer button:hover {
+
+
+        }
+
+    </style>
+
+    <!-- background Page format styles-->
+
+    <style>
+
+
+        .profileContainerDetails .UserWallpaper {
+            height: 380px;
+            background-position: center;
+        }
+
+        .UserWallpaper {
+            height: 100vh;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .parallax {
+            /* The image used */
+
+            /* Set a specific height */
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        .profileContainerLift {
+            margin: -280px 30px 0; /* Up and down control */
+            border-radius: 8px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+            height: auto; /* For Mandy to adjust size of pafe */
+            margin-bottom: 30px;
+        }
+
+        .profileContainer { /* Container Control */
+            background: #FFF;
+            position: relative;
+            z-index: 3;
+        }
+
+        .profileContainerDetails .profile img {
+            max-width: 160px;
+            width: 100%;
+            margin: 0 auto;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -moz-transform: translate3d(0, -50%, 0);
+            -o-transform: translate3d(0, -50%, 0);
+            -ms-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+        }
+
+        .img-raised { /* Profile Picture 1/3 */
+            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+
+        }
+
+        .avatar:hover .changeImageLabel {
+            opacity: 0.9;
+            display: inline-block;
+        }
+
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
+        .img-fluid { /* Profile Picture 3/3 */
+            max-width: 100%;
+            max-height: 160px;
+        }
+
+        .profileContainerDetails .description {
+            margin: 1.071rem auto 0;
+            max-width: 600px;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .profileContainerDetails, html {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .profileContainerDetails .gallery img {
+            width: 100%;
+            margin-bottom: 2.142rem;
+        }
+
+        .profileContainerDetails .profile .name {
+            margin-top: -80px;
+        }
+
+
+    </style>
+
+    <!-- Cards Style-->
+
+    <style>
+
+
+
+
+        /*footer logo*/
+        footer img {
+
+
+            width: 200%;
+            height: 200%;
+            text-align: left;
+
+        }
+
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+    </style>
+
+
+    <!--User profile page-->
+    <style>
+
+
+        .image-section img {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+
+        .user-image img {
+            width: 100px;
+            height: 100px;
+        }
+
+
+        .user-detail-section2 span {
+            color: #7CBBC3;
+            font-size: 20px;
+        }
+
+        .user-detail-section2 small {
+            font-size: 12px;
+            color: #D3A86A;
+        }
+
+
+        .profile-header-section1 h1 {
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        .profile-header-section1 h5 {
+            color: #0062cc;
+        }
+
+
+        .profile-tag i {
+            color: #ADADAD;
+            font-size: 20px;
+        }
+
+
+        .image-right-detail a:hover {
+            text-decoration: none;
+        }
+
+        .image-right img {
+            width: 100%;
+        }
+
+
+        .image-right-detail-section2 span {
+            color: #7F7F7F;
+        }
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+        </style>
+
+    <!--forum content styles-->
+    <style>
+
+        .forumcontent body {
+            background-color: #eeeeee;
+        }
+
+       .forumcontent .h7 {
+            font-size: 0.8rem;
+        }
+
+        .forumcontent .gedf-wrapper {
+            margin-top: 0.97rem;
+        }
+
+       @media (min-width: 992px) {
+            .forumcontent .gedf-main {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            .forumcontent .gedf-card {
+                margin-bottom: 2.77rem;
+            }
+        }
+
+        /**Reset Bootstrap*/
+        .forumcontent .dropdown-toggle::after {
+            content: none;
+            display: none;
+        }
+
+        /*style for each message posted*/
+        .messagePost{
+            border: solid lightgrey 1px;
+            border-radius: 10px;
+            padding-left: 4px;
+            padding-right: 2px;
+            padding-top: 4px;
+            box-shadow: 0 2px 2px 0 ;
+
+        }
+        /*makes the item stay*/
+        .sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0;
+        }
+
+
+    </style>
+
+</head>
+
+<body class="profileContainerDetails">
+<!--*BODY* 1. Navigation Bar-->
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
+
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span
+                        class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"
+                       style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span
+                        class="fa fa-comments-o fa-lg"></span> Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--1. Notifications icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-bell"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+
+
+            <!--2. Message icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
+
+
+<!--used to encapsulate all content items of settings page, excl footer-->
+<!--background wallpaper-->
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="profileContainer profileContainerLift"><!--1. Container for page content -->
+
+    <div class="forumcontent">
+
+        <br>
+
+        <div class="container-fluid gedf-wrapper">
+            <div class="row">
+
+
+            </div>
+            <!--information of the logged in user on LHS-->
+            <div class="col-md-3">
+                <div class="sticky">
+                    <div class="card">
+                        <!--LHS item-->
+                        <div class="card-body" style="padding-left: 10px;">
+                            <h5 class="card-title" style="color: #e83e8c;"><strong>Your Forums</strong></h5>
+                            <br>
+                            <!--styling allows for the image and text to be next to one another-->
+                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
+
+                                <form action="/goForumsOpen/" method="post">
+                                    {% csrf_token %}
+                                    <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden
+                                           style="display: none;">
+                                    <img class="rounded-circle" width="55px" height="50px" src="{{ forum_pics }}"
+                                         alt="">
+
+                                    <button onclick="location.href='{% url 'forumsopen' %}'"
+                                            style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
+                                            type="submit" value="goForumsOpen">{{ forum_names }}
+                                        <i
+                                                class="fa fa-angle-double-right"></i></button>
+                                    <div hidden id="forum_id">{{ forum_ids }}</div>
+                                </form>
+                                <br><br>
+                            {% endfor %}
+
+                            <a href="#" class="text-right" style="position: absolute; left: 50%;"> View All</a>
+                            <br>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--middle item-->
+            <div class="col-md-6 gedf-main">
+                <div class="makePost" style="border: 1px hotpink;">
+                    <div class="row"><!--table for person info-->
+                        <div class="col-sm-1">
+                            <div class="mr-2"> <!--styling allows for the image and text to be next to one another-->
+                                <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
+
+                            </div>
+
+                        </div>
+                        <div class="col-sm-11">
+                            <div class="ml-2">
+                                <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
+
+                                <!--Number of Connections and Forums-->
+                                <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: darkgray;">
+                                    Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: darkgray;">
+                                    Forums <span
+                                        class="label label-default">{{ numForums }}</span></h8>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div hidden id="this_forum_id">{{ forum_id }}</div>
+                    Title: <input id="Title_element" type="text" name="title"
+                                  style="border-radius: 3px;width: 60%;"><br><br>
+
+
+                    <div class="form-group"><!--- Make a new Post-->
+
+                        <label class="sr-only" for="message">post</label>
+                        <textarea class="form-control" id="post_msg" rows="3"
+                                  placeholder="What would you like to share?">
+
+
+                                    </textarea>
+                    </div>
+
+                    <div class="form-group" style="display: inline-block; vertical-align: top;">
+                        <!--attach file button-->
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+
+                        </div>
+                    </div>
+                    <!--post button-->
+                    <div class="buttonbot" id="btnGetMessage"
+                         style="position:absolute;left: 85%;display: inline-block;">
+                        <button type="button"><strong>Post</strong></button>
+                    </div>
+
+                    <br>
+                </div>
+                <hr style="width: 100%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px">
+                <br>
+                <!-- Post /////-->
+
+                <!--- actual Posted message block-->
+    {% comment %}            <div class="messagePost">
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
+                                        <!--styling allows for the image and text to be next to one another-->
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                                    </div>
+                                    <div class="ml-2" style="display:inline-block;">
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong><i
+                                                onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                                class="fa fa-close"></i></div>
+
+                                    </div>
+
+                                    <div class="dropdownmenu"
+                                         style="display: inline-block;position: relative; left: 60%;color: #666666; ">
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                            <!--more options menu-->
+                                            <span class="glyphicon glyphicon-option-vertical"
+                                                  style="color: lightgrey;"></span></a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a>Direct Message <span
+                                                        class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+
+                                                <li><a>Report<span
+                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"><i class="fa fa-clock-o"></i> 10 min ago</div>
+                            <!--time the message had been sent-->
+
+                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+                            <p class="card-text">
+                                This card is still a dummy, you can use this to test your designs..
+                            </p>
+                            <hr>
+                        </div>
+                        <div style="text-align: right; ">
+                            <!--styling ensures the like and comment are next to one another-->
+                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                               style="color: #e83e8c;display: inline-block;vertical-align: top;">10<span
+                                    class="glyphicon glyphicon-thumbs-up" style="color: #e83e8c; "></span>
+
+                                <a type="button" class="btn btn-comment"> <span
+                                        class="glyphicon glyphicon glyphicon-comment"
+                                        style="color: #e83e8c; "></span></a>
+
+                                <!--Dummy Drop-down for comment_please don't remove-->
+                        </div>
+
+
+                        <div class="container">
+
+                            <!--<button type="button" class="btn">Show</button>-->
+
+
+                            <div class="collapse"><!--everthing inside this div is in the collapsible element-->
+
+
+                                <a class="btn btn-close"
+                                   style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span
+                                        class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+                                <ul>
+                                    <a><img class="profile_img"
+                                            src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>Name<i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close"></i>
+                                        <p style="color: black">Marketing 101, Video Assignment</p></a>
+                                    <div>
+                                        <a id=""><textarea id="-LjHDWtigiRAkkdKO3gw"
+                                                           style="width: 35%;height: 20px;border-radius: 5px;"></textarea></a>
+                                        <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
+                                                type="button">Reply
+                                        </button>
+                                    </div>
+
+                                    <!--post button-->
+                                </ul> <!--Dropdown menu Notification-->
+                            </div>
+                        </div>
+
+
+
+
+
+    </div>
+</div>
+
+                    <br><br><!--spaces between posts-->
+
+                <!--- actual Posted message block-->
+                <div class="messagePost">
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
+                                        <!--styling allows for the image and text to be next to one another-->
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                                    </div>
+                                    <div class="ml-2" style="display:inline-block;">
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong><i
+                                                onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                                class="fa fa-close"></i></div>
+
+                                    </div>
+
+                                    <div class="dropdownmenu"
+                                         style="display: inline-block;position: relative; left: 60%;color: #666666; ">
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                            <!--more options menu-->
+                                            <span class="glyphicon glyphicon-option-vertical"
+                                                  style="color: lightgrey;"></span></a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a>Direct Message <span
+                                                        class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+
+                                                <li><a>Report<span
+                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"><i class="fa fa-clock-o"></i> 10 min ago</div>
+                            <!--time the message had been sent-->
+
+                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+                            <p class="card-text">
+                                This card is still a dummy, you can use this to test your designs..
+                            </p>
+                            <hr>
+                        </div>
+                        <div style="text-align: right; ">
+                            <!--styling ensures the like and comment are next to one another-->
+                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                               style="color: #e83e8c;display: inline-block;vertical-align: top;">10<span
+                                    class="glyphicon glyphicon-thumbs-up" style="color: #e83e8c; "></span>
+
+                                <a type="button" class="btn btn-comment"> <span
+                                        class="glyphicon glyphicon glyphicon-comment"
+                                        style="color: #e83e8c; "></span></a>
+
+                                <!--Dummy Drop-down for comment_please don't remove-->
+                        </div>
+
+
+                        <div class="container">
+
+                            <!--<button type="button" class="btn">Show</button>-->
+
+
+                            <div class="collapse"><!--everthing inside this div is in the collapsible element-->
+
+
+                                <a class="btn btn-close"
+                                   style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span
+                                        class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+                                <ul>
+                                    <a><img class="profile_img"
+                                            src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>Name<i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close"></i>
+                                        <p style="color: black">Marketing 101, Video Assignment</p></a>
+                                    <div>
+                                        <a id=""><textarea id="-LjHDWtigiRAkkdKO3gw"
+                                                           style="width: 35%;height: 20px;border-radius: 5px;"></textarea></a>
+                                        <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
+                                                type="button">Reply
+                                        </button>
+                                    </div>
+
+                                    <!--post button-->
+                                </ul> <!--Dropdown menu Notification-->
+                            </div>
+                        </div>
+
+
+
+
+
+    </div>
+</div>{% endcomment %}
+    <!-- End of Post /////-->
+                <div id="comment"></div><!--Div for posts from the database-->
+
+
+
+
+            </div>
+            <!--rhs item-->
+            <div class="col-md-3">
+                <div class="card gedf-card" >
+
+                            {% load staticfiles %}
+
+                          <img src="{{ forum_pic }}"  style="width:60%; height: 600%;position: absolute;left:15%;">
+
+                </div>
+
+                <div class="form" style="border: 1px solid grey; position: absolute; top: 360%; left: 15%;background-color: white; width: 207px;
+                height: 150px; ">
+
+                     <div style="top: 2px; margin-left: 80%">
+                                <h8><span class="label label-default"><span
+                                        class="fa fa-users"> </span>{{ num_participants }}</span></h8>
+                                <div style="height:5px;"><br></div>
+                            </div>
+
+                     <div class= "text-center" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">{{ forum_name }}
+                            </div>
+
+
+                            <!-- forum tags -->
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 20%;" >{{ forum_topics }}</span>
+                           <br>
+
+                     <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                    <p style="color: #8c8c8c; padding-left: 2px;text-align: center;">{{ forum_description }}</p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+<br>
+
+
+</div>
+
+</div>
+
+<script>
+
+    const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+
+function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+  const day = date.getDate();
+  const month = MONTH_NAMES[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  if (minutes < 10) {
+    // Adding leading zero to minutes
+    minutes = `0${ minutes }`;
+  }
+
+  if (prefomattedDate) {
+    // Today at 10:20
+    // Yesterday at 10:20
+    return `${ prefomattedDate } at ${ hours }:${ minutes }`;
+  }
+
+  if (hideYear) {
+    // 10. January at 10:20
+    return `${ day }. ${ month } at ${ hours }:${ minutes }`;
+  }
+
+  // 10. January 2017. at 10:20
+  return `${ day }. ${ month } ${ year }. at ${ hours }:${ minutes }`;
+}
+
+
+// --- Main function
+function timeAgo(dateParam) {
+
+  if (!dateParam) {
+    return null;
+  }
+
+  const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+  const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+  const today = new Date();
+  const yesterday = new Date(today - DAY_IN_MS);
+  const seconds = Math.round((today - date) / 1000);
+  const minutes = Math.round(seconds / 60);
+  const isToday = today.toDateString() === date.toDateString();
+  const isYesterday = yesterday.toDateString() === date.toDateString();
+  const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+  if (seconds < 5) {
+    return 'now';
+  } else if (seconds < 60) {
+    return `${ seconds } seconds ago`;
+  } else if (seconds < 90) {
+    return 'about a minute ago';
+  } else if (minutes < 60) {
+    return `${ minutes } minutes ago`;
+  } else if (isToday) {
+    return getFormattedDate(date, 'Today'); // Today at 10:20
+  } else if (isYesterday) {
+    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+  } else if (isThisYear) {
+    return getFormattedDate(date, false, true); // 10. January at 10:20
+  }
+
+  return getFormattedDate(date); // 10. January 2017. at 10:20
+}
+
+;
+
+</script>
+
+<script>
+
+    var database_msgs = firebase.database().ref().child("Forums/CTIB01/Messages");/*Messages*/
+
+    $('#btnGetMessage').click(function () {
+
+                /*Fetching time when items were pushed*/
+
+                var d = new Date(),
+                    minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+                    hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+                    ampm = d.getHours() >= 12 ? 'pm' : 'am',
+                    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + '' + minutes ;
+                /*dateTime = hours + ':' + minutes + ampm;*/
+
+                var post_message = document.getElementById("post_msg").value;
+                var mesaage_title = document.getElementById("Title_element").value;
+                document.getElementById("post_msg").value = "";
+                document.getElementById("Title_element").value = "";
+
+
+
+                var date_for_post = Date.now();
+
+               /*Changing items in the db*/
+                writeUserData(date_for_post, "{{this_uid}}", post_message,"0","0","{{ username }}","{{ profilePic }}",mesaage_title);
+                date_for_post;
+                post_message;
+                "{{this_uid}}";
+                "0";
+                "0";
+                "{{ username }}";
+                "{{ profilePic }}";
+                Title_element;
+            });
+
+            /*Whenever items changes (added, modified, deleted) in database, this event is called*/
+
+            database_msgs.on('value', function (snapshot) {
+
+                renderUI(snapshot.val());
+
+
+
+            });
+
+
+
+
+            /*Push time entered and Message entered from textboxes, creates entry in firebase
+            * push gives a unique key*/
+
+            function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic,Title_element) {/*Pushes to current users*/
+
+window.alert(Title_element);
+
+              var created_id =  database_msgs.push();
+              created_id.set({
+                    DateTime: message_time,
+                    sender: messageFrom,
+                    text: actual_message,
+                    likes:likes_num,
+                    comments_num:comments_num_default,
+                    sender_name: username,
+                    sender_profilePic: profilePic,
+                    title: Title_element
+
+                });
+
+
+              /*Saving_id*/
+              var hope = String(created_id);
+              var result = hope.substring(hope.lastIndexOf("/") + 1);
+              var save_id = firebase.database().ref().child("Forums/CTIB01/Messages/"+result);/*Messages*/
+                save_id.update({
+                    post_id: result
+                });
+
+            }
+
+
+
+            /*Always refreshing data being loaded*/
+            function renderUI(obj) {
+
+                var html = '';
+                var keys = Object.keys(obj);
+                for (var i = keys.length - 1; i >= 0; i--) {
+
+
+                    var display_time = obj[keys[i]].DateTime;
+                    display_time = Number(display_time); // cast it to a Number
+                    var ts_display = timeAgo(display_time);
+
+                    var commects_object = obj[keys[i]].comments;
+
+                    var profile = "";
+
+                    var database_userdetails = firebase.database().ref().child("Users/" + obj[keys[i]].sender);/*Current users account*/
+                    var username_name = "Nothing" ;
+
+                    /*Name and Picture*/
+                    database_userdetails.on("value",function(snapshot) {
+                        var username_check;
+                        username_check =  snapshot.val().Name;
+                        username_name = username_check;
+                    });
+
+{% comment %}
+                        var database_counter = firebase.database().ref().child("Forums/CTIB01/Messages/"+obj[keys[i]].post_id);
+{% endcomment %}
+                        var num = getComments_num(obj[keys[i]].post_id);
+{% comment %}
+                        database_counter.update({'comments_num': num});
+{% endcomment %}
+
+                        var num_likes = getLikes_num(obj[keys[i]].post_id);
+{% comment %}
+                        database_counter.update({'likes': num});
+{% endcomment %}
+
+
+
+                    /*Counter for comments*/
+
+
+
+                     html += "<div class= \"messagePost\"> " +
+                        " <div class=\"card gedf-card\" >" +
+                        "<div class=\"card-header\">" +
+                        " <div class=\"d-flex justify-content-between align-items-center\">" +
+                        " <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                        "                                <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\"> <!--styling allows for the image and text to be next to one another-->\n" +
+                        "                                    <img class=\"rounded-circle\" width=\"45\" src=\""+ obj[keys[i]].sender_profilePic +"\" alt=\"\">" +
+                        "</div>\n" +
+                        "                                <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
+                        "                                    <div class=\"h5 m-0\"> <strong> " + obj[keys[i]].sender_name + "</strong><i onclick=\"Delete_post(\'"+ obj[keys[i]].post_id + "\')\" class=\"fa fa-close\"></i></div>\n" +
+                        "</div>\n" +
+                        "\n" +
+                        "                        <div class=\"dropdownmenu\" style=\"display: inline-block;position: relative; left: 71%;color: #666666; \">\n" +
+                        "                                 <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                        " <!--more options menu-->\n" +
+                        "                                        <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: lightgrey;\"></span></a>\n" +
+                        "\n" +
+                        "                                        <ul class=\"dropdown-menu\" >\n" +
+                        "                                            <li><a>Direct Message <span\n" +
+                        "                                                    class=\"glyphicon glyphicon glyphicon-comment pull-right\"></span></a></li>\n" +
+                        "                                            <li class=\"divider\"></li>" +
+                        "<li><a>Report<span\n" +
+                        "                                                    class=\"\tglyphicon glyphicon-warning-sign pull-right\"></span></a></li>\n" +
+                        "                                        </ul>\n" +
+                        "                                    </li>\n" +
+                        "                            </div>\n" +
+                        "\n" +
+                        "                            </div>\n" +
+                        "                        </div>" +
+                        " </div>\n" +
+                        "                    <br>\n" +
+                        "                    <div class=\"card-body\">\n" +
+                        "                        <div style=\"font-size:100%;\" class=\"text-muted h7 mb-2\"> <i class=\"fa fa-clock-o\"></i> " + ts_display + "</div> <!--time the message had been sent-->\n" +
+                        "\n" +
+                        "                            <h5 style= \"color:#e83e8c; \"> "+ obj[keys[i]].title +"</h5>\n\n\n" +
+                        "                      <p class=\"card-text\">\n" +
+                        "                            " + obj[keys[i]].text + "\n" +
+                        "                        </p>" +
+                        " </div>\n" +
+                        "                    <div  style=\"text-align: right; \"> <!--styling ensures the like and comment are next to one another-->\n" +
+                        "                         <p onclick=\"Increase_Likes(\'"+ obj[keys[i]].post_id  +"\')\" style = \"color: #e83e8c;display: inline-block;vertical-align: top;\">" + num_likes + "<span class=\" glyphicon glyphicon-thumbs-up\" style = \"color: #e83e8c; \"></span>" +
+                        "</p> " +
+                        "                        <p style = \"color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;\">" + getComments_num(obj[keys[i]].post_id) + "<span class=\"<p> </p> glyphicon glyphicon glyphicon-comment\" style = \"color: #e83e8c; \"></span></p>\n" +
+                        "</div><ul>\n" +
+                        "\n" +
+                        "\n" +
+                        "                                 "+ Reply_list(obj[keys[i]].post_id)+ " \n" +
+                        "                                <!--Footer of notification drop down-->\n" +
+                        "                                 <div><a id=\"\"><textarea  id=\"" + obj[keys[i]].post_id + "\" placeholder=\"Reply to this message?\" ></textarea></a></div>\n" +
+                        "\n" +
+                        "                                <!--post button-->\n" +
+                        "                                    <button class=\"buttonbot2\"  onclick=\"saveComment(\'" + obj[keys[i]].post_id  + "\')\" type=\"button\" ><strong>Reply</strong></button>\n" +
+
+                        "\n" +
+                        "\n" +
+                        "                            </ul> <!--Dropdown menu Notification--></div></div> <br><br>" +
+                        "{{ ProfilePic }}";
+
+                }
+                $('#comment').html(html);
+            }
+
+
+    <!--script for shwoing and hiding comments-->
+    $(document).ready(function () {
+
+        $(".btn-comment").click(function () {
+            $(".collapse").collapse('show');
+        });
+        $(".btn-close").click(function () {
+            $(".collapse").collapse('hide');
+        });
+    });
+
+
+            <!--Dummy Drop-down for comment_please don't remove-->
+
+
+
+
+            function Increase_Likes(holder){
+
+                commentID = String(holder);
+                var like_IDs = firebase.database().ref().child("Forums/CTIB01/Messages/"+commentID +"/likes_ids");/*Messages*/
+
+                like_IDs.push().set({
+                IDs: "{{this_uid}}"
+
+            });
+
+
+    }
+
+    function Delete_comment(message_id, comment_id){
+
+
+                var like_IDs = firebase.database().ref().child("Forums/CTIB01/Messages/"+message_id +"/comments");/*Messages*/
+
+                like_IDs.child(comment_id).remove();
+
+    }
+
+   function Delete_post(post_id){
+
+                var like_IDs = firebase.database().ref().child("Forums/CTIB01/Messages");/*Messages*/
+
+                like_IDs.child(post_id).remove();
+   }
+
+
+
+
+    function saveComment(holder) {
+
+    /*Messages*/
+
+
+    commentID = String(holder);
+    var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+commentID +"/comments");/*Messages*/
+
+
+    /*Changing items in the db*/
+
+    var time_comment = Date.now();
+    var actualcomment = document.getElementById(commentID).value;
+    document.getElementById(commentID).value = "";
+
+    /*Push time entered and Message entered from textboxes, creates entry in firebase
+    * * * push gives a unique key*/
+
+
+
+  var created_id = database_msgs_comment.push();
+  created_id.set({
+                DateTime: time_comment,
+                sender: "{{this_uid}}",
+                text: actualcomment,
+                likes:"0",
+                sender_name: "{{ username }}",
+                sender_profilePic: "{{ profilePic }}"
+
+            });
+
+
+
+              /*Saving_id*/
+              var hope = String(created_id);
+              var result = hope.substring(hope.lastIndexOf("/") + 1);
+              var save_id = firebase.database().ref().child("Forums/CTIB01/Messages/"+commentID+"/comments/"+result);/*Messages*/
+
+                save_id.update({
+                    post_id: result
+                });
+
+
+
+}
+
+
+function fetch_name(sender){
+
+
+                    return test;
+}
+
+function Reply_list(holder){
+    var return_string = "";
+
+
+    comments_object = String(holder);
+
+    var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+comments_object +"/comments");/*Messages*/
+    var countholder = 0;
+
+
+
+
+            database_msgs_comment.on("value", function(snapshot) {
+                snapshot.forEach(function(child) {
+
+
+                    var txt_txt = String(child.val().text);
+                    var comment_post_id = String(child.val().post_id);
+                    var user_name = String(child.val().sender_name);
+                    var user_pic =String(child.val().sender_profilePic);
+                    return_string = return_string+ " <a><img class=\"profile_img\" src=\""+ user_pic + "\" />&nbsp " + user_name + "&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp<i onclick=\"Delete_comment(\'"+comments_object+"\',\'"+comment_post_id+"\')\" class=\"fa fa-close\"></i><br><br><p style=\"color: black\">" + txt_txt + "</p></a>\n" ;
+                    countholder++;
+
+
+                });
+            });
+
+
+
+
+
+
+            return return_string ;}
+
+
+            function getComments_num (holder){
+
+
+        comments_object = String(holder);
+        var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+comments_object +"/comments");/*Messages*/
+        var countholder = 0;
+
+            database_msgs_comment.on("value", function(snapshot) {
+                snapshot.forEach(function(child) {
+
+                    countholder++;
+
+                });
+            });
+
+
+            return countholder ;}
+
+
+               function getLikes_num (holder){
+
+
+        comments_object = String(holder);
+        var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+comments_object +"/likes_ids");/*Messages*/
+        var countholder = 0;
+
+            database_msgs_comment.on("value", function(snapshot) {
+                snapshot.forEach(function(child) {
+
+                    countholder++;
+
+                });
+            });
+
+
+            return countholder ;}
+
+
+
+
+
+
+
+</script>
+
+
+<!-- Page Footer-->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+                <div class="row"><!--table row-->
+
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock"
+                             class="image">
+                    </div>
+
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'"
+                           style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'"
+                           style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'"
+                           style="color: white"><p>Courses</p></a>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;">
+                        <!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong>
+                        </p>
+
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white">
+                            <p>What is
+                                GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'"
+                           style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Forum Help</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Connection
+                                Management</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Messaging</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>
+                            GetSmarter</p></a>
+
+
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;">
+                        <!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong>
+                            getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00
+                            - 17:00</p>
+
+
+                    </div>
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+    </div>
+</footer>
+
+
+</body>

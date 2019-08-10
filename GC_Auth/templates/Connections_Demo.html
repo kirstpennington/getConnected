@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--*HEAD* Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!--*HEAD* 1. Title-->
+
+    <title>Connections </title>
+
+    <!--*HEAD* 2. Bootstrap & CSS Links-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- footer style -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Navigation Bar Style + Body Style -->
+
+    <style>
+        /*dropdown menu on navbar*/
+        .dropdown {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        /*icon for bell*/
+        .glyphicon-bell {
+            font-size: 1.5rem;
+        }
+
+        .notifications {
+            min-width: 320px;
+        }
+
+        .notifications-wrapper {
+            overflow: auto;
+            max-height: 250px;
+        }
+
+        /*icon*/
+        .glyphicon-circle-arrow-right {
+            margin-left: 10px;
+        }
+
+        .item-title {
+            font-size: 1.5rem;
+            color: black;
+            padding: 0px 50px;
+        }
+
+        .notifications a.content {
+            text-decoration: none;
+            background: white;
+        }
+
+        .notification-item {
+            padding: 10px;
+            margin: 5px;
+            background: #ebebeb;
+            border-radius: 4px;
+            height: 80px;
+        }
+
+        /*icon for user profile img*/
+        .profile_img {
+            width: 25px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 3px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+        }
+    </style>
+
+    <!-- background Page format styles-->
+
+    <style>
+
+
+        .profileContainerDetails .UserWallpaper {
+            height: 380px;
+            background-position: center;
+        }
+
+        .UserWallpaper {
+            height: 100vh;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .parallax {
+            /* The image used */
+
+            /* Set a specific height */
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        .profileContainerLift {
+            margin: -280px 30px 0; /* Up and down control */
+            border-radius: 8px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+            height: 1500px; /* For Mandy to adjust size of pafe */
+            margin-bottom: 30px;
+        }
+
+        .profileContainer { /* Container Control */
+            background: #FFF;
+            position: relative;
+            z-index: 3;
+        }
+
+        .profileContainerDetails .profile img {
+            max-width: 160px;
+            width: 100%;
+            margin: 0 auto;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -moz-transform: translate3d(0, -50%, 0);
+            -o-transform: translate3d(0, -50%, 0);
+            -ms-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+        }
+
+        .img-raised { /* Profile Picture 1/3 */
+            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+
+        }
+
+        .avatar:hover .changeImageLabel {
+            opacity: 0.9;
+            display: inline-block;
+        }
+
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
+        .img-fluid { /* Profile Picture 3/3 */
+            max-width: 100%;
+            max-height: 160px;
+        }
+
+        .profileContainerDetails .description {
+            margin: 1.071rem auto 0;
+            max-width: 600px;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .profileContainerDetails, html {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .profileContainerDetails .gallery img {
+            width: 100%;
+            margin-bottom: 2.142rem;
+        }
+
+        .profileContainerDetails .profile .name {
+            margin-top: -80px;
+        }
+
+
+    </style>
+
+    <!-- Cards Style-->
+
+    <style>
+
+
+        .card.Ccard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+
+        /*footer logo*/
+        footer img {
+
+
+            width: 200%;
+            height: 200%;
+            text-align: left;
+
+        }
+
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+    </style>
+
+
+    <!--User profile page-->
+    <style>
+
+
+        .image-section img {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+
+        .user-image img {
+            width: 100px;
+            height: 100px;
+        }
+
+
+        .user-detail-section2 span {
+            color: #7CBBC3;
+            font-size: 20px;
+        }
+
+        .user-detail-section2 small {
+            font-size: 12px;
+            color: #D3A86A;
+        }
+
+
+        .profile-header-section1 h1 {
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        .profile-header-section1 h5 {
+            color: #0062cc;
+        }
+
+
+        .profile-tag i {
+            color: #ADADAD;
+            font-size: 20px;
+        }
+
+
+        .image-right-detail a:hover {
+            text-decoration: none;
+        }
+
+        .image-right img {
+            width: 100%;
+        }
+
+
+        .image-right-detail-section2 span {
+            color: #7F7F7F;
+        }
+
+
+    </style>
+
+
+    <style>
+
+
+        .connectionitems .card {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin: 10px 0 20px 0;
+            border-top-width: 0;
+            border-bottom-width: 2px;
+            box-sizing: border-box;
+            position: relative;
+            top: -50px;
+            margin-bottom: -50px;
+            left: 18px;
+            box-shadow: 0 4px 8px 0 silver;
+        }
+
+
+        .connectionitems .card.hovercard {
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+            border-radius: 10px;
+            width: 250px;
+            height: 170px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+
+
+        }
+
+        .connectionitems .card.hovercard:hover {
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+        }
+
+
+        .connectionitems .card.Ccard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+        .connectionitems .card.Ccard:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .connectionitems .cardheader {
+            background: url("http://lorempixel.com/850/280/nature/4/");
+            background-size: cover;
+            height: 200px;
+            width: 300px;
+            border-radius: 9px;
+            box-shadow: 0 4px 8px 0 silver;
+
+        }
+
+
+        .connectionitems .card.hovercard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+    </style>
+
+
+    <!--User profile page-->
+    <style>
+
+
+        .connectionitems .image-section img {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+
+        .connectionitems .user-image img {
+            width: 100px;
+            height: 100px;
+        }
+
+
+        .connectionitems .user-detail-section2 span {
+            color: #7CBBC3;
+            font-size: 20px;
+        }
+
+        .connectionitems .user-detail-section2 small {
+            font-size: 12px;
+            color: #D3A86A;
+        }
+
+
+        .connectionitems .profile-header-section1 h1 {
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        .connectionitems .profile-header-section1 h5 {
+            color: #0062cc;
+        }
+
+
+        .connectionitems .profile-tag i {
+            color: #ADADAD;
+            font-size: 20px;
+        }
+
+
+        .connectionitems .image-right-detail a:hover {
+            text-decoration: none;
+        }
+
+        .connectionitems .image-right img {
+            width: 100%;
+        }
+
+
+        .connectionitems .image-right-detail-section2 span {
+            color: #7F7F7F;
+        }
+
+
+    </style>
+
+
+    <style>
+
+
+    </style>
+    <style>
+
+
+        .connectionitems .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        .connectionitems button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #e83e8c;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .connectionitems a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+        .connectionitems button:hover, a:hover {
+            opacity: 0.7;
+        }
+
+
+        .connectionitems .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .connectionitems .container {
+            padding: 2px 16px;
+        }
+
+
+        .connectionitems .w3-container {
+            display: inline;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .connectionitems .carddeck {
+
+            display: inline;
+        }
+
+
+        .RequestButton {
+
+            padding: 10px 10px;
+            background-color: #FF69B4;
+            color: white;
+
+        }
+
+
+        .ConnectionImg {
+
+            margin-bottom: 3px;
+            border-radius: 3px;
+
+
+        }
+
+        .UserDescription {
+
+            text-align: center;
+        }
+
+        .ConnectionsHeading {
+            Text-align: center;
+            font-size: 50px;
+            font-color: #000000;
+        }
+
+
+    </style>
+
+
+</head>
+
+<body class="profileContainerDetails">
+<!--*BODY* 1. Navigation Bar-->
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
+
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span
+                        class="glyphicon glyphicon-home fa-lg"></span>Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"
+                       style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span
+                        class="fa fa-globe fa-lg"></span> Connections </a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>Forums</a>
+                </li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span
+                        class="fa fa-book fa-lg"></span>Courses</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ ProfilePic }}" alt=""></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--1. Notifications icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-bell"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+
+
+            <!--2. Message icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
+
+
+<!--used to encapsulate all content items of settings page, excl footer-->
+<!--background wallpaper-->
+<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="profileContainer profileContainerLift"><!--1. Container for page content -->
+
+
+    <!--tab heading-->
+    <div class="main main-raised">
+        <br>
+        <ul class="nav nav-tabs" style="padding-right: 500px;padding-left: 20px;">
+            <li class="active">
+                <a data-toggle="pill" href="#MyConnections">
+                    <h2 class="text-center" style="color: silver">
+                        <strong> My Connections</strong>
+                    </h2>
+                </a></li>
+            <li><a data-toggle="pill" href="#allConnections">
+                <h2 class="text-center" style="color: silver">
+                    <strong> Explore</strong>
+                </h2>
+            </a></li>
+
+        </ul>
+        <br>
+
+        <div id="my_country" hidden>{{ my_country }}</div>
+        <br>
+
+        <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
+        <div class="tab-content">
+            <div hidden id="my_conn_ids">{{ my_conn_ids }}</div>
+
+            <!--my connections content-->
+            <div id="MyConnections" class="tab-pane fade in active">
+
+
+                <!--search bar with icon-->
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                        <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                        <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                        </span>
+                        <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </span>
+                        <script>
+
+                            // shows all blocks in the list of my connections
+                            function showAll(){
+                                strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
+                                myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                //  loop through connection_ids
+                                for (let i = 0; i < myConnList.length; i++){
+                                    document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
+                                }
+                            }
+
+
+                            function searchByCountry(){
+                                strConnList = document.getElementById("my_conn_ids").innerText.substr(1);
+                                myConnList =  strConnList.split(",");
+                                myCountry = document.getElementById('my_country').innerText;
+
+                                //  loop through connection_ids
+                                for (let i = 0; i < myConnList.length; i++){
+                                    this_country = document.getElementById(myConnList[i] + '_country').innerText;
+                                    if (this_country == myCountry){
+                                        document.getElementById(myConnList[i] + "_hide").hidden = false;
+
+                                    }
+                                    else{
+                                        document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                    }
+                                }
+                            }
+
+                             //  check if name, coutnry or bio contains string typed - search button
+                               function searchByTerm() {
+                                   searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
+                                   console.log("searchTerm: " + searchTerm);   // debug
+                                   strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
+                                   myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++){
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                        connCountry = document.getElementById(myConnList[i] + "_country").innerText;    // check country for matching text
+                                        connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm) || connCountry.includes(searchTerm) || connBio.includes(searchTerm)){                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        }
+                                        else{
+                                            document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                        }
+                                    }
+                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                }
+                        </script>
+                    </div><!--end search bar-->
+                </div>
+                 <script>
+                function RemoveConnection(connection_id, connection_name){
+
+                    var r  = confirm("Are you sure you want to remove " + connection_name + " from your connections?");
+                    if (r == true) {
+
+                        var delete_ref = firebase.database().ref().child("Users/{{ this_uid }}/Connections");/*Messages*/
+                        delete_ref.child(connection_id).remove();
+
+                    } else {
+
+                    }
+
+
+                }
+            </script>
+                <div class="connectionitems" style="margin-left: 50px">
+                    <div class="row"><!--row one of page-->
+                        <!--connections-->
+                        {% for names, countries, pictures, bio, conn_id in connections_list %}
+                        <div id="{{ conn_id }}_hide" class="col-md-3" style="margin-top: 50px;margin-right:-10px; margin-left: 50px;">
+                        <form action="/goConnectionsOpen/" method="post">
+                                                            {% csrf_token %}
+                        <div hidden id="{{ conn_id }}_bio">{{ bio }}</div>
+                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                            <img style=" position:relative; top: -15px ; margin-left: 60px;" src="{{ pictures }} "
+                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
+
+                            <div class="card hovercard ">
+
+                                <div class="dropdownmenu" style="position: relative; left: 38%;color: #666666; ">
+
+                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                        <!--more options menu-->
+                                        <span  class="glyphicon glyphicon-option-vertical " style="color: lightgrey;font-size:15px;"></span></a>
+
+                                        <ul class="dropdown-menu" >
+                                            <li ><a style="font-size: 11px">Send Message &nbsp;<span style="font-size: 15px"
+                                                    class="fa fa-comments-o pull-right"></span></a></li>
+                                            <li class="divider"></li>
+
+                                            <li><a style="font-size: 11px">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
+                                                    class="	glyphicon glyphicon-user"></span></a></li>
+
+                                            <li class="divider"></li>
+
+                                            <li onclick="RemoveConnection('{{ conn_id }}', '{{ names }}')"><a style="font-size: 11px">Remove Connection&nbsp;&nbsp;<span style="font-size: 15px"
+                                                    class="	fa fa-trash"></span></a></li>
+                                        </ul>
+                                   </li>
+                           </div>
+
+                                <div class="info">
+                                    <div class="title"></div>
+                                    <div id="{{ conn_id }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                        {{ names }}
+                                    </div><br>
+                                    <p style="font-size: small;color: grey" id="{{ conn_id }}_bio">{{ bio }}</p>
+                                    <p id="{{ conn_id }}_country">{{ countries }}</p>
+ <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                                     <button onclick="location.href='{% url 'connectionsopen' %}'"
+                                               style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px"    type="submit" value="goConnectionsOpen">View Profile
+                                                <i></i>  </button><br>
+
+
+                                </div>
+
+                            </div>
+                        </form>
+                        </div>
+
+                        {% endfor %}
+                    </div><!--endrow-->
+                </div><!--end my connections-->
+            </div>
+
+
+            <!--all connections-->
+            <div id="allConnections" class="tab-pane fade">
+                <!--search bar with icon-->
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group"
+                         style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                        <input id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTermAll()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                        <span onclick="searchByCountryAll()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                        </span>
+                        <span onclick="showAllAll()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </span>
+                    </div><!--end search bar-->
+                    <div hidden id="conn_suggestions_ids_str">{{ conn_suggestions_ids_str }}</div>
+                        <script>
+
+                            // shows all blocks in the list of my connections
+                            function showAllAll(){
+                                strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
+                                myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++){
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
+                                }
+                            }
+
+                            function searchByCountryAll(){
+                                strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);
+                                myConnList =  strConnList.split(",");
+                                myCountry = document.getElementById('my_country').innerText;
+
+                                //  loop through connection_ids
+                                for (let i = 0; i < myConnList.length; i++){
+                                    this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
+                                    if (this_country == myCountry){
+                                        document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                    }
+                                    else{
+                                        document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                    }
+                                }
+                            }
+
+                             //  check if name, coutnry or bio contains string typed - search button
+                               function searchByTermAll() {
+                                   searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
+                                   strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
+                                   myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++){
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                        connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
+                                        connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm)){                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        }
+                                        else if (connCountry.includes(searchTerm)){
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        }
+                                        else if (connBio.includes(searchTerm)){
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        }
+                                        else{
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                        }
+                                    }
+                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                }
+                        </script>
+                </div>
+
+                   <div class="connectionitems" style="margin-left: 50px">
+                    <div class="row"><!--row one of page-->
+                        <!--connections-->
+                        {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
+                        <div id="{{ conn_id }}_hideAll" class="col-md-3" style="margin-top: 50px;margin-right:-10px;  margin-left: 50px;">
+                         <form action="/goConnectionsOpen/" method="post">
+                                                            {% csrf_token %}
+                            <div style="display: none;" id="conn_id">{{ conn_id }}</div>    <!-- hidden field with the user id for that connection -->
+                           <img style=" position:relative; top: -15px ; margin-left: 60px" src="{{ pictures }} "
+                                     alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            <div hidden id="{{ conn_id }}_bioAll">{{ bio }}</div>
+                            <div class="card hovercard ">
+
+                                  <div class="dropdownmenu" style="position: relative; left: 38%;color: #666666; ">
+
+                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                        <!--more options menu-->
+                                        <span  class="glyphicon glyphicon-option-vertical " style="color: lightgrey;font-size:15px;"></span></a>
+
+                                        <ul class="dropdown-menu" >
+                                            <li ><a style="font-size: 11px">Send Message &nbsp;<span style="font-size: 15px"
+                                                    class="fa fa-comments-o pull-right"></span></a></li>
+                                            <li class="divider"></li>
+                                            <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                                            <li><button onclick="location.href='{% url 'connectionsopen' %}'" style="color:black;background-color:white;border:none;font-size: 11px" type="submit" value="goConnectionsOpen">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
+                                                    class="	glyphicon glyphicon-user"></span></button></li>
+
+                                            {% comment %}<li class="divider"></li>
+
+                                            <li id="remove_Onclick" onclick="Connect('{{ conn_id }}')"><a  style="font-size: 11px">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
+                                                  class="	fa fa-user-plus"></span></a></li>{% endcomment %}
+                                        </ul>
+                                   </li>
+                           </div>
+
+
+                                <div class="info">
+                                    <div class="title"></div>
+                                    <div id="{{ conn_id }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">
+                                        {{ names }}
+                                    </div><br>
+                                     <p style="font-size: small;color: grey" id="{{ conn_id }}_bio">{{ bio }}</p>
+                                    <p id="{{ conn_id }}_countryAll">{{ countries }}</p>
+                                    <button onclick="Connect('{{ conn_id }}')" style="background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px" class="button"><i  id="{{ conn_id }}"  class="fa fa-user-plus"></i>&nbsp;Connect<br>
+                                    </Button>
+                                </div>
+                            </div>
+                         </form>
+                        </div>
+                        {% endfor %}
+                    </div><!--endrow-->
+                </div><!--end my connections-->
+            </div>
+
+
+
+
+        <script>
+
+            function Connect(connection_id) {
+
+
+
+                document.getElementById(connection_id).className = "fa fa-hourglass";
+
+
+
+                var date_for_post = Date.now();
+
+
+                writeUserData(date_for_post, "{{ n }}",'{{this_uid}}', "Connection Request", connection_id);
+                date_for_post;
+                "Connection Request";
+                "{{ n }}";
+                '{{ this_uid }}';
+                connection_id;
+
+
+
+            }
+
+             function writeUserData(message_time, messageFrom,request_sender_id, actual_message,request_receiver_id) {/*Pushes to current users*/
+
+                var database = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent");/*Current users account*/
+
+
+                 var created_id = database.push();
+                 created_id.set({
+                     time: message_time,
+                     sender: messageFrom,
+                     sender_id: request_sender_id,
+                     message: actual_message,
+                     receiver_id: request_receiver_id,
+                     sender_profilePic: '{{ ProfilePic }}'
+
+
+                 });
+
+                 /*Saving_id*/
+                 var hope = String(created_id);
+                 var result = hope.substring(hope.lastIndexOf("/") + 1);
+                 var save_id = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent/" + result);/*Messages*/
+                 save_id.update({
+                     post_id: result
+                 });
+
+                 var database_target = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived");/*Where the message is going*/
+                 var created_id_target = database_target.push();
+                 created_id_target.set({ /*Pushes to receiver*/
+                     time: message_time,
+                     sender: messageFrom,
+                     sender_id: request_sender_id,
+                     message: actual_message,
+                     receiver_id: request_receiver_id,
+                     sender_profilePic: '{{ ProfilePic }}'
+
+
+                 });
+                 hope = String(created_id_target);
+                 result = hope.substring(hope.lastIndexOf("/") + 1);
+                 save_id = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived/" + result);/*Messages*/
+                 save_id.update({
+                     post_id: result
+                 });
+
+             }
+
+
+            </script>
+
+
+        </div>
+
+    </div>
+
+
+    <br><br>
+
+    <!--pagination-->
+    <div class="centraliser" style="text-align: center;">
+        <nav aria-label="Page navigation example" style="display: inline-block;">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous"
+                       style="color: #e83e8c">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#"
+                                         style="color: #e83e8c">1</a></li>
+                <li class="page-item"><a class="page-link" href="#"
+                                         style="color: #e83e8c">2</a></li>
+                <li class="page-item"><a class="page-link" href="#"
+                                         style="color: #e83e8c">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next"
+                       style="color: #e83e8c">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+</div>
+
+
+<br>
+
+
+</div>
+
+</div>
+
+
+<!-- Page Footer-->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+                <div class="row"><!--table row-->
+
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock"
+                             class="image">
+                    </div>
+
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'"
+                           style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'"
+                           style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'"
+                           style="color: white"><p>Courses</p></a>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;">
+                        <!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong>
+                        </p>
+
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white">
+                            <p>What is
+                                GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'"
+                           style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Forum Help</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Connection
+                                Management</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white">
+                            <p>Messaging</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>
+                            GetSmarter</p></a>
+
+
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;">
+                        <!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong>
+                            getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00
+                            - 17:00</p>
+
+
+                    </div>
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+    </div>
+</footer>
+
+
+</body>

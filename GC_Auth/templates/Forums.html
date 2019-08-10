@@ -89,6 +89,49 @@
                text-align: left;
 
             }
+
+         .AcceptDeclinebutton {
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: black;
+        }
+
+        .AcceptDeclinebutton:hover {
+            background-color: #e83e8c;
+            color: black;
+
+        }
+
+         .notification-item {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 4px;
+            border-width: 5px;
+            border-color: black;
+            height: 80px;
+        }
+
+         .profile_img_1 {
+            max-width: 50px;
+            min-width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+
+
     </style>
 
 </head>
@@ -148,70 +191,41 @@
 
                     <!--1. Notifications icon + drop down-->
 
-                    <ul class="nav navbar-nav navbar-right ">
-                        <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
-                            <span class="glyphicon glyphicon-bell"></span> </a>
+                     <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <div id="counter_number_notifications"></div>
 
-                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
 
-                                <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
+                            <ul id="comment"></ul>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
+                            <!--      <a class="content" href="#">
+                                     <div class="notification-item">
+                                         <img class="profile_img"
+                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                         <h4 class="item-title">James Coden · day ago</h4>
+                                         <p class="item-info">Marketing 101, Video Assignment</p>
+                                     </div>
+                                 </a>-->
 
-                                    </a>
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
 
-                                    </a>
+                        </div><!--End of Notifications Dropdown div-->
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
-                                </div><!--End of Notifications Dropdown div-->
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
 
-                                <!--Footer of notification drop down-->
-                                <li class="divider"></li>
-                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
-
-                            </ul> <!--Dropdown menu Notification-->
-                        </li><!--dropdown -->
-                    </ul> <!--nav navbar-nav navbar-right-->
+                    </ul> <!--Dropdown menu Notification-->
+                </a></li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
 
 
                     <!--2. Message icon + drop down-->
@@ -375,5 +389,193 @@
     </div>
     </div>
 </footer>
+
+
+    <script>
+    // Fetching the date
+             const MONTH_NAMES = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+
+            function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+                const day = date.getDate();
+                const month = MONTH_NAMES[date.getMonth()];
+                const year = date.getFullYear();
+                const hours = date.getHours();
+                let minutes = date.getMinutes();
+
+                if (minutes < 10) {
+                    // Adding leading zero to minutes
+                    minutes = `0${minutes}`;
+                }
+
+                if (prefomattedDate) {
+                    // Today at 10:20
+                    // Yesterday at 10:20
+                    return `${prefomattedDate} at ${hours}:${minutes}`;
+                }
+
+                if (hideYear) {
+                    // 10. January at 10:20
+                    return `${day}. ${month} at ${hours}:${minutes}`;
+                }
+
+                // 10. January 2017. at 10:20
+                return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+            }
+
+
+            // --- Main function
+            function timeAgo(dateParam) {
+
+                if (!dateParam) {
+                    return null;
+                }
+
+                const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+                const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+                const today = new Date();
+                const yesterday = new Date(today - DAY_IN_MS);
+                const seconds = Math.round((today - date) / 1000);
+                const minutes = Math.round(seconds / 60);
+                const isToday = today.toDateString() === date.toDateString();
+                const isYesterday = yesterday.toDateString() === date.toDateString();
+                const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+                if (seconds < 5) {
+                    return 'now';
+                } else if (seconds < 60) {
+                    return `${seconds} seconds ago`;
+                } else if (seconds < 90) {
+                    return 'about a minute ago';
+                } else if (minutes < 60) {
+                    return `${minutes} minutes ago`;
+                } else if (isToday) {
+                    return getFormattedDate(date, 'Today'); // Today at 10:20
+                } else if (isYesterday) {
+                    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+                } else if (isThisYear) {
+                    return getFormattedDate(date, false, true); // 10. January at 10:20
+                }
+
+                return getFormattedDate(date); // 10. January 2017. at 10:20
+            };
+
+    // Realtime Updates
+
+    var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+    database_counter.on('value', function (snapshot) {
+        renderCount(snapshot.val());
+        renderUI(snapshot.val());
+    })
+
+
+    function renderUI(obj) {
+                var html = '';
+                var keys = Object.keys(obj);
+                for (var i = keys.length - 1; i >= 0; i--) {
+               // for (var i = 0; i <= keys.length - 1; i++) {
+
+
+                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+                    /*Creating notification item*/
+
+                    if (obj[keys[i]].sender_profilePic != undefined) {
+
+                        var display_time = obj[keys[i]].time;
+                        display_time = Number(display_time); // cast it to a Number
+                        var ts_display = timeAgo(display_time);
+
+
+                        var decision = "true";
+                        var opp_decison = "false";
+                        html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+                            "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+
+
+                    }}
+                $('#comment').html(html);
+            }
+
+
+            function renderCount(obj) {
+                var html = '';
+                var countholder = 0;
+
+                var keys = Object.keys(obj);
+                for (var i = 0; i < keys.length; i++) {
+                    countholder++;
+                }
+                countholder--;
+                database_counter.update({'counter': countholder});
+                 /*Creating notification icon*/
+
+
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+
+
+                $('#counter_number_notifications').html(html);
+
+
+            }
+
+
+              function Accept_request(sender_id, name, post_id,isAccept){
+
+
+                  if (String(isAccept).valueOf() == String("true").valueOf()) {
+                      var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+                      var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+
+
+                      //AddConnection.child(sender_id).set(name);
+                      var bio;
+                      var propic;
+                      var country;
+                      var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+                      getAcceptcon.on("value", function (snapshot) {
+                          bio = snapshot.val().Bio;
+                          propic = snapshot.val().ProfilePic;
+                          country = snapshot.val().Country;
+                      });
+
+                      //var created_id_target = AddConnection.push();
+                      AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                          Name: name,
+                          Bio: bio,
+                          ProfilePic: propic,
+                          Country: country,
+
+                      });
+
+                      AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                          Name: '{{ n }}',
+                          Bio: '{{ bio }}',
+                          ProfilePic: '{{ ProfilePic }}',
+                          Country: '{{ my_country }}',
+
+                      });
+
+
+                      window.alert("You are now connected with " + name);
+
+
+                  }
+                  var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                  different_name.remove();
+
+                  var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+                  removesent.remove();
+              }
+
+
+
+
+
+
+</script>
 
     </body>

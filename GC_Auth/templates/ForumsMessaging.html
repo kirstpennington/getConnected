@@ -403,239 +403,267 @@
 <body class="profileContainerDetails">
 <!--*BODY* 1. Navigation Bar-->
 
- <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
 
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>  <!--navbar-header-->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
 
-                <div class="collapse navbar-collapse" id="myNavbar" > <!--Navigation bar contents-->
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
 
-                    <!--Left-side (including search ) of navigation bar-->
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
-                        <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span> Connections</a></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'" style = "color:white;border-left: 1px solid white;border-right: 1px solid white;"><span class="fa fa-comments-o fa-lg"></span> Forums</a></li>
-                        <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a></li>
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span
+                        class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"
+                       style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span
+                        class="fa fa-comments-o fa-lg"></span> Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                     </ul>
+                </li>
+            </ul>
 
-                    <ul class="nav navbar-nav" style = "left: 80px; position: relative; width:500px; padding-top: 8px"> <!--Search Input-->
-                        <form class="  search-form" role="search">
-                            <input type="text" class="form-control" placeholder="Search" />
-                        </form>
-                    </ul>
+            <!--1. Notifications icon + drop down-->
 
-                    <!--Right-side (including help button ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-bell"></span> </a>
 
-                    <!--1. User Profile icon + drop down-->
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                    <ul class="nav navbar-nav navbar-right" >
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                        <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <ul class="dropdown-menu">
-                                <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                                <li class="divider"></li>
-                                <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                                <li class="divider"></li>
-                                <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
-                                <li class="divider"></li>
-                                <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                    <!--1. Notifications icon + drop down-->
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                    <ul class="nav navbar-nav navbar-right ">
-                        <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
-                            <span class="glyphicon glyphicon-bell"></span> </a>
+                            </a>
 
-                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                        </div><!--End of Notifications Dropdown div-->
 
-                                <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
-
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
-
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-
-                                    </a>
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-
-                                    </a>
-
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
-                                </div><!--End of Notifications Dropdown div-->
-
-                                <!--Footer of notification drop down-->
-                                <li class="divider"></li>
-                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
-
-                            </ul> <!--Dropdown menu Notification-->
-                        </li><!--dropdown -->
-                    </ul> <!--nav navbar-nav navbar-right-->
+                    </ul> <!--Dropdown menu Notification-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
 
 
-                    <!--2. Message icon + drop down-->
+            <!--2. Message icon + drop down-->
 
-                    <ul class="nav navbar-nav navbar-right ">
-                        <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
-                            <span class="glyphicon glyphicon-envelope"></span> </a>
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
 
-                            <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                                <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+                        <div class="notifications-wrapper"> <!--Messages Dropdown div-->
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                                    </a>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
-                                    </a>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />
-                                            <h4 class="item-title">James Coden · day ago</h4>
-                                            <p class="item-info">Marketing 101, Video Assignment</p>
-                                        </div>
-                                    </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                                </div><!--End of Messages Dropdown div-->
-                                <li class="divider"></li>
-                                <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
 
-                            </ul><!--Dropdown menu Messages-->
-                        </li><!--dropdown -->
-                    </ul> <!--nav navbar-nav navbar-right-->
-                </div><!--collapse nav-bar collapse-->
-            </div><!--container fluid-->
-        </nav><!--nav navbar-inverse-->
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
 
 
 <!--used to encapsulate all content items of settings page, excl footer-->
 <!--background wallpaper-->
-<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for page content -->
 
-<div class="forumcontent">
+    <div class="forumcontent">
 
-    <br>
+        <br>
 
-    <div class="container-fluid gedf-wrapper">
-        <div class="row">
+        <div class="container-fluid gedf-wrapper">
+            <div class="row">
 
 
-</div>
+            </div>
             <!--information of the logged in user on LHS-->
             <div class="col-md-3">
                 <div class="sticky">
                     <div class="card">
                         <!--LHS item-->
                         <div class="card-body" style="padding-left: 10px;">
-                            <h5 class="card-title" style="color: #e83e8c;"> <strong>Your Forums</strong></h5>
-                        <br>
-                             <!--styling allows for the image and text to be next to one another-->
+                            <h5 class="card-title" style="color: #e83e8c;"><strong>Your Forums</strong></h5>
+                            <br>
+                            <!--styling allows for the image and text to be next to one another-->
                             {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
 
                                 <form action="/goForumsOpen/" method="post">
                                     {% csrf_token %}
-                                    <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
-                                    <img class="rounded-circle" width="55px" height="50px" src="{{ forum_pics }}" alt="" >
+                                    <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden
+                                           style="display: none;">
+                                    <img class="rounded-circle" width="55px" height="50px" src="{{ forum_pics }}"
+                                         alt="">
 
                                     <button onclick="location.href='{% url 'forumsopen' %}'"
-                           style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">{{ forum_names }}
-                            <i
-                                    class="fa fa-angle-double-right"></i></button>
+                                            style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
+                                            type="submit" value="goForumsOpen">{{ forum_names }}
+                                        <i
+                                                class="fa fa-angle-double-right"></i></button>
                                     <div hidden id="forum_id">{{ forum_ids }}</div>
                                 </form>
                                 <br><br>
                             {% endfor %}
 
                             <a href="#" class="text-right" style="position: absolute; left: 50%;"> View All</a>
-                           <br>
+                            <br>
 
                         </div>
 
@@ -647,151 +675,164 @@
             <!--middle item-->
             <div class="col-md-6 gedf-main">
                 <div class="makePost" style="border: 1px hotpink;">
-                <div class="row"><!--table for person info-->
-                <div class="col-sm-1">
-                                    <div class="mr-2" > <!--styling allows for the image and text to be next to one another-->
-                                    <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
+                    <div class="row"><!--table for person info-->
+                        <div class="col-sm-1">
+                            <div class="mr-2"> <!--styling allows for the image and text to be next to one another-->
+                                <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
 
-                                </div>
+                            </div>
 
-                </div>
-                <div class="col-sm-11">
-                                        <div class="ml-2" >
-                                    <div class="h5 m-0" style="text-align: left;"> <strong> {{ username}}</strong> </div>
+                        </div>
+                        <div class="col-sm-11">
+                            <div class="ml-2">
+                                <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
 
-                                             <!--Number of Connections and Forums-->
+                                <!--Number of Connections and Forums-->
                                 <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: darkgray;">
-                                    Connections <span class="label label-default" >{{ numConnections }}</span></h8>
+                                    Connections <span class="label label-default">{{ numConnections }}</span></h8>
                                 <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: darkgray;">
                                     Forums <span
                                         class="label label-default">{{ numForums }}</span></h8>
 
 
-                                </div>
-                </div>
-                </div>
-                <div hidden id="this_forum_id">{{ forum_id }}</div>
-                Title: <input type="text" name="title" style="border-radius: 3px;width: 60%;"><br><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div hidden id="this_forum_id">{{ forum_id }}</div>
+                    Title: <input id="Title_element" type="text" name="title"
+                                  style="border-radius: 3px;width: 60%;"><br><br>
 
 
-            <div class="form-group"><!--- Make a new Post-->
+                    <div class="form-group"><!--- Make a new Post-->
 
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="post_msg" rows="3" placeholder="What would you like to share?">
+                        <label class="sr-only" for="message">post</label>
+                        <textarea class="form-control" id="post_msg" rows="3"
+                                  placeholder="What would you like to share?">
 
 
                                     </textarea>
-            </div>
+                    </div>
 
-                <div class="form-group" style="display: inline-block; vertical-align: top;"><!--attach file button-->
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
+                    <div class="form-group" style="display: inline-block; vertical-align: top;">
+                        <!--attach file button-->
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
 
-                                    </div>
-                </div>
-                <!--post button-->
-                <div class="buttonbot" id="btnGetMessage" style="position:absolute;left: 85%;display: inline-block;">
-                    <button type="button" ><strong>Post</strong></button>
-                </div>
+                        </div>
+                    </div>
+                    <!--post button-->
+                    <div class="buttonbot" id="btnGetMessage"
+                         style="position:absolute;left: 85%;display: inline-block;">
+                        <button type="button"><strong>Post</strong></button>
+                    </div>
 
-               <br>
+                    <br>
                 </div>
-                    <hr style="width: 100%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"><br>
+                <hr style="width: 100%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px">
+                <br>
                 <!-- Post /////-->
 
-<!--- actual Posted message block-->
-   <div class= "messagePost">
-    <div class="card gedf-card" >
-        <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-               <div class="d-flex justify-content-between align-items-center">
-                   <div class="mr-2" style="display: inline-block; vertical-align: top;"> <!--styling allows for the image and text to be next to one another-->
-                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                <!--- actual Posted message block-->
+             {% comment %}   <div class="messagePost">
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
+                                        <!--styling allows for the image and text to be next to one another-->
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
 
-                   </div>
-                    <div class="ml-2" style="display:inline-block;">
-                       <div class="h5 m-0"> <strong> Kirsten Pennington</strong><i onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')" class="fa fa-close"></i></div>
+                                    </div>
+                                    <div class="ml-2" style="display:inline-block;">
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong><i
+                                                onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                                class="fa fa-close"></i></div>
 
-                    </div>
+                                    </div>
 
-           <div class="dropdownmenu" style="display: inline-block;position: relative; left: 60%;color: #666666; ">
-                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-
-                            <!--more options menu-->
-                           <span class="glyphicon glyphicon-option-vertical" style="color: lightgrey;"></span></a>
-
-                          <ul class="dropdown-menu" >
-                               <li><a>Direct Message <span
-                                       class="glyphicon glyphicon glyphicon-comment pull-right"></span></a></li>
-                                <li class="divider"></li>
-
-                               <li><a>Report<span
-                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a></li>
-                           </ul>
-                        </li>
-                </div>
-
-                </div>
-            </div>
-
-        </div>
-        <br>
-        <div class="card-body">
-           <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div> <!--time the message had been sent-->
-
-                <h5 style="color:#e83e8c;"> Message Title goes here</h5>
-           <p class="card-text">
-               This card is still a dummy, you can use this to test your designs..
-            </p>
-            <hr>
-        </div>
-        <div  style="text-align: right; "> <!--styling ensures the like and comment are next to one another-->
-             <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')" style = "color: #e83e8c;display: inline-block;vertical-align: top;">10<span class="glyphicon glyphicon-thumbs-up" style = "color: #e83e8c; "></span>
-        <a type="button" class="btn btn-comment"> <span class="glyphicon glyphicon glyphicon-comment" style = "color: #e83e8c; "></span></a>
-            <!--Dummy Drop-down for comment_please don't remove-->
-       </div>
+                                    <div class="dropdownmenu"
+                                         style="display: inline-block;position: relative; left: 60%;color: #666666; ">
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
 
-        <div class="container">
+                                            <!--more options menu-->
+                                            <span class="glyphicon glyphicon-option-vertical"
+                                                  style="color: lightgrey;"></span></a>
 
-  <!--<button type="button" class="btn">Show</button>-->
+                                            <ul class="dropdown-menu">
+                                                <li><a>Direct Message <span
+                                                        class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+
+                                                <li><a>Report<span
+                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"><i class="fa fa-clock-o"></i> 10 min ago</div>
+                            <!--time the message had been sent-->
+
+                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+                            <p class="card-text">
+                                This card is still a dummy, you can use this to test your designs..
+                            </p>
+                            <hr>
+                        </div>
+                        <div style="text-align: right; ">
+                            <!--styling ensures the like and comment are next to one another-->
+                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                               style="color: #e83e8c;display: inline-block;vertical-align: top;">10<span
+                                    class="glyphicon glyphicon-thumbs-up" style="color: #e83e8c; "></span>
+
+                                <a type="button" class="btn btn-comment"> <span
+                                        class="glyphicon glyphicon glyphicon-comment"
+                                        style="color: #e83e8c; "></span></a>
+
+                                <!--Dummy Drop-down for comment_please don't remove-->
+                        </div>
 
 
-  <div class="collapse" ><!--everthing inside this div is in the collapsible element-->
+                        <div class="container">
+
+                            <!--<button type="button" class="btn">Show</button>-->
 
 
-      <a class="btn btn-close" style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+                            <div class="collapse"><!--everthing inside this div is in the collapsible element-->
 
 
-     <ul>
-                        <a><img class="profile_img" src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80" />Name<i onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')" class="fa fa-close"></i><p style="color: black">Marketing 101, Video Assignment</p></a>
-                    <!--Footer of notification drop down-->
-                    <div>
-                        <a id=""><textarea  id="-LjHDWtigiRAkkdKO3gw" style="width: 35%;height: 20px;border-radius: 5px;"  ></textarea></a>
-                    <button class="buttonbot2"  onclick="saveComment('-LjHxLAZzrskdrbwxU1z')" type="button" >Reply</button>
-                    </div>
+                                <a class="btn btn-close"
+                                   style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span
+                                        class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+                                <ul>
+                                    <a><img class="profile_img"
+                                            src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>Name<i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close"></i>
+                                        <p style="color: black">Marketing 101, Video Assignment</p></a>
+                                    <div>
+                                        <a id=""><textarea id="-LjHDWtigiRAkkdKO3gw"
+                                                           style="width: 35%;height: 20px;border-radius: 5px;"></textarea></a>
+                                        <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
+                                                type="button">Reply
+                                        </button>
+                                    </div>
 
-                    <!--post button-->
+                                    <!--post button-->
+                                </ul> <!--Dropdown menu Notification-->
+                            </div>
+                        </div>
 
 
-
-                </ul> <!--Dropdown menu Notification-->
-  </div>
-</div>
-
-        <!--script for shwoing and hiding comments-->
-    <script>
-    $(document).ready(function(){
-
-      $(".btn-comment").click(function(){
-        $(".collapse").collapse('show');
-      });
-      $(".btn-close").click(function(){
-        $(".collapse").collapse('hide');
-      });
-    });
-    </script>
 
 
 
@@ -799,6 +840,113 @@
 </div>
 
                     <br><br><!--spaces between posts-->
+
+                <!--- actual Posted message block-->
+                <div class="messagePost">
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
+                                        <!--styling allows for the image and text to be next to one another-->
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+
+                                    </div>
+                                    <div class="ml-2" style="display:inline-block;">
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong><i
+                                                onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                                class="fa fa-close"></i></div>
+
+                                    </div>
+
+                                    <div class="dropdownmenu"
+                                         style="display: inline-block;position: relative; left: 60%;color: #666666; ">
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                            <!--more options menu-->
+                                            <span class="glyphicon glyphicon-option-vertical"
+                                                  style="color: lightgrey;"></span></a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a>Direct Message <span
+                                                        class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+
+                                                <li><a>Report<span
+                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"><i class="fa fa-clock-o"></i> 10 min ago</div>
+                            <!--time the message had been sent-->
+
+                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
+                            <p class="card-text">
+                                This card is still a dummy, you can use this to test your designs..
+                            </p>
+                            <hr>
+                        </div>
+                        <div style="text-align: right; ">
+                            <!--styling ensures the like and comment are next to one another-->
+                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                               style="color: #e83e8c;display: inline-block;vertical-align: top;">10<span
+                                    class="glyphicon glyphicon-thumbs-up" style="color: #e83e8c; "></span>
+
+                                <a type="button" class="btn btn-comment"> <span
+                                        class="glyphicon glyphicon glyphicon-comment"
+                                        style="color: #e83e8c; "></span></a>
+
+                                <!--Dummy Drop-down for comment_please don't remove-->
+                        </div>
+
+
+                        <div class="container">
+
+                            <!--<button type="button" class="btn">Show</button>-->
+
+
+                            <div class="collapse"><!--everthing inside this div is in the collapsible element-->
+
+
+                                <a class="btn btn-close"
+                                   style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span
+                                        class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+                                <ul>
+                                    <a><img class="profile_img"
+                                            src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>Name<i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close"></i>
+                                        <p style="color: black">Marketing 101, Video Assignment</p></a>
+                                    <div>
+                                        <a id=""><textarea id="-LjHDWtigiRAkkdKO3gw"
+                                                           style="width: 35%;height: 20px;border-radius: 5px;"></textarea></a>
+                                        <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
+                                                type="button">Reply
+                                        </button>
+                                    </div>
+
+                                    <!--post button-->
+                                </ul> <!--Dropdown menu Notification-->
+                            </div>
+                        </div>
+
+
+
+
+
+    </div>
+</div>{% endcomment %}
     <!-- End of Post /////-->
                 <div id="comment"></div><!--Div for posts from the database-->
 
@@ -934,7 +1082,9 @@ function timeAgo(dateParam) {
 
 <script>
 
-    var database_msgs = firebase.database().ref().child("Forums/CTIB01/Messages");/*Messages*/
+    var database_msgs = firebase.database().ref().child("Forums/" + '{{forum_id}}' + "/Messages");/*Messages*/
+
+   // window.alert('{{forum_id}}');
 
     $('#btnGetMessage').click(function () {
 
@@ -948,13 +1098,18 @@ function timeAgo(dateParam) {
                     days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + '' + minutes ;
                 /*dateTime = hours + ':' + minutes + ampm;*/
+
                 var post_message = document.getElementById("post_msg").value;
+                var mesaage_title = document.getElementById("Title_element").value;
                 document.getElementById("post_msg").value = "";
+                document.getElementById("Title_element").value = "";
+
+
 
                 var date_for_post = Date.now();
 
                /*Changing items in the db*/
-                writeUserData(date_for_post, "{{this_uid}}", post_message,"0","0","{{ username }}","{{ profilePic }}");
+                writeUserData(date_for_post, "{{this_uid}}", post_message,"0","0","{{ username }}","{{ profilePic }}",mesaage_title);
                 date_for_post;
                 post_message;
                 "{{this_uid}}";
@@ -962,6 +1117,7 @@ function timeAgo(dateParam) {
                 "0";
                 "{{ username }}";
                 "{{ profilePic }}";
+                Title_element;
             });
 
             /*Whenever items changes (added, modified, deleted) in database, this event is called*/
@@ -980,9 +1136,9 @@ function timeAgo(dateParam) {
             /*Push time entered and Message entered from textboxes, creates entry in firebase
             * push gives a unique key*/
 
-            function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic) {/*Pushes to current users*/
+            function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic,Title_element) {/*Pushes to current users*/
 
-
+//window.alert(Title_element);
 
               var created_id =  database_msgs.push();
               created_id.set({
@@ -992,7 +1148,8 @@ function timeAgo(dateParam) {
                     likes:likes_num,
                     comments_num:comments_num_default,
                     sender_name: username,
-                    sender_profilePic: profilePic
+                    sender_profilePic: profilePic,
+                    title: Title_element
 
                 });
 
@@ -1000,7 +1157,7 @@ function timeAgo(dateParam) {
               /*Saving_id*/
               var hope = String(created_id);
               var result = hope.substring(hope.lastIndexOf("/") + 1);
-              var save_id = firebase.database().ref().child("Forums/CTIB01/Messages/"+result);/*Messages*/
+              var save_id = firebase.database().ref().child("Forums/" + '{{forum_id}}'+ "/Messages/"+result);/*Messages*/
                 save_id.update({
                     post_id: result
                 });
@@ -1063,7 +1220,7 @@ function timeAgo(dateParam) {
                         "                                    <img class=\"rounded-circle\" width=\"45\" src=\""+ obj[keys[i]].sender_profilePic +"\" alt=\"\">" +
                         "</div>\n" +
                         "                                <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
-                        "                                    <div class=\"h5 m-0\"> <strong> " + obj[keys[i]].sender_name + "</strong><i onclick=\"Delete_post(\'"+ obj[keys[i]].post_id + "\')\" class=\"fa fa-close\"></i></div>\n" +
+                        "                                    <div class=\"h5 m-0\"> <strong> " + obj[keys[i]].sender_name + "</strong>&nbsp&nbsp<i onclick=\"Delete_post(\'"+ obj[keys[i]].post_id + "\')\" class=\"fa fa-close\"></i></div>\n" +
                         "</div>\n" +
                         "\n" +
                         "                        <div class=\"dropdownmenu\" style=\"display: inline-block;position: relative; left: 71%;color: #666666; \">\n" +
@@ -1086,9 +1243,9 @@ function timeAgo(dateParam) {
                         " </div>\n" +
                         "                    <br>\n" +
                         "                    <div class=\"card-body\">\n" +
-                        "                        <div class=\"text-muted h7 mb-2\"> <i class=\"fa fa-clock-o\"></i> " + ts_display + "</div> <!--time the message had been sent-->\n" +
+                        "                        <div style=\"width: 35%;height: 20px;border-radius: 5px;”\n class=\"text-muted h7 mb-2\"> <i class=\"fa fa-clock-o\"></i> " + ts_display + "</div> <!--time the message had been sent-->\n" +
                         "\n" +
-                        "                            <h5 style=\"color:#e83e8c;\"> Message Title goes here</h5>\n" +
+                        "                            <h5 style=\"color:#e83e8c;\">"+ obj[keys[i]].title +"</h5>\n" +
                         "                        <p class=\"card-text\">\n" +
                         "                            " + obj[keys[i]].text + "\n" +
                         "                        </p>" +
@@ -1097,19 +1254,28 @@ function timeAgo(dateParam) {
                         "                         <p onclick=\"Increase_Likes(\'"+ obj[keys[i]].post_id  +"\')\" style = \"color: #e83e8c;display: inline-block;vertical-align: top;\">" + num_likes + "<span class=\" glyphicon glyphicon-thumbs-up\" style = \"color: #e83e8c; \"></span>" +
                         "</p> " +
                         "                        <p style = \"color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;\">" + getComments_num(obj[keys[i]].post_id) + "<span class=\"<p> </p> glyphicon glyphicon glyphicon-comment\" style = \"color: #e83e8c; \"></span></p>\n" +
-                        "</div><ul>\n" +
+                        "</div> <div class=\"container\">\n" +
+                        "\n" +
+                        "  <!--<button type=\"button\" class=\"btn\">Show</button>-->\n" +
+                        "\n" +
+                        "\n" +
+                        "            <div class=\"\"> <!--everthing inside this div is in the collapsible element-->\n" +
+                        "\n" +
+                        "\n" +
+                        "                <ul>\n" +
                         "\n" +
                         "\n" +
                         "                                 "+ Reply_list(obj[keys[i]].post_id)+ " \n" +
                         "                                <!--Footer of notification drop down-->\n" +
-                        "                                 <div><a id=\"\"><textarea  id=\"" + obj[keys[i]].post_id + "\" placeholder=\"Reply to this message?\" ></textarea></a></div>\n" +
+                        "                                 <div><a id=\"\"><textarea  id=\"" + obj[keys[i]].post_id + "\" placeholder=\"Reply to this message?\"  style=\"width: 35%;height: 20px;border-radius: 5px;\" ></textarea></a></div>\n" +
                         "\n" +
                         "                                <!--post button-->\n" +
                         "                                    <button class=\"buttonbot2\"  onclick=\"saveComment(\'" + obj[keys[i]].post_id  + "\')\" type=\"button\" ><strong>Reply</strong></button>\n" +
 
                         "\n" +
                         "\n" +
-                        "                            </ul> <!--Dropdown menu Notification--></div></div> <br><br>" +
+                        "                            </ul></div>\n" +
+                        "                        </div> <!--Dropdown menu Notification--></div></div> <br><br>" +
                         "{{ ProfilePic }}";
 
                 }
@@ -1117,12 +1283,27 @@ function timeAgo(dateParam) {
             }
 
 
+    <!--script for shwoing and hiding comments-->
+    $(document).ready(function () {
+
+        $(".btn-comment").click(function () {
+            $(".collapse").collapse('show');
+        });
+        $(".btn-close").click(function () {
+            $(".collapse").collapse('hide');
+        });
+    });
+
+
+            <!--Dummy Drop-down for comment_please don't remove-->
+
+
 
 
             function Increase_Likes(holder){
 
                 commentID = String(holder);
-                var like_IDs = firebase.database().ref().child("Forums/CTIB01/Messages/"+commentID +"/likes_ids");/*Messages*/
+                var like_IDs = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages/"+commentID +"/likes_ids");/*Messages*/
 
                 like_IDs.push().set({
                 IDs: "{{this_uid}}"
@@ -1135,7 +1316,7 @@ function timeAgo(dateParam) {
     function Delete_comment(message_id, comment_id){
 
 
-                var like_IDs = firebase.database().ref().child("Forums/CTIB01/Messages/"+message_id +"/comments");/*Messages*/
+                var like_IDs = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages/"+message_id +"/comments");/*Messages*/
 
                 like_IDs.child(comment_id).remove();
 
@@ -1143,7 +1324,7 @@ function timeAgo(dateParam) {
 
    function Delete_post(post_id){
 
-                var like_IDs = firebase.database().ref().child("Forums/CTIB01/Messages");/*Messages*/
+                var like_IDs = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages");/*Messages*/
 
                 like_IDs.child(post_id).remove();
    }
@@ -1157,7 +1338,7 @@ function timeAgo(dateParam) {
 
 
     commentID = String(holder);
-    var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+commentID +"/comments");/*Messages*/
+    var database_msgs_comment = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages/"+commentID +"/comments");/*Messages*/
 
 
     /*Changing items in the db*/
@@ -1187,7 +1368,7 @@ function timeAgo(dateParam) {
               /*Saving_id*/
               var hope = String(created_id);
               var result = hope.substring(hope.lastIndexOf("/") + 1);
-              var save_id = firebase.database().ref().child("Forums/CTIB01/Messages/"+commentID+"/comments/"+result);/*Messages*/
+              var save_id = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+commentID+"/comments/"+result);/*Messages*/
 
                 save_id.update({
                     post_id: result
@@ -1210,7 +1391,7 @@ function Reply_list(holder){
 
     comments_object = String(holder);
 
-    var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+comments_object +"/comments");/*Messages*/
+    var database_msgs_comment = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+comments_object +"/comments");/*Messages*/
     var countholder = 0;
 
 
@@ -1243,7 +1424,7 @@ function Reply_list(holder){
 
 
         comments_object = String(holder);
-        var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+comments_object +"/comments");/*Messages*/
+        var database_msgs_comment = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+comments_object +"/comments");/*Messages*/
         var countholder = 0;
 
             database_msgs_comment.on("value", function(snapshot) {
@@ -1262,7 +1443,7 @@ function Reply_list(holder){
 
 
         comments_object = String(holder);
-        var database_msgs_comment = firebase.database().ref().child("Forums/CTIB01/Messages/"+comments_object +"/likes_ids");/*Messages*/
+        var database_msgs_comment = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+comments_object +"/likes_ids");/*Messages*/
         var countholder = 0;
 
             database_msgs_comment.on("value", function(snapshot) {

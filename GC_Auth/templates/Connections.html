@@ -580,6 +580,8 @@
         }
 
 
+
+
     </style>
 
 
@@ -652,40 +654,76 @@
 
             <!--1. Notifications icon + drop down-->
 
-              <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
-                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
-                                                                      data-target="#" href="#"
-                                                                      onclick="CloseIntroForm(); OpenLogIn();">
-                    <div id="counter_number_notifications"></div>
+             <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-bell"></span> </a>
 
-                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
-                        aria-labelledby="dLabel">
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
-                            <!--Notifications Dropdown div-->
+                        <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
-                            <ul id="comment"></ul>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
 
-                            <!--      <a class="content" href="#">
-                                     <div class="notification-item">
-                                         <img class="profile_img"
-                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
-                                         <h4 class="item-title">James Coden · day ago</h4>
-                                         <p class="item-info">Marketing 101, Video Assignment</p>
-                                     </div>
-                                 </a>-->
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
 
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
                         </div><!--End of Notifications Dropdown div-->
 
                         <!--Footer of notification drop down-->
                         <li class="divider"></li>
-                        <li style="text-align: center"><a href="#">View All </a></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
 
                     </ul> <!--Dropdown menu Notification-->
-                </a></li><!--dropdown -->
+                </li><!--dropdown -->
             </ul> <!--nav navbar-nav navbar-right-->
 
 
@@ -819,11 +857,21 @@
                         </span>
                         <script>
 
+                            var myConnList = [];
+                            var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                            //Fetching list of User's connections
+                            list_conn_db.on("value", function (snapshot_1) {
+                                myConnList = [];
+                                snapshot_1.forEach(function (childSnapshot_1) {
+                                    var w = childSnapshot_1.key;
+                                    myConnList.push(w);
+                                });
+                            });
 
                             // shows all blocks in the list of my connections
                             function showAll(){
-                                strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
-                                myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+                                //strConnList = document.getElementById("my_conn_ids").innerText.substr(1);// removes first letter from string version of array
+                                //myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
 
                                 //  loop through connection_ids
                                 for (let i = 0; i < myConnList.length; i++){
@@ -833,8 +881,8 @@
 
 
                             function searchByCountry(){
-                                strConnList = document.getElementById("my_conn_ids").innerText.substr(1);
-                                myConnList =  strConnList.split(",");
+                                //strConnList = document.getElementById("my_conn_ids").innerText.substr(1);
+                                //myConnList =  strConnList.split(",");
                                 myCountry = document.getElementById('my_country').innerText;
 
                                 //  loop through connection_ids
@@ -854,8 +902,8 @@
                                function searchByTerm() {
                                    searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
                                    console.log("searchTerm: " + searchTerm);   // debug
-                                   strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
-                                   myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+                                  // strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
+                                  // myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
 
                                     //  loop through course_ids
                                     for (let i = 0; i < myConnList.length; i++){
@@ -932,12 +980,12 @@
                                                     <li class="divider"></li>
                                                     <li><a style="font-size: 11px">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
                                                             style="font-size: 15px"
-                                                            class=" glyphicon glyphicon-user"></span></a></li>
+                                                            class="	glyphicon glyphicon-user"></span></a></li>
                                                     <li class="divider"></li>
                                                     <li onclick="RemoveConnection('one', 'two')"><a
                                                             style="font-size: 11px">Remove Connection&nbsp;&nbsp;<span
                                                             style="font-size: 15px"
-                                                            class=" fa fa-trash"></span></a></li>
+                                                            class="	fa fa-trash"></span></a></li>
                                                 </ul>
                                             </li>
                                         </div>
@@ -1141,6 +1189,8 @@
                     <div hidden id="conn_suggestions_ids_str">{{ conn_suggestions_ids_str }}</div>
                         <script>
 
+
+
                             // shows all blocks in the list of my connections
                             function showAllAll(){
                                 strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
@@ -1243,13 +1293,13 @@
                                                                 style="color:black;background-color:white;border:none;font-size: 11px"
                                                                 type="submit" value="goConnectionsOpen">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
                                                                 style="font-size: 15px"
-                                                                class=" glyphicon glyphicon-user"></span></button>
+                                                                class="	glyphicon glyphicon-user"></span></button>
                                                     </li>
 
                                                     <li class="divider"></li>
 
                                             <li id="remove_Onclick" onclick="Connect('{{ conn_id }}')"><a  style="font-size: 11px">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px"
-                                                  class="   fa fa-user-plus"></span></a></li>
+                                                  class="	fa fa-user-plus"></span></a></li>
                                                 </ul>
                                             </li>
                                         </div>
@@ -1316,7 +1366,7 @@
 
                         var key = childSnapshot.key;
 
-                        if (myconnectionsArray.includes(key) == false) {
+                        if (myconnectionsArray.includes(key) == false && key != ('{{ this_uid }}')) {
 
 
                             var child_name = childSnapshot.val().Name;
@@ -1849,7 +1899,7 @@ function ExploreformCard_dim(key, child_name, child_bio, child_country, child_pr
 
                         var decision = "true";
                         var opp_decison = "false";
-                        html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+                        html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display ;<i style=\"color: black;\"onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
                             "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
 
 

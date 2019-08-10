@@ -85,6 +85,10 @@ def LogIn(request):
                                           })
 
 
+
+
+
+
 def passwordReset(request):
     # ... your python code/script
     return render(request, "passwordReset.html")
@@ -347,7 +351,6 @@ def home(request):
     return returnUserProfileCarousels(request)
 
 
-
 def forums(request):
     global the_user
     global short_forum_suggestions
@@ -429,6 +432,7 @@ def goSettings(request):
                                              'total_country_list': country_list,
                                              'this_uid': the_user.uid
                                              })
+
 
 def goBadges(request):
     # user authentication with Firebase
