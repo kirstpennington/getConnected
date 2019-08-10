@@ -733,7 +733,7 @@
                 <!-- Post /////-->
 
                 <!--- actual Posted message block-->
-             {% comment %}   <div class="messagePost">
+              <div class="messagePost">
                     <div class="card gedf-card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
@@ -820,7 +820,7 @@
                                             class="fa fa-close"></i>
                                         <p style="color: black">Marketing 101, Video Assignment</p></a>
                                     <div>
-                                        <a id=""><textarea id="-LjHDWtigiRAkkdKO3gw"
+                                        <a id=""><textarea maxlength="200" id="-LjHDWtigiRAkkdKO3gw"
                                                            style="width: 35%;height: 20px;border-radius: 5px;"></textarea></a>
                                         <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
                                                 type="button">Reply
@@ -841,112 +841,7 @@
 
                     <br><br><!--spaces between posts-->
 
-                <!--- actual Posted message block-->
-                <div class="messagePost">
-                    <div class="card gedf-card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
-                                        <!--styling allows for the image and text to be next to one another-->
-                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
 
-                                    </div>
-                                    <div class="ml-2" style="display:inline-block;">
-                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong><i
-                                                onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
-                                                class="fa fa-close"></i></div>
-
-                                    </div>
-
-                                    <div class="dropdownmenu"
-                                         style="display: inline-block;position: relative; left: 60%;color: #666666; ">
-                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-
-                                            <!--more options menu-->
-                                            <span class="glyphicon glyphicon-option-vertical"
-                                                  style="color: lightgrey;"></span></a>
-
-                                            <ul class="dropdown-menu">
-                                                <li><a>Direct Message <span
-                                                        class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
-                                                </li>
-                                                <li class="divider"></li>
-
-                                                <li><a>Report<span
-                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <br>
-
-                        <div class="card-body">
-                            <div class="text-muted h7 mb-2"><i class="fa fa-clock-o"></i> 10 min ago</div>
-                            <!--time the message had been sent-->
-
-                            <h5 style="color:#e83e8c;"> Message Title goes here</h5>
-                            <p class="card-text">
-                                This card is still a dummy, you can use this to test your designs..
-                            </p>
-                            <hr>
-                        </div>
-                        <div style="text-align: right; ">
-                            <!--styling ensures the like and comment are next to one another-->
-                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
-                               style="color: #e83e8c;display: inline-block;vertical-align: top;">10<span
-                                    class="glyphicon glyphicon-thumbs-up" style="color: #e83e8c; "></span>
-
-                                <a type="button" class="btn btn-comment"> <span
-                                        class="glyphicon glyphicon glyphicon-comment"
-                                        style="color: #e83e8c; "></span></a>
-
-                                <!--Dummy Drop-down for comment_please don't remove-->
-                        </div>
-
-
-                        <div class="container">
-
-                            <!--<button type="button" class="btn">Show</button>-->
-
-
-                            <div class="collapse"><!--everthing inside this div is in the collapsible element-->
-
-
-                                <a class="btn btn-close"
-                                   style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span
-                                        class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
-                                <ul>
-                                    <a><img class="profile_img"
-                                            src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>Name<i
-                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
-                                            class="fa fa-close"></i>
-                                        <p style="color: black">Marketing 101, Video Assignment</p></a>
-                                    <div>
-                                        <a id=""><textarea id="-LjHDWtigiRAkkdKO3gw"
-                                                           style="width: 35%;height: 20px;border-radius: 5px;"></textarea></a>
-                                        <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
-                                                type="button">Reply
-                                        </button>
-                                    </div>
-
-                                    <!--post button-->
-                                </ul> <!--Dropdown menu Notification-->
-                            </div>
-                        </div>
-
-
-
-
-
-    </div>
-</div>{% endcomment %}
     <!-- End of Post /////-->
                 <div id="comment"></div><!--Div for posts from the database-->
 
@@ -978,7 +873,7 @@
 
 
                             <!-- forum tags -->
-                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 20%;" >{{ forum_topics }}</span>
+                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 10%;" >{{ forum_topics }}</span>
                            <br>
 
                      <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
@@ -1267,7 +1162,7 @@ function timeAgo(dateParam) {
                         "\n" +
                         "                                 "+ Reply_list(obj[keys[i]].post_id)+ " \n" +
                         "                                <!--Footer of notification drop down-->\n" +
-                        "                                 <div><a id=\"\"><textarea  id=\"" + obj[keys[i]].post_id + "\" placeholder=\"Reply to this message?\"  style=\"width: 35%;height: 20px;border-radius: 5px;\" ></textarea></a></div>\n" +
+                        "                                 <div><a id=\"\"><textarea   id=\"" + obj[keys[i]].post_id + "\" placeholder=\"Reply to this message?\"  style=\"width: 35%;height: 20px;border-radius: 5px;\" ></textarea></a></div>\n" +
                         "\n" +
                         "                                <!--post button-->\n" +
                         "                                    <button class=\"buttonbot2\"  onclick=\"saveComment(\'" + obj[keys[i]].post_id  + "\')\" type=\"button\" ><strong>Reply</strong></button>\n" +
@@ -1405,7 +1300,7 @@ function Reply_list(holder){
                     var comment_post_id = String(child.val().post_id);
                     var user_name = String(child.val().sender_name);
                     var user_pic =String(child.val().sender_profilePic);
-                    return_string = return_string+ " <a><img class=\"profile_img\" src=\""+ user_pic + "\" /> " + user_name + "<i onclick=\"Delete_comment(\'"+comments_object+"\',\'"+comment_post_id+"\')\" class=\"fa fa-close\"></i><p style=\"color: black\">" + txt_txt + "</p></a>\n" ;
+                    return_string = return_string+ " <a><img class=\"profile_img\" src=\""+ user_pic + "\" /> " + user_name + "<i onclick=\"Delete_comment(\'"+comments_object+"\',\'"+comment_post_id+"\')\" class=\"fa fa-close\"></i><p class=\"card-text\" style=\"color: black\">" + txt_txt + "</p></a>\n" ;
                     countholder++;
 
 

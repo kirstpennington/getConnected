@@ -119,14 +119,15 @@ class connection_methods:
 
     def removeValuesFromList(values_list, main_list):
             temp = []
-            for m in main_list:
-                add = True
-                for v in values_list:
-                    if m == v:
-                        add = False
-                        break
-                if add:
-                    temp.append(m)
+            if temp!=[]:
+                for m in main_list:
+                    add = True
+                    for v in values_list:
+                        if m == v:
+                            add = False
+                            break
+                    if add:
+                        temp.append(m)
             return temp
 
 

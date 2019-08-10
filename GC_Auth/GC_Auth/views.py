@@ -39,51 +39,17 @@ short_course_suggestions = ""
 # LOGIN methods
 
 def LogIn(request):
-    forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(
-        *forum_methods.getTrendingForums(""))  # unzip all elements of each trending forum
 
-    if len(forum_names) == 0:
-        return render(request, "LogIn.html", {'show_forum_1': 'hidden',
+
+
+    #forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(
+        #*forum_methods.getTrendingForums(""))  # unzip all elements of each trending forum
+
+    
+
+    return render(request, "LogIn.html", {'show_forum_1': 'hidden',
                                               'show_forum_2': 'hidden',
                                               'show_forum_3': 'hidden'})
-    if len(forum_names) == 1:
-        return render(request, "LogIn.html", {'show_forum_1': 'visible',
-                                              'forum_1_pic': forum_pics[0],
-                                              'forum_1_participants': forum_num_participants[0],
-                                              'forum_1_name': forum_names[0],
-                                              'forum_1_description': forum_descriptions[0],
-                                              'show_forum_2': 'hidden',
-                                              'show_forum_3': 'hidden'})
-    if len(forum_names) == 2:
-        return render(request, "LogIn.html", {'show_forum_1': 'visible',
-                                              'forum_1_pic': forum_pics[0],
-                                              'forum_1_participants': forum_num_participants[0],
-                                              'forum_1_name': forum_names[0],
-                                              'forum_1_description': forum_descriptions[0],
-                                              'show_forum_2': 'visible',
-                                              'forum_2_pic': forum_pics[1],
-                                              'forum_2_participants': forum_num_participants[1],
-                                              'forum_2_name': forum_names[1],
-                                              'forum_2_description': forum_descriptions[1],
-                                              'show_forum_3': 'hidden'})
-
-    return render(request, "LogIn.html", {'show_forum_1': 'visible',
-                                          'forum_1_pic': forum_pics[0],
-                                          'forum_1_participants': forum_num_participants[0],
-                                          'forum_1_name': forum_names[0],
-                                          'forum_1_description': forum_descriptions[0],
-                                          'show_forum_2': 'visible',
-                                          'forum_2_pic': forum_pics[1],
-                                          'forum_2_participants': forum_num_participants[1],
-                                          'forum_2_name': forum_names[1],
-                                          'forum_2_description': forum_descriptions[1],
-                                          'show_forum_3': 'visible',
-                                          'forum_3_pic': forum_pics[2],
-                                          'forum_3_participants': forum_num_participants[2],
-                                          'forum_3_name': forum_names[2],
-                                          'forum_3_description': forum_descriptions[2]
-                                          })
-
 
 
 
@@ -319,11 +285,11 @@ def returnUserProfileCarousels(request):
 
     global short_forum_suggestions  # if the suggested forums has not been determined yet
     if short_forum_suggestions == "":
-        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 4, the_user)
+        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
 
     global short_connections_suggestions  # if the suggested forums has not been determined yet
     if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 4, the_user)
+        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
 
     return render(request, "User_Profile_Page.html", {"e": email,
                                                       'n': the_user.username,
@@ -527,11 +493,11 @@ def goConnectionsOpen(request):
 
     global short_forum_suggestions  # if the suggested forums has not been determined yet
     if short_forum_suggestions == "":
-        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 4, the_user)
+        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
 
     global short_connections_suggestions  # if the suggested forums has not been determined yet
     if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 4, the_user)
+        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
 
     # check privacy settings of connection before displaying their information
     if user_methods.getBioPrivacy(connection_id) == "True":
