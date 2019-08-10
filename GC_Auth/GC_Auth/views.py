@@ -319,11 +319,11 @@ def returnUserProfileCarousels(request):
 
     global short_forum_suggestions  # if the suggested forums has not been determined yet
     if short_forum_suggestions == "":
-        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 4, the_user)
+        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
 
     global short_connections_suggestions  # if the suggested forums has not been determined yet
     if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 4, the_user)
+        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
 
     return render(request, "User_Profile_Page.html", {"e": email,
                                                       'n': the_user.username,
@@ -527,11 +527,11 @@ def goConnectionsOpen(request):
 
     global short_forum_suggestions  # if the suggested forums has not been determined yet
     if short_forum_suggestions == "":
-        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 4, the_user)
+        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
 
     global short_connections_suggestions  # if the suggested forums has not been determined yet
     if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 4, the_user)
+        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
 
     # check privacy settings of connection before displaying their information
     if user_methods.getBioPrivacy(connection_id) == "True":
@@ -668,9 +668,13 @@ country_list = ['None', "Afghanistan", "ÅlandIslands", "Albania", "Algeria", "A
                 "VietNam", "VirginIslands,British", "VirginIslands,U.S.", "WallisandFutuna", "WesternSahara", "Yemen",
                 "Zambia", "Zimbabwe"]
 
+
 # method that converts and array to a string with a , as a delimiter between each item
 def convertArrayToString(arr):
     arrString = ""
-    for item in arr:
-        arrString = arrString + "," + item
+    if arr is not None:
+        for item in arr:
+            arrString = arrString + "," + item
+    else:
+        arrString = ""
     return arrString

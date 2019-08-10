@@ -97,15 +97,16 @@ class forum_methods:
         comment_ids = []
         like_ids = []
 
-        for mess_id in mess_ids:
-            texts.append(forum_methods.getMessageText(forum_id, mess_id))
-            sender_pic.append(forum_methods.getMessageSenderPic(forum_id, mess_id))
-            sender_name.append(forum_methods.getMessageSenderName(forum_id, mess_id))
-            sender_id.append(forum_methods.getMessageSenderID(forum_id, mess_id))
-            num_comments.append(forum_methods.getMessageNumComments(forum_id, mess_id))
-            num_likes.append(forum_methods.getMessageNumLikes(forum_id, mess_id))
-            comment_ids.append(forum_methods.getMessageCommentIDs(forum_id, mess_id))
-            like_ids.append(forum_methods.getMessageLikeIDs(forum_id, mess_id))
+        if mess_ids is not None:
+            for mess_id in mess_ids:
+                texts.append(forum_methods.getMessageText(forum_id, mess_id))
+                sender_pic.append(forum_methods.getMessageSenderPic(forum_id, mess_id))
+                sender_name.append(forum_methods.getMessageSenderName(forum_id, mess_id))
+                sender_id.append(forum_methods.getMessageSenderID(forum_id, mess_id))
+                num_comments.append(forum_methods.getMessageNumComments(forum_id, mess_id))
+                num_likes.append(forum_methods.getMessageNumLikes(forum_id, mess_id))
+                comment_ids.append(forum_methods.getMessageCommentIDs(forum_id, mess_id))
+                like_ids.append(forum_methods.getMessageLikeIDs(forum_id, mess_id))
 
         combined_list =  zip(mess_ids, texts, sender_pic, sender_name, sender_id, num_comments, num_likes, comment_ids, like_ids)
         return combined_list
@@ -120,14 +121,15 @@ class forum_methods:
         forum_descriptions = []
         forum_ids = []
 
-        for id in forums_id_list:
-            forum_names.append(forum_methods.getForumName(id))
-            forum_pics.append(forum_methods.getForumPic(id))
-            forum_num_participants.append(forum_methods.getForumNumParticipants(id))
-            forum_creators.append(forum_methods.getForumCreator(id))
-            forum_topics.append(forum_methods.getForumTopicsString(id))
-            forum_descriptions.append(forum_methods.getForumDescription(id))
-            forum_ids.append(id)
+        if forums_id_list is not None:
+            for id in forums_id_list:
+                forum_names.append(forum_methods.getForumName(id))
+                forum_pics.append(forum_methods.getForumPic(id))
+                forum_num_participants.append(forum_methods.getForumNumParticipants(id))
+                forum_creators.append(forum_methods.getForumCreator(id))
+                forum_topics.append(forum_methods.getForumTopicsString(id))
+                forum_descriptions.append(forum_methods.getForumDescription(id))
+                forum_ids.append(id)
 
         # return a combination of all lists
         combined_forums_list = zip(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics,
@@ -203,48 +205,61 @@ class forum_methods:
     def removeCommons(remove_from_this_list, search_this_list):
         # removes the common values between the 2 lists from the first list
         temp = []    # dummy variable where items from the list will be removed
-        for r in remove_from_this_list:
-            for s in search_this_list:
-                if r != s:
-                    temp.append(r)
+
+        if remove_from_this_list is not None and search_this_list is not None:
+            for r in remove_from_this_list:
+                for s in search_this_list:
+                    if r != s:
+                        temp.append(r)
+        else:
+            temp = remove_from_this_list
+
         return temp
 
 
     # converts a python dictionary to a list
     def convertDictToList(dict):
         temp = []
-        for key, value in dict.items():
-            temp.append(key)
+        if dict is not None:
+            for key, value in dict.items():
+                temp.append(key)
         return temp
 
 
     def removeValuesFromList(values_list, main_list):
         temp = []
-        for m in main_list:
-            add = True
-            for v in values_list:
-                if m == v:
-                    add = False
-                    break
-            if add:
-                temp.append(m)
+        if values_list is not None and main_list is not None:
+            for m in main_list:
+                add = True
+                for v in values_list:
+                    if m == v:
+                        add = False
+                        break
+                if add:
+                    temp.append(m)
+        else:
+            temp = main_list
         return temp
 
 
     def removeValueFromList(value, list):
         temp = []
-        for li in list:
-            if li != value:
-                temp.append(li)
+        if list is not None:
+            for li in list:
+                if li != value:
+                    temp.append(li)
+        else:
+            temp = list
         return temp
 
 
     def compareLists(list1, list2):
         # returns true if there are matching values in the 2 lists
-        for a in list1:
-            for b in list2:
-                if a == b:
-                    return True
+        if list1 is not None and list2 is not None:
+            for a in list1:
+                for b in list2:
+                    if a == b:
+                        return True
         return False
 
 
