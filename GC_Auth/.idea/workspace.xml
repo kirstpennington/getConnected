@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2df0fb0c-44e8-4651-a7f0-af1265d1e795" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/GC_Auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/GC_Auth/views.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,25 +38,41 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/passwordReset.html">
+        <entry file="file://$PROJECT_DIR$/templates/Connections.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="1200">
               <caret line="80" selection-start-line="80" selection-end-line="80" />
+=======
+            <state relative-caret-position="29790">
+              <caret line="1986" column="7" selection-start-line="1986" selection-start-column="7" selection-end-line="1986" selection-end-column="7" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< Updated upstream
         <entry file="file://$PROJECT_DIR$/templates/UserProfile.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2220">
               <caret line="148" selection-start-line="148" selection-end-line="148" />
+=======
+        <entry file="file://$PROJECT_DIR$/templates/ForumsMessaging.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="740" column="58" selection-start-line="740" selection-start-column="58" selection-end-line="740" selection-end-column="58" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GC_Auth/views.py">
+<<<<<<< Updated upstream
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-580">
               <caret line="27" selection-start-line="27" selection-end-line="27" />
@@ -70,27 +90,37 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/PassRest.html">
+=======
+>>>>>>> Stashed changes
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="99" column="6" selection-start-line="73" selection-end-line="99" selection-end-column="6" />
+            <state relative-caret-position="231">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/signIn.html">
+        <entry file="file://$PROJECT_DIR$/templates/UserProfile_Demo.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/User_Profile_Page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+            <state relative-caret-position="11100">
+              <caret line="740" column="45" selection-start-line="740" selection-start-column="45" selection-end-line="740" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GC_Auth/settings.py">
+        <entry file="file://$PROJECT_DIR$/templates/Courses.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1890">
-              <caret line="126" column="5" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+            <state relative-caret-position="8265">
+              <caret line="551" selection-start-line="516" selection-start-column="12" selection-end-line="551" />
             </state>
           </provider>
         </entry>
@@ -116,6 +146,8 @@
       <find>pass</find>
       <find>back</find>
       <find>Winfr</find>
+      <find>time</find>
+      <find>ts_display</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,15 +176,18 @@
         <option value="$PROJECT_DIR$/templates/MyNetwork.html" />
         <option value="$PROJECT_DIR$/templates/Home.html" />
         <option value="$PROJECT_DIR$/GC_Auth/urls.py" />
-        <option value="$PROJECT_DIR$/GC_Auth/views.py" />
         <option value="$PROJECT_DIR$/templates/LogIn.html" />
         <option value="$PROJECT_DIR$/GC_Auth/static/GC_Auth/passwordReset.css" />
         <option value="$PROJECT_DIR$/templates/passwordReset.html" />
         <option value="$PROJECT_DIR$/templates/UserProfile.html" />
+        <option value="$PROJECT_DIR$/GC_Auth/views.py" />
+        <option value="$PROJECT_DIR$/templates/Connections.html" />
+        <option value="$PROJECT_DIR$/templates/User_Profile_Page.html" />
+        <option value="$PROJECT_DIR$/templates/ForumsMessaging.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="807" />
   </component>
@@ -162,7 +197,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -170,10 +204,16 @@
               <item name="GC_Auth" type="b2602c69:ProjectViewProjectNode" />
               <item name="GC_Auth" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="GC_Auth" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GC_Auth" type="462c0819:PsiDirectoryNode" />
+              <item name="GC_Auth" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
@@ -255,10 +295,16 @@
       <workItem from="1554101111545" duration="728000" />
       <workItem from="1565447129568" duration="4000" />
       <workItem from="1565447141942" duration="7000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1565726393090" duration="1996000" />
+      <workItem from="1565729902957" duration="84000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="84468000" />
   </component>
   <component name="ToolWindowManager">
@@ -266,6 +312,14 @@
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.18884121" />
+=======
+    <option name="totallyTimeSpent" value="86548000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.19384836" />
+>>>>>>> Stashed changes
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50089765" side_tool="true" weight="0.30505952" />
       <window_info id="Designer" order="3" />
@@ -275,7 +329,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.18554217" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18461539" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -298,7 +352,7 @@
       <window_info anchor="right" id="Theme Preview" order="9" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.20457797" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.19098713" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50089765" side_tool="true" weight="0.30505952" />
       <window_info id="Designer" order="3" />
@@ -314,7 +368,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32891566" />
@@ -335,10 +389,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Desktop/part3/cpanel/cpanel/views.py" />
-    <entry file="file://$USER_HOME$/Desktop/part3/cpanel/cpanel/urls.py" />
-    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_subject.txt" />
-    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_email.html" />
     <entry file="file://$PROJECT_DIR$/templates/registration/registration/password_reset_complete.html" />
     <entry file="file://$PROJECT_DIR$/templates/registration/registration/password_reset_confirm.html" />
     <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html" />
@@ -464,6 +514,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/templates/passwordReset.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1200">
@@ -478,6 +529,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/GC_Auth/static/GC_Auth/UserProfile_images/wallpaper.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -504,8 +557,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GC_Auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="-580">
           <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+=======
+        <state relative-caret-position="582">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+>>>>>>> Stashed changes
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/passwordReset.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Connections.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29790">
+          <caret line="1986" column="7" selection-start-line="1986" selection-start-column="7" selection-end-line="1986" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/UserProfile_Demo.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/User_Profile_Page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11100">
+          <caret line="740" column="45" selection-start-line="740" selection-start-column="45" selection-end-line="740" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Courses.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8265">
+          <caret line="551" selection-start-line="516" selection-start-column="12" selection-end-line="551" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ForumsMessaging.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="740" column="58" selection-start-line="740" selection-start-column="58" selection-end-line="740" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GC_Auth/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>

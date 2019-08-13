@@ -731,7 +731,11 @@
                 <hr style="width: 100%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px">
                 <br>
                 <!-- Post /////-->
+<br><br><!--spaces between posts-->
 
+
+    <!-- End of Post /////-->
+                <div id="comment"></div>
                 <!--- actual Posted message block-->
               <div class="messagePost">
                     <div class="card gedf-card">
@@ -843,7 +847,6 @@
 
 
     <!-- End of Post /////-->
-                <div id="comment"></div><!--Div for posts from the database-->
 
 
 
@@ -1138,13 +1141,13 @@ function timeAgo(dateParam) {
                         " </div>\n" +
                         "                    <br>\n" +
                         "                    <div class=\"card-body\">\n" +
-                        "                        <div style=\"width: 35%;height: 20px;border-radius: 5px;”\n class=\"text-muted h7 mb-2\"> <i class=\"fa fa-clock-o\"></i> " + ts_display + "</div> <!--time the message had been sent-->\n" +
+                        "                        <div style=\"width: 35%;height: 20px;color: darkgrey;border-radius: 5px;”\n class=\"text-muted h7 mb-2\"> <i class=\"fa fa-clock-o\"></i> " + ts_display + "</div> <!--time the message had been sent-->\n" +
                         "\n" +
                         "                            <h5 style=\"color:#e83e8c;\">"+ obj[keys[i]].title +"</h5>\n" +
                         "                        <p class=\"card-text\">\n" +
                         "                            " + obj[keys[i]].text + "\n" +
-                        "                        </p>" +
-                        " </div>\n" +
+                        "                        </p>"  +
+                        "                             <hr>\n</div>\n" +
                         "                    <div  style=\"text-align: right; \"> <!--styling ensures the like and comment are next to one another-->\n" +
                         "                         <p onclick=\"Increase_Likes(\'"+ obj[keys[i]].post_id  +"\')\" style = \"color: #e83e8c;display: inline-block;vertical-align: top;\">" + num_likes + "<span class=\" glyphicon glyphicon-thumbs-up\" style = \"color: #e83e8c; \"></span>" +
                         "</p> " +
