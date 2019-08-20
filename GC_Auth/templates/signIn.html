@@ -50,14 +50,14 @@ E-mail: <input type="email" id = "email" name="emailaddress">
 
        var email = document.getElementById('email').value;
        firebase.auth().sendPasswordResetEmail(email).then(function () {
-           alert('Password Reset Email Sent!');
+          $("#modalResetSent").modal('show');
        }).catch(function (error) {
            var errorCode = error.code;
            var errorMessage = error.message;
            if (errorCode =='auth/invalid-email'){
-               alert(errorMessage);
+                $("#modalError").modal('show');
            } else if (errorCode == 'auth/uder-not-found'){
-               alert(errorMessage);
+                $("#modalError").modal('show');
            }
            console.log(error);
 
@@ -68,3 +68,45 @@ E-mail: <input type="email" id = "email" name="emailaddress">
 
 
 </script>
+
+<!-- Modal for pop up message "password reset sent" -->
+<div class="modal fade" id="modalResetSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Password Reset</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Password reset email has been sent!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for pop up message "password error " -->
+<div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Invalid Entry</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Invalid entry, please try again.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
