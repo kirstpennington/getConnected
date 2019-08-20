@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Course Help</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- footer style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style>
+
+        /* specify the font for the page*/
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+
+        }
+
+        /*specifiy the font for the header*/
+        .header p {
+
+            font-size: 40px;
+            color: gray;
+            text-align: center;
+            padding-top: 0px;
+
+        }
+
+        /*specify the look for the pink strip*/
+        .intro {
+            background-color: #e83e8c;
+            opacity: 0.8;
+            color: white;
+            font-size: 20px;
+            text-align: left;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+        }
+
+        /*css for the block text*/
+
+        .features p {
+            text-align: center;
+
+            font-size: 25px;
+            padding-top: 20px;
+            font-size: 40px;
+            color: gray;
+
+
+        }
+
+        /*footer logo*/
+        footer img {
+
+
+            width: 200%;
+            height: 200%;
+            text-align: left;
+
+        }
+
+        /*text for the blocks which show the features*/
+        .row p {
+            font-size: 20px;
+            color: #e83e8c;
+            text-align: left;
+            padding-top: 0px;
+        }
+
+        /*headings for the blocks*/
+        .row h1 {
+            font-size: 18px;
+            color: gray;
+            text-align: left;
+        }
+
+        /*move the row away from the edges*/
+        .row {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+
+        /*removes the underlining for the links in the blocks*/
+        a:hover {
+            text-decoration: none;
+
+        }
+
+        /*specify the look for the Freq asked Questions*/
+        .faq {
+            background-color: #9d9d9d;
+
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 10px;
+            text-align: left;
+            width: 80%;
+            position: center;
+            display: inline-block;
+
+        }
+
+        /*specify the heading for the FAQ*/
+        .faq h1 {
+            font-size: 20px;
+            color: white; /*#e83e8c*/
+            text-align: left;
+
+        }
+
+        /*text qualities for the FAQ*/
+        .faq p {
+            font-size: 18px;
+            color: silver;
+            text-align: left;
+            padding-top: 0;
+
+        }
+
+        /*numbers in FAQ*/
+        .numbercircles {
+            border-radius: 50%;
+            behavior: url(PIE.htc);
+            width: 36px;
+            height: 36px;
+            padding: 8px;
+            background: #9d9d9d;
+            border: 2px solid white;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            display: inline-block;
+        }
+
+        /*strip for badges*/
+        .badges {
+            background-color: #e83e8c;
+            opacity: 0.8;
+
+        }
+
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+<!--*BODY* 1. Navigation Bar-->
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
+
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span
+                        class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--1. Notifications icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idLabel" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-bell"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper">  <!--Notifications Dropdown div-->
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+
+
+            <!--2. Message icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
+
+<!--heading and content-->
+
+<div class="header">
+    {% load staticfiles %}
+    <p><img src="{% static "GC_Auth/help/accpic.png" %}" alt="lock" class="image"> <strong> Courses </strong></p>
+
+</div>
+<!--short intro paragraph in pink strip-->
+<div class="intro">
+    <p style="text-align: center;"> You wouldn't be using GetConnected if you didn't love your GetSmarter experience! So
+        why not use the courses
+        page to find new courses, to keep your brain active... or recommend any courses you've already completed, </p>
+    <br>
+
+</div>
+
+<!--show connections,forums and messaging in blocks with description-->
+<br>
+<div class=" features">
+    <div class="panel-group text" id="accordion" style="width: 100%;padding-left: 0px;"><!--accordion of details-->
+
+        <!--panel Personlising-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseViewingCourses"
+                       style="color:#ce3298">
+                        <strong>
+                            Viewing your Courses
+                        </strong>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseViewingCourses" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <!--row1 Personalising the profile -->
+                    <p>Viewing your Courses</p>
+
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Viewing Courses</p>
+                            <h1 style="color:grey;"> The GetConnected platform has a record of all the courses you have
+                                completed with GetSmarter.
+                                Which you can easily view by clicking "Courses" on the navigation bar. Be sure to select
+                                "My Courses"
+                                at the top of the page, to view only your completed courses ( see image on the right) If
+                                you select "All Courses",
+                                all courses offered by GetSmarter can be viewed</h1>
+
+
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/coursetabs.png" %}" alt="lock" class="image"
+                                 style="width:60%; height:60%;border: 1px solid silver;">
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                </div>
+                <!--row 2nd paragraph on right-->
+
+                <div class="row">
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/help/coursefilters.png" %}" alt="lock" class="image"
+                             style="width:40%; height:40%; border: 1px solid silver;">
+
+
+                    </div>
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <br><br>
+                        <h1 style="color:grey;">You can use the search bar to find a specific course you are looking for
+                            or the filter pane to filter by
+                            Subject, Institution or Recommendation</h1>
+                        <h1>If you click on a course, you will be redirected to the GetSmarter website where you can read up
+                        additional information on that particular course.</h1>
+
+                    </div>
+
+
+                </div>
+
+<br>
+            </div><!--end-->
+        </div>
+
+        <!--panel Badges-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseRecommending"
+                       style="color:#ce3298">
+                        <strong>
+                            Recommending Courses
+                        </strong>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseRecommending" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    <!--row1 Personalising the profile -->
+
+
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Recommending Courses </p>
+                            <h1 style="color:grey;"> If you have completed a course, you will have the opportunity to "like" or recommend it.
+                            All you need to do is click the heart icon see on the right. </h1>
+                            <h1>Once this is clicked, it will show the heart filled in. You can always return at a later stage to unlike, simply by
+                            clicking on the heart again. The heart will then appear hollow. Courses which have many hearts, from many different users are
+                            "Highly recommended". </h1>
+
+
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/courseheart.png" %}" alt="lock" class="image"
+                                 style="width:25%; height:25%;">
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--panel FAQ-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><!--panel 1 heading-->
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseFaq" style="color:#ce3298">
+                        <strong>
+                            Frequently Asked Questions
+                        </strong>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFaq" class="panel-collapse collapse">
+                <!--panel 1 content-->
+                <div class="panel-body">
+
+                    <!--Frequently asked questions section-->
+                    <p style="font-size: 40px;color:gray;text-align: center;"> Frequently Asked Questions</p>
+                    <!--grey block with questions & answers-->
+                    <div class="faq">
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">1</div>
+                            <i>
+                                What happens if I do not pass a course?</i></h1>
+                        <!--padding left indents the answer to the right-->
+                        <p style="padding-left: 40px;"> If a course is not passed, it will not show up under "My Courses" and you will be unable to recommend it.
+                        </p>
+
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">2</div>
+                            <i>
+                                Is it possible for me to add my own courses to "My courses"? </i></h1>
+                        <p style="padding-left: 40px;">No, your courses are added automatically once you have completed them. </p>
+
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">3</div>
+                            <i>
+                                How do I view more information about a course? </i></h1>
+                        <p style="padding-left: 40px;">Click on the course's card and you will be redirected to GetSmarter's website to view more information.</p>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div><!--end panel-->
+
+
+    </div><!--end of accordion-->
+</div>
+
+
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+                <div class="rowthis"><!--table row-->
+
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
+                    </div>
+
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
+                            GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Forum Help</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Connection
+                            Management</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Messaging</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
+
+
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+                    </div>
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

@@ -1050,8 +1050,8 @@ $(document).ready(function(){
                                                                     <!-- Open forum button -->
                                                                     <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
 
-                                                 <button onclick="location.href='{% url 'forumsopen' %}'"
-                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
+                                                 <button onclick="joinForum()"
+                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">JOIN
                                                     <i class="fa fa-angle-double-right"></i></button>
                                                                 </div><!-- /card-hovercard -->
                                                             </form>
@@ -1064,6 +1064,28 @@ $(document).ready(function(){
 
 
                                                        <script>
+                                                           // ToDo: add validation to the add and create forums pages as well
+
+                                                           // ToDo: add the join forum functionality to the forum suggestions box
+                                                           // ToDo: Join Forum functionality
+                                                                function joinForum(forum_id){
+                                                                    // get list of users blocked for this forum
+                                                                    // if this user is not blocked for this for this forum
+                                                                        // if the forums is not private
+                                                                            // add the forum to the ForumsJoined for the user
+                                                                            // add the user to the list of forum participants
+                                                                            // remove forum from all forums
+                                                                            // add forum to my forums
+                                                                            // indicate that forum has been joined
+                                                                        // if the forum is private
+                                                                            // send a join request to the
+                                                                            // show that request has been sent
+                                                                    // if the user is blocked
+                                                                        // message: you have been blocked and cannot attempt to join this forum
+                                                                }
+
+
+
                                                                // shows all blocks in the list of my courses
                                                                 function showAllAll(){
                                                                     strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array

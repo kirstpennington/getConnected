@@ -138,7 +138,12 @@ class forum_methods:
 
 
     def getAllForumsList(uid):
-        return database.child("Forums").shallow().get().val()
+        all_forums = database.child("Forums").shallow().get().val()
+        if all_forums is None:      # make sure no error is returned if there are no forums in the DB
+            return []
+        else:               # remove the forums I've joined from the allforums list
+            forums_joined = database.child('Users').child(uid).child('ForumsJoined').shallow().get().val()
+            return forum_methods.removeValuesFromList(forums_joined, all_forums)
 
     def getForumSuggestions(uid, num_returns, the_user):
         # returns a combined list of forum information with the same topics as this user's interests
@@ -151,7 +156,7 @@ class forum_methods:
                 break
             else:
                 private = database.child("Forums").child(compare_forum_id).child("Private").get().val()
-                if private != "True" or private != "true":  # the forum must be private for it to be suggested to other users
+                if private != "True" or private != "true":          # the forum must be private for it to be suggested to other users
                     compare_forum_topics = database.child("Forums").child(compare_forum_id).child(
                         "TopicTags").shallow().get().val()
                     if forum_methods.compareLists(compare_forum_topics,
