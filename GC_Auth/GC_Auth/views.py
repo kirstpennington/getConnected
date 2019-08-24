@@ -328,7 +328,8 @@ def forums(request):
                                               'all_forums_list': forum_methods.getForumsInfoList(all_forums),
                                               'my_forums_ids': convertArrayToString(the_user.forumsInfoList),
                                               'all_forums_str': convertArrayToString(all_forums),
-                                              'this_uid': the_user.uid})
+                                              'this_uid': the_user.uid,
+                                              'username': the_user.username})
 
 
 def courses(request):

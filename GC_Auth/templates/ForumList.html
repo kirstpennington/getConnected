@@ -982,7 +982,7 @@ $(document).ready(function(){
 
                         </div><!--end of accordion-->
 
-<script><!--handles opening and closing filter ->
+<script>//handles opening and closing filter
 $(document).ready(function(){
   $(".toggerallone").click(function(){
     $(".collapseSuball").collapse('toggle');
@@ -1014,8 +1014,7 @@ $(document).ready(function(){
                                                        {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in all_forums_list|slice:":3" %}
                                                            <td>
                                                             <div id="{{ forum_ids }}_hideAll" class="col-sm-3" style="width:180px; margin-right:130px;">
-                                                            <form action="/goForumsOpen/" method="post">
-                                                            {% csrf_token %}
+
                                                                 <div hidden id="{{ forum_ids }}_topicsAll">{{ forum_topics }}</div>
                                                                 <!-- forum wallpaper -->
                                                                 <div class="cardheader"
@@ -1048,13 +1047,12 @@ $(document).ready(function(){
 
                                                                     <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
                                                                     <!-- Open forum button -->
-                                                                    <input class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
+                                                                    <input id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="display: none;">
 
-                                                 <button onclick="joinForum()"
-                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">JOIN
-                                                    <i class="fa fa-angle-double-right"></i></button>
+                                                                    <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}')"
+                                                                   style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px">JOIN
+                                                                    <i class="fa fa-angle-double-right"></i></button>
                                                                 </div><!-- /card-hovercard -->
-                                                            </form>
                                                             </div>
                                                            </td>
                                                             {% if forloop.counter|divisibleby:3 %}
@@ -1063,29 +1061,96 @@ $(document).ready(function(){
                                                         {% endfor %}
 
 
-                                                       <script>
+                                                        <script>
                                                            // ToDo: add validation to the add and create forums pages as well
 
                                                            // ToDo: add the join forum functionality to the forum suggestions box
-                                                           // ToDo: Join Forum functionality
-                                                                function joinForum(forum_id){
-                                                                    // get list of users blocked for this forum
-                                                                    // if this user is not blocked for this for this forum
-                                                                        // if the forums is not private
-                                                                            // add the forum to the ForumsJoined for the user
-                                                                            // add the user to the list of forum participants
-                                                                            // remove forum from all forums
-                                                                            // add forum to my forums
-                                                                            // indicate that forum has been joined
-                                                                        // if the forum is private
-                                                                            // send a join request to the
-                                                                            // show that request has been sent
-                                                                    // if the user is blocked
-                                                                        // message: you have been blocked and cannot attempt to join this forum
+                                                                function joinForum(forum_id, this_uid, forum_name){
+                                                                    var db = firebase.database().ref('Forums');
+
+                                                                    blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
+                                                                    blockedUsersRef.once('value', function(snapshot) {
+                                                                        blockedUsers = snapshotToArray(snapshot);
+
+                                                                        if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
+                                                                            forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
+                                                                            forumPrivateRef.once('value', function(snapPrivate) {
+                                                                                privacy = snapPrivate.val();
+                                                                                if (privacy == false){                                    // if the forums is not private
+                                                                                    json_dict = {};
+                                                                                    json_dict[forum_id] = forum_id;
+
+                                                                                    updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
+                                                                                    updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the user
+
+                                                                                    json_dict[this_uid] = this_uid;
+                                                                                    updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
+                                                                                    updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
+
+                                                                                    document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
+
+                                                                                    // ToDo: Later - when we speed up the forums list loading, move this forum to the "My Forums" list
+                                                                                    // ToDo: Later - message alert popup ("You have joined the " + forum_name + " forum.")
+
+                                                                                }
+                                                                                else{                                                       // if the forum is private
+                                                                                    forumCreatorRef = db.child(forum_id).child('Creator');
+                                                                                    forumCreatorRef.once('value', function(snapCreator) {
+                                                                                        creator_id = snapCreator.val();                     // send the message to this user id
+                                                                                        message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
+                                                                                        // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
+                                                                                        alert(message);
+                                                                                        // ToDo: Later - send notification to the Forum Creator with the
+                                                                                        // ToDo: Later - message alert popup ("Your join request has been sent to the forum owner. We'll let you know when they have accepted your request.")
+                                                                                    })
+
+                                                                                }
+                                                                            })
+
+                                                                        }
+                                                                        else{                                                               // if the user is blocked, display a message to the user
+                                                                            alert("It appears that you have been blocked from this forum. This forum cannot be joined.");
+                                                                            // ToDo: Later - message alert popup ("It appears that you have been blocked from this forum. This forum cannot be joined.")
+                                                                        }
+
+
+                                                                    });
+
                                                                 }
 
+                                                                // get a snapshot of a list of keys from firebase and convert it to an array
+                                                                function snapshotToArray(snapshot) {
+                                                                    let returnArr = [];
 
+                                                                    snapshot.forEach(childSnapshot => {
+                                                                        let item = childSnapshot.val();
+                                                                        item.key = childSnapshot.key;
+                                                                        returnArr.push(item);
+                                                                    });
 
+                                                                    return returnArr;
+                                                                }
+
+                                                                // returns true if the array contains the value
+                                                                function arrayContainsValue(array, value){
+                                                                    if (array.length > 0)
+                                                                    {
+                                                                        for (let i = 0; i < array.length; i++)
+                                                                        {
+                                                                            if (array[i] == value){
+                                                                                return true;
+                                                                            }
+                                                                        }
+                                                                        return false;
+                                                                    }
+                                                                    else{
+                                                                        return false;
+                                                                    }
+                                                                }
+
+                                                       </script>
+
+                                                        <script>
                                                                // shows all blocks in the list of my courses
                                                                 function showAllAll(){
                                                                     strForumList = document.getElementById("all_forums_str").innerText.substr(1);    // removes first letter from string version of array
