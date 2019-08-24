@@ -1090,7 +1090,7 @@ $(document).ready(function(){
                                                                                     document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
 
                                                                                     // ToDo: Later - when we speed up the forums list loading, move this forum to the "My Forums" list
-                                                                                    // ToDo: Later - message alert popup ("You have joined the " + forum_name + " forum.")
+                                                                                    $("#modalForumJoined").modal('show');
 
                                                                                 }
                                                                                 else{                                                       // if the forum is private
@@ -1101,7 +1101,8 @@ $(document).ready(function(){
                                                                                         // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
                                                                                         alert(message);
                                                                                         // ToDo: Later - send notification to the Forum Creator with the
-                                                                                        // ToDo: Later - message alert popup ("Your join request has been sent to the forum owner. We'll let you know when they have accepted your request.")
+
+                                                                                        $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
                                                                                     })
 
                                                                                 }
@@ -1109,8 +1110,7 @@ $(document).ready(function(){
 
                                                                         }
                                                                         else{                                                               // if the user is blocked, display a message to the user
-                                                                            alert("It appears that you have been blocked from this forum. This forum cannot be joined.");
-                                                                            // ToDo: Later - message alert popup ("It appears that you have been blocked from this forum. This forum cannot be joined.")
+                                                                            $("#modalBlockedFromForum").modal('show');
                                                                         }
 
 
@@ -1592,11 +1592,73 @@ $(document).ready(function(){
                   removesent.remove();
               }
 
-
-
-
-
-
 </script>
 
+                <!-- Modal for pop up message "forum joined" -->
+                <div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Forum Joined</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        You have joined this forum. It's now in your My Forums tab!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+            <!-- Modal for pop up message "join request sent" -->
+            <div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Join Request Sent</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+             <!-- Modal for pop up message "blocked from forum message" -->
+            <div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Blocked from Forum</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Unfortunately, you have been blocked from this forum. Access to this forum is denied.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
 </body>
+
