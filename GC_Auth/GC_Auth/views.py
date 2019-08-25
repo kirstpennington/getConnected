@@ -329,7 +329,7 @@ def forums(request):
                                               'my_forums_ids': convertArrayToString(the_user.forumsInfoList),
                                               'all_forums_str': convertArrayToString(all_forums),
                                               'this_uid': the_user.uid,
-                                              'username': the_user.username})
+                                              '': the_user.username})
 
 
 def courses(request):
@@ -461,8 +461,8 @@ def goForumsOpen(request):
                                              'email': the_user.email,
                                              'bio': the_user.bio,
                                              'this_uid': the_user.uid,
-                                                'numConnections': the_user.numConnections,
-                                                'numForums': the_user.numForums,
+                                            'numConnections': the_user.numConnections,
+                                            'numForums': the_user.numForums,
                                              'my_forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
                                              'suggested_forums_list': forum_methods.getForumsInfoList(
                                                short_forum_suggestions),

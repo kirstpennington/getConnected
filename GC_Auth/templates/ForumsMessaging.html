@@ -624,27 +624,7 @@
 <div class="UserWallpaper parallax" style="background-image:url(
         {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for page content -->
-<script>
-    // ToDo: leave forum functionality
-    function leaveForum(){
-        // only show button if you are not the forum creator
-        // ask are your sure
-        // if user is sure
-            // remove the user id from forum participants
-            // remove forum from user's forumsjoined
-            // notify user that they have been removed from forum
 
-    }
-
-    // ToDo: Link forum settings page
-    // ToDo: Add disable forums method - in forum settings
-    // ToDo: check if forum is disabled before loading the forum messaging screen
-
-    function disableForum(){    // forum creator can disable their forum
-        // set enabled to true
-        // disable post box to disabled
-    }
-</script>
     <div class="forumcontent">
 
         <br>
@@ -718,6 +698,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- leave forum button-->
+                    {% if forum_creator != this_uid %} <!-- only allow a user to leave a forum if they are not the creator of the forum -->
+                        <div>
+                            <button style="margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" id="btn-confirm">Leave Forum</button>
+                        </div>
+                    {% endif %}
+
+
+
+
+
                     <div hidden id="this_forum_id">{{ forum_id }}</div>
                     Title: <input id="Title_element" type="text" name="title"
                                   style="border-radius: 3px;width: 60%;"><br><br>
@@ -908,8 +900,6 @@
         </div>
     </div>
 </div>
-
-
 
 </div>
 
@@ -1475,5 +1465,85 @@ function Reply_list(holder){
     </div>
 </footer>
 
+<!-- Confirm Leaving Forum Popup -->
+                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Are you sure you want to leave this forum?</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="modal-btn-si">Yes</button>
+                        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-</body>
+ <script>
+
+                    // leave forum functionality for confirm dialogue using Bootstrap modal
+                    var modalConfirm = function(callback){
+
+                      $("#btn-confirm").on("click", function(){
+                        $("#mi-modal").modal('show');
+                      });
+
+                      $("#modal-btn-si").on("click", function(){
+                        callback(true);
+                        $("#mi-modal").modal('hide');
+                      });
+
+                      $("#modal-btn-no").on("click", function(){
+                        callback(false);
+                        $("#mi-modal").modal('hide');
+                      });
+                    };
+
+                    // results of the confirmation
+                    modalConfirm(function(confirm){
+                      if(confirm){          // Leave Forum confirmed
+                          removeUserRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants").child('{{ this_uid }}');  // remove the user id from forum participants
+                          removeUserRef.remove();
+
+                          removeForumRef = firebase.database().ref("Users").child('{{ this_uid }}').child("ForumsJoined").child('{{ forum_id }}');  // remove forum from user's forumsjoined
+                          removeForumRef.remove();
+
+                          $("#modalLeftForum").modal('show');                       // notify user that they have been removed from forum
+                      }else{                //Do not leave forum
+                        $("#mi-modal").modal('hide');
+                      }
+                    });
+
+                    // ToDo: Link forum settings page
+                    // ToDo: Add disable forums method - in forum settings
+                    // ToDo: check if forum is disabled before loading the forum messaging screen
+
+                    function disableForum(){    // forum creator can disable their forum
+                        // set enabled to true
+                        // disable post box to disabled
+                    }
+
+                </script>
+
+</body><!-- Modal for pop up message "User has left forum" -->
+            <div class="modal fade" id="modalLeftForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Blocked from Forum</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    You have left this forum. You may post a goodbye message but once you exit the forum, you will not be able to view the forum again.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
