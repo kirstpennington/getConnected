@@ -653,6 +653,7 @@
         }
 
     </style>
+
     <!--*STYLE for pop up model-->
     <style>
 
@@ -756,7 +757,6 @@
         }
 
     </style>
-
 
 </head>
 
@@ -983,14 +983,7 @@
 <div class="UserWallpaper parallax" style="background-image:url(
         {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
-<script>
-    // ToDo: Disable User Account
-    // ToDo: Check in connection suggestions (cannot open user profile), all connections (cannot open user profile), user profile page and my connections if the user has disabled their account
-    function disableAccount(){
-        // ask for confirmation
-            // set disabled to true
-    }
-</script>
+
     <!--2. Pic + Description -->
     <!--make a table with one row and 2 coloumns-->
     <div class="row">
@@ -1009,11 +1002,17 @@
         </div><!--end coloumn-->
         <div class="col-sm-5">
             <br>
-            <h2 class="SettingsHead" style="padding-right: 10px;"> Account Settings<span
+            <h2 class="SettingsHead" style="padding-right: 10px;"> Account Settings  <span
                     class="glyphicon glyphicon-cog"></span></h2>
-
-
         </div><!--end col-->
+        <div>
+            {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+                <button id="disableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default">Disable Account</button>
+
+            {% else %}
+                <button onclick="enableAccount()" id="enableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" hidden>Enable Account</button>
+            {% endif %}
+        </div>
 
 
         <div class="col-sm-2"></div>
@@ -1031,7 +1030,11 @@
             <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one username -->
                 <div class="inputformsLeft">
                     <p>Username: </p>
-                    <input maxlength="15" type="text" class="form-control" name="firstname" value={{ username }}>
+                    {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+                        <input maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                    {% else %}
+                        <input disabled="true" maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                    {% endif %}
                 </div>
             </div>
 
@@ -1059,18 +1062,33 @@
                    </select>-->
 
                 <p>Your Country:</p>
-                <select id="country" name="country"
-                        style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
-                    <!-- dynamically instantiate options list-->
-                    {% for option in total_country_list %}
-                        <!-- selects only the user's country -->
-                        {% if option == country %}
-                            <option value={{ option }} selected>{{ option }}</option>
-                        {% else %}
-                            <option value={{ option }}>{{ option }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
+                {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+                    <select id="country" name="country"
+                            style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
+                        <!-- dynamically instantiate options list-->
+                        {% for option in total_country_list %}
+                            <!-- selects only the user's country -->
+                            {% if option == country %}
+                                <option value={{ option }} selected>{{ option }}</option>
+                            {% else %}
+                                <option value={{ option }}>{{ option }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                {% else %}
+                      <select disabled="true" id="country" name="country"
+                            style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
+                        <!-- dynamically instantiate options list-->
+                        {% for option in total_country_list %}
+                            <!-- selects only the user's country -->
+                            {% if option == country %}
+                                <option value={{ option }} selected>{{ option }}</option>
+                            {% else %}
+                                <option value={{ option }}>{{ option }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                {% endif %}
             </div>
 
         </div> <!--row one-->
@@ -1203,19 +1221,30 @@
                 {% endif %}
 
                 <div class="form-group">
-
-                    <textarea name="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                    {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+                        <textarea name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
                               style="width: 70%;">{{ bio }}</textarea>
+                    {% else %}
+                        <textarea disabled="true" name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                              style="width: 70%;">{{ bio }}</textarea>
+                    {% endif %}
                 </div>
 
             </div><!--end col-->
 
             <div class="col-md-6" style="padding-left: 70px; padding-bottom: 30px;"><!--save button  -->
 
-                <div class="buttonbot" style="padding-top: 150px;padding-left: 140px;">
-                    <button type="submit">Save Changes</button>
-                    <button type="submit" value="cancel" name="cancel">Cancel</button>
-                </div>
+                {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+                    <div class="buttonbot" style="padding-top: 150px;padding-left: 140px;">
+                        <button id="saveChangesBtn" type="submit">Save Changes</button>
+                        <button id="cancelBtn" type="submit" value="cancel" name="cancel">Cancel</button>
+                    </div>
+                {% else %}
+                    <div class="buttonbot" style="padding-top: 150px;padding-left: 140px;">
+                        <button hidden="true" id="saveChangesBtn" type="submit">Save Changes</button>
+                        <button hidden="true" id="cancelBtn" type="submit" value="cancel" name="cancel">Cancel</button>
+                    </div>
+                {% endif %}
 
 
             </div><!--end col-->
@@ -1355,3 +1384,122 @@
 
 
 </body>
+
+<!-- Confirm Disable Account Popup -->
+                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Are you sure you want to disable your account?</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="modal-btn-si">Yes</button>
+                        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+                      </div>
+                    </div>
+                  </div>
+                    <script>
+
+                // ToDo: Check in connection suggestions (cannot open user profile), all connections (cannot open user profile), user profile page. disable nav bar and my connections if the user has disabled their account
+
+                // disable account functionality for confirm dialogue using Bootstrap modal
+                var modalConfirm = function(callback){
+
+                      $("#disableAccBtn").on("click", function(){
+                        $("#mi-modal").modal('show');
+                      });
+
+                      $("#modal-btn-si").on("click", function(){
+                        callback(true);
+                        $("#mi-modal").modal('hide');
+                      });
+
+                      $("#modal-btn-no").on("click", function(){
+                        callback(false);
+                        $("#mi-modal").modal('hide');
+                      });
+                    };
+
+                    // results of the confirmation
+                    modalConfirm(function(confirm){
+                      if(confirm){                                                                                      // Disable Account confirmed
+                          updateUserEnabledRef = firebase.database().ref("Users").child('{{ this_uid }}');
+                          updateUserEnabledRef.update({Enabled: false});                                                // update database - set user to disabled
+
+                          document.getElementById("firstname").disabled = true;                                         // disable all settings boxes
+                          document.getElementById("country").disabled = true;
+                          document.getElementById("bioGet").disabled = true;
+                          document.getElementById("cancelBtn").hidden = true;
+                          document.getElementById("saveChangesBtn").hidden = true;
+
+                          $("#mi-modal").modal('hide');
+                          $("#modalAccountDisabled").modal('show');                                                     // notify user that their account has been disabled
+
+                          document.getElementById("disableAccBtn").disabled=true;                        // change button to "Enable account"
+                          document.getElementById("disableAccBtn").innerText= "Enable account";
+                      }else{                //Do not disable account
+                        $("#mi-modal").modal('hide');
+                      }
+                    });
+
+                    function enableAccount(){
+                          updateUserEnabledRef = firebase.database().ref("Users").child('{{ this_uid }}');
+                          updateUserEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
+
+                          document.getElementById("enableAccBtn").innerText = "Disable Account";                                      // change button to "Disable account"
+                          document.getElementById("enableAccBtn").disabled = true;
+
+                          document.getElementById("firstname").disabled = false;                                     // enable all settings boxes
+                          document.getElementById("country").disabled = false;
+                          document.getElementById("bioGet").disabled = false;
+                          document.getElementById("cancelBtn").hidden = false;
+                          document.getElementById("saveChangesBtn").hidden = false;
+
+                          $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
+                    }
+            </script>
+                </div>
+
+<!-- Modal for pop up message "User has disabled account" -->
+            <div class="modal fade" id="modalAccountDisabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Account Disabled</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    You have disabled your account. You may enable your account at any time.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+<!-- Modal for pop up message "User has enabled account" -->
+            <div class="modal fade" id="modalAccountEnabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Account Enabled</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    You have enabled your account. You may now interact on this platform.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>

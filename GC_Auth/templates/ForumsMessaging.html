@@ -1536,7 +1536,6 @@ function Reply_list(holder){
                                 reduceNumParticipantsRef = firebase.database().ref("Forums").child('{{ forum_id }}');
                                 reduceNumParticipantsRef.update(json_dict);         // update database
 
-                              // ToDo: figure out why forum settings button isnt working
                                 $("#modalLeftForum").modal('show');
                            });
                                                // notify user that they have been removed from forum
@@ -1545,7 +1544,6 @@ function Reply_list(holder){
                       }
                     });
 
-                    // ToDo: Link forum settings page
                     // ToDo: Add disable forums method - in forum settings
                     // ToDo: check if forum is disabled before loading the forum messaging screen
 
