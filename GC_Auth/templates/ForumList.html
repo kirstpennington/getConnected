@@ -1156,8 +1156,19 @@ $(document).ready(function(){
                                                                                     this.hideDiv(hide_block);
                                                                                     //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
 
+                                                                                     getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
+                                                                                      getNumParticipantsRef.once('value', function(snapshot) {
+                                                                                            numParticipants = snapshot.val();              // get the current number of participants
+
+                                                                                            json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
+
+                                                                                            reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
+                                                                                            reduceNumParticipantsRef.update(json_dict);         // update database
+
+                                                                                            $("#modalForumJoined").modal('show');
+                                                                                       });
                                                                                     // ToDo: Later - when we speed up the forums list loading, move this forum to the "My Forums" list
-                                                                                    $("#modalForumJoined").modal('show');
+
 
                                                                                 }
                                                                                 else{                                                       // if the forum is private

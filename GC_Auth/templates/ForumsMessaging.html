@@ -654,7 +654,7 @@
 
                                     <button onclick="location.href='{% url 'forumsopen' %}'"
                                             style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
-                                            type="submit" value="goForumsOpen">{{ forum_names }}
+                                            type="submit" onclick="location.href='{% url 'forumsopen' %}'">{{ forum_names }}
                                         <i
                                                 class="fa fa-angle-double-right"></i></button>
                                     <div hidden id="forum_id">{{ forum_ids }}</div>
@@ -699,11 +699,27 @@
                         </div>
                     </div>
 
+
+
                     <!-- leave forum button-->
                     {% if forum_creator != this_uid %} <!-- only allow a user to leave a forum if they are not the creator of the forum -->
                         <div>
                             <button style="margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" id="btn-confirm">Leave Forum</button>
                         </div>
+                    {% else %} <!-- only the forum creator can access forum settings -->
+                        <form action="/goForumSettings/" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
+                            <div>
+                                    <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
+                                            title="ForumSettings" data-placement="right"
+                                            style="background-color:hotpink; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset " type="submit"
+                                            class="btn btn-primary pull-right">
+                                        <a href="#"><i
+                                                class=" fa fa-gear" style="color: white"></i></a>
+                                    </button>
+                            </div>
+                        </form>
                     {% endif %}
 
 
@@ -1504,13 +1520,26 @@ function Reply_list(holder){
                     // results of the confirmation
                     modalConfirm(function(confirm){
                       if(confirm){          // Leave Forum confirmed
+
                           removeUserRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants").child('{{ this_uid }}');  // remove the user id from forum participants
                           removeUserRef.remove();
 
                           removeForumRef = firebase.database().ref("Users").child('{{ this_uid }}').child("ForumsJoined").child('{{ forum_id }}');  // remove forum from user's forumsjoined
                           removeForumRef.remove();
 
-                          $("#modalLeftForum").modal('show');                       // notify user that they have been removed from forum
+                          getNumParticipantsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("NumParticipants");         // reduce nunm participants in this forum
+                          getNumParticipantsRef.once('value', function(snapshot) {
+                                numParticipants = snapshot.val();              // get the current number of participants
+
+                                json_dict = {NumParticipants: numParticipants-1};   // reduce num participants by 1
+
+                                reduceNumParticipantsRef = firebase.database().ref("Forums").child('{{ forum_id }}');
+                                reduceNumParticipantsRef.update(json_dict);         // update database
+
+                              // ToDo: figure out why forum settings button isnt working
+                                $("#modalLeftForum").modal('show');
+                           });
+                                               // notify user that they have been removed from forum
                       }else{                //Do not leave forum
                         $("#mi-modal").modal('hide');
                       }
@@ -1532,7 +1561,7 @@ function Reply_list(holder){
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Blocked from Forum</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Left this Forum</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
