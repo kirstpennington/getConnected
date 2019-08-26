@@ -754,6 +754,9 @@
             font-weight: normal;
 
         }
+         .modal input[type=checkbox] {
+     transform: scale(1.5);
+ }
 
     </style>
 
@@ -1043,7 +1046,7 @@
 
                <label class="radio-inline"> <input type="radio" name="privacy" value="Private"> Private</label>
                 <br><br>
-                <button>Choose Participants >></button>
+                <button data-toggle="modal" data-target="#chooseparticipantsmodal">Choose Participants >></button>
             </div><!--end col-->
 
         </div><!--row two-->
@@ -1251,6 +1254,178 @@
     </div>
 </div>
 <!-- End of 1.1 Pop Up modal-->
+<!--choose participants modal-->
+<div class="modal fade" id="chooseparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Choose Forum Participants </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="centraliser" style="text-align: center">
+                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                     <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-search"></i>
+                     </span>
+                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-map-marker"></i>
+                     </span>
+                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-remove"></i>
+                     </span>
+                 </div><!--end search bar-->
+             </div>
+
+             <br>
+             <div class="row" >
+
+              <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+                <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+             </div><!--end col-->
+
+
+             <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+               <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
+               <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+             </div><!--end col-->
+
+             <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+               <input type="checkbox" name="subject" value="name" >
+             </div>
+
+             <!--NEXT USER COLOUMN-->
+             <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+               <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+            </div><!--end col-->
+
+
+            <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+              <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
+              <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+            </div><!--end col-->
+
+            <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+              <input type="checkbox" name="subject" value="name" >
+            </div>
+
+              <!--END ROW-->
+
+
+
+
+          </div> <!--end row-->
+
+          <br>
+          <div class="row" >
+
+           <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+             <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+          </div><!--end col-->
+
+
+          <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+            <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
+            <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+          </div><!--end col-->
+
+          <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+            <input type="checkbox" name="subject" value="name" >
+          </div>
+
+          <!--NEXT USER COLOUMN-->
+          <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+            <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+         </div><!--end col-->
+
+
+         <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+           <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
+           <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+         </div><!--end col-->
+
+         <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+           <input type="checkbox" name="subject" value="name" >
+         </div>
+
+           <!--END ROW-->
+
+
+
+
+       </div> <!--end row-->
+  <br>
+       <div class="row" >
+
+        <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+          <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+       </div><!--end col-->
+
+
+       <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+         <p style="margin-left:20px;margin-bottom:1px; font-size: 12px;"> Kirsten Pennington  </p>
+         <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+       </div><!--end col-->
+
+       <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+         <input type="checkbox" name="subject" value="name" >
+       </div>
+
+       <!--NEXT USER COLOUMN-->
+       <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+         <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+      </div><!--end col-->
+
+
+      <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+        <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
+        <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+      </div><!--end col-->
+
+      <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+        <input type="checkbox" name="subject" value="name" >
+      </div>
+
+        <!--END ROW-->
+
+
+
+
+    </div> <!--end row-->
+            <br>
+      <div class="modal-footer">
+
+      <button>Save</button>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </body>
