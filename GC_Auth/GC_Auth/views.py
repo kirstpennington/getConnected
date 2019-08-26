@@ -475,7 +475,8 @@ def goForumsOpen(request):
                                                     'num_participants': forum_methods.getForumNumParticipants(forum_id),
                                                     'forum_topics': forum_methods.getForumTopicsString(forum_id),
                                                     'forum_creator': forum_methods.getForumCreator(forum_id),
-                                                    'forum_pic': forum_methods.getForumPic(forum_id)
+                                                    'forum_pic': forum_methods.getForumPic(forum_id),
+                                                    'forum_enabled': forum_methods.getForumEnabled(forum_id)
 
                                              })
 def goForumSettings(request):
@@ -503,8 +504,8 @@ def goForumSettings(request):
                                                     'num_participants': forum_methods.getForumNumParticipants(forum_id),
                                                     'forum_topics': forum_methods.getForumTopicsString(forum_id),
                                                     'forum_creator': forum_methods.getForumCreator(forum_id),
-                                                    'forum_pic': forum_methods.getForumPic(forum_id)
-
+                                                    'forum_pic': forum_methods.getForumPic(forum_id),
+                                                    'forum_enabled': forum_methods.getForumEnabled(forum_id)
                                                     })
 
 def goConnectionsOpen(request):

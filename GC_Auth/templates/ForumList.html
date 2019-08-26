@@ -1130,6 +1130,8 @@ $(document).ready(function(){
 
 
                                                         <script>
+
+                                                            // ToDo: Later - when we speed this up with javascript, if a forum is disabled and the user is not the creator of the forum, do not show the forum
                                                                 // ToDo: Later - not working for forum suggestions on this page. Isn't going into the method. Like the accordion problem
                                                                 function joinForum(forum_id, this_uid, forum_name, hide_block){
                                                                     var db = firebase.database().ref('Forums');

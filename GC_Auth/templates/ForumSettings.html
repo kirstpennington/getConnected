@@ -619,12 +619,17 @@ Left:150px;
         <div class="col-sm-5">
             <br>
             <br>
-            <h2 class="SettingsHead" style="padding-right: 10px;"> Forums Settings <span class="glyphicon glyphicon-cog"></span></h2>
+            <h2 class="SettingsHead" style="padding-right: 10px;"> Forum Settings <span class="glyphicon glyphicon-cog"></span></h2>
 
 
         </div><!--end col-->
 
+            {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}   <!-- allow the user to disable only when the account is enabled-->
+                <button onclick="enableAccount()" id="enableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" hidden>Enable Forum</button>
+            {% else %}
 
+                <button id="disableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default">Disable Forum</button>
+            {% endif %}
         <div class="col-sm-2"></div>
 
 
@@ -637,7 +642,11 @@ Left:150px;
             <div class="col-md-12" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one name -->
                 <div class="inputformsLeft">
                     <p>Forum Name: </p>
-                    <input type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
+                    {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
+                        <input disabled="true" id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
+                    {% else %}
+                        <input id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
+                    {% endif %}
                 </div>
             </div>
 
@@ -702,7 +711,11 @@ Left:150px;
 <div class="row"><!--row two-->
             <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--Description -->
                <p>Description: </p>
-                <textarea name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;"></textarea>
+                {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
+                    <textarea disabled="true" name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;"></textarea>
+                {% else %}
+                    <textarea name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;"></textarea>
+                {% endif %}
             </div>
 
 
@@ -711,9 +724,15 @@ Left:150px;
 
     <p>Participants:</p>
 
-     <button class="ParticipantsButton">Add Participants</button><br><br>
-    <button class="ParticipantsButton">Remove Participants</button><br><br>
-    <button class="ParticipantsButton">Block Participants</button>
+    {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
+        <button disabled="true" id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
+        <button disabled="true" id="removePartBtn" class="ParticipantsButton">Remove Participants</button><br><br>
+        <button disabled="true" id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
+    {% else %}
+        <button id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
+        <button id="removePartBtn" class="ParticipantsButton">Remove Participants</button><br><br>
+        <button id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
+    {% endif %}
 
 
 </div>
@@ -728,13 +747,15 @@ Left:150px;
 </div>
 
 
-  <div>
-  <button class="DeleteForumButt ">Delete Forum</button>
-  </div>
+
 <br>
     <div style="position: absolute; left:72%;margin-top: 50px; ">
-    <button>Undo Changes</button>
-        <button>Save Changes</button>
+    <button id="cancelBtn">Cancel</button>
+        {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
+            <button disabled="true" id="saveChangesBtn">Save Changes</button>
+        {% else %}
+            <button id="saveChangesBtn">Save Changes</button>
+        {% endif %}
     </div>
 </div>
 
@@ -857,7 +878,129 @@ Left:150px;
 
 
 
+<!-- Confirm Disable Account Popup -->
+                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Are you sure you want to disable this forum?</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="modal-btn-si">Yes</button>
+                        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+                      </div>
+                    </div>
+                  </div>
+                    <script>
 
+
+                // ToDo: Later - when we speed up the connection suggestions, all connections and my connections retrieval from the db, add an if statement to check that the user account is enabled before adding the user to the list
+                // disable account functionality for confirm dialogue using Bootstrap modal
+                var modalConfirm = function(callback){
+
+                      $("#disableAccBtn").on("click", function(){
+                        $("#mi-modal").modal('show');
+                      });
+
+                      $("#modal-btn-si").on("click", function(){
+                        callback(true);
+                        $("#mi-modal").modal('hide');
+                      });
+
+                      $("#modal-btn-no").on("click", function(){
+                        callback(false);
+                        $("#mi-modal").modal('hide');
+                      });
+                    };
+
+                    // results of the confirmation
+                    modalConfirm(function(confirm){
+                      if(confirm){                                                                                      // Disable Account confirmed
+                          updateForumEnabledRef = firebase.database().ref("Forums").child('{{ forum_id }}');
+                          updateForumEnabledRef.update({Enabled: false});                                                // update database - set user to disabled
+
+                          document.getElementById("addPartBtn").disabled = true;                                         // disable all settings boxes
+                          document.getElementById("removePartBtn").disabled = true;
+                          document.getElementById("blockPartBtn").disabled = true;
+                          document.getElementById("comment").disabled = true;
+                          document.getElementById("saveChangesBtn").disabled = true;
+                          document.getElementById("nameTxt").disabled = true;
+
+                          $("#mi-modal").modal('hide');
+                          $("#modalAccountDisabled").modal('show');                                                     // notify user that their account has been disabled
+
+                          document.getElementById("disableAccBtn").disabled=true;                        // change button to "Enable account"
+                          document.getElementById("disableAccBtn").innerText= "Enable Forum";
+                      }else{                //Do not disable account
+                        $("#mi-modal").modal('hide');
+                      }
+                    });
+
+                    function enableAccount(){
+                          updateForumEnabledRef = firebase.database().ref("Forums").child('{{ forum_id }}');
+                          updateForumEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
+
+                          document.getElementById("enableAccBtn").innerText = "Disable Forum";                                      // change button to "Disable account"
+                          document.getElementById("enableAccBtn").disabled = true;
+
+                          // enable all settings boxes
+                          document.getElementById("addPartBtn").disabled = false;                                         // disable all settings boxes
+                          document.getElementById("removePartBtn").disabled = false;
+                          document.getElementById("blockPartBtn").disabled = false;
+                          document.getElementById("comment").disabled = false;
+                          document.getElementById("saveChangesBtn").disabled = false;
+                          document.getElementById("nameTxt").disabled = false;
+
+                          $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
+                    }
+            </script>
+                </div>
+
+
+
+<!-- Modal for pop up message "User has disabled forum" -->
+            <div class="modal fade" id="modalAccountDisabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Forum Disabled</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    You have disabled this forum. You can post to this forum but other users cannot. You may enable this forum at any time.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+<!-- Modal for pop up message "User has enabled forum" -->
+            <div class="modal fade" id="modalAccountEnabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Forum Enabled</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    You have enabled this forum. Participants can now interact on this forum.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 

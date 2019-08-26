@@ -41,6 +41,8 @@ class forum_methods:
         return database.child("Forums").child(forum_id).child(
             "Creator").get().val()  # get the user id of the forum creator
 
+    def getForumEnabled(forum_id):
+        return database.child("Forums").child(forum_id).child("Enabled").get().val()
 
     def getForumDescription(forum_id):
         return database.child("Forums").child(forum_id).child("Description").get().val()
