@@ -303,7 +303,8 @@ def returnUserProfileCarousels(request):
                                                           short_connections_suggestions),
                                                       'forums_suggestions_list': forum_methods.getForumsInfoList(
                                                           short_forum_suggestions),
-                                                      'this_uid': the_user.uid
+                                                      'this_uid': the_user.uid,
+                                                      'enabled': user_methods.getUserEnabled(the_user.uid)
                                                       })
 
 
@@ -417,7 +418,8 @@ def goBadges(request):
         'privacyUp': privacyUpdate,
         'connections_suggestions_list': connection_methods.getConnectionsInfoList(
             connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)),
-        'forums_suggestions_list': forum_methods.getForumsInfoList(the_user.forumsInfoList)
+        'forums_suggestions_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+        'enabled': user_methods.getUserEnabled(the_user.uid)
     })
 
 

@@ -110,6 +110,9 @@ class forum_methods:
         combined_list =  zip(mess_ids, texts, sender_pic, sender_name, sender_id, num_comments, num_likes, comment_ids, like_ids)
         return combined_list
 
+    def getUsername(uid):
+        return database.child('Users').child(uid).child('Name').get().val()
+
     def getForumsInfoList(forums_id_list):
         # get data from each course for the user and add them to separate arrays
         forum_names = []
@@ -125,7 +128,7 @@ class forum_methods:
                 forum_names.append(forum_methods.getForumName(id))
                 forum_pics.append(forum_methods.getForumPic(id))
                 forum_num_participants.append(forum_methods.getForumNumParticipants(id))
-                forum_creators.append(forum_methods.getForumCreator(id))
+                forum_creators.append(forum_methods.getUsername(forum_methods.getForumCreator(id)))
                 forum_topics.append(forum_methods.getForumTopicsString(id))
                 forum_descriptions.append(forum_methods.getForumDescription(id))
                 forum_ids.append(id)
