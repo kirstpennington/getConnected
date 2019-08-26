@@ -941,10 +941,17 @@ $(document).ready(function(){
 
                                         <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
 
-                                        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                       <!--this link should open the course card drill down-->
+                                        <!--<a style="font-size: smaller; color: gray; font-weight: bold"
                                            href={{ course_urls }}>
                                             VIEW COURSE<i class="fa fa-angle-double-right"></i>
+                                        </a>-->
+
+                                        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                          data-toggle="modal" href="#exampleModalLong" class=" button">
+                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
                                         </a>
+
                                     </div>
                                 </div><!-- /col-lg-3 col-sm-6 -->
 
@@ -968,6 +975,7 @@ $(document).ready(function(){
 
 
             </div>
+
 
         <script>
 
@@ -1769,5 +1777,73 @@ $(document).ready(function(){
 
 
 </script>
+
+<!-- Modal for view course  -->
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Course Details </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+
+
+
+          <!--  <img src="COURSES_HAVARD.jpg" class="rounded-circle"  alt="course image" style="border: 1px solid gray;width: 30% ; height: 40%;border-radius: 10px;"  >-->
+           <img src="HARVARDsmall.png" alt="course image" style="width:50% ; height:50%;margin-left:29%;" >
+           <hr style="border: 1px solid #e83e8c;">
+           <h2 style="text-align: center; color: gray;"> FinTech Online Short Course<h2>
+
+             <div class="row" >
+               <div class="col-sm-1"></div>
+                <div class="col-sm-4">
+                   <h5 style="font-size:20px;">Course Start:</h5>
+                 </div>
+
+                 <div class="col-sm-7">
+                    <h5 style="font-size: 20px; color: gray;">12 August 2019</h5>
+                  </div>
+
+             </div><!--end row-->
+
+             <div class="row" >
+<div class="col-sm-1"></div>
+                <div class="col-sm-4">
+                   <h5 style="font-size:20px;">Topics:</h5>
+                 </div>
+
+                 <div class="col-sm-7">
+                    <h5 style="font-size: 20px; color: white; margin: 10px;" class="badge badge-pill badge-dark"> Finance | Accounting</h5>
+                    <h5 style="font-size: 20px; color: white; margin: 10px;" class="badge badge-pill badge-dark"> Mathematics </h5>
+                  </div>
+             </div><!--end row-->
+
+<br>
+<p style="text-align: center; font-size: 15px; color:#e83e8c;"> <span class="glyphicon glyphicon-star" style="font-size:25px;"></span> This course is Well Rated!</p>
+
+
+
+
+      </div>
+      <div class="modal-footer">
+
+        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                           href={{ course_urls }}>
+                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
+                                        </a>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+                     <!--end of modal-->
 
 </body>
