@@ -103,7 +103,7 @@
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
         }
 
-         .profile_img_1 {
+        .profile_img_1 {
             max-width: 50px;
             min-width: 50px;
             display: inline;
@@ -210,8 +210,8 @@
 
         .img-fluid { /* Profile Picture 3/3 */
 
-            width:150px;
-            max-width:150px;
+            width: 150px;
+            max-width: 150px;
             min-width: 150px;
 
             max-height: 100%;
@@ -380,7 +380,7 @@
             -webkit-transform: scale(1); /* Safari 3-8 */
             transform: scale(1);
             border: 1px solid silver;
-                        z-index: 3000;
+            z-index: 3000;
 
         }
 
@@ -580,7 +580,6 @@
         }
 
 
-
         .AcceptDeclinebutton {
             border-radius: 8px;
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
@@ -600,7 +599,7 @@
 
         }
 
-         .notification-item {
+        .notification-item {
             padding: 5px;
             margin: 5px;
             border-radius: 4px;
@@ -609,7 +608,7 @@
             height: 80px;
         }
 
-         .profile_img_1 {
+        .profile_img_1 {
             max-width: 50px;
             min-width: 50px;
             display: inline;
@@ -621,8 +620,17 @@
 
         }
 
+        .btn-yes {
+            border: 1px solid gray;
+            color: #e83e8c;
 
+        }
 
+        .btn-no {
+            border: 1px solid gray;
+            color: #e83e8c;
+
+        }
 
 
     </style>
@@ -673,11 +681,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ ProfilePic }}" alt=""></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30"
+                                                                                  height="30" src="{{ ProfilePic }}"
+                                                                                  alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
-                    <ul  class="dropdown-menu">
+                    <ul class="dropdown-menu">
                         <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
                                 class="glyphicon glyphicon-cog pull-right"></span></a></li>
                         <li class="divider"></li>
@@ -696,7 +706,7 @@
             </ul>
 
             <!--1. Notifications icon + drop down-->
-<ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
+            <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
                 <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
@@ -814,7 +824,8 @@
 
 <!--used to encapsulate all content items of settings page, excl footer-->
 <!--background wallpaper-->
-<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for page content -->
 
 
@@ -875,79 +886,122 @@
                             });
 
                             // shows all blocks in the list of my connections
-                            function showAll(){
+                            function showAll() {
                                 //strConnList = document.getElementById("my_conn_ids").innerText.substr(1);// removes first letter from string version of array
                                 //myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
 
                                 //  loop through connection_ids
-                                for (let i = 0; i < myConnList.length; i++){
+                                for (let i = 0; i < myConnList.length; i++) {
                                     document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
                                 }
                             }
 
 
-                            function searchByCountry(){
+                            function searchByCountry() {
                                 //strConnList = document.getElementById("my_conn_ids").innerText.substr(1);
                                 //myConnList =  strConnList.split(",");
                                 myCountry = document.getElementById('my_country').innerText;
 
                                 //  loop through connection_ids
-                                for (let i = 0; i < myConnList.length; i++){
+                                for (let i = 0; i < myConnList.length; i++) {
                                     this_country = document.getElementById(myConnList[i] + '_country').innerText;
-                                    if (this_country == myCountry){
+                                    if (this_country == myCountry) {
                                         document.getElementById(myConnList[i] + "_hide").hidden = false;
 
-                                    }
-                                    else{
+                                    } else {
                                         document.getElementById(myConnList[i] + "_hide").hidden = true;
                                     }
                                 }
                             }
 
-                             //  check if name, coutnry or bio contains string typed - search button
-                               function searchByTerm() {
-                                   searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
-                                   console.log("searchTerm: " + searchTerm);   // debug
-                                  // strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
-                                  // myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+                            //  check if name, coutnry or bio contains string typed - search button
+                            function searchByTerm() {
+                                searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
+                                console.log("searchTerm: " + searchTerm);   // debug
+                                // strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
+                                // myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
 
-                                    //  loop through course_ids
-                                    for (let i = 0; i < myConnList.length; i++){
-                                        // check if topics list for this course_id contains Finance
-                                        connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
-                                        connCountry = document.getElementById(myConnList[i] + "_country").innerText;    // check country for matching text
-                                        connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
-                                        if (connName.includes(searchTerm) || connCountry.includes(searchTerm) || connBio.includes(searchTerm)){                                               // if the rating searched is in the list
-                                            document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                        }
-                                        else{
-                                            document.getElementById(myConnList[i] + "_hide").hidden = true;
-                                        }
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++) {
+                                    // check if topics list for this course_id contains Finance
+                                    connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                    connCountry = document.getElementById(myConnList[i] + "_country").innerText;    // check country for matching text
+                                    connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
+                                    if (connName.includes(searchTerm) || connCountry.includes(searchTerm) || connBio.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                        document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                    } else {
+                                        document.getElementById(myConnList[i] + "_hide").hidden = true;
                                     }
-                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
                                 }
+                                // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                            }
                         </script>
                     </div><!--end search bar-->
                 </div>
-                 <script>
-                function RemoveConnection(connection_id, connection_name){
+                <script>
+                    var val = ' ';
 
-                    var r  = confirm("Are you sure you want to remove " + connection_name + " from your connections?");
-                    if (r == true) {
+                    function RemoveConnection(connection_id, connection_name) {
 
-                        var delete_ref = firebase.database().ref().child("Users/{{ this_uid }}/Connections");/*Messages*/
+                        //var r = confirm("Are you sure you want to remove " + connection_name + " from your connections?");
+                        var message = "Are you sure you want to remove " + connection_name + " from your connections?";
+
+
+                        $(`<div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <div class="modal-content">
+                            <div class="modal-body" style="padding:10px;">
+                            <h4 class="text-center">${message}</h4>
+                            <br>
+                            <div class="text-right">
+                            <a class="btn btn-yes">Confirm</a>
+                            <a class="btn btn-no">Cancel</a>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>`).appendTo('body');
+
+                        //Trigger the modal
+                        $("#myModal").modal({
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+
+                        //Pass true to a callback function
+                        $(".btn-yes").click(function () {
+
+                            $("#myModal").modal("hide");
+                            removal(connection_id, connection_name);
+                        });
+
+                        //Pass false to callback function
+                        $(".btn-no").click(function () {
+
+                            $("#myModal").modal("hide");
+                        });
+
+                        //Remove the modal once it is closed.
+                        $("#myModal").on('hidden.bs.modal', function () {
+                            $("#myModal").remove();
+                        });
+
+
+                    }
+
+                    function removal(connection_id, connection_name) {
+
+                        var delete_ref = firebase.database().ref().child("Users/{{ this_uid }}/Connections");
                         delete_ref.child(connection_id).remove();
 
-                        var removesent = firebase.database().ref().child("Users/" + connection_id +"/Connections/"+ '{{this_uid}}');/*Messages*/
+                        var removesent = firebase.database().ref().child("Users/" + connection_id + "/Connections/" + '{{this_uid}}');
                         removesent.remove();
-
-                    } else {
 
                     }
 
 
-                }
-            </script>
+                </script>
 
 
                 <!--************My Connections***************-->
@@ -1029,146 +1083,142 @@
                 </div><!-- ***************end my connections*******************-->
 
 
-<script>
-    /*This JavaScript Section is for creating a table with connection cards. The table is called MyConnectionsTable*/
+                <script>
+                    /*This JavaScript Section is for creating a table with connection cards. The table is called MyConnectionsTable*/
 
-    var connections_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                    var connections_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
 
-    connections_fb_location.on("value",function (snapshot) {
-        var isempty = true;
+                    connections_fb_location.on("value", function (snapshot) {
+                        var isempty = true;
 
 
-        var j = 0;
-        var result = "<table >";
-        result += "<tr>";
+                        var j = 0;
+                        var result = "<table >";
+                        result += "<tr>";
 
-        snapshot.forEach( function (childSnapshot) {
-            isempty = false;
+                        snapshot.forEach(function (childSnapshot) {
+                            isempty = false;
 
-            //var key = childSnapshot.key;
-            //var value = childSnapshot.val();
-            var key = childSnapshot.key;
-            var child_name = childSnapshot.val().Name;
-            var child_country = childSnapshot.val().Country;
-            var child_bio = childSnapshot.val().Bio;
-            var child_propic = childSnapshot.val().ProfilePic;
+                            //var key = childSnapshot.key;
+                            //var value = childSnapshot.val();
+                            var key = childSnapshot.key;
+                            var child_name = childSnapshot.val().Name;
+                            var child_country = childSnapshot.val().Country;
+                            var child_bio = childSnapshot.val().Bio;
+                            var child_propic = childSnapshot.val().ProfilePic;
 
-            result += "<td>" +  formCard(key,child_name,child_bio, child_country,child_propic)  + "</td>";
-            if ((j + 1) % 3 == 0) {
-                result += "</tr><tr>";
-            }
-            j++;
-        });
+                            result += "<td>" + formCard(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                            if ((j + 1) % 3 == 0) {
+                                result += "</tr><tr>";
+                            }
+                            j++;
+                        });
 
-             if (isempty == true){
+                        if (isempty == true) {
 
-                        result = "\n" +
-                            "<div class=\"container_2\">\n" +
-                            "    <img  style=\"  height: 400px;width: 1365px; opacity: 0.2; \"\n" +
-                            "         src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
-                            "         alt=\"Snow\" style=\"width:100%;\">\n" +
-                            "    <div  class=\"centered\"><strong><h1\n" +
-                            "            style=\"font-family: 'Roboto', sans-serif; color: deeppink \">Click Explore and GetConnected\n" +
-                            "        with GetSmarter Alumni!</h1></strong></div>\n" +
-                            "</div>\n"
+                            result = "\n" +
+                                "<div class=\"container_2\">\n" +
+                                "    <img  style=\"  height: 400px;width: 1365px; opacity: 0.2; \"\n" +
+                                "         src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
+                                "         alt=\"Snow\" style=\"width:100%;\">\n" +
+                                "    <div  class=\"centered\"><strong><h1\n" +
+                                "            style=\"font-family: 'Roboto', sans-serif; color: deeppink \">Click Explore and GetConnected\n" +
+                                "        with GetSmarter Alumni!</h1></strong></div>\n" +
+                                "</div>\n"
+
+                        }
+
+                        $('#MyConnectionsTable').html(result);
+
+
+                    });
+
+
+                    function formCard(key, name, bio, country, profilepic) {
+
+
+                        var card = "<div id=\"" + key + "_hide\"  class=\"col-md-3\"\n" +
+                            "                                style=\"margin-top: 70px; margin-left: 90px;\">\n" +
+                            "                                <form action=\"/goConnectionsOpen/\" method=\"post\">\n" +
+                            "                                    \n" +
+                            "                                    <div hidden id=\"" + key + "_bio\">" + bio + "</div>\n" +
+                            "                                    <div style=\"display: none;\" id=\"conn_id\">" + key + "</div>\n" +
+                            "                                    <!-- hidden field with the user id for that connection -->\n" +
+                            "                                    <img style=\" position:relative; top: -15px ; margin-left: 60px;\"\n" +
+                            "                                         src=\" " + profilepic + " \"\n" +
+                            "                                         alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
+                            "\n" +
+                            "\n" +
+                            "                                    <div class=\"card hovercard \">\n" +
+                            "                                        <div class=\"dropdownmenu\"\n" +
+                            "                                             style=\"position: relative; left: 38%;color: #666666; \">\n" +
+                            "                                            <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
+                            "                                                                    data-toggle=\"dropdown\">\n" +
+                            "                                                <!--more options menu-->\n" +
+                            "                                                <span class=\"glyphicon glyphicon-option-vertical \"\n" +
+                            "                                                      style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
+                            "                                                <ul   class=\"dropdown-menu\">\n" +
+                            "                                                    <li><a style=\"font-size: 11px\">Send Message &nbsp;<span\n" +
+                            "                                                            style=\"font-size: 15px\"\n" +
+                            "                                                            class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
+                            "                                                    <li class=\"divider\"></li>\n" +
+                            "                                                    <li><a style=\"font-size: 11px\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span\n" +
+                            "                                                            style=\"font-size: 15px\"\n" +
+                            "                                                            class=\"\tglyphicon glyphicon-user\"></span></a></li>\n" +
+                            "                                                    <li class=\"divider\"></li>\n" +
+                            "                                                    <li onclick=\"RemoveConnection(\'" + key + "\',\'" + name + "\')\"><a\n" +
+                            "                                                            style=\"font-size: 11px\">Remove Connection&nbsp;&nbsp;<span\n" +
+                            "                                                            style=\"font-size: 15px\"\n" +
+                            "                                                            class=\"\tfa fa-trash\"></span></a></li>\n" +
+                            "                                                </ul>\n" +
+                            "                                            </li>\n" +
+                            "                                        </div>\n" +
+                            "\n" +
+                            "                                        <div class=\"info\">\n" +
+                            "                                            <div class=\"title\"></div>\n" +
+                            "                                            <div id=\"" + key + "_name" + "\"\n" +
+                            "                                                 style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
+                            "                                                " + name + "\n" +
+                            "                                            </div>\n" +
+                            "                                            <br>\n" +
+                            "                                            <p style=\"font-size: small;color: grey\" id=\"" + key + "_bio" + "\"> " + bio + "</p>\n" +
+                            "                                            <p id=\"" + key + "_country" + "\">" + country + "</p>\n" +
+                            "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\"\n" +
+                            "                                                   value=\"" + key + "\" hidden style=\"display: none;\">\n" +
+                            "                                            <button onclick=\"location.href='{% url 'connectionsopen' %}'\"\n" +
+                            "                                                    style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\"\n" +
+                            "                                                    type=\"submit\" value=\"goConnectionsOpen\">View Profile\n" +
+                            "                                                <i></i></button>\n" +
+                            "                                            <br>\n" +
+                            "                                        </div>\n" +
+                            "                                    </div>\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "                                </form>\n" +
+                            "                            </div>\n";
+
+
+                        return card;
 
                     }
 
-         $('#MyConnectionsTable').html(result);
+                    {% comment %}function helloCatAsync(callback) {
+
+                        var connections_fb_location = firebase.database().ref().child("Users/" + "6y4rretCRGftH3avGJfVI6EQm313");
+                        connections_fb_location.once('value').then(snapshot => {
+                            callback(snapshot.val().Name);
+                            $("div").attr("data-stored", snapshot.val().Name);
 
 
-    });
+                        });
+                    }{% endcomment %}
 
 
-    function formCard (key, name, bio, country, profilepic) {
-
-
-
-        var card = "<div id=\"" + key + "_hide\"  class=\"col-md-3\"\n" +
-            "                                style=\"margin-top: 70px; margin-left: 90px;\">\n" +
-            "                                <form action=\"/goConnectionsOpen/\" method=\"post\">\n" +
-            "                                    \n" +
-            "                                    <div hidden id=\"" + key + "_bio\">"+  bio +  "</div>\n" +
-            "                                    <div style=\"display: none;\" id=\"conn_id\">"+ key+"</div>\n" +
-            "                                    <!-- hidden field with the user id for that connection -->\n" +
-            "                                    <img style=\" position:relative; top: -15px ; margin-left: 60px;\"\n" +
-            "                                         src=\" "+ profilepic +" \"\n" +
-            "                                         alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
-            "\n" +
-            "\n" +
-            "                                    <div class=\"card hovercard \">\n" +
-            "                                        <div class=\"dropdownmenu\"\n" +
-            "                                             style=\"position: relative; left: 38%;color: #666666; \">\n" +
-            "                                            <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
-            "                                                                    data-toggle=\"dropdown\">\n" +
-            "                                                <!--more options menu-->\n" +
-            "                                                <span class=\"glyphicon glyphicon-option-vertical \"\n" +
-            "                                                      style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
-            "                                                <ul   class=\"dropdown-menu\">\n" +
-            "                                                    <li><a style=\"font-size: 11px\">Send Message &nbsp;<span\n" +
-            "                                                            style=\"font-size: 15px\"\n" +
-            "                                                            class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
-            "                                                    <li class=\"divider\"></li>\n" +
-            "                                                    <li><a style=\"font-size: 11px\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span\n" +
-            "                                                            style=\"font-size: 15px\"\n" +
-            "                                                            class=\"\tglyphicon glyphicon-user\"></span></a></li>\n" +
-            "                                                    <li class=\"divider\"></li>\n" +
-            "                                                    <li onclick=\"RemoveConnection(\'"+ key +"\',\'" + name + "\')\"><a\n" +
-            "                                                            style=\"font-size: 11px\">Remove Connection&nbsp;&nbsp;<span\n" +
-            "                                                            style=\"font-size: 15px\"\n" +
-            "                                                            class=\"\tfa fa-trash\"></span></a></li>\n" +
-            "                                                </ul>\n" +
-            "                                            </li>\n" +
-            "                                        </div>\n" +
-            "\n" +
-            "                                        <div class=\"info\">\n" +
-            "                                            <div class=\"title\"></div>\n" +
-            "                                            <div id=\""+ key + "_name" +"\"\n" +
-            "                                                 style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
-            "                                                " + name + "\n" +
-            "                                            </div>\n" +
-            "                                            <br>\n" +
-            "                                            <p style=\"font-size: small;color: grey\" id=\""+ key+ "_bio" +"\"> " + bio +"</p>\n" +
-            "                                            <p id=\""+ key + "_country" +"\">" + country +"</p>\n" +
-            "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\"\n" +
-            "                                                   value=\""+ key +"\" hidden style=\"display: none;\">\n" +
-            "                                            <button onclick=\"location.href='{% url 'connectionsopen' %}'\"\n" +
-            "                                                    style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\"\n" +
-            "                                                    type=\"submit\" value=\"goConnectionsOpen\">View Profile\n" +
-            "                                                <i></i></button>\n" +
-            "                                            <br>\n" +
-            "                                        </div>\n" +
-            "                                    </div>\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "                                </form>\n" +
-            "                            </div>\n";
-
-
-
-
-        return card;
-
-    }
-
-    {% comment %}function helloCatAsync(callback) {
-
-        var connections_fb_location = firebase.database().ref().child("Users/" + "6y4rretCRGftH3avGJfVI6EQm313");
-        connections_fb_location.once('value').then(snapshot => {
-            callback(snapshot.val().Name);
-            $("div").attr("data-stored", snapshot.val().Name);
-
-
-        });
-    }{% endcomment %}
-
-
-    </script>
-
+                </script>
 
 
             </div>
@@ -1181,7 +1231,7 @@
                 <div class="centraliser" style="text-align: center">
                     <div class="input-group"
                          style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
-                        <input  id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
+                        <input id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
                         <span onclick="searchByTermAll()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
@@ -1193,69 +1243,64 @@
                         </span>
                     </div><!--end search bar-->
                     <div hidden id="conn_suggestions_ids_str">{{ conn_suggestions_ids_str }}</div>
-                        <script>
+                    <script>
 
 
+                        // shows all blocks in the list of my connections
+                        function showAllAll() {
+                            strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
+                            myConnList = strConnList.split(",");                                        // split string into array by the delimiter ","
 
-                            // shows all blocks in the list of my connections
-                            function showAllAll(){
-                                strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
-                                myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+                            //  loop through course_ids
+                            for (let i = 0; i < myConnList.length; i++) {
+                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
+                            }
+                        }
 
-                                //  loop through course_ids
-                                for (let i = 0; i < myConnList.length; i++){
-                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
+                        function searchByCountryAll() {
+                            strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);
+                            myConnList = strConnList.split(",");
+                            myCountry = document.getElementById('my_country').innerText;
+
+                            //  loop through connection_ids
+                            for (let i = 0; i < myConnList.length; i++) {
+                                this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
+                                if (this_country == myCountry) {
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                } else {
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = true;
                                 }
                             }
+                        }
 
-                            function searchByCountryAll(){
-                                strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);
-                                myConnList =  strConnList.split(",");
-                                myCountry = document.getElementById('my_country').innerText;
+                        //  check if name, coutnry or bio contains string typed - search button
+                        function searchByTermAll() {
+                            searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
+                            strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
+                            myConnList = strConnList.split(",");                                        // split string into array by the delimiter ","
 
-                                //  loop through connection_ids
-                                for (let i = 0; i < myConnList.length; i++){
-                                    this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
-                                    if (this_country == myCountry){
-                                        document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                    }
-                                    else{
-                                        document.getElementById(myConnList[i] + "_hideAll").hidden = true;
-                                    }
+                            //  loop through course_ids
+                            for (let i = 0; i < myConnList.length; i++) {
+                                // check if topics list for this course_id contains Finance
+                                connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
+                                connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
+                                if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                } else if (connCountry.includes(searchTerm)) {
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                } else if (connBio.includes(searchTerm)) {
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                } else {
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = true;
                                 }
                             }
-
-                             //  check if name, coutnry or bio contains string typed - search button
-                               function searchByTermAll() {
-                                   searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
-                                   strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
-                                   myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
-
-                                    //  loop through course_ids
-                                    for (let i = 0; i < myConnList.length; i++){
-                                        // check if topics list for this course_id contains Finance
-                                        connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
-                                        connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
-                                        connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
-                                        if (connName.includes(searchTerm)){                                               // if the rating searched is in the list
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                        }
-                                        else if (connCountry.includes(searchTerm)){
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                        }
-                                        else if (connBio.includes(searchTerm)){
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                        }
-                                        else{
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = true;
-                                        }
-                                    }
-                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
-                                }
-                        </script>
+                            // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                        }
+                    </script>
                 </div>
 
-                   <div class="connectionitems" style="margin-left: 90px">
+                <div class="connectionitems" style="margin-left: 90px">
 
                     <div class="row"><!--row one of page-->
 
@@ -1264,7 +1309,7 @@
 
 
                         <!--connections-->
-                       {% comment %} {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
+                        {% comment %} {% for names, countries, pictures, bio, conn_id in suggested_connections_list %}
                             <div id="{{ conn_id }}_hideAll" class="col-md-3"
                                  style="margin-top: 70px; margin-left: 90px;">
                                     {% csrf_token %}
@@ -1404,242 +1449,259 @@
 
 
                 //var results = "happy";
-               // $('#ExploreConnectionsTable').append(results);
+                // $('#ExploreConnectionsTable').append(results);
 
 
+                function ExploreformCard(key, child_name, child_bio, child_country, child_propic) {
 
 
-
-function ExploreformCard(key, child_name, child_bio, child_country, child_propic) {
-
-
-    var card = "<div id=\""+ key + "_hideAll"+"\"  class=\"col-md-3\"  style=\"margin-top: 70px; margin-left: 90px;\">\n" +
-        "                         \n" +
-        "                                                            \n" +
-        "                            <div style=\"display: none;\" id=\"conn_id\"></div>    <!-- hidden field with the user id for that connection -->\n" +
-        "                           <img style=\" position:relative; top: -15px ; margin-left: 60px\" src=\""+ child_propic+" \"\n" +
-        "                                     alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
-        "                            <div hidden id=\""+ key + "_bioAll"+"\"></div>\n" +
-        "                            <div class=\"card hovercard \">\n" +
-        "\n" +
-        "                                  <div class=\"dropdownmenu\" style=\"position: relative; left: 38%;color: #666666; \">\n" +
-        "\n" +
-        "                                     <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-        "\n" +
-        "\n" +
-        "                                        <!--more options menu-->\n" +
-        "                                        <span  class=\"glyphicon glyphicon-option-vertical \" style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
-        "\n" +
-        "                                        <ul class=\"dropdown-menu\" >\n" +
-        "                                            <li ><a style=\"font-size: 11px\">Send Message &nbsp;<span style=\"font-size: 15px\"\n" +
-        "                                                    class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
-        "                                            <li class=\"divider\"></li>\n" +
-        "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\" value=\""+ key+ "\" hidden style=\"display: none;\">\n" +
-        "                                            <li><button onclick=\"location.href='{% url 'connectionsopen' %}'\" style=\"color:black;background-color:white;border:none;font-size: 11px\" type=\"submit\" value=\"goConnectionsOpen\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n" +
-        "                                                    class=\"\tglyphicon glyphicon-user\"></span></button></li>\n" +
-        "\n" +
-        "                                            {% comment %}<li class=\"divider\"></li>\n"+
+                    var card = "<div id=\"" + key + "_hideAll" + "\"  class=\"col-md-3\"  style=\"margin-top: 70px; margin-left: 90px;\">\n" +
+                        "                         \n" +
+                        "                                                            \n" +
+                        "                            <div style=\"display: none;\" id=\"conn_id\"></div>    <!-- hidden field with the user id for that connection -->\n" +
+                        "                           <img style=\" position:relative; top: -15px ; margin-left: 60px\" src=\"" + child_propic + " \"\n" +
+                        "                                     alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
+                        "                            <div hidden id=\"" + key + "_bioAll" + "\"></div>\n" +
+                        "                            <div class=\"card hovercard \">\n" +
+                        "\n" +
+                        "                                  <div class=\"dropdownmenu\" style=\"position: relative; left: 38%;color: #666666; \">\n" +
+                        "\n" +
+                        "                                     <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                        "\n" +
+                        "\n" +
+                        "                                        <!--more options menu-->\n" +
+                        "                                        <span  class=\"glyphicon glyphicon-option-vertical \" style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
+                        "\n" +
+                        "                                        <ul class=\"dropdown-menu\" >\n" +
+                        "                                            <li ><a style=\"font-size: 11px\">Send Message &nbsp;<span style=\"font-size: 15px\"\n" +
+                        "                                                    class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
+                        "                                            <li class=\"divider\"></li>\n" +
+                        "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\" value=\"" + key + "\" hidden style=\"display: none;\">\n" +
+                        "                                            <li><button onclick=\"location.href='{% url 'connectionsopen' %}'\" style=\"color:black;background-color:white;border:none;font-size: 11px\" type=\"submit\" value=\"goConnectionsOpen\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n" +
+                        "                                                    class=\"\tglyphicon glyphicon-user\"></span></button></li>\n" +
+                        "\n" +
+                        "                                            {% comment %}<li class=\"divider\"></li>\n"+
 "\n"+
 "                                            <li id=\"remove_Onclick\" onclick=\"Connect('{{ conn_id }}')\"><a  style=\"font-size: 11px\">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n"+
 "                                                  class=\"\tfa fa-user-plus\"></span></a></li>{% endcomment %}\n" +
-        "                                        </ul>\n" +
-        "                                   </li>\n" +
-        "                           </div>\n" +
-        "\n" +
-        "                                <div class=\"info\">\n" +
-        "                                    <div class=\"title\"></div>\n" +
-        "                                    <div id=\""+ key+ "_nameAll" +"\" style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
-        "                                        "+ child_name+"\n" +
-        "                                    </div><br>\n" +
-        "                                     <p style=\"font-size: small;color: grey\" id=\""+ key+"\">"+child_bio+"</p>\n" +
-        "                                    <p id=\""+ key+ "_countryAll"+"\">"+ child_country+"</p>\n" +
-        "                                    <button onclick=\"Connect(\'"+ key + "\')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\""+key+"\"  class=\"fa fa-user-plus\"></i>&nbsp;Connect<br>\n" +
-        "                                    </button>\n" +
-        "                                </div>\n" +
-        "                            </div>\n" +
-        "                         \n" +
-        "                        </div>" ;
+                        "                                        </ul>\n" +
+                        "                                   </li>\n" +
+                        "                           </div>\n" +
+                        "\n" +
+                        "                                <div class=\"info\">\n" +
+                        "                                    <div class=\"title\"></div>\n" +
+                        "                                    <div id=\"" + key + "_nameAll" + "\" style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
+                        "                                        " + child_name + "\n" +
+                        "                                    </div><br>\n" +
+                        "                                     <p style=\"font-size: small;color: grey\" id=\"" + key + "\">" + child_bio + "</p>\n" +
+                        "                                    <p id=\"" + key + "_countryAll" + "\">" + child_country + "</p>\n" +
+                        "                                    <button onclick=\"Connect(\'" + key + "\')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\"" + key + "\"  class=\"fa fa-user-plus\"></i>&nbsp;Connect<br>\n" +
+                        "                                    </button>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                         \n" +
+                        "                        </div>";
 
 
+                    return card;
 
-    return card;
+                }
 
-}
+                function ExploreformCard_dim(key, child_name, child_bio, child_country, child_propic) {
 
-function ExploreformCard_dim(key, child_name, child_bio, child_country, child_propic) {
-
-     var card = "<div id=\""+ key +"_hideAll" +"\" class=\"col-md-3\"  style=\"margin-top: 70px; margin-left: 90px;\">\n" +
-        "                         \n" +
-        "                                                            \n" +
-        "                            <div style=\"display: none;\" id=\"conn_id\"></div>    <!-- hidden field with the user id for that connection -->\n" +
-        "                           <img style=\" position:relative; opacity: 0.1; top: -15px ; margin-left: 60px\" src=\""+ child_propic+" \"\n" +
-        "                                     alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
-        "                            <div hidden id=\""+ key + "_bioAll"+"\"></div>\n" +
-        "                            <div style=\"background-color: lightgrey;\"  class=\"card hovercard \">\n" +
-        "\n" +
-        "                                  <div class=\"dropdownmenu\" style=\"position: relative; left: 38%;color: #666666; \">\n" +
-        "\n" +
-        "                                     <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-        "\n" +
-        "\n" +
-        "                                        <!--more options menu-->\n" +
-        "                                        <span  class=\"glyphicon glyphicon-option-vertical \" style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
-        "\n" +
-        "                                        <ul class=\"dropdown-menu\" >\n" +
-        "                                            <li ><a style=\"font-size: 11px\">Send Message &nbsp;<span style=\"font-size: 15px\"\n" +
-        "                                                    class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
-        "                                            <li class=\"divider\"></li>\n" +
-        "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\" value=\""+ key+ "\" hidden style=\"display: none;\">\n" +
-        "                                            <li><button onclick=\"location.href='{% url 'connectionsopen' %}'\" style=\"color:black;background-color:white;border:none;font-size: 11px\" type=\"submit\" value=\"goConnectionsOpen\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n" +
-        "                                                    class=\"\tglyphicon glyphicon-user\"></span></button></li>\n" +
-        "\n" +
-        "                                            {% comment %}<li class=\"divider\"></li>\n"+
+                    var card = "<div id=\"" + key + "_hideAll" + "\" class=\"col-md-3\"  style=\"margin-top: 70px; margin-left: 90px;\">\n" +
+                        "                         \n" +
+                        "                                                            \n" +
+                        "                            <div style=\"display: none;\" id=\"conn_id\"></div>    <!-- hidden field with the user id for that connection -->\n" +
+                        "                           <img style=\" position:relative; opacity: 0.1; top: -15px ; margin-left: 60px\" src=\"" + child_propic + " \"\n" +
+                        "                                     alt=\"Circle Image\" class=\"img-raised rounded-circle img-fluid\">\n" +
+                        "                            <div hidden id=\"" + key + "_bioAll" + "\"></div>\n" +
+                        "                            <div style=\"background-color: lightgrey;\"  class=\"card hovercard \">\n" +
+                        "\n" +
+                        "                                  <div class=\"dropdownmenu\" style=\"position: relative; left: 38%;color: #666666; \">\n" +
+                        "\n" +
+                        "                                     <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                        "\n" +
+                        "\n" +
+                        "                                        <!--more options menu-->\n" +
+                        "                                        <span  class=\"glyphicon glyphicon-option-vertical \" style=\"color: lightgrey;font-size:15px;\"></span></a>\n" +
+                        "\n" +
+                        "                                        <ul class=\"dropdown-menu\" >\n" +
+                        "                                            <li ><a style=\"font-size: 11px\">Send Message &nbsp;<span style=\"font-size: 15px\"\n" +
+                        "                                                    class=\"fa fa-comments-o pull-right\"></span></a></li>\n" +
+                        "                                            <li class=\"divider\"></li>\n" +
+                        "                                            <input class=\"connection_id\" id=\"connection_id\" name=\"connection_id\" value=\"" + key + "\" hidden style=\"display: none;\">\n" +
+                        "                                            <li><button onclick=\"location.href='{% url 'connectionsopen' %}'\" style=\"color:black;background-color:white;border:none;font-size: 11px\" type=\"submit\" value=\"goConnectionsOpen\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n" +
+                        "                                                    class=\"\tglyphicon glyphicon-user\"></span></button></li>\n" +
+                        "\n" +
+                        "                                            {% comment %}<li class=\"divider\"></li>\n"+
 "\n"+
 "                                            <li id=\"remove_Onclick\" onclick=\"Connect('{{ conn_id }}')\"><a  style=\"font-size: 11px\">Connect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size: 15px\"\n"+
 "                                                  class=\"\tfa fa-user-plus\"></span></a></li>{% endcomment %}\n" +
-        "                                        </ul>\n" +
-        "                                   </li>\n" +
-        "                           </div>\n" +
-        "\n" +
-        "                                <div class=\"info\">\n" +
-        "                                    <div class=\"title\"></div>\n" +
-        "                                    <div id=\""+ key + "_nameAll"+"\" style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
-        "                                        "+ child_name+"\n" +
-        "                                    </div><br>\n" +
-        "                                     <p style=\"font-size: small;color: grey\" id=\""+ key+"\">"+child_bio+"</p>\n" +
-        "                                    <p id=\""+ key + "_countryAll"+"\">"+ child_country+"</p>\n" +
-        "                                    <button onclick= \"Pending(\'" + key + "\',\'" + child_name +"\')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\""+key+"\"  class=\"fa fa-hourglass\"></i>&nbsp;Pending<br>\n" +
-        "                                    </button>\n" +
-        "                                </div>\n" +
-        "                            </div>\n" +
-        "                         \n" +
-        "                        </div>" ;
+                        "                                        </ul>\n" +
+                        "                                   </li>\n" +
+                        "                           </div>\n" +
+                        "\n" +
+                        "                                <div class=\"info\">\n" +
+                        "                                    <div class=\"title\"></div>\n" +
+                        "                                    <div id=\"" + key + "_nameAll" + "\" style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: medium\">\n" +
+                        "                                        " + child_name + "\n" +
+                        "                                    </div><br>\n" +
+                        "                                     <p style=\"font-size: small;color: grey\" id=\"" + key + "\">" + child_bio + "</p>\n" +
+                        "                                    <p id=\"" + key + "_countryAll" + "\">" + child_country + "</p>\n" +
+                        "                                    <button onclick= \"Pending(\'" + key + "\',\'" + child_name + "\')\" style=\"background-color: #e83e8c; width: 90px; height: 30px; font-size: small;  border-radius: 15px\" class=\"button\"><i  id=\"" + key + "\"  class=\"fa fa-hourglass\"></i>&nbsp;Pending<br>\n" +
+                        "                                    </button>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                         \n" +
+                        "                        </div>";
 
 
+                    return card;
 
-    return card;
 
-
-}
+                }
 
             </script>
 
 
-        <script>
+            <script>
 
 
-             function Pending(connection_id,child_name) {
-
-
-
-
-                 var r  = confirm("Are you sure you want to unsend connection request to  " + child_name + " ?");
+                function Pending(connection_id, child_name) {
 
 
 
-
-                 <!-- Modal for pop up message "password error " -->
-
-
-                    if (r == true) {
+                    var message = "Are you sure you want to unsend connection request to  " + child_name + " ?"
 
 
-                        var removepending_User = firebase.database().ref().child("Users/" + connection_id + "/RequestsReceived/" + '{{this_uid}}' );/*Messages*/
+                    $(`<div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
 
-                        var removepending_Personal = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsSent/" +  connection_id  );/*Messages*/
+                            <div class="modal-content">
+                            <div class="modal-body" style="padding:10px;">
+                            <h4 class="text-center">${message}</h4>
+                            <br>
+                            <div class="text-right">
+                            <a class="btn btn-yes">Yes</a>
+                            <a class="btn btn-no">Cancel</a>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>`).appendTo('body');
 
-                        removepending_User.remove();
+                    //Trigger the modal
+                    $("#myModal").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
 
-                        removepending_Personal.remove();
+                    //Pass true to a callback function
+                    $(".btn-yes").click(function () {
 
+                        $("#myModal").modal("hide");
+                        unsendRequest(connection_id, child_name)
+                    });
 
+                    //Pass false to callback function
+                    $(".btn-no").click(function () {
 
+                        $("#myModal").modal("hide");
+                    });
 
-
-
-                    } else {
-
-                    }
-            }
-
-
-            function Connect(connection_id) {
-
-
-                var date_for_post = Date.now();
-
-
-
-                writeUserData(date_for_post, "{{ n }}", '{{this_uid}}', "Connection Request", connection_id);
-
-
-
-
-                //document.getElementById(connection_id).className = "fa fa-hourglass";
-
-                //connection_id;
-
-
-            }
-
-             function writeUserData(message_time, messageFrom,request_sender_id, actual_message,request_receiver_id) {/*Pushes to current users*/
-
-
-                         var database = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent");/*Current users account*/
+                    //Remove the modal once it is closed.
+                    $("#myModal").on('hidden.bs.modal', function () {
+                        $("#myModal").remove();
+                    });
 
 
-
-               // var created_id =  database.push();
-               // AddConnection.child(request_receiver_id).set({ /*Pushes to receiver*/
-
-                database.child(request_receiver_id).set({
-                    time: message_time,
-                    sender: messageFrom,
-                    sender_id:request_sender_id,
-                    message: actual_message,
-                    receiver_id:request_receiver_id,
-                    sender_profilePic: '{{ ProfilePic }}',
-                    post_id: request_receiver_id,
+                }
 
 
+                function unsendRequest(connection_id, child_name) {
+                    var removepending_User = firebase.database().ref().child("Users/" + connection_id + "/RequestsReceived/" + '{{this_uid}}');
 
-                });
+                    var removepending_Personal = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsSent/" + connection_id);
 
+                    removepending_User.remove();
 
-               {% comment %}  /*Saving_id*/
-                var hope = String(created_id);
-                var result = hope.substring(hope.lastIndexOf("/") + 1);
-                var save_id = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent/"+result);/*Messages*/
-                save_id.update({
-                    post_id: result
-                });{% endcomment %}
+                    removepending_Personal.remove();
 
 
-                var database_target = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived");/*Where the message is going*/
-                //var created_id_target = database_target.push();
-                database_target.child(request_sender_id).set({ /*Pushes to receiver*/
-                    time: message_time,
-                    sender: messageFrom,
-                    sender_id:request_sender_id,
-                    message: actual_message,
-                    receiver_id:request_receiver_id,
-                    sender_profilePic: '{{ ProfilePic }}',
-                    post_id: request_sender_id,
+                }
 
 
-
-                });
-
-                {% comment %}hope = String(created_id_target);
-                result = hope.substring(hope.lastIndexOf("/") + 1);
-                save_id = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived/" + result);/*Messages*/
-                save_id.update({
-                    post_id: result
-                });{% endcomment %}
+                function Connect(connection_id) {
 
 
+                    var date_for_post = Date.now();
 
-             }
+
+                    writeUserData(date_for_post, "{{ n }}", '{{this_uid}}', "Connection Request", connection_id);
+
+
+                    //document.getElementById(connection_id).className = "fa fa-hourglass";
+
+                    //connection_id;
+
+
+                }
+
+                function writeUserData(message_time, messageFrom, request_sender_id, actual_message, request_receiver_id) {/*Pushes to current users*/
+
+
+                    var database = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent");/*Current users account*/
+
+
+                    // var created_id =  database.push();
+                    // AddConnection.child(request_receiver_id).set({ /*Pushes to receiver*/
+
+                    database.child(request_receiver_id).set({
+                        time: message_time,
+                        sender: messageFrom,
+                        sender_id: request_sender_id,
+                        message: actual_message,
+                        receiver_id: request_receiver_id,
+                        sender_profilePic: '{{ ProfilePic }}',
+                        post_id: request_receiver_id,
+
+
+                    });
+
+
+                    {% comment %}  /*Saving_id*/
+                     var hope = String(created_id);
+                     var result = hope.substring(hope.lastIndexOf("/") + 1);
+                     var save_id = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent/"+result);/*Messages*/
+                     save_id.update({
+                         post_id: result
+                     });{% endcomment %}
+
+
+                    var database_target = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived");/*Where the message is going*/
+                    //var created_id_target = database_target.push();
+                    database_target.child(request_sender_id).set({ /*Pushes to receiver*/
+                        time: message_time,
+                        sender: messageFrom,
+                        sender_id: request_sender_id,
+                        message: actual_message,
+                        receiver_id: request_receiver_id,
+                        sender_profilePic: '{{ ProfilePic }}',
+                        post_id: request_sender_id,
+
+
+                    });
+
+                    {% comment %}hope = String(created_id_target);
+                    result = hope.substring(hope.lastIndexOf("/") + 1);
+                    save_id = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived/" + result);/*Messages*/
+                    save_id.update({
+                        post_id: result
+                    });{% endcomment %}
+
+
+                }
 
 
             </script>
@@ -1715,8 +1777,6 @@ function ExploreformCard_dim(key, child_name, child_bio, child_country, child_pr
         top: 30px;
     }
 </style>
-
-
 
 
 <!-- Page Footer-->
@@ -1812,76 +1872,76 @@ function ExploreformCard_dim(key, child_name, child_bio, child_country, child_pr
 
 <script>
     // Fetching the date
-             const MONTH_NAMES = [
-                'January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'
-            ];
+    const MONTH_NAMES = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
 
-            function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-                const day = date.getDate();
-                const month = MONTH_NAMES[date.getMonth()];
-                const year = date.getFullYear();
-                const hours = date.getHours();
-                let minutes = date.getMinutes();
+    function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+        const day = date.getDate();
+        const month = MONTH_NAMES[date.getMonth()];
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        let minutes = date.getMinutes();
 
-                if (minutes < 10) {
-                    // Adding leading zero to minutes
-                    minutes = `0${minutes}`;
-                }
+        if (minutes < 10) {
+            // Adding leading zero to minutes
+            minutes = `0${minutes}`;
+        }
 
-                if (prefomattedDate) {
-                    // Today at 10:20
-                    // Yesterday at 10:20
-                    return `${prefomattedDate} at ${hours}:${minutes}`;
-                }
+        if (prefomattedDate) {
+            // Today at 10:20
+            // Yesterday at 10:20
+            return `${prefomattedDate} at ${hours}:${minutes}`;
+        }
 
-                if (hideYear) {
-                    // 10. January at 10:20
-                    return `${day}. ${month} at ${hours}:${minutes}`;
-                }
+        if (hideYear) {
+            // 10. January at 10:20
+            return `${day}. ${month} at ${hours}:${minutes}`;
+        }
 
-                // 10. January 2017. at 10:20
-                return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
-            }
-
-
-            // --- Main function
-            function timeAgo(dateParam) {
-
-                if (!dateParam) {
-                    return null;
-                }
-
-                const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-                const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-                const today = new Date();
-                const yesterday = new Date(today - DAY_IN_MS);
-                const seconds = Math.round((today - date) / 1000);
-                const minutes = Math.round(seconds / 60);
-                const isToday = today.toDateString() === date.toDateString();
-                const isYesterday = yesterday.toDateString() === date.toDateString();
-                const isThisYear = today.getFullYear() === date.getFullYear();
+        // 10. January 2017. at 10:20
+        return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+    }
 
 
-                if (seconds < 5) {
-                    return 'now';
-                } else if (seconds < 60) {
-                    return `${seconds} seconds ago`;
-                } else if (seconds < 90) {
-                    return 'about a minute ago';
-                } else if (minutes < 60) {
-                    return `${minutes} minutes ago`;
-                } else if (isToday) {
-                    return getFormattedDate(date, 'Today'); // Today at 10:20
-                } else if (isYesterday) {
-                    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-                } else if (isThisYear) {
-                    return getFormattedDate(date, false, true); // 10. January at 10:20
-                }
+    // --- Main function
+    function timeAgo(dateParam) {
 
-                return getFormattedDate(date); // 10. January 2017. at 10:20
-            };
+        if (!dateParam) {
+            return null;
+        }
+
+        const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+        const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+        const today = new Date();
+        const yesterday = new Date(today - DAY_IN_MS);
+        const seconds = Math.round((today - date) / 1000);
+        const minutes = Math.round(seconds / 60);
+        const isToday = today.toDateString() === date.toDateString();
+        const isYesterday = yesterday.toDateString() === date.toDateString();
+        const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+        if (seconds < 5) {
+            return 'now';
+        } else if (seconds < 60) {
+            return `${seconds} seconds ago`;
+        } else if (seconds < 90) {
+            return 'about a minute ago';
+        } else if (minutes < 60) {
+            return `${minutes} minutes ago`;
+        } else if (isToday) {
+            return getFormattedDate(date, 'Today'); // Today at 10:20
+        } else if (isYesterday) {
+            return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+        } else if (isThisYear) {
+            return getFormattedDate(date, false, true); // 10. January at 10:20
+        }
+
+        return getFormattedDate(date); // 10. January 2017. at 10:20
+    };
 
     // Realtime Updates
 
@@ -1893,108 +1953,134 @@ function ExploreformCard_dim(key, child_name, child_bio, child_country, child_pr
 
 
     function renderUI(obj) {
-                var html = '';
-                var keys = Object.keys(obj);
-                for (var i = keys.length - 1; i >= 0; i--) {
-               // for (var i = 0; i <= keys.length - 1; i++) {
+        var html = '';
+        var keys = Object.keys(obj);
+        for (var i = keys.length - 1; i >= 0; i--) {
+            // for (var i = 0; i <= keys.length - 1; i++) {
 
 
-                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
-                    /*Creating notification item*/
+            /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+            /*Creating notification item*/
 
-                    if (obj[keys[i]].sender_profilePic != undefined) {
+            if (obj[keys[i]].sender_profilePic != undefined) {
 
-                        var display_time = obj[keys[i]].time;
-                        display_time = Number(display_time); // cast it to a Number
-                        var ts_display = timeAgo(display_time);
-
-
-                        var decision = "true";
-                        var opp_decison = "false";
-                        html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
-                            "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+                var display_time = obj[keys[i]].time;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
 
 
-                    }}
-                $('#comment').html(html);
-            }
-
-
-            function renderCount(obj) {
-                var html = '';
-                var countholder = 0;
-
-                var keys = Object.keys(obj);
-                for (var i = 0; i < keys.length; i++) {
-                    countholder++;
-                }
-                countholder--;
-                database_counter.update({'counter': countholder});
-                 /*Creating notification icon*/
-
-
-                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-
-
-                $('#counter_number_notifications').html(html);
+                var decision = "true";
+                var opp_decison = "false";
+                html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+                    "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
 
 
             }
+        }
+        $('#comment').html(html);
+    }
 
 
-              function Accept_request(sender_id, name, post_id,isAccept){
+    function renderCount(obj) {
+        var html = '';
+        var countholder = 0;
+
+        var keys = Object.keys(obj);
+        for (var i = 0; i < keys.length; i++) {
+            countholder++;
+        }
+        countholder--;
+        database_counter.update({'counter': countholder});
+        /*Creating notification icon*/
 
 
-                  if (String(isAccept).valueOf() == String("true").valueOf()) {
-                      var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
-                      var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
 
 
-                      //AddConnection.child(sender_id).set(name);
-                      var bio;
-                      var propic;
-                      var country;
-                      var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
-                      getAcceptcon.on("value", function (snapshot) {
-                          bio = snapshot.val().Bio;
-                          propic = snapshot.val().ProfilePic;
-                          country = snapshot.val().Country;
-                      });
-
-                      //var created_id_target = AddConnection.push();
-                      AddConnection.child(sender_id).set({ /*Pushes to receiver*/
-                          Name: name,
-                          Bio: bio,
-                          ProfilePic: propic,
-                          Country: country,
-
-                      });
-
-                      AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
-                          Name: '{{ n }}',
-                          Bio: '{{ bio }}',
-                          ProfilePic: '{{ ProfilePic }}',
-                          Country: '{{ my_country }}',
-
-                      });
+        $('#counter_number_notifications').html(html);
 
 
-                      window.alert("You are now connected with " + name);
+    }
 
 
-                  }
-                  var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                  different_name.remove();
-
-                  var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
-                  removesent.remove();
-              }
+    function Accept_request(sender_id, name, post_id, isAccept) {
 
 
+        if (String(isAccept).valueOf() == String("true").valueOf()) {
+            var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+            var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+
+            var html = '';
+            //AddConnection.child(sender_id).set(name);
+            var bio;
+            var propic;
+            var country;
+            var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+            getAcceptcon.on("value", function (snapshot) {
+                bio = snapshot.val().Bio;
+                propic = snapshot.val().ProfilePic;
+                country = snapshot.val().Country;
+            });
+
+            //var created_id_target = AddConnection.push();
+            AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                Name: name,
+                Bio: bio,
+                ProfilePic: propic,
+                Country: country,
+
+            });
+
+            AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                Name: '{{ n }}',
+                Bio: '{{ bio }}',
+                ProfilePic: '{{ ProfilePic }}',
+                Country: '{{ my_country }}',
+
+            });
 
 
+            <!-- window.alert("You are now connected with " + name);-->
+            html += "You are now connected with " + name;
+            $('#newconnectionmodal').html(html);
+            $("#modalResetSent").modal('show');
+
+
+        }
+        var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+        different_name.remove();
+
+        var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+        removesent.remove();
+    }
 
 
 </script>
+
+<!-- Modal for pop up message "you are now connected with" -->
+<div class="modal fade" id="modalResetSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Connection</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="newconnectionmodal"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" style=" font-size: 15px;
+            font-weight: bold;
+            background-color: #e83e8c;
+            border-color: black;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
