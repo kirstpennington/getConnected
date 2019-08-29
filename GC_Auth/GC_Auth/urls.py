@@ -47,6 +47,7 @@ urlpatterns = [
     url(r'^networks/', views.connections, name="nav_networks"),
     url(r'^forums/', views.forums, name="nav_forums"),
     url(r'^courses/', views.courses, name="nav_courses"),
+    url(r'^DirectMessaging/', views.goDirectMessaging, name="nav_DirectMessaging"),
     url(r'^userprofile/', views.userprofile, name="userprofile"),
 
     url(r'^updateProfile/', views.updateProfile, name="updateProfile"),

@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!--*HEAD* 1. Title-->
+
+    <title>Your Profile </title>
+
+    <!--*HEAD* 2. Bootstrap & CSS Links-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- footer style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!--Dropdown Notifications-->
+
+    <style>
+
+        .dropdown {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .notifications {
+            min-width: 320px;
+        }
+
+        .notifications-wrapper {
+            overflow: auto;
+            max-height: 250px;
+
+        }
+
+        .notifications a.content {
+            text-decoration: none;
+            background: white;
+        }
+
+        /*Each item on the notification dropdown*/
+
+        .notification-item {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 4px;
+            border-width: 5px;
+            border-color: black;
+            height: 80px;
+        }
+
+        /*Image on dropdown notification*/
+        .profile_img {
+            width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+        .profile_img_1 {
+            max-width: 50px;
+            min-width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+
+    </style>
+
+    <!--Page format + wallaper + oage container-->
+
+    <style>
+
+
+        .profileContainerDetails .UserWallpaper {
+            height: 380px;
+            background-position: center;
+        }
+
+        .UserWallpaper {
+            height: 100vh;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .parallax {
+            /* Parallax effect for image wallpaper */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .profileContainerLift {
+            margin: -280px 30px 0; /* Up and down control */
+            border-radius: 8px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+            height: 630px;
+            margin-bottom: 30px;
+        }
+
+        .profileContainer { /* Container Control */
+            background: #FFF;
+            position: relative;
+            z-index: 3;
+        }
+
+        .profileContainerDetails .profile img {
+            max-width: 160px;
+            width: 100%;
+            margin: 0 auto;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -moz-transform: translate3d(0, -50%, 0);
+            -o-transform: translate3d(0, -50%, 0);
+            -ms-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+        }
+
+        .img-raised { /* Profile Picture 1/3 */
+            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+
+        }
+
+        .avatar:hover .changeImageLabel {
+            opacity: 0.9;
+            display: inline-block;
+        }
+
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
+
+        .img-fluid { /* Profile Picture 3/3 */
+            max-width: 100%;
+            max-height: 160px;
+        }
+
+        .profileContainerDetails .description {
+            margin: 1.071rem auto 0;
+            max-width: 600px;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .profileContainerDetails {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .profileContainerDetails .gallery img {
+            width: 100%;
+            margin-bottom: 2.142rem;
+        }
+
+        .profileContainerDetails .profile .name {
+            margin-top: -80px;
+        }
+
+
+    </style>
+
+    <!-- 1.4. Cards Style-->
+
+    <style>
+
+        .col-sm-3 .rightColumnContainer_lower:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            background-color: #e83e8c;
+            color: white;
+        }
+
+        .titlefont {
+            font-size: medium;
+            color: gray;
+            margin: auto 40px auto 40px;
+            position: relative;
+            left: 14px;
+        }
+
+
+        .card {
+            box-shadow: 0 4px 8px 0 silver;
+            width: 180px;
+            height: 140px;
+        }
+
+        .card.hovercard {
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+            border-radius: 10px;
+
+        }
+
+        .card.hovercard:hover {
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+        }
+
+        .card.Ccard {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            width: 255px; /* or whatever width you want. */
+            max-width: 255px; /* or whatever width you want. */
+            height: 275px;
+            max-height: 275px;
+            display: inline-block;
+
+            border-radius: 10px
+        }
+
+        .card.Ccard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+        .card.Ccard:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .cardheader {
+            background: url("http://lorempixel.com/850/280/nature/4/");
+            background-size: cover;
+            height: 100px;
+            width: 200px;
+            border-radius: 8px;
+
+
+            box-shadow: 0 4px 8px 0 silver;
+
+        }
+
+        .heartbutton {
+            background: transparent;
+            position: relative;
+            top: -100px;
+            left: 180px;
+
+        }
+
+
+        .heartColour {
+            color: #e83e8c;
+            border: black;
+            border-width: 2px
+        }
+
+        .viewForum {
+            color: #e83e8c;
+            border: black;
+            border-width: 2px
+        }
+
+        .ViewMorebutton {
+            border-radius: 8px;
+            color: white;
+            background-color: #e83e8c;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .ViewMorebutton:hover {
+            background-color: grey;
+            color: black;
+        }
+
+        .AcceptDeclinebutton {
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: black;
+        }
+
+        .AcceptDeclinebutton:hover {
+            background-color: #e83e8c;
+            color: black;
+
+        }
+
+        /*footer logo*/
+        footer img {
+            width: 200%;
+            height: 200%;
+            text-align: left;
+        }
+
+
+        /*zoom features*/
+        .zoom:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .well a:hover {
+            text-decoration: none;}
+
+    </style>
+
+
+    <!--User profile page-->
+    <style>
+
+        .badges {
+            position: absolute;
+            top: -30px;
+            left: 470px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .badges_plus {
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            background-color: white;
+            border-radius: 10px;
+            border-color: white;
+        }
+
+        .plus:hover {
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            border-radius: 23px;
+        }
+
+        .badges:hover {
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+        }
+
+        .badges_plus:hover {
+
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            border-radius: 23px;
+        }
+
+        .plus {
+        }
+
+
+        .settings {
+
+        }
+
+        .settings:hover {
+            -ms-transform: scale(0.5); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid white;
+            border-radius: 23px;;
+        }
+
+        .main-secction {
+            box-shadow: 5px 5px 5px;
+            border-radius: 8px;
+
+        }
+
+        .image-section {
+            padding: 0px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+
+        .user-left-part {
+            margin: 0px;
+        }
+
+        .user-image img {
+            width: 100px;
+            height: 100px;
+        }
+
+
+        .user-detail-section2 {
+            font-size: 12px;
+            padding: 0px;
+            margin: 0px;
+        }
+
+
+        .user-detail-section2 span {
+            color: #7CBBC3;
+            font-size: 20px;
+        }
+
+        .user-detail-section2 small {
+            font-size: 12px;
+            color: #D3A86A;
+        }
+
+        .profile-right-section {
+            padding: 20px 0px 10px 15px;
+            background-color: #FFFFFF;
+        }
+
+        .profile-right-section-row {
+            margin: 0px;
+        }
+
+        .profile-header-section1 h1 {
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        .profile-header-section1 h5 {
+            color: #0062cc;
+        }
+
+
+        .profile-tag {
+            font-size: 12px;
+            color: black;
+        }
+
+        .profile-tag i {
+            color: #ADADAD;
+            font-size: 20px;
+        }
+
+
+        .rightColumn {
+            background-color: #FCFCFC;
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            width: 290px;
+            margin-left: 570px;
+            margin-top: -170px;
+            height: 300px;
+
+
+        }
+
+        .rightColumnTwo {
+            background-color: #FCFCFC;
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            width: 290px;
+            margin-left: 570px;
+            margin-top: 20px;
+            height: 290px;
+
+        }
+
+        .rightColumnContainer {
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            border-radius: 8px;
+            height: 72px;
+            width: 280px;
+            position: relative;
+            right: 25px;
+            top: -5px
+        }
+
+        .rightColumnContainer:hover {
+            overflow: hidden;
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .rightColumnContainer_lower {
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            border-radius: 8px;
+            height: 72px;
+            width: 280px;
+            position: relative;
+            left: 5px;
+            top: -5px;
+
+        }
+
+
+
+
+
+
+
+        .rightColumnfont {
+            color: gray;
+            position: relative;
+            left: -9px;
+            font-weight: bold;
+            top: 6px;
+            font-size: small;
+        }
+
+
+        .connection_container {
+            margin-left: 40px;
+        }
+
+
+        .image-right-detail {
+            font-size: 12px;
+        }
+
+        .image-right-detail a:hover {
+            text-decoration: none;
+        }
+
+        .image-right img {
+            width: 100%;
+        }
+
+
+        .image-right-detail-section2 {
+            color: #38ACDF;
+            margin: 0px;
+        }
+
+        .image-right-detail-section2 span {
+            color: #7F7F7F;
+        }
+
+
+    </style>
+
+
+    <!--*STYLE for pop up model-->
+    <style>
+
+        .modal {
+            text-align: center;
+        }
+
+        @media screen and (min-width: 768px) {
+            .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+
+            }
+        }
+
+        .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        /* drag and Drop */
+
+        .files input {
+            outline: 2px dashed #e83e8c;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
+        }
+
+        .files input:focus {
+            outline: 2px dashed #e83e8c;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            border: 1px solid #92b0b3;
+        }
+
+        .files {
+            position: relative
+        }
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .color input {
+            background-color: silver;
+        }
+
+        .files:before {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            content: " or drag and drop it here. ";
+            display: block;
+            margin: 0 auto;
+            color: #e83e8c;
+            font-weight: 600;
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        .changeImageLabel {
+            background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+            bottom: 150px;
+            color: #fff;
+            left: 245px;
+            margin: 0;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            transition: 0.1s all;
+            width: 100px;
+            display: none;
+            font-weight: normal;
+
+        }
+
+    </style>
+
+
+</head>
+
+<body class="profileContainerDetails">
+
+<!--*BODY* 1. Navigation Bar-->
+    <nav class="navbar navbar-inverse  ">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
+
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
+                    <span class="glyphicon glyphicon-home fa-lg"></span>
+                    Home
+                </a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ ProfilePic }}" alt=""></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--1. Notifications icon + drop down-->
+
+            <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <div id="counter_number_notifications"></div>
+
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
+
+                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
+                            <ul id="comment"></ul>
+
+
+                            <!--      <a class="content" href="#">
+                                     <div class="notification-item">
+                                         <img class="profile_img"
+                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                         <h4 class="item-title">James Coden · day ago</h4>
+                                         <p class="item-info">Marketing 101, Video Assignment</p>
+                                     </div>
+                                 </a>-->
+
+
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </a></li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+
+            <!--2. Message icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden"> <!--Messages Dropdown div-->
+
+
+                            <a>
+                                <div class="notification-item">
+
+                                    <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <!--  <img style="" alt="Circle Image" class="img-raised rounded-circle_small img-fluid_small profile_img_small">-->
+
+                                    <p style="margin-left: 240px; color: black">14:50</p>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">Winfreda
+                                        Mazvidza</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Sent connection request to Kimone</p>
+                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
+
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#" style="top: -15px; position:relative">
+                                <div class="notification-item">
+                                    <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <p style="margin-left: 240px; color: black">14:50</p>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">
+                                        Kimone</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Connection Request</p>
+                                    <div style="margin-top: -10px">
+                                        <button id="dntrigger" class="AcceptDeclinebutton"
+                                                style=" font-size: 85%; position: relative;left: 80px;color: white">
+                                            Accept
+                                        </button>
+
+                                        <button class="AcceptDeclinebutton"
+                                                style="; font-size: 85%;position: relative;left: 80px;color: white ">
+                                            Decline
+                                        </button>
+                                    </div>
+                                    <hr style="width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px"/>
+
+                                </div>
+                            </a>
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <a style="text-align: center" onclick="location.href='{% url 'nav_DirectMessaging' %}' ">View All </a>
+
+                        <!--**********Right here *****-->
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
+    <nav hidden class="navbar navbar-inverse  ">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
+
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
+                    <span class="glyphicon glyphicon-home fa-lg"></span>
+                    Home
+                </a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+                <form class="  search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ ProfilePic }}" alt=""></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--1. Notifications icon + drop down-->
+
+            <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <div id="counter_number_notifications"></div>
+
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
+
+                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
+                            <ul id="comment"></ul>
+
+
+                            <!--      <a class="content" href="#">
+                                     <div class="notification-item">
+                                         <img class="profile_img"
+                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                         <h4 class="item-title">James Coden · day ago</h4>
+                                         <p class="item-info">Marketing 101, Video Assignment</p>
+                                     </div>
+                                 </a>-->
+
+
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </a></li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+
+            <!--2. Message icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden"> <!--Messages Dropdown div-->
+
+
+                            <a>
+                                <div class="notification-item">
+
+                                    <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <!--  <img style="" alt="Circle Image" class="img-raised rounded-circle_small img-fluid_small profile_img_small">-->
+
+                                    <p style="margin-left: 240px; color: black">14:50</p>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">Winfreda
+                                        Mazvidza</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Sent connection request to Kimone</p>
+                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
+
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#" style="top: -15px; position:relative">
+                                <div class="notification-item">
+                                    <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <p style="margin-left: 240px; color: black">14:50</p>
+                                    <h5 style="color: black; margin-top: -15px; left: 25px; position:relative">
+                                        Kimone</h5>
+                                    <p style="color: black; margin-top: -10px;left: 25px;position:relative; font-size:small">
+                                        Connection Request</p>
+                                    <div style="margin-top: -10px">
+                                        <button id="dntrigger" class="AcceptDeclinebutton"
+                                                style=" font-size: 85%; position: relative;left: 80px;color: white">
+                                            Accept
+                                        </button>
+
+                                        <button class="AcceptDeclinebutton"
+                                                style="; font-size: 85%;position: relative;left: 80px;color: white ">
+                                            Decline
+                                        </button>
+                                    </div>
+                                    <hr style="width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px"/>
+
+                                </div>
+                            </a>
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
+
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
+
+<!--End of Navigation Bar-->
+
+<!--User Profile Container-->
+<!--Background Image-->
+<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+
+
+<div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
+
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<style class="">
+
+/*Right-Hand-Side Messaging Container Frame*/
+#frame {
+  width: 98%;
+  min-width: 362px;
+  /*max-width: 1800px;*/
+  height: 92vh;
+  min-height: 300px;
+  max-height: 630px;
+  position: center;
+  margin-left: 15px;
+
+}
+
+
+@media screen and (max-width: 360px) {
+  #frame {
+    width: 100%;
+    height: 100vh;
+
+  }
+}
+
+#frame #sidepanel {
+  float: left;
+  min-width: 280px;
+  max-width: 340px;
+  width: 40%;
+  height: 100%;
+  background: white;
+  color: black;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (max-width: 735px) {
+  #frame #sidepanel {
+    width: 58px;
+    min-width: 58px;
+  }
+}
+
+/*Left-Hand-Side Messaging Container Frame*/
+
+/*Search*/
+
+#frame #sidepanel #search {
+ /* border-top: 1px solid black;*/
+  /*border-bottom: 1px solid grey;*/
+  font-weight: 300;
+}
+@media screen and (max-width: 735px) {
+  #frame #sidepanel #search {
+    display: none;
+  }
+}
+#frame #sidepanel #search label {
+  position: absolute;
+  margin: 21px 0 0 20px;
+}
+#frame #sidepanel #search input {
+  font-family: sans-serif;
+    margin-top: 13px;
+    font-weight: bold;
+  padding: 10px 0 10px 46px;
+  border: 5px;
+  background: white;
+    width: 340px;
+}
+#frame #sidepanel #search input:focus {
+  outline: none;
+  background: whitesmoke;
+}
+#frame #sidepanel #search input::-webkit-input-placeholder {
+  color: grey;
+}
+
+/*Connections*/
+#frame #sidepanel #connections {
+  height: calc(100% - 90px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+    margin-top: -20px;
+}
+
+/*
+#frame #sidepanel #connections::-webkit-scrollbar {
+  width: 2px;
+  background: deeppink;
+}*/
+
+#frame #sidepanel #connections ul li.connection {
+  position: relative;
+  padding: 10px 0 15px 0;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+/*Contacts - wrap*/
+#frame #sidepanel #connections ul li.connection .wrap {
+  width: 88%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#frame #sidepanel #connections ul li.connection .wrap :hover {
+  background-color: #ebebeb;
+}
+
+
+/*Contacts - online offline*/
+#frame #sidepanel #connections ul li.connection .wrap span {
+  position: absolute;
+  left: 0;
+  margin: -2px 0 0 -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #2c3e50;
+  background: #95a5a6;
+}
+
+#frame #sidepanel #connections ul li.connection .wrap span.busy {
+  background: green;
+}
+
+#frame #sidepanel #connections ul li.connection .wrap img {
+  width: 40px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+}
+
+
+/*Bottom Bar*/
+#frame #sidepanel #bottom-bar {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+    border-radius: 10px;
+}
+#frame #sidepanel #bottom-bar button {
+  float: left;
+  border: none;
+  width: 50%;
+  padding: 10px 0;
+  background: deeppink;
+  color: black;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-family: sans-serif;
+        font-weight: bold;
+
+}
+
+#frame #sidepanel #bottom-bar button:hover {
+  background: grey;
+    color: white;
+    font-weight: bold;
+}
+
+
+#frame .content {
+  float: right;
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (min-width: 900px) {
+  #frame .content {
+    width: calc(100% - 340px);
+  }
+}
+#frame .content .contact-profile {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background: #f5f5f5;
+}
+#frame .content .contact-profile img {
+  width: 40px;
+  border-radius: 50%;
+  float: left;
+  margin: 9px 12px 0 9px;
+}
+#frame .content .contact-profile p {
+  float: left;
+}
+#frame .content .contact-profile .social-media {
+  float: right;
+}
+#frame .content .contact-profile .social-media i {
+  margin-left: 14px;
+  cursor: pointer;
+}
+#frame .content .contact-profile .social-media i:nth-last-child(1) {
+  margin-right: 20px;
+}
+#frame .content .contact-profile .social-media i:hover {
+  color: #435f7a;
+}
+#frame .content .messages {
+  height: auto;
+  min-height: calc(100% - 93px);
+  max-height: calc(100% - 93px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .messages {
+    max-height: calc(100% - 105px);
+  }
+}
+#frame .content .messages::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+#frame .content .messages::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#frame .content .messages ul li {
+  display: inline-block;
+  clear: both;
+  float: left;
+  margin: 15px 15px 5px 15px;
+  width: calc(100% - 25px);
+  font-size: 0.9em;
+}
+#frame .content .messages ul li:nth-last-child(1) {
+  margin-bottom: 20px;
+}
+#frame .content .messages ul li.sent img {
+  margin: 6px 8px 0 0;
+}
+#frame .content .messages ul li.sent p {
+  background: black;
+  color: #f5f5f5;
+}
+#frame .content .messages ul li.sent h10 {
+  font-weight: bold;
+  color: Green;
+    font-family: SansSerif;
+}
+
+#frame .content .messages ul li.replies img {
+  float: right;
+  margin: 6px 0 0 8px;
+}
+#frame .content .messages ul li.replies p {
+  background: lightgrey;
+  float: right;
+}
+
+#frame .content .messages ul li img {
+  width: 22px;
+  border-radius: 50%;
+  float: left;
+}
+#frame .content .messages ul li p {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 205px;
+  line-height: 130%;
+}
+@media screen and (min-width: 735px) {
+  #frame .content .messages ul li p {
+    max-width: 300px;
+  }
+}
+#frame .content .message-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+    background-color: grey;
+}
+#frame .content .message-input .wrap {
+  position: relative;
+}
+#frame .content .message-input .wrap input {
+  font-family:  sans-serif;
+  float: left;
+  border: none;
+  width: calc(100% - 90px);
+  padding: 11px 32px 10px 8px;
+  font-size: 0.8em;
+  color: black;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap input {
+    padding: 15px 32px 16px 8px;
+  }
+}
+#frame .content .message-input .wrap input:focus {
+  outline: none;
+}
+#frame .content .message-input .wrap .attachment {
+  position: absolute;
+  right: 60px;
+  z-index: 4;
+  margin-top: 10px;
+  font-size: 1.5em;
+  color: white;
+  opacity: .5;
+  cursor: pointer;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap .attachment {
+    margin-top: 17px;
+    right: 65px;
+  }
+}
+#frame .content .message-input .wrap .attachment:hover {
+  opacity: 1;
+}
+#frame .content .message-input .wrap button {
+  float: right;
+  border: none;
+  width: 50px;
+  padding: 12px 0;
+  cursor: pointer;
+  background: deeppink;
+  color: #f5f5f5;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap button {
+    padding: 16px 0;
+
+  }
+}
+#frame .content .message-input .wrap button:hover {
+  background: grey;
+}
+#frame .content .message-input .wrap button:focus {
+  outline: none;
+}
+</style>
+
+    <div  style="border-radius: 10px; margin-left: 3px"><div  id="frame">
+
+<!-- LHS -->
+
+	<div style="" id="sidepanel">
+
+        <!--Search Button -->
+
+		<div id="search">
+
+			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+			<input type="text" placeholder="Search connections..." />
+		</div>
+        <hr style="margin-top: 9px">
+
+
+        <!--Viewing Connections -->
+
+        <div id="connections">
+			<ul id = "connectionsLists_msgs">
+				{% comment %}<li class="connection">
+					<div class="wrap">
+						<span class="contact-status online"></span>
+						<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+						<div class="meta">
+							<p class="name">Louis Litt</p>
+							<p class="preview">You just got LITT up, Mike.</p>
+						</div>
+					</div>
+				</li>
+				<li class="connection active">
+					<div class="wrap">
+						<span class="contact-status busy"></span>
+						<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+						<div class="meta">
+							<p class="name">Harvey Specter</p>
+							<p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
+						</div>
+					</div>
+				</li>{% endcomment %}
+
+			</ul>
+		</div>
+
+
+
+        <!-- Bottom Bar -->
+
+		<div  id="bottom-bar">
+            <button data-toggle="modal" data-target="#chooseparticipantsmodal" style="margin-left: -15px; " class="" id="addcontact"><i class="fa fa-user fa-fw " aria-hidden="true"></i> <span>New Conversation</span></button>
+            <button data-toggle="modal" data-target="#chooseparticipantsmodal_group" style="background-color: lightgrey" class=""  id="settings"><i class="fa fa-users" aria-hidden="true"></i> <span>Create Group</span></button>
+		</div>
+
+	</div>
+
+<!-- /LHS -->
+
+
+	<div style="background-color: white" class="content">
+		<div style="background-color: white" class="contact-profile">
+            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+			<p id="HeadingName">Name of Group/Connection</p>
+			<div class="social-media">
+
+				 <i class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></i>
+			</div>
+
+
+		</div> <hr style="margin-top: -5px; width: 1000px">
+		<div class="messages">
+            <ul id="list_of_mgs"> <p style="font-style: italic; margin-left: 15px">Select a conversation and begin sending messages</p>
+                {% comment %}<li class="sent">
+                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt=""/>
+                    <p>We should do assignments together more often yes do you think?</p>
+                </li>
+                <li class="replies">
+                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt=""/>
+                    <p>When you're backed against the wall, break the god damn thing down.</p>
+                </li>
+                <li class="replies">
+                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt=""/>
+                    <p>Excuses don't win championships.</p>
+                </li>
+                <li class="sent">
+                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt=""/>
+                    <p>Oh yeah, did Michael Jordan tell you that?</p>
+                </li>
+                <li class="replies">
+                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt=""/>
+                    <p>No, I told him that.</p>
+                </li>
+                <li class="replies">
+                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt=""/>
+                    <p>What are your choices when someone puts a gun to your head?</p>
+                </li>
+                <li class="sent">
+                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt=""/>
+                    <p>What are you talking about? You do what they say or they shoot you.</p>
+                </li>
+                <li class="replies">
+                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt=""/>
+                    <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any
+                        one of a hundred and forty six other things.</p>
+                </li>{% endcomment %}
+			</ul>
+		</div>
+		<div class="message-input">
+			<div class="wrap">
+			<input id="WriteYourMsg" style="height:41px;background-color: #ebebeb " type="text" placeholder="Write your message..." />
+			<i style="" class="fa fa-paperclip attachment fa-bold " aria-hidden="true"></i>
+
+			<button onclick="SendMessagePost()" id="SendMessagePost"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+			</div>
+		</div>
+	</div>
+</div> <!-- /frame -->
+
+        <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+        <script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+
+$("#profile-img").click(function() {
+	$("#status-options").toggleClass("active");
+});
+
+$(".expand-button").click(function() {
+  $("#profile").toggleClass("expanded");
+	$("#connections").toggleClass("expanded");
+});
+
+$("#status-options ul li").click(function() {
+	$("#profile-img").removeClass();
+	$("#status-online").removeClass("active");
+	$("#status-away").removeClass("active");
+	$("#status-busy").removeClass("active");
+	$("#status-offline").removeClass("active");
+	$(this).addClass("active");
+
+	if($("#status-online").hasClass("active")) {
+		$("#profile-img").addClass("online");
+	} else if ($("#status-away").hasClass("active")) {
+		$("#profile-img").addClass("away");
+	} else if ($("#status-busy").hasClass("active")) {
+		$("#profile-img").addClass("busy");
+	} else if ($("#status-offline").hasClass("active")) {
+		$("#profile-img").addClass("offline");
+	} else {
+		$("#profile-img").removeClass();
+	};
+
+	$("#status-options").removeClass("active");
+});
+
+function newMessage() {
+	message = $(".message-input input").val();
+	if($.trim(message) == '') {
+		return false;
+	}
+	$('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+	$('.message-input input').val(null);
+	$('.connection.active .preview').html('<span>You: </span>' + message);
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+
+$('.submit').click(function() {
+  newMessage();
+});
+
+$(window).on('keydown', function(e) {
+  if (e.which == 13) {
+    newMessage();
+    return false;
+  }
+});
+</script>
+    </div>
+
+<script>
+
+            const MONTH_NAMES = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+
+            function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+                const day = date.getDate();
+                const month = MONTH_NAMES[date.getMonth()];
+                const year = date.getFullYear();
+                const hours = date.getHours();
+                let minutes = date.getMinutes();
+
+                if (minutes < 10) {
+                    // Adding leading zero to minutes
+                    minutes = `0${minutes}`;
+                }
+
+                if (prefomattedDate) {
+                    // Today at 10:20
+                    // Yesterday at 10:20
+                    return `${prefomattedDate} at ${hours}:${minutes}`;
+                }
+
+                if (hideYear) {
+                    // 10. January at 10:20
+                    return `${day}. ${month} at ${hours}:${minutes}`;
+                }
+
+                // 10. January 2017. at 10:20
+                return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+            }
+
+
+            // --- Main function
+            function timeAgo(dateParam) {
+
+                if (!dateParam) {
+                    return null;
+                }
+
+                const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+                const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+                const today = new Date();
+                const yesterday = new Date(today - DAY_IN_MS);
+                const seconds = Math.round((today - date) / 1000);
+                const minutes = Math.round(seconds / 60);
+                const isToday = today.toDateString() === date.toDateString();
+                const isYesterday = yesterday.toDateString() === date.toDateString();
+                const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+                if (seconds < 5) {
+                    return 'now';
+                } else if (seconds < 60) {
+                    return `${seconds} seconds ago`;
+                } else if (seconds < 90) {
+                    return 'about a minute ago';
+                } else if (minutes < 60) {
+                    return `${minutes} minutes ago`;
+                } else if (isToday) {
+                    return getFormattedDate(date, 'Today'); // Today at 10:20
+                } else if (isYesterday) {
+                    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+                } else if (isThisYear) {
+                    return getFormattedDate(date, false, true); // 10. January at 10:20
+                }
+
+                return getFormattedDate(date); // 10. January 2017. at 10:20
+            }
+
+            ;
+
+
+<!--Sending, Receiving, Accepting, Declining Requests -->
+</script>
+
+</div>
+
+
+<!-- Send Message Button -->
+
+<script>
+
+    var conversation_id = "0001";
+    var messaging_db_first = firebase.database().ref().child("Messages");/*Messages*/
+
+
+
+    function SendMessagePost() {
+
+        var messaging_db = firebase.database().ref().child("Messages/" + conversation_id + "/Actual_Msgs");/*Messages*/
+
+        var date_for_post = Date.now();
+        var message_txt = document.getElementById("WriteYourMsg").value;
+        document.getElementById("WriteYourMsg").value = "";
+
+
+        var created_id = messaging_db.push();
+        created_id.set({
+            Time: date_for_post,
+            ProfilePic: '{{ProfilePic}}',
+            Sender_id: '{{this_uid}}',
+            Sender_name: '{{ n }}',
+            text: message_txt
+        });
+
+        /*Saving_id*/
+        var hope = String(created_id);
+        var result = hope.substring(hope.lastIndexOf("/") + 1);
+        var save_id = firebase.database().ref().child("Messages/" + conversation_id + "/Actual_Msgs/" + result);/*Messages*/
+        save_id.update({
+            post_id: result
+        });
+
+    };
+
+  messaging_db_first.on('value', function (snapshot) {
+                renderLHS(snapshot.val());
+  });
+
+
+    function renderLHS(obj) {
+
+                var html = '';
+                var keys = Object.keys(obj);
+                for (var i = keys.length - 1; i >= 0; i--) {
+
+
+
+                    html += "<li onclick=\"ViewMessages(\'"+ obj[keys[i]].key +"\')\" class=\"connection\">" +
+                        "<div class=\"wrap\"><span class=\"contact-status busy\">" +
+                        "</span><img src=\""+ obj[keys[i]].ProfilePic +"\" alt=\"\" />" +
+                        "<div class=\"meta\">" +
+                        "<p style=\"font-weight:bold\" class=\"name\">"+obj[keys[i]].Name+"</p>\n" +
+                        "<p class=\"preview\">I've sent you the files for the Garrett trial.</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</li>";
+
+                }
+                $('#connectionsLists_msgs').html(html);
+    }
+
+    function ViewMessages (conversation_id_db){
+
+        conversation_id = conversation_id_db;
+        $('#list_of_mgs').html(" <p style=\"font-style: italic; margin-left: 15px;\" >No messages to display. Start typing and send a new message :)<p>");
+        var messaging_db = firebase.database().ref().child("Messages/" + conversation_id_db + "/Actual_Msgs");
+
+       // var messaging_db_title = firebase.database().ref().child("Messages/" + conversation_id_db );
+
+
+       {% comment %} messaging_db_title.once('value', function(snapshot) {
+                                var text_html = snapshot.Name.val();
+
+                               });{% endcomment %}
+
+        //document.getElementById("HeadingName").value = "Here";
+
+
+        messaging_db.on('value', function (snapshot) { renderRHS(snapshot.val());});
+    }
+
+    function renderRHS(obj) {
+
+        var html = '';
+                var keys = Object.keys(obj);
+                for (var i = 0; i <= keys.length - 1; i++) {
+
+                    if (obj[keys[i]].Sender_id != '{{ this_uid }}' ){
+
+                     html += "<li class=\"sent\">\n" +
+                         "<img src=\""+ obj[keys[i]].ProfilePic +"\" alt=\"\" />\n" +
+                         "<p><h10> "+obj[keys[i]].Sender_name+"</h10><br>\n"+ obj[keys[i]].text +"</p>\n" +
+                         "</li>";
+
+                    }
+                    else {
+
+                    html += "<li class=\"replies\">\n" +
+                        "<img src=\""+ obj[keys[i]].ProfilePic +"\" alt=\"\" />\n" +
+                        "<p> "+obj[keys[i]].text+"</p>\n" +
+                        "</li>";
+                    }
+
+                }
+                $('#list_of_mgs').html(html);
+
+    }
+
+</script>
+<!-- Page Footer-->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+                <div class="row"><!--table row-->
+
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
+                    </div>
+
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
+                            GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Forum Help</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Connection
+                            Management</p></a>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Messaging</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
+
+
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+                    </div>
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+    </divname>
+    <br><br>
+</footer>
+<!--Modals -->
+
+<div class="modal fade" id="chooseparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Select a conncection and begin chatting! </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="centraliser" style="text-align: center">
+                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                     <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-search"></i>
+                     </span>
+                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-map-marker"></i>
+                     </span>
+                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-remove"></i>
+                     </span>
+                 </div><!--end search bar-->
+             </div>
+
+             <br>
+
+             <div id="ConnectionsListing"  class="row" >
+
+                {% comment %} <!--****************************-->
+              <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+                <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+             </div><!--end col-->
+
+
+             <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+               <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
+               <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+             </div><!--end col-->
+
+             <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+               <input type="checkbox" name="subject" value="name" >
+             </div>
+
+             <!--NEXT USER COLOUMN--><!--****************************-->
+
+             <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+
+               <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+
+            </div><!--end col-->
+
+
+            <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+              <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
+              <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
+
+            </div><!--end col-->
+
+            <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+              <input type="checkbox" name="subject" value="name" >
+            </div>
+
+              <!--END ROW-->{% endcomment %}
+
+          </div> <!--end row-->
+
+          <br>
+
+
+
+      <div class="modal-footer">
+
+    <button onclick="SendMessage_Individual()" >Message</button>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="chooseparticipantsmodal_group" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <input style="background-color: #ebebeb" id="groupName" type="text" class="form-control" placeholder="Type group name....."/>
+          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Select your connections and begin chatting! </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="centraliser" style="text-align: center">
+                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                     <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-search"></i>
+                     </span>
+                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-map-marker"></i>
+                     </span>
+                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-remove"></i>
+                     </span>
+                 </div><!--end search bar-->
+             </div>
+
+             <br>
+
+             <div id="ConnectionsListing_All"  class="row" >
+
+
+
+          </div> <!--end row-->
+
+          <br>
+
+
+
+      <div class="modal-footer">
+
+    <button onclick="SendMessage_Group()" >Create Group</button>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+
+    var connections_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+
+    connections_fb_location.on("value",function (snapshot) {
+        var j = 0;
+        var result = "<table >";
+        result += "<tr>";
+
+        snapshot.forEach( function (childSnapshot) {
+
+            //var key = childSnapshot.key;
+            //var value = childSnapshot.val();
+            var key = childSnapshot.key;
+            var child_name = childSnapshot.val().Name;
+            var child_country = childSnapshot.val().Country;
+            var child_bio = childSnapshot.val().Bio;
+            var child_propic = childSnapshot.val().ProfilePic;
+
+            result += "<td>" +  formCard(key,child_name,child_bio, child_country,child_propic)  + "</td>";
+            if ((j + 1) % 2 == 0) {
+                result += "</tr><tr>";
+            }
+            j++;
+        });
+
+
+
+         $('#ConnectionsListing').html(result);
+
+
+    });
+
+
+    function formCard (key, name, bio, country, profilepic) {
+
+
+        var card = "  <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+            "\n" +
+            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profilepic+"\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+            "\n" +
+            "             </div><!--end col-->\n" +
+            "\n" +
+            "\n" +
+            "             <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> "+ name+"  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp; <p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+country+"</p>\n" +
+            "\n" +
+            "             </div><!--end col-->\n" +
+            "\n" +
+            "             <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
+            "               <input type=\"checkbox\" name=\"subject\" value=\""+ key+"\" >\n" +
+            "             </div>\n";
+
+        return card;
+
+    }
+
+
+    function SendMessage_Individual(){
+
+        var checkboxes = document.getElementsByName('subject');
+        var vals = [];
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            if (checkboxes[i].checked) {
+                vals.push(checkboxes[i].value);
+            }
+        }
+
+
+        var messaging_db = firebase.database().ref().child("Messages");/*Messages*/
+        var connections_fb = firebase.database().ref().child("Users/" + vals[0] );
+
+        connections_fb.on("value",function (snapshot) {
+
+         var created_id = messaging_db.push();
+        created_id.set({
+            Name: snapshot.val().Name,
+            ProfilePic: snapshot.val().ProfilePic,
+        });
+
+        /*Saving_id*/
+        var hope = String(created_id);
+        var result = hope.substring(hope.lastIndexOf("/") + 1);
+        var save_id = firebase.database().ref().child("Messages/" + result);/*Messages*/
+        save_id.update({
+            key: result
+        });
+
+        });
+
+    }
+
+
+
+
+
+</script>
+
+<script>
+
+    var connections_All = firebase.database().ref().child("Users/");
+
+    connections_All.on("value",function (snapshot) {
+        var j = 0;
+        var result = "<table >";
+        result += "<tr>";
+
+        snapshot.forEach( function (childSnapshot) {
+
+            //var key = childSnapshot.key;
+            //var value = childSnapshot.val();
+            var key = childSnapshot.key;
+            var child_name = childSnapshot.val().Name;
+            var child_country = childSnapshot.val().Country;
+            var child_bio = childSnapshot.val().Bio;
+            var child_propic = childSnapshot.val().ProfilePic;
+
+            result += "<td>" +  formCard_All(key,child_name,child_bio, child_country,child_propic)  + "</td>";
+            if ((j + 1) % 2 == 0) {
+                result += "</tr><tr>";
+            }
+            j++;
+        });
+
+
+
+         $('#ConnectionsListing_All').html(result);
+
+
+    });
+
+
+    function formCard_All (key, name, bio, country, profilepic) {
+
+
+        var card = "  <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+            "\n" +
+            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profilepic+"\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+            "\n" +
+            "             </div><!--end col-->\n" +
+            "\n" +
+            "\n" +
+            "             <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> "+ name+"  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp; <p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+country+"</p>\n" +
+            "\n" +
+            "             </div><!--end col-->\n" +
+            "\n" +
+            "             <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
+            "               <input type=\"checkbox\" name=\"subject_All\" value=\""+ key+"\" >\n" +
+            "             </div>\n";
+
+        return card;
+
+    }
+
+
+    function SendMessage_Group(){
+
+        var message_txt = document.getElementById("groupName").value;
+        document.getElementById("groupName").value = "";
+
+        var checkboxes = document.getElementsByName('subject_All');
+        var vals = [];
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            if (checkboxes[i].checked) {
+                vals.push(checkboxes[i].value);
+            }
+        }
+
+        var messaging_db = firebase.database().ref().child("Messages");/*Messages*/
+
+        messaging_db.once("value",function (snapshot) {
+
+         var created_id = messaging_db.push();
+        created_id.set({
+            Name: message_txt,
+            ProfilePic: "https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofilePics%2Fgroup_pic.jpg?alt=media&token=af33dfd5-598a-4fc4-83d8-5504ec132d6d",
+        });
+
+        /*Saving_id*/
+        var hope = String(created_id);
+        var result = hope.substring(hope.lastIndexOf("/") + 1);
+        var save_id = firebase.database().ref().child("Messages/" + result);/*Messages*/
+        save_id.update({
+            key: result
+        });
+
+
+
+    });}
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+
+
+

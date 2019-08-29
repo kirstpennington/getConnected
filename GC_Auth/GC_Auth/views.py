@@ -356,6 +356,19 @@ def courses(request):
     )
 
 
+def goDirectMessaging(request):
+    global the_user
+    return render(request, 'DirectMessaging.html', {
+                                            'this_uid': the_user.uid,
+                                            'my_country': the_user.country,
+                                            'n': the_user.username,
+                                            'ProfilePic': the_user.profilePic,
+                                            'bio': the_user.bio,
+                                            'email': the_user.email,
+                                            'password': the_user.password}
+                  )
+
+
 def connections(request):
     global the_user
     global short_connections_suggestions
