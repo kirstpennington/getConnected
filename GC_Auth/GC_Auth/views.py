@@ -87,6 +87,8 @@ def postsign(request):
                                       "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg")
         the_user.profilePic = "https://eduexcellencestaff.co.za/wp-content/uploads/2018/09/default-profile.jpg"
 
+    user_methods.updateAccountEnabled(user['localId'], "true")
+
     the_user = User(user_methods.getUsername(user['localId']),
                     user_methods.getBio(user['localId']),
                     user_methods.getNumConnecions(user['localId']),
@@ -121,6 +123,55 @@ def postsign(request):
 
 
 def logout(request):
+    auth.logout(request)
+    # do all stuff in confirm dialogue
+    forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(
+        *forum_methods.getTrendingForums(""))  # unzip all elements of each trending forum
+
+    if len(forum_names) == 0:
+        return render(request, "LogIn.html", {'show_forum_1': 'hidden',
+                                              'show_forum_2': 'hidden',
+                                              'show_forum_3': 'hidden'})
+    if len(forum_names) == 1:
+        return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                              'forum_1_pic': forum_pics[0],
+                                              'forum_1_participants': forum_num_participants[0],
+                                              'forum_1_name': forum_names[0],
+                                              'forum_1_description': forum_descriptions[0],
+                                              'show_forum_2': 'hidden',
+                                              'show_forum_3': 'hidden'})
+    if len(forum_names) == 2:
+        return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                              'forum_1_pic': forum_pics[0],
+                                              'forum_1_participants': forum_num_participants[0],
+                                              'forum_1_name': forum_names[0],
+                                              'forum_1_description': forum_descriptions[0],
+                                              'show_forum_2': 'visible',
+                                              'forum_2_pic': forum_pics[1],
+                                              'forum_2_participants': forum_num_participants[1],
+                                              'forum_2_name': forum_names[1],
+                                              'forum_2_description': forum_descriptions[1],
+                                              'show_forum_3': 'hidden'})
+
+    return render(request, "LogIn.html", {'show_forum_1': 'visible',
+                                          'forum_1_pic': forum_pics[0],
+                                          'forum_1_participants': forum_num_participants[0],
+                                          'forum_1_name': forum_names[0],
+                                          'forum_1_description': forum_descriptions[0],
+                                          'show_forum_2': 'visible',
+                                          'forum_2_pic': forum_pics[1],
+                                          'forum_2_participants': forum_num_participants[1],
+                                          'forum_2_name': forum_names[1],
+                                          'forum_2_description': forum_descriptions[1],
+                                          'show_forum_3': 'visible',
+                                          'forum_3_pic': forum_pics[2],
+                                          'forum_3_participants': forum_num_participants[2],
+                                          'forum_3_name': forum_names[2],
+                                          'forum_3_description': forum_descriptions[2]
+                                          })
+
+
+def logoutDisableAccount(request):
     auth.logout(request)
     forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids = zip(
         *forum_methods.getTrendingForums(""))  # unzip all elements of each trending forum

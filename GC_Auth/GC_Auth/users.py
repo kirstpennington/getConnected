@@ -164,6 +164,13 @@ class user_methods:
         except:
             return ""
 
+    def updateAccountEnabled(uid, enabled):
+        database.child("Users").child(uid).update({"Enabled": enabled})
+        try:  # try except for purpose of unit tests
+            return ""
+        except:
+            return ""
+
     def updateBackgroundPic(uid, bPic):
         database.child("Users").child(uid).update({"BackgroundPic": bPic})
         try:  # try except for purpose of unit tests

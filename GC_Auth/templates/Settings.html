@@ -1232,14 +1232,7 @@
             <h2 class="SettingsHead" style="padding-right: 10px;"> Account Settings  <span
                     class="glyphicon glyphicon-cog"></span></h2>
         </div><!--end col-->
-        <div>
-            {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                <button id="disableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default">Disable Account</button>
 
-            {% else %}
-                <button onclick="enableAccount()" id="enableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" hidden>Enable Account</button>
-            {% endif %}
-        </div>
 
 
         <div class="col-sm-2"></div>
@@ -1457,6 +1450,11 @@
                     {% endif %}
                 </div>
 
+
+             <div>
+            <button id="disableAccBtn" style="margin-top: 80px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default">Disable Account</button>
+            </div>
+
             </div><!--end col-->
 
             <div class="col-md-6" style="padding-left: 70px; padding-bottom: 30px;"><!--save button  -->
@@ -1473,6 +1471,7 @@
 
 
             </div><!--end col-->
+
 
         </div><!--row four-->
 
@@ -1619,7 +1618,7 @@
                         <h4 class="modal-title" id="myModalLabel">Are you sure you want to disable your account?</h4>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" id="modal-btn-si">Yes</button>
+                        <button onclick="location.href={% url 'log'%}" type="button" class="btn btn-default" id="modal-btn-si">Yes</button>
                         <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
                       </div>
                     </div>
@@ -1652,24 +1651,26 @@
                           updateUserEnabledRef = firebase.database().ref("Users").child('{{ this_uid }}');
                           updateUserEnabledRef.update({Enabled: false});                                                // update database - set user to disabled
 
-                          document.getElementById("firstname").disabled = true;                                         // disable all settings boxes
+                          document.getElementById("firstname").disabled = true;                                         // disable all settings boxes so that user cannot make changes while the system is logging them out
                           document.getElementById("country").disabled = true;
                           document.getElementById("bioGet").disabled = true;
                           document.getElementById("saveChangesBtn").hidden = true;
                           document.getElementById("nav_bar_disable").hidden = true;
+                          document.getElementById("cancelBtn").hidden = true;
+                          document.getElementById("disableAccBtn").disabled=true;                        // change button to "Enable account"
+
+
 
                           $("#mi-modal").modal('hide');
                           $("#modalAccountDisabled").modal('show');                                                     // notify user that their account has been disabled
 
-                          document.getElementById("disableAccBtn").disabled=true;                        // change button to "Enable account"
-                          document.getElementById("disableAccBtn").innerText= "Enable account";
                       }else{                //Do not disable account
                         $("#mi-modal").modal('hide');
                       }
                     });
 
-                    function enableAccount(){
-                          updateUserEnabledRef = firebase.database().ref("Users").child('{{ this_uid }}');
+                    /*function enableAccount(){
+                          updateUserEnabledRef = firebase.database().ref("Users").child('//  this_uid ');
                           updateUserEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
 
                           document.getElementById("enableAccBtn").innerText = "Disable Account";                                      // change button to "Disable account"
@@ -1682,7 +1683,7 @@
                           document.getElementById("nav_bar_disable").hidden = false;
 
                           $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
-                    }
+                    }*/
             </script>
                 </div>
 
@@ -1697,7 +1698,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    You have disabled your account. You may enable your account at any time.
+                    You have disabled your account. You may enable your account at any time by logging in again.
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
