@@ -1482,20 +1482,28 @@ function Reply_list(holder){
 </footer>
 
 <!-- Confirm Leaving Forum Popup -->
-                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Are you sure you want to leave this forum?</h4>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" id="modal-btn-si">Yes</button>
-                        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+
+<div class="modal fade" id="mi-modal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <div class="modal-content">
+                            <div class="modal-body" style="padding:10px;">
+                            <h4 class="text-center">Are you sure you want to leave this forum?</h4>
+                            <br>
+                            <div class="text-right">
+                            <a onclick="location.href={% url 'log'%}" id="modal-btn-si" class="btn btn-yes" style=" border: 1px solid gray;
+            color: #e83e8c;">
+                                Confirm</a>
+                            <a class="btn btn-no" id="modal-btn-no" style=" border: 1px solid gray;
+            color: #e83e8c;">Cancel</a>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+
 
  <script>
 
@@ -1559,7 +1567,7 @@ function Reply_list(holder){
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Left this Forum</h5>
+                      <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -1568,7 +1576,8 @@ function Reply_list(holder){
                     You have left this forum. You may post a goodbye message but once you exit the forum, you will not be able to view the forum again.
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close</button>
 
                   </div>
                 </div>
