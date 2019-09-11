@@ -1727,14 +1727,124 @@
 
             <!-- My Forums: Item  -->
 
+
+
             {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
 
                <span onclick="location.href='{% url 'createForum' %}'" style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
                                   title="Add Forum" data-placement="right"
-                                  class="glyphicon glyphicon-plus-sign fa-3x plus"></span
+                                  class="glyphicon glyphicon-plus-sign fa-3x plus"></span>
             {% endif %}
 
-            {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
+            <table id="MyForumsTable"></table>
+
+            <script>
+                 /*This JavaScript Section is for creating a table with forum cards. The table is called ExploreAllForumsTable*/
+                var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+                myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
+
+                    myforumsArray = snapshotToArray(snapshot_1);
+                    var explore_forums = firebase.database().ref().child("Forums");    // Fetching a list of all forums
+
+                    explore_forums.on("value", function (snapshot) {
+                        var m = 0;                  // spacing for my forums
+                        var myResult = "<table >";
+                        myResult += "<tr>";
+
+                        snapshot.forEach(function (childSnapshot) {
+                            var key = childSnapshot.key;
+                            var forum_names = childSnapshot.val().Name;  // collect the data you need
+                            var forum_pics = childSnapshot.val().ForumPic;
+                            var forum_num_participants = childSnapshot.val().NumParticipants;
+                            var forum_creators = childSnapshot.val().Creator;
+                            var topics_json = childSnapshot.val().TopicTags;
+                            var forum_descriptions = childSnapshot.val().Description;
+
+                            // create a string with all forum topics
+                            var forum_topics = " | ";
+                            for (var k in topics_json) {
+                                if (topics_json.hasOwnProperty(k)) {
+                                    forum_topics = forum_topics + k + " | ";
+                                }
+                            }
+
+                            if (myforumsArray.includes(key)) {  // if the forum is my forum, then add it to my forums card instead of all forums
+                                //adds to my forums
+                                myResult += "<td>" + MyForumCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, key) + "</td>";
+                                if ((m + 1) % 3 == 0) {
+                                    myResult += "</tr><tr>";
+                                }
+                                m++;
+                            }
+
+                        });
+
+                        $('#MyForumsTable').html(myResult);
+
+                    });
+                });
+
+                function MyForumCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
+                    var card =  " <form action=\"/goForumsOpen/\" method=\"post\">\n" +
+                        "                <div class=\"col-sm-3  \" style=\"; width: 180px; margin-left:30px;  \">\n" +
+                        "                    <!-- forum wallpaper -->\n" +
+                        "                    <div class=\"cardheader\"\n" +
+                        "                         style=\"background-image: url("+ forum_pics +"); border-radius: 8px\">\n" +
+                        "                    </div>\n" +
+                        "                    <!-- Go into forum -->\n" +
+                        "                    <div class=\"heartbutton\"><span style=\"background: transparent; \" type=\"button\"\n" +
+                        "                                                   class=\"fa fa-sign-in fa-lg viewForum\"></span></div>\n" +
+                        "                    <!-- card with forum detains -->\n" +
+                        "                    <div class=\"card hovercard \" style=\"margin-top: -50px; margin-left: 11px\">\n" +
+                        "\n" +
+                        "                        <div>\n" +
+                        "                            <!-- Number fo forum users -->\n" +
+                        "                            <div style=\"top: 2px; margin-left: 70%\">\n" +
+                        "                                <h8><span class=\"label label-default\"><span\n" +
+                        "                                        class=\"fa fa-users\"> </span>"+ forum_num_participants +"</span></h8>\n" +
+                        "                                <div style=\"height:5px;\"><br></div>\n" +
+                        "                            </div>\n" +
+                        "\n" +
+                        "                            <div style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px \">"+ forum_names +"\n" +
+                        "                            </div>\n" +
+                        "                            <div id=\"forum_id\" style=\"display: none;\"> "+ forum_ids +"</div>\n" +
+                        "                            <!-- forum tags -->\n" +
+                        "                            <span class=\"badge badge-pill badge-dark\" style=\"font-size: 11px\">"+ forum_topics +"</span>\n" +
+                        "\n" +
+                        "\n" +
+                        "                        </div>\n" +
+                        "                        <!-- card line -->\n" +
+                        "\n" +
+                        "                        <hr style=\"width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px\"/>\n" +
+                        "\n" +
+                        "                        <input type=\"hidden\" class=\"forum_id\" id=\"forum_id\" name=\"forum_id\" value=\""+  forum_ids  +"\" hidden style=\"color: white;\">\n" +
+                        "                        <!-- Open forum button -->\n" +
+                        "                            <button onclick=\"location.href='{% url 'forumsopen' %}'\"\n" +
+                        "                               style=\"border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\" type=\"submit\" value=\"goForumsOpen\">OPEN\n" +
+                        "                                <i\n" +
+                        "                                        class=\"fa fa-angle-double-right\"></i></button>\n" +
+                        "                       \n" +
+                        "                    </div><!-- /card-hovercard -->\n" +
+                        "                </div>\n" +
+                        "                </form>";
+                        return card;
+                }
+
+                // get a snapshot of a list of keys from firebase and convert it to an array
+                function snapshotToArray(snapshot) {
+                    let returnArr = [];
+
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+                        returnArr.push(item);
+                    });
+
+                    return returnArr;
+                }
+            </script>
+
+          {% comment %}  {% for forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_list|slice:":3" %}
                 <form action="/goForumsOpen/" method="post">
                 {% csrf_token %}
                 <div class="col-sm-3  " style="; width: 180px; margin-left:30px;  ">
@@ -1770,23 +1880,17 @@
 
                         <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
                         <!-- Open forum button -->
-                        {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
                             <button onclick="location.href='{% url 'forumsopen' %}'"
                                style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
                                 <i
                                         class="fa fa-angle-double-right"></i></button>
-                        {% else %}
-                            <button disabled="true" onclick="location.href='{% url 'forumsopen' %}'"
-                               style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px" type="submit" value="goForumsOpen">OPEN
-                                <i
-                                        class="fa fa-angle-double-right"></i></button>
-                        {% endif %}
+
                     </div><!-- /card-hovercard -->
                 </div>
                 </form>
                 {% empty %}
                     <div>You have no Forums. Try joining one!</div>
-            {% endfor %}
+            {% endfor %} {% endcomment %}
 
         </div><!-- /First View Button fot main body, container-->
 

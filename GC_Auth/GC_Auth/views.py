@@ -367,7 +367,7 @@ def home(request):
 def forums(request):
     global the_user
     global short_forum_suggestions
-    all_forums = forum_methods.getAllForumsList(the_user.uid)
+    #all_forums = forum_methods.getAllForumsList(the_user.uid)
     return render(request, 'ForumList.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
                                               'email': the_user.email,
                                               'password': the_user.password,
@@ -377,11 +377,13 @@ def forums(request):
                                               'n': the_user.username,
                                               'ProfilePic': the_user.profilePic,
                                               'bio': the_user.bio,
-                                              'all_forums_list': forum_methods.getForumsInfoList(all_forums),
+                                              #'all_forums_str': convertArrayToString(all_forums),
+                                              #'all_forums_list': forum_methods.getForumsInfoList(all_forums),
                                               'my_forums_ids': convertArrayToString(the_user.forumsInfoList),
-                                              'all_forums_str': convertArrayToString(all_forums),
                                               'this_uid': the_user.uid,
                                               'username': the_user.username})
+
+
 
 
 def courses(request):
