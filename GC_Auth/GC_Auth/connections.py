@@ -59,35 +59,33 @@ class connection_methods:
         return zip(names, countries, pictures, bio, conn_id)
 
     def getConnectionsSuggestions(uid, num_returns, the_user):
-                                                                                                    # returns a combined list of user information with the same interests as this user
-        results_count = 0                                                                           # how many results were found thus far
+                                                                                                                        # returns a combined list of user information with the same interests as this user
+        results_count = 0                                                                                               # how many results were found thus far
         results = []
 
-        all_users_list_1 = database.child("Users").shallow().get().val()                            # list of all users in the system
-        all_users_list = connection_methods.removeValueFromList(uid, all_users_list_1)              # remove this user from the list of all users
+        all_users_list_1 = database.child("Users").shallow().get().val()                                                # list of all users in the system
+        all_users_list = connection_methods.removeValueFromList(uid, all_users_list_1)                                  # remove this user from the list of all users
+        user_connections_list = database.child("Users").child(uid).child('Connections').shallow().get().val()           # get list of this user connections
+
         for compare_user_id in all_users_list:
-            if results_count == num_returns:                                                        # if we have the requested number of ids, stop searching
+            if results_count == num_returns:                                                                            # if we have the requested number of ids, stop searching
                 break
             else:
-                if connection_methods.getUserEnabled(compare_user_id) == 'false':                   # only add to the list of commections if the connection's account is enabled
-                    # get the topics of the user we are currently comparing this user wih
-                    compare_user_interests = database.child("Users").child(compare_user_id).child(
-                        "Topics").shallow().get().val()
-                    if connection_methods.compareLists(compare_user_interests,
-                                    the_user.topicsList):                                           # if we find a match, add it to the list of results
-                        results.append(compare_user_id)
-                        results_count += 1
+                if the_user.uid != compare_user_id:                                                                     # remove my id from the list of results
+                    if connection_methods.arrayContainsValue(connection_methods.getRequestsReceived(uid), compare_user_id) == False:            # remove users who the person has already received requests from
+                        if connection_methods.arrayContainsValue(connection_methods.getRequestsSent(uid), compare_user_id) == False:            # remove the users who I have already sent connections to
+                            if connection_methods.arrayContainsValue(user_connections_list, compare_user_id) == False:  # remove users that are already connections
+                                user_enabled = connection_methods.getUserEnabled(compare_user_id)
+                                if user_enabled == 'true' or user_enabled == True:                       # only add to the list of commections if the connection's account is enabled
+                                    # get the topics of the user we are currently comparing this user wih
+                                    compare_user_interests = database.child("Users").child(compare_user_id).child(
+                                        "Topics").shallow().get().val()
+                                    if connection_methods.compareLists(compare_user_interests,
+                                                    the_user.topicsList):                                               # if we find a match, add it to the list of results
+                                        results.append(compare_user_id)
+                                        results_count += 1
 
-        user_connections_list = database.child("Users").child(uid).child(
-            'Connections').shallow().get().val()                                                    # get list of this user connections
-        remove_my_connections = connection_methods.removeValuesFromList(user_connections_list,
-                                             results)                                               # remove users that are already connections and return this updated list
-        remove_sent_requests = connection_methods.removeValueFromList(
-            connection_methods.getRequestsSent(uid), remove_my_connections)                         # remove the users who I have already sent connections to
-        remove_received_requests = connection_methods.removeValueFromList(
-            connection_methods.getRequestsReceived(uid), remove_sent_requests)                       # remove users who the person has already received requests from
-        return_result = connection_methods.removeValueFromList(the_user.uid, remove_received_requests)# remove my id from the list of results
-        return return_result
+        return results
 
     def getRequestsSent(uid):     # get a list of the users who I have sent requests to (their user ids)
         sent_ids = database.child("Users").child(uid).child("RequestsSent").shallow().get().val()       # get a list of the auto generated ids for sent logs
@@ -167,4 +165,10 @@ class connection_methods:
                 for b in list2:
                     if a == b:
                         return True
+        return False
+
+    def arrayContainsValue(array, value):
+        for item in array:
+            if item == value:
+                return True
         return False

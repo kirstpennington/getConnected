@@ -87,7 +87,6 @@ class forum_methods:
     # Suggestions Carousel methods
 
     def getForumMessages(forum_id):
-        print('forum_id',forum_id)
         mess_ids = database.child("Forums").child(forum_id).child("Messages").shallow().get().val()           # get all message ids
         texts = []
         sender_pic = []
@@ -151,56 +150,54 @@ class forum_methods:
 
     def getForumSuggestions(uid, num_returns, the_user):
         # returns a combined list of forum information with the same topics as this user's interests
-        results_count = 0  # how many results were found thus far
+        results_count = 0                                                       # how many results were found thus far
         results = []
-        all_forums_list = database.child("Forums").shallow().get().val()  # list of this user's interests
+        all_forums_list = database.child("Forums").shallow().get().val()        # list of this user's interests
+        # get list of this user's joined forums - includes forums they created
+        all_user_forums = database.child("Users").child(uid).child("ForumsJoined").shallow().get().val()
 
         for compare_forum_id in all_forums_list:
-            if results_count == num_returns:  # if we have the requested number of ids, stop searching
+
+            if results_count == num_returns:                                    # if we have the requested number of ids, stop searching
                 break
             else:
-                private = database.child("Forums").child(compare_forum_id).child("Private").get().val()
-                if private != "True" or private != "true":          # the forum must be private for it to be suggested to other users
-                    compare_forum_topics = database.child("Forums").child(compare_forum_id).child(
-                        "TopicTags").shallow().get().val()
-                    if forum_methods.compareLists(compare_forum_topics,
-                                    the_user.topicsList):  # if we find a match, add it to the list of results
-                        results.append(compare_forum_id)
-                        results_count += 1
+                if forum_methods.arrayContainsValue(all_user_forums, compare_forum_id) == False:        # if the user has not already joined this forum
+                    forum_enabled = database.child("Forums").child(compare_forum_id).child("Enabled").shallow().get().val()
 
-                        # get list of this user's joined forums - includes forums they created
-        all_user_forums = database.child("Users").child(uid).child("ForumsJoined").shallow().get().val()
-        try:
-            final_results = forum_methods.removeValuesFromList(all_user_forums,
-                                                 results)  # remove users that are already connections and return this updated list
-        except:
-            final_results = results
+                    if forum_enabled == 'true' or forum_enabled == True:                                     # check that the forum is enabled before suggesting it
+                        compare_forum_topics = database.child("Forums").child(compare_forum_id).child(
+                                "TopicTags").shallow().get().val()
+                        compare_user_topics = database.child("Users").child(uid).child("Topics").shallow().get().val()
 
-        return final_results
+                        if forum_methods.compareLists(compare_forum_topics, compare_user_topics):                   # if we find a match, add it to the list of results
+                            results.append(compare_forum_id)
+                            results_count += 1
+
+        return results
 
 
     def getTrendingForums(self):
         # list of the top 3 public forums with the most participants
-        temp = database.child("Forums").shallow().get().val()  # get a list of all forum id's
-        all_forums_ids = []  # remove all private forums
+        temp = database.child("Forums").shallow().get().val()                   # get a list of all forum id's
+        all_forums_ids = []                                                     # remove all private forums
         for forum_id in temp:
             private = database.child("Forums").child(forum_id).child("Private").get().val()
-            if private != "True" or private != "true":  # only consider public forums
+            if private != "True" or private != "true":                          # only consider public forums
                 all_forums_ids.append(forum_id)
 
-        top_forum_ids = []  # stores the forum with the most number of participants
+        top_forum_ids = []                                                      # stores the forum with the most number of participants
 
         if len(all_forums_ids) >= 3:
             top_forum_ids.append(all_forums_ids[0])
             top_forum_ids.append(all_forums_ids[1])
             top_forum_ids.append(all_forums_ids[2])
 
-            count_skip = 0  # skip the first 3 values because they're already in the top forums list
+            count_skip = 0                                                      # skip the first 3 values because they're already in the top forums list
             for forum_id in all_forums_ids:
                 if count_skip >= 3:
                     for i in range(len(top_forum_ids)):
                         if forum_methods.getForumNumParticipants(forum_id) > forum_methods.getForumNumParticipants(
-                                top_forum_ids[i]):  # compare which forum has more participants
+                                top_forum_ids[i]):                              # compare which forum has more participants
                             top_forum_ids[i] = forum_id
                             break
                 count_skip += 1
@@ -271,5 +268,10 @@ class forum_methods:
                         return True
         return False
 
+    def arrayContainsValue(array, value):
+        for item in array:
+            if item == value:
+                return True
+        return False
 
 # UPDATE Methods

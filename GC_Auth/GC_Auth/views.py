@@ -297,7 +297,7 @@ def updateProfilePicRequest(request):
         storage.child("images/", the_user.uid).put(pic)"""
         storage = firebase.storage()
         url = storage.child(the_user.uid).get_url()
-        print("url: " + url)
+
         """newPic = request.POST.get("url")                     # get data from UI using POST method
         print("!newPic", newPic)
         global the_user                                             # edit the object value for profile pic
@@ -356,12 +356,9 @@ def home(request):
 
 def forums(request):
     global the_user
-    short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
     return render(request, 'ForumList.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
                                               'email': the_user.email,
                                               'password': the_user.password,
-                                              'suggested_forums_list': forum_methods.getForumsInfoList(
-                                               short_forum_suggestions),
                                               'my_country': the_user.country,
                                               'n': the_user.username,
                                               'ProfilePic': the_user.profilePic,
@@ -514,7 +511,7 @@ def goForumsOpen(request):
                                              'this_uid': the_user.uid,
                                              'numConnections': the_user.numConnections,
                                              'numForums': the_user.numForums,
-                                             'my_forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+                                             'my_forums_list': forum_methods.getForumsInfoList(user_methods.getForumssList(the_user.uid)),
                                              'suggested_forums_list': forum_methods.getForumsInfoList(
                                                short_forum_suggestions),
                                                     'forum_name': forum_methods.getForumName(forum_id),

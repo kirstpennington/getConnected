@@ -1573,7 +1573,6 @@
 
 
             <div class="col-md-12" style="margin-top: -3px">
-                {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
 
                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
                     <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
@@ -1611,7 +1610,6 @@
                     {% empty %}
                     <div>No Forum Suggestions</div>
                 {% endfor %}
-            {% endif %}
 
             <script>
                 function joinForum(forum_id, this_uid, forum_name, hide_block){

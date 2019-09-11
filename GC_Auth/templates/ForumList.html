@@ -846,8 +846,137 @@ $(document).ready(function(){
                                       opacity: 1;
                                     }
                                 </style>
+                                <table id="ForumSuggestionsTable">
 
-                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in suggested_forums_list|slice:":3" %}
+                                </table>
+
+                                <script>
+
+                                    var results_count = 0;          //  how many results were found thus far
+                                    var max_results = 3;            // how many results we want to receive
+
+                                    var user_topics_fb_location = firebase.database().ref().child("Users").child('{{ this_uid }}').child("Topics");             // get all topic tags for this user
+                                    user_topics_fb_location.on("value", function (snapshot_user_topics) {
+                                        var user_topics = snapshotToArrayKey(snapshot_user_topics);
+
+                                        var allforums_fb_location = firebase.database().ref().child("Forums");
+                                        allforums_fb_location.on("value", function (snapshot_all_forums) {                                                                          //Fetching list of all Forums
+
+                                            var myforums_fb_location = firebase.database().ref().child("Users").child('{{ this_uid }}').child("ForumsJoined");
+                                            myforums_fb_location.on("value", function (snapshot_my_forums) {            // get a list of the forums that I have joined
+                                                var my_forums = snapshotToArray(snapshot_my_forums);
+
+                                                var j = 0;                   // spacing for forum suggestions
+                                                var result = "<table >";
+                                                result += "<tr>";
+
+                                                snapshot_all_forums.forEach(function (forum) {                                                                                       // Loop through each forum in the database
+
+                                                    var forum_id = forum.key;
+
+                                                    if(!arrayContainsValue(my_forums, forum_id)) {              // only include the suggestion if the user is not already apart of the forum
+
+                                                        if (results_count == max_results) {
+                                                            // do nothing to each element in the array
+                                                        } else {
+
+                                                            var forum_topics_fb_location = firebase.database().ref().child("Forums").child(forum_id).child("TopicTags");                                                       // get all topic tags for this forum
+                                                            forum_topics_fb_location.on("value", function (snapshot_forum_topics) {
+
+                                                                var forum_topics = snapshotToArrayKey(snapshot_forum_topics);                                                               // list of all this forum's topics
+
+                                                                var forum_names = forum.val().Name;  // collect the data you need
+                                                                var forum_pics = forum.val().ForumPic;
+                                                                var forum_num_participants = forum.val().NumParticipants;
+                                                                var forum_creators = forum.val().Creator;
+                                                                var topics_json = forum.val().TopicTags;
+                                                                var forum_descriptions = forum.val().Description;                                                          // list of all this user's topics
+
+                                                                // create a string with all forum topics
+                                                                var forum_topics_str = " | ";
+                                                                for (var k in topics_json) {
+                                                                    if (topics_json.hasOwnProperty(k)) {
+                                                                        forum_topics_str = forum_topics_str + k + " | ";
+                                                                    }
+                                                                }
+                                                                // list of all this user's topics
+                                                                if (arrayHasItemsInCommon(user_topics, forum_topics)) {                                                                     // check is user_topics and forum_topics have items in common
+
+                                                                    result += "<td>" + forumSuggestionCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics_str, forum_descriptions, forum_id) + "</td>";
+
+                                                                    if ((j + 1) % 3 == 0) {                                     // update spacing in table
+                                                                        result += "</tr><tr>";
+                                                                    }
+                                                                    j++;
+
+                                                                    results_count += 1;                                         // increment the number of results found
+                                                                }
+
+                                                                $('#ForumSuggestionsTable').html(result);
+
+                                                            });
+                                                        }
+                                                    }
+                                                });
+
+                                            });
+                                        });
+
+                                    });
+
+
+                                    function arrayHasItemsInCommon(array1, array2){                                        // checks whether both arrays have items in common (mutual items)
+                                        if(array1.length>0 && array2.length>0){
+                                            for (item1 in array1){
+                                                for (item2 in array2){
+                                                    if (item1 == item2){
+                                                        return true;
+                                                    }
+                                                }
+
+                                            }
+
+                                        }
+                                        return false;
+                                    }
+
+                                    function forumSuggestionCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
+                                        return "<div id=\""+ forum_ids +"_hideSuggestion\" class=\"col-sm-4  \" style=\" width: 202px;margin-top: 5px; \">\n" +
+                                            "\n" +
+                                            "                                        <div class=\" rightColumnContainer_lower\" style=\"width: 175px; height: 90px; \">\n" +
+                                            "\n" +
+                                            "                                            <div class=\"inf\" style=\"margin-top: -5px; text-align: center; \">\n" +
+                                            "\n" +
+                                            "                                                <div style=\"height:2px;\"><br></div>\n" +
+                                            "\n" +
+                                            "                                                <div style=\"font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative\">\n" +
+                                            "                                                    "+ forum_names +"\n" +
+                                            "                                                </div>\n" +
+                                            "                                                <!-- hidden field that stores the id of the entity  -->\n" +
+                                            "                                                <div id=\"course_id\" style=\"display: none;\"> "+ forum_ids +"</div>\n" +
+                                            "\n" +
+                                            "                                                <div style=\"height:2px;\"><br></div>\n" +
+                                            "\n" +
+                                            "                                                <span class=\"badge badge-pill badge-dark\"\n" +
+                                            "                                                      style=\"color: white; font-size: x-small;  top: 10px\">"+ forum_topics +"</span><br>\n" +
+                                            "                                                <div style=\"height:5px;\"><br></div>\n" +
+                                            "\n" +
+                                            "                                                <input type=\"hidden\" class=\"forum_id\" id=\"forum_id\" value=\""+ forum_ids +"\" hidden style=\"display: none; visibility: hidden;\">\n" +
+                                            "\n" +
+                                            "                                                 <button type=\"submit\" onclick=\"joinForum('"+ forum_ids +"', '{{ this_uid }}', '"+ forum_names +"', '"+ forum_ids +"_hideSuggestion')\"\n" +
+                                            "                                                   style=\"border: none; background: rgba(0,0,0,0);font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\"  >JOIN\n" +
+                                            "                                                    <i class=\"fa fa-angle-double-right\"></i></button>\n" +
+                                            "                                            </div><!-- inf-->\n" +
+                                            "\n" +
+                                            "                                        </div><!-- RighColumnContainer-->\n" +
+                                            "\n" +
+                                            "                                    </div> <!-- col-sm-3-->";
+                                    }
+
+
+                                </script>
+
+                            {% comment %}{% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in suggested_forums_list|slice:":3" %}
 
                                 <div id="{{ forum_ids }}_hideSuggestion" class="col-sm-4  " style=" width: 202px;margin-top: 5px; ">
 
@@ -881,7 +1010,7 @@ $(document).ready(function(){
                                     </div> <!-- col-sm-3-->
 
 
-                                {% endfor %}
+                                {% endfor %}{% endcomment %}
 
                             </div>
                         </div>
@@ -908,19 +1037,10 @@ $(document).ready(function(){
             <!--row two of inside table-->
 
 
-
-
-
-
             </div><!--end row-->
 
 
         </div><!--end my forums-->
-
-
-
-
-
 
         <!-- content for all Forums tab-->
         <div id="allforums" class="tab-pane fade">
@@ -949,7 +1069,7 @@ $(document).ready(function(){
                              var key = childSnapshot.key;                                                               // get the forum id as key
 
                              var myforumcreator_fb_location = firebase.database().ref().child("Forums/" + key + "/Creator");
-                            myforumcreator_fb_location.on("value", function (creator_snapshot) {                        // check if im the creator
+                             myforumcreator_fb_location.on("value", function (creator_snapshot) {                        // check if im the creator
                                 creator = creator_snapshot.val();                                                       // get the id of the forum creator
 
 
@@ -961,7 +1081,7 @@ $(document).ready(function(){
                                         // do nothing
                                     }
                                     else{
-                                        alert(0);
+
                                         var forum_names = childSnapshot.val().Name;  // collect the data you need
                                         var forum_pics = childSnapshot.val().ForumPic;
                                         var forum_num_participants = childSnapshot.val().NumParticipants;
@@ -1005,14 +1125,6 @@ $(document).ready(function(){
 
                      });
                  });
-
-
-
-                    // ToDo: add recommended forums to this
-
-             // ToDo: remove data collection from django
-
-
 
 
                 function ForumsCardsAll(forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
@@ -1215,7 +1327,6 @@ $(document).ready(function(){
 
                                                         <script>
 
-                                                                // ToDo: Later - not working for forum suggestions on this page. Isn't going into the method. Like the accordion problem
                                                                 function joinForum(forum_id, thisUserid, forum_name, hide_block){
                                                                     var db = firebase.database().ref('Forums');
                                                                     this_uid = '{{ this_uid }}';
@@ -1253,7 +1364,6 @@ $(document).ready(function(){
 
                                                                                             $("#modalForumJoined").modal('show');
                                                                                        });
-                                                                                    // ToDo: Later - when we speed up the forums list loading, move this forum to the "My Forums" list
 
 
                                                                                 }
