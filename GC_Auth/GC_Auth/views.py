@@ -329,14 +329,6 @@ def updateBackgroundPicRequest(request):
 def returnUserProfileCarousels(request):
     global the_user
 
-    global short_forum_suggestions  # if the suggested forums has not been determined yet
-    if short_forum_suggestions == "":
-        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
-
-    global short_connections_suggestions  # if the suggested forums has not been determined yet
-    if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
-
     return render(request, "User_Profile_Page.html", {"e": email,
                                                       'n': the_user.username,
                                                       'bio': the_user.bio,
@@ -348,12 +340,10 @@ def returnUserProfileCarousels(request):
                                                       'backgroundPic': the_user.backgroundPic,
                                                       'course_list': course_methods.getCoursesInfoList(
                                                           the_user.uid, the_user.coursesInfoList[:3]),
-                                                      'forums_list': forum_methods.getForumsInfoList(
-                                                          the_user.forumsInfoList[:3]),
                                                       'connections_suggestions_list': connection_methods.getConnectionsInfoList(
-                                                          short_connections_suggestions),
+                                                          connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)),
                                                       'forums_suggestions_list': forum_methods.getForumsInfoList(
-                                                          short_forum_suggestions),
+                                                          forum_methods.getForumSuggestions(the_user.uid, 3, the_user)),
                                                       'this_uid': the_user.uid,
                                                       'enabled': user_methods.getUserEnabled(the_user.uid)
                                                       })
@@ -366,8 +356,7 @@ def home(request):
 
 def forums(request):
     global the_user
-    global short_forum_suggestions
-    #all_forums = forum_methods.getAllForumsList(the_user.uid)
+    short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
     return render(request, 'ForumList.html', {'forums_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
                                               'email': the_user.email,
                                               'password': the_user.password,
@@ -377,13 +366,9 @@ def forums(request):
                                               'n': the_user.username,
                                               'ProfilePic': the_user.profilePic,
                                               'bio': the_user.bio,
-                                              #'all_forums_str': convertArrayToString(all_forums),
-                                              #'all_forums_list': forum_methods.getForumsInfoList(all_forums),
                                               'my_forums_ids': convertArrayToString(the_user.forumsInfoList),
                                               'this_uid': the_user.uid,
                                               'username': the_user.username})
-
-
 
 
 def courses(request):
@@ -404,9 +389,7 @@ def courses(request):
                                             'email': the_user.email,
                                             'password': the_user.password,
                                             'my_course_ids': convertArrayToString(the_user.coursesInfoList),
-                                            'all_courses_str': convertArrayToString(all_courses)},
-
-    )
+                                            'all_courses_str': convertArrayToString(all_courses)})
 
 
 def goDirectMessaging(request):
@@ -424,20 +407,19 @@ def goDirectMessaging(request):
 
 def connections(request):
     global the_user
-    global short_connections_suggestions
+    conn_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
     return render(request, 'Connections.html',
                   {'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
                    'suggested_connections_list': connection_methods.getConnectionsInfoList(
-                       short_connections_suggestions),
+                       conn_suggestions),
                    'this_uid': the_user.uid,
                    'my_conn_ids': convertArrayToString(the_user.connectionsInfoList),
-                   'conn_suggestions_ids_str': convertArrayToString(short_connections_suggestions),
+                   'conn_suggestions_ids_str': convertArrayToString(conn_suggestions),
                    'my_country': the_user.country,
                    'n': the_user.username,
                    'ProfilePic': the_user.profilePic,
                    'bio': the_user.bio
                    })
-
 
 
 def userprofile(request):
@@ -473,7 +455,6 @@ def goBadges(request):
     forum = user_methods.getNumForums(u['localId'])
     privacyUpdate = user_methods.getPrivacyUpdated(u['localId'])
 
-    global short_connections_suggestions
     global the_user
 
     return render(request, "badgesStart.html", {
@@ -483,8 +464,8 @@ def goBadges(request):
         'numForums': forum,
         'privacyUp': privacyUpdate,
         'connections_suggestions_list': connection_methods.getConnectionsInfoList(
-            connection_methods.getConnectionsSuggestions(the_user.uid, 5, the_user)),
-        'forums_suggestions_list': forum_methods.getForumsInfoList(the_user.forumsInfoList),
+            connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)),
+        'forums_suggestions_list': forum_methods.getForumsInfoList(forum_methods.getForumSuggestions(the_user.uid, 3, the_user)),
         'enabled': user_methods.getUserEnabled(the_user.uid)
     })
 
@@ -586,13 +567,11 @@ def goConnectionsOpen(request):
     if request.method == "POST":  # get data from UI
         connection_id = request.POST.get("connection_id")  # get data from UI using POST method
 
-    global short_forum_suggestions  # if the suggested forums has not been determined yet
-    if short_forum_suggestions == "":
-        short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
+    # forum suggestions calculated
+    short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
 
-    global short_connections_suggestions  # if the suggested forums has not been determined yet
-    if short_connections_suggestions == "":
-        short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
+    # connection suggestions calculated
+    short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
 
     # check privacy settings of connection before displaying their information
     if user_methods.getBioPrivacy(connection_id) == "True":
