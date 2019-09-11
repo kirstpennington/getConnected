@@ -1165,7 +1165,7 @@ $(document).ready(function(){
                         "                                                                    <!-- Open forum button -->\n" +
                         "                                                                    <input id=\"forum_id\" name=\"forum_id\" value=\""+ forum_ids +"\" hidden style=\"display: none;\">\n" +
                         "\n" +
-                        "                                                                    <button onclick=\"joinForum('"+ forum_ids +"', '"+ forum_names +", "+ hideBlock +")\"\n" +
+                        "                                                                    <button onclick=\"joinForum('"+ forum_ids +"', '{{ this_uid }}', '"+ forum_names +"', '"+ forum_ids +"_hideSuggestion')\"\n" +
                         "                                                                   style=\"border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\">JOIN\n" +
                         "                                                                    <i class=\"fa fa-angle-double-right\"></i></button>\n" +
                         "                                                                </div><!-- /card-hovercard -->\n" +
