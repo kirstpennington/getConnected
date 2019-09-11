@@ -887,13 +887,22 @@
 
                             // shows all blocks in the list of my connections
                             function showAll() {
-                                //strConnList = document.getElementById("my_conn_ids").innerText.substr(1);// removes first letter from string version of array
-                                //myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
+                                var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
 
-                                //  loop through connection_ids
-                                for (let i = 0; i < myConnList.length; i++) {
-                                    document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
-                                }
+                                    //  loop through connection_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
+                                    }
+                                });
+
                             }
 
 
@@ -901,39 +910,62 @@
                                 //strConnList = document.getElementById("my_conn_ids").innerText.substr(1);
                                 //myConnList =  strConnList.split(",");
                                 myCountry = document.getElementById('my_country').innerText;
+                                var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
 
-                                //  loop through connection_ids
-                                for (let i = 0; i < myConnList.length; i++) {
-                                    this_country = document.getElementById(myConnList[i] + '_country').innerText;
-                                    if (this_country == myCountry) {
-                                        document.getElementById(myConnList[i] + "_hide").hidden = false;
+                                    //  loop through connection_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        this_country = document.getElementById(myConnList[i] + '_country').innerText;
+                                        if (this_country == myCountry) {
+                                            document.getElementById(myConnList[i] + "_hide").hidden = false;
 
-                                    } else {
-                                        document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                        } else {
+                                            document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                        }
                                     }
-                                }
+                                });
+
                             }
 
                             //  check if name, coutnry or bio contains string typed - search button
                             function searchByTerm() {
                                 searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
-                                console.log("searchTerm: " + searchTerm);   // debug
                                 // strConnList = document.getElementById("my_conn_ids").innerText.substr(1);           // removes first letter from string version of array
                                 // myConnList =  strConnList.split(",");                                        // split string into array by the delimiter ","
 
-                                //  loop through course_ids
-                                for (let i = 0; i < myConnList.length; i++) {
-                                    // check if topics list for this course_id contains Finance
-                                    connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
-                                    connCountry = document.getElementById(myConnList[i] + "_country").innerText;    // check country for matching text
-                                    connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
-                                    if (connName.includes(searchTerm) || connCountry.includes(searchTerm) || connBio.includes(searchTerm)) {                                               // if the rating searched is in the list
-                                        document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                    } else {
-                                        document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
+
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                        connCountry = document.getElementById(myConnList[i] + "_country").innerText;    // check country for matching text
+                                        connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm) || connCountry.includes(searchTerm) || connBio.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        } else {
+                                            document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                        }
                                     }
-                                }
-                                // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                });
+
+
                             }
                         </script>
                     </div><!--end search bar-->
@@ -1097,36 +1129,46 @@
                         result += "<tr>";
 
                         snapshot.forEach(function (childSnapshot) {
-                            isempty = false;
-
-                            //var key = childSnapshot.key;
-                            //var value = childSnapshot.val();
                             var key = childSnapshot.key;
-                            var child_name = childSnapshot.val().Name;
-                            var child_country = childSnapshot.val().Country;
-                            var child_bio = childSnapshot.val().Bio;
-                            var child_propic = childSnapshot.val().ProfilePic;
+                            var connection_enabled = firebase.database().ref().child("Users").child(key).child("Enabled");
 
-                            result += "<td>" + formCard(key, child_name, child_bio, child_country, child_propic) + "</td>";
-                            if ((j + 1) % 3 == 0) {
-                                result += "</tr><tr>";
-                            }
-                            j++;
+                            connection_enabled.on("value", function (enabled_snapshot) {                                    // check if the user is snabled firs
+                                user_enabled = enabled_snapshot.val();
+
+                                if(user_enabled == true) {
+                                    isempty = false;
+
+                                    //var key = childSnapshot.key;
+                                    //var value = childSnapshot.val();
+
+                                    var child_name = childSnapshot.val().Name;
+                                    var child_country = childSnapshot.val().Country;
+                                    var child_bio = childSnapshot.val().Bio;
+                                    var child_propic = childSnapshot.val().ProfilePic;
+
+                                    result += "<td>" + formCard(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                                    if ((j + 1) % 3 == 0) {
+                                        result += "</tr><tr>";
+                                    }
+                                    j++;
+
+
+                                    if (isempty == true) {
+
+                                        result = "\n" +
+                                            "<div class=\"container_2\">\n" +
+                                            "    <img  style=\"  height: 400px;width: 1365px; opacity: 0.2; \"\n" +
+                                            "         src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
+                                            "         alt=\"Snow\" style=\"width:100%;\">\n" +
+                                            "    <div  class=\"centered\"><strong><h1\n" +
+                                            "            style=\"font-family: 'Roboto', sans-serif; color: deeppink \">Click Explore and GetConnected\n" +
+                                            "        with GetSmarter Alumni!</h1></strong></div>\n" +
+                                            "</div>\n"
+
+                                    }
+                                }
+                             });
                         });
-
-                        if (isempty == true) {
-
-                            result = "\n" +
-                                "<div class=\"container_2\">\n" +
-                                "    <img  style=\"  height: 400px;width: 1365px; opacity: 0.2; \"\n" +
-                                "         src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
-                                "         alt=\"Snow\" style=\"width:100%;\">\n" +
-                                "    <div  class=\"centered\"><strong><h1\n" +
-                                "            style=\"font-family: 'Roboto', sans-serif; color: deeppink \">Click Explore and GetConnected\n" +
-                                "        with GetSmarter Alumni!</h1></strong></div>\n" +
-                                "</div>\n"
-
-                        }
 
                         $('#MyConnectionsTable').html(result);
 
@@ -1248,54 +1290,101 @@
 
                         // shows all blocks in the list of my connections
                         function showAllAll() {
-                            strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
-                            myConnList = strConnList.split(",");                                        // split string into array by the delimiter ","
+                            var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
 
-                            //  loop through course_ids
-                            for (let i = 0; i < myConnList.length; i++) {
-                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
-                            }
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        try{
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
+                                        }
+                                        catch(err){
+                                                //  do nothing is connection id not found on a card
+                                        }
+                                    }
+                                });
+
                         }
 
                         function searchByCountryAll() {
-                            strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);
-                            myConnList = strConnList.split(",");
                             myCountry = document.getElementById('my_country').innerText;
+                            var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
 
-                            //  loop through connection_ids
-                            for (let i = 0; i < myConnList.length; i++) {
-                                this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
-                                if (this_country == myCountry) {
-                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                } else {
-                                    document.getElementById(myConnList[i] + "_hideAll").hidden = true;
-                                }
-                            }
+                                    //  loop through connection_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        try{
+                                            this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
+                                            if (this_country == myCountry) {
+                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                            } else {
+                                                document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                            }
+                                        }
+                                        catch(err){
+                                            // do nothing if element not found
+                                        }
+
+                                    }
+                                });
+
+
                         }
 
                         //  check if name, coutnry or bio contains string typed - search button
                         function searchByTermAll() {
                             searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
-                            strConnList = document.getElementById("conn_suggestions_ids_str").innerText.substr(1);           // removes first letter from string version of array
-                            myConnList = strConnList.split(",");                                        // split string into array by the delimiter ","
 
-                            //  loop through course_ids
-                            for (let i = 0; i < myConnList.length; i++) {
-                                // check if topics list for this course_id contains Finance
-                                connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
-                                connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
-                                connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
-                                if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
-                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                } else if (connCountry.includes(searchTerm)) {
-                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                } else if (connBio.includes(searchTerm)) {
-                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                } else {
-                                    document.getElementById(myConnList[i] + "_hideAll").hidden = true;
-                                }
-                            }
-                            // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                            var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
+
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        try {
+                                            // check if topics list for this course_id contains Finance
+                                            connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                            connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
+                                            connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
+                                            if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                            } else if (connCountry.includes(searchTerm)) {
+                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                            } else if (connBio.includes(searchTerm)) {
+                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                            } else {
+                                                document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                            }
+
+                                            // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                        } catch (err) {
+                                            // do nothing is element not found
+                                        }
+                                    }
+
+                                });
+
+
                         }
                     </script>
                 </div>
@@ -1416,28 +1505,33 @@
                     snapshot.forEach(function (childSnapshot) {
 
                         var key = childSnapshot.key;
+                        var connection_enabled = firebase.database().ref().child("Users").child(key).child("Enabled");
 
-                        if (myconnectionsArray.includes(key) == false && key != ('{{ this_uid }}')) {
+                        connection_enabled.on("value", function (enabled_snapshot) {                                    // check if the user is snabled firs
+                            user_enabled = enabled_snapshot.val();
+
+                            if (user_enabled == true && myconnectionsArray.includes(key) == false && key != ('{{ this_uid }}')) {
 
 
-                            var child_name = childSnapshot.val().Name;
-                            var child_country = childSnapshot.val().Country;
-                            var child_bio = childSnapshot.val().Bio;
-                            var child_propic = childSnapshot.val().ProfilePic;
+                                var child_name = childSnapshot.val().Name;
+                                var child_country = childSnapshot.val().Country;
+                                var child_bio = childSnapshot.val().Bio;
+                                var child_propic = childSnapshot.val().ProfilePic;
 
-                            if (sentrequests.includes(key) == false) {
+                                if (sentrequests.includes(key) == false) {
 
-                                result += "<td>" + ExploreformCard(key, child_name, child_bio, child_country, child_propic) + "</td>";
-                            } else {
-                                result += "<td>" + ExploreformCard_dim(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                                    result += "<td>" + ExploreformCard(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                                } else {
+                                    result += "<td>" + ExploreformCard_dim(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                                }
+
+
+                                if ((j + 1) % 3 == 0) {
+                                    result += "</tr><tr>";
+                                }
+                                j++;
                             }
-
-
-                            if ((j + 1) % 3 == 0) {
-                                result += "</tr><tr>";
-                            }
-                            j++;
-                        }
+                        });
 
                     });
 

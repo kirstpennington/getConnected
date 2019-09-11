@@ -25,7 +25,11 @@ database = firebase.database()
 
 class connection_methods:
 
+
 # GET Methods
+    def getUserEnabled(uid):
+        return database.child("Users").child(uid).child("Enabled").get().val()
+
     def getConnectionsInfoList(connections_id_list):
         names = []
         countries = []
@@ -65,13 +69,14 @@ class connection_methods:
             if results_count == num_returns:                                                        # if we have the requested number of ids, stop searching
                 break
             else:
-                                                                                                    # get the topics of the user we are currently comparing this user wih
-                compare_user_interests = database.child("Users").child(compare_user_id).child(
-                    "Topics").shallow().get().val()
-                if connection_methods.compareLists(compare_user_interests,
-                                the_user.topicsList):                                               # if we find a match, add it to the list of results
-                    results.append(compare_user_id)
-                    results_count += 1
+                if connection_methods.getUserEnabled(compare_user_id) == 'false':                   # only add to the list of commections if the connection's account is enabled
+                    # get the topics of the user we are currently comparing this user wih
+                    compare_user_interests = database.child("Users").child(compare_user_id).child(
+                        "Topics").shallow().get().val()
+                    if connection_methods.compareLists(compare_user_interests,
+                                    the_user.topicsList):                                           # if we find a match, add it to the list of results
+                        results.append(compare_user_id)
+                        results_count += 1
 
         user_connections_list = database.child("Users").child(uid).child(
             'Connections').shallow().get().val()                                                    # get list of this user connections
