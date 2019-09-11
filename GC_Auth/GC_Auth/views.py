@@ -463,7 +463,8 @@ def goBadges(request):
         'connections_suggestions_list': connection_methods.getConnectionsInfoList(
             connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)),
         'forums_suggestions_list': forum_methods.getForumsInfoList(forum_methods.getForumSuggestions(the_user.uid, 3, the_user)),
-        'enabled': user_methods.getUserEnabled(the_user.uid)
+        'enabled': user_methods.getUserEnabled(the_user.uid),
+        'this_uid': the_user.uid
     })
 
 
