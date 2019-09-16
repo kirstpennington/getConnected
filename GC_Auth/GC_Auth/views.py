@@ -611,10 +611,10 @@ def goConnectionsOpen(request):
                                                       'course_list': courses_list_transfer,
                                                       'forums_list': forums_list_transfer,
                                                       'connections_suggestions_list': connection_methods.getConnectionsInfoList(
-                                                          short_connections_suggestions),
-                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(
-                                                          short_forum_suggestions),
-                                                      'this_uid': connection_id
+                                                        connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)),
+                                                      'forums_suggestions_list': forum_methods.getForumsInfoList(forum_methods.getForumSuggestions(the_user.uid, 3, the_user)),
+                                                      'this_uid': connection_id,
+                                                      'my_uid': the_user.uid
                                                       })
 
 

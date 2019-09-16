@@ -1117,12 +1117,9 @@
 
                 <script>
                     /*This JavaScript Section is for creating a table with connection cards. The table is called MyConnectionsTable*/
-
                     var connections_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
-
                     connections_fb_location.on("value", function (snapshot) {
                         var isempty = true;
-
 
                         var j = 0;
                         var result = "<table >";
@@ -1135,9 +1132,8 @@
                             connection_enabled.on("value", function (enabled_snapshot) {                                    // check if the user is snabled firs
                                 user_enabled = enabled_snapshot.val();
 
-                                if(user_enabled == true) {
+                                if(user_enabled == true || user_enabled == "true") {
                                     isempty = false;
-
                                     //var key = childSnapshot.key;
                                     //var value = childSnapshot.val();
 
@@ -1152,18 +1148,11 @@
                                     }
                                     j++;
 
-
                                     if (isempty == true) {
-
-                                        result = "\n" +
-                                            "<div class=\"container_2\">\n" +
-                                            "    <img  style=\"  height: 400px;width: 1365px; opacity: 0.2; \"\n" +
-                                            "         src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
-                                            "         alt=\"Snow\" style=\"width:100%;\">\n" +
-                                            "    <div  class=\"centered\"><strong><h1\n" +
-                                            "            style=\"font-family: 'Roboto', sans-serif; color: deeppink \">Click Explore and GetConnected\n" +
-                                            "        with GetSmarter Alumni!</h1></strong></div>\n" +
-                                            "</div>\n"
+                                        result = "<div class=\"container_2\">\n" +
+                                            "    <img style=\"height: 400px;width: 1365px; opacity: 0.2; width:100%;\" src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\" alt=\"Snow\">\n" +
+                                            "    <div  class=\"centered\"><strong><h1 style=\"font-family: 'Roboto', sans-serif; color: deeppink \">Click Explore and GetConnected with GetSmarter Alumni!</h1></strong></div>\n" +
+                                            "</div>";
 
                                     }
                                 }
