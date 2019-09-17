@@ -489,7 +489,11 @@ def goAccountHelp(request):
 
 
 def goCreateForum(request):
-    return render(request, 'CreateForum.html')
+    global the_user
+    all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing']
+
+    return render(request, 'CreateForum.html', {'this_uid': the_user.uid,
+                                                'all_topics_list': all_topics_list})
 
 def goForumsHelp(request):
     return render(request, 'ForumsHelp.html')

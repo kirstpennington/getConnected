@@ -601,7 +601,7 @@ Left:150px;
 <div class="UserWallpaper parallax" style="background-image:url(
         {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
-
+<form id="prospects_form">
     <!--2. Pic + Description -->
     <!--make a table with one row and 2 coloumns-->
     <div class="row">
@@ -730,48 +730,51 @@ Left:150px;
     </div>
 
     <script>
+        $("#prospects_form").submit(function(e) {   // prevents submit from reloading form
+            e.preventDefault();
+        });
         function saveChanges() {
             // saves changes made by user to the forum
             var updateRef = firebase.database().ref('Forums').child('{{ forum_id }}');
             var newName = document.getElementById('nameTxt').value;              // get new forum name
             var newDescription = document.getElementById('comment').value;       // update forum description
-            if (document.getElementById('public_rb').checked == true){               // update forum privacy
-                var newPrivate = false;
-            }
-            else{
-                var newPrivate = true;
-            }
+            if (newName != "" && newDescription != "") {
+                if (document.getElementById('public_rb').checked == true) {               // update forum privacy
+                    var newPrivate = false;
+                } else {
+                    var newPrivate = true;
+                }
 
 
-            updateRef.update({Name: newName,
-                              Description: newDescription,
-                              Private: newPrivate
-                             });                                                    // update db
+                updateRef.update({
+                    Name: newName,
+                    Description: newDescription,
+                    Private: newPrivate
+                });                                                    // update db
 
-            var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
+                var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
 
-            var at_least_one_checked = false;                                       // Check at least one checkbox selected topic_chb
-            var json_topics = {};
-            for (i = 0; i<all_topics_list.length; i++){                             // loop through all topics
-                var topic = all_topics_list[i];
-                try {
-                    if (document.getElementById(topic).checked) {                   // find the topic's checkbox
-                        at_least_one_checked = true;                                // at least one topic has been checked
-                        json_topics[topic] = topic;                                 // add topics to the json variable
+                var at_least_one_checked = false;                                       // Check at least one checkbox selected topic_chb
+                var json_topics = {};
+                for (i = 0; i < all_topics_list.length; i++) {                             // loop through all topics
+                    var topic = all_topics_list[i];
+                    try {
+                        if (document.getElementById(topic).checked) {                   // find the topic's checkbox
+                            at_least_one_checked = true;                                // at least one topic has been checked
+                            json_topics[topic] = topic;                                 // add topics to the json variable
+                        }
+                    } catch (err) {
+                        // Do nothing
                     }
                 }
-                catch(err){
-                    // Do nothing
-                }
-            }
 
-            if (at_least_one_checked){                                              // if one or more topics were selected, update topics
-                updateRef.update({TopicTags: json_topics});                         // update topic changes
+                if (at_least_one_checked) {                                              // if one or more topics were selected, update topics
+                    updateRef.update({TopicTags: json_topics});                         // update topic changes
+                } else {
+                    $("#modalSelectTopic").modal('show');                               // no topics have been selected - display error message
+                }
+                $("#modalChangesSaved").modal('show');
             }
-            else{
-                $("#modalSelectTopic").modal('show');                               // no topics have been selected - display error message
-            }
-            $("#modalChangesSaved").modal('show');
         }
     </script>
 
@@ -853,7 +856,7 @@ Left:150px;
         <!-- Call to action -->
 
     </div>
-
+</form>
 </footer>
 <!-- 1.1 Pop Up modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -884,8 +887,7 @@ Left:150px;
                 </button>
 
                 <!-- BUTTONT CHANGE IMAGE-->
-                <button type="submit" id="uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save
-                </button>
+
             </div>
             <!-- Testing-->
             <!-- Testing-->
@@ -1050,7 +1052,11 @@ Left:150px;
 </div>
 
 
-          <!-- Modal for pop up message "Select a Topic" -->
+
+
+
+</body></html>
+<!-- Modal for pop up message "Select a Topic" -->
 
 <div class="modal fade" id="modalSelectTopic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -1072,6 +1078,3 @@ Left:150px;
     </div>
   </div>
 </div>
-
-
-</body></html>

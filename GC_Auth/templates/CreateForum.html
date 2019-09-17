@@ -1016,7 +1016,7 @@
 
 
     </div><!--end of row-->
-
+<form id="prospects_form">
 
     <!--make a table with 2 coloumns and 4 rows-->
 
@@ -1026,7 +1026,7 @@
             <div class="col-md-12" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one name -->
                 <div class="inputformsLeft">
                     <p>Forum Name: </p>
-                    <input type="text" maxlength="20" class="form-control" name="firstname" value={{ username }}>
+                    <input type="text" id="nameTxt" maxlength="20" class="form-control" name="firstname" required>
                 </div>
             </div>
 
@@ -1036,83 +1036,110 @@
         <div class="row"><!--row two-->
             <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--Description -->
                <p>Description: </p>
-                <textarea name="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
-                              style="width: 70%;">{{ bio }}</textarea>
+                <textarea id="descripTxt" name="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                              style="width: 70%;" required></textarea>
             </div>
 
             <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--more topics-->
                 <p>Privacy: </p>
-                <label class="radio-inline"> <input type="radio" name="privacy" value="Public"> Public</label>
+                <label class="radio-inline"> <input id="public_rb" type="radio" name="privacy" value="Public" checked> Public</label>
 
-               <label class="radio-inline"> <input type="radio" name="privacy" value="Private"> Private</label>
+               <label class="radio-inline"> <input id="private_rb" type="radio" name="privacy" value="Private"> Private</label>
                 <br><br>
                 <button data-toggle="modal" data-target="#chooseparticipantsmodal">Choose Participants >></button>
             </div><!--end col-->
 
         </div><!--row two-->
 
-    <div class="row"><!--row three -->
+    <!--<div class="row"> row three -->
             <!-- four coloumns for each item-->
+    <div class="row" style=" padding-left: 275px;"><!--row three -->
+        <p>Topics:</p>
+            <!-- four columns for each item-->
+        {% for topic in all_topics_list %}
+            <td>
+                <div class="col-md-4" style=" padding-left: 10px;padding-bottom: 2px;">
+                    {% if topic in forum_topics_list %}
+                        <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }} checked> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
+                    {% else %}
+                        <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }}> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
+                    {% endif %}
+                </div>
+            </td>
+            {% if forloop.counter|divisibleby:2 %}
+                </div><div class="row" style=" padding-left: 275px;">
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br><br>
+        <div class="buttonbot" style="position: absolute; left:70%;">
+            <button>Cancel</button>
+            <button type="submit" onclick="createForum()">Create</button>
+        </div>
+        <!--/div>row three-->
 
-        <div class="col-md-4" style=" padding-left: 275px;padding-bottom: 30px;"><!--privacy-->
-                <p>Subjects:</p>
-             <input type="checkbox" name="subject" value="Arts & Design"> <label style="color: #9d9d9d ; font-size: 15px;">Arts & Design</label>
-                    <br>
-                    <input type="checkbox" name="subject" value="Business & Management"> <label style="color: #9d9d9d ;font-size: 13px; ">Business & Management</label>
-                    <br>
-                    <input type="checkbox" name="subject" value="Education"> <label style="color: #9d9d9d ;font-size: 15px; ">Education</label>
-                    <br>
+<script>
+    $("#prospects_form").submit(function(e) {               // prevents submit from reloading form
+        e.preventDefault();
+    });
 
-<input type="checkbox" name="subject" value="Entrepreneurship"> <label style="color: #9d9d9d;font-size: 15px;  ">Entrepreneurship</label>
-                    <br>
-            <input type="checkbox" name="subject" value="Systems & Technology"> <label style="color: #9d9d9d ;font-size: 15px; ">Systems & Technology</label>
-                    <br>
+    function createForum(){
+        var db =  firebase.database().ref('Forums');    // forum reference
+        var new_forum_json = {};                        // json containing the new forum data
+        var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
+
+        var at_least_one_checked = false;                                       // Check at least one checkbox selected topic_chb
+        var json_topics = {};
+        for (i = 0; i<all_topics_list.length; i++){                             // loop through all topics
+            var topic = all_topics_list[i];
+            try {
+                if (document.getElementById(topic).checked) {                   // find the topic's checkbox
+                    at_least_one_checked = true;                                // at least one topic has been checked
+                    json_topics[topic] = topic;                                 // add topics to the json variable
+                }
+            }
+            catch(err){
+                // Do nothing
+            }
+        }
+        var forum_name = document.getElementById('nameTxt').value;
+        var description = document.getElementById('descripTxt').value;
+
+        if (forum_name != "" && description != "") {
+            if (at_least_one_checked) {                                              // if one or more topics were selected, update topics
+
+                new_forum_json['Name'] = forum_name;
+
+                new_forum_json['Description'] = description;
+
+                if (document.getElementById('public_rb').checked == true) {               // update forum privacy
+                    var privateForum = false;
+                } else {
+                    var privateForum = true;
+                }
+                new_forum_json['Private'] = privateForum;
+                new_forum_json['Creator'] = '{{ this_uid }}';
+                new_forum_json['Enabled'] = true;
+                new_forum_json['numParticipants'] = 0;
+                new_forum_json['ForumPic']=" ";                         // ToDo: replace with update profile pic field
+
+                var participant = [];
+                participant['{{ this_uid }}'] = '{{ this_uid }}';           // add this user as a participant
+
+                new_forum_json['Participants'] = participant;
+                new_forum_json['NumReported'] = 0;
+
+                db.push(new_forum_json);                                    // add forum to database
+                $("#modalForumAdded").modal('show');                        // confirm forum created
+            } else {
+                $("#modalSelectTopic").modal('show');                       // no topics have been selected - display error message
+            }
+        }
 
 
 
-        </div><!--end col-->
-        <div class="col-md-4" style=" padding-bottom: 30px;padding-right: 0px;margin-right: 0px;"><!--privacy-->
-<br><br>
-
-                    <input type="checkbox" name="subject" value="Executive Education"> <label style="color: #9d9d9d;font-size: 15px;  ">Executive Education</label>
-<br>
-
-
-                    <input type="checkbox" name="subject" value="Finance"> <label style="color: #9d9d9d ; font-size: 15px;">Finance</label>
-                    <br>
-                    <input type="checkbox" name="subject" value="Health"> <label style="color: #9d9d9d ;font-size: 15px; ">Health</label>
-                    <br>
-                    <input type="checkbox" name="subject" value="Hospitality & Events"> <label style="color: #9d9d9d ;font-size: 15px; ">Hospitality & Events</label>
-                    <br>
-             <input type="checkbox" name="subject" value="Talent Management (HR)"> <label style="color: #9d9d9d;font-size: 15px;  ">Talent Management (HR)</label>
-                    <br>
-        </div><!--end col-->
-        <div class="col-md-3" style="padding-bottom: 30px;position: absolute; left: 48%;"><!--privacy-->
-
-<br><br>
-
-                  <input type="checkbox" name="subject" value="Law"> <label style="color: #9d9d9d;font-size: 15px;  ">Law</label>
-                    <br>
-                    <input type="checkbox" name="subject" value="Marketing"> <label style="color: #9d9d9d;font-size: 15px;  ">Marketing</label>
-
-                    <br>
-
-                    <input type="checkbox" name="subject" value="Project Management"> <label style="color: #9d9d9d ; font-size: 15px;">Project Management</label>
-                    <br>
-                    <input type="checkbox" name="subject" value="Real Estate"> <label style="color: #9d9d9d ;font-size: 15px; ">Real Estate</label>
-                    <br>
-            <input type="checkbox" name="subject" value="Writing"> <label style="color: #9d9d9d;font-size: 15px;  ">Writing</label>
-
-        </div><!--end col-->
-
-
-
-        </div><!--row three-->
-    <div class="buttonbot" style="position: absolute; left:70%;">
-    <button>Cancel</button>
-        <button>Create</button>
-    </div>
-
+    }
+</script>
 
 
         <!--2. Everything else-->
@@ -1123,18 +1150,13 @@
 
                 <div class="row">
 
-
-
-
-
-
                 </div>
 
 
         </div>
 
 
-</div>
+<!--/div-->
 </form>
 </div>
 
@@ -1212,6 +1234,7 @@
 
     </div>
     </div>
+    </form>
 </footer>
 <!-- 1.1 Pop Up modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -1230,7 +1253,7 @@
                 <div class="default-file-upload">
                     <!--  <input id="file-upload1" type="file"/>-->
                     <div class="row">
-                        <form method="post" action="#" id="#">
+                        <form>
                             <div class="form-group files color">
                                 <h4 style="color: gray; padding-left: 24px;">Upload Your File </h4>
                                 <input type="file" id="uploadZip" name="icon" class="form-control" multiple="">
@@ -1244,9 +1267,7 @@
                     Close
                 </button>
 
-                <!-- BUTTONT CHANGE IMAGE-->
-                <button type="submit" id="uploadButton" onclick="uploadFile()" class="ViewMorebutton">Save
-                </button>
+
             </div>
             <!-- Testing-->
             <!-- Testing-->
@@ -1427,5 +1448,54 @@
   </div>
 </div>
 
+    <!-- Modal for pop up message "Select a Topic" -->
+
+
+</div>
+<div class="modal fade" id="modalForumAdded" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Added</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Your forum has been created.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for pop up message "Select a Topic" -->
+
+<div class="modal fade" id="modalSelectTopic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><strong>No Topics Selected</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Your topics will not be updated until you have selected at least one topic. Please select at least one topic.      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </body>
+
+</html>
