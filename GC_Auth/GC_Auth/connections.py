@@ -85,7 +85,10 @@ class connection_methods:
                                         results.append(compare_user_id)
                                         results_count += 1
 
-        return results
+        if results is None:
+            return []
+        else:
+            return results
 
     def getRequestsSent(uid):     # get a list of the users who I have sent requests to (their user ids)
         sent_ids = database.child("Users").child(uid).child("RequestsSent").shallow().get().val()       # get a list of the auto generated ids for sent logs

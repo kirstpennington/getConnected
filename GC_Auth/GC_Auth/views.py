@@ -531,6 +531,8 @@ def goForumSettings(request):
     if request.method == "POST":  # get data from UI
         forum_id = request.POST.get("forum_id")  # get data from UI using POST method
 
+    all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing']
+
     return render(request, "ForumSettings.html", {'profilePic': the_user.profilePic,
                                                     'forum_id': forum_id,
                                                     'country': the_user.country,
@@ -547,10 +549,13 @@ def goForumSettings(request):
                                                     'forum_name': forum_methods.getForumName(forum_id),
                                                     'forum_description': forum_methods.getForumDescription(forum_id),
                                                     'num_participants': forum_methods.getForumNumParticipants(forum_id),
-                                                    'forum_topics': forum_methods.getForumTopicsString(forum_id),
+                                                    #'forum_topics_str': forum_methods.getForumTopicsString(forum_id),
+                                                    'forum_topics_list': forum_methods.getForumTopicsList(forum_id),
                                                     'forum_creator': forum_methods.getForumCreator(forum_id),
                                                     'forum_pic': forum_methods.getForumPic(forum_id),
-                                                    'forum_enabled': forum_methods.getForumEnabled(forum_id)
+                                                    'forum_enabled': forum_methods.getForumEnabled(forum_id),
+                                                    'forum_private': forum_methods.getForumPrivate(forum_id),
+                                                    'all_topics_list': all_topics_list
                                                     })
 
 def goConnectionsOpen(request):

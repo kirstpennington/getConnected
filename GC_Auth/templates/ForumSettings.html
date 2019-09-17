@@ -643,9 +643,9 @@ Left:150px;
                 <div class="inputformsLeft">
                     <p>Forum Name: </p>
                     {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
-                        <input disabled="true" id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
+                        <input value="{{ forum_name }}" required disabled="true" id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
                     {% else %}
-                        <input id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
+                        <input value="{{ forum_name }}" required id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
                     {% endif %}
                 </div>
             </div>
@@ -653,73 +653,44 @@ Left:150px;
         </div> <!--row one-->
 
     <br>
-    <div class="row"><!--row three -->
-            <!-- four coloumns for each item-->
-
-        <div class="col-md-4" style=" padding-left: 275px;padding-bottom: 30px;"><!--privacy-->
-                <p>Topics:</p>
-             <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ; font-size: 15px;">Finance</label>
-                    <br>
-                    <input type="checkbox" name="Topic" value=""> <label style="color: #9d9d9d ;font-size: 14px; ">Curriculum Transformation</label>
-                    <br>
-                    <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ;font-size: 15px; ">Executive Education</label>
-                    <br>
-
-<input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d;font-size: 15px;  ">Real Estate</label>
-                    <br>
-            <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ;font-size: 15px; ">Careers</label>
-                    <br>
-
-
-
-        </div><!--end col-->
-        <div class="col-md-4" style=" padding-bottom: 30px;padding-right: 0px;margin-right: 0px;"><!--privacy-->
-<br><br>
-
-                    <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d;font-size: 15px;  "> Artificial Intelligence</label>
-<br>
-
-
-                    <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ; font-size: 15px;">Globalization</label>
-                    <br>
-                    <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ;font-size: 15px; ">Politics &amp; Economy </label>
-                    <br>
-                    <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ;font-size: 15px; ">Investments</label>
-                    <br>
-             <input type="checkbox" name="Topic" value=""> <label style="color: #9d9d9d;font-size: 15px; "> Entrepreneurship</label>
+    <div class="row" style=" padding-left: 275px;"><!--row three -->
+        <p>Topics:</p>
+            <!-- four columns for each item-->
+        {% for topic in all_topics_list %}
+            <td>
+                <div class="col-md-4" style=" padding-left: 10px;padding-bottom: 2px;">
+                    {% if topic in forum_topics_list %}
+                        <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }} checked> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
+                    {% else %}
+                        <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }}> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
+                    {% endif %}
+                </div>
+            </td>
+            {% if forloop.counter|divisibleby:2 %}
+                </div><div class="row" style=" padding-left: 275px;">
+            {% endif %}
+        {% endfor %}
         </div>
-        <div class="col-md-4" style="padding-bottom: 30px;position: absolute; left: 48%;"><!--privacy-->
+
 
 <br><br>
-
-                  <input type="checkbox" name="Topic" value=" "><label style="color: #9d9d9d;font-size: 16px; ">&nbsp;Legislation </label>
-                    <br>
-                    <input type="checkbox" name="Topic" value=""> <label style="color: #9d9d9d;font-size: 15px; "> Sciences </label>
-
-                    <br>
-
-                    <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ; font-size: 15px;">Project Management</label>
-                    <br>
-                    <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d ;font-size: 15px; ">Logistics</label>
-                    <br>
-            <input type="checkbox" name="Topic" value=" "> <label style="color: #9d9d9d;font-size: 15px;">ICT4D</label>
-
-        </div><!--end col-->
-        </div><!--row three-->
-
-
-<div class="row"><!--row two-->
+    <div class="row"><!--row two-->
             <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--Description -->
                <p>Description: </p>
                 {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
-                    <textarea disabled="true" name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;"></textarea>
+                    <textarea value="{{ forum_description }}" disabled="true" name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;" required>{{ forum_description }}</textarea>
                 {% else %}
-                    <textarea name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;"></textarea>
+                    <textarea value="{{ forum_description }}" name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;" required>{{ forum_description }}</textarea>
                 {% endif %}
             </div>
 
 
-<div>
+        <div>
+        </div><!--row three-->
+
+
+
+
 
 
     <p>Participants:</p>
@@ -739,24 +710,71 @@ Left:150px;
 
   <div class="col-sm-12" style="padding-left: 120px; padding-bottom: 30px;"><!--more topics-->
                 <p>Privacy: </p>
-                <label class="radio-inline"> <input type="radio" name="privacy" value="Public"> Public</label>
-
-               <label class="radio-inline"> <input type="radio" name="privacy" value="Private"> Private</label>
+                    {% if forum_private == 'True' or forum_private == 'true' or forum_private == true or forum_private == True %}
+                        <label class="radio-inline"> <input id="public_rb" type="radio" name="privacy" value="Public"> Public</label>
+                        <label class="radio-inline"> <input id="private_rb" type="radio" name="privacy" value="Private" checked> Private</label>
+                    {% else %}
+                        <label class="radio-inline"> <input id="public_rb" type="radio" name="privacy" value="Public" checked> Public</label>
+                        <label class="radio-inline"> <input id="private_rb" type="radio" name="privacy" value="Private"> Private</label>
+                    {% endif %}
 
 </div>
-</div>
 
-
-
-<br>
-    <div style="position: absolute; left:72%;margin-top: 50px; ">
+<div style="position: absolute; left:72%;margin-top: 50px; ">
     <button id="cancelBtn">Cancel</button>
         {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
             <button disabled="true" id="saveChangesBtn">Save Changes</button>
         {% else %}
-            <button id="saveChangesBtn">Save Changes</button>
+            <button type="submit" id="saveChangesBtn" onclick="saveChanges()">Save Changes</button>
         {% endif %}
     </div>
+
+    <script>
+        function saveChanges() {
+            // saves changes made by user to the forum
+            var updateRef = firebase.database().ref('Forums').child('{{ forum_id }}');
+            var newName = document.getElementById('nameTxt').value;              // get new forum name
+            var newDescription = document.getElementById('comment').value;       // update forum description
+            if (document.getElementById('public_rb').checked == true){               // update forum privacy
+                var newPrivate = false;
+            }
+            else{
+                var newPrivate = true;
+            }
+
+
+            updateRef.update({Name: newName,
+                              Description: newDescription,
+                              Private: newPrivate
+                             });                                                    // update db
+
+            var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
+
+            var at_least_one_checked = false;                                       // Check at least one checkbox selected topic_chb
+            var json_topics = {};
+            for (i = 0; i<all_topics_list.length; i++){                             // loop through all topics
+                var topic = all_topics_list[i];
+                try {
+                    if (document.getElementById(topic).checked) {                   // find the topic's checkbox
+                        at_least_one_checked = true;                                // at least one topic has been checked
+                        json_topics[topic] = topic;                                 // add topics to the json variable
+                    }
+                }
+                catch(err){
+                    // Do nothing
+                }
+            }
+
+            if (at_least_one_checked){                                              // if one or more topics were selected, update topics
+                updateRef.update({TopicTags: json_topics});                         // update topic changes
+            }
+            else{
+                $("#modalSelectTopic").modal('show');                               // no topics have been selected - display error message
+            }
+            $("#modalChangesSaved").modal('show');
+        }
+    </script>
+
 </div>
 
 
@@ -1008,7 +1026,52 @@ Left:150px;
 
 
 
+             <!-- Modal for pop up message "Changes saved" -->
 
+<div class="modal fade" id="modalChangesSaved" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><strong>Changes Saved</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Your changes have been saved to your forum.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <!-- Modal for pop up message "Select a Topic" -->
+
+<div class="modal fade" id="modalSelectTopic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><strong>No Topics Selected</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Your topics will not be updated until you have selected at least one topic. Please select at least one topic.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </body></html>

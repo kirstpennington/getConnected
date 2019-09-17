@@ -118,7 +118,7 @@ class user_methods:
             for i in forum_ids:
 
                 forum_enabled = database.child("Forums").child(i).child("Enabled").get().val()
-                if forum_enabled == 'true':                                                     # only include the forum if it is enabled
+                if forum_enabled == 'true' or forum_enabled == True:                                                     # only include the forum if it is enabled
                     forum_id_list.append(i)
 
             return forum_id_list

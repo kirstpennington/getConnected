@@ -47,17 +47,24 @@ class forum_methods:
     def getForumDescription(forum_id):
         return database.child("Forums").child(forum_id).child("Description").get().val()
 
+    def getForumPrivate(forum_id):
+        return database.child("Forums").child(forum_id).child("Private").get().val()
 
     def getForumTopicsString(forum_id):
         # gets all topics and puts them into one string
         topics = database.child("Forums").child(forum_id).child("TopicTags").shallow().get().val()
         topics_string = ""
+        if topics is None:
+            return " "
+        else:
+            for topic in topics:
+                topics_string = topics_string + " | " + topic
 
-        for topic in topics:
-            topics_string = topics_string + " | " + topic
+            topics_string += " | "
+            return topics_string
 
-        topics_string += " | "
-        return topics_string
+    def getForumTopicsList(forum_id):
+        return database.child("Forums").child(forum_id).child("TopicTags").shallow().get().val()
 
     def getMessageText(forum_id, mess_id):
         return database.child("Forums").child(forum_id).child("Messages").child(mess_id).child("text").get().val()
@@ -173,7 +180,10 @@ class forum_methods:
                             results.append(compare_forum_id)
                             results_count += 1
 
-        return results
+        if results is None:
+            return []
+        else:
+            return results
 
 
     def getTrendingForums(self):
