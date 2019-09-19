@@ -926,15 +926,73 @@
                                       class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;<strong><span
                                     style="font-size: small;color: grey">{{ bio }} </span></strong><br>
                                 <span style="color: black;position: relative;"
-                                      class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<strong><span
-                                    style="font-size: small;color: grey">{{ email }} </span></strong><br>
-                                <span style="color: black;position: relative;"
                                       class="fa fa-globe fa-lg text-primary"></span>&nbsp;&nbsp;<strong><span
                                     style="font-size: small;color: grey">{{ country }} </span></strong><br>
 
                             </div>
-                            <!--Badges Icon-->
+                            <!-- Connect/Message Button -->
+                            {% if the_user_is_connection == True or the_user_is_connection == true %}
+                                <button style="display: none;" id="btnConnect" onclick="connect()" class="btn btn-primary pull-right" style="background-color:hotpink; border-color: transparent; margin-bottom: 10px;">Connect</button>
+                                <button id="btnDisconnect" onclick="disconnect()" class="btn btn-primary pull-right" style="background-color:hotpink; border-color: transparent; margin-bottom: 10px;">Disconnect</button>
+                            {% else %}
+                                    <button id="btnConnect" onclick="connect()" class="btn btn-primary pull-right" style="background-color:hotpink; border-color: transparent; margin-bottom: 10px;">Connect</button>
+                                    <button style="display: none;" id="btnDisconnect" onclick="disconnect()" class="btn btn-primary pull-right" style="background-color:hotpink; border-color: transparent; margin-bottom: 10px;">Disconnect</button>
+                            {% endif %}
 
+                        <script>
+                            // connect to this user
+                            function connect(){
+                                user_id = '{{ this_uid }}';
+
+                                var updateRef = firebase.database().ref("Users");
+
+                                var numConnRef = updateRef.child('{{ this_uid }}').child("numConnections");             // reduce the connection's number of connections
+                                numConnRef.once('value', function(snapshot) {
+                                    var currNumConn = snapshot.val();
+                                    firebase.database().ref("Users").child('{{ this_uid }}').update({numConnections:currNumConn+1});
+                                });
+                                numConnRef = updateRef.child('{{ my_uid }}').child("numConnections");                   // reduce my number of connections
+                                numConnRef.once('value', function(snapshot2) {
+                                    var currNumConn = snapshot2.val();
+                                    firebase.database().ref("Users").child('{{ my_uid }}').update({numConnections: currNumConn+1});
+                                });
+
+                                var add_json ={};
+                                add_json['{{ my_uid }}'] = '{{ my_uid }}';
+                                updateRef.child('{{ this_uid }}').child('Connections').update(add_json);                // add my uid to this user's list of connections
+
+                                add_json ={};
+                                add_json['{{ this_uid }}'] = '{{ this_uid }}';
+                                updateRef.child('{{ my_uid }}').child('Connections').update(add_json);                  // add my uid to this user's list of connections
+
+                                document.getElementById('btnConnect').style.display = 'none';                                    // swithch to disconnect button
+                                document.getElementById('btnDisconnect').style.display = 'block';
+                            }
+
+                            // disconnect with this user
+                            function disconnect(){
+                                var updateRef = firebase.database().ref().child("Users");
+
+                                var numConnRef = updateRef.child('{{ this_uid }}').child("numConnections");             // reduce the connection's number of connections
+                                numConnRef.once('value', function(snapshot) {
+                                    var currNumConn = snapshot.val();
+                                    firebase.database().ref("Users").child('{{ this_uid }}').update({numConnections:currNumConn-1});
+                                });
+                                numConnRef = updateRef.child('{{ my_uid }}').child("numConnections");                   // reduce my number of connections
+                                numConnRef.once('value', function(snapshot2) {
+                                    var currNumConn = snapshot2.val();
+                                    firebase.database().ref("Users").child('{{ my_uid }}').update({numConnections: currNumConn-1});
+                                });
+
+                                updateRef.child('{{ this_uid }}').child('Connections').child('{{ my_uid }}').remove();  // remove me from the user's connections list
+
+                                updateRef.child('{{ my_uid }}').child('Connections').child('{{ this_uid }}').remove();  // remove the user from my connections list
+
+                                document.getElementById('btnConnect').style.display = 'block';                          // switch to disconnect button
+                                document.getElementById('btnDisconnect').style.display = 'none';
+                                //popup
+                            }
+                        </script>
                             <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
 
 

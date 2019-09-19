@@ -1122,10 +1122,12 @@
                 new_forum_json['Enabled'] = true;
                 new_forum_json['numParticipants'] = 0;
                 new_forum_json['ForumPic']=" ";
+                new_forum_json['TopicTags'] = json_topics;
 
                 var selectedUsers = getSelectedUsers();
                 var participants = arrayToJson(selectedUsers);          // add all participants selected
 
+                new_forum_json['NumParticipants'] = selectedUsers.length
                 new_forum_json['Participants'] = participants;
                 new_forum_json['NumReported'] = 0;
 
@@ -1406,9 +1408,8 @@
       function snapshotToArrayKey(snapshot) {
           let returnArr = [];
           snapshot.forEach(childSnapshot => {
-              let item = childSnapshot.val();
-              item.key = childSnapshot.key;
-              returnArr.push(item.key);
+              var key = childSnapshot.key;
+              returnArr.push(key);
           });
           return returnArr;
       }

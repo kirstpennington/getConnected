@@ -1162,7 +1162,7 @@ Left:150px;
 
           var getParticipantsFromDB =  firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants");
           getParticipantsFromDB.on("value", function (participants_snapshot) {                                          // get a list of all participants in this forum
-              var participants = snapshotToArray(participants_snapshot);                                             // get an array of all participants in this forum
+              var participants = snapshotToArrayKey(participants_snapshot);                                             // get an array of all participants in this forum
 
               all_users_snapshot.forEach(function (each_user_snapshot) {                                                // search through each user
                   var user_id = each_user_snapshot.key;
@@ -1210,9 +1210,8 @@ Left:150px;
       function snapshotToArrayKey(snapshot) {
           let returnArr = [];
           snapshot.forEach(childSnapshot => {
-              let item = childSnapshot.val();
-              item.key = childSnapshot.key;
-              returnArr.push(item.key);
+              var key = childSnapshot.key;
+              returnArr.push(key);
           });
           return returnArr;
       }
@@ -1222,7 +1221,6 @@ Left:150px;
           let returnArr = [];
           snapshot.forEach(childSnapshot => {
               let item = childSnapshot.val();
-              item.key = childSnapshot.key;
               returnArr.push(item);
           });
           return returnArr;

@@ -574,11 +574,17 @@ def goConnectionsOpen(request):
     if request.method == "POST":  # get data from UI
         connection_id = request.POST.get("connection_id")  # get data from UI using POST method
 
-    # forum suggestions calculated
-    short_forum_suggestions = forum_methods.getForumSuggestions(the_user.uid, 3, the_user)
-
-    # connection suggestions calculated
-    short_connections_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
+    # get mutual connections and check if this user is a connection
+    selected_user_connections = user_methods.getUserConnectionsList(connection_id)       # get a list of the selected user's connections
+    logged_in_user_connections = user_methods.getUserConnectionsList(the_user.uid)       # get the connections of the user who is logged in
+    the_user_is_connection = False
+    mutual_connections = []
+    if selected_user_connections is not None:
+        for connection in selected_user_connections:
+            if forum_methods.arrayContainsValue(logged_in_user_connections, connection):                                     # if this connection is in the logged iin user's connections list
+                mutual_connections.append(connections)
+            elif connection == the_user.uid:                                                   # check if the user logged in is a connect
+                the_user_is_connection = True
 
     # check privacy settings of connection before displaying their information
     if user_methods.getBioPrivacy(connection_id) == "True":
@@ -623,8 +629,11 @@ def goConnectionsOpen(request):
                                                         connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)),
                                                       'forums_suggestions_list': forum_methods.getForumsInfoList(forum_methods.getForumSuggestions(the_user.uid, 3, the_user)),
                                                       'this_uid': connection_id,
-                                                      'my_uid': the_user.uid
+                                                      'my_uid': the_user.uid,
+                                                      'the_user_is_connection': the_user_is_connection,
+                                                      'mutual_connections': mutual_connections
                                                       })
+
 
 
 def goContact(request):
