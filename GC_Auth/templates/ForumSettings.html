@@ -631,7 +631,7 @@ Left:150px;
                 <button id="disableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default">Disable Forum</button>
             {% endif %}
         <div class="col-sm-2"></div>
-
+</form>
 
     </div><!--end of row-->
 
@@ -696,12 +696,10 @@ Left:150px;
     <p>Participants:</p>
 
     {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
-        <button disabled="true" id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
-        <button disabled="true" id="removePartBtn" class="ParticipantsButton">Remove Participants</button><br><br>
+        <button data-toggle="modal" data-target="#chooseparticipantsmodal" disabled="true" id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
         <button disabled="true" id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
     {% else %}
-        <button id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
-        <button id="removePartBtn" class="ParticipantsButton">Remove Participants</button><br><br>
+        <button data-toggle="modal" data-target="#chooseparticipantsmodal" id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
         <button id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
     {% endif %}
 
@@ -736,50 +734,82 @@ Left:150px;
         function saveChanges() {
             // saves changes made by user to the forum
             var updateRef = firebase.database().ref('Forums').child('{{ forum_id }}');
-            var newName = document.getElementById('nameTxt').value;              // get new forum name
-            var newDescription = document.getElementById('comment').value;       // update forum description
+            var newName = document.getElementById('nameTxt').value;                                                     // get new forum name
+            var newDescription = document.getElementById('comment').value;                                              // update forum description
             if (newName != "" && newDescription != "") {
-                if (document.getElementById('public_rb').checked == true) {               // update forum privacy
+                if (document.getElementById('public_rb').checked == true) {                                             // update forum privacy
                     var newPrivate = false;
                 } else {
                     var newPrivate = true;
                 }
 
+                var selectedUsers = getSelectedUsers();
+                var participants = arrayToJson(selectedUsers);                                                          // get a list of the participants selected and convert to json
 
                 updateRef.update({
                     Name: newName,
                     Description: newDescription,
                     Private: newPrivate
-                });                                                    // update db
+                });                                                                                                     // update db
+
+                var updateParticpantsRef = firebase.database().ref('Forums').child('{{ forum_id }}').child("Participants");
+                updateParticpantsRef.update(participants);                                                              // updates the participants list for the forum
+                updateUsers(selectedUsers);                                                                             // update the forums joined list for each new participant
 
                 var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
 
-                var at_least_one_checked = false;                                       // Check at least one checkbox selected topic_chb
+                var at_least_one_checked = false;                                                                       // Check at least one checkbox selected topic_chb
                 var json_topics = {};
-                for (i = 0; i < all_topics_list.length; i++) {                             // loop through all topics
+                for (i = 0; i < all_topics_list.length; i++) {                                                          // loop through all topics
                     var topic = all_topics_list[i];
                     try {
-                        if (document.getElementById(topic).checked) {                   // find the topic's checkbox
-                            at_least_one_checked = true;                                // at least one topic has been checked
-                            json_topics[topic] = topic;                                 // add topics to the json variable
+                        if (document.getElementById(topic).checked) {                                                   // find the topic's checkbox
+                            at_least_one_checked = true;                                                                // at least one topic has been checked
+                            json_topics[topic] = topic;                                                                 // add topics to the json variable
                         }
                     } catch (err) {
                         // Do nothing
                     }
                 }
 
-                if (at_least_one_checked) {                                              // if one or more topics were selected, update topics
-                    updateRef.update({TopicTags: json_topics});                         // update topic changes
+                if (at_least_one_checked) {                                                                             // if one or more topics were selected, update topics
+                    updateRef.update({TopicTags: json_topics});                                                         // update topic changes
                 } else {
-                    $("#modalSelectTopic").modal('show');                               // no topics have been selected - display error message
+                    $("#modalSelectTopic").modal('show');                                                               // no topics have been selected - display error message
                 }
                 $("#modalChangesSaved").modal('show');
+            }
+        }
+
+        // function converts an array to a Json object
+        function arrayToJson(array){
+            var json_object = {};
+            for (var i = 0; i < array.length; i++) {
+                json_object[array[i]] = array[i];
+            }
+            return json_object;
+        }
+
+        // function to update the ForumsJoined list for each user that is added as a participant
+        function updateUsers(user_list){
+            var forum = '{{ forum_id }}';
+            for (var i = 0; i < user_list.length; i++) {
+                var userUpdateForumsJoinedRef = firebase.database().ref("Users").child(user_list[i]).child("ForumsJoined");
+                var addForum = {};
+                addForum[forum] = new Date();
+                userUpdateForumsJoinedRef.update(addForum);                                                             // add forum to user in the db
+
+                try {
+                    document.getElementById(user_list[i] + "_hide").hidden = true;                                          // hide selectable item in the popup
+                }catch(err){
+
+                }
             }
         }
     </script>
 
 </div>
-
+</body>
 
 
 
@@ -1055,7 +1085,7 @@ Left:150px;
 
 
 
-</body></html>
+</html>
 <!-- Modal for pop up message "Select a Topic" -->
 
 <div class="modal fade" id="modalSelectTopic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1078,3 +1108,198 @@ Left:150px;
     </div>
   </div>
 </div>
+
+
+
+<!--choose participants modal-->
+<div class="modal fade" id="chooseparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Choose Forum Participants </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="centraliser" style="text-align: center">
+                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                     <span onclick="searchByTermParticipant()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-search"></i>
+                     </span>
+                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-map-marker"></i>
+                     </span>
+                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-remove"></i>
+                     </span>
+                 </div><!--end search bar-->
+             </div>
+
+             <br>
+                 <div class="row" >
+                     <table id="SelectableUsersTable" style="margin-left: 40px">
+
+                    </table>
+          <script>
+      /*try {
+          document.getElementById("SelectableUsersTable").innerHTML = "";                  // clear popup before writing
+      }catch(err){
+          alert(err);
+      }*/
+
+      var searchableUsers = [];
+      var j = 0;                                                                                                        // spacing for forum suggestions
+      var result = "<table >";
+      result += "<tr>";                                                                                                 // cards added to the popup
+
+      var getForumsFromDB = firebase.database().ref("Users");
+      getForumsFromDB.on("value", function (all_users_snapshot) {                                                       // get a list of all the users on the system
+
+          var getParticipantsFromDB =  firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants");
+          getParticipantsFromDB.on("value", function (participants_snapshot) {                                          // get a list of all participants in this forum
+              var participants = snapshotToArray(participants_snapshot);                                             // get an array of all participants in this forum
+
+              all_users_snapshot.forEach(function (each_user_snapshot) {                                                // search through each user
+                  var user_id = each_user_snapshot.key;
+                  searchableUsers.push(user_id);
+                  if((contains(participants, user_id)==false) && user_id!='{{ this_uid }}'){                                     // exclude all participants of the forum
+                        var profile_pic = each_user_snapshot.val().ProfilePic;
+                        var name = each_user_snapshot.val().Name;
+                        var country = each_user_snapshot.val().Country;
+
+                        result += "<td>" +userCard(user_id, profile_pic, name, country) + "</td>";                      // add more cards to the result
+
+                        if ((j + 1) % 2 == 0) {                                     // update spacing in table
+                            result += "</tr><tr>";
+                        }
+                        j++;
+
+                  }
+              });
+              $('#SelectableUsersTable').html(result);
+          });
+
+      });
+
+      // function to add selectable user cards to the popup
+      function userCard(uid, profile_pic, name, country){
+            return "<div id=\""+ uid +"_hide\" style=\"margin-bottom: 20px\">\n" +
+                "                 <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+                "                   <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profile_pic +"\" style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+                "                </div><!--end col-->\n" +
+                "\n" +
+                "\n" +
+                "                <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+                "                  <p id=\""+uid+"_name\" style=\"margin-left:20px;margin-bottom:1px;font-size: 12px;\"> "+ name +"  </p>\n" +
+                "                  <p id=\""+uid+"_country\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+ country +"</p>\n" +
+                "\n" +
+                "                </div><!--end col-->\n" +
+                "\n" +
+                "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
+                "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
+                "                </div>\n" +
+                "             </div>";
+      }
+
+      // get a snapshot of a list of keys from firebase and convert it to an array
+      function snapshotToArrayKey(snapshot) {
+          let returnArr = [];
+          snapshot.forEach(childSnapshot => {
+              let item = childSnapshot.val();
+              item.key = childSnapshot.key;
+              returnArr.push(item.key);
+          });
+          return returnArr;
+      }
+
+      // get a snapshot of a list of keys from firebase and convert it to an array
+      function snapshotToArray(snapshot) {
+          let returnArr = [];
+          snapshot.forEach(childSnapshot => {
+              let item = childSnapshot.val();
+              item.key = childSnapshot.key;
+              returnArr.push(item);
+          });
+          return returnArr;
+      }
+
+      // FILTERING FUNCTIONALITY
+      function showAll(){
+          for (let i = 0; i < searchableUsers.length; i++) {
+              document.getElementById(searchableUsers[i] + "_hide").hidden = false;           // show all blocks
+          }
+      }
+
+      function searchByTermParticipant(){
+            searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
+            //  loop through course_ids
+
+                for (let i = 0; i < searchableUsers.length; i++) {
+                    // check if topics list for this course_id contains Finance
+                    courseName = document.getElementById(searchableUsers[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+
+                    if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
+                        document.getElementById(searchableUsers[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                    } else {
+                        document.getElementById(searchableUsers[i] + "_hide").hidden = true;
+                    }
+                }
+                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+      }
+
+        function searchByCountry(){
+            for (let i = 0; i < searchableUsers.length; i++) {
+                var this_country = document.getElementById(searchableUsers[i] + '_country').innerText;
+                if (this_country == '{{ country }}') {
+                    document.getElementById(searchableUsers[i] + "_hide").hidden = false;
+                } else {
+                    document.getElementById(searchableUsers[i] + "_hide").hidden = true;
+                }
+            }
+        }
+
+        // GET a list of the users selected in this popup
+        function getSelectedUsers(){
+          var selectedUsers=[];
+          for (let i = 0; i < searchableUsers.length; i++) {                                                            // search through all users in the popup
+              try {
+                  if (document.getElementById(searchableUsers[i] + "_checked").checked == true) {                             // if the user is selected, add the user to the list
+                      selectedUsers.push(searchableUsers[i]);
+                  }
+              }
+              catch(err){
+                  // Do Nothing
+              }
+
+          }
+          return selectedUsers;
+        }
+
+        function contains(array, value){
+          for (var j = 0; j < array.length; j++){
+              if (array[j] == value){
+                  return true;
+              }
+          }
+          return false;
+        }
+  </script>
+    </div> <!--end row-->
+            <br>
+      <div class="modal-footer">
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- End Participants Popup-->
+</body>

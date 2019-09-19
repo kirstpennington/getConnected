@@ -559,7 +559,7 @@ def goForumSettings(request):
                                                     'forum_pic': forum_methods.getForumPic(forum_id),
                                                     'forum_enabled': forum_methods.getForumEnabled(forum_id),
                                                     'forum_private': forum_methods.getForumPrivate(forum_id),
-                                                    'all_topics_list': all_topics_list
+                                                    'all_topics_list': all_topics_list,
                                                     })
 
 def goConnectionsOpen(request):
