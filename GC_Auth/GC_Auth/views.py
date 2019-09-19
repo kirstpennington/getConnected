@@ -454,7 +454,7 @@ def goBadges(request):
 
     global the_user
 
-    return render(request, "badgesStart.html", {
+    return render(request, "Badges_Page.html", {
         'n': name,
         'numConnections': conn,
         'numCourses': course,
