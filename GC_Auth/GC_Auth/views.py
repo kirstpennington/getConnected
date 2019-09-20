@@ -559,7 +559,7 @@ def goForumSettings(request):
                                                     'forum_pic': forum_methods.getForumPic(forum_id),
                                                     'forum_enabled': forum_methods.getForumEnabled(forum_id),
                                                     'forum_private': forum_methods.getForumPrivate(forum_id),
-                                                    'all_topics_list': all_topics_list,
+                                                    'all_topics_list': all_topics_list
                                                     })
 
 def goConnectionsOpen(request):
@@ -579,10 +579,11 @@ def goConnectionsOpen(request):
     logged_in_user_connections = user_methods.getUserConnectionsList(the_user.uid)       # get the connections of the user who is logged in
     the_user_is_connection = False
     mutual_connections = []
+
     if selected_user_connections is not None:
         for connection in selected_user_connections:
             if forum_methods.arrayContainsValue(logged_in_user_connections, connection):                                     # if this connection is in the logged iin user's connections list
-                mutual_connections.append(connections)
+                mutual_connections.append(connection)
             elif connection == the_user.uid:                                                   # check if the user logged in is a connect
                 the_user_is_connection = True
 
@@ -631,7 +632,7 @@ def goConnectionsOpen(request):
                                                       'this_uid': connection_id,
                                                       'my_uid': the_user.uid,
                                                       'the_user_is_connection': the_user_is_connection,
-                                                      'mutual_connections': mutual_connections
+                                                      'mutual_connections': connection_methods.getConnectionsInfoList(connection_methods.getMutualConnections(connection_id, the_user.uid))
                                                       })
 
 

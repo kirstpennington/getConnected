@@ -956,26 +956,27 @@
                                     {% if the_user_is_connection == True or the_user_is_connection == true %}
                                         <button style="display: none;" id="btnConnect" onclick="connect()"
                                                 data-placement="right"
-                                            style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                            class="btn btn-primary pull-right">
+                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                                class="btn btn-primary pull-right">
                                             Connect
                                         </button>
                                         <button id="btnDisconnect" onclick="disconnect()"
                                                 data-placement="right"
-                                            style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                            class="btn btn-primary pull-right">
+                                                class="btn btn-primary pull-right"
+                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "                                            class="btn btn-primary pull-right">
                                             Disconnect
                                         </button>
                                     {% else %}
-                                        <button id="btnConnect" onclick="connect()" data-placement="right"
-                                            style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                            class="btn btn-primary pull-right">
+                                        <button id="btnConnect" onclick="connect()"
+                                                data-placement="right"
+                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                                class="btn btn-primary pull-right">
                                             Connect
                                         </button>
                                         <button style="display: none;" id="btnDisconnect" onclick="disconnect()"
                                                 data-placement="right"
-                                            style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                            class="btn btn-primary pull-right">
+                                                class="btn btn-primary pull-right"
+                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset ">
                                             Disconnect
                                         </button>
                                     {% endif %}
@@ -1132,32 +1133,38 @@
 
 
                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
-                    <div class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
-
+                    <div id="{{ conn_id }}_background"  class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                        <form action="/goConnectionsOpen/" method="post">
+                                <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
+                                        style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
+                                </button>
 
                         <div class="row" style="margin-top: -15px">
-                            <img class=" pull-left"
+                            <img id="{{ conn_id }}_img"   class=" pull-left"
                                  style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
                                  src="{{ pictures }}"/>
 
                             <div class="connection_container">
-                                <div style="font-family: 'Arial Narrow';left: 10px; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                    {{ names }}
+                                <div>
+                                    <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                                    <button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
+                                        {{ names }}
+                                    </button>
                                 </div>
                                 <!-- hidden field that stores the id of the entity  -->
                                 <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
-                                <h8 style="display: inline-block;margin-left: 10px;margin-top: 4px;font-family: serif; font-size: small; color: black">
+                                <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family: serif; font-size: small; color: black">
                                     mutual conections &nbsp;<span class="label label-default"
                                                                   style="color: white"> {{ numConnections }} </span>
                                 </h8>
                                 <br>
 
                                 <span class="badge badge-pill badge-dark"
-                                      style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ bio }}</span>
+                                      style=" position:relative;color: white; font-size: x-small; margin-left: 10px; top: -3px">{{ bio }}</span>
                             </div>
 
                         </div>
-
+                        </form>
                     </div><!--end of Connections Suggestions Card--><br style="height: 2px">
                 {% empty %}
                     <div>No Suggested Connections</div>
@@ -2077,148 +2084,33 @@
             <div class="modal-body">
 
 
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px;margin-left: 80px;">
+                    {% for names, countries, pictures, bio, conn_id in mutual_connections %}
+                        <form action="/goConnectionsOpen/" method="post">
+                        <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
+                            <img class="rounded-circle" width="50" height="50"
+                                 src="{{ pictures }}"
+                                 style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
+                        </div><!--end col-->
 
-                    <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                        <img class="rounded-circle" width="50" height="50"
-                             src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"
-                             style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
-
-                    </div><!--end col-->
-
-
-                    <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-                        <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington </p>
-                        <p class="badge badge-pill badge-dark"
-                           style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-                    </div><!--end col-->
-
-                    <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-
-                    </div>
-
-                    <!--NEXT USER COLOUMN-->
-                    <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                        <img class="rounded-circle" width="50" height="50"
-                             src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"
-                             style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
-
-                    </div><!--end col-->
-
-
-                    <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-                        <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington </p>
-                        <p class="badge badge-pill badge-dark"
-                           style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-                    </div><!--end col-->
-
-                    <div class="col-md-1"><!--CHECK BOX GOES HERE-->
+                        <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
+                            <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                            <p><button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative; margin-left:15px;" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
+                                        {{ names }}
+                                    </button>
+                            </p>
+                            <p class="badge badge-pill badge-dark"
+                               style="color:white;font-size:10px;margin-left:20px;margin-top:5px;"> {{ countries }} </p>
+                        </div><!--end col-->
+                    </form>
+                        {% if forloop.counter|divisibleby:2 %}
+                        </div><div class="row" style="margin-bottom: 20px; margin-left: 80px;">
+                    {% endif %}
+                    {% empty %}
+                        <p>No Mutual Connections</p>
+                    {% endfor %}
 
                     </div>
-
-                    <!--END ROW-->
-
-
-                </div> <!--end row-->
-
-                <br>
-                <div class="row">
-
-                    <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                        <img class="rounded-circle" width="50" height="50"
-                             src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"
-                             style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
-
-                    </div><!--end col-->
-
-
-                    <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-                        <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington </p>
-                        <p class="badge badge-pill badge-dark"
-                           style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-                    </div><!--end col-->
-
-                    <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-
-                    </div>
-
-                    <!--NEXT USER COLOUMN-->
-                    <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                        <img class="rounded-circle" width="50" height="50"
-                             src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"
-                             style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
-
-                    </div><!--end col-->
-
-
-                    <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-                        <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington </p>
-                        <p class="badge badge-pill badge-dark"
-                           style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-                    </div><!--end col-->
-
-                    <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-
-                    </div>
-
-                    <!--END ROW-->
-
-
-                </div> <!--end row-->
-                <br>
-                <div class="row">
-
-                    <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                        <img class="rounded-circle" width="50" height="50"
-                             src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"
-                             style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
-
-                    </div><!--end col-->
-
-
-                    <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-                        <p style="margin-left:20px;margin-bottom:1px; font-size: 12px;"> Kirsten Pennington </p>
-                        <p class="badge badge-pill badge-dark"
-                           style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-                    </div><!--end col-->
-
-                    <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-
-                    </div>
-
-                    <!--NEXT USER COLOUMN-->
-                    <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                        <img class="rounded-circle" width="50" height="50"
-                             src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"
-                             style="border: 1px solid 	#DCDCDC ; border-radius: 50px;" alt="">
-
-                    </div><!--end col-->
-
-
-                    <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-                        <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington </p>
-                        <p class="badge badge-pill badge-dark"
-                           style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-                    </div><!--end col-->
-
-                    <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-
-                    </div>
-
-                    <!--END ROW-->
-
 
                 </div> <!--end row-->
 

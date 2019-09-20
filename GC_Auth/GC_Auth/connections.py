@@ -90,6 +90,26 @@ class connection_methods:
         else:
             return results
 
+
+    def getMutualConnections(connection_id, my_id):
+        # get mutual connections and check if this user is a connection
+        selected_user_connections = user_methods.getUserConnectionsList(
+            connection_id)  # get a list of the selected user's connections
+        logged_in_user_connections = user_methods.getUserConnectionsList(
+            my_id)  # get the connections of the user who is logged in
+        mutual_connections = []
+
+        if selected_user_connections is not None:
+            for connection in selected_user_connections:
+                if connection_methods.arrayContainsValue(logged_in_user_connections,
+                                                    connection):  # if this connection is in the logged iin user's connections list
+                    mutual_connections.append(connection)
+                elif connection == my_id:  # check if the user logged in is a connect
+                    the_user_is_connection = True
+
+        return mutual_connections
+
+
     def getRequestsSent(uid):     # get a list of the users who I have sent requests to (their user ids)
         sent_ids = database.child("Users").child(uid).child("RequestsSent").shallow().get().val()       # get a list of the auto generated ids for sent logs
         sent_user_ids = []
