@@ -21,7 +21,7 @@
 
     <!--*HEAD* 1. Title-->
 
-    <title>Your Profile </title>
+    <title>Settings </title>
 
     <!--*HEAD* 2. Bootstrap & CSS Links-->
     <meta charset="utf-8">
@@ -779,7 +779,7 @@
 
             <!--Left-side (including search ) of navigation bar-->
             <ul class="nav navbar-nav navbar-left">
-                <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
+                <li><a onclick="location.href='{% url 'nav_home' %}'">
                     <span class="glyphicon glyphicon-home fa-lg"></span>
                     Home
                 </a></li>
@@ -795,9 +795,7 @@
 
             <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
                 <!--Search Input-->
-                <form class="  search-form" role="search">
-                    <input type="text" class="form-control" placeholder="Search"/>
-                </form>
+
 
             </ul>
 

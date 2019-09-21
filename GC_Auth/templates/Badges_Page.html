@@ -834,11 +834,11 @@
             </button>
         </div>  <!--navbar-header-->
 
-        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+        <div class="collapse navbar-collapse" id="myNavbar" style="font-family: 'Roboto', sans-serif;"> <!--Navigation bar contents-->
 
             <!--Left-side (including search ) of navigation bar-->
             <ul class="nav navbar-nav navbar-left">
-                 <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                 <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home </a></li>
                 <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
                     Connections</a></li>
                 <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
@@ -849,9 +849,7 @@
 
             <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
                 <!--Search Input-->
-                <form class="  search-form" role="search">
-                    <input type="text" class="form-control" placeholder="Search"/>
-                </form>
+
             </ul>
 
             <!--Right-side (including help button ) of navigation bar-->
