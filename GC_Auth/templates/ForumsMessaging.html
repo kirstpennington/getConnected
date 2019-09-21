@@ -700,9 +700,11 @@
 
 
                     <!-- leave forum button-->
+
                     {% if forum_creator != this_uid %} <!-- only allow a user to leave a forum if they are not the creator of the forum -->
                         <div>
-                            <button style="margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" id="btn-confirm">Leave Forum</button>
+                            <button class="btn pull-right" style="margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" id="reportForumBtn"><span class="glyphicon glyphicon-flag"></span></button>
+                            <button class="btn pull-right" style="margin-right:10px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" id="btn-confirm">Leave Forum</button>
                         </div>
                     {% else %} <!-- only the forum creator can access forum settings -->
                         <form action="/goForumSettings/" method="post">
@@ -711,7 +713,7 @@
                             <div>
                                     <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
                                             title="ForumSettings" data-placement="right"
-                                            style="background-color:hotpink; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset " type="submit"
+                                            style="margin-right:10px; background-color:hotpink; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset " type="submit"
                                             class="btn btn-primary pull-right">
                                         <a href="#"><i
                                                 class=" fa fa-gear" style="color: white"></i></a>
@@ -719,7 +721,6 @@
                             </div>
                         </form>
                     {% endif %}
-
 
 
 
@@ -1490,7 +1491,7 @@ function Reply_list(holder){
                             <h4 class="text-center">Are you sure you want to leave this forum?</h4>
                             <br>
                             <div class="text-right">
-                            <a onclick="location.href={% url 'log'%}" id="modal-btn-si" class="btn btn-yes" style=" border: 1px solid gray;
+                            <a id="modal-btn-si" class="btn btn-yes" style=" border: 1px solid gray;
             color: #e83e8c;">
                                 Confirm</a>
                             <a class="btn btn-no" id="modal-btn-no" style=" border: 1px solid gray;
@@ -1498,8 +1499,8 @@ function Reply_list(holder){
                             </div>
                             </div>
                             </div>
-                            </div>
-                            </div>
+                        </div>
+</div>
 
 
 
@@ -1550,10 +1551,6 @@ function Reply_list(holder){
                       }
                     });
 
-                    function disableForum(){    // forum creator can disable their forum
-                        // set enabled to true
-                        // disable post box to disabled
-                    }
 
                 </script>
 
@@ -1578,3 +1575,154 @@ function Reply_list(holder){
                 </div>
               </div>
             </div>
+
+</body>
+<!-- Modal for pop up message "User has reported this forum" -->
+            <div class="modal fade" id="modalReportedForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This forum has been reported.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!-- Modal for pop up message "User has already reported this forum" -->
+            <div class="modal fade" id="modalReportedForumAlready" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    You have already reported this forum.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!-- Confirm Report Forum Popup -->
+<div class="modal fade" id="mi-modal2" role="dialog">
+                        <div class="modal-dialog">
+
+                            <div class="modal-content">
+                            <div class="modal-body" style="padding:10px;">
+                            <h4 class="text-center">This forum could be removed from the system. Are you sure you want to report this forum?</h4>
+                            <br>
+                            <div class="text-right">
+                            <a id="modal-btn-si2" class="btn btn-yes" style=" border: 1px solid gray;
+            color: #e83e8c;">
+                                Confirm</a>
+                            <a class="btn btn-no" id="modal-btn-no2" style=" border: 1px solid gray;
+            color: #e83e8c;">Cancel</a>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+</div>
+
+                    <script>
+
+
+                // report account functionality for confirm dialogue using Bootstrap modal
+                var modalConfirm = function(callback){
+
+                      $("#reportForumBtn").on("click", function(){
+                        $("#mi-modal2").modal('show');
+                      });
+
+                      $("#modal-btn-si2").on("click", function(){
+                        callback(true);
+                        $("#mi-modal2").modal('hide');
+                      });
+
+                      $("#modal-btn-no2").on("click", function(){
+                        callback(false);
+                        $("#mi-modal2").modal('hide');
+                      });
+                    };
+
+                    // results of the confirmation
+                    modalConfirm(function(confirm){
+                      if(confirm){                                                                                                              // report forum confirmed
+                        var reportersRef = firebase.database().ref('Forums').child('{{ forum_id }}').child('Reporters');
+                        reportersRef.once("value", function (reporters_snapshot) {
+                            var allReporters = snapshotToArrayKey(reporters_snapshot);                                                          // get list of all people who reported the forum
+                                if (!arrayContainsValue(allReporters, '{{ this_uid }}')) {                                                      // check if this user had reported the forum before
+                                    var reporters = {};
+                                    reporters['{{ this_uid }}'] = '{{ this_uid }}';                                                             // add this user to the list of people who reported the forum
+                                    firebase.database().ref("Forums").child('{{ forum_id }}').child('Reporters').update(reporters);
+
+                                    var numReportsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child('numReported');         // get current num reports
+                                    numReportsRef.once("value", function (num_reported_snapshot) {                                              //Fetching number of times forum was reported
+                                        var new_num_reports = num_reported_snapshot.val() + 1;                                                  // increment num reports
+                                        firebase.database().ref("Forums").child('{{ forum_id }}').update({numReported: new_num_reports});
+                                        if (new_num_reports > 5) {                                                                              // if the forum has been reported mroe than a certain number of times
+                                            var wholeForumRef = firebase.database().ref("Forums").child('{{ forum_id }}');                      // get this whole entry
+                                            wholeForumRef.once("value", function (whole_forum_snapshot) {
+                                                var wholeForum = whole_forum_snapshot.val();
+                                                var moveforum = {};
+                                                moveforum[whole_forum_snapshot.key] = wholeForum;
+                                                firebase.database().ref("ReportedForums").update(moveforum);                                    // move entry to ForumsReported
+                                                wholeForumRef.remove();                                                                         // remove this entry
+                                                $("modalReportedForum").modal('show');
+                                            });
+                                        }
+                                    });
+                                } else {
+                                     $("modalReportedForumAlready").modal('show');
+                                }
+                            });
+                        }else{                                                                                                                  //Do not report forum
+                            $("#mi-modal2").modal('hide');
+                        }
+                    });
+
+                    // get a snapshot of a list of keys from firebase and convert it to an array
+                function snapshotToArrayKey(snapshot) {
+                    let returnArr = [];
+                    snapshot.forEach(childSnapshot => {
+                        //let item = childSnapshot.val();
+                        var key = childSnapshot.key;
+                        returnArr.push(key);
+                    });
+                    return returnArr;
+                }
+
+                // returns true if the array contains the value
+                function arrayContainsValue(array, value){
+                    if (array.length > 0)
+                    {
+                        for (let i = 0; i < array.length; i++)
+                        {
+                            if (array[i] == value){
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            </script>
