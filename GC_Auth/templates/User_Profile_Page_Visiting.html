@@ -1726,7 +1726,7 @@
                 <img src="{% static "GC_Auth/badge_icon.png" %}" alt="trohy" class="center"
                      style="width: 10%;height:10%;position: relative; left: 45%;">
                 <h5 class="modal-title text-center" id="exampleModalLongTitle"
-                    style="color: darkgray; font-size: 20px;">Name's Badges</h5>
+                    style="color: darkgray; font-size: 20px;">{{ n }}'s Badges</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1735,337 +1735,520 @@
             <div class="modal-body">
 
                 <div class="row" style="  width: 850px; position: relative; margin-left:15px;">
-                    <div class="col-sm-3">
+                    <!--Badge 1: FriendFinder-->
+                    <div class="col-sm-3" style="background-color:white;">
+                        {% load staticfiles %}
+                          <!--friend finder 1 connection-->
+                        <div id ="FriendFinder" class ="badgehover"> <!--badge hover for the hovering over the badge-->
 
-                        <div class="badgehover">
+                       </div>
+                      </div>
 
-                            {% if numConnections >= 1 %}
+                    <!--Badge 2: NetworkingNinja-->
+                    <div class="col-sm-3" style="background-color:white;">
+                            {% load staticfiles %}
+                            <!--coloumn networking ninja-->
+                            <div id ="NetworkingNinja" class ="badgehover">
 
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
 
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
+                            </div>
                         </div>
 
+                    <!--Badge 3: Crazy Connector-->
+                    <div class="col-sm-3" style="background-color:white;">
+                        <div id ="CrazyConnector" class ="badgehover">
+                           <!--coloumn crazy connector-->
 
-                    </div><!--end col-->
+                      </div>
+                    </div>
 
-                    <div class="col-sm-3">
+                    <!--Badge 4: Popular Profiler-->
+                    <div class="col-sm-3" style="background-color:white;">
+                        <div id ="PopularProfile" class ="badgehover">
+                           <!--coloumn popular profiler-->
 
-                        <div class="badgehover">
 
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
                         </div>
-
-
-                    </div><!--end col-->
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
-                        </div>
-
-
-                    </div><!--end col-->
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
-                        </div>
-
-
-                    </div><!--end col-->
+                    </div>
 
                 </div><!--end row-->
                 <div class="row" style="width: 850px; position: relative; margin-left:15px;">
-                    <div class="col-sm-3">
 
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
+                    <!--Badge 5: Bright Spark-->
+                    <div class="col-sm-3" style="background-color:white;"><!-- 3 courses taken-->
+                        <div id="BrightSpark" class ="badgehover">
+                           <!--coloumn popular profiler-->
                         </div>
+                    </div>
 
+                    <!--Badge 6: Bright Spark-->
+                    <div class="col-sm-3" style="background-color:white;">
+                      <!--fab academic 5 courses-->
+                        <div id="FabAcademic" class ="badgehover">
 
-                    </div><!--end col-->
-
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
                         </div>
+                    </div>
 
-
-                    </div><!--end col-->
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
+                    <!--Badge 7: Got_Smarter-->
+                    <div class="col-sm-3" style="background-color:white;">
+                     <!--got smarter 10 courses-->
+                        <div id ="Got_Smarter" class ="badgehover">
+                           <!--coloumn popular profiler-->
                         </div>
+                    </div>
 
+                    <!--Badge 8: Locked-->
+                    <div class="col-sm-3" style="background-color:white;">
+                          <div id="locked" class ="badgehover">
+                              {% load staticfiles %}
 
-                    </div><!--end col-->
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
-                        </div>
-
-
-                    </div><!--end col-->
+                         </div>
+                    </div>
 
                 </div><!--end row-->
-                <div class="row" style=" width: 850px; position: relative; margin-left:15px;">
-                    <div class="col-sm-3">
+                <div class="row" style="width: 850px; position: relative; margin-left:15px;">
 
-                        <div class="badgehover">
+                    <!--Badge 9: ForumBoffin-->
+                    <div class="col-sm-3" style="background-color:white;">
+                        <!--forum boffin , 1 forum-->
+                        <div id="ForumBoffin" class ="badgehover">
+                           <!--coloumn 5 forums-->
 
-                            {% if numConnections >= 1 %}
+                        </div>
+                    </div>
 
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
+                    <!--Badge 10: SuperSecurity-->
+                    <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
+                        <div class ="badgehover">
+                           <!--coloumn super security-->
+                          {% if privacyUp == "yes" %}
+                                <img src="{% static "GC_Auth/Badges/supersecurity1.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;" >
                                 <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
+                                   <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>
+                                     <!--text for the hover-->
+                                 </div>
                                 {% else %}<!--no badge-->
+                                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                                    <div class="middle">
+                                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                         <!--text for the hover-->
+                                    </div>
+                          {% endif %}
+                        </div>
+                    </div>
 
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
+                    <!--Badge 11: SuperSecurity-->
+                    <div class="col-sm-3" style="background-color:white;">
+                        <div class ="badgehover">
+                             <!--coloumn popular profiler-->
+                            {% if numConnections >= 1 %}<!--decorator update header-->
+                                <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;">
                                 <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
+                                   <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
+                                     <!--text for the hover-->
+                                 </div>
+                                {% else %}<!--no badge-->
+                                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;">
+                                    <div class="middle">
+                                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                         <!--text for the hover-->
+                                     </div>
                             {% endif %}
                         </div>
+                    </div>
 
-
-                    </div><!--end col-->
-
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
+                    <!--Badge 12: -->
+                    <div class="col-sm-3" style="background-color:white;">
+                        <div class ="badgehover">
+                              {% load staticfiles %}
+                              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;">
+                           <div class="middle">
+                             <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                           </div>
                         </div>
+                    </div>
 
-
-                    </div><!--end col-->
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
-                        </div>
-
-
-                    </div><!--end col-->
-                    <div class="col-sm-3">
-
-                        <div class="badgehover">
-
-                            {% if numConnections >= 1 %}
-
-                                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-
-                                <div class="middle">
-                                    <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                                    <!--text for the hover-->
-                                </div>
-                                {% else %}<!--no badge-->
-
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
-                                     style="width:150%;height:150%;margin-left: 17px;">
-                                <div class="middle">
-                                    <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                                    <!--text for the hover-->
-                                </div>
-                            {% endif %}
-                        </div>
-
-
-                    </div><!--end col-->
-
-                </div><!--end row-->
-
+                </div>
 
             </div><!--end modal body-->
+
         </div>
     </div>
 </div>
 <!--end of modal-->
+<script>
 
+        //Badge_1_Friend_Finder
+
+        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+
+        FriendFinder_Connections.on("value", function (snapshot) {
+
+            var counter = 0;
+            var display = "";
+            var display_2 = ""
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+            if (counter >=1 && counter<5)
+
+            {
+
+               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ffriendfinder5.png?alt=media&token=ee0c7bd4-f4b6-492e-a9a0-e45b210b8284\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 1 Connection</div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+               checkCelebration.on("value", function (snapshot) {
+                   var text = "Friend Finder Badge";
+
+                    if (snapshot.val().FriendFinder == "not_celebrated"){
+                      $('#Congrats_Pop_Up').html(text);
+                      $("#Celebrations").modal();
+                                         //window.alert("hah?");
+
+
+                        checkCelebration.update({'FriendFinder': "celebrated"});
+               }
+
+                });
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#FriendFinder').html(display);
+
+        //Badge_2_NetoworkingNinja
+
+            if (counter >=5 && counter < 10)
+
+            {
+
+               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FnetworkingNinja.jpg?alt=media&token=a8cac22b-a196-405c-a300-a1e601654717\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Networking Ninja</strong> <br> 5 Connection</div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                       var text = "Networking Ninja Badge";
+                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'NetworkingNinja': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#NetworkingNinja').html(display);
+
+
+         //Badge_3_CrazyConnector
+
+  if (counter >=10 && counter<15)
+
+            {
+
+               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FcrazyConnector2.png?alt=media&token=98707036-4745-4cfe-a688-f4c7b71a89df\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 10 Connection</div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                     var text = "Crazy Connector Badge";
+
+
+                      if (snapshot.val().CrazyConnector == "not_celebrated"){
+                          $('#Congrats_Pop_Up').html(text);
+                          $("#Celebrations").modal();
+                          checkCelebration.update({'CrazyConnector': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#CrazyConnector').html(display);
+
+          //Badge_4_PopularProfile
+
+ if (counter >=15)
+
+            {
+
+               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FPopularProfiler2.png?alt=media&token=bfed5700-f4ea-4b0f-a992-81346e9fcaee\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 15 Connection</div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                       var text = "Popular Profile Badge";
+
+                      if (snapshot.val().PopularProfile == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'PopularProfile': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#PopularProfile').html(display);
+
+        });
+
+          //Badge_5_BrightSpark
+
+var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+        Badges_for_Courses.on("value", function (snapshot) {
+
+            var counter = 0;
+            var display = "";
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+            if (counter >=3 && counter<5)
+
+            {
+
+               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FBrigthSpark.png?alt=media&token=2dec1cb8-31d6-4ce5-9519-01dfcd3380b9\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 3 Courses</div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                var text = "Bright Spark Badge";
+
+                      if (snapshot.val().BrightSpark == "not_celebrated"){
+                       $('#Congrats_Pop_Up').html(text);
+                       $("#Celebrations").modal();
+                       checkCelebration.update({'BrightSpark': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#BrightSpark').html(display);
+
+        //Badge_6_FabAcademic
+
+         if (counter >=5 && counter<10 )
+
+            {
+
+               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FfabAcademic2.png?alt=media&token=d198ff3c-f91a-4e20-90b5-52eba72c7508\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 5 Courses</div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                    var text = "FabAcademic Badge";
+
+
+                      if (snapshot.val().FabAcademic == "not_celebrated"){
+                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                       $("#Celebrations").modal();
+                       checkCelebration.update({'FabAcademic': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#FabAcademic').html(display);
+
+           //Badge_7_Got_Smarter
+
+
+            if (counter >=10 )
+
+            {
+
+               display =  "<https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FgotSmarter2.png?alt=media&token=3f6b81be-2f2a-41e5-a727-7f48e6e05762\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 10 Courses</div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                 var text = "GotSmarter Badge";
+
+                      if (snapshot.val().GotSmarter == "not_celebrated"){
+                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                         $("#Celebrations").modal();
+
+                       checkCelebration.update({'GotSmarter': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#Got_Smarter').html(display);
+
+
+        });
+
+        //Badge_8_Got_Smarter
+
+        var locked_one = "";
+        locked_one = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            "                    <div class=\"middle\">\n" +
+            "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+            "                         <!--text for the hover-->\n" +
+            "                     </div>";
+        $('#locked').html(locked_one);
+
+
+        //Badge_9_Forum_Boffin
+
+var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+        Badges_for_Forums.on("value", function (snapshot) {
+
+            var counter = 0;
+            var display = "";
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+            if (counter >=5 )
+
+            {
+
+               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FforumBoffin2.png?alt=media&token=a31eff4e-d16e-4a1c-a5f6-31cd86f0c6fb\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Forum Boffin</strong> <br> Active in 1 Forum </div>\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+
+                      if (snapshot.val().ForumBoffin == "not_celebrated"){
+                       var text = "GotSmarter Badge";
+                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                        $("#Celebrations").modal();
+                       checkCelebration.update({'ForumBoffin': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#ForumBoffin').html(display);});
+
+
+ //Badge_10_Forum_Boffin
+
+
+
+    </script>
 
 <!--view all mutuals-->
 <div class="modal fade" id="viewmutualsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"

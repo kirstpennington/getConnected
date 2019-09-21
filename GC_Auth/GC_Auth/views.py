@@ -574,6 +574,11 @@ def goConnectionsOpen(request):
     if request.method == "POST":  # get data from UI
         connection_id = request.POST.get("connection_id")  # get data from UI using POST method
 
+    conn = user_methods.getNumConnecions(connection_id)
+    course = user_methods.getNumCourses(connection_id)
+    forum = user_methods.getNumForums(connection_id)
+    privacyUpdate = user_methods.getPrivacyUpdated(connection_id)
+
     # get mutual connections and check if this user is a connection
     selected_user_connections = user_methods.getUserConnectionsList(connection_id)       # get a list of the selected user's connections
     logged_in_user_connections = user_methods.getUserConnectionsList(the_user.uid)       # get the connections of the user who is logged in
@@ -632,6 +637,10 @@ def goConnectionsOpen(request):
                                                       'this_uid': connection_id,
                                                       'my_uid': the_user.uid,
                                                       'the_user_is_connection': the_user_is_connection,
+                                                      'numConnections': conn,
+                                                      'numCourses': course,
+                                                      'numForums': forum,
+                                                      'privacyUp': privacyUpdate,
                                                       'mutual_connections': connection_methods.getConnectionsInfoList(connection_methods.getMutualConnections(connection_id, the_user.uid))
                                                       })
 
