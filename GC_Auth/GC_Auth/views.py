@@ -650,6 +650,10 @@ def goContact(request):
     return render(request, 'contactus.html')
 
 
+def goTemp(request):
+    return render(request, 'Temporary.html')
+
+
 # search and filter functions
 
 def getSearchByTopic(request):
