@@ -298,6 +298,11 @@
                         class="glyphicon glyphicon-education fa-lg"></span> GetSmarter</a></li>
                 <li><a onclick="location.href='{% url 'contactus' %}'"> <span
                         class="glyphicon glyphicon-phone-alt fa-lg"></span> Contact Us</a></li>
+
+                <li><a data-toggle="modal" data-src="https://www.youtube.com/embed/IP7uGKgJL8U"
+                       data-target="#videoModal"> <span
+                        class="glyphicon glyphicon-play-circle"></span> About Us </a></li>
+
                 <li><a onclick="location.href='{% url 'temporary' %}'"> <span
                         class="glyphicon glyphicon-phone-alt fa-lg"></span> Temporary Button </a></li>
 
@@ -692,6 +697,32 @@
             <!-- Call to action -->
         </div>
     </footer>
+</div>
+
+
+<!--play video modal-->
+
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" style="position: center;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 170%; height: 150%; position: relative; right: 20%;">
+
+            <div class="modal-body">
+
+
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                <iframe width="900" height="600" src="https://www.youtube.com/embed/L-DBRD5AhJ0">
+
+                    
+                </iframe>
+
+
+            </div>
+
+        </div>
+    </div>
 </div>
 
 </body>
