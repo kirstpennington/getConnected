@@ -705,19 +705,27 @@
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true" style="position: center;">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width: 170%; height: 150%; position: relative; right: 20%;">
+        <div class="modal-content" style="width: 155%; height: 150%; position: relative; right: 20%;">
 
             <div class="modal-body">
 
 
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-                <iframe width="900" height="600" src="https://www.youtube.com/embed/L-DBRD5AhJ0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-                    
+                <br><br>
+                <iframe width="900" height="600" src="https://www.youtube.com/embed/L-DBRD5AhJ0">
                 </iframe>
 
+                <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
+
+                <button onclick="CloseIntroForm; OpenLogIn()" data-dismiss="modal" type="button">
+                    <span class="glyphicon glyphicon-log-in"></span>
+
+                    Log in
+                </button>
+            </div>
 
             </div>
 
