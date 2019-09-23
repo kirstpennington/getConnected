@@ -1450,14 +1450,17 @@
 
 
              <div>
-            <button id="disableAccBtn" style="margin-top: 80px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default">Disable Account</button>
+
             </div>
 
             </div><!--end col-->
 
+
             <div class="col-md-6" style="padding-left: 70px; padding-bottom: 30px;"><!--save button  -->
 
-                    <div class="buttonbot" style="padding-top: 150px;padding-left: 140px;">
+            <button id="disableAccBtn" style="border-color:#e83e8c; margin-left: 50px;" class="btn btn-default">Disable Account</button>
+
+                    <div class="buttonbot" style="padding-top: 140px;padding-left: 140px;">
                         {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
                             <button id="saveChangesBtn" type="submit">Save Changes</button>
                         {% else %}
