@@ -1051,7 +1051,6 @@ $(document).ready(function(){
                  myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
 
                      myforumsArray = snapshotToArrayKey(snapshot_1);
-                     alert(myforumsArray);
                      var explore_forums = firebase.database().ref().child("Forums");    // Fetching a list of all forums
 
                      explore_forums.on("value", function (snapshot) {

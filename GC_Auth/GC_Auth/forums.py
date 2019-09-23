@@ -206,8 +206,13 @@ class forum_methods:
             for forum_id in all_forums_ids:
                 if count_skip >= 3:
                     for i in range(len(top_forum_ids)):
-                        if forum_methods.getForumNumParticipants(forum_id) > forum_methods.getForumNumParticipants(
-                                top_forum_ids[i]):                              # compare which forum has more participants
+                        participants_forum = forum_methods.getForumNumParticipants(forum_id)
+                        participants_next = forum_methods.getForumNumParticipants(top_forum_ids[i])
+                        if participants_forum is None:
+                            participants_forum = 0
+                        if participants_next is None:
+                            participants_next = 0
+                        if participants_forum > participants_next:                              # compare which forum has more participants
                             top_forum_ids[i] = forum_id
                             break
                 count_skip += 1
@@ -279,9 +284,12 @@ class forum_methods:
         return False
 
     def arrayContainsValue(array, value):
-        for item in array:
-            if item == value:
-                return True
+
+        if array is not None:
+            for item in array:
+                if item == value:
+                    return True
+
         return False
 
 # UPDATE Methods

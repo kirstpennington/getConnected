@@ -114,9 +114,10 @@ class connection_methods:
         sent_ids = database.child("Users").child(uid).child("RequestsSent").shallow().get().val()       # get a list of the auto generated ids for sent logs
         sent_user_ids = []
 
-        if sent_user_ids is not None:
+        if sent_ids is not None:
             for sent_id in sent_ids:                                                                        # search through that list for the user ids of each
                 sent_user_ids.append(sent_id)
+
 
         return sent_user_ids
 
@@ -142,6 +143,7 @@ class connection_methods:
                             temp.append(r)
             else:
                 temp = remove_from_this_list
+
             return temp
 
 
@@ -191,7 +193,8 @@ class connection_methods:
         return False
 
     def arrayContainsValue(array, value):
-        for item in array:
-            if item == value:
-                return True
+        if array is not None:
+            for item in array:
+                if item == value:
+                    return True
         return False
