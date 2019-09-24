@@ -35,7 +35,12 @@ class forum_methods:
         return database.child("Forums").child(forum_id).child("ForumPic").get().val()
 
     def getForumNumParticipants(forum_id):
-        return database.child("Forums").child(forum_id).child("NumParticipants").get().val()
+        temp = database.child('Forums').child(forum_id).child('Participants').shallow().get().val()
+
+        if temp is None:
+            return 0
+        else:
+            return len(temp)
 
     def getForumCreator(forum_id):
         return database.child("Forums").child(forum_id).child(

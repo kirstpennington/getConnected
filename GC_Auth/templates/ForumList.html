@@ -1342,7 +1342,7 @@ $(document).ready(function(){
                                                                                     json_dict[forum_id] = forum_id;
 
                                                                                     updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
-                                                                                    updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the user
+                                                                                    updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the userf
 
                                                                                     json_dict[this_uid] = this_uid;
                                                                                     updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
