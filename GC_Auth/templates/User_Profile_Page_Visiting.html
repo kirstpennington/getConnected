@@ -397,7 +397,7 @@
 
         /*the text when you hover over a badge*/
         .text {
-            background-color: #ce3298;
+            background-color: #e83e8c;
             opacity: 0.8;
             color: white;
             font-size: 16px;
@@ -1078,7 +1078,7 @@
                                          style="width:40px;height:40px; position: absolute; top:80px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
                                          title="" class="badges  "/>
                                 </a>
-                                <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
+                                <hr style="width: 210%; color: #e83e8c; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
                             {% else %}
                                 <a hidden disabled="true" onclick="location.href='{% url 'goBadges' %}' ">
 
@@ -1087,7 +1087,7 @@
                                          style="width:40px;height:40px; position: absolute; top:80px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
                                          title="" class="badges  "/>
                                 </a>
-                                <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
+                                <hr style="width: 210%; color: #e83e8c; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
                             {% endif %}
 
 
@@ -1152,8 +1152,8 @@
                                 <!-- hidden field that stores the id of the entity  -->
                                 <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                 <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family: serif; font-size: small; color: black">
-                                    connections &nbsp;<span class="label label-default"
-                                                                  style="color: white"> {{ numConnections }} </span>
+                                    connections: &nbsp;<span
+                                                                  > {{ numConnections }} </span>
                                 </h8>
                                 <br>
 
@@ -1511,7 +1511,7 @@
             <div style="height:10px;"><br></div>
 
             <h5 class="titlefont" style="font-weight: bold; margin-left: 4px"><span
-                    class="fa fa-comments-o fa-lg"></span>&nbsp;Top Forums</h5>
+                    class="fa fa-comments-o fa-lg"></span>&nbsp;Forums</h5>
             <div style="height:10px;"><br></div>
 
             <!-- My Forums: Item  -->
@@ -1551,22 +1551,12 @@
                             </div>
                             <!-- card line -->
 
-                            <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                            <hr style="width: 80%; color: #e83e8c; height: 2px; background-color:#e83e8c; margin-top: 5px"/>
 
                             <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}"
                                    hidden style="color: white;">
                             <!-- Open forum button -->
-                            {% if forum_names == "Forum Private" %}
-                                <button disabled onclick="location.href='{% url 'forumsopen' %}'"
-                                        style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
-                                        type="submit" value="goForumsOpen">OPEN
-                                    <i
-                                            class="fa fa-angle-double-right"></i></button>
-                            {% else %}
-                                <button style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
-                                        type="submit" value="goForumsOpen">OPEN
-                                    <i class="fa fa-angle-double-right"></i></button>
-                            {% endif %}
+
                         </div><!-- /card-hovercard -->
                     </div>
                 </form>

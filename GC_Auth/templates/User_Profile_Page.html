@@ -1082,7 +1082,7 @@
                                     <!--Settings Bar-->
                                     <button onclick="location.href='{% url 'goSettings' %}'" data-toggle="tooltip"
                                             title="Settings" data-placement="right"
-                                            style="background-color:hotpink; border-color: transparent; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                            style="background-color:#e83e8c; border-color: transparent; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
                                             class="btn btn-primary pull-right">
                                         <a href="#"><i
                                                 class=" fa fa-gear" style="color: white"></i></a>
@@ -1128,7 +1128,7 @@
                                          style="width:40px;height:40px; position: absolute; top:100px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
                                          title="" class="badges  "/>
                                 </a>
-                                <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
+                                <hr style="width: 210%; color: #e83e8c; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
                             {% else %}
                                 <a hidden disabled="true" onclick="location.href='{% url 'goBadges' %}' ">
 
@@ -1137,7 +1137,7 @@
                                          style="width:40px;height:40px; position: absolute; top:100px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
                                          title="" class="badges  "/>
                                 </a>
-                                <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
+                                <hr style="width: 210%; color: #e83e8c; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
                             {% endif %}
 
 
@@ -1207,8 +1207,8 @@
                                 <!-- hidden field that stores the id of the entity  -->
                                 <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                 <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family: serif; font-size: small; color: black">
-                                    connections &nbsp;<span class="label label-default"
-                                                                  style="color: white"> {{ numConnections }} </span>
+                                    connections: &nbsp;<span
+                                                                > {{ numConnections }} </span>
                                 </h8>
                                 <br>
 
@@ -1821,7 +1821,7 @@
                         "                        </div>\n" +
                         "                        <!-- card line -->\n" +
                         "\n" +
-                        "                        <hr style=\"width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px\"/>\n" +
+                        "                        <hr style=\"width: 80%; color: ; height: 2px; background-color:#e83e8c; margin-top: 5px\"/>\n" +
                         "\n" +
                         "                        <input type=\"hidden\" class=\"forum_id\" id=\"forum_id\" name=\"forum_id\" value=\""+  forum_ids  +"\" hidden style=\"color: white;\">\n" +
                         "                        <!-- Open forum button -->\n" +
