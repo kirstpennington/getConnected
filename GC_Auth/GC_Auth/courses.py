@@ -80,7 +80,52 @@ class course_methods:
     def getCourseHearted(uid, course_id):
         return database.child("Users").child(uid).child("Courses").child(course_id).child('hearted').get().val()
 
+    def getCourseDescription(course_id):
+        return database.child("Courses").child(course_id).child("Description").get().val()
 
+    def getCourseStartDate(course_id):
+        return database.child("Courses").child(course_id).child("StartDate").get().val()
+
+    def getCourseRegClosesDate(course_id):
+        return database.child("Courses").child(course_id).child("RegClosesDate").get().val()
+
+    def getCourseLength(course_id):
+        return database.child("Courses").child(course_id).child("Length").get().val()
+
+    def getCourseEffort(course_id):
+        return database.child("Courses").child(course_id).child("Effort").get().val()
+
+    def getCourseDetailsList(uid, courses_id_list):
+        course_image = []
+        course_name = []
+        course_description = []
+        course_start = []
+        course_topics = []
+        course_rating = []
+        reg_closes = []
+        course_length = []
+        course_effort = []
+        course_url = []
+        course_id = []
+
+        if courses_id_list is not None:
+            for id in courses_id_list:
+                course_id.append(id)
+                course_name.append(course_methods.getCourseName(id))
+                course_image.append(course_methods.getCoursePicture(id))
+                course_url.append(course_methods.getCourseURL(id))
+                course_description.append(course_methods.getCourseDescription(id))
+                course_start.append(course_methods.getCourseStartDate(id))
+                course_topics.append(course_methods.getCoursesTopicsString(id))
+                course_rating.append(course_methods.getCourseRecommended(id))
+                reg_closes.append(course_methods.getCourseRegClosesDate(id))
+                course_length.append(course_methods.getCourseLength(id))
+                course_effort.append(course_methods.getCourseEffort(id))
+
+
+        # return a combination of all lists
+        combined_list = zip(course_id, course_image, course_name, course_description, course_start, course_topics, course_rating, reg_closes, course_length, course_effort, course_url)
+        return combined_list
 
     def getCoursesInfoList(uid, courses_id_list):
         # get data from each course for the user and add them to separate arrays

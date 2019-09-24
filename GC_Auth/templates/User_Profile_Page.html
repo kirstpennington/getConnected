@@ -1614,7 +1614,7 @@
                     var db = firebase.database().ref('Forums');
                     blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
                     blockedUsersRef.once('value', function(snapshot) {
-                        blockedUsers = snapshotToArray(snapshot);
+                        blockedUsers = snapshotToArrayKey(snapshot);
 
                         if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
                             forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
@@ -1634,7 +1634,17 @@
                                     this.hideDiv(hide_block);
                                     //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
 
-                                    $("#modalForumJoined").modal('show');
+                                    getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
+                                    getNumParticipantsRef.once('value', function(snapshot) {
+                                        var numParticipants = snapshot.val();              // get the current number of participants
+
+                                        json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
+
+                                        reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
+                                        reduceNumParticipantsRef.update(json_dict);         // update database
+
+                                        $("#modalForumJoined").modal('show');
+                                    });
 
                                 }
                                 else{                                                       // if the forum is private
@@ -1662,40 +1672,51 @@
                 }
 
                 // hides the div with the specified id
-                function hideDiv(div_name){
-                                                                    document.getElementById(div_name).hidden = true;     // remove forum from all forums
-
-                                                                }
+                function hideDiv(div_name) {
+                    document.getElementById(div_name).hidden = true;     // remove forum from all forums
+                }
 
                 // get a snapshot of a list of keys from firebase and convert it to an array
                 function snapshotToArray(snapshot) {
-                                                                    let returnArr = [];
+                    let returnArr = [];
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+                        returnArr.push(item);
+                    });
 
-                                                                    snapshot.forEach(childSnapshot => {
-                                                                        let item = childSnapshot.val();
-                                                                        item.key = childSnapshot.key;
-                                                                        returnArr.push(item);
-                                                                    });
+                    return returnArr;
+                }
 
-                                                                    return returnArr;
-                                                                }
+                // get a snapshot of a list of keys from firebase and convert it to an array
+                function snapshotToArrayKey(snapshot) {
+                    let returnArr = [];
+
+                    snapshot.forEach(childSnapshot => {
+                        //let item = childSnapshot.val();
+                        var key = childSnapshot.key;
+                        returnArr.push(key);
+                    });
+
+                    return returnArr;
+                }
 
                 // returns true if the array contains the value
                 function arrayContainsValue(array, value){
-                                                                    if (array.length > 0)
-                                                                    {
-                                                                        for (let i = 0; i < array.length; i++)
-                                                                        {
-                                                                            if (array[i] == value){
-                                                                                return true;
-                                                                            }
-                                                                        }
-                                                                        return false;
-                                                                    }
-                                                                    else{
-                                                                        return false;
-                                                                    }
-                                                                }
+                    if (array.length > 0)
+                    {
+                        for (let i = 0; i < array.length; i++)
+                        {
+                            if (array[i] == value){
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                    else{
+                        return false;
+                    }
+                }
 
             </script>
 

@@ -386,7 +386,8 @@ def courses(request):
                                             'email': the_user.email,
                                             'password': the_user.password,
                                             'my_course_ids': convertArrayToString(the_user.coursesInfoList),
-                                            'all_courses_str': convertArrayToString(all_courses)})
+                                            'all_courses_str': convertArrayToString(all_courses),
+                                            'course_detail_list': course_methods.getCourseDetailsList(the_user.uid, all_courses)})
 
 
 def goDirectMessaging(request):

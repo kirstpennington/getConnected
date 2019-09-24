@@ -1353,7 +1353,7 @@ $(document).ready(function(){
 
                                                                                      getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
                                                                                       getNumParticipantsRef.once('value', function(snapshot) {
-                                                                                            numParticipants = snapshot.val();              // get the current number of participants
+                                                                                            var numParticipants = snapshot.val();              // get the current number of participants
 
                                                                                             json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
 
