@@ -2254,7 +2254,50 @@ var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid 
 
  //Badge_10_Forum_Boffin
 
+var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
 
+        Badges_for_Badges_Private.on("value", function (snapshot) {
+
+            var isPrivate = snapshot.val().privacyUpdated;
+            var display_1 = "";
+
+
+            if (isPrivate == "yes" )
+
+            {
+
+               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                   "                     <!--text for the hover-->\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+
+                      if (snapshot.val().SuperSecurity == "not_celebrated"){
+                       var text = "Super Security Badge";
+                       $('#Congrats_Pop_Up').html("Super Security Badge");
+                        $("#Celebrations").modal();
+                       checkCelebration.update({'SuperSecurity': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#SuperSecurity').html(display_1);});
 
     </script>
 {% comment %}
