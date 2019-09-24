@@ -33,9 +33,8 @@
     <link rel="stylesheet" type="text/css" href="../GC_Auth/GC_Auth/static/GC_Auth/loginstyle.css">
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>import TimeAgo from 'javascript-time-ago'</script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -57,11 +56,11 @@
         }
 
         /* specify the font for the page*/
-      body {
-          font-family: 'Roboto', sans-serif;
+        body {
+            font-family: 'Roboto', sans-serif;
 
 
-      }
+        }
 
         /*icon for bell*/
         .glyphicon-bell {
@@ -112,7 +111,6 @@
         }
 
 
-
         /*save changes button hover effects*/
         button:hover {
             -ms-transform: scale(1); /* IE 9 */
@@ -128,7 +126,7 @@
             border-radius: 8px;
             color: #666666;
             background-color: white;
-            border: 2px solid grey;/*#e83e8c*/
+            border: 2px solid grey; /*#e83e8c*/
             display: inline-block;
             padding-top: 3px;
             padding-bottom: 3px;
@@ -142,8 +140,11 @@
             outline: none;
         }
 
-        .closer button{
-            position: absolute; right: 7% ; top: 25%; font-size: 10px;
+        .closer button {
+            position: absolute;
+            right: 7%;
+            top: 25%;
+            font-size: 10px;
 
         }
 
@@ -262,8 +263,6 @@
     <style>
 
 
-
-
         /*footer logo*/
         footer img {
 
@@ -345,7 +344,7 @@
 
         }
 
-        </style>
+    </style>
 
     <!--forum content styles-->
     <style>
@@ -354,7 +353,7 @@
             background-color: #eeeeee;
         }
 
-       .forumcontent .h7 {
+        .forumcontent .h7 {
             font-size: 0.8rem;
         }
 
@@ -362,11 +361,12 @@
             margin-top: 0.97rem;
         }
 
-       @media (min-width: 992px) {
+        @media (min-width: 992px) {
             .forumcontent .gedf-main {
                 padding-left: 4rem;
                 padding-right: 4rem;
             }
+
             .forumcontent .gedf-card {
                 margin-bottom: 2.77rem;
             }
@@ -379,20 +379,21 @@
         }
 
         /*style for each message posted*/
-        .messagePost{
+        .messagePost {
             border: solid lightgrey 1px;
             border-radius: 10px;
             padding-left: 4px;
             padding-right: 2px;
             padding-top: 4px;
-            box-shadow: 0 2px 2px 0 ;
+            box-shadow: 0 2px 2px 0;
 
         }
+
         /*makes the item stay*/
         .sticky {
-          position: -webkit-sticky;
-          position: sticky;
-          top: 0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
         }
 
 
@@ -652,7 +653,8 @@
 
                                     <button onclick="location.href='{% url 'forumsopen' %}'"
                                             style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
-                                            type="submit" onclick="location.href='{% url 'forumsopen' %}'">{{ forum_names }}
+                                            type="submit"
+                                            onclick="location.href='{% url 'forumsopen' %}'">{{ forum_names }}
                                         <i
                                                 class="fa fa-angle-double-right"></i></button>
                                     <div hidden id="forum_id">{{ forum_ids }}</div>
@@ -672,6 +674,41 @@
 
             <!--middle item-->
             <div class="col-md-6 gedf-main">
+                {% if forum_creator != this_uid %}
+                    <div class="dropdownmenu"
+                         style="display: inline-block;position: relative; left: 94%; top: 10% ; color: #666666; ">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                            <!--more options menu-->
+                            <span class="glyphicon glyphicon-option-vertical"
+                                  style="color: lightgrey;"></span></a>
+
+                            <ul class="dropdown-menu">
+
+
+                                <li><a id="btn-confirm">Leave Forum <span
+                                        class="glyphicon glyphicon glyphicon-remove-circle pull-right"></span></a>
+                                </li>
+                                <li class="divider"></li>
+
+                                <li><a id="reportForumBtn">Report Forum<span
+                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    </div> <!--end of dropdown-->
+                {% endif %}
+
+
+
+
+
+
+
+
                 <div class="makePost" style="border: 1px hotpink;">
                     <div class="row"><!--table for person info-->
                         <div class="col-sm-1">
@@ -679,6 +716,7 @@
                                 <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
 
                             </div>
+
 
                         </div>
                         <div class="col-sm-11">
@@ -698,26 +736,23 @@
                     </div>
 
 
-
                     <!-- leave forum button-->
 
-                    {% if forum_creator != this_uid %} <!-- only allow a user to leave a forum if they are not the creator of the forum -->
-                        <div>
-                            <button class="btn pull-right" style="margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" id="reportForumBtn"><span class="glyphicon glyphicon-flag"></span></button>
-                            <button class="btn pull-right" style="margin-right:10px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" id="btn-confirm">Leave Forum</button>
-                        </div>
+                    {% if forum_creator != this_uid %}
+
                     {% else %} <!-- only the forum creator can access forum settings -->
                         <form action="/goForumSettings/" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
+                            {% csrf_token %}
+                            <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
                             <div>
-                                    <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
-                                            title="ForumSettings" data-placement="right"
-                                            style="margin-right:10px; background-color:hotpink; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset " type="submit"
-                                            class="btn btn-primary pull-right">
-                                        <a href="#"><i
-                                                class=" fa fa-gear" style="color: white"></i></a>
-                                    </button>
+                                <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
+                                        title="ForumSettings" data-placement="right"
+                                        style="margin-right:10px; background-color:hotpink; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                        type="submit"
+                                        class="btn btn-primary pull-right">
+                                    <a href="#"><i
+                                            class=" fa fa-gear" style="color: white"></i></a>
+                                </button>
                             </div>
                         </form>
                     {% endif %}
@@ -758,13 +793,13 @@
                 <hr style="width: 100%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px">
                 <br>
                 <!-- Post /////-->
-<br><br><!--spaces between posts-->
+                <br><br><!--spaces between posts-->
 
 
-    <!-- End of Post /////-->
+                <!-- End of Post /////-->
                 <div id="comment"></div>
                 <!--- actual Posted message block-->
-              <div class="messagePost">
+                <div class="messagePost">
                     <div class="card gedf-card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
@@ -864,49 +899,46 @@
                         </div>
 
 
+                    </div>
+                </div>
+
+                <br><br><!--spaces between posts-->
 
 
-
-    </div>
-</div>
-
-                    <br><br><!--spaces between posts-->
-
-
-    <!-- End of Post /////-->
-
-
+                <!-- End of Post /////-->
 
 
             </div>
             <!--rhs item-->
             <div class="col-md-3">
-                <div class="card gedf-card" >
+                <div class="card gedf-card">
 
-                            {% load staticfiles %}
+                    {% load staticfiles %}
 
-                          <img src="{{ forum_pic }}"  style="width:60%; height: 600%;position: absolute;left:15%;">
+                    <img src="{{ forum_pic }}" style="width:60%; height: 600%;position: absolute;left:15%;">
 
                 </div>
 
                 <div class="form" style="border: 1px solid grey; position: absolute; top: 360%; left: 15%;background-color: white; width: 207px;
                 height: 150px; ">
 
-                     <div style="top: 2px; margin-left: 80%">
-                                <h8><span class="label label-default"><span
-                                        class="fa fa-users"> </span>{{ num_participants }}</span></h8>
-                                <div style="height:5px;"><br></div>
-                            </div>
+                    <div style="top: 2px; margin-left: 80%">
+                        <h8><span class="label label-default"><span
+                                class="fa fa-users"> </span>{{ num_participants }}</span></h8>
+                        <div style="height:5px;"><br></div>
+                    </div>
 
-                     <div class= "text-center" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">{{ forum_name }}
-                            </div>
+                    <div class="text-center"
+                         style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">{{ forum_name }}
+                    </div>
 
 
-                            <!-- forum tags -->
-                            <span class="badge badge-pill badge-dark" style="font-size: 11px; position: absolute;left: 10%;" >{{ forum_topics }}</span>
-                           <br>
+                    <!-- forum tags -->
+                    <span class="badge badge-pill badge-dark"
+                          style="font-size: 11px; position: absolute;left: 10%;">{{ forum_topics }}</span>
+                    <br>
 
-                     <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                    <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
                     <p style="color: #8c8c8c; padding-left: 2px;text-align: center;">{{ forum_description }}</p>
 
                 </div>
@@ -929,77 +961,77 @@
 <script>
 
     const MONTH_NAMES = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
 
-function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-  const day = date.getDate();
-  const month = MONTH_NAMES[date.getMonth()];
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  let minutes = date.getMinutes();
+    function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+        const day = date.getDate();
+        const month = MONTH_NAMES[date.getMonth()];
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        let minutes = date.getMinutes();
 
-  if (minutes < 10) {
-    // Adding leading zero to minutes
-    minutes = `0${ minutes }`;
-  }
+        if (minutes < 10) {
+            // Adding leading zero to minutes
+            minutes = `0${minutes}`;
+        }
 
-  if (prefomattedDate) {
-    // Today at 10:20
-    // Yesterday at 10:20
-    return `${ prefomattedDate } at ${ hours }:${ minutes }`;
-  }
+        if (prefomattedDate) {
+            // Today at 10:20
+            // Yesterday at 10:20
+            return `${prefomattedDate} at ${hours}:${minutes}`;
+        }
 
-  if (hideYear) {
-    // 10. January at 10:20
-    return `${ day }. ${ month } at ${ hours }:${ minutes }`;
-  }
+        if (hideYear) {
+            // 10. January at 10:20
+            return `${day}. ${month} at ${hours}:${minutes}`;
+        }
 
-  // 10. January 2017. at 10:20
-  return `${ day }. ${ month } ${ year }. at ${ hours }:${ minutes }`;
-}
-
-
-// --- Main function
-function timeAgo(dateParam) {
-
-  if (!dateParam) {
-    return null;
-  }
-
-  const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-  const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-  const today = new Date();
-  const yesterday = new Date(today - DAY_IN_MS);
-  const seconds = Math.round((today - date) / 1000);
-  const minutes = Math.round(seconds / 60);
-  const isToday = today.toDateString() === date.toDateString();
-  const isYesterday = yesterday.toDateString() === date.toDateString();
-  const isThisYear = today.getFullYear() === date.getFullYear();
+        // 10. January 2017. at 10:20
+        return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+    }
 
 
-  if (seconds < 5) {
-    return 'now';
-  } else if (seconds < 60) {
-    return `${ seconds } seconds ago`;
-  } else if (seconds < 90) {
-    return 'about a minute ago';
-  } else if (minutes < 60) {
-    return `${ minutes } minutes ago`;
-  } else if (isToday) {
-    return getFormattedDate(date, 'Today'); // Today at 10:20
-  } else if (isYesterday) {
-    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-  } else if (isThisYear) {
-    return getFormattedDate(date, false, true); // 10. January at 10:20
-  }
+    // --- Main function
+    function timeAgo(dateParam) {
 
-  return getFormattedDate(date); // 10. January 2017. at 10:20
-}
+        if (!dateParam) {
+            return null;
+        }
 
-;
+        const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+        const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+        const today = new Date();
+        const yesterday = new Date(today - DAY_IN_MS);
+        const seconds = Math.round((today - date) / 1000);
+        const minutes = Math.round(seconds / 60);
+        const isToday = today.toDateString() === date.toDateString();
+        const isYesterday = yesterday.toDateString() === date.toDateString();
+        const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+        if (seconds < 5) {
+            return 'now';
+        } else if (seconds < 60) {
+            return `${seconds} seconds ago`;
+        } else if (seconds < 90) {
+            return 'about a minute ago';
+        } else if (minutes < 60) {
+            return `${minutes} minutes ago`;
+        } else if (isToday) {
+            return getFormattedDate(date, 'Today'); // Today at 10:20
+        } else if (isYesterday) {
+            return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+        } else if (isThisYear) {
+            return getFormattedDate(date, false, true); // 10. January at 10:20
+        }
+
+        return getFormattedDate(date); // 10. January 2017. at 10:20
+    }
+
+    ;
 
 </script>
 
@@ -1007,203 +1039,196 @@ function timeAgo(dateParam) {
 
     var database_msgs = firebase.database().ref().child("Forums/" + '{{forum_id}}' + "/Messages");/*Messages*/
 
-   // window.alert('{{forum_id}}');
+    // window.alert('{{forum_id}}');
 
     $('#btnGetMessage').click(function () {
 
-                /*Fetching time when items were pushed*/
+        /*Fetching time when items were pushed*/
 
-                var d = new Date(),
-                    minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
-                    hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
-                    ampm = d.getHours() >= 12 ? 'pm' : 'am',
-                    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-                dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + '' + minutes ;
-                /*dateTime = hours + ':' + minutes + ampm;*/
+        var d = new Date(),
+            minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+            hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+            ampm = d.getHours() >= 12 ? 'pm' : 'am',
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        dateTime = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + '' + minutes;
+        /*dateTime = hours + ':' + minutes + ampm;*/
 
-                var post_message = document.getElementById("post_msg").value;
-                var mesaage_title = document.getElementById("Title_element").value;
-                document.getElementById("post_msg").value = "";
-                document.getElementById("Title_element").value = "";
-
-
-
-                var date_for_post = Date.now();
-
-               /*Changing items in the db*/
-                writeUserData(date_for_post, "{{this_uid}}", post_message,"0","0","{{ username }}","{{ profilePic }}",mesaage_title);
-                date_for_post;
-                post_message;
-                "{{this_uid}}";
-                "0";
-                "0";
-                "{{ username }}";
-                "{{ profilePic }}";
-                Title_element;
-            });
-
-            /*Whenever items changes (added, modified, deleted) in database, this event is called*/
-
-            database_msgs.on('value', function (snapshot) {
-
-                renderUI(snapshot.val());
+        var post_message = document.getElementById("post_msg").value;
+        var mesaage_title = document.getElementById("Title_element").value;
+        document.getElementById("post_msg").value = "";
+        document.getElementById("Title_element").value = "";
 
 
+        var date_for_post = Date.now();
 
-            });
+        /*Changing items in the db*/
+        writeUserData(date_for_post, "{{this_uid}}", post_message, "0", "0", "{{ username }}", "{{ profilePic }}", mesaage_title);
+        date_for_post;
+        post_message;
+        "{{this_uid}}";
+        "0";
+        "0";
+        "{{ username }}";
+        "{{ profilePic }}";
+        Title_element;
+    });
+
+    /*Whenever items changes (added, modified, deleted) in database, this event is called*/
+
+    database_msgs.on('value', function (snapshot) {
+
+        renderUI(snapshot.val());
 
 
+    });
 
 
-            /*Push time entered and Message entered from textboxes, creates entry in firebase
-            * push gives a unique key*/
+    /*Push time entered and Message entered from textboxes, creates entry in firebase
+    * push gives a unique key*/
 
-            function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic,Title_element) {/*Pushes to current users*/
+    function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic, Title_element) {/*Pushes to current users*/
 
 //window.alert(Title_element);
 
-              var created_id =  database_msgs.push();
-              created_id.set({
-                    DateTime: message_time,
-                    sender: messageFrom,
-                    text: actual_message,
-                    likes:likes_num,
-                    comments_num:comments_num_default,
-                    sender_name: username,
-                    sender_profilePic: profilePic,
-                    title: Title_element
+        var created_id = database_msgs.push();
+        created_id.set({
+            DateTime: message_time,
+            sender: messageFrom,
+            text: actual_message,
+            likes: likes_num,
+            comments_num: comments_num_default,
+            sender_name: username,
+            sender_profilePic: profilePic,
+            title: Title_element
 
-                });
-
-
-              /*Saving_id*/
-              var hope = String(created_id);
-              var result = hope.substring(hope.lastIndexOf("/") + 1);
-              var save_id = firebase.database().ref().child("Forums/" + '{{forum_id}}'+ "/Messages/"+result);/*Messages*/
-                save_id.update({
-                    post_id: result
-                });
-
-            }
+        });
 
 
+        /*Saving_id*/
+        var hope = String(created_id);
+        var result = hope.substring(hope.lastIndexOf("/") + 1);
+        var save_id = firebase.database().ref().child("Forums/" + '{{forum_id}}' + "/Messages/" + result);/*Messages*/
+        save_id.update({
+            post_id: result
+        });
 
-            /*Always refreshing data being loaded*/
-            function renderUI(obj) {
-
-                var html = '';
-                var keys = Object.keys(obj);
-                for (var i = keys.length - 1; i >= 0; i--) {
-
-
-                    var display_time = obj[keys[i]].DateTime;
-                    display_time = Number(display_time); // cast it to a Number
-                    var ts_display = timeAgo(display_time);
-
-                    var commects_object = obj[keys[i]].comments;
-
-                    var profile = "";
-
-                    var database_userdetails = firebase.database().ref().child("Users/" + obj[keys[i]].sender);/*Current users account*/
-                    var username_name = "Nothing" ;
-
-                    /*Name and Picture*/
-                    database_userdetails.on("value",function(snapshot) {
-                        var username_check;
-                        username_check =  snapshot.val().Name;
-                        username_name = username_check;
-                    });
-
-{% comment %}
-                        var database_counter = firebase.database().ref().child("Forums/CTIB01/Messages/"+obj[keys[i]].post_id);
-{% endcomment %}
-                        var num = getComments_num(obj[keys[i]].post_id);
-{% comment %}
-                        database_counter.update({'comments_num': num});
-{% endcomment %}
-
-                        var num_likes = getLikes_num(obj[keys[i]].post_id);
-{% comment %}
-                        database_counter.update({'likes': num});
-{% endcomment %}
+    }
 
 
+    /*Always refreshing data being loaded*/
+    function renderUI(obj) {
 
-                    /*Counter for comments*/
+        var html = '';
+        var keys = Object.keys(obj);
+        for (var i = keys.length - 1; i >= 0; i--) {
 
 
+            var display_time = obj[keys[i]].DateTime;
+            display_time = Number(display_time); // cast it to a Number
+            var ts_display = timeAgo(display_time);
 
-                    html += "<div class= \"messagePost\"> " +
-                        " <div class=\"card gedf-card\" >" +
-                        "<div class=\"card-header\">" +
-                        " <div class=\"d-flex justify-content-between align-items-center\">" +
-                        " <div class=\"d-flex justify-content-between align-items-center\">\n" +
-                        "                                <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\"> <!--styling allows for the image and text to be next to one another-->\n" +
-                        "                                    <img class=\"rounded-circle\" width=\"45\" src=\""+ obj[keys[i]].sender_profilePic +"\" alt=\"\">" +
-                        "</div>\n" +
-                        "                                <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
-                        "                                    <div class=\"h5 m-0\"> <strong> " + obj[keys[i]].sender_name + "</strong>&nbsp&nbsp<i onclick=\"Delete_post(\'"+ obj[keys[i]].post_id + "\')\" class=\"fa fa-close\"></i></div>\n" +
-                        "</div>\n" +
-                        "\n" +
-                        "                        <div class=\"dropdownmenu\" style=\"display: inline-block;position: relative; left: 71%;color: #666666; \">\n" +
-                        "                                 <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-                        " <!--more options menu-->\n" +
-                        "                                        <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: lightgrey;\"></span></a>\n" +
-                        "\n" +
-                        "                                        <ul class=\"dropdown-menu\" >\n" +
-                        "                                            <li><a>Direct Message <span\n" +
-                        "                                                    class=\"glyphicon glyphicon glyphicon-comment pull-right\"></span></a></li>\n" +
-                        "                                            <li class=\"divider\"></li>" +
-                        "<li><a>Report<span\n" +
-                        "                                                    class=\"\tglyphicon glyphicon-warning-sign pull-right\"></span></a></li>\n" +
-                        "                                        </ul>\n" +
-                        "                                    </li>\n" +
-                        "                            </div>\n" +
-                        "\n" +
-                        "                            </div>\n" +
-                        "                        </div>" +
-                        " </div>\n" +
-                        "                    <br>\n" +
-                        "                    <div class=\"card-body\">\n" +
-                        "                        <div style=\"width: 35%;height: 20px;color: darkgrey;border-radius: 5px;”\n class=\"text-muted h7 mb-2\"> <i class=\"fa fa-clock-o\"></i> " + ts_display + "</div> <!--time the message had been sent-->\n" +
-                        "\n" +
-                        "                            <h5 style=\"color:#e83e8c;\">"+ obj[keys[i]].title +"</h5>\n" +
-                        "                        <p class=\"card-text\">\n" +
-                        "                            " + obj[keys[i]].text + "\n" +
-                        "                        </p>"  +
-                        "                             <hr>\n</div>\n" +
-                        "                    <div  style=\"text-align: right; \"> <!--styling ensures the like and comment are next to one another-->\n" +
-                        "                         <p onclick=\"Increase_Likes(\'"+ obj[keys[i]].post_id  +"\')\" style = \"color: #e83e8c;display: inline-block;vertical-align: top;\">" + num_likes + "<span class=\" glyphicon glyphicon-thumbs-up\" style = \"color: #e83e8c; \"></span>" +
-                        "</p> " +
-                        "                        <p style = \"color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;\">" + getComments_num(obj[keys[i]].post_id) + "<span class=\"<p> </p> glyphicon glyphicon glyphicon-comment\" style = \"color: #e83e8c; \"></span></p>\n" +
-                        "</div> <div class=\"container\">\n" +
-                        "\n" +
-                        "  <!--<button type=\"button\" class=\"btn\">Show</button>-->\n" +
-                        "\n" +
-                        "\n" +
-                        "            <div class=\"\"> <!--everthing inside this div is in the collapsible element-->\n" +
-                        "\n" +
-                        "\n" +
-                        "                <ul>\n" +
-                        "\n" +
-                        "\n" +
-                        "                                 "+ Reply_list(obj[keys[i]].post_id)+ " \n" +
-                        "                                <!--Footer of notification drop down-->\n" +
-                        "                                 <div><a id=\"\"><textarea   id=\"" + obj[keys[i]].post_id + "\" placeholder=\"Reply to this message?\"  style=\"width: 35%;height: 20px;border-radius: 5px;\" ></textarea></a></div>\n" +
-                        "\n" +
-                        "                                <!--post button-->\n" +
-                        "                                    <button class=\"buttonbot2\"  onclick=\"saveComment(\'" + obj[keys[i]].post_id  + "\')\" type=\"button\" ><strong>Reply</strong></button>\n" +
+            var commects_object = obj[keys[i]].comments;
 
-                        "\n" +
-                        "\n" +
-                        "                            </ul></div>\n" +
-                        "                        </div> <!--Dropdown menu Notification--></div></div> <br><br>" +
-                        "{{ ProfilePic }}";
+            var profile = "";
 
-                }
-                $('#comment').html(html);
-            }
+            var database_userdetails = firebase.database().ref().child("Users/" + obj[keys[i]].sender);/*Current users account*/
+            var username_name = "Nothing";
+
+            /*Name and Picture*/
+            database_userdetails.on("value", function (snapshot) {
+                var username_check;
+                username_check = snapshot.val().Name;
+                username_name = username_check;
+            });
+
+            {% comment %}
+                                    var database_counter = firebase.database().ref().child("Forums/CTIB01/Messages/"+obj[keys[i]].post_id);
+            {% endcomment %}
+            var num = getComments_num(obj[keys[i]].post_id);
+            {% comment %}
+                                    database_counter.update({'comments_num': num});
+            {% endcomment %}
+
+            var num_likes = getLikes_num(obj[keys[i]].post_id);
+            {% comment %}
+                                    database_counter.update({'likes': num});
+            {% endcomment %}
+
+
+            /*Counter for comments*/
+
+
+            html += "<div class= \"messagePost\"> " +
+                " <div class=\"card gedf-card\" >" +
+                "<div class=\"card-header\">" +
+                " <div class=\"d-flex justify-content-between align-items-center\">" +
+                " <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                "                                <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\"> <!--styling allows for the image and text to be next to one another-->\n" +
+                "                                    <img class=\"rounded-circle\" width=\"45\" src=\"" + obj[keys[i]].sender_profilePic + "\" alt=\"\">" +
+                "</div>\n" +
+                "                                <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
+                "                                    <div class=\"h5 m-0\"> <strong> " + obj[keys[i]].sender_name + "</strong>&nbsp&nbsp<i onclick=\"Delete_post(\'" + obj[keys[i]].post_id + "\')\" class=\"fa fa-close\"></i></div>\n" +
+                "</div>\n" +
+                "\n" +
+                "                        <div class=\"dropdownmenu\" style=\"display: inline-block;position: relative; left: 71%;color: #666666; \">\n" +
+                "                                 <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                " <!--more options menu-->\n" +
+                "                                        <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: lightgrey;\"></span></a>\n" +
+                "\n" +
+                "                                        <ul class=\"dropdown-menu\" >\n" +
+                "                                            <li><a>Direct Message <span\n" +
+                "                                                    class=\"glyphicon glyphicon glyphicon-comment pull-right\"></span></a></li>\n" +
+                "                                            <li class=\"divider\"></li>" +
+                "<li><a>Report<span\n" +
+                "                                                    class=\"\tglyphicon glyphicon-warning-sign pull-right\"></span></a></li>\n" +
+                "                                        </ul>\n" +
+                "                                    </li>\n" +
+                "                            </div>\n" +
+                "\n" +
+                "                            </div>\n" +
+                "                        </div>" +
+                " </div>\n" +
+                "                    <br>\n" +
+                "                    <div class=\"card-body\">\n" +
+                "                        <div style=\"width: 35%;height: 20px;color: darkgrey;border-radius: 5px;”\n class=\"text-muted h7 mb-2\"> <i class=\"fa fa-clock-o\"></i> " + ts_display + "</div> <!--time the message had been sent-->\n" +
+                "\n" +
+                "                            <h5 style=\"color:#e83e8c;\">" + obj[keys[i]].title + "</h5>\n" +
+                "                        <p class=\"card-text\">\n" +
+                "                            " + obj[keys[i]].text + "\n" +
+                "                        </p>" +
+                "                             <hr>\n</div>\n" +
+                "                    <div  style=\"text-align: right; \"> <!--styling ensures the like and comment are next to one another-->\n" +
+                "                         <p onclick=\"Increase_Likes(\'" + obj[keys[i]].post_id + "\')\" style = \"color: #e83e8c;display: inline-block;vertical-align: top;\">" + num_likes + "<span class=\" glyphicon glyphicon-thumbs-up\" style = \"color: #e83e8c; \"></span>" +
+                "</p> " +
+                "                        <p style = \"color: #e83e8c; display: inline-block;padding-left: 10px;padding-right: 10px;\">" + getComments_num(obj[keys[i]].post_id) + "<span class=\"<p> </p> glyphicon glyphicon glyphicon-comment\" style = \"color: #e83e8c; \"></span></p>\n" +
+                "</div> <div class=\"container\">\n" +
+                "\n" +
+                "  <!--<button type=\"button\" class=\"btn\">Show</button>-->\n" +
+                "\n" +
+                "\n" +
+                "            <div class=\"\"> <!--everthing inside this div is in the collapsible element-->\n" +
+                "\n" +
+                "\n" +
+                "                <ul>\n" +
+                "\n" +
+                "\n" +
+                "                                 " + Reply_list(obj[keys[i]].post_id) + " \n" +
+                "                                <!--Footer of notification drop down-->\n" +
+                "                                 <div><a id=\"\"><textarea   id=\"" + obj[keys[i]].post_id + "\" placeholder=\"Reply to this message?\"  style=\"width: 35%;height: 20px;border-radius: 5px;\" ></textarea></a></div>\n" +
+                "\n" +
+                "                                <!--post button-->\n" +
+                "                                    <button class=\"buttonbot2\"  onclick=\"saveComment(\'" + obj[keys[i]].post_id + "\')\" type=\"button\" ><strong>Reply</strong></button>\n" +
+
+                "\n" +
+                "\n" +
+                "                            </ul></div>\n" +
+                "                        </div> <!--Dropdown menu Notification--></div></div> <br><br>" +
+                "{{ ProfilePic }}";
+
+        }
+        $('#comment').html(html);
+    }
 
 
     <!--script for shwoing and hiding comments-->
@@ -1218,172 +1243,157 @@ function timeAgo(dateParam) {
     });
 
 
-            <!--Dummy Drop-down for comment_please don't remove-->
+    <!--Dummy Drop-down for comment_please don't remove-->
 
 
+    function Increase_Likes(holder) {
 
+        commentID = String(holder);
+        var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/likes_ids");/*Messages*/
 
-            function Increase_Likes(holder){
+        like_IDs.push().set({
+            IDs: "{{this_uid}}"
 
-                commentID = String(holder);
-                var like_IDs = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages/"+commentID +"/likes_ids");/*Messages*/
-
-                like_IDs.push().set({
-                IDs: "{{this_uid}}"
-
-            });
+        });
 
 
     }
 
-    function Delete_comment(message_id, comment_id){
+    function Delete_comment(message_id, comment_id) {
 
 
-                var like_IDs = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages/"+message_id +"/comments");/*Messages*/
+        var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + message_id + "/comments");/*Messages*/
 
-                like_IDs.child(comment_id).remove();
+        like_IDs.child(comment_id).remove();
 
     }
 
-   function Delete_post(post_id){
+    function Delete_post(post_id) {
 
-                var like_IDs = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages");/*Messages*/
+        var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages");/*Messages*/
 
-                like_IDs.child(post_id).remove();
-   }
-
-
+        like_IDs.child(post_id).remove();
+    }
 
 
     function saveComment(holder) {
 
-    /*Messages*/
+        /*Messages*/
 
 
-    commentID = String(holder);
-    var database_msgs_comment = firebase.database().ref().child("Forums/"+ '{{ forum_id }}' +"/Messages/"+commentID +"/comments");/*Messages*/
+        commentID = String(holder);
+        var database_msgs_comment = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/comments");/*Messages*/
 
 
-    /*Changing items in the db*/
+        /*Changing items in the db*/
 
-    var time_comment = Date.now();
-    var actualcomment = document.getElementById(commentID).value;
-    document.getElementById(commentID).value = "";
+        var time_comment = Date.now();
+        var actualcomment = document.getElementById(commentID).value;
+        document.getElementById(commentID).value = "";
 
-    /*Push time entered and Message entered from textboxes, creates entry in firebase
-    * * * push gives a unique key*/
-
-
-
-  var created_id = database_msgs_comment.push();
-  created_id.set({
-                DateTime: time_comment,
-                sender: "{{this_uid}}",
-                text: actualcomment,
-                likes:"0",
-                sender_name: "{{ username }}",
-                sender_profilePic: "{{ profilePic }}"
-
-            });
+        /*Push time entered and Message entered from textboxes, creates entry in firebase
+        * * * push gives a unique key*/
 
 
+        var created_id = database_msgs_comment.push();
+        created_id.set({
+            DateTime: time_comment,
+            sender: "{{this_uid}}",
+            text: actualcomment,
+            likes: "0",
+            sender_name: "{{ username }}",
+            sender_profilePic: "{{ profilePic }}"
 
-              /*Saving_id*/
-              var hope = String(created_id);
-              var result = hope.substring(hope.lastIndexOf("/") + 1);
-              var save_id = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+commentID+"/comments/"+result);/*Messages*/
-
-                save_id.update({
-                    post_id: result
-                });
-
-
-
-}
+        });
 
 
-function fetch_name(sender){
+        /*Saving_id*/
+        var hope = String(created_id);
+        var result = hope.substring(hope.lastIndexOf("/") + 1);
+        var save_id = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/comments/" + result);/*Messages*/
+
+        save_id.update({
+            post_id: result
+        });
 
 
-                    return test;
-}
-
-function Reply_list(holder){
-    var return_string = "";
+    }
 
 
-    comments_object = String(holder);
-
-    var database_msgs_comment = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+comments_object +"/comments");/*Messages*/
-    var countholder = 0;
+    function fetch_name(sender) {
 
 
+        return test;
+    }
 
-
-            database_msgs_comment.on("value", function(snapshot) {
-                snapshot.forEach(function(child) {
-
-
-                    var txt_txt = String(child.val().text);
-                    var comment_post_id = String(child.val().post_id);
-                    var user_name = String(child.val().sender_name);
-                    var user_pic =String(child.val().sender_profilePic);
-                    return_string = return_string+ " <a><img class=\"profile_img\" src=\""+ user_pic + "\" /> " + user_name + "<i onclick=\"Delete_comment(\'"+comments_object+"\',\'"+comment_post_id+"\')\" class=\"fa fa-close\"></i><p class=\"card-text\" style=\"color: black\">" + txt_txt + "</p></a>\n" ;
-                    countholder++;
-
-
-                });
-            });
-
-
-
-
-
-
-            return return_string ;}
-
-
-            function getComments_num (holder){
+    function Reply_list(holder) {
+        var return_string = "";
 
 
         comments_object = String(holder);
-        var database_msgs_comment = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+comments_object +"/comments");/*Messages*/
+
+        var database_msgs_comment = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + comments_object + "/comments");/*Messages*/
         var countholder = 0;
 
-            database_msgs_comment.on("value", function(snapshot) {
-                snapshot.forEach(function(child) {
 
-                    countholder++;
+        database_msgs_comment.on("value", function (snapshot) {
+            snapshot.forEach(function (child) {
 
-                });
+
+                var txt_txt = String(child.val().text);
+                var comment_post_id = String(child.val().post_id);
+                var user_name = String(child.val().sender_name);
+                var user_pic = String(child.val().sender_profilePic);
+                return_string = return_string + " <a><img class=\"profile_img\" src=\"" + user_pic + "\" /> " + user_name + "<i onclick=\"Delete_comment(\'" + comments_object + "\',\'" + comment_post_id + "\')\" class=\"fa fa-close\"></i><p class=\"card-text\" style=\"color: black\">" + txt_txt + "</p></a>\n";
+                countholder++;
+
+
             });
+        });
 
 
-            return countholder ;}
+        return return_string;
+    }
 
 
-               function getLikes_num (holder){
+    function getComments_num(holder) {
 
 
         comments_object = String(holder);
-        var database_msgs_comment = firebase.database().ref().child("Forums/"+'{{ forum_id }}'+"/Messages/"+comments_object +"/likes_ids");/*Messages*/
+        var database_msgs_comment = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + comments_object + "/comments");/*Messages*/
         var countholder = 0;
 
-            database_msgs_comment.on("value", function(snapshot) {
-                snapshot.forEach(function(child) {
+        database_msgs_comment.on("value", function (snapshot) {
+            snapshot.forEach(function (child) {
 
-                    countholder++;
+                countholder++;
 
-                });
             });
+        });
 
 
-            return countholder ;}
+        return countholder;
+    }
 
 
+    function getLikes_num(holder) {
 
 
+        comments_object = String(holder);
+        var database_msgs_comment = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + comments_object + "/likes_ids");/*Messages*/
+        var countholder = 0;
 
+        database_msgs_comment.on("value", function (snapshot) {
+            snapshot.forEach(function (child) {
+
+                countholder++;
+
+            });
+        });
+
+
+        return countholder;
+    }
 
 
 </script>
@@ -1444,7 +1454,7 @@ function Reply_list(holder){
                         <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white">
                             <p>Connection
                                 Management</p></a>
-                        <a onclick="location.href='{% url 'helpcourses' %}'"  style="color: white">
+                        <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white">
                             <p>Courses Help</p></a>
                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>
                             GetSmarter</p></a>
@@ -1484,245 +1494,249 @@ function Reply_list(holder){
 
 
 <div class="modal fade" id="mi-modal" role="dialog">
-                        <div class="modal-dialog">
+    <div class="modal-dialog">
 
-                            <div class="modal-content">
-                            <div class="modal-body" style="padding:10px;">
-                            <h4 class="text-center">Are you sure you want to leave this forum?</h4>
-                            <br>
-                            <div class="text-right">
-                            <a id="modal-btn-si" class="btn btn-yes" style=" border: 1px solid gray;
+        <div class="modal-content">
+            <div class="modal-body" style="padding:10px;">
+                <h4 class="text-center">Are you sure you want to leave this forum?</h4>
+                <br>
+                <div class="text-right">
+                    <a id="modal-btn-si" class="btn btn-yes" style=" border: 1px solid gray;
             color: #e83e8c;">
-                                Confirm</a>
-                            <a class="btn btn-no" id="modal-btn-no" style=" border: 1px solid gray;
+                        Confirm</a>
+                    <a class="btn btn-no" id="modal-btn-no" style=" border: 1px solid gray;
             color: #e83e8c;">Cancel</a>
-                            </div>
-                            </div>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
+<script>
 
- <script>
+    // leave forum functionality for confirm dialogue using Bootstrap modal
+    var modalConfirm = function (callback) {
 
-                    // leave forum functionality for confirm dialogue using Bootstrap modal
-                    var modalConfirm = function(callback){
+        $("#btn-confirm").on("click", function () {
+            $("#mi-modal").modal('show');
+        });
 
-                      $("#btn-confirm").on("click", function(){
-                        $("#mi-modal").modal('show');
-                      });
+        $("#modal-btn-si").on("click", function () {
+            callback(true);
+            $("#mi-modal").modal('hide');
+        });
 
-                      $("#modal-btn-si").on("click", function(){
-                        callback(true);
-                        $("#mi-modal").modal('hide');
-                      });
+        $("#modal-btn-no").on("click", function () {
+            callback(false);
+            $("#mi-modal").modal('hide');
+        });
+    };
 
-                      $("#modal-btn-no").on("click", function(){
-                        callback(false);
-                        $("#mi-modal").modal('hide');
-                      });
-                    };
+    // results of the confirmation
+    modalConfirm(function (confirm) {
+        if (confirm) {          // Leave Forum confirmed
 
-                    // results of the confirmation
-                    modalConfirm(function(confirm){
-                      if(confirm){          // Leave Forum confirmed
+            removeUserRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants").child('{{ this_uid }}');  // remove the user id from forum participants
+            removeUserRef.remove();
 
-                          removeUserRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants").child('{{ this_uid }}');  // remove the user id from forum participants
-                          removeUserRef.remove();
+            removeForumRef = firebase.database().ref("Users").child('{{ this_uid }}').child("ForumsJoined").child('{{ forum_id }}');  // remove forum from user's forumsjoined
+            removeForumRef.remove();
 
-                          removeForumRef = firebase.database().ref("Users").child('{{ this_uid }}').child("ForumsJoined").child('{{ forum_id }}');  // remove forum from user's forumsjoined
-                          removeForumRef.remove();
+            getNumParticipantsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("NumParticipants");         // reduce nunm participants in this forum
+            getNumParticipantsRef.once('value', function (snapshot) {
+                numParticipants = snapshot.val();              // get the current number of participants
 
-                          getNumParticipantsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("NumParticipants");         // reduce nunm participants in this forum
-                          getNumParticipantsRef.once('value', function(snapshot) {
-                                numParticipants = snapshot.val();              // get the current number of participants
+                json_dict = {NumParticipants: numParticipants - 1};   // reduce num participants by 1
 
-                                json_dict = {NumParticipants: numParticipants-1};   // reduce num participants by 1
+                reduceNumParticipantsRef = firebase.database().ref("Forums").child('{{ forum_id }}');
+                reduceNumParticipantsRef.update(json_dict);         // update database
 
-                                reduceNumParticipantsRef = firebase.database().ref("Forums").child('{{ forum_id }}');
-                                reduceNumParticipantsRef.update(json_dict);         // update database
-
-                                $("#modalLeftForum").modal('show');
-                           });
-                                               // notify user that they have been removed from forum
-                      }else{                //Do not leave forum
-                        $("#mi-modal").modal('hide');
-                      }
-                    });
+                $("#modalLeftForum").modal('show');
+            });
+            // notify user that they have been removed from forum
+        } else {                //Do not leave forum
+            $("#mi-modal").modal('hide');
+        }
+    });
 
 
-                </script>
+</script>
 
 </body><!-- Modal for pop up message "User has left forum" -->
-            <div class="modal fade" id="modalLeftForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    You have left this forum. You may post a goodbye message but once you exit the forum, you will not be able to view the forum again.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c; background-color: white;">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalLeftForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                You have left this forum. You may post a goodbye message but once you exit the forum, you will not be
+                able to view the forum again.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 <!-- Modal for pop up message "User has reported this forum" -->
-            <div class="modal fade" id="modalReportedForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    This forum has been reported.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c; background-color: white;">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalReportedForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                This forum has been reported.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal for pop up message "User has already reported this forum" -->
-            <div class="modal fade" id="modalReportedForumAlready" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    You have already reported this forum.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c; background-color: white;">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalReportedForumAlready" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                You have already reported this forum.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Confirm Report Forum Popup -->
 <div class="modal fade" id="mi-modal2" role="dialog">
-                        <div class="modal-dialog">
+    <div class="modal-dialog">
 
-                            <div class="modal-content">
-                            <div class="modal-body" style="padding:10px;">
-                            <h4 class="text-center">This forum could be removed from the system. Are you sure you want to report this forum?</h4>
-                            <br>
-                            <div class="text-right">
-                            <a id="modal-btn-si2" class="btn btn-yes" style=" border: 1px solid gray;
+        <div class="modal-content">
+            <div class="modal-body" style="padding:10px;">
+                <h4 class="text-center">This forum could be removed from the system. Are you sure you want to report
+                    this forum?</h4>
+                <br>
+                <div class="text-right">
+                    <a id="modal-btn-si2" class="btn btn-yes" style=" border: 1px solid gray;
             color: #e83e8c;">
-                                Confirm</a>
-                            <a class="btn btn-no" id="modal-btn-no2" style=" border: 1px solid gray;
+                        Confirm</a>
+                    <a class="btn btn-no" id="modal-btn-no2" style=" border: 1px solid gray;
             color: #e83e8c;">Cancel</a>
-                            </div>
-                            </div>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-                    <script>
+<script>
 
 
-                // report account functionality for confirm dialogue using Bootstrap modal
-                var modalConfirm = function(callback){
+    // report account functionality for confirm dialogue using Bootstrap modal
+    var modalConfirm = function (callback) {
 
-                      $("#reportForumBtn").on("click", function(){
-                        $("#mi-modal2").modal('show');
-                      });
+        $("#reportForumBtn").on("click", function () {
+            $("#mi-modal2").modal('show');
+        });
 
-                      $("#modal-btn-si2").on("click", function(){
-                        callback(true);
-                        $("#mi-modal2").modal('hide');
-                      });
+        $("#modal-btn-si2").on("click", function () {
+            callback(true);
+            $("#mi-modal2").modal('hide');
+        });
 
-                      $("#modal-btn-no2").on("click", function(){
-                        callback(false);
-                        $("#mi-modal2").modal('hide');
-                      });
-                    };
+        $("#modal-btn-no2").on("click", function () {
+            callback(false);
+            $("#mi-modal2").modal('hide');
+        });
+    };
 
-                    // results of the confirmation
-                    modalConfirm(function(confirm){
-                      if(confirm){                                                                                                              // report forum confirmed
-                        var reportersRef = firebase.database().ref('Forums').child('{{ forum_id }}').child('Reporters');
-                        reportersRef.once("value", function (reporters_snapshot) {
-                            var allReporters = snapshotToArrayKey(reporters_snapshot);                                                          // get list of all people who reported the forum
-                                if (!arrayContainsValue(allReporters, '{{ this_uid }}')) {                                                      // check if this user had reported the forum before
-                                    var reporters = {};
-                                    reporters['{{ this_uid }}'] = '{{ this_uid }}';                                                             // add this user to the list of people who reported the forum
-                                    firebase.database().ref("Forums").child('{{ forum_id }}').child('Reporters').update(reporters);
+    // results of the confirmation
+    modalConfirm(function (confirm) {
+        if (confirm) {                                                                                                              // report forum confirmed
+            var reportersRef = firebase.database().ref('Forums').child('{{ forum_id }}').child('Reporters');
+            reportersRef.once("value", function (reporters_snapshot) {
+                var allReporters = snapshotToArrayKey(reporters_snapshot);                                                          // get list of all people who reported the forum
+                if (!arrayContainsValue(allReporters, '{{ this_uid }}')) {                                                      // check if this user had reported the forum before
+                    var reporters = {};
+                    reporters['{{ this_uid }}'] = '{{ this_uid }}';                                                             // add this user to the list of people who reported the forum
+                    firebase.database().ref("Forums").child('{{ forum_id }}').child('Reporters').update(reporters);
 
-                                    var numReportsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child('numReported');         // get current num reports
-                                    numReportsRef.once("value", function (num_reported_snapshot) {                                              //Fetching number of times forum was reported
-                                        var new_num_reports = num_reported_snapshot.val() + 1;                                                  // increment num reports
-                                        firebase.database().ref("Forums").child('{{ forum_id }}').update({numReported: new_num_reports});
-                                        if (new_num_reports > 5) {                                                                              // if the forum has been reported mroe than a certain number of times
-                                            var wholeForumRef = firebase.database().ref("Forums").child('{{ forum_id }}');                      // get this whole entry
-                                            wholeForumRef.once("value", function (whole_forum_snapshot) {
-                                                var wholeForum = whole_forum_snapshot.val();
-                                                var moveforum = {};
-                                                moveforum[whole_forum_snapshot.key] = wholeForum;
-                                                firebase.database().ref("ReportedForums").update(moveforum);                                    // move entry to ForumsReported
-                                                wholeForumRef.remove();                                                                         // remove this entry
-                                                $("modalReportedForum").modal('show');
-                                            });
-                                        }
-                                    });
-                                } else {
-                                     $("modalReportedForumAlready").modal('show');
-                                }
+                    var numReportsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child('numReported');         // get current num reports
+                    numReportsRef.once("value", function (num_reported_snapshot) {                                              //Fetching number of times forum was reported
+                        var new_num_reports = num_reported_snapshot.val() + 1;                                                  // increment num reports
+                        firebase.database().ref("Forums").child('{{ forum_id }}').update({numReported: new_num_reports});
+                        if (new_num_reports > 5) {                                                                              // if the forum has been reported mroe than a certain number of times
+                            var wholeForumRef = firebase.database().ref("Forums").child('{{ forum_id }}');                      // get this whole entry
+                            wholeForumRef.once("value", function (whole_forum_snapshot) {
+                                var wholeForum = whole_forum_snapshot.val();
+                                var moveforum = {};
+                                moveforum[whole_forum_snapshot.key] = wholeForum;
+                                firebase.database().ref("ReportedForums").update(moveforum);                                    // move entry to ForumsReported
+                                wholeForumRef.remove();                                                                         // remove this entry
+                                $("modalReportedForum").modal('show');
                             });
-                        }else{                                                                                                                  //Do not report forum
-                            $("#mi-modal2").modal('hide');
                         }
                     });
-
-                    // get a snapshot of a list of keys from firebase and convert it to an array
-                function snapshotToArrayKey(snapshot) {
-                    let returnArr = [];
-                    snapshot.forEach(childSnapshot => {
-                        //let item = childSnapshot.val();
-                        var key = childSnapshot.key;
-                        returnArr.push(key);
-                    });
-                    return returnArr;
+                } else {
+                    $("modalReportedForumAlready").modal('show');
                 }
+            });
+        } else {                                                                                                                  //Do not report forum
+            $("#mi-modal2").modal('hide');
+        }
+    });
 
-                // returns true if the array contains the value
-                function arrayContainsValue(array, value){
-                    if (array.length > 0)
-                    {
-                        for (let i = 0; i < array.length; i++)
-                        {
-                            if (array[i] == value){
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-                    else{
-                        return false;
-                    }
+    // get a snapshot of a list of keys from firebase and convert it to an array
+    function snapshotToArrayKey(snapshot) {
+        let returnArr = [];
+        snapshot.forEach(childSnapshot => {
+            //let item = childSnapshot.val();
+            var key = childSnapshot.key;
+            returnArr.push(key);
+        });
+        return returnArr;
+    }
+
+    // returns true if the array contains the value
+    function arrayContainsValue(array, value) {
+        if (array.length > 0) {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] == value) {
+                    return true;
                 }
-            </script>
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+</script>
