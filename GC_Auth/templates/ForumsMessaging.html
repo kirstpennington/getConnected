@@ -72,7 +72,8 @@
         }
 
         .notifications-wrapper {
-            overflow: auto;
+
+
             max-height: 250px;
         }
 
@@ -243,7 +244,7 @@
 
         .profileContainerDetails, html {
             max-width: 100%;
-            overflow-x: hidden;
+
         }
 
         .profileContainerDetails .gallery img {
@@ -716,7 +717,7 @@
 
 
 
-                <div class="makePost" style="border: 1px hotpink;">
+                <div class="makePost" style="border: 1px #e83e8c;">
                     <div class="row"><!--table for person info-->
                         <div class="col-sm-1">
                             <div class="mr-2"> <!--styling allows for the image and text to be next to one another-->
@@ -754,7 +755,7 @@
                             <div>
                                 <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
                                         title="ForumSettings" data-placement="right"
-                                        style="margin-right:10px; background-color:hotpink; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                        style="margin-right:10px; background-color:#e83e8c; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
                                         type="submit"
                                         class="btn btn-primary pull-right">
                                     <a href="#"><i
@@ -797,7 +798,7 @@
 
                     <br>
                 </div>
-                <hr style="width: 100%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px">
+                <hr style="width: 100%; color: #e83e8c; height: 2px; background-color:#e83e8c#; margin-top: 5px">
                 <br>
                 <!-- Post /////-->
                 <br><br><!--spaces between posts-->
@@ -817,14 +818,15 @@
 
                                     </div>
                                     <div class="ml-2" style="display:inline-block;">
-                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong><i
-                                                onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
-                                                class="fa fa-close"></i></div>
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong>
+
+                                            <i onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                                class="fa fa-close" style="margin-left: 10px;"></i></div>
 
                                     </div>
 
                                     <div class="dropdownmenu"
-                                         style="display: inline-block;position: relative; left: 60%;color: #666666; ">
+                                         style="display: inline-block;position: relative; left: 58%;color: #666666; ">
                                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
 
@@ -872,7 +874,7 @@
                             <!--styling ensures the like and comment are next to one another-->
 
 
-                            <details>
+                            <details style="outline: none;">
 
                                 <summary style="color: #e83e8c;text-align: right"> <!--title of the replies collapsible-->
                                     View Replies
@@ -882,15 +884,22 @@
                                 <!--Winny add message replies from here-->
                                 <ul>
                                     <a><img class="profile_img"
-                                            src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>Name<i
+                                            src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/> Name
+
+                                        <i
                                             onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
-                                            class="fa fa-close"></i>
-                                        <p style="color: black">Marketing 101, Video Assignment</p></a>
+                                            class="fa fa-close" style="margin-left: 10px;"></i> </a>
+                                    <br><br>
+                                        <p style="color: black">Marketing 101, Video Assignment</p>
+
                                     <div>
+
+
                                         <a id=""><textarea maxlength="200" id="-LjHDWtigiRAkkdKO3gw"
-                                                           style="width: 35%;height: 20px;border-radius: 5px;"></textarea></a>
+                                                           style="width: 90%;height: 25px;border-radius: 5px;"></textarea></a>
+                                       <br>
                                         <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
-                                                type="button">Reply
+                                               style="position: absolute;left: 77%;" type="button">Reply
                                         </button>
                                     </div>
 
@@ -914,7 +923,7 @@
 
             </div>
             <!--rhs item-->
-            <div class="col-md-3">
+            <div class="col-md-3" >
                 <div class="card gedf-card">
 
                     {% load staticfiles %}
@@ -942,7 +951,7 @@
                           style="font-size: 11px;position: absolute; left: 25%; right: 25%; ">{{ forum_topics }}</span>
                     <br>
 
-                    <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                    <hr style="width: 80%; color: #e83e8c; height: 2px; background-color:#e83e8c; margin-top: 5px"/>
                     <p style="color: #8c8c8c; padding-left: 2px;text-align: center;">{{ forum_description }}</p>
 
                 </div>
