@@ -396,6 +396,13 @@
             top: 0;
         }
 
+        /* View replies*/
+        details summary::-webkit-details-marker {
+            color: #e83e8c;
+            outline: none;
+
+        }
+
 
     </style>
 
@@ -852,33 +859,27 @@
                             <p class="card-text">
                                 This card is still a dummy, you can use this to test your designs..
                             </p>
-                            <hr>
+
+                            <div style="text-align: right;margin-bottom: 0px;">
+                                <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                                   style="color: #e83e8c;display: inline-block;vertical-align: top;">10<span
+                                        class="glyphicon glyphicon-thumbs-up" style="color: #e83e8c; "></span>
+                            </div>
+
+                            <hr style="margin-top: 0px;">
                         </div>
-                        <div style="text-align: right; ">
+                        <div style=" margin-top: 0px;">
                             <!--styling ensures the like and comment are next to one another-->
-                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
-                               style="color: #e83e8c;display: inline-block;vertical-align: top;">10<span
-                                    class="glyphicon glyphicon-thumbs-up" style="color: #e83e8c; "></span>
-
-                                <a type="button" class="btn btn-comment"> <span
-                                        class="glyphicon glyphicon glyphicon-comment"
-                                        style="color: #e83e8c; "></span></a>
-
-                                <!--Dummy Drop-down for comment_please don't remove-->
-                        </div>
 
 
-                        <div class="container">
+                            <details>
 
-                            <!--<button type="button" class="btn">Show</button>-->
+                                <summary style="color: #e83e8c;text-align: right"> <!--title of the replies collapsible-->
+                                    View Replies
+                                </summary>
 
 
-                            <div class="collapse"><!--everthing inside this div is in the collapsible element-->
-
-
-                                <a class="btn btn-close"
-                                   style="position: absolute; right: 7% ; top: 26%; font-size: 10px;">Close <span
-                                        class="glyphicon glyphicon glyphicon-chevron-up"></span></a>
+                                <!--Winny add message replies from here-->
                                 <ul>
                                     <a><img class="profile_img"
                                             src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>Name<i
@@ -894,8 +895,11 @@
                                     </div>
 
                                     <!--post button-->
-                                </ul> <!--Dropdown menu Notification-->
-                            </div>
+                                </ul>
+
+                            </details><!--end of collapasible-->
+
+                            <!--Dummy Drop-down for comment_please don't remove-->
                         </div>
 
 
