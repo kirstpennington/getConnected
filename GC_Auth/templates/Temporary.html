@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+ <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+<body>
+
+<h2>Creating a new user</h2>
+<p>Does not create blocked, Connections, Courses, Forum Visits and Forum Joins,Requests Received, Topics </p>
+
+<form action="">
+
+User_ID:&nbsp<input id = "fb_ID" type="text" name="lastname">
+<br>
+Bio:&nbsp<input id = "bio" type="text" name="lastname">
+<br>
+Country:&nbsp<input id="country" type="text" name="firstname" >
+<br>
+Name:&nbsp<input id= "name" type="text" name="firstname" >
+<br>
+Profile Picture:&nbsp<input id ="pic" type="text" name="firstname" >
+<br>
+Staff:&nbsp<input type="text" name="firstname" >
+<br>
+<button onclick="Save_User()">Save User</button>
+
+</form>
+
+<h2>Add Badges to User </h2>
+<p>For old users who do not have badges </p>
+
+User_ID:&nbsp<input id = "fb_ID_badges" type="text" name="lastname">
+<br>
+<button onclick="Save_Badges()">Save Badges</button>
+
+
+{% comment %}CREATING A NEW USER {% endcomment %}
+<script>
+
+
+ function Save_User (){
+
+
+      var bio = document.getElementById("bio").value;
+      var country = document.getElementById("country").value;
+      var name = document.getElementById("name").value;
+      var pic = document.getElementById("pic").value;
+      var fb_ID = document.getElementById("fb_ID").value;
+
+      document.getElementById("bio").value = "";
+      document.getElementById("country").value = "";
+      document.getElementById("name").value = "";
+      document.getElementById("pic").value = "";
+      document.getElementById("fb_ID").value = "";
+
+
+
+      var Users_FB  = firebase.database().ref().child("Users/" + fb_ID) ;
+
+                Users_FB.update({
+                    BackgroundPic: "https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fdefaultbackground.jpg?alt=media&token=f36664d4-d9cf-4079-8bd0-bb4f69585836",
+                    Bio: bio,
+                    Country:country,
+                    Enabled: "true",
+                    Name: name,
+                    Notifications_Counter: 0,
+                    PrivateProfile: 'false',
+                    ProfilePic: pic,
+                    Staff: "false",
+                    numConnections: "0",
+                    numCourses: "0",
+                    numForums: "4",
+                    privacyUpdated:"false",
+                    updatedProfilePic: "false"
+
+                });
+
+
+                var createBadges = firebase.database().ref().child("Users/" + fb_ID +  "/Badges");/*Messages*/
+                createBadges.update({
+                    BrightSpark: "not_celebrated",
+                    CrazyConnector: "not_celebrated",
+                    FabAcademic: "not_celebrated",
+                    ForumBoffin: "not_celebrated",
+                    FriendFinder: "not_celebrated",
+                    GotSmarter: "not_celebrated",
+                    NetworkingNinja: "not_celebrated",
+                    PopularProfile: "not_celebrated",
+                    Selfie: "not_celebrated",
+                    SuperSecurity: "not_celebrated"
+                });
+
+                 var createUserPrivacy = firebase.database().ref().child("Users/" + fb_ID +  "/UserPrivacy");/*Messages*/
+
+                   createUserPrivacy.update({
+                    BioPrivacy: "false",
+                    ConnectionPrivacy: "false",
+                    CountryPrivacy: "false",
+                    CoursesPrivacy: "false",
+                    ForumsPrivacy: "false",
+                    HeaderPrivacy: "false",
+
+                });
+
+
+
+window.alert("Saved User");
+
+   }
+
+ function Save_Badges (){
+
+
+      var fb_ID = document.getElementById("fb_ID_badges").value;
+      document.getElementById("fb_ID_badges").value = "";
+
+                var createBadges = firebase.database().ref().child("Users/" + fb_ID +  "/Badges");/*Messages*/
+                createBadges.update({
+                    BrightSpark: "not_celebrated",
+                    CrazyConnector: "not_celebrated",
+                    FabAcademic: "not_celebrated",
+                    ForumBoffin: "not_celebrated",
+                    FriendFinder: "not_celebrated",
+                    GotSmarter: "not_celebrated",
+                    NetworkingNinja: "not_celebrated",
+                    PopularProfile: "not_celebrated",
+                    Selfie: "not_celebrated",
+                    SuperSecurity: "not_celebrated"
+                });
+
+window.alert("Added Badges");
+
+   }
+
+</script>
+
+<h2>Connect two users </h2>
+
+
+User One ID:&nbsp<input id = "fb_ID_1" type="text" name="lastname">
+<br>
+User One Name:&nbsp<input id = "fb_name_1" type="text" name="lastname">
+<br>
+User One Bio:&nbsp<input id = "fb_bio_1" type="text" name="lastname">
+<br>
+User One Country:&nbsp<input id = "fb_country_1" type="text" name="lastname">
+<br>
+User One Profile Picture:&nbsp<input id = "fb_propic_1" type="text" name="lastname">
+<br>
+<br>
+<br>
+User Two ID:&nbsp<input id = "fb_ID_2" type="text" name="lastname">
+<br>
+User Two Name:&nbsp<input id = "fb_name_2" type="text" name="lastname">
+<br>
+User Two Bio:&nbsp<input id = "fb_bio_2" type="text" name="lastname">
+<br>
+User Two Country:&nbsp<input id = "fb_country_2" type="text" name="lastname">
+<br>
+User Two Profile Picture:&nbsp<input id = "fb_propic_2" type="text" name="lastname">
+<br>
+
+<button onclick="Save_Connect()">Connect</button>
+
+
+<script>
+
+function Save_Connect (){
+
+    var fb_ID_1 = document.getElementById("fb_ID_1").value;
+    var fb_name_1 = document.getElementById("fb_name_1").value;
+    var fb_bio_1 = document.getElementById("fb_bio_1").value;
+    var fb_country_1 = document.getElementById("fb_country_1").value;
+    var fb_propic_1 = document.getElementById("fb_propic_1").value;
+
+
+    var fb_ID_2 = document.getElementById("fb_ID_2").value;
+    var fb_name_2 = document.getElementById("fb_name_2").value;
+    var fb_bio_2 = document.getElementById("fb_bio_2").value;
+    var fb_country_2 = document.getElementById("fb_country_2").value;
+    var fb_propic_2 = document.getElementById("fb_propic_2").value;
+
+
+      document.getElementById("fb_ID_1").value = "";
+      document.getElementById("fb_ID_2").value = "";
+      document.getElementById("fb_name_1").value = "";
+      document.getElementById("fb_name_2").value = "";
+      document.getElementById("fb_bio_1").value = "";
+      document.getElementById("fb_bio_2").value = "";
+      document.getElementById("fb_country_1").value = "";
+      document.getElementById("fb_country_2").value = "";
+      document.getElementById("fb_propic_1").value = "";
+      document.getElementById("fb_propic_2").value = "";
+
+
+     var AddConnection = firebase.database().ref().child("Users/" + fb_ID_1 + "/Connections");/*Messages*/
+     var AddConnection_other = firebase.database().ref().child("Users/" + fb_ID_2 + "/Connections");/*Messages*/
+
+         var bio_1 = fb_bio_1;
+         var propic_1 = fb_propic_1;
+         var country_1 = fb_country_1;
+         var name_1 = fb_name_1;
+
+         var bio_2 = fb_bio_2;
+         var propic_2 = fb_propic_2;
+         var country_2 = fb_country_2;
+         var name_2 = fb_name_2;
+
+          var getAcceptcon_1 = firebase.database().ref().child("Users/" + fb_ID_1);
+         getAcceptcon_1.on("value", function (snapshot) {
+         bio_1 = snapshot.val().Bio;
+         propic_1 = snapshot.val().ProfilePic;
+         country_1 = snapshot.val().Country;
+         name_1 = snapshot.val().Name;
+         });
+
+         var getAcceptcon_2 = firebase.database().ref().child("Users/" + fb_ID_2);
+         getAcceptcon_2.on("value", function (snapshot) {
+         bio_2 = snapshot.val().Bio;
+         propic_2 = snapshot.val().ProfilePic;
+         country_2 = snapshot.val().Country;
+         name_2 = snapshot.val().Name;
+
+         });
+
+
+
+                AddConnection.child(fb_ID_2).set({ /*Pushes to receiver*/
+                    Name: name_2,
+                    Bio: bio_2,
+                    ProfilePic:propic_2,
+                    Country: country_2,
+
+                });
+
+                AddConnection_other.child(fb_ID_1).set({ /*Pushes to receiver*/
+                    Name: name_1,
+                    Bio: bio_1,
+                    ProfilePic:propic_1,
+                    Country: country_1,
+
+                });
+
+                window.alert("Users Connected");
+
+}
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

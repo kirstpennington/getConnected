@@ -299,6 +299,13 @@
                 <li><a onclick="location.href='{% url 'contactus' %}'"> <span
                         class="glyphicon glyphicon-phone-alt fa-lg"></span> Contact Us</a></li>
 
+                <li><a data-toggle="modal" data-src="https://www.youtube.com/embed/IP7uGKgJL8U"
+                       data-target="#videoModal"> <span
+                        class="glyphicon glyphicon-play-circle"></span> About Us </a></li>
+
+                <li><a onclick="location.href='{% url 'temporary' %}'"> <span
+                        class="glyphicon glyphicon-phone-alt fa-lg"></span> Temporary Button </a></li>
+
             </ul>
             <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
 
@@ -690,6 +697,40 @@
             <!-- Call to action -->
         </div>
     </footer>
+</div>
+
+
+<!--play video modal-->
+
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" style="position: center;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 155%; height: 150%; position: relative; right: 20%;">
+
+            <div class="modal-body">
+
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <br><br>
+                <iframe width="900" height="600" src="https://www.youtube.com/embed/lrlsNdEay1A">
+                </iframe>
+
+                <div class="logger" style="text-align: center;"><!--style not working in style sheet-->
+
+                <button onclick="CloseIntroForm; OpenLogIn()" data-dismiss="modal" type="button">
+                    <span class="glyphicon glyphicon-log-in"></span>
+
+                    Log in
+                </button>
+            </div>
+
+            </div>
+
+        </div>
+    </div>
 </div>
 
 </body>

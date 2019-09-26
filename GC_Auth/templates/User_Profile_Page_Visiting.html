@@ -397,7 +397,7 @@
 
         /*the text when you hover over a badge*/
         .text {
-            background-color: #ce3298;
+            background-color: #e83e8c;
             opacity: 0.8;
             color: white;
             font-size: 16px;
@@ -952,7 +952,7 @@
 
 
                                     {% if the_user_is_connection == True or the_user_is_connection == true %}
-                                        <button style="display: none;" id="btnConnect" onclick="connect()"
+                                        <button hidden style="display: none;" id="btnConnect" onclick="connect()"
                                                 data-placement="right"
                                                 style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
                                                 class="btn btn-primary pull-right">
@@ -971,7 +971,7 @@
                                                 class="btn btn-primary pull-right">
                                             Connect
                                         </button>
-                                        <button style="display: none;" id="btnDisconnect" onclick="disconnect()"
+                                        <button hidden style="display: none;" id="btnDisconnect" onclick="disconnect()"
                                                 data-placement="right"
                                                 class="btn btn-primary pull-right"
                                                 style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset ">
@@ -1078,7 +1078,7 @@
                                          style="width:40px;height:40px; position: absolute; top:80px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
                                          title="" class="badges  "/>
                                 </a>
-                                <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
+                                <hr style="width: 210%; color: #e83e8c; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
                             {% else %}
                                 <a hidden disabled="true" onclick="location.href='{% url 'goBadges' %}' ">
 
@@ -1087,7 +1087,7 @@
                                          style="width:40px;height:40px; position: absolute; top:80px; left: 459px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset; background-color:white;border-radius: 10px;  "
                                          title="" class="badges  "/>
                                 </a>
-                                <hr style="width: 210%; color: hotpink; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
+                                <hr style="width: 210%; color: #e83e8c; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
                             {% endif %}
 
 
@@ -1110,7 +1110,7 @@
             <br>
             <div style="height:5px;"><br></div>
             <a data-toggle="modal" data-target="#viewmutualsmodal"
-               style="font-size: smaller;position: relative;top: 170px; left: 200px; color: gray; font-weight: bold;"
+               style="font-size: smaller;position: relative;top: 225px; left: 200px; color: gray; font-weight: bold;"
             >
                 View More <i class="fa fa-angle-double-right"></i> <!--View More Forums-->
             </a>
@@ -1127,7 +1127,7 @@
                 }
             </script>
 
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: -30px;">
 
 
                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
@@ -1152,8 +1152,8 @@
                                 <!-- hidden field that stores the id of the entity  -->
                                 <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                 <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family: serif; font-size: small; color: black">
-                                    mutual conections &nbsp;<span class="label label-default"
-                                                                  style="color: white"> {{ numConnections }} </span>
+                                    connections: &nbsp;<span
+                                                                  > {{ numConnections }} </span>
                                 </h8>
                                 <br>
 
@@ -1460,44 +1460,40 @@
 
 
                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
-                    <div class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
-                        <form action="/goForumsOpen/" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}"
-                                   hidden style="color: white;">
+                    <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
+                             <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
 
-                            <div style="position: relative; left: 235px; top: 3px;">
-                                <h8><span class="label label-default"><span
-                                        class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
-                            </div>
+                        <div style="position: relative; left: 235px; top: 3px;">
+                            <h8><span class="label label-default"><span
+                                    class="fa fa-users"> </span>{{ forum_num_participants }}</span></h8>
+                        </div>
 
-                            <div class="row" style="margin-top: -15px">
-                                <img class=" pull-left"
-                                     style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
-                                     src="{{ forum_pics }}"/>
+                        <div class="row" style="margin-top: -15px">
+                            <img class=" pull-left"
+                                 style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
+                                 src="{{ forum_pics }}"/>
 
-                                <div class="connection_container">
-                                    <button onclick="location.href='{% url 'forumsopen' %}'"
-                                            style="border: none; font-family: 'Arial Narrow';background: white;left: 15px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px"
-                                            type="submit" value="goForumsOpen">{{ forum_names }}
-                                    </button>
-
-                                    <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
-
-                                    <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
-                                        Creator: {{ forum_creators }}</h8>
-                                    <br>
-
-                                    <span class="badge badge-pill badge-dark"
-                                          style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ forum_topics }} </span>
-
+                            <div class="connection_container">
+                                <div>
+                                        <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}','{{ forum_ids }}_hideForumSuggestion')"
+                                           style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit">{{ forum_names }}
+                                            </button>
                                 </div>
+                                <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
+
+                                <h8 style="display: inline-block;margin-left: 10px;font-family: serif;margin-top: 4px; font-size: small; color: black">
+                                    Creator: {{ forum_creators }}</h8>
+                                <br>
+
+                                <span class="badge badge-pill badge-dark"
+                                      style="color: white; font-size: x-small; margin-left: 10px; top: 10px">{{ forum_topics }} </span>
 
                             </div>
-                        </form>
+
+                        </div>
                     </div><!--end of Forum Suggestions Card--><br>
-                {% empty %}
-                    <div>No Suggested Forums</div>
+                    {% empty %}
+                    <div>No Forum Suggestions</div>
                 {% endfor %}
 
             </div><!--col-md-12-->
@@ -1511,7 +1507,7 @@
             <div style="height:10px;"><br></div>
 
             <h5 class="titlefont" style="font-weight: bold; margin-left: 4px"><span
-                    class="fa fa-comments-o fa-lg"></span>&nbsp;Top Forums</h5>
+                    class="fa fa-comments-o fa-lg"></span>&nbsp;Forums</h5>
             <div style="height:10px;"><br></div>
 
             <!-- My Forums: Item  -->
@@ -1551,22 +1547,12 @@
                             </div>
                             <!-- card line -->
 
-                            <hr style="width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px"/>
+                            <hr style="width: 80%; color: #e83e8c; height: 2px; background-color:#e83e8c; margin-top: 5px"/>
 
                             <input type="hidden" class="forum_id" id="forum_id" name="forum_id" value="{{ forum_ids }}"
                                    hidden style="color: white;">
                             <!-- Open forum button -->
-                            {% if forum_names == "Forum Private" %}
-                                <button disabled onclick="location.href='{% url 'forumsopen' %}'"
-                                        style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
-                                        type="submit" value="goForumsOpen">OPEN
-                                    <i
-                                            class="fa fa-angle-double-right"></i></button>
-                            {% else %}
-                                <button style="border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px"
-                                        type="submit" value="goForumsOpen">OPEN
-                                    <i class="fa fa-angle-double-right"></i></button>
-                            {% endif %}
+
                         </div><!-- /card-hovercard -->
                     </div>
                 </form>
@@ -1576,7 +1562,122 @@
 
         </div><!-- /First View Button fot main body, container-->
 
+<script>
 
+                                                                function joinForum(forum_id, thisUserid, forum_name, hide_block){
+                                                                    var db = firebase.database().ref('Forums');
+                                                                    this_uid = '{{ my_uid }}';
+
+                                                                    blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
+                                                                    blockedUsersRef.once('value', function(snapshot) {
+                                                                        blockedUsers = snapshotToArrayKey(snapshot);
+
+                                                                        if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
+                                                                            forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
+                                                                            forumPrivateRef.once('value', function(snapPrivate) {
+                                                                                privacy = snapPrivate.val();
+                                                                                if (privacy == false){                                    // if the forums is not private
+                                                                                    json_dict = {};
+                                                                                    json_dict[forum_id] = forum_id;
+
+                                                                                    updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
+                                                                                    updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the userf
+
+                                                                                    json_dict[this_uid] = this_uid;
+                                                                                    updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
+                                                                                    updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
+
+                                                                                    this.hideDiv(hide_block);
+                                                                                    //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
+
+                                                                                     getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
+                                                                                    getNumParticipantsRef.once('value', function(snapshot) {
+                                                                                        var numParticipants = snapshot.val();              // get the current number of participants
+
+                                                                                            json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
+
+                                                                                            reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
+                                                                                            reduceNumParticipantsRef.update(json_dict);         // update database
+
+                                                                                            $("#modalForumJoined").modal('show');
+                                                                                       });
+
+
+                                                                                }
+                                                                                else{                                                       // if the forum is private
+                                                                                    forumCreatorRef = db.child(forum_id).child('Creator');
+                                                                                    forumCreatorRef.once('value', function(snapCreator) {
+                                                                                        creator_id = snapCreator.val();                     // send the message to this user id
+                                                                                        message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
+                                                                                        // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
+                                                                                        // ToDo: Later - send notification to the Forum Creator with the
+
+                                                                                        $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
+                                                                                    })
+
+                                                                                }
+                                                                            })
+
+                                                                        }
+                                                                        else{                                                               // if the user is blocked, display a message to the user
+                                                                            $("#modalBlockedFromForum").modal('show');
+                                                                        }
+
+
+                                                                    });
+
+                                                                }
+
+                                                                // hides the div with the specified id
+                                                                function hideDiv(div_name){
+                                                                    document.getElementById(div_name).hidden = true;     // remove forum from all forums
+
+                                                                }
+
+                                                                // get a snapshot of a list of keys from firebase and convert it to an array
+                                                                function snapshotToArray(snapshot) {
+                                                                    let returnArr = [];
+
+                                                                    snapshot.forEach(childSnapshot => {
+                                                                        let item = childSnapshot.val();
+                                                                        item.key = childSnapshot.key;
+                                                                        returnArr.push(item);
+                                                                    });
+
+                                                                    return returnArr;
+                                                                }
+
+                                                                // returns true if the array contains the value
+                                                                function arrayContainsValue(array, value){
+                                                                    if (array.length > 0)
+                                                                    {
+                                                                        for (let i = 0; i < array.length; i++)
+                                                                        {
+                                                                            if (array[i] == value){
+                                                                                return true;
+                                                                            }
+                                                                        }
+                                                                        return false;
+                                                                    }
+                                                                    else{
+                                                                        return false;
+                                                                    }
+                                                                }
+
+                                                                // get a snapshot of a list of keys from firebase and convert it to an array
+                                                                function snapshotToArrayKey(snapshot) {
+                                                                    let returnArr = [];
+
+                                                                    snapshot.forEach(childSnapshot => {
+                                                                        //let item = childSnapshot.val();
+                                                                        var key = childSnapshot.key;
+                                                                        returnArr.push(key);
+                                                                    });
+
+                                                                    return returnArr;
+                                                                }
+
+                                                       </script>
         <!-- My Courses: Item 1 -->
 
         <div class="row"
@@ -1635,13 +1736,8 @@
 
     </div>
 
-
-</div>
-</div>
-
-
 <!-- Page Footer-->
-<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3; position: relative; top: -420px;">
 
 
     <div class="container">
@@ -1714,6 +1810,12 @@
     </div>
 
 </footer>
+
+</div>
+
+
+
+
 
 
 
@@ -2299,6 +2401,77 @@ var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid 
             </div>
         </div>
     </div>
+
+
+<!-- End of 1.1 Pop Up modal-->
+
+                <!-- Modal for pop up message "forum joined" -->
+                <div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Joined</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        You have joined this forum. It's now in your My Forums tab!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+           <!-- Modal for pop up message "join request sent" -->
+            <div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><strong>Join Request Sent</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+             <!-- Modal for pop up message "blocked from forum message" -->
+            <div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><strong>Blocked from Forum</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Unfortunately, you have been blocked from this forum. Access to this forum is denied.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 </body>

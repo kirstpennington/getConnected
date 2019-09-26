@@ -1118,7 +1118,6 @@
                 new_forum_json['Private'] = privateForum;
                 new_forum_json['Creator'] = '{{ this_uid }}';
                 new_forum_json['Enabled'] = true;
-                new_forum_json['numParticipants'] = 1;
                 new_forum_json['numReported'] = 0;
                 new_forum_json['ForumPic']=" ";
                 new_forum_json['TopicTags'] = json_topics;
@@ -1127,7 +1126,7 @@
                 var selectedUsers = getSelectedUsers();
                 var participants = arrayToJson(selectedUsers);          // add all participants selected
 
-                new_forum_json['NumParticipants'] = selectedUsers.length
+                new_forum_json['NumParticipants'] = selectedUsers.length + 1;
                 new_forum_json['Participants'] = participants;
 
                 var newKey = db.push(new_forum_json).getKey();                                    // add forum to database

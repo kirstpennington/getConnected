@@ -38,17 +38,27 @@ class user_methods:
         return database.child("Users").child(uid).child("Enabled").get().val()
 
     def getNumConnecions(uid):
-        return database.child('Users').child(uid).child('numConnections').get().val()
+        temp = database.child('Users').child(uid).child('Connections').shallow().get().val()
 
-    def getNumForums(uid):
-        temp = database.child('Users').child(uid).child('numForums').get().val()
         if temp is None:
             return 0
         else:
-            return int(temp)
+            return len(temp)
+
+    def getNumForums(uid):
+        temp = database.child('Users').child(uid).child('ForumsJoined').shallow().get().val()
+        if temp is None:
+            return 0
+        else:
+            return len(temp)
 
     def getNumCourses(uid):
-        return int(database.child('Users').child(uid).child('numCourses').get().val())
+        temp = database.child('Users').child(uid).child('Courses').shallow().get().val()
+
+        if temp is None:
+            return 0
+        else:
+            return len(temp)
 
     def getPrivacyUpdated(uid):
         return database.child('Users').child(uid).child('privacyUpdated').get().val()

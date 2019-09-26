@@ -946,7 +946,7 @@ $(document).ready(function(){
                                         </a>-->
 
                                         <a style="font-size: smaller; color: gray; font-weight: bold"
-                                          data-toggle="modal" href="#exampleModalLong" class=" button">
+                                          data-toggle="modal" href="#exampleModalLong_{{ courses_ids }}" class=" button">
                                             VIEW COURSE<i class="fa fa-angle-double-right"></i>
                                         </a>
 
@@ -1219,9 +1219,9 @@ $(document).ready(function(){
                                                                                             <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
 
                                                                                             <a style="font-size: smaller; color: gray; font-weight: bold"
-                                                                                               href={{ course_urls }}>
-                                                                                                VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                                                                            </a>
+                                          data-toggle="modal" href="#exampleModalLong_{{ courses_ids }}" class=" button">
+                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
+                                        </a>
                                                                                         </div>
                                                                                     </div><!-- /col-lg-3 col-sm-6 -->
 
@@ -1777,8 +1777,8 @@ $(document).ready(function(){
 </script>
 
 <!-- Modal for view course  -->
-
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+{% for course_id, course_image, course_name, course_description, course_start, course_topics, course_rating, reg_closes, course_length, course_effort, course_url in course_detail_list %}
+<div class="modal fade" id="exampleModalLong_{{ course_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -1792,12 +1792,11 @@ $(document).ready(function(){
 
 
           <!--  <img src="COURSES_HAVARD.jpg" class="rounded-circle"  alt="course image" style="border: 1px solid gray;width: 30% ; height: 40%;border-radius: 10px;"  >-->
-           <img src="HARVARDsmall.png" alt="course image" style="width:50% ; height:50%;margin-left:29%;" >
+           <img src="{{ course_image }}" alt="course image" style="width:50% ; height:50%;margin-left:29%;" >
            <hr style="border: 1px solid #e83e8c;">
-           <h2 style="text-align: center; color: gray;"> FinTech Online Short Course<h2>
+           <h2 style="text-align: center; color: gray;"> {{ course_name }}<h2>
 
-             <p class="text-center" style="font-size: 15px; color: gray;">This online program from the MIT Sloan School of Management nd the MIT Computer Science and Artificial
-               Intelligence Laboratory (CSAIL) challenges common misconceptions surrounding AI and  <a href="https://www.getsmarter.com/courses/us/harvard-fintech-online-short-course" style="font-size: 10px; ">[Read more]</a></p>
+             <p class="text-center" style="font-size: 15px; color: gray;">{{ course_description }}  <a href="{{ course_url }}" style="font-size: 10px; ">[Read more]</a></p>
 
 
              <div class="row" >
@@ -1807,7 +1806,7 @@ $(document).ready(function(){
                  </div>
 
                  <div class="col-sm-7">
-                    <h5 style="font-size: 20px; color: gray;">12 August 2019</h5>
+                    <h5 style="font-size: 20px; color: gray;">{{ course_start }}</h5>
                   </div>
 
              </div><!--end row-->
@@ -1819,21 +1818,11 @@ $(document).ready(function(){
                  </div>
 
                  <div class="col-sm-7">
-                    <h5 style="font-size: 20px; color: white; margin: 10px;" class="badge badge-pill badge-dark"> Finance | Accounting</h5>
-                    <h5 style="font-size: 20px; color: white; margin: 10px;" class="badge badge-pill badge-dark"> Mathematics </h5>
+                    <h5 style="font-size: 20px; color: white; margin: 10px;" class="badge badge-pill badge-dark"> {{ course_topics }}</h5>
                   </div>
              </div><!--end row-->
-<p class="text-center" style="font-size: 15px; color:#e83e8c;"> <span class="glyphicon glyphicon-star" style="font-size:25px;"></span> This course is Well Rated!</p>
+<p class="text-center" style="font-size: 15px; color:#e83e8c;"> <span class="glyphicon glyphicon-star" style="font-size:25px;"></span> This course is {{ course_rating }}</p>
 
-
-      <!--<div class="row" style="background-color:gray;margin-left: 10px; margin-right: 10px; border-radius: 5px;color:white;">
-          <p style="font-size: 20px;margin-left: 5px;margin-top: 5px;"> Additional </p>
-      </div><!--end row-->
-
-      <!--panel-->
-
-
-                                   <!--panel 1 content-->
                              <div class="collapseAdditional" style="color:white; background-color:gray;border-radius: 8px;margin-top:15px;">
 
                                      <div class="row" >
@@ -1843,11 +1832,10 @@ $(document).ready(function(){
                                          </div>
 
                                          <div class="col-sm-7">
-                                            <h5 style="font-size: 12px;">12 August 2019</h5>
+                                            <h5 style="font-size: 12px;">{{ reg_closes }}</h5>
                                           </div>
 
                                      </div><!--end row-->
-
 
                                      <div class="row" >
                                        <div class="col-sm-1"></div>
@@ -1856,7 +1844,7 @@ $(document).ready(function(){
                                          </div>
 
                                          <div class="col-sm-7">
-                                            <h5 style="font-size: 12px;">4 weeks</h5>
+                                            <h5 style="font-size: 12px;">{{ course_length }}</h5>
                                           </div>
 
                                      </div><!--end row-->
@@ -1868,35 +1856,386 @@ $(document).ready(function(){
                                          </div>
 
                                          <div class="col-sm-7">
-                                            <h5 style="font-size: 12px;">8 - 10 hours per week, entirely online</h5>
+                                            <h5 style="font-size: 12px;">{{ course_effort }}</h5>
                                           </div>
 
                                      </div><!--end row-->
 
                                    </div>
 
-
-
-
-
-
-
-
-
 </div>
       <div class="modal-footer">
-
-        <a style="font-size: smaller; color: gray; font-weight: bold"
-                                           href={{ course_urls }}>
-                                            VIEW COURSE <i class="fa fa-angle-double-right"></i>
-                                        </a>
-
-
-
+        <a style="font-size: smaller; color: gray; font-weight: bold" href={{ course_url }}> VIEW COURSE <i class="fa fa-angle-double-right"></i> </a>
       </div>
     </div>
   </div>
 </div>
+{% endfor %}
                      <!--end of modal-->
 
+{% comment %}
+Badges_Celebrations_3
+{% endcomment %}
+<script>
+
+        //Badge_1_Friend_Finder
+
+        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+
+        FriendFinder_Connections.on("value", function (snapshot) {
+
+            var counter = 0;
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+            if (counter >=1 && counter<5)
+
+            {
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+               checkCelebration.on("value", function (snapshot) {
+                   var text = "Friend Finder Badge";
+
+                    if (snapshot.val().FriendFinder == "not_celebrated"){
+                      $('#Congrats_Pop_Up').html(text);
+                      $("#Celebrations").modal();
+
+                        checkCelebration.update({'FriendFinder': "celebrated"});
+               }
+                });
+            }
+
+            else {}
+
+
+        //Badge_2_NetoworkingNinja
+
+            if (counter >=5 && counter < 10)
+
+            {
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                       var text = "Networking Ninja Badge";
+                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'NetworkingNinja': "celebrated"});
+               }
+
+                })
+
+            }
+
+            else {}
+
+
+         //Badge_3_CrazyConnector
+
+  if (counter >=10 && counter<15)
+
+            {
+
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                     var text = "Crazy Connector Badge";
+
+
+                      if (snapshot.val().CrazyConnector == "not_celebrated"){
+                          $('#Congrats_Pop_Up').html(text);
+                          $("#Celebrations").modal();
+                          checkCelebration.update({'CrazyConnector': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {}
+
+
+          //Badge_4_PopularProfile
+
+ if (counter >=15)
+
+            {
+
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                       var text = "Popular Profile Badge";
+
+                      if (snapshot.val().PopularProfile == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'PopularProfile': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+
+            }
+
+
+        });
+
+          //Badge_5_BrightSpark
+
+var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+        Badges_for_Courses.on("value", function (snapshot) {
+
+            var counter = 0;
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+
+
+            if (counter >=3 && counter<5)
+
+            {
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                var text = "Bright Spark Badge";
+
+                      if (snapshot.val().BrightSpark == "not_celebrated"){
+                       $('#Congrats_Pop_Up').html(text);
+                       $("#Celebrations").modal();
+                       checkCelebration.update({'BrightSpark': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {}
+
+
+        //Badge_6_FabAcademic
+
+         if (counter >=5 && counter<10 )
+
+            {
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                    var text = "FabAcademic Badge";
+
+
+                      if (snapshot.val().FabAcademic == "not_celebrated"){
+                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                       $("#Celebrations").modal();
+                       checkCelebration.update({'FabAcademic': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+            }
+
+
+           //Badge_7_Got_Smarter
+
+
+            if (counter >=10 )
+
+            {
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                 var text = "GotSmarter Badge";
+
+                      if (snapshot.val().GotSmarter == "not_celebrated"){
+                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                         $("#Celebrations").modal();
+
+                       checkCelebration.update({'GotSmarter': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+
+            }
+
+
+
+        });
+
+        //Badge_8_Got_Smarter
+
+        //Badge_9_Forum_Boffin
+
+var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+        Badges_for_Forums.on("value", function (snapshot) {
+
+            var counter = 0;
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+            if (counter >=5 )
+
+            {
+
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+
+                      if (snapshot.val().ForumBoffin == "not_celebrated"){
+                       var text = "GotSmarter Badge";
+                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                        $("#Celebrations").modal();
+                       checkCelebration.update({'ForumBoffin': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+
+            }
+
+           });
+
+
+ //Badge_10_Forum_Boffin
+
+var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
+
+        Badges_for_Badges_Private.on("value", function (snapshot) {
+
+            var isPrivate = snapshot.val().privacyUpdated;
+            var display_1 = "";
+
+
+            if (isPrivate == "yes" )
+
+            {
+
+               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                   "                     <!--text for the hover-->\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+
+                      if (snapshot.val().SuperSecurity == "not_celebrated"){
+                       var text = "Super Security Badge";
+                       $('#Congrats_Pop_Up').html("Super Security Badge");
+                        $("#Celebrations").modal();
+                       checkCelebration.update({'SuperSecurity': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#SuperSecurity').html(display_1);});
+
+    </script>
+{% comment %}
+Badges_Celebrations_1
+{% endcomment %}
+
+    <div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div style="" class="modal-content">
+                <div style="" class="modal-header">
+
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+
+                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <br>
+                <img style="margin-left: 50px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+                <div class="modal-body">
+
+
+                    <div id="ConnectionsListing_All" class="row">
+
+
+                    </div> <!--end row-->
+
+
+                    <div class="modal-footer">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% comment %}
+Badges_Celebrations_2
+{% endcomment %}
+    <script>
+
+        $('#Celebrations').on('show.bs.modal', function (event) {
+
+        })
+    </script>
 </body>

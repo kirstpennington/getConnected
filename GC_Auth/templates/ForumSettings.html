@@ -697,7 +697,7 @@ Left:150px;
         <button disabled="true" id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
     {% else %}
         <button data-toggle="modal" data-target="#chooseparticipantsmodal" id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
-        <button id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
+        <button data-toggle="modal" data-target="#blockparticipantsmodal" id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
     {% endif %}
 
 
@@ -753,6 +753,13 @@ Left:150px;
                 updateParticpantsRef.update(participants);                                                              // updates the participants list for the forum
                 updateUsers(selectedUsers);                                                                             // update the forums joined list for each new participant
 
+                var blockUsersArray = getSelectedUsersBlock();                                                  // update users bloccked fromselected users
+                var blockUsersJson = arrayToJson(blockUsersArray);
+                var updateBlockedParticpantsRef = firebase.database().ref('Forums').child('{{ forum_id }}').child("Blocked");
+                updateBlockedParticpantsRef.update(blockUsersJson);                                                              // updates the participants list for the forum
+                updateUsersBocked(blockUsersArray);                                                                             // update the forums joined list for each new participant
+
+
                 var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
 
                 var at_least_one_checked = false;                                                                       // Check at least one checkbox selected topic_chb
@@ -798,6 +805,23 @@ Left:150px;
 
                 try {
                     document.getElementById(user_list[i] + "_hide").hidden = true;                                          // hide selectable item in the popup
+                }catch(err){
+
+                }
+            }
+        }
+
+        // function to update the Blocked list for each user that is added as a participant
+        function updateUsersBocked(user_list){
+            var forum = '{{ forum_id }}';
+            for (var i = 0; i < user_list.length; i++) {
+                var userUpdateForumsJoinedRef = firebase.database().ref("Users").child(user_list[i]).child("ForumsJoined");
+                userUpdateForumsJoinedRef.child(forum).remove();                                                        // add forum to user in the db
+
+                firebase.database().ref("Forums").child(forum).child("Participants").child(user_list[i]).remove();      // remove user from this forum's participants
+
+                try {
+                    document.getElementById(user_list[i] + "_hideBlock").hidden = true;                                          // hide selectable item in the popup
                 }catch(err){
 
                 }
@@ -1154,6 +1178,11 @@ Left:150px;
       var result = "<table >";
       result += "<tr>";                                                                                                 // cards added to the popup
 
+      var searchableUsersBlock = [];
+      var k = 0;                                                                                                        // spacing for forum suggestions
+      var resultBlock = "<table >";
+      resultBlock += "<tr>";                                                                                                 // cards added to the popup
+
       var getForumsFromDB = firebase.database().ref("Users");
       getForumsFromDB.on("value", function (all_users_snapshot) {                                                       // get a list of all the users on the system
 
@@ -1163,9 +1192,10 @@ Left:150px;
 
               all_users_snapshot.forEach(function (each_user_snapshot) {                                                // search through each user
                   var user_id = each_user_snapshot.key;
-                  searchableUsers.push(user_id);
+
                   if((contains(participants, user_id)==false) && user_id!='{{ this_uid }}'){                                     // exclude all participants of the forum
-                        var profile_pic = each_user_snapshot.val().ProfilePic;
+                      searchableUsers.push(user_id);
+                      var profile_pic = each_user_snapshot.val().ProfilePic;
                         var name = each_user_snapshot.val().Name;
                         var country = each_user_snapshot.val().Country;
 
@@ -1177,8 +1207,22 @@ Left:150px;
                         j++;
 
                   }
+                  else if (user_id!='{{ this_uid }}'){                              // if the user is a participant in the forum add them to the block particpants list
+                      searchableUsersBlock.push(user_id);
+                      var profile_pic = each_user_snapshot.val().ProfilePic;
+                        var name = each_user_snapshot.val().Name;
+                        var country = each_user_snapshot.val().Country;
+
+                        resultBlock += "<td>" +userCardBlock(user_id, profile_pic, name, country) + "</td>";                      // add more cards to the result
+
+                        if ((k + 1) % 2 == 0) {                                     // update spacing in table
+                            resultBlock += "</tr><tr>";
+                        }
+                        k++;
+                  }
               });
               $('#SelectableUsersTable').html(result);
+              $('#SelectableUsersTableBlock').html(resultBlock);
           });
 
       });
@@ -1199,6 +1243,26 @@ Left:150px;
                 "\n" +
                 "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
                 "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
+                "                </div>\n" +
+                "             </div>";
+      }
+
+      // function to add selectable user cards to the popup
+      function userCardBlock(uid, profile_pic, name, country){
+            return "<div id=\""+ uid +"_hideBlock\" style=\"margin-bottom: 20px\">\n" +
+                "                 <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+                "                   <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profile_pic +"\" style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+                "                </div><!--end col-->\n" +
+                "\n" +
+                "\n" +
+                "                <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+                "                  <p id=\""+uid+"_nameBlock\" style=\"margin-left:20px;margin-bottom:1px;font-size: 12px;\"> "+ name +"  </p>\n" +
+                "                  <p id=\""+uid+"_countryBlock\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+ country +"</p>\n" +
+                "\n" +
+                "                </div><!--end col-->\n" +
+                "\n" +
+                "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
+                "                  <input id=\""+ uid +"_checkedBlock\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
                 "                </div>\n" +
                 "             </div>";
       }
@@ -1297,4 +1361,111 @@ Left:150px;
 </div>
 </div>
 <!-- End Participants Popup-->
+
+
+
+<!--block participants modal-->
+<div class="modal fade" id="blockparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Block Forum Participants </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="centraliser" style="text-align: center">
+                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                     <input id="searchTermInputBlock" type="text" class="form-control" placeholder="Search"/>
+                     <span onclick="searchByTermParticipantBlock()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-search"></i>
+                     </span>
+                     <span onclick="searchByCountryBlock()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-map-marker"></i>
+                     </span>
+                     <span onclick="showAllBlock()" class="input-group-addon" style="color: #e83e8c; ">
+                         <i class="glyphicon glyphicon-remove"></i>
+                     </span>
+                 </div><!--end search bar-->
+             </div>
+
+             <br>
+                 <div class="row" >
+                     <table id="SelectableUsersTableBlock" style="margin-left: 40px">
+
+                    </table>
+          <script>
+
+      // FILTERING FUNCTIONALITY
+      function showAllBlock(){
+          for (let i = 0; i < searchableUsersBlock.length; i++) {
+              document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;           // show all blocks
+          }
+      }
+
+      function searchByTermParticipantBlock(){
+            searchTerm = document.getElementById('searchTermInputBlock').value;                   // get the value in the search input field
+            //  loop through course_ids
+
+                for (let i = 0; i < searchableUsersBlock.length; i++) {
+                    // check if topics list for this course_id contains Finance
+                    courseName = document.getElementById(searchableUsersBlock[i] + "_nameBlock").innerText;          // get data from the element that contains the university name for that course
+
+                    if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
+                        document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                    } else {
+                        document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = true;
+                    }
+                }
+                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+      }
+
+        function searchByCountryBlock(){
+            for (let i = 0; i < searchableUsersBlock.length; i++) {
+                var this_country = document.getElementById(searchableUsersBlock[i] + '_countryBlock').innerText;
+                if (this_country == '{{ country }}') {
+                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;
+                } else {
+                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = true;
+                }
+            }
+        }
+
+        // GET a list of the users selected in this popup
+        function getSelectedUsersBlock(){
+          var selectedUsers=[];
+          for (let i = 0; i < searchableUsersBlock.length; i++) {                                                            // search through all users in the popup
+              try {
+                  if (document.getElementById(searchableUsersBlock[i] + "_checkedBlock").checked == true) {                             // if the user is selected, add the user to the list
+                      selectedUsers.push(searchableUsersBlock[i]);
+                  }
+              }
+              catch(err){
+                  // Do Nothing
+              }
+
+          }
+          return selectedUsers;
+        }
+
+  </script>
+    </div> <!--end row-->
+            <br>
+      <div class="modal-footer">
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
 </body>

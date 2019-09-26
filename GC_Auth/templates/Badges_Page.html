@@ -1086,7 +1086,7 @@
                                 <!-- hidden field that stores the id of the entity  -->
                                 <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                 <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family: serif; font-size: small; color: black">
-                                    mutual conections &nbsp;<span class="label label-default"
+                                    connections &nbsp;<span class="label label-default"
                                                                   style="color: white"> {{ numConnections }} </span>
                                 </h8>
                                 <br>
@@ -1178,10 +1178,21 @@
                                     updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the user
                                     json_dict[this_uid] = this_uid;
                                     updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
+                                    updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
                                     updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
                                     this.hideDiv(hide_block);
                                     //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
-                                    $("#modalForumJoined").modal('show');
+                                    getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
+                                    getNumParticipantsRef.once('value', function(snapshot) {
+                                        var numParticipants = snapshot.val();              // get the current number of participants
+
+                                        json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
+
+                                        reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
+                                        reduceNumParticipantsRef.update(json_dict);         // update database
+
+                                        $("#modalForumJoined").modal('show');
+                                    });
                                 }
                                 else{                                                       // if the forum is private
                                     forumCreatorRef = db.child(forum_id).child('Creator');
@@ -1388,24 +1399,11 @@
       <!--Badge 10: SuperSecurity-->
       <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
 
-        <div class ="badgehover">
+        <div id="SuperSecurity" class ="badgehover">
            <!--coloumn super security-->
 
-          {% if privacyUp == "yes" %}
 
-                <img src="{% static "GC_Auth/Badges/supersecurity1.png" %}" alt= "lock" class="image" >
 
-                <div class="middle">
-                   <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
 
         </div>
 
@@ -1907,6 +1905,50 @@ var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid 
 
 
  //Badge_10_Forum_Boffin
+var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
+
+        Badges_for_Badges_Private.on("value", function (snapshot) {
+
+            var isPrivate = snapshot.val().privacyUpdated;
+            var display_1 = "";
+
+
+            if (isPrivate == "yes" )
+
+            {
+
+               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                   "                     <!--text for the hover-->\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+
+                      if (snapshot.val().SuperSecurity == "not_celebrated"){
+                       var text = "Super Security Badge";
+                       $('#Congrats_Pop_Up').html("Super Security Badge");
+                        $("#Celebrations").modal();
+                       checkCelebration.update({'SuperSecurity': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#SuperSecurity').html(display_1);});
 
 
 
