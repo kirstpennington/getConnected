@@ -510,7 +510,8 @@ def goBadges(request):
 
 
 def goHelpUserProfile(request):
-    return render(request, "helpUserProfile.html")
+    global the_user
+    return render(request, "helpUserProfile.html", {'profilePic': the_user.profilePic})
 
 
 def goHelpCourses(request):
@@ -522,7 +523,8 @@ def goHelpConnections(request):
 
 
 def goIntroHelp(request):
-    return render(request, 'introducingHelp.html')
+    global the_user
+    return render(request, 'introducingHelp.html',{'profilePic': the_user.profilePic})
 
 
 def goAccountHelp(request):
