@@ -496,6 +496,7 @@ def goBadges(request):
 
     return render(request, "Badges_Page.html", {
         'n': name,
+        'profilePic': the_user.profilePic,
         'numConnections': conn,
         'numCourses': course,
         'numForums': forum,
@@ -513,11 +514,11 @@ def goHelpUserProfile(request):
 
 
 def goHelpCourses(request):
-    return render(request, "courseHelp.html")
+    return render(request, "courseHelp.html", {'profilePic': the_user.profilePic})
 
 
 def goHelpConnections(request):
-    return render(request, "connectionHelp.html")
+    return render(request, "connectionHelp.html", {'profilePic': the_user.profilePic})
 
 
 def goIntroHelp(request):
@@ -525,7 +526,8 @@ def goIntroHelp(request):
 
 
 def goAccountHelp(request):
-    return render(request, 'accountHelp.html')
+    global the_user
+    return render(request, 'accountHelp.html', {'profilePic': the_user.profilePic})
 
 
 def goCreateForum(request):
