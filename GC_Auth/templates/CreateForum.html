@@ -1082,6 +1082,9 @@
     });
 
     function createForum(){
+
+        var forum_name = document.getElementById('nameTxt').value; /*Moved Position of this declaration so it can be used for sending invivations*/
+
         var db =  firebase.database().ref('Forums');    // forum reference
         var new_forum_json = {};                        // json containing the new forum data
         var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
@@ -1100,7 +1103,6 @@
                 // Do nothing
             }
         }
-        var forum_name = document.getElementById('nameTxt').value;
         var description = document.getElementById('descripTxt').value;
 
         if (forum_name != "" && description != "") {
@@ -1129,11 +1131,62 @@
                 new_forum_json['NumParticipants'] = selectedUsers.length + 1;
                 new_forum_json['Participants'] = participants;
 
-                var newKey = db.push(new_forum_json).getKey();                                    // add forum to database
+                var newKey = db.push(new_forum_json).getKey();
+
+                /*Sending Forum Invitations*/
+
+        var checkboxes_create_forum = document.getElementsByName('participants_create_forum');
+        var vals_create_forum = [];
+        for (var i = 0, n = checkboxes_create_forum.length; i < n; i++) {
+            if (checkboxes_create_forum[i].checked) {
+                vals_create_forum.push(checkboxes_create_forum[i].value);
+            }
+        }
+
+        var date_for_post = Date.now();
+
+        for (var i = 0, n = vals_create_forum.length; i < n; i++) {
+
+            var other = firebase.database().ref().child("Users/" + vals_create_forum[i] + "/RequestsReceived");/*Messages*/
+
+            var created_id_1 = other.push();
+            created_id_1.set({
+
+                time: date_for_post,
+                sender: '{{ n }}',
+                sender_id: newKey,
+                message: "Invitation to join Forum: " + forum_name,
+                receiver_id: vals_create_forum[i],
+                sender_profilePic: '{{ profilePic }}',
+                Type: "Forum_Invitation",
+
+            });
+
+            var hope = String(created_id_1);
+            var result = hope.substring(hope.lastIndexOf("/") + 1);
+            var save_id = firebase.database().ref().child("Users/" + vals_create_forum[i] + "/RequestsReceived/" + result);/*Messages*/
+            save_id.update({
+                post_id: result
+            });
+
+        }
+
+/*End of Sending Participant Invitations*/
+
+
+
+
+
+
+
+
+                // add forum to database
                 updateUsers(selectedUsers, newKey);                             // update participants' forums in their indivudual db trees
 
                 $("#modalForumAdded").modal('show');                        // confirm forum created
                 clearAllTopicsChecked();
+
+
             } else {
                 $("#modalSelectTopic").modal('show');                       // no topics have been selected - display error message
             }
@@ -1397,7 +1450,7 @@
                 "                </div><!--end col-->\n" +
                 "\n" +
                 "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
-                "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
+                "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"participants_create_forum\" value=\""+ uid +"\" style=\"margin-left: 50px\">\n" +
                 "                </div>\n" +
                 "             </div>";
       }
@@ -1543,7 +1596,7 @@
   </div>
 </div>
 
-
+l
 </body>
 
 </html>
