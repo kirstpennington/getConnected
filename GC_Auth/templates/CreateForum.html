@@ -805,7 +805,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ profilePic }}" alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -1119,7 +1119,7 @@
                 new_forum_json['Creator'] = '{{ this_uid }}';
                 new_forum_json['Enabled'] = true;
                 new_forum_json['numReported'] = 0;
-                new_forum_json['ForumPic']=" ";
+                new_forum_json['ForumPic']="https://ideas.darden.virginia.edu/sites/default/files/styles/full_width_640px_5_3_/public/2018-11/Design-Thinking-Tools.png?itok=rh-wk7Ak";
                 new_forum_json['TopicTags'] = json_topics;
                 new_forum_json['Reporters'] = 'none';
 
@@ -1513,7 +1513,7 @@
        Your forum has been created.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+        <button onclick="location.href='{% url 'nav_home' %}'" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
       </div>

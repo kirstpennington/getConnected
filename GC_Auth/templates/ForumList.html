@@ -1674,45 +1674,51 @@ $(document).ready(function(){
 
             myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
 
-                myForumsList = snapshotToArrayKey(snapshot_1);
-                //strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
-                //myForumsList = strForumsList.split(",");                                        // split string into array by the delimiter ","
+                    myForumsList = snapshotToArrayKey(snapshot_1);
+                    //strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+                    //myForumsList = strForumsList.split(",");                                        // split string into array by the delimiter ","
 
-                //  loop through course_ids
-                for (let i = 0; i < myForumsList.length; i++) {
-                    document.getElementById(myForumsList[i] + "_hide").hidden = false;           // show all blocks
-                }
+                    //  loop through course_ids
+                    for (let i = 0; i < myForumsList.length; i++) {
+                        try{
+                            document.getElementById(myForumsList[i] + "_hide").hidden = false;           // show all blocks
+                        }catch (err){
+                            //alert(err);
+                        }
+                    }
+
+
             });
         }
 
 
         // replace list of my courses with filtered courses based on topic selected
         function searchByTopic(searchTopic) {
-
-           //strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
-           //myForumsList =  strForumsList.split(",");                                        // split string into array by the delimiter ","
-
             // hide unwanted items from view
             // hides the block that don't appear in the list
 
             //  loop through course_ids
             var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
-
             myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
-
                 myForumsList = snapshotToArrayKey(snapshot_1);
                 for (let i = 0; i < myForumsList.length; i++){
                     // check if topics list for this course_id contains Finance
-                    elementIdName = myForumsList[i] + "_topics";
-                    strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
-                    strTopics =  strTopics1.substring(1, strTopics1.length-1);
-                    courseTopicsList = strTopics.split(" ");                                // creates an array of the course's topics
-                    if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
-                        document.getElementById(myForumsList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                    try{
+                        elementIdName = myForumsList[i] + "_topics";
+                        strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
+                        strTopics =  strTopics1.substring(1, strTopics1.length-1);
+                        courseTopicsList = strTopics.split(" ");                                // creates an array of the course's topics
+                        if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
+                            document.getElementById(myForumsList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                        }
+                        else{
+                            document.getElementById(myForumsList[i] + "_hide").hidden = true;
+                        }
                     }
-                    else{
-                        document.getElementById(myForumsList[i] + "_hide").hidden = true;
+                    catch(err){
+                        // Do Nothing
                     }
+
                 }
                 // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
             });
@@ -1725,21 +1731,40 @@ $(document).ready(function(){
             //  loop through course_ids
             var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
             myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
-                myForumsList = snapshotToArrayKey(snapshot_1);
 
-                for (let i = 0; i < myForumsList.length; i++) {
-                    // check if topics list for this course_id contains Finance
-                    courseName = document.getElementById(myForumsList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                    myForumsList = snapshotToArrayKey(snapshot_1);
 
-                    if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
-                        document.getElementById(myForumsList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                    } else {
-                        document.getElementById(myForumsList[i] + "_hide").hidden = true;
+                    for (let i = 0; i < myForumsList.length; i++) {
+                        try{
+                            // check if topics list for this course_id contains Finance
+                            courseName = document.getElementById(myForumsList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+
+
+                            if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
+                                document.getElementById(myForumsList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                            } else {
+                                document.getElementById(myForumsList[i] + "_hide").hidden = true;
+                            }
+                        }catch(err){
+                            //alert(err);
+                        }
                     }
-                }
-                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+
+
             });
         }
+
+        // get a snapshot of a list of keys from firebase and convert it to an array
+       function snapshotToArrayKey(snapshot) {
+           let returnArr = [];
+           snapshot.forEach(childSnapshot => {
+               //let item = childSnapshot.val();
+               var key = childSnapshot.key;
+               returnArr.push(key);
+           });
+           return returnArr;
+       }
 
     </script>
 

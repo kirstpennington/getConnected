@@ -435,22 +435,26 @@ Left:150px;
             <!--1. User Profile icon + drop down-->
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'" class="glyphicon glyphicon-user"></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ profilePic }}" alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
                     <ul class="dropdown-menu">
-                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
                         <li class="divider"></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span class="fa fa-comments-o pull-right"></span></a></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
                         <li class="divider"></li>
                         <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                         <li class="divider"></li>
-                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
                         <li class="divider"></li>
-                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -1094,7 +1098,7 @@ Left:150px;
        Your changes have been saved to your forum.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+        <button onclick="location.href='{% url 'nav_forums' %}'" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
       </div>
