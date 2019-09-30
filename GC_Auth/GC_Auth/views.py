@@ -571,7 +571,6 @@ def goForumsOpen(request):
                                                     'forum_creator': forum_methods.getForumCreator(forum_id),
                                                     'forum_pic': forum_methods.getForumPic(forum_id),
                                                     'forum_enabled': forum_methods.getForumEnabled(forum_id)
-
                                              })
 def goForumSettings(request):
     global the_user
