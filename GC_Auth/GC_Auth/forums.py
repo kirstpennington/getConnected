@@ -68,6 +68,7 @@ class forum_methods:
             topics_string += " | "
             return topics_string
 
+
     def getForumTopicsList(forum_id):
         return database.child("Forums").child(forum_id).child("TopicTags").shallow().get().val()
 

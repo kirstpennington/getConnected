@@ -708,9 +708,25 @@
                                         class="glyphicon glyphicon glyphicon-remove-circle pull-right"></span></a>
                                 </li>
                                 <li class="divider"></li>
-
-                                <li><a id="reportForumBtn">Report Forum<span
-                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                <script>
+                                    // hide the report button if the user has reported the forum once already
+                                    var forumReportersRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("Reporters");
+                                    forumReportersRef.once('value', function(reporters_snapshot) {
+                                        var all_reporters = snapshotToArrayKey(reporters_snapshot);
+                                        var reported = false;
+                                        for (i = 0; i < all_reporters.length; i++) {                                        // search through the list of all reporters
+                                            if (all_reporters[i] == '{{ this_uid }}'){                                      // if any reporter is this user
+                                                reported = true;
+                                                break;                                                                      // the user has reported the forum
+                                            }
+                                        }
+                                        if (reported) {                                                                     // do not show the button if the user has reported the forum
+                                            document.getElementById('listItemReportForum').style.display = 'none';
+                                        }
+                                    });
+                                </script>
+                                <li id="listItemReportForum">
+                                    <a id="reportForumBtn">Report Forum<span  class="glyphicon glyphicon-warning-sign pull-right"></span></a>
                                 </li>
 
 
@@ -1393,6 +1409,7 @@
                 "\n" +
                 "                <br><br><!--spaces between posts-->";
 
+                "\n" +
         }
         $('#post_comment').html(html);
 
@@ -2290,31 +2307,33 @@ Badges_Celebrations_2
         if (confirm) {                                                                                                              // report forum confirmed
             var reportersRef = firebase.database().ref('Forums').child('{{ forum_id }}').child('Reporters');
             reportersRef.once("value", function (reporters_snapshot) {
-                var allReporters = snapshotToArrayKey(reporters_snapshot);                                                          // get list of all people who reported the forum
-                if (!arrayContainsValue(allReporters, '{{ this_uid }}')) {                                                      // check if this user had reported the forum before
-                    var reporters = {};
-                    reporters['{{ this_uid }}'] = '{{ this_uid }}';                                                             // add this user to the list of people who reported the forum
-                    firebase.database().ref("Forums").child('{{ forum_id }}').child('Reporters').update(reporters);
+                var reporters = {};
+                reporters['{{ this_uid }}'] = '{{ this_uid }}';                                                             // add this user to the list of people who reported the forum
+                firebase.database().ref("Forums").child('{{ forum_id }}').child('Reporters').update(reporters);
 
-                    var numReportsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child('numReported');         // get current num reports
-                    numReportsRef.once("value", function (num_reported_snapshot) {                                              //Fetching number of times forum was reported
-                        var new_num_reports = num_reported_snapshot.val() + 1;                                                  // increment num reports
-                        firebase.database().ref("Forums").child('{{ forum_id }}').update({numReported: new_num_reports});
-                        if (new_num_reports > 5) {                                                                              // if the forum has been reported mroe than a certain number of times
-                            var wholeForumRef = firebase.database().ref("Forums").child('{{ forum_id }}');                      // get this whole entry
-                            wholeForumRef.once("value", function (whole_forum_snapshot) {
-                                var wholeForum = whole_forum_snapshot.val();
-                                var moveforum = {};
-                                moveforum[whole_forum_snapshot.key] = wholeForum;
-                                firebase.database().ref("ReportedForums").update(moveforum);                                    // move entry to ForumsReported
-                                wholeForumRef.remove();                                                                         // remove this entry
-                                $("modalReportedForum").modal('show');
-                            });
-                        }
-                    });
-                } else {
-                    $("modalReportedForumAlready").modal('show');
-                }
+                var numReportsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child('numReported');         // get current num reports
+                numReportsRef.once("value", function (num_reported_snapshot) {                                              //Fetching number of times forum was reported
+                    var new_num_reports = num_reported_snapshot.val() + 1;                                                  // increment num reports
+                    firebase.database().ref("Forums").child('{{ forum_id }}').update({numReported: new_num_reports});
+                    if (new_num_reports > 5) {                                                                              // if the forum has been reported mroe than a certain number of times
+                        var wholeForumRef = firebase.database().ref("Forums").child('{{ forum_id }}');                      // get this whole entry
+                        wholeForumRef.once("value", function (whole_forum_snapshot) {
+                            var wholeForum = whole_forum_snapshot.val();
+                            var moveforum = {};
+                            moveforum[whole_forum_snapshot.key] = wholeForum;
+                            firebase.database().ref("ReportedForums").update(moveforum);                                    // move entry to ForumsReported
+                            wholeForumRef.remove();                                                                         // remove this entry
+                            document.getElementById("listItemReportForum").style.display = 'none';                          // hide the report button once reported once
+                            $("modalReportedForum").modal('show');
+                        });
+                    }
+                    else{
+                        document.getElementById("listItemReportForum").style.display = 'none';                              // hide the report button once reported once
+                        $("modalReportedForum").modal('show');
+                    }
+
+                });
+
             });
         } else {                                                                                                                  //Do not report forum
             $("#mi-modal2").modal('hide');
@@ -2334,15 +2353,20 @@ Badges_Celebrations_2
 
     // returns true if the array contains the value
     function arrayContainsValue(array, value) {
-        if (array.length > 0) {
-            for (let i = 0; i < array.length; i++) {
-                if (array[i] == value) {
-                    return true;
+        try{
+            if (array.length > 0) {
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i] == value) {
+                        return true;
+                    }
                 }
+                return false;
+            } else {
+                return false;
             }
-            return false;
-        } else {
-            return false;
+        }catch(err){
+            alert(err);
         }
+
     }
 </script>
