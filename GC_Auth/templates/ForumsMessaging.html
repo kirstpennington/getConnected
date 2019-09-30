@@ -101,6 +101,25 @@
             height: 80px;
         }
 
+        /*frame for images on a post to zoom out*/
+        .frame {
+            width: 800px;
+            height: 1000px;
+            border: 0;
+            -ms-transform: scale(0.25);
+            -moz-transform: scale(0.25);
+            -o-transform: scale(0.25);
+            -webkit-transform: scale(0.25);
+            transform: scale(0.25);
+
+            -ms-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            -o-transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+        }
+
+
         /*icon for user profile img*/
         .profile_img {
             width: 25px;
@@ -710,11 +729,11 @@
                                 <script>
                                     // hide the report button if the user has reported the forum once already
                                     var forumReportersRef = firebase.database().ref("Forums").child('{{ forum_id }}').child("Reporters");
-                                    forumReportersRef.once('value', function(reporters_snapshot) {
+                                    forumReportersRef.once('value', function (reporters_snapshot) {
                                         var all_reporters = snapshotToArrayKey(reporters_snapshot);
                                         var reported = false;
                                         for (i = 0; i < all_reporters.length; i++) {                                        // search through the list of all reporters
-                                            if (all_reporters[i] == '{{ this_uid }}'){                                      // if any reporter is this user
+                                            if (all_reporters[i] == '{{ this_uid }}') {                                      // if any reporter is this user
                                                 reported = true;
                                                 break;                                                                      // the user has reported the forum
                                             }
@@ -725,7 +744,8 @@
                                     });
                                 </script>
                                 <li id="listItemReportForum">
-                                    <a id="reportForumBtn">Report Forum<span  class="glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                    <a id="reportForumBtn">Report Forum<span
+                                            class="glyphicon glyphicon-warning-sign pull-right"></span></a>
                                 </li>
 
 
@@ -821,7 +841,8 @@
 
                         <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
                                 class="glyphicon glyphicon-paperclip"></span></a>
-                    <a data-toggle="modal" data-target="#attachImageModal" style="color:#e83e8c;margin-left: 5px;"><span
+                        <a data-toggle="modal" data-target="#attachImageModal"
+                           style="color:#e83e8c;margin-left: 5px;"><span
                                 class="glyphicon glyphicon-picture"></span></a>
 
 
@@ -921,6 +942,13 @@
                         <p class="card-text;" style="font-family: sans-serif">
                             This card is still a dummy, you can use this to test your designs..
                         </p>
+
+                        <div class="wrap" style="width:400px; height:600px;position: relative; left: 35%;margin-bottom: -350px;">
+
+                            <iframe class="frame"
+                                    src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
+                                    frameborder="0"></iframe>
+                        </div>
 
                         <div style="margin-bottom: 0px; margin-left: 530px;font-weight: bold ">
                             <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
@@ -1417,7 +1445,7 @@
                 "\n" +
                 "                <br><br><!--spaces between posts-->";
 
-                "\n" +
+            "\n" +
         }
         $('#post_comment').html(html);
 
@@ -2221,7 +2249,7 @@ Badges_Celebrations_2
 
 <!--Modal to attach a file-->
 <div class="modal fade" id="attachFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true" >
+     aria-hidden="true">
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
@@ -2236,16 +2264,16 @@ Badges_Celebrations_2
                 <div class="row">
 
                     <div class="col-md-2"></div>
-                    <div class="col-md-7" >
+                    <div class="col-md-7">
                         <div class="form-group"><!--- file link input-->
 
                             <label class="sr-only" for="message">post</label>
                             <textarea class="form-control" id="post_msg" rows="1"
-                                      placeholder="Insert File Link Here" ></textarea>
+                                      placeholder="Insert File Link Here"></textarea>
                         </div>
                     </div><!--end col-->
 
-                    <div class="col-md-3" >
+                    <div class="col-md-3">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">View
                         </button>
@@ -2258,7 +2286,7 @@ Badges_Celebrations_2
             </div>
 
             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+                <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
@@ -2274,7 +2302,7 @@ Badges_Celebrations_2
 
 <!--Modal to attach an image-->
 <div class="modal fade" id="attachImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true" >
+     aria-hidden="true">
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
@@ -2289,16 +2317,16 @@ Badges_Celebrations_2
                 <div class="row">
 
                     <div class="col-md-2"></div>
-                    <div class="col-md-7" >
+                    <div class="col-md-7">
                         <div class="form-group"><!--- file link input-->
 
                             <label class="sr-only" for="message">post</label>
                             <textarea class="form-control" id="post_msg" rows="1"
-                                      placeholder="Insert Image Link Here" ></textarea>
+                                      placeholder="Insert Image Link Here"></textarea>
                         </div>
                     </div><!--end col-->
 
-                    <div class="col-md-3" >
+                    <div class="col-md-3">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">View
                         </button>
@@ -2311,7 +2339,7 @@ Badges_Celebrations_2
             </div>
 
             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+                <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
@@ -2441,8 +2469,7 @@ Badges_Celebrations_2
                             document.getElementById("listItemReportForum").style.display = 'none';                          // hide the report button once reported once
                             $("modalReportedForum").modal('show');
                         });
-                    }
-                    else{
+                    } else {
                         document.getElementById("listItemReportForum").style.display = 'none';                              // hide the report button once reported once
                         $("modalReportedForum").modal('show');
                     }
@@ -2468,7 +2495,7 @@ Badges_Celebrations_2
 
     // returns true if the array contains the value
     function arrayContainsValue(array, value) {
-        try{
+        try {
             if (array.length > 0) {
                 for (let i = 0; i < array.length; i++) {
                     if (array[i] == value) {
@@ -2479,7 +2506,7 @@ Badges_Celebrations_2
             } else {
                 return false;
             }
-        }catch(err){
+        } catch (err) {
             alert(err);
         }
 
