@@ -950,33 +950,6 @@
 
 
 
-                                    {% if the_user_is_connection == True or the_user_is_connection == true %}
-                                        <button hidden style="display: none;" id="btnConnect" onclick="connect()"
-                                                data-placement="right"
-                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                                class="btn btn-primary pull-right">
-                                            Connect
-                                        </button>
-                                        <button id="btnDisconnect" onclick="disconnect()"
-                                                data-placement="right"
-                                                class="btn btn-primary pull-right"
-                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "                                            class="btn btn-primary pull-right">
-                                            Disconnect
-                                        </button>
-                                    {% else %}
-                                        <button id="btnConnect" onclick="connect()"
-                                                data-placement="right"
-                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                                class="btn btn-primary pull-right">
-                                            Connect
-                                        </button>
-                                        <button hidden style="display: none;" id="btnDisconnect" onclick="disconnect()"
-                                                data-placement="right"
-                                                class="btn btn-primary pull-right"
-                                                style="background-color:#e83e8c;border-color: transparent;font-family: 'Roboto', sans-serif; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset ">
-                                            Disconnect
-                                        </button>
-                                    {% endif %}
 
                                     <script>
                                         // connect to this user

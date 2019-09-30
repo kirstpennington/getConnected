@@ -1437,19 +1437,19 @@
       // function to add selectable user cards to the popup
       function userCard(uid, profile_pic, name, country){
             return "<div id=\""+ uid +"_hide\" style=\"margin-bottom: 20px\">\n" +
-                "                 <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+                "                 <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
                 "                   <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profile_pic +"\" style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
                 "                </div><!--end col-->\n" +
                 "\n" +
                 "\n" +
-                "                <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+                "                <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
                 "                  <p id=\""+uid+"_name\" style=\"margin-left:20px;margin-bottom:1px;font-size: 12px;\"> "+ name +"  </p>\n" +
                 "                  <p id=\""+uid+"_country\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+ country +"</p>\n" +
                 "\n" +
                 "                </div><!--end col-->\n" +
                 "\n" +
-                "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
-                "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"participants_create_forum\" value=\""+ uid +"\" style=\"margin-left: 50px\">\n" +
+                "                <div class=\"col-md-2\"><!--CHECK BOX GOES HERE-->\n" +
+                "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"participants_create_forum\" value=\""+ uid +"\" style=\"margin-left: 10px\">\n" +
                 "                </div>\n" +
                 "             </div>";
       }
@@ -1546,6 +1546,12 @@
 
       </div>
     </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Okay
+                </button>
+
+            </div>
   </div>
 </div>
 </div>
