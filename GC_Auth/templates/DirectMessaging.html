@@ -728,7 +728,7 @@
 
 <!--Navigation Bar-->
 
-<nav style="" class="navbar navbar-inverse "> <!--Inverse = Bright Colour Pallette-->
+<nav style="font-family: Roboto, sans-serif; font-size: 15px" class="navbar navbar-inverse "> <!--Inverse = Bright Colour Pallette-->
      <div class="container-fluid">
          <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
 
@@ -2087,7 +2087,7 @@ $(window).on('keydown', function(e) {
       </div>
 
       <div class="modal-body">
-          <p id="connections_check" style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select at least two connections</p>
+          <p id="connections_check_1" style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select at least two connections</p>
           <h5 style="font-family: sans-serif; font-weight: bold;" class="modal-title " id="exampleModalLongTitle"><i class="fa fa-users"></i>  Select your connections and begin chatting! </h5><br>
 
 
@@ -2120,7 +2120,7 @@ $(window).on('keydown', function(e) {
 
       <div class="modal-footer">
 
-    <button onclick="SendMessage_Group()"  >Create Group</button>
+    <button  onclick="SendMessage_Group()"  >Create Group</button>
 
 
 
@@ -2304,6 +2304,8 @@ $(window).on('keydown', function(e) {
 
         var tag_check_connections = document.getElementById('connections_check');
         tag_check_connections.style.visibility = 'visible';
+        return
+
     }
     else {
          var tag_check_connections = document.getElementById('connections_check');
@@ -2479,11 +2481,11 @@ if ( message_txt == "" || image == "" || vals.length <=1  ) {
 
     if (vals.length <=1) {
 
-        var tag_check = document.getElementById('connections_check');
+        var tag_check = document.getElementById('connections_check_1');
         tag_check.style.visibility = 'visible';
     }
     else {
-         var tag_check = document.getElementById('connections_check');
+         var tag_check = document.getElementById('connections_check_1');
         tag_check.style.visibility = 'hidden';
     }
 
