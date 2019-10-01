@@ -904,8 +904,8 @@
 
                         <!--this is the image which shows up on a post-->
 
-                            <img src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
-                                 style="width:200px; height:200px; margin-left: 30%;" >
+                        <img src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
+                             style="width:200px; height:200px; margin-left: 30%;" >
 
 
 
@@ -1456,7 +1456,7 @@
             like_IDs.child(comment_id).remove();
         } else {
 
-             $("#deleteCommentModal").modal('show');
+            $("#deleteCommentModal").modal('show');
         }
 
 
@@ -2457,32 +2457,50 @@ Badges_Celebrations_2
     // results of the confirmation
     modalConfirm(function (confirm) {
         if (confirm) {                                                                                                              // report forum confirmed
+
             var reportersRef = firebase.database().ref('Forums').child('{{ forum_id }}').child('Reporters');
             reportersRef.once("value", function (reporters_snapshot) {
+
                 var allReporters = snapshotToArrayKey(reporters_snapshot);                                                          // get list of all people who reported the forum
                 if (!arrayContainsValue(allReporters, '{{ this_uid }}')) {                                                      // check if this user had reported the forum before
+
                     var reporters = {};
                     reporters['{{ this_uid }}'] = '{{ this_uid }}';                                                             // add this user to the list of people who reported the forum
                     firebase.database().ref("Forums").child('{{ forum_id }}').child('Reporters').update(reporters);
 
                     var numReportsRef = firebase.database().ref("Forums").child('{{ forum_id }}').child('numReported');         // get current num reports
                     numReportsRef.once("value", function (num_reported_snapshot) {                                              //Fetching number of times forum was reported
+
                         var new_num_reports = num_reported_snapshot.val() + 1;                                                  // increment num reports
                         firebase.database().ref("Forums").child('{{ forum_id }}').update({numReported: new_num_reports});
+
                         if (new_num_reports > 5) {                                                                              // if the forum has been reported mroe than a certain number of times
+
                             var wholeForumRef = firebase.database().ref("Forums").child('{{ forum_id }}');                      // get this whole entry
                             wholeForumRef.once("value", function (whole_forum_snapshot) {
+
                                 var wholeForum = whole_forum_snapshot.val();
                                 var moveforum = {};
                                 moveforum[whole_forum_snapshot.key] = wholeForum;
+
                                 firebase.database().ref("ReportedForums").update(moveforum);                                    // move entry to ForumsReported
                                 wholeForumRef.remove();                                                                         // remove this entry
-                                $("modalReportedForum").modal('show');
+
+                                document.getElementById('reportForumBtn').style.display = 'none';
+                                $("#mi-modal2").modal('hide');
+                                $("#modalReportedForum").modal('show');
                             });
+                        }
+                        else{
+                            document.getElementById('reportForumBtn').style.display = 'none';
+                            $("#mi-modal2").modal('hide');
+                            $("#modalReportedForum").modal('show');
                         }
                     });
                 } else {
-                    $("modalReportedForumAlready").modal('show');
+                    document.getElementById('reportForumBtn').style.display = 'none';                                          // hide report button
+                    $("#mi-modal2").modal('hide');                                                                              // close this modal before opening the confirmation modal
+                    $("#modalReportedForumAlready").modal('show');
                 }
             });
         } else {                                                                                                                  //Do not report forum
