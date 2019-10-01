@@ -1120,17 +1120,21 @@
                         new_forum_json['Creator'] = '{{ this_uid }}';
                         new_forum_json['Enabled'] = true;
                         new_forum_json['numReported'] = 0;
-                        new_forum_json['ForumPic']=displayRadioValue();                                                 // get the picture in the selected radio button
+                        new_forum_json['ForumPic']= displayRadioValue();                                                 // get the picture in the selected radio button
                         new_forum_json['TopicTags'] = json_topics;
-                        new_forum_json['Reporters'] = 'none';
+                        new_forum_json['Reporters'] = 0;
 
-                        var selectedUsers = getSelectedUsers();
-                        var participants = arrayToJson(selectedUsers);                                                  // add all participants selected
+                        var participants = {};                                                                          // add the creator as a participant
+                        participants['{{ this_uid }}'] = '{{ this_uid }}';
 
-                        new_forum_json['NumParticipants'] = selectedUsers.length + 1;
+                        new_forum_json['NumParticipants'] = 1;
                         new_forum_json['Participants'] = participants;
 
                         var newKey = db.push(new_forum_json).getKey();
+
+                        var forum_update = {};
+                        forum_update[newKey] = newKey;
+                        firebase.database().ref("Users").child('{{ this_uid }}').child("ForumsJoined").update(forum_update);        // add this forum to the creator's list of forums
 
                         /*Sending Forum Invitations*/
 
@@ -1185,8 +1189,6 @@
 
                         /*End of Sending Participant Invitations*/
 
-                        updateUsers(selectedUsers, newKey);                                                             // update participants' forums in their indivudual db trees
-
                         $("#modalForumAdded").modal('show');                                                            // confirm forum created
                         clearAllTopicsChecked();
 
@@ -1215,30 +1217,7 @@
                 document.getElementById('nameTxt').value = "";                                                          // clear all fields
                 document.getElementById('descripTxt').value = "";
             }
-            // function converts an array to a Json object
-            function arrayToJson(array){
-                var json_object = {};
-                for (var i = 0; i < array.length; i++) {
-                    json_object[array[i]] = array[i];
-                }
-                return json_object;
-            }
 
-            // function to update the ForumsJoined list for each user that is added as a participant
-            function updateUsers(user_list, forum){
-                for (var i = 0; i < user_list.length; i++) {
-                    var userUpdateForumsJoinedRef = firebase.database().ref("Users").child(user_list[i]).child("ForumsJoined");
-                    var addForum = {};
-                    addForum[forum] = new Date();
-                    userUpdateForumsJoinedRef.update(addForum);                                                         // add forum to user in the db
-
-                    try {
-                        document.getElementById(user_list[i] + "_hide").hidden = true;                                  // hide selectable item in the popup
-                    }catch(err){
-
-                    }
-                }
-            }
         </script>
 
 
