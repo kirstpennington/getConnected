@@ -786,10 +786,14 @@
 
                     <div class="form-group" style="display: inline-block; vertical-align: top;">
                         <!--attach file button-->
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
 
-                        </div>
+                        <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
+                                class="glyphicon glyphicon-paperclip"></span></a>
+                        <a data-toggle="modal" data-target="#attachImageModal"
+                           style="color:#e83e8c;margin-left: 5px;"><span
+                                class="glyphicon glyphicon-picture"></span></a>
+
+
                     </div>
                     <!--post button-->
                     <div class="buttonbot" id="btnGetMessage"
@@ -1774,7 +1778,115 @@
 
 </script>
 
-</body><!-- Modal for pop up message "User has left forum" -->
+<!--Modal to attach a file-->
+<div class="modal fade" id="attachFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="vertical-align-center" role="document">
+        <div class="modal-content" style="width: 1000px;margin-left: 15%;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Attach a File </strong></h5>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-2"></div>
+                    <div class="col-md-7">
+                        <div class="form-group"><!--- file link input-->
+
+                            <label class="sr-only" for="message">post</label>
+                            <textarea class="form-control" id="post_msg" rows="1"
+                                      placeholder="Insert File Link Here"></textarea>
+                        </div>
+                    </div><!--end col-->
+
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">View
+                        </button>
+                    </div><!--end col -->
+                </div><!-- end row-->
+                <iframe src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
+                        style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Cancel
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Attach
+                </button>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!--Modal to attach an image-->
+<div class="modal fade" id="attachImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="vertical-align-center" role="document">
+        <div class="modal-content" style="width: 1000px;margin-left: 15%;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Attach an Image </strong></h5>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-2"></div>
+                    <div class="col-md-7">
+                        <div class="form-group"><!--- file link input-->
+
+                            <label class="sr-only" for="message">post</label>
+                            <textarea class="form-control" id="post_msg" rows="1"
+                                      placeholder="Insert Image Link Here"></textarea>
+                        </div>
+                    </div><!--end col-->
+
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">View
+                        </button>
+                    </div><!--end col -->
+                </div><!-- end row-->
+                <iframe src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
+                        style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Cancel
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Attach
+                </button>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+<!-- Modal for pop up message "User has left forum" -->
 <div class="modal fade" id="modalLeftForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
