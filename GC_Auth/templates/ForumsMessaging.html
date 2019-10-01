@@ -404,10 +404,12 @@
 
         }
 
-    ::placeholder {
-  font-style: italic;
-        font-family: Arial;
-}
+
+
+        ::placeholder {
+            font-style: italic;
+            font-family: Arial;
+        }
 
     </style>
 
@@ -454,7 +456,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ profilePic }}" alt=""></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30"
+                                                                                  height="30" src="{{ profilePic }}"
+                                                                                  alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -674,7 +678,8 @@
                                 <br><br>
                             {% endfor %}
 
-                            <a onclick="location.href='{% url 'nav_forums' %}'" class="text-right" style="position: absolute; left: 50%;"> View All</a>
+                            <a onclick="location.href='{% url 'nav_forums' %}'" class="text-right"
+                               style="position: absolute; left: 50%;"> View All</a>
                             <br>
 
                         </div>
@@ -719,102 +724,107 @@
 
 
 
-<!--FORUM MESSAGING HEADERS-->
-<!--User's Details-->
-<div  style="border-style: solid;border-radius: 10px;border-width: 3px;border-color: darkgray" class="panel panel-default" >
-                  <div style="background-color: white" class="panel-heading">
-                    <div class="row"><!--table for person info-->
-                        <div class="col-sm-1">
-                            <div class="mr-2"> <!--styling allows for the image and text to be next to one another-->
-                                <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
+                <!--FORUM MESSAGING HEADERS-->
+                <!--User's Details-->
+                <div style="border-style: solid;border-radius: 10px;border-width: 3px;border-color: darkgray"
+                     class="panel panel-default">
+                    <div style="background-color: white" class="panel-heading">
+                        <div class="row"><!--table for person info-->
+                            <div class="col-sm-1">
+                                <div class="mr-2">
+                                    <!--styling allows for the image and text to be next to one another-->
+                                    <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
+
+                                </div>
+
 
                             </div>
+                            <div class="col-sm-11">
+                                <div class="ml-2">
+                                    <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
+
+                                    <!--Number of Connections and Forums-->
+                                    <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: black;">
+                                        Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                    <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: black;">
+                                        Forums <span
+                                            class="label label-default">{{ numForums }}</span></h8>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of User's Details-->
+
+
+                        <!-- leave forum button-->
+
+                        {% if forum_creator != this_uid %}
+
+                        {% else %} <!-- only the forum creator can access forum settings -->
+                            <form action="/goForumSettings/" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
+                                <div>
+                                    <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
+                                            title="ForumSettings" data-placement="right"
+                                            style="margin-right:10px; background-color:#e83e8c; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                            type="submit"
+                                            class="btn btn-primary pull-right">
+                                        <a href="#"><i
+                                                class=" fa fa-gear" style="color: white"></i></a>
+                                    </button>
+                                </div>
+                            </form>
+                        {% endif %}
+
+
+                        <!-- Post Details-->
+
+                        <div hidden id="this_forum_id">{{ forum_id }}</div>
+                        <a style="font-family: sans-serif;  color: black;  font-weight: bold ">Title:
+                            &nbsp;&nbsp;</a><input maxlength="50" id="Title_element" type="text" name="title"
+                                                   style="border-radius: 4px;width: 60%;"><br><br>
+
+
+                        <div class="form-group"><!--- Make a new Post-->
+
+                            <label class="sr-only" for="message">post</label>
+                            <textarea class="form-control" id="post_msg" rows="3"
+                                      placeholder="What would you like to share?"></textarea>
+                        </div>
+
+                        <div class="form-group" style="display: inline-block; vertical-align: top;">
+                            <!--attach file button-->
+
+                            <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
+                                    class="glyphicon glyphicon-paperclip"></span></a>
+                            <a data-toggle="modal" data-target="#attachImageModal"
+                               style="color:#e83e8c;margin-left: 5px;"><span
+                                    class="glyphicon glyphicon-picture"></span></a>
 
 
                         </div>
-                        <div class="col-sm-11">
-                            <div class="ml-2">
-                                <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
-
-                                <!--Number of Connections and Forums-->
-                                <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: black;">
-                                    Connections <span class="label label-default">{{ numConnections }}</span></h8>
-                                <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: black;">
-                                    Forums <span
-                                        class="label label-default">{{ numForums }}</span></h8>
-
-
-                            </div>
+                        <!--post button-->
+                        <div class="buttonbot" id="btnGetMessage"
+                             style="position:absolute;left: 85%;display: inline-block;">
+                            <button type="button"><strong>Post</strong></button>
                         </div>
+
+                        <br>
                     </div>
-<!-- End of User's Details-->
+                </div>
 
-
-                    <!-- leave forum button-->
-
-                    {% if forum_creator != this_uid %}
-
-                    {% else %} <!-- only the forum creator can access forum settings -->
-                        <form action="/goForumSettings/" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
-                            <div>
-                                <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
-                                        title="ForumSettings" data-placement="right"
-                                        style="margin-right:10px; background-color:#e83e8c; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                        type="submit"
-                                        class="btn btn-primary pull-right">
-                                    <a href="#"><i
-                                            class=" fa fa-gear" style="color: white"></i></a>
-                                </button>
-                            </div>
-                        </form>
-                    {% endif %}
-
-
-<!-- Post Details-->
-
-                    <div hidden id="this_forum_id">{{ forum_id }}</div>
-                     <a style="font-family: sans-serif;  color: black;  font-weight: bold ">Title: &nbsp;&nbsp;</a><input maxlength = "50" id="Title_element"  type="text" name="title" style="border-radius: 4px;width: 60%;"><br><br>
-
-
-                    <div class="form-group"><!--- Make a new Post-->
-
-                        <label class="sr-only" for="message">post</label>
-                        <textarea class="form-control" id="post_msg" rows="3" placeholder="What would you like to share?"></textarea>
-                    </div>
-
-                    <div class="form-group" style="display: inline-block; vertical-align: top;">
-                        <!--attach file button-->
-
-                        <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
-                                class="glyphicon glyphicon-paperclip"></span></a>
-                        <a data-toggle="modal" data-target="#attachImageModal"
-                           style="color:#e83e8c;margin-left: 5px;"><span
-                                class="glyphicon glyphicon-picture"></span></a>
-
-
-                    </div>
-                    <!--post button-->
-                    <div class="buttonbot" id="btnGetMessage"
-                         style="position:absolute;left: 85%;display: inline-block;">
-                        <button type="button"><strong>Post</strong></button>
-                    </div>
-
-                    <br>
-                </div></div>
-
-<!-- End of Post Details-->
-
+                <!-- End of Post Details-->
 
 
                 <hr style="width: 100%; color: #e83e8c; height: 2px; background-color:#e83e8c#; margin-top: 5px">
                 <br>
                 <!-- Post /////-->
                 <br><br><!--spaces between posts-->
-            <!-- End of Post /////-->
+                <!-- End of Post /////-->
 
-          <!-- Actual Post Dummy-->
+                <!-- Actual Post Dummy-->
                 <div id="comment"></div>
                 <div id="post_comment">
 
@@ -892,12 +902,12 @@
                             This card is still a dummy, you can use this to test your designs..
                         </p>
 
-                        <div class="wrap" style="width:400px; height:600px;position: relative; left: 35%;margin-bottom: -350px;">
+                        <!--this is the image which shows up on a post-->
 
-                            <iframe class="frame"
-                                    src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
-                                    frameborder="0"></iframe>
-                        </div>
+                            <img src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
+                                 style="width:400px; height:600px" title="White flower" alt="Flower">
+
+
 
                         <div style="margin-bottom: 0px; margin-left: 530px;font-weight: bold ">
                             <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
@@ -913,43 +923,39 @@
                         <!--styling ensures the like and comment are next to one another-->
 
 
-                        <details style="outline: none; ">
+                        <details style="outline: none;">
 
-                            <summary style="color: #e83e8c;margin-left: 465px;font-weight: bold">
-                                <!--title of the replies collapsible-->
+                            <summary style="color: #e83e8c;text-align: right"> <!--title of the replies collapsible-->
                                 View Replies
                             </summary>
 
 
                             <!--Winny add message replies from here-->
-                            <ul style="margin-left: -30px">
-                                <a style="color: black;font-family: sans-serif;font-weight: bold"><img
-                                        class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-                                    Winfreda </a>
+                            <ul>
+                                <a><img class="profile_img"
+                                        src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/> Name
 
-                                <i onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
-                                   class="fa fa-close" style="margin-left: 10px;"></i> </a>
-                                <br>
-                                <p style="color: black;font-family: sans-serif;margin-left: 50px;margin-top: -15px">
-                                    Marketing 101, Video Assignment</p>
+                                    <i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close" style="margin-left: 10px;"></i> </a>
+                                <br><br>
+                                <p style="color: black">Marketing 101, Video Assignment</p>
+
                                 <div>
 
-                                    <br>
 
-                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt=""> <a
-                                        id=""><textarea maxlength="200" placeholder="Reply to this post"
-                                                        id="-LjHDWtigiRAkkdKO3gw"
-                                                        style="width: 451px;height: 30px;border-radius: 5px; border-style: solid;border-width: 2px;border-color: darkgray;position: relative;top:15px"></textarea></a>
+                                    <a id=""><textarea maxlength="200" id="-LjHDWtigiRAkkdKO3gw"
+                                                       style="width: 90%;height: 25px;border-radius: 5px;"></textarea></a>
                                     <br>
                                     <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
-                                            style="position: relative;left:505px;top:-32px" type="button">Reply
+                                            style="position: absolute;left: 77%;" type="button">Reply
                                     </button>
                                 </div>
 
                                 <!--post button-->
                             </ul>
 
-                        </details><!--end of collapasible-->
+                        </details><!--end of collapasible--><!--end of collapasible-->
 
                         <!--Dummy Drop-down for comment_please don't remove-->
                     </div>
@@ -965,7 +971,7 @@
 
             </div>
             <!--rhs item-->
-            <div class="col-md-3" >
+            <div class="col-md-3">
                 <div class="card gedf-card">
 
                     {% load staticfiles %}
@@ -996,7 +1002,9 @@
                     <hr style="width: 80%; color: #e83e8c; height: 2px; background-color:#e83e8c; margin-top: 5px"/>
                     <p style="color: #8c8c8c; padding-left: 2px;text-align: center;">{{ forum_description }}</p>
 
-                    <a data-toggle="modal" data-target="#viewparticipants"  style="text-align: center;margin-left: 25%;color: #e83e8c;font-weight: bold"> View Participants <i class="fa fa-angle-double-right"></i>  </a>
+                    <a data-toggle="modal" data-target="#viewparticipants"
+                       style="text-align: center;margin-left: 25%;color: #e83e8c;font-weight: bold"> View Participants
+                        <i class="fa fa-angle-double-right"></i> </a>
 
 
                 </div>
@@ -1021,66 +1029,65 @@
     /* View Participants*/
 
 
-       var Participants_fb = firebase.database().ref().child("Forums").child('{{forum_id}}').child("Participants");
-                                    Participants_fb.on("value", function (snapshot_user_topics) {
+    var Participants_fb = firebase.database().ref().child("Forums").child('{{forum_id}}').child("Participants");
+    Participants_fb.on("value", function (snapshot_user_topics) {
 
-                                        //var group_participants = snapshotToArrayKey(snapshot_user_topics);   //List of participants
-                                                var j = 0;
-                                                var result = "<table >";
-                                                result += "<tr>";
+        //var group_participants = snapshotToArrayKey(snapshot_user_topics);   //List of participants
+        var j = 0;
+        var result = "<table >";
+        result += "<tr>";
 
-                                                snapshot_user_topics.forEach(function (user_snapshot) {
-                                                            var user = user_snapshot.key;
-                                                            var users_details = firebase.database().ref().child("Users").child(user);
-                                                            users_details.on("value", function (snapshot_forum_topics) {
+        snapshot_user_topics.forEach(function (user_snapshot) {
+            var user = user_snapshot.key;
+            var users_details = firebase.database().ref().child("Users").child(user);
+            users_details.on("value", function (snapshot_forum_topics) {
 
-                                                                var forum_names = snapshot_forum_topics.val().Name;
-                                                                var forum_pics = snapshot_forum_topics.val().ProfilePic;
-                                                                var forum_num_participants = snapshot_forum_topics.val().numConnections;
-                                                                var forum_num_BIO = snapshot_forum_topics.val().Bio;
-                                                                var forum_num_country = snapshot_forum_topics.val().Country;
-
-
-                                                                    result += "<td>" + parts_All(forum_names,forum_num_BIO,forum_num_country,forum_pics) + "</td>";
-
-                                                                    if ((j + 1) % 2 == 0) {
-                                                                        result += "</tr><tr>";
-                                                                    }
-                                                                    j++;
-
-                                                                    $('#FP_modal').html(result);
-
-                                                            });
-                                                });
+                var forum_names = snapshot_forum_topics.val().Name;
+                var forum_pics = snapshot_forum_topics.val().ProfilePic;
+                var forum_num_participants = snapshot_forum_topics.val().numConnections;
+                var forum_num_BIO = snapshot_forum_topics.val().Bio;
+                var forum_num_country = snapshot_forum_topics.val().Country;
 
 
-                                    });
+                result += "<td>" + parts_All(forum_names, forum_num_BIO, forum_num_country, forum_pics) + "</td>";
+
+                if ((j + 1) % 2 == 0) {
+                    result += "</tr><tr>";
+                }
+                j++;
+
+                $('#FP_modal').html(result);
+
+            });
+        });
 
 
+    });
 
-  // get a snapshot of a list of keys from firebase and convert it to an array
-       function snapshotToArrayKey(snapshot) {
-           let returnArr = [];
-           snapshot.forEach(childSnapshot => {
-               //let item = childSnapshot.val();
-               var key = childSnapshot.key;
-               returnArr.push(key);
-           });
-           return returnArr;
-       }
 
-     function parts_All ( name, bio, country, profilepic) {
+    // get a snapshot of a list of keys from firebase and convert it to an array
+    function snapshotToArrayKey(snapshot) {
+        let returnArr = [];
+        snapshot.forEach(childSnapshot => {
+            //let item = childSnapshot.val();
+            var key = childSnapshot.key;
+            returnArr.push(key);
+        });
+        return returnArr;
+    }
+
+    function parts_All(name, bio, country, profilepic) {
 
         var card = "  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
             "\n" +
-            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profilepic+"\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
             "\n" +
             "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> "+ name+"  </p>\n" +
-            "                &nbsp;&nbsp;&nbsp;<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> "+country+"</p>\n" +
+            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp;<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + country + "</p>\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
@@ -1091,18 +1098,7 @@
     }
 
 
-
-
-
-
-     /* View Participants*/
-
-
-
-
-
-
-
+    /* View Participants*/
 
 
     const MONTH_NAMES = [
@@ -1305,108 +1301,107 @@
             /*Counter for comments*/
 
 
-
-                html += "       <div  style=\"border-style: solid;border-width: 2px;border-color: darkgray\" class=\"messagePost\" >\n" +
-                    "\n" +
-                    "                        <div style=\"background-color: #D3D3D3; width: 583px;height:90px;margin-left: -4px; margin-top: -4px; border-radius: 8px\" class=\"panel-heading\">\n" +
-                    "                        <div class=\"card-header\">\n" +
-                    "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
-                    "                                <div class=\"d-flex justify-content-between align-items-center\">\n" +
-                    "                                    <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\">\n" +
-                    "                                        <!--styling allows for the image and text to be next to one another-->\n" +
-                    "                                        <img class=\"rounded-circle\" width=\"45\" src=\""+ obj[keys[i]].sender_profilePic +"\" alt=\"\">\n" +
-                    "                                    </div>\n" +
-                    "                                    <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
-                    "                                        <div class=\"h5 m-0\"><strong> "+  obj[keys[i]].sender_name +"</strong>\n" +
-                    "                                           </div>\n" +
-                    "                                    </div><div style=\"margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic\" class=\"\"><i  class=\"fa fa-clock-o\"></i> "+ ts_display +"</div>\n" +
-                    "\n" +
-                    "                                    <div class=\"dropdownmenu\"\n" +
-                    "                                         style=\"display: inline-block;position: relative; left: 58%;color: #666666; \">\n" +
-                    "                                        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-                    "                                            <!--more options menu-->\n" +
-                    "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;position:relative;left: 200px;top:-40px\"></span></a>\n" +
-                    "\n" +
-                    "                                            <ul class=\"dropdown-menu\">\n" +
-                    "\n" +
-                    "                                                <li onclick=\"Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')\"><a>Direct Message <span\n" +
-                    "                                                        class=\"glyphicon glyphicon glyphicon-comment pull-right\"></span></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                <li class=\"divider\"></li>\n" +
-                    "                                                  <li  onclick=\"Delete_post(\'"+obj[keys[i]].post_id+"\',\'"+ obj[keys[i]].sender +"\')\"  ><a> Delete Post <span\n" +
-                    "                                                        class=\"fa fa-trash pull-right\"></span></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                 <li class=\"divider\"></li>\n" +
-                    "                                                <li><a>Report<span\n" +
-                    "                                                        class=\"    glyphicon glyphicon-warning-sign pull-right\"></span></a>\n" +
-                    "                                                </li>\n" +
-                    "                                            </ul>\n" +
-                    "                                        </li>\n" +
-                    "                                    </div>\n" +
-                    "\n" +
-                    "                                    <h5 style=\"color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold\"> "+ obj[keys[i]].title  +"</h5>\n" +
-                    "                                </div>\n" +
-                    "\n" +
-                    "\n" +
-                    "                            </div>\n" +
-                    "                        </div></div><br>\n" +
-                    "\n" +
-                    "\n" +
-                    "                        <div class=\"card-body\">\n" +
-                    "\n" +
-                    "                            <p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
-                    "                                "+ obj[keys[i]].text +"\n" +
-                    "                            </p>\n" +
-                    "\n" +
-                    "                            <div style=\"margin-bottom: 0px; margin-left: 530px;font-weight: bold \">\n" +
-                    "                                <p onclick=\"Increase_Likes(\'"+ obj[keys[i]].post_id  +"\')\"style=\"color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold\">"+   num_likes+" &nbsp;<span class=\"glyphicon glyphicon-thumbs-up \" style=\"color: #e83e8c; \"></span>\n" +
-                    "                            </div>\n" +
-                    "\n" +
-                    "                            <hr style=\"margin-top: 0px;color: darkgrey\">\n" +
-                    "                        </div>\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "                        <div style=\" margin-top: 0px;\">\n" +
-                    "                            <!--styling ensures the like and comment are next to one another-->\n" +
-                    "\n" +
-                    "\n" +
-                    "                            <details style=\"outline: none; \">\n" +
-                    "\n" +
-                    "                                <summary style=\"color: #e83e8c;margin-left: 450px;font-weight: bold\"> <!--title of the replies collapsible-->\n" +
-                    "                                    View Replies &nbsp  "+ getComments_num(obj[keys[i]].post_id) +" \n" +
-                    "                                </summary>\n" +
-                    "\n" +
-                    "\n" +
-                    "                                <!--Winny add message replies from here-->\n" +
-                    "                                <ul style=\"margin-left: -30px\">\n" +
-                    "                                   "+ Reply_list(obj[keys[i]].post_id)  +" \n" +
-                    "\n" +
-                    "                                        \n" +
-                    "                                    \n" +
-                    "                                        \n" +
-                    "                                    \n" +
-                    "\n" +
-                    "                                        \n" +
-                    "\n" +
-                    "                                      <img class=\"rounded-circle\" width=\"45\" src=\""+ "{{ profilePic }}" +"\" alt=\"\">  <a id=\"\"><textarea maxlength=\"200\" placeholder=\"Reply to this post\" id=\""+  obj[keys[i]].post_id +"\" style=\"width: 451px;height: 30px;border-radius: 5px; border-style: solid;border-width: 2px;border-color: darkgray;position: relative;top:15px\"></textarea></a>\n" +
-                    "                                       <br>\n" +
-                    "                                        <button class=\"buttonbot2\" onclick=\"saveComment(\'"+ obj[keys[i]].post_id  +"\')\" style=\"position: relative;left:505px;top:-32px\" type=\"button\">Reply</button>\n" +
-                    "                                    </div>\n" +
-                    "\n" +
-                    "                                    <!--post button-->\n" +
-                    "                                </ul>\n" +
-                    "\n" +
-                    "                            </details><!--end of collapasible-->\n" +
-                    "\n" +
-                    "                            <!--Dummy Drop-down for comment_please don't remove-->\n" +
-                    "                        </div>\n" +
-                    "\n" +
-                    "                </div> <!---//Message Post-->\n" +
-                    "\n" +
-                    "                <br><br><!--spaces between posts-->" ;
+            html += "       <div  style=\"border-style: solid;border-width: 2px;border-color: darkgray\" class=\"messagePost\" >\n" +
+                "\n" +
+                "                        <div style=\"background-color: #D3D3D3; width: 583px;height:90px;margin-left: -4px; margin-top: -4px; border-radius: 8px\" class=\"panel-heading\">\n" +
+                "                        <div class=\"card-header\">\n" +
+                "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                "                                <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                "                                    <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\">\n" +
+                "                                        <!--styling allows for the image and text to be next to one another-->\n" +
+                "                                        <img class=\"rounded-circle\" width=\"45\" src=\"" + obj[keys[i]].sender_profilePic + "\" alt=\"\">\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
+                "                                        <div class=\"h5 m-0\"><strong> " + obj[keys[i]].sender_name + "</strong>\n" +
+                "                                           </div>\n" +
+                "                                    </div><div style=\"margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic\" class=\"\"><i  class=\"fa fa-clock-o\"></i> " + ts_display + "</div>\n" +
+                "\n" +
+                "                                    <div class=\"dropdownmenu\"\n" +
+                "                                         style=\"display: inline-block;position: relative; left: 58%;color: #666666; \">\n" +
+                "                                        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                "                                            <!--more options menu-->\n" +
+                "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;position:relative;left: 200px;top:-40px\"></span></a>\n" +
+                "\n" +
+                "                                            <ul class=\"dropdown-menu\">\n" +
+                "\n" +
+                "                                                <li onclick=\"Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')\"><a>Direct Message <span\n" +
+                "                                                        class=\"glyphicon glyphicon glyphicon-comment pull-right\"></span></a>\n" +
+                "                                                </li>\n" +
+                "                                                <li class=\"divider\"></li>\n" +
+                "                                                  <li  onclick=\"Delete_post(\'" + obj[keys[i]].post_id + "\',\'" + obj[keys[i]].sender + "\')\"  ><a> Delete Post <span\n" +
+                "                                                        class=\"fa fa-trash pull-right\"></span></a>\n" +
+                "                                                </li>\n" +
+                "                                                 <li class=\"divider\"></li>\n" +
+                "                                                <li><a>Report<span\n" +
+                "                                                        class=\"    glyphicon glyphicon-warning-sign pull-right\"></span></a>\n" +
+                "                                                </li>\n" +
+                "                                            </ul>\n" +
+                "                                        </li>\n" +
+                "                                    </div>\n" +
+                "\n" +
+                "                                    <h5 style=\"color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold\"> " + obj[keys[i]].title + "</h5>\n" +
+                "                                </div>\n" +
+                "\n" +
+                "\n" +
+                "                            </div>\n" +
+                "                        </div></div><br>\n" +
+                "\n" +
+                "\n" +
+                "                        <div class=\"card-body\">\n" +
+                "\n" +
+                "                            <p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
+                "                                " + obj[keys[i]].text + "\n" +
+                "                            </p>\n" +
+                "\n" +
+                "                            <div style=\"margin-bottom: 0px; margin-left: 530px;font-weight: bold \">\n" +
+                "                                <p onclick=\"Increase_Likes(\'" + obj[keys[i]].post_id + "\')\"style=\"color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold\">" + num_likes + " &nbsp;<span class=\"glyphicon glyphicon-thumbs-up \" style=\"color: #e83e8c; \"></span>\n" +
+                "                            </div>\n" +
+                "\n" +
+                "                            <hr style=\"margin-top: 0px;color: darkgrey\">\n" +
+                "                        </div>\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "                        <div style=\" margin-top: 0px;\">\n" +
+                "                            <!--styling ensures the like and comment are next to one another-->\n" +
+                "\n" +
+                "\n" +
+                "                            <details style=\"outline: none; \">\n" +
+                "\n" +
+                "                                <summary style=\"color: #e83e8c;margin-left: 450px;font-weight: bold\"> <!--title of the replies collapsible-->\n" +
+                "                                    View Replies &nbsp  " + getComments_num(obj[keys[i]].post_id) + " \n" +
+                "                                </summary>\n" +
+                "\n" +
+                "\n" +
+                "                                <!--Winny add message replies from here-->\n" +
+                "                                <ul style=\"margin-left: -30px\">\n" +
+                "                                   " + Reply_list(obj[keys[i]].post_id) + " \n" +
+                "\n" +
+                "                                        \n" +
+                "                                    \n" +
+                "                                        \n" +
+                "                                    \n" +
+                "\n" +
+                "                                        \n" +
+                "\n" +
+                "                                      <img class=\"rounded-circle\" width=\"45\" src=\"" + "{{ profilePic }}" + "\" alt=\"\">  <a id=\"\"><textarea maxlength=\"200\" placeholder=\"Reply to this post\" id=\"" + obj[keys[i]].post_id + "\" style=\"width: 451px;height: 30px;border-radius: 5px; border-style: solid;border-width: 2px;border-color: darkgray;position: relative;top:15px\"></textarea></a>\n" +
+                "                                       <br>\n" +
+                "                                        <button class=\"buttonbot2\" onclick=\"saveComment(\'" + obj[keys[i]].post_id + "\')\" style=\"position: relative;left:505px;top:-32px\" type=\"button\">Reply</button>\n" +
+                "                                    </div>\n" +
+                "\n" +
+                "                                    <!--post button-->\n" +
+                "                                </ul>\n" +
+                "\n" +
+                "                            </details><!--end of collapasible-->\n" +
+                "\n" +
+                "                            <!--Dummy Drop-down for comment_please don't remove-->\n" +
+                "                        </div>\n" +
+                "\n" +
+                "                </div> <!---//Message Post-->\n" +
+                "\n" +
+                "                <br><br><!--spaces between posts-->";
 
         }
         $('#post_comment').html(html);
@@ -1434,19 +1429,17 @@
         var commentID = String(holder);
 
         //Check if any users exist
-        firebase.database().ref("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/likes_ids/"+ '{{ this_uid }}').once("value", snapshot => {
+        firebase.database().ref("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/likes_ids/" + '{{ this_uid }}').once("value", snapshot => {
             if (snapshot.exists()) {
 
-             var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/likes_ids");/*Messages*/
+                var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/likes_ids");/*Messages*/
 
-            like_IDs.child("{{ this_uid }}").remove();
+                like_IDs.child("{{ this_uid }}").remove();
+            } else {
+                var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/likes_ids");/*Messages*/
+
+                like_IDs.child("{{this_uid}}").set("{{this_uid}}");
             }
-
-            else
-
-            {var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + commentID + "/likes_ids");/*Messages*/
-
-            like_IDs.child("{{this_uid}}").set("{{this_uid}}");}
 
         });
 
@@ -1455,25 +1448,30 @@
 
     function Delete_comment(message_id, comment_id, sending) {
 
-         if (  sending.trim().toString() == String('{{this_uid}}')  ){
+        if (sending.trim().toString() == String('{{this_uid}}')) {
 
 
-         var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + message_id + "/comments");/*Messages*/
+            var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages/" + message_id + "/comments");/*Messages*/
 
-        like_IDs.child(comment_id).remove();} else {window.alert("You can only delete your own comments");}
+            like_IDs.child(comment_id).remove();
+        } else {
+            window.alert("You can only delete your own comments");
+        }
 
 
     }
 
-    function Delete_post(post_id,sender) {
+    function Delete_post(post_id, sender) {
 
 
-        if (  sender.trim().toString() == String('{{this_uid}}')  ){
+        if (sender.trim().toString() == String('{{this_uid}}')) {
 
-        var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages");/*Messages*/
+            var like_IDs = firebase.database().ref().child("Forums/" + '{{ forum_id }}' + "/Messages");/*Messages*/
 
-        like_IDs.child(post_id).remove();}  else{window.alert("You can only delete your own posts");}
-
+            like_IDs.child(post_id).remove();
+        } else {
+            window.alert("You can only delete your own posts");
+        }
 
 
     }
@@ -1547,16 +1545,14 @@
                 var comment_post_id = String(child.val().post_id);
                 var user_name = String(child.val().sender_name);
                 var user_pic = String(child.val().sender_profilePic);
-                 var sending = String(child.val().sender);
+                var sending = String(child.val().sender);
 
 
-
-
-                return_string = return_string + "  <a style=\"color: black;font-family: sans-serif;font-weight: bold\"><img  class=\"rounded-circle\" width=\"45\" src=\""+ user_pic +"\" alt=\"\"> "+ user_name +" </a>\n" +
+                return_string = return_string + "  <a style=\"color: black;font-family: sans-serif;font-weight: bold\"><img  class=\"rounded-circle\" width=\"45\" src=\"" + user_pic + "\" alt=\"\"> " + user_name + " </a>\n" +
                     "\n" +
-                    "                                        <i onclick=\"Delete_comment(\'"+ comments_object +"\',\'"+ comment_post_id +"\',\' " + sending +"\' )\" class=\"fa fa-close\" style=\"margin-left: 10px;\"></i> \n" +
+                    "                                        <i onclick=\"Delete_comment(\'" + comments_object + "\',\'" + comment_post_id + "\',\' " + sending + "\' )\" class=\"fa fa-close\" style=\"margin-left: 10px;\"></i> \n" +
                     "                                    <br>\n" +
-                    "                                        <p style=\"color: black;font-family: sans-serif;margin-left: 50px;margin-top: -15px\">"+ txt_txt +"</p>\n" +
+                    "                                        <p style=\"color: black;font-family: sans-serif;margin-left: 50px;margin-top: -15px\">" + txt_txt + "</p>\n" +
                     "                                    \n" +
                     "\n" +
                     "                                        <br>";
@@ -1917,437 +1913,405 @@ Badges_Celebrations_3
 {% endcomment %}
 <script>
 
-        //Badge_1_Friend_Finder
+    //Badge_1_Friend_Finder
 
-        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+    var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
 
-        FriendFinder_Connections.on("value", function (snapshot) {
+    FriendFinder_Connections.on("value", function (snapshot) {
 
-            var counter = 0;
+        var counter = 0;
 
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
+        });
+
+        if (counter >= 1 && counter < 5) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Friend Finder Badge";
+
+                if (snapshot.val().FriendFinder == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+
+                    checkCelebration.update({'FriendFinder': "celebrated"});
+                }
             });
-
-            if (counter >=1 && counter<5)
-
-            {
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-               checkCelebration.on("value", function (snapshot) {
-                   var text = "Friend Finder Badge";
-
-                    if (snapshot.val().FriendFinder == "not_celebrated"){
-                      $('#Congrats_Pop_Up').html(text);
-                      $("#Celebrations").modal();
-
-                        checkCelebration.update({'FriendFinder': "celebrated"});
-               }
-                });
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_2_NetoworkingNinja
 
-            if (counter >=5 && counter < 10)
+        if (counter >= 5 && counter < 10) {
 
-            {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Networking Ninja Badge";
+                if (snapshot.val().NetworkingNinja == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'NetworkingNinja': "celebrated"});
+                }
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Networking Ninja Badge";
-                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'NetworkingNinja': "celebrated"});
-               }
+            })
 
-                })
-
-            }
-
-            else {}
+        } else {
+        }
 
 
-         //Badge_3_CrazyConnector
+        //Badge_3_CrazyConnector
 
-  if (counter >=10 && counter<15)
-
-            {
+        if (counter >= 10 && counter < 15) {
 
 
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                     var text = "Crazy Connector Badge";
-
-
-                      if (snapshot.val().CrazyConnector == "not_celebrated"){
-                          $('#Congrats_Pop_Up').html(text);
-                          $("#Celebrations").modal();
-                          checkCelebration.update({'CrazyConnector': "celebrated"});
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Crazy Connector Badge";
 
 
-               }
-
-                })
-
-            }
-
-            else {}
+                if (snapshot.val().CrazyConnector == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'CrazyConnector': "celebrated"});
 
 
-          //Badge_4_PopularProfile
+                }
 
- if (counter >=15)
+            })
 
-            {
-
-
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Popular Profile Badge";
-
-                      if (snapshot.val().PopularProfile == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'PopularProfile': "celebrated"});
+        } else {
+        }
 
 
-               }
+        //Badge_4_PopularProfile
 
-                })
-
-            }
-
-            else {
+        if (counter >= 15) {
 
 
-            }
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Popular Profile Badge";
+
+                if (snapshot.val().PopularProfile == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'PopularProfile': "celebrated"});
 
 
+                }
+
+            })
+
+        } else {
+
+
+        }
+
+
+    });
+
+    //Badge_5_BrightSpark
+
+    var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+    Badges_for_Courses.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-          //Badge_5_BrightSpark
 
-var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+        if (counter >= 3 && counter < 5) {
 
-        Badges_for_Courses.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-
-
-            if (counter >=3 && counter<5)
-
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                      if (snapshot.val().BrightSpark == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html(text);
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'BrightSpark': "celebrated"});
+                if (snapshot.val().BrightSpark == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'BrightSpark': "celebrated"});
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_6_FabAcademic
 
-         if (counter >=5 && counter<10 )
+        if (counter >= 5 && counter < 10) {
 
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                    var text = "FabAcademic Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "FabAcademic Badge";
 
 
-                      if (snapshot.val().FabAcademic == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'FabAcademic': "celebrated"});
+                if (snapshot.val().FabAcademic == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'FabAcademic': "celebrated"});
 
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {
-            }
+        } else {
+        }
 
 
-           //Badge_7_Got_Smarter
+        //Badge_7_Got_Smarter
 
 
-            if (counter >=10 )
-
-            {
+        if (counter >= 10) {
 
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                 var text = "GotSmarter Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "GotSmarter Badge";
 
-                      if (snapshot.val().GotSmarter == "not_celebrated"){
-                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
-                         $("#Celebrations").modal();
+                if (snapshot.val().GotSmarter == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                    $("#Celebrations").modal();
 
-                       checkCelebration.update({'GotSmarter': "celebrated"});
-
-
-               }
-
-                })
-
-            }
-
-            else {
+                    checkCelebration.update({'GotSmarter': "celebrated"});
 
 
-            }
+                }
+
+            })
+
+        } else {
 
 
+        }
 
+
+    });
+
+    //Badge_8_Got_Smarter
+
+    //Badge_9_Forum_Boffin
+
+    var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+    Badges_for_Forums.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-        //Badge_8_Got_Smarter
-
-        //Badge_9_Forum_Boffin
-
-var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
-
-        Badges_for_Forums.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-            if (counter >=5 )
-
-            {
+        if (counter >= 5) {
 
 
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+                if (snapshot.val().ForumBoffin == "not_celebrated") {
+                    var text = "GotSmarter Badge";
+                    $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'ForumBoffin': "celebrated"});
 
-                      if (snapshot.val().ForumBoffin == "not_celebrated"){
-                       var text = "GotSmarter Badge";
-                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'ForumBoffin': "celebrated"});
+                }
 
-               }
+            })
 
-                })
-
-            }
-
-            else {
+        } else {
 
 
-            }
+        }
 
-           });
-
-
- //Badge_10_Forum_Boffin
-var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
-
-        Badges_for_Badges_Private.on("value", function (snapshot) {
-
-            var isPrivate = snapshot.val().privacyUpdated;
-            var display_1 = "";
+    });
 
 
-            if (isPrivate == "yes" )
+    //Badge_10_Forum_Boffin
+    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}');
 
-            {
+    Badges_for_Badges_Private.on("value", function (snapshot) {
 
-               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
-                   "                     <!--text for the hover-->\n" +
-                   "                 </div>";
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-
-                      if (snapshot.val().SuperSecurity == "not_celebrated"){
-                       var text = "Super Security Badge";
-                       $('#Congrats_Pop_Up').html("Super Security Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'SuperSecurity': "celebrated"});
-
-               }
-
-                })
-
-            }
-
-            else {
-
-                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
-                    "                    <div class=\"middle\">\n" +
-                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
-                    "                         <!--text for the hover-->\n" +
-                    "                     </div>";
-            }
-
-            $('#SuperSecurity').html(display_1);});
+        var isPrivate = snapshot.val().privacyUpdated;
+        var display_1 = "";
 
 
-    </script>
+        if (isPrivate == "yes") {
+
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                "\n" +
+                "                <div class=\"middle\">\n" +
+                "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                "                     <!--text for the hover-->\n" +
+                "                 </div>";
+
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+
+                if (snapshot.val().SuperSecurity == "not_celebrated") {
+                    var text = "Super Security Badge";
+                    $('#Congrats_Pop_Up').html("Super Security Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'SuperSecurity': "celebrated"});
+
+                }
+
+            })
+
+        } else {
+
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                "                    <div class=\"middle\">\n" +
+                "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                "                         <!--text for the hover-->\n" +
+                "                     </div>";
+        }
+
+        $('#SuperSecurity').html(display_1);
+    });
+
+
+</script>
 {% comment %}
 Badges_Celebrations_1
 {% endcomment %}
 
-    <div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div style="" class="modal-content">
-                <div style="" class="modal-header">
+<div id="Celebrations" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style="" class="modal-content">
+            <div style="" class="modal-header">
 
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
 
-                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
-                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
-
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <br>
-                <img style="margin-left: 50px"
-                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
-
-                <div class="modal-body">
+                <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"></h4>
 
 
-                    <div id="ConnectionsListing_All" class="row">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <img style="margin-left: 50px"
+                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+            <div class="modal-body">
 
 
-                    </div> <!--end row-->
+                <div id="ConnectionsListing_All" class="row">
 
 
-                    <div class="modal-footer">
+                </div> <!--end row-->
 
 
-                    </div>
+                <div class="modal-footer">
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% comment %}
 Badges_Celebrations_2
 {% endcomment %}
-    <script>
+<script>
 
-        $('#Celebrations').on('show.bs.modal', function (event) {
+    $('#Celebrations').on('show.bs.modal', function (event) {
 
-        })
-    </script>
+    })
+</script>
 
 
 <!--View Participants Modal-->
 
-<div class="modal fade" id="viewparticipants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+<div class="modal fade" id="viewparticipants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h5 class="modal-title" id="exampleModalLongTitle_1"> <strong> Investment Banker Participants </strong> </h5>
-        <br>
-
-
-<div class="row">
-
-  <div class="col-md-2">
-
-  <h6 class="text-center" style="color:#e83e8c;font-size: 20px;margin-left:120px;margin-top: 23px"> <strong> Creator:  </strong></h6>
-      </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLongTitle_1"><strong> Investment Banker Participants </strong>
+                </h5>
+                <br>
 
 
+                <div class="row">
 
-  <div class="col-md-8">
-    <h6 class="text-center" style="color:gray;font-size: 20px;margin-left:20px;"> <strong> </strong><img class="rounded-circle" width="50" height="50" src="https://picsum.photos/50/50" style="border: 1px solid #DCDCDC ; border-radius: 50px;" alt="">Rachel Pies </h6>
+                    <div class="col-md-2">
 
-
-  </div>
-  <div class="col-md-2"><!--USER PROFILE IMAGE GOES HERE-->
-
-        <img class="rounded-circle" width="50" height="50" src="beyonce.jpg" style="margin-left: -130px;border: 1px solid   #DCDCDC ; border-radius: 50px;" alt="">
-
-   </div><!--end col-->
+                        <h6 class="text-center"
+                            style="color:#e83e8c;font-size: 20px;margin-left:120px;margin-top: 23px"><strong>
+                            Creator: </strong></h6>
+                    </div>
 
 
-
-</div><!--end row-->
-
-
-      </div>
-
-
-
-      <div class="modal-body">
-
-        <div class="centraliser" style="text-align: center">
-                  <h6  style="font-size:15px;"> <strong>Forum Participants </strong></h6>
-             </div>
+                    <div class="col-md-8">
+                        <h6 class="text-center" style="color:gray;font-size: 20px;margin-left:20px;">
+                            <strong> </strong><img class="rounded-circle" width="50" height="50"
+                                                   src="https://picsum.photos/50/50"
+                                                   style="border: 1px solid #DCDCDC ; border-radius: 50px;" alt="">Rachel
+                            Pies </h6>
 
 
+                    </div>
+                    <div class="col-md-2"><!--USER PROFILE IMAGE GOES HERE-->
 
-             <br>
+                        <img class="rounded-circle" width="50" height="50" src="beyonce.jpg"
+                             style="margin-left: -130px;border: 1px solid   #DCDCDC ; border-radius: 50px;" alt="">
 
-
-          <table id ="FP_modal">
-
-
-          </table>
-
-      <div class="modal-footer">
-
-      <button>Okay</button>
+                    </div><!--end col-->
 
 
+                </div><!--end row-->
 
-      </div>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="centraliser" style="text-align: center">
+                    <h6 style="font-size:15px;"><strong>Forum Participants </strong></h6>
+                </div>
+
+
+                <br>
+
+
+                <table id="FP_modal">
+
+
+                </table>
+
+                <div class="modal-footer">
+
+                    <button>Okay</button>
+
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  </div>
 </div>
 
 
