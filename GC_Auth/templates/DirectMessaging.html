@@ -1145,7 +1145,7 @@
   bottom: 0;
   width: 100%;
   z-index: 99;
-    background-color: grey;
+    background-color: #ebebeb;
 }
 #frame .content .message-input .wrap {
   position: relative;
@@ -1315,10 +1315,9 @@
         </div>
         <div class="message-input">
             <div class="wrap">
-            <input id="WriteYourMsg" style="height:41px;background-color: #ebebeb;font-family: sans-serif; margin-top: 20px;" type="text" placeholder="Write your message..." />
-            <i style="" class="fa fa-paperclip attachment fa-bold " aria-hidden="true"></i>
+            <input id="WriteYourMsg" style="height:41px;background-color: #ebebeb;font-family: sans-serif; margin-top: 20px; border-style: solid;border-width: 2px; border-radius: 8px;border-color: darkgray" type="text" placeholder="Write your message..." />
 
-            <button onclick="SendMessagePost()" id="SendMessagePost"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <button style="margin-top: 20px;border-radius: 8px" onclick="SendMessagePost()" id="SendMessagePost"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
@@ -1685,8 +1684,6 @@ $(window).on('keydown', function(e) {
 
 
 
-
-
     }
 
 
@@ -1695,6 +1692,8 @@ $(window).on('keydown', function(e) {
 
 
    function renderRHS(obj) {
+
+
 
         var html = '';
        // var html_dropdown = '';
@@ -1712,7 +1711,7 @@ $(window).on('keydown', function(e) {
 
                     // window.alert("first");
 
-                     html += "<li class=\"sent\">\n" +
+                     html += "<li tabindex=\"1\" class=\"sent\">\n" +
                          "<img src=\""+ obj[keys[i]].ProfilePic +"\" alt=\"\" />\n" +
                          "<p><h10> "+obj[keys[i]].Sender_name+"</h10><br>\n"+ obj[keys[i]].text +"</p>" +
                          "\n" +
@@ -1746,7 +1745,7 @@ $(window).on('keydown', function(e) {
 
                     //window.alert("second");
 
-                    html += "<li class=\"replies\">\n" +
+                    html += "<li tabindex=\"1\" class=\"replies\">\n" +
                         "<img src=\""+ obj[keys[i]].ProfilePic +"\" alt=\"\" />\n" +
                         "<p> "+obj[keys[i]].text+"</p>" +
                         "\n" +
@@ -1781,6 +1780,9 @@ $(window).on('keydown', function(e) {
 
 
                 $('#list_of_mgs').html(html);
+
+
+
                 //$('#Dropdown_for_user').html(html_dropdown);
 
 
@@ -2003,8 +2005,7 @@ $(window).on('keydown', function(e) {
 
       <div class="modal-footer">
 
-    <button onclick="SendMessage_Individual()"   style = "border: 1px solid gray;
-            color: #e83e8c; background-color: white; border-radius: 8px; font-family: 'Roboto', sans-serif;" >Message</button>
+    <button onclick="SendMessage_Individual()"  >Message</button>
 
 
 
