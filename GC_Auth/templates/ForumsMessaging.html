@@ -978,7 +978,9 @@
                                     Winfreda </a>
 
                                 <i onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
-                                   class="fa fa-close" style="margin-left: 10px;"></i> </a>
+                                   class="fa fa-close" style="
+
+                                   margin-left: 10px;"></i> </a>
                                 <br>
                                 <p style="color: black;font-family: sans-serif;margin-left: 50px;margin-top: -15px">
                                     Marketing 101, Video Assignment</p>
@@ -1025,7 +1027,7 @@
                 </div>
 
                 <div class="form" style="border: 2px solid grey;border-radius: 5px; position: absolute; top: 360%; left: 15%;background-color: white; width: 250px;
-                height: 160px; ">
+                height: 300px; ">
 
                     <div style="top: 2px; margin-left: 80%">
                         <h8><span class="label label-default"><span
@@ -1047,7 +1049,7 @@
                     <p style="color: #8c8c8c; padding-left: 2px;text-align: center;">{{ forum_description }}</p>
 
                     <a data-toggle="modal" data-target="#viewparticipants"
-                       style="text-align: center;margin-left: 25%;color: #e83e8c;font-weight: bold"> View Participants
+                       style="text-align: center;margin-left: 25%;color: #e83e8c;font-weight: bold;position: relative; top: 80px;"> View Participants
                         <i class="fa fa-angle-double-right"></i> </a>
 
 
@@ -1497,7 +1499,7 @@
 
             like_IDs.child(comment_id).remove();
         } else {
-            window.alert("You can only delete your own comments");
+              $("#deleteCommentModal").modal('show');
         }
 
 
@@ -1512,7 +1514,7 @@
 
             like_IDs.child(post_id).remove();
         } else {
-            window.alert("You can only delete your own posts");
+             $("#modalDeletePost").modal('show');
         }
 
 
@@ -1815,6 +1817,32 @@
 
 
 </script>
+
+<!-- Modal for pop up message "Delete_post" -->
+<div class="modal fade" id="modalDeletePost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Cannot Delete Post</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You can only delete your own posts
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </body><!-- Modal for pop up message "User has left forum" -->
 <div class="modal fade" id="modalLeftForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -2351,6 +2379,31 @@ Badges_Celebrations_2
         </div>
     </div>
 </div>
+
+<!-- Modal for pop up message "Delete_comment" -->
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Cannot Delete Comment</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You can only delete your own comments
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 </body>
