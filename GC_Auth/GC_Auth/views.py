@@ -672,6 +672,7 @@ def goConnectionsOpen(request):
                                                       'numConnections': user_methods.getNumConnecions(connection_id),
                                                       'numForums': user_methods.getNumForums(connection_id),
                                                       'ProfilePic': pic_transfer,
+                                                      'my_profile_pic': the_user.profilePic,
                                                       'backgroundPic': user_methods.getBackgroundPic(connection_id),
                                                       'course_list': courses_list_transfer,
                                                       'forums_list': forums_list_transfer,
