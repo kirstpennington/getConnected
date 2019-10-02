@@ -790,7 +790,7 @@
 
                         </div><!--notifications-wrapper-->
                     <li class="divider"></li>
-                     <li style="font-weight: bold; font-family: sans-serif; text-align: center" onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">View All <i class="fa fa-angle-double-right"></i></li>
+                     <li style="font-weight: bold; font-family: sans-serif; text-align: right" onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">View All <i class="fa fa-angle-double-right"></i></li>
                     </ul><!--Dropdown menu Messages--> </a>
                 </li><!--dropdown -->
 
@@ -1315,7 +1315,7 @@
         </div>
         <div class="message-input">
             <div class="wrap">
-            <input id="WriteYourMsg" style="height:41px;background-color: #ebebeb;font-family: sans-serif; margin-top: 20px; border-style: solid;border-width: 2px; border-radius: 8px;border-color: darkgray" type="text" placeholder="Write your message..." />
+            <input id="WriteYourMsg" disabled style="height:41px;background-color: #ebebeb;font-family: sans-serif; margin-top: 20px; border-style: solid;border-width: 2px; border-radius: 8px;border-color: darkgray" type="text" placeholder="Write your message..." />
 
             <button style="margin-top: 20px;border-radius: 8px" onclick="SendMessagePost()" id="SendMessagePost"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </div>
@@ -1463,27 +1463,7 @@ $(window).on('keydown', function(e) {
 
 <script>
 
-    {% comment %}var lHS_own_list_firebase = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Messages");
-                    lHS_own_list_firebase.once("value", function (snapshot_1) {
-                        snapshot_1.forEach(function (childSnapshot_1) {
-                     window.alert(key_current + " vs " + childSnapshot_1.key);
 
-                            if (key_current == childSnapshot_1.key)
-                            {own_msgs = "true";}
-
-                        });
-                    });{% endcomment %}
-
-
- {% comment %} var array_things =[];
-  var lHS_own_list_firebase = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Messages");
-                    lHS_own_list_firebase.once("value", function (snapshot_1) {
-                        snapshot_1.forEach(function (childSnapshot_1) {
-
-                            {array_things.push(childSnapshot_1.key)}
-
-                        });
-                    });{% endcomment %}
 
 
 
@@ -1492,8 +1472,7 @@ $(window).on('keydown', function(e) {
 
     var conversation_id = "0001";
     var messaging_db_first = firebase.database().ref().child("Messages");/*Messages*/
-
-
+    var participants_message_id = ""
 
     function SendMessagePost() {
 
@@ -1615,15 +1594,19 @@ $(window).on('keydown', function(e) {
 
     }
 
+
+
     function ViewMessages (conversation_id_db){
 
+
+        document.getElementById("WriteYourMsg").disabled = false;
         conversation_id = conversation_id_db;
         $('#list_of_mgs').html(" <p style=\"font-style: italic; margin-left: 15px;font-family: sans-serif\" >No messages to display. Start typing and send a new message :)<p>");
         var messaging_db = firebase.database().ref().child("Messages/" + conversation_id_db + "/Actual_Msgs");
         var messaging_db_title = firebase.database().ref().child("Messages/" + conversation_id_db);
 
 
-        messaging_db.on('value', function (snapshot) { renderRHS(snapshot.val());});
+        messaging_db.on('value', function (snapshot) { renderRHS(snapshot.val()); ViewParticipants(); });
 
         messaging_db_title.on('value', function (snapshot) {
 
@@ -1790,6 +1773,82 @@ $(window).on('keydown', function(e) {
 
 
     }
+
+     /*View Participants!*/
+
+    function ViewParticipants(){
+
+    var Participants_fb = firebase.database().ref().child("Messages").child(conversation_id).child("Participants");
+    Participants_fb.on("value", function (snapshot_user_topics) {
+
+        var j = 0;
+        var result = "<table>";
+        result += "<tr>";
+
+        snapshot_user_topics.forEach(function (user_snapshot) {
+           // window.alert(conversation_id);
+            var user = user_snapshot.key;
+            var users_details = firebase.database().ref().child("Users").child(user);
+            users_details.on("value", function (snapshot_forum_topics) {
+
+                var forum_names = snapshot_forum_topics.val().Name;
+                var forum_pics = snapshot_forum_topics.val().ProfilePic;
+                var forum_num_participants = snapshot_forum_topics.val().numConnections;
+                var forum_num_BIO = snapshot_forum_topics.val().Bio;
+                var forum_num_country = snapshot_forum_topics.val().Country;
+
+
+                result += "<td>" + parts_All(forum_names, forum_num_BIO, forum_num_country, forum_pics) + "</td>";
+
+                if ((j + 1) % 2 == 0) {
+                    result += "</tr><tr>";
+                }
+                j++;
+
+
+
+            });
+        });
+        results = '</table>'
+        $('#ConnectionsListing_participants').html(result);
+
+
+    });}
+
+
+    // get a snapshot of a list of keys from firebase and convert it to an array
+    function snapshotToArrayKey(snapshot) {
+        let returnArr = [];
+        snapshot.forEach(childSnapshot => {
+            //let item = childSnapshot.val();
+            var key = childSnapshot.key;
+            returnArr.push(key);
+        });
+        return returnArr;
+    }
+
+    function parts_All(name, bio, country, profilepic) {
+
+        var card = "  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+            "\n" +
+            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+            "\n" +
+            "             </div><!--end col-->\n" +
+            "\n" +
+            "\n" +
+            "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp;<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + country + "</p>\n" +
+            "\n" +
+            "             </div><!--end col-->\n" +
+            "\n" +
+            "             \n";
+
+        return card;
+
+    }
+
+     /*View Participants*/
 
 
 
@@ -2144,7 +2203,7 @@ $(window).on('keydown', function(e) {
           <span aria-hidden="true">&times;</span>
         </button>
           <p id="connections_check" style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select one connection</p>
-          <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: sans-serif; font-weight: bold"><i class="fa fa-user"></i> Participatns of the Conversation </h5>
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: sans-serif; font-weight: bold"><i class="fa fa-user"></i> Participants of the Conversation </h5>
 
       </div>
 
@@ -2167,46 +2226,9 @@ $(window).on('keydown', function(e) {
 
              <br>
 
-             <div id="ConnectionsListing_participants"  class="row" >
-
-                {% comment %} <!--****************************-->
-              <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"style="border: 1px solid  #DCDCDC ; border-radius: 50px;" alt="">
-
-             </div><!--end col-->
+             <div style="margin-left: 25px" id="ConnectionsListing_participants"  class="row" >
 
 
-             <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-               <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
-               <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-             </div><!--end col-->
-
-             <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-               <input type="checkbox" name="subject" value="name" >
-             </div>
-
-             <!--NEXT USER COLOUMN--><!--****************************-->
-
-             <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-               <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid  #DCDCDC ; border-radius: 50px;" alt="">
-
-            </div><!--end col-->
-
-
-            <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-              <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
-              <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-            </div><!--end col-->
-
-            <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-              <input type="checkbox" name="subject" value="name" >
-            </div>
-
-              <!--END ROW-->{% endcomment %}
 
           </div> <!--end row-->
 
@@ -2381,17 +2403,26 @@ $('input:checkbox').removeAttr('checked');
 
             //var key = childSnapshot.key;
             //var value = childSnapshot.val();
+
+
             var key = childSnapshot.key;
+
+            if (String(key).valueOf() != String('{{ this_uid }}').valueOf())
+            {
+
             var child_name = childSnapshot.val().Name;
             var child_country = childSnapshot.val().Country;
             var child_bio = childSnapshot.val().Bio;
             var child_propic = childSnapshot.val().ProfilePic;
 
-            result += "<td>" +  formCard_All(key,child_name,child_bio, child_country,child_propic)  + "</td>";
+            result += "<td>" + formCard_All(key, child_name, child_bio, child_country, child_propic) + "</td>";
             if ((j + 1) % 2 == 0) {
                 result += "</tr><tr>";
             }
             j++;
+
+            }
+
         });
 
 
