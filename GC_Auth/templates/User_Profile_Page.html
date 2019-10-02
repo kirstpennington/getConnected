@@ -1024,7 +1024,7 @@
                                     <!-- hidden field that stores the id of the entity  -->
                                     <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                     <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family:'Arial Narrow'; color:#666666 ;font-weight:bold; font-size: small;">
-                                        connections: &nbsp;<span> {{ numConnections }} </span>
+                                        Connections: &nbsp;<span> {{ numConnections }} </span>
                                     </h8>
                                     <br>
 
@@ -1036,7 +1036,7 @@
                         </form>
                     </div><!--end of Connections Suggestions Card--><br style="height: 2px">
                 {% empty %}
-                    <div>No Connection Suggestions</div>
+                    <div style="font-style: italic; font-size: small">No Connection Suggestions: Select more topics you are interested in</div>
                 {% endfor %}
             </div><!--col-md-12-->
         </div><!--col-md-4 rightColumn-->
@@ -1416,7 +1416,7 @@
                         </div>
                     </div><!--end of Forum Suggestions Card--><br>
                 {% empty %}
-                    <div>No Forum Suggestions</div>
+                    <div style="font-style: italic; font-size: small">No Forum Suggestions:Select more topics you are interested in</div>
                 {% endfor %}
 
                 <script>

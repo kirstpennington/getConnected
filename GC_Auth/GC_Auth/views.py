@@ -446,12 +446,12 @@ def connections(request):
     global the_user
     conn_suggestions = connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)
     return render(request, 'Connections.html',
-                  {'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
-                   'suggested_connections_list': connection_methods.getConnectionsInfoList(
-                       conn_suggestions),
+                  {#'connections_list': connection_methods.getConnectionsInfoList(the_user.connectionsInfoList),
+                   #'suggested_connections_list': connection_methods.getConnectionsInfoList(
+                    #   conn_suggestions)
                    'this_uid': the_user.uid,
                    'my_conn_ids': convertArrayToString(the_user.connectionsInfoList),
-                   'conn_suggestions_ids_str': convertArrayToString(conn_suggestions),
+                   #'conn_suggestions_ids_str': convertArrayToString(conn_suggestions),
                    'my_country': the_user.country,
                    'n': the_user.username,
                    'ProfilePic': the_user.profilePic,
