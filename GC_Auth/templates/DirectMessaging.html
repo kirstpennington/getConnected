@@ -375,7 +375,8 @@
         }
 
         .well a:hover {
-            text-decoration: none;}
+            text-decoration: none;
+        }
 
     </style>
 
@@ -568,11 +569,6 @@
         }
 
 
-
-
-
-
-
         .rightColumnfont {
             color: gray;
             position: relative;
@@ -724,51 +720,89 @@
 <body class="profileContainerDetails">
 
 
+<!--dialog pop-ups-->
+<dialog class="text-center" id="connectedWith"
+        style="box-shadow: 2px 2px 2px 2px grey;color: white;position: absolute; top: 30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
+ <div id="newconnectionmodal"></div>
+    <br>
+    <button id="close" style="border: 1px solid #e83e8c;border-radius: 8px;
+        color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
+    </button>
+</dialog>
 
 
+<dialog class="text-center" id="forumJoined"
+        style="box-shadow: 2px 2px 2px 2px grey;;color: white;position: absolute; top:30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
+    <p>You have joined a new forum!</p>
+    <br>
+    <button id="shut" style="border: 1px solid #e83e8c;border-radius: 8px;
+        color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
+    </button>
+</dialog>
+
+
+
+<script>
+
+
+    var x = document.getElementById("forumJoined");
+    var y = document.getElementById("connectedWith");
+
+    document.querySelector('#close').onclick = function () {
+        y.close();
+    };
+    document.querySelector('#shut').onclick = function () {
+        x.close();
+    };
+</script>
 <!--Navigation Bar-->
 
-<nav style="font-family: Roboto, sans-serif; font-size: 15px" class="navbar navbar-inverse "> <!--Inverse = Bright Colour Pallette-->
-     <div class="container-fluid">
-         <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+<nav style="font-family: Roboto, sans-serif; font-size: 15px" class="navbar navbar-inverse ">
+    <!--Inverse = Bright Colour Pallette-->
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
 
-             <!--LHS-->
+            <!--LHS-->
 
-             <ul class="nav navbar-nav navbar-left">
+            <ul class="nav navbar-nav navbar-left">
 
-                 <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span>
-                     Home</a></li>
-                 <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
-                     Connections</a></li>
-                 <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
-                     Forums</a></li>
-                 <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
-                 </li>
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span
+                        class="glyphicon glyphicon-home fa-lg"></span>
+                    Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                </li>
 
-             </ul><!--nav navbar-nav navbar-left-->
+            </ul><!--nav navbar-nav navbar-left-->
 
-             <!--RHS-->
+            <!--RHS-->
 
             <ul class="nav navbar-nav navbar-right">
 
                 <!--MESSAGE NOTIFICATIONS -->
-                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#" onclick="CloseIntroForm(); OpenLogIn();">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div style="color:white;border-left: 1px solid white;border-right: 1px solid white;"  id="Messages_icons_notifications">
-                    &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
-                    <span id ="number_of_msg_notifications" class="label label-default" style="background-color: red;color: white">0</span>&nbsp;
+                    <div style="color:white;border-left: 1px solid white;border-right: 1px solid white;"
+                         id="Messages_icons_notifications">
+                        &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
+                        <span id="number_of_msg_notifications" class="label label-default"
+                              style="background-color: red;color: white">0</span>&nbsp;
                     </div>
 
 
-                    <ul  class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div  class="notifications-wrapper" style="overflow-x: hidden"> <!--Messages Dropdown div-->
+                        <div class="notifications-wrapper" style="overflow-x: hidden"> <!--Messages Dropdown div-->
 
                             <ul id="Message_dropdown_notifications">
 
                                 <a style="font-family: sans-serif;font-style: italic;color: black">No Messages</a>
 
-                               {% comment %}     <a><div style="" class="notification-item">
+                                {% comment %}     <a><div style="" class="notification-item">
                                 <img class="profile_img" src="{{ ProfilePic }}"/>
                                     <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
                                     <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
@@ -786,40 +820,49 @@
                                 </div>
                             </a>{% endcomment %}
 
-                           </ul>
+                            </ul>
 
                         </div><!--notifications-wrapper-->
-                    <li class="divider"></li>
-                     <li style="font-weight: bold; font-family: sans-serif; text-align: right" onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">View All <i class="fa fa-angle-double-right"></i></li>
+                        <li class="divider"></li>
+                        <li style="font-weight: bold; font-family: sans-serif; text-align: right"
+                            onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
+                            View All <i class="fa fa-angle-double-right"></i></li>
                     </ul><!--Dropdown menu Messages--> </a>
                 </li><!--dropdown -->
 
                 <!--REQUESTS NOTIFICATIONS -->
-                 <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"data-target="#" href="#"onclick="CloseIntroForm(); OpenLogIn();">
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
 
-                     <div id="">
-                         <span id="counter_number_notifications" ></span>
-                     </div>
+                    <div id="">
+                        <span id="counter_number_notifications"></span>
+                    </div>
 
-                        <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
-                            aria-labelledby="dLabel">
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
 
-                            <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none"><!--Notifications Dropdown div-->
-                                <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No Notifications</p></ul>
-                            </div><!--End of Notifications Dropdown div-->
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
+                            <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
+                                Notifications</p></ul>
+                        </div><!--End of Notifications Dropdown div-->
 
-                            <!--Footer of notification drop down-->
-                            <li class="divider"></li>
-                          <li style="text-align: center"><a href="#"></a></li>
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#"></a></li>
 
-                        </ul> <!--Dropdown menu Notification-->
-                    </a>
+                    </ul> <!--Dropdown menu Notification-->
+                </a>
                 </li><!--dropdown -->
 
                 <!--Profile Drop-Down -->
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="CloseIntroForm(); OpenLogIn();">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20" height="20" src="{{ ProfilePic }}" alt=""></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20"
+                                                                                  height="20" src="{{ ProfilePic }}"
+                                                                                  alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -841,396 +884,428 @@
 
 
             </ul><!--nav navbar-nav navbar-right-->
-         </div><!--collapse navbar-collapse-->
+        </div><!--collapse navbar-collapse-->
     </div><!--container-fluid-->
 </nav><!--navbar navbar-inverse-->
-
-
-
 
 
 <!--End of Navigation Bar-->
 
 
-
-
-
-
-
-
-
 <!--User Profile Container-->
 <!--Background Image-->
-<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %});position: relative; top:-20px"></div>
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %});position: relative; top:-20px"></div>
 
 
-<div style="margin-top: -304px" class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
+<div style="margin-top: -304px" class="profileContainer profileContainerLift">
+    <!--1. Container for the whole user profile -->
 
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-<style class="">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+    <link rel='stylesheet prefetch'
+          href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <style class="">
 
-/*Right-Hand-Side Messaging Container Frame*/
-#frame {
-  width: 98%;
-  min-width: 362px;
-  /*max-width: 1800px;*/
-  height: 92vh;
-  min-height: 300px;
-  max-height: 630px;
-  position: center;
-  margin-left: 15px;
+        /*Right-Hand-Side Messaging Container Frame*/
+        #frame {
+            width: 98%;
+            min-width: 362px;
+            /*max-width: 1800px;*/
+            height: 92vh;
+            min-height: 300px;
+            max-height: 630px;
+            position: center;
+            margin-left: 15px;
 
-}
-
-
-@media screen and (max-width: 360px) {
-  #frame {
-    width: 100%;
-    height: 100vh;
-
-  }
-}
-
-#frame #sidepanel {
-  float: left;
-  min-width: 280px;
-  max-width: 340px;
-  width: 40%;
-  height: 100%;
-  background: white;
-  color: black;
-  overflow: hidden;
-  position: relative;
-}
-
-@media screen and (max-width: 735px) {
-  #frame #sidepanel {
-    width: 58px;
-    min-width: 58px;
-  }
-}
-
-/*Left-Hand-Side Messaging Container Frame*/
-
-/*Search*/
-
-#frame #sidepanel #search {
- /* border-top: 1px solid black;*/
-  /*border-bottom: 1px solid grey;*/
-  font-weight: 300;
-}
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #search {
-    display: none;
-  }
-}
-#frame #sidepanel #search label {
-  position: absolute;
-  margin: 21px 0 0 20px;
-}
-#frame #sidepanel #search input {
-  font-family: sans-serif;
-    margin-top: 13px;
-    font-weight: bold;
-  padding: 10px 0 10px 46px;
-  border: 5px;
-  background: white;
-    width: 340px;
-}
-#frame #sidepanel #search input:focus {
-  outline: none;
-  background: whitesmoke;
-}
-#frame #sidepanel #search input::-webkit-input-placeholder {
-  color: grey;
-}
-
-/*Connections*/
-#frame #sidepanel #connections {
-  height: calc(100% - 90px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-    margin-top: -20px;
-}
-
-/*
-#frame #sidepanel #connections::-webkit-scrollbar {
-  width: 2px;
-  background: deeppink;
-}*/
-
-#frame #sidepanel #connections ul li.connection {
-  position: relative;
-  padding: 10px 0 15px 0;
-  font-size: 0.9em;
-  cursor: pointer;
-}
-
-/*Contacts - wrap*/
-#frame #sidepanel #connections ul li.connection .wrap {
-  width: 88%;
-  margin: 0 auto;
-  position: relative;
-}
-
-#frame #sidepanel #connections ul li.connection .wrap :hover {
-  background-color: #ebebeb;
-}
+        }
 
 
-/*Contacts - online offline*/
-#frame #sidepanel #connections ul li.connection .wrap span {
-  position: absolute;
-  left: 0;
-  margin: -2px 0 0 -2px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #2c3e50;
-  background: #95a5a6;
-}
+        @media screen and (max-width: 360px) {
+            #frame {
+                width: 100%;
+                height: 100vh;
 
-#frame #sidepanel #connections ul li.connection .wrap span.busy {
-  background: green;
-}
+            }
+        }
 
-#frame #sidepanel #connections ul li.connection .wrap img {
-  width: 40px;
-  border-radius: 50%;
-  float: left;
-  margin-right: 10px;
-}
+        #frame #sidepanel {
+            float: left;
+            min-width: 280px;
+            max-width: 340px;
+            width: 40%;
+            height: 100%;
+            background: white;
+            color: black;
+            overflow: hidden;
+            position: relative;
+        }
 
+        @media screen and (max-width: 735px) {
+            #frame #sidepanel {
+                width: 58px;
+                min-width: 58px;
+            }
+        }
 
-/*Bottom Bar*/
-#frame #sidepanel #bottom-bar {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-    border-radius: 10px;
-}
-#frame #sidepanel #bottom-bar button {
-  float: left;
-  border: none;
-  width: 50%;
-  padding: 10px 0;
-  background: deeppink;
-  color: black;
-  cursor: pointer;
-  font-size: 0.85em;
-  font-family: sans-serif;
-        font-weight: bold;
+        /*Left-Hand-Side Messaging Container Frame*/
 
-}
+        /*Search*/
 
-#frame #sidepanel #bottom-bar button:hover {
-  background: grey;
-    color: white;
-    font-weight: bold;
-}
+        #frame #sidepanel #search {
+            /* border-top: 1px solid black;*/
+            /*border-bottom: 1px solid grey;*/
+            font-weight: 300;
+        }
 
+        @media screen and (max-width: 735px) {
+            #frame #sidepanel #search {
+                display: none;
+            }
+        }
 
-#frame .content {
-  float: right;
-  width: 60%;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
+        #frame #sidepanel #search label {
+            position: absolute;
+            margin: 21px 0 0 20px;
+        }
 
-@media screen and (min-width: 900px) {
-  #frame .content {
-    width: calc(100% - 340px);
-  }
-}
-#frame .content .contact-profile {
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  background: #f5f5f5;
-}
-#frame .content .contact-profile img {
-  width: 40px;
-  border-radius: 50%;
-  float: left;
-  margin: 9px 12px 0 9px;
-}
-#frame .content .contact-profile p {
-  float: left;
-}
-#frame .content .contact-profile .social-media {
-  float: right;
-}
-#frame .content .contact-profile .social-media i {
-  margin-left: 14px;
-  cursor: pointer;
-}
-#frame .content .contact-profile .social-media i:nth-last-child(1) {
-  margin-right: 20px;
-}
-#frame .content .contact-profile .social-media i:hover {
-  color: #435f7a;
-}
-#frame .content .messages {
-  height: auto;
-  min-height: calc(100% - 93px);
-  max-height: calc(100% - 93px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-@media screen and (max-width: 735px) {
-  #frame .content .messages {
-    max-height: calc(100% - 105px);
-  }
-}
-#frame .content .messages::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
-}
-#frame .content .messages::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-#frame .content .messages ul li {
-  display: inline-block;
-  clear: both;
-  float: left;
-  margin: 15px 15px 5px 15px;
-  width: calc(100% - 25px);
-  font-size: 0.9em;
-}
-#frame .content .messages ul li:nth-last-child(1) {
-  margin-bottom: 20px;
-}
-#frame .content .messages ul li.sent img {
-  margin: 6px 8px 0 0;
-}
-#frame .content .messages ul li.sent p {
-  background: black;
-  color: #f5f5f5;
-}
-#frame .content .messages ul li.sent h10 {
-  font-weight: bold;
-  color: Green;
-    font-family: SansSerif;
-}
+        #frame #sidepanel #search input {
+            font-family: sans-serif;
+            margin-top: 13px;
+            font-weight: bold;
+            padding: 10px 0 10px 46px;
+            border: 5px;
+            background: white;
+            width: 340px;
+        }
 
-#frame .content .messages ul li.replies img {
-  float: right;
-  margin: 6px 0 0 8px;
-}
-#frame .content .messages ul li.replies p {
-  background: lightgrey;
-  float: right;
-}
+        #frame #sidepanel #search input:focus {
+            outline: none;
+            background: whitesmoke;
+        }
 
-#frame .content .messages ul li img {
-  width: 22px;
-  border-radius: 50%;
-  float: left;
-}
-#frame .content .messages ul li p {
-  display: inline-block;
-  padding: 10px 15px;
-  border-radius: 20px;
-  max-width: 205px;
-  line-height: 130%;
-}
-@media screen and (min-width: 735px) {
-  #frame .content .messages ul li p {
-    max-width: 300px;
-  }
-}
-#frame .content .message-input {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 99;
-    background-color: #ebebeb;
-}
-#frame .content .message-input .wrap {
-  position: relative;
-}
-#frame .content .message-input .wrap input {
-  font-family:  sans-serif;
-  float: left;
-  border: none;
-  width: calc(100% - 90px);
-  padding: 11px 32px 10px 8px;
-  font-size: 0.8em;
-  color: black;
-}
-@media screen and (max-width: 735px) {
-  #frame .content .message-input .wrap input {
-    padding: 15px 32px 16px 8px;
-  }
-}
-#frame .content .message-input .wrap input:focus {
-  outline: none;
-}
-#frame .content .message-input .wrap .attachment {
-  position: absolute;
-  right: 60px;
-  z-index: 4;
-  margin-top: 10px;
-  font-size: 1.5em;
-  color: white;
-  opacity: .5;
-  cursor: pointer;
-}
-@media screen and (max-width: 735px) {
-  #frame .content .message-input .wrap .attachment {
-    margin-top: 17px;
-    right: 65px;
-  }
-}
-#frame .content .message-input .wrap .attachment:hover {
-  opacity: 1;
-}
-#frame .content .message-input .wrap button {
-  float: right;
-  border: none;
-  width: 50px;
-  padding: 12px 0;
-  cursor: pointer;
-  background: deeppink;
-  color: #f5f5f5;
-}
-@media screen and (max-width: 735px) {
-  #frame .content .message-input .wrap button {
-    padding: 16px 0;
+        #frame #sidepanel #search input::-webkit-input-placeholder {
+            color: grey;
+        }
 
-  }
-}
-#frame .content .message-input .wrap button:hover {
-  background: grey;
-}
-#frame .content .message-input .wrap button:focus {
-  outline: none;
-}
-</style>
+        /*Connections*/
+        #frame #sidepanel #connections {
+            height: calc(100% - 90px);
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top: -20px;
+        }
+
+        /*
+        #frame #sidepanel #connections::-webkit-scrollbar {
+          width: 2px;
+          background: deeppink;
+        }*/
+
+        #frame #sidepanel #connections ul li.connection {
+            position: relative;
+            padding: 10px 0 15px 0;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        /*Contacts - wrap*/
+        #frame #sidepanel #connections ul li.connection .wrap {
+            width: 88%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #frame #sidepanel #connections ul li.connection .wrap :hover {
+            background-color: #ebebeb;
+        }
 
 
-    <div  style="border-radius: 10px; margin-left: 3px"><div  id="frame">
+        /*Contacts - online offline*/
+        #frame #sidepanel #connections ul li.connection .wrap span {
+            position: absolute;
+            left: 0;
+            margin: -2px 0 0 -2px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #2c3e50;
+            background: #95a5a6;
+        }
 
-<!-- LHS -->
+        #frame #sidepanel #connections ul li.connection .wrap span.busy {
+            background: green;
+        }
 
-    <div style="" id="sidepanel">
-
-        <!--Search Button -->
-
-        <div id="search">
-
-            <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-            <input type="text" placeholder="Search connections..." />
-        </div>
-        <hr style="margin-top: 9px">
+        #frame #sidepanel #connections ul li.connection .wrap img {
+            width: 40px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 10px;
+        }
 
 
-        <!--Viewing Connections -->
+        /*Bottom Bar*/
+        #frame #sidepanel #bottom-bar {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            border-radius: 10px;
+        }
 
-        <div id="connections">
-            <ul id = "connectionsLists_msgs">
-                {% comment %}<li class="connection">
+        #frame #sidepanel #bottom-bar button {
+            float: left;
+            border: none;
+            width: 50%;
+            padding: 10px 0;
+            background: deeppink;
+            color: black;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-family: sans-serif;
+            font-weight: bold;
+
+        }
+
+        #frame #sidepanel #bottom-bar button:hover {
+            background: grey;
+            color: white;
+            font-weight: bold;
+        }
+
+
+        #frame .content {
+            float: right;
+            width: 60%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media screen and (min-width: 900px) {
+            #frame .content {
+                width: calc(100% - 340px);
+            }
+        }
+
+        #frame .content .contact-profile {
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            background: #f5f5f5;
+        }
+
+        #frame .content .contact-profile img {
+            width: 40px;
+            border-radius: 50%;
+            float: left;
+            margin: 9px 12px 0 9px;
+        }
+
+        #frame .content .contact-profile p {
+            float: left;
+        }
+
+        #frame .content .contact-profile .social-media {
+            float: right;
+        }
+
+        #frame .content .contact-profile .social-media i {
+            margin-left: 14px;
+            cursor: pointer;
+        }
+
+        #frame .content .contact-profile .social-media i:nth-last-child(1) {
+            margin-right: 20px;
+        }
+
+        #frame .content .contact-profile .social-media i:hover {
+            color: #435f7a;
+        }
+
+        #frame .content .messages {
+            height: auto;
+            min-height: calc(100% - 93px);
+            max-height: calc(100% - 93px);
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        @media screen and (max-width: 735px) {
+            #frame .content .messages {
+                max-height: calc(100% - 105px);
+            }
+        }
+
+        #frame .content .messages::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+
+        #frame .content .messages::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        #frame .content .messages ul li {
+            display: inline-block;
+            clear: both;
+            float: left;
+            margin: 15px 15px 5px 15px;
+            width: calc(100% - 25px);
+            font-size: 0.9em;
+        }
+
+        #frame .content .messages ul li:nth-last-child(1) {
+            margin-bottom: 20px;
+        }
+
+        #frame .content .messages ul li.sent img {
+            margin: 6px 8px 0 0;
+        }
+
+        #frame .content .messages ul li.sent p {
+            background: black;
+            color: #f5f5f5;
+        }
+
+        #frame .content .messages ul li.sent h10 {
+            font-weight: bold;
+            color: Green;
+            font-family: SansSerif;
+        }
+
+        #frame .content .messages ul li.replies img {
+            float: right;
+            margin: 6px 0 0 8px;
+        }
+
+        #frame .content .messages ul li.replies p {
+            background: lightgrey;
+            float: right;
+        }
+
+        #frame .content .messages ul li img {
+            width: 22px;
+            border-radius: 50%;
+            float: left;
+        }
+
+        #frame .content .messages ul li p {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 205px;
+            line-height: 130%;
+        }
+
+        @media screen and (min-width: 735px) {
+            #frame .content .messages ul li p {
+                max-width: 300px;
+            }
+        }
+
+        #frame .content .message-input {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 99;
+            background-color: #ebebeb;
+        }
+
+        #frame .content .message-input .wrap {
+            position: relative;
+        }
+
+        #frame .content .message-input .wrap input {
+            font-family: sans-serif;
+            float: left;
+            border: none;
+            width: calc(100% - 90px);
+            padding: 11px 32px 10px 8px;
+            font-size: 0.8em;
+            color: black;
+        }
+
+        @media screen and (max-width: 735px) {
+            #frame .content .message-input .wrap input {
+                padding: 15px 32px 16px 8px;
+            }
+        }
+
+        #frame .content .message-input .wrap input:focus {
+            outline: none;
+        }
+
+        #frame .content .message-input .wrap .attachment {
+            position: absolute;
+            right: 60px;
+            z-index: 4;
+            margin-top: 10px;
+            font-size: 1.5em;
+            color: white;
+            opacity: .5;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 735px) {
+            #frame .content .message-input .wrap .attachment {
+                margin-top: 17px;
+                right: 65px;
+            }
+        }
+
+        #frame .content .message-input .wrap .attachment:hover {
+            opacity: 1;
+        }
+
+        #frame .content .message-input .wrap button {
+            float: right;
+            border: none;
+            width: 50px;
+            padding: 12px 0;
+            cursor: pointer;
+            background: deeppink;
+            color: #f5f5f5;
+        }
+
+        @media screen and (max-width: 735px) {
+            #frame .content .message-input .wrap button {
+                padding: 16px 0;
+
+            }
+        }
+
+        #frame .content .message-input .wrap button:hover {
+            background: grey;
+        }
+
+        #frame .content .message-input .wrap button:focus {
+            outline: none;
+        }
+    </style>
+
+
+    <div style="border-radius: 10px; margin-left: 3px">
+        <div id="frame">
+
+            <!-- LHS -->
+
+            <div style="" id="sidepanel">
+
+                <!--Search Button -->
+
+                <div id="search">
+
+                    <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+                    <input type="text" placeholder="Search connections..."/>
+                </div>
+                <hr style="margin-top: 9px">
+
+
+                <!--Viewing Connections -->
+
+                <div id="connections">
+                    <ul id="connectionsLists_msgs">
+                        {% comment %}<li class="connection">
                     <div class="wrap">
                         <span class="contact-status online"></span>
                         <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
@@ -1251,34 +1326,40 @@
                     </div>
                 </li>{% endcomment %}
 
-            </ul>
-        </div>
+                    </ul>
+                </div>
 
 
+                <!-- Bottom Bar -->
 
-        <!-- Bottom Bar -->
+                <div id="bottom-bar">
+                    <button data-toggle="modal" data-target="#chooseparticipantsmodal" style="margin-left: -15px; "
+                            class="" id="addcontact"><i class="fa fa-user fa-fw " aria-hidden="true"></i> <span>New Conversation</span>
+                    </button>
+                    <button data-toggle="modal" data-target="#chooseparticipantsmodal_group"
+                            style="background-color: lightgrey" class="" id="settings"><i class="fa fa-users"
+                                                                                          aria-hidden="true"></i> <span>Create Group</span>
+                    </button>
+                </div>
 
-        <div  id="bottom-bar">
-            <button data-toggle="modal" data-target="#chooseparticipantsmodal" style="margin-left: -15px; " class="" id="addcontact"><i class="fa fa-user fa-fw " aria-hidden="true"></i> <span>New Conversation</span></button>
-            <button data-toggle="modal" data-target="#chooseparticipantsmodal_group" style="background-color: lightgrey" class=""  id="settings"><i class="fa fa-users" aria-hidden="true"></i> <span>Create Group</span></button>
-        </div>
+            </div>
 
-    </div>
-
-<!-- /LHS -->
+            <!-- /LHS -->
 
 
-    <div style="background-color: white" class="content">
-        <div id = "HeadingName" style="background-color: white" class="contact-profile">
-            <img id="Title_img" src="" alt="" />
-            <p style="font-family: sans-serif" id=""></p>
-            <div id="Dropdown_for_user" class="dropdownmenu" style=" font-family: sans-serif; position: relative; left: 65%;color: #666666; visibility: hidden"></div>
-       </div>
+            <div style="background-color: white" class="content">
+                <div id="HeadingName" style="background-color: white" class="contact-profile">
+                    <img id="Title_img" src="" alt=""/>
+                    <p style="font-family: sans-serif" id=""></p>
+                    <div id="Dropdown_for_user" class="dropdownmenu"
+                         style=" font-family: sans-serif; position: relative; left: 65%;color: #666666; visibility: hidden"></div>
+                </div>
 
-        <hr style="margin-top: -5px; width: 1000px">
-        <div class="messages">
-            <ul id="list_of_mgs"> <p style="font-style: italic; margin-left: 15px; font-family: sans-serif">Select a conversation and begin sending messages</p>
-                {% comment %}<li class="sent">
+                <hr style="margin-top: -5px; width: 1000px">
+                <div class="messages">
+                    <ul id="list_of_mgs"><p style="font-style: italic; margin-left: 15px; font-family: sans-serif">
+                        Select a conversation and begin sending messages</p>
+                        {% comment %}<li class="sent">
                     <img src="http://emilcarlsson.se/assets/mikeross.png" alt=""/>
                     <p>We should do assignments together more often yes do you think?</p>
                 </li>
@@ -1311,150 +1392,157 @@
                     <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any
                         one of a hundred and forty six other things.</p>
                 </li>{% endcomment %}
-            </ul>
-        </div>
-        <div class="message-input">
-            <div class="wrap">
-            <input id="WriteYourMsg" disabled style="height:41px;background-color: #ebebeb;font-family: sans-serif; margin-top: 20px; border-style: solid;border-width: 2px; border-radius: 8px;border-color: darkgray" type="text" placeholder="Write your message..." />
+                    </ul>
+                </div>
+                <div class="message-input">
+                    <div class="wrap">
+                        <input id="WriteYourMsg" disabled
+                               style="height:41px;background-color: #ebebeb;font-family: sans-serif; margin-top: 20px; border-style: solid;border-width: 2px; border-radius: 8px;border-color: darkgray"
+                               type="text" placeholder="Write your message..."/>
 
-            <button style="margin-top: 20px;border-radius: 8px" onclick="SendMessagePost()" id="SendMessagePost"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        <button style="margin-top: 20px;border-radius: 8px" onclick="SendMessagePost()"
+                                id="SendMessagePost"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div> <!-- /frame -->
+        </div> <!-- /frame -->
 
-        <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-        <script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+        <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+        <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+        <script>$(".messages").animate({scrollTop: $(document).height()}, "fast");
 
-$("#profile-img").click(function() {
-    $("#status-options").toggleClass("active");
-});
+        $("#profile-img").click(function () {
+            $("#status-options").toggleClass("active");
+        });
 
-$(".expand-button").click(function() {
-  $("#profile").toggleClass("expanded");
-    $("#connections").toggleClass("expanded");
-});
+        $(".expand-button").click(function () {
+            $("#profile").toggleClass("expanded");
+            $("#connections").toggleClass("expanded");
+        });
 
-$("#status-options ul li").click(function() {
-    $("#profile-img").removeClass();
-    $("#status-online").removeClass("active");
-    $("#status-away").removeClass("active");
-    $("#status-busy").removeClass("active");
-    $("#status-offline").removeClass("active");
-    $(this).addClass("active");
+        $("#status-options ul li").click(function () {
+            $("#profile-img").removeClass();
+            $("#status-online").removeClass("active");
+            $("#status-away").removeClass("active");
+            $("#status-busy").removeClass("active");
+            $("#status-offline").removeClass("active");
+            $(this).addClass("active");
 
-    if($("#status-online").hasClass("active")) {
-        $("#profile-img").addClass("online");
-    } else if ($("#status-away").hasClass("active")) {
-        $("#profile-img").addClass("away");
-    } else if ($("#status-busy").hasClass("active")) {
-        $("#profile-img").addClass("busy");
-    } else if ($("#status-offline").hasClass("active")) {
-        $("#profile-img").addClass("offline");
-    } else {
-        $("#profile-img").removeClass();
-    };
-
-    $("#status-options").removeClass("active");
-});
-
-function newMessage() {
-    message = $(".message-input input").val();
-    if($.trim(message) == '') {
-        return false;
-    }
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-    $('.message-input input').val(null);
-    $('.connection.active .preview').html('<span>You: </span>' + message);
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-};
-
-$('.submit').click(function() {
-  newMessage();
-});
-
-$(window).on('keydown', function(e) {
-  if (e.which == 13) {
-    newMessage();
-    return false;
-  }
-});
-</script>
-    </div>
-
-<script>
-
-    /*Time for Posts Displayed*/
-            const MONTH_NAMES = [
-                'January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'
-            ];
-            function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-                const day = date.getDate();
-                const month = MONTH_NAMES[date.getMonth()];
-                const year = date.getFullYear();
-                const hours = date.getHours();
-                let minutes = date.getMinutes();
-
-                if (minutes < 10) {
-                    // Adding leading zero to minutes
-                    minutes = `0${minutes}`;
-                }
-
-                if (prefomattedDate) {
-                    // Today at 10:20
-                    // Yesterday at 10:20
-                    return `${prefomattedDate} at ${hours}:${minutes}`;
-                }
-
-                if (hideYear) {
-                    // 10. January at 10:20
-                    return `${day}. ${month} at ${hours}:${minutes}`;
-                }
-
-                // 10. January 2017. at 10:20
-                return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+            if ($("#status-online").hasClass("active")) {
+                $("#profile-img").addClass("online");
+            } else if ($("#status-away").hasClass("active")) {
+                $("#profile-img").addClass("away");
+            } else if ($("#status-busy").hasClass("active")) {
+                $("#profile-img").addClass("busy");
+            } else if ($("#status-offline").hasClass("active")) {
+                $("#profile-img").addClass("offline");
+            } else {
+                $("#profile-img").removeClass();
             }
-            // --- Main function
-            function timeAgo(dateParam) {
+            ;
 
-                if (!dateParam) {
-                    return null;
-                }
+            $("#status-options").removeClass("active");
+        });
 
-                const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-                const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-                const today = new Date();
-                const yesterday = new Date(today - DAY_IN_MS);
-                const seconds = Math.round((today - date) / 1000);
-                const minutes = Math.round(seconds / 60);
-                const isToday = today.toDateString() === date.toDateString();
-                const isYesterday = yesterday.toDateString() === date.toDateString();
-                const isThisYear = today.getFullYear() === date.getFullYear();
+        function newMessage() {
+            message = $(".message-input input").val();
+            if ($.trim(message) == '') {
+                return false;
+            }
+            $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+            $('.message-input input').val(null);
+            $('.connection.active .preview').html('<span>You: </span>' + message);
+            $(".messages").animate({scrollTop: $(document).height()}, "fast");
+        };
+
+        $('.submit').click(function () {
+            newMessage();
+        });
+
+        $(window).on('keydown', function (e) {
+            if (e.which == 13) {
+                newMessage();
+                return false;
+            }
+        });
+        </script>
+    </div>
+
+    <script>
+
+        /*Time for Posts Displayed*/
+        const MONTH_NAMES = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+            const day = date.getDate();
+            const month = MONTH_NAMES[date.getMonth()];
+            const year = date.getFullYear();
+            const hours = date.getHours();
+            let minutes = date.getMinutes();
+
+            if (minutes < 10) {
+                // Adding leading zero to minutes
+                minutes = `0${minutes}`;
+            }
+
+            if (prefomattedDate) {
+                // Today at 10:20
+                // Yesterday at 10:20
+                return `${prefomattedDate} at ${hours}:${minutes}`;
+            }
+
+            if (hideYear) {
+                // 10. January at 10:20
+                return `${day}. ${month} at ${hours}:${minutes}`;
+            }
+
+            // 10. January 2017. at 10:20
+            return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+        }
+
+        // --- Main function
+        function timeAgo(dateParam) {
+
+            if (!dateParam) {
+                return null;
+            }
+
+            const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+            const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+            const today = new Date();
+            const yesterday = new Date(today - DAY_IN_MS);
+            const seconds = Math.round((today - date) / 1000);
+            const minutes = Math.round(seconds / 60);
+            const isToday = today.toDateString() === date.toDateString();
+            const isYesterday = yesterday.toDateString() === date.toDateString();
+            const isThisYear = today.getFullYear() === date.getFullYear();
 
 
-                if (seconds < 5) {
-                    return 'now';
-                } else if (seconds < 60) {
-                    return `${seconds} seconds ago`;
-                } else if (seconds < 90) {
-                    return 'about a minute ago';
-                } else if (minutes < 60) {
-                    return `${minutes} minutes ago`;
-                } else if (isToday) {
-                    return getFormattedDate(date, 'Today'); // Today at 10:20
-                } else if (isYesterday) {
-                    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-                } else if (isThisYear) {
-                    return getFormattedDate(date, false, true); // 10. January at 10:20
-                }
+            if (seconds < 5) {
+                return 'now';
+            } else if (seconds < 60) {
+                return `${seconds} seconds ago`;
+            } else if (seconds < 90) {
+                return 'about a minute ago';
+            } else if (minutes < 60) {
+                return `${minutes} minutes ago`;
+            } else if (isToday) {
+                return getFormattedDate(date, 'Today'); // Today at 10:20
+            } else if (isYesterday) {
+                return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+            } else if (isThisYear) {
+                return getFormattedDate(date, false, true); // 10. January at 10:20
+            }
 
-                return getFormattedDate(date); // 10. January 2017. at 10:20
-            };
+            return getFormattedDate(date); // 10. January 2017. at 10:20
+        };
 
 
-<!--Sending, Receiving, Accepting, Declining Requests -->
-</script>
+        <!--Sending, Receiving, Accepting, Declining Requests -->
+    </script>
 
 </div>
 
@@ -1462,12 +1550,6 @@ $(window).on('keydown', function(e) {
 <!-- Send Message Button -->
 
 <script>
-
-
-
-
-
-
 
 
     var conversation_id = "0001";
@@ -1492,7 +1574,7 @@ $(window).on('keydown', function(e) {
             Sender_name: '{{ n }}',
             text: message_txt,
             DateTime: date_for_post,
-            Conversation_id:conversation_id
+            Conversation_id: conversation_id
 
 
         });
@@ -1506,8 +1588,8 @@ $(window).on('keydown', function(e) {
         });
 
         /*Updating latest*/
-        var messaging_db_latest = firebase.database().ref().child("Messages/" + conversation_id );/*Messages*/
-        messaging_db_latest.update({'latest': message_txt });
+        var messaging_db_latest = firebase.database().ref().child("Messages/" + conversation_id);/*Messages*/
+        messaging_db_latest.update({'latest': message_txt});
 
         /*Send Notifications*/
 
@@ -1515,88 +1597,85 @@ $(window).on('keydown', function(e) {
         parts_loop.on("value", function (snapshot_1) {
             snapshot_1.forEach(function (childSnapshot_1) {
 
-{% comment %}
-                if ('{{ this_uid }}' != childSnapshot_1.val());
-{% endcomment %}
+                {% comment %}
+                                if ('{{ this_uid }}' != childSnapshot_1.val());
+                {% endcomment %}
 
 
-        var other = firebase.database().ref().child("Users/" + childSnapshot_1.val() + "/Messages_Notifications");/*Messages*/
-        var created_id_1 = other.push();
-        created_id_1.set({
-            Time: date_for_post,
-            ProfilePic: '{{ProfilePic}}',
-            Sender_name: '{{ n }}',
-            text: message_txt,
-        });
+                var other = firebase.database().ref().child("Users/" + childSnapshot_1.val() + "/Messages_Notifications");/*Messages*/
+                var created_id_1 = other.push();
+                created_id_1.set({
+                    Time: date_for_post,
+                    ProfilePic: '{{ProfilePic}}',
+                    Sender_name: '{{ n }}',
+                    text: message_txt,
+                });
             });
         });
- /*END*/
+        /*END*/
 
     };
 
-  messaging_db_first.on('value', function (snapshot) {
-                renderLHS(snapshot.val());
-               // renderRHS(snapshot.val());
+    messaging_db_first.on('value', function (snapshot) {
+        renderLHS(snapshot.val());
+        // renderRHS(snapshot.val());
 
-  });
-
+    });
 
 
     function renderLHS(obj) {
 
-                var html = '';
-                var keys = Object.keys(obj);
+        var html = '';
+        var keys = Object.keys(obj);
 
 
-                for (var i = keys.length - 1; i >= 0; i--)
-
-                {                               //window.alert("BEFIRE");
+        for (var i = keys.length - 1; i >= 0; i--) {                               //window.alert("BEFIRE");
 
 
-                   var greys = Object.keys(obj[keys[i]].Participants);
+            var greys = Object.keys(obj[keys[i]].Participants);
 
-                   if (greys.includes('{{ this_uid }}')){
+            if (greys.includes('{{ this_uid }}')) {
 
 
-                       var display_time = obj[keys[i]].DateTime;
-                       display_time = Number(display_time); // cast it to a Number
-                       var ts_display = timeAgo(display_time);
+                var display_time = obj[keys[i]].DateTime;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
 
-                       if (obj[keys[i]].Sender_key == '{{ this_uid }}') {
+                if (obj[keys[i]].Sender_key == '{{ this_uid }}') {
 
-                      //window.alert("first");
+                    //window.alert("first");
 
-                           html += "<div><li onclick=\"ViewMessages(\'" + obj[keys[i]].key + "\')\" class=\"connection\">" +
-                               "<div class=\"wrap\"><img src=\"" + obj[keys[i]].ProfilePic_two + "\" alt=\"\" />" +
-                               "<div class=\"meta\">" +
-                               "<p style=\"font-weight:bold;font-family: sans-serif\" class=\"name\">" + obj[keys[i]].Name_two + " </p>\n\n\n" +
-                               "<p style=\" font-family: sans-serif \" align=\"left\" class=\"preview\">" + obj[keys[i]].latest + "</p>" +
-                               "<div style= \"width: 70%;height: 20px;border-radius: 5px;right:0px;position:relative; top:1px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif \" class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div></div>" +
-                               "</div>" +
-                               "</li>\n</div>";
+                    html += "<div><li onclick=\"ViewMessages(\'" + obj[keys[i]].key + "\')\" class=\"connection\">" +
+                        "<div class=\"wrap\"><img src=\"" + obj[keys[i]].ProfilePic_two + "\" alt=\"\" />" +
+                        "<div class=\"meta\">" +
+                        "<p style=\"font-weight:bold;font-family: sans-serif\" class=\"name\">" + obj[keys[i]].Name_two + " </p>\n\n\n" +
+                        "<p style=\" font-family: sans-serif \" align=\"left\" class=\"preview\">" + obj[keys[i]].latest + "</p>" +
+                        "<div style= \"width: 70%;height: 20px;border-radius: 5px;right:0px;position:relative; top:1px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif \" class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div></div>" +
+                        "</div>" +
+                        "</li>\n</div>";
 
-                       } else {
-                          // window.alert("here");
+                } else {
+                    // window.alert("here");
 
-                           html += "<div><li onclick=\"ViewMessages(\'" + obj[keys[i]].key + "\')\" class=\"connection\">" +
-                               "<div class=\"wrap\"><img src=\"" + obj[keys[i]].ProfilePic_one + "\" alt=\"\" />" +
-                               "<div class=\"meta\">" +
-                               "<p style=\"font-weight:bold;font-family: sans-serif\" class=\"name\">" + obj[keys[i]].Name_one + " </p>\n\n\n" +
-                               "<p style=\"font-family: sans-serif\" align=\"left\" class=\"preview\">" + obj[keys[i]].latest + "</p>"+
-                           "<div style= \"width: 70%;height: 20px;border-radius: 5px;right:0px;position:relative; top:1px; color:grey; font-style:italic; font-size: x-small;font-family: sans-serif\" class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div></div>" +
-                           "</div>" +
-                           "</li>\n</div>";}
-                   }
+                    html += "<div><li onclick=\"ViewMessages(\'" + obj[keys[i]].key + "\')\" class=\"connection\">" +
+                        "<div class=\"wrap\"><img src=\"" + obj[keys[i]].ProfilePic_one + "\" alt=\"\" />" +
+                        "<div class=\"meta\">" +
+                        "<p style=\"font-weight:bold;font-family: sans-serif\" class=\"name\">" + obj[keys[i]].Name_one + " </p>\n\n\n" +
+                        "<p style=\"font-family: sans-serif\" align=\"left\" class=\"preview\">" + obj[keys[i]].latest + "</p>" +
+                        "<div style= \"width: 70%;height: 20px;border-radius: 5px;right:0px;position:relative; top:1px; color:grey; font-style:italic; font-size: x-small;font-family: sans-serif\" class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div></div>" +
+                        "</div>" +
+                        "</li>\n</div>";
                 }
+            }
+        }
 
 
-     $('#connectionsLists_msgs').html(html);
+        $('#connectionsLists_msgs').html(html);
 
     }
 
 
-
-    function ViewMessages (conversation_id_db){
+    function ViewMessages(conversation_id_db) {
 
 
         document.getElementById("WriteYourMsg").disabled = false;
@@ -1606,214 +1685,201 @@ $(window).on('keydown', function(e) {
         var messaging_db_title = firebase.database().ref().child("Messages/" + conversation_id_db);
 
 
-        messaging_db.on('value', function (snapshot) { renderRHS(snapshot.val()); ViewParticipants(); });
+        messaging_db.on('value', function (snapshot) {
+            renderRHS(snapshot.val());
+            ViewParticipants();
+        });
 
         messaging_db_title.on('value', function (snapshot) {
 
 
-           // window.alert(snapshot.val().Sender_key);
+            // window.alert(snapshot.val().Sender_key);
             var text_html = "";
 
-        if ( snapshot.val().Sender_key == '{{ this_uid }}'){
+            if (snapshot.val().Sender_key == '{{ this_uid }}') {
 
-                     text_html += "            <img id=\"Title_img\" src=\""+ snapshot.val().ProfilePic_two +"\" alt=\"\" />\n" +
-                         "\t\t\t<p style=\"font-family: sans-serif\" id=\"\">"+ snapshot.val().Name_two +"</p>\n" +
-                         "\t\t\t<div>\n" +
-                         "    <li class=\"dropdown\">\n" +
-                         "\t<a href=\"#\" class=\"dropdown-toggle\"data-toggle=\"dropdown\">\n" +
-                         "                \t<span class= \"glyphicon glyphicon-triangle-bottom \"style=\"color: black;font-size:15px;\"></span>\n" +
-                         "\t</a>\n" +
-                         "\t\t<ul class=\"dropdown-menu\">\n" +
-                         "\t\t\t<li data-toggle=\"modal\" data-target=\"#participantsmodal_inconversation\"><a style=\"font-size: 11px\">View Participants &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n" +
-                         "                <span style=\"font-size: 15px\"  class=\"glyphicon glyphicon-user\"></span></a> </li>\n" +
-                         "           \n" +
-                         "                               <li class= \"divider\"></li>\n" +
-                         "           \n" +
-                         "                               <li onclick=\"Delete_messages(\'"+snapshot.val().key + "\' )\"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
-                         "                                       style=\"font-size: 15px\" class=\"fa fa-trash\"></span></a></li>\n" +
-                         "                      </ul>\n" +
-                         "</li></div>";
-
-
-                    }
-                    else {
-
-                    text_html += "            <img id=\"Title_img\" src=\""+ snapshot.val().ProfilePic_one+"\" alt=\"\" />\n" +
-                        "\t\t\t<p style=\"font-family: sans-serif\" id=\"\">" + snapshot.val().Name_one +"</p>\n" +
-                        "\t\t\t<div>\n" +
-                        "    <li class=\"dropdown\">\n" +
-                        "\t<a href=\"#\" class=\"dropdown-toggle\"data-toggle=\"dropdown\">\n" +
-                        "                \t<span class= \"glyphicon glyphicon-triangle-bottom \"style=\"color: black;font-size:15px;\"></span>\n" +
-                        "\t</a>\n" +
-                        "\t\t<ul class=\"dropdown-menu\">\n" +
-                        "\t\t\t<li data-toggle=\"modal\" data-target=\"#participantsmodal_inconversation\"><a style=\"font-size: 11px\">View Participants &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n" +
-                        "                <span style=\"font-size: 15px\"  class=\"glyphicon glyphicon-user\"></span></a> </li>\n" +
-                        "           \n" +
-                        "                               <li class= \"divider\"></li>\n" +
-                        "           \n" +
-                        "                               <li onclick=\"Delete_messages(\'"+ snapshot.val().key +"\')\"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
-                        "                                       style=\"font-size: 15px\" class=\"fa fa-trash\"></span></a></li>\n" +
-                        "                      </ul>\n" +
-                        "</li></div>";
+                text_html += "            <img id=\"Title_img\" src=\"" + snapshot.val().ProfilePic_two + "\" alt=\"\" />\n" +
+                    "\t\t\t<p style=\"font-family: sans-serif\" id=\"\">" + snapshot.val().Name_two + "</p>\n" +
+                    "\t\t\t<div>\n" +
+                    "    <li class=\"dropdown\">\n" +
+                    "\t<a href=\"#\" class=\"dropdown-toggle\"data-toggle=\"dropdown\">\n" +
+                    "                \t<span class= \"glyphicon glyphicon-triangle-bottom \"style=\"color: black;font-size:15px;\"></span>\n" +
+                    "\t</a>\n" +
+                    "\t\t<ul class=\"dropdown-menu\">\n" +
+                    "\t\t\t<li data-toggle=\"modal\" data-target=\"#participantsmodal_inconversation\"><a style=\"font-size: 11px\">View Participants &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n" +
+                    "                <span style=\"font-size: 15px\"  class=\"glyphicon glyphicon-user\"></span></a> </li>\n" +
+                    "           \n" +
+                    "                               <li class= \"divider\"></li>\n" +
+                    "           \n" +
+                    "                               <li onclick=\"Delete_messages(\'" + snapshot.val().key + "\' )\"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
+                    "                                       style=\"font-size: 15px\" class=\"fa fa-trash\"></span></a></li>\n" +
+                    "                      </ul>\n" +
+                    "</li></div>";
 
 
+            } else {
 
-                    }
-        $('#HeadingName').html(text_html);
+                text_html += "            <img id=\"Title_img\" src=\"" + snapshot.val().ProfilePic_one + "\" alt=\"\" />\n" +
+                    "\t\t\t<p style=\"font-family: sans-serif\" id=\"\">" + snapshot.val().Name_one + "</p>\n" +
+                    "\t\t\t<div>\n" +
+                    "    <li class=\"dropdown\">\n" +
+                    "\t<a href=\"#\" class=\"dropdown-toggle\"data-toggle=\"dropdown\">\n" +
+                    "                \t<span class= \"glyphicon glyphicon-triangle-bottom \"style=\"color: black;font-size:15px;\"></span>\n" +
+                    "\t</a>\n" +
+                    "\t\t<ul class=\"dropdown-menu\">\n" +
+                    "\t\t\t<li data-toggle=\"modal\" data-target=\"#participantsmodal_inconversation\"><a style=\"font-size: 11px\">View Participants &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n" +
+                    "                <span style=\"font-size: 15px\"  class=\"glyphicon glyphicon-user\"></span></a> </li>\n" +
+                    "           \n" +
+                    "                               <li class= \"divider\"></li>\n" +
+                    "           \n" +
+                    "                               <li onclick=\"Delete_messages(\'" + snapshot.val().key + "\')\"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
+                    "                                       style=\"font-size: 15px\" class=\"fa fa-trash\"></span></a></li>\n" +
+                    "                      </ul>\n" +
+                    "</li></div>";
+
+
+            }
+            $('#HeadingName').html(text_html);
 
         });
-
-
-
 
 
     }
 
 
-
-
-
-
-   function renderRHS(obj) {
-
+    function renderRHS(obj) {
 
 
         var html = '';
-       // var html_dropdown = '';
+        // var html_dropdown = '';
         var keys = Object.keys(obj);
 
 
-                for (var i = 0; i <= keys.length - 1; i++) {
+        for (var i = 0; i <= keys.length - 1; i++) {
 
 
-                    var display_time = obj[keys[i]].DateTime;
-                    display_time = Number(display_time); // cast it to a Number
-                    var ts_display = timeAgo(display_time);
+            var display_time = obj[keys[i]].DateTime;
+            display_time = Number(display_time); // cast it to a Number
+            var ts_display = timeAgo(display_time);
 
-                    if (obj[keys[i]].Sender_id != '{{ this_uid }}' ){
+            if (obj[keys[i]].Sender_id != '{{ this_uid }}') {
 
-                    // window.alert("first");
+                // window.alert("first");
 
-                     html += "<li tabindex=\"1\" class=\"sent\">\n" +
-                         "<img src=\""+ obj[keys[i]].ProfilePic +"\" alt=\"\" />\n" +
-                         "<p><h10> "+obj[keys[i]].Sender_name+"</h10><br>\n"+ obj[keys[i]].text +"</p>" +
-                         "\n" +
-                         "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-50px;position:relative; top:1px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
-                         "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> ";
+                html += "<li tabindex=\"1\" class=\"sent\">\n" +
+                    "<img src=\"" + obj[keys[i]].ProfilePic + "\" alt=\"\" />\n" +
+                    "<p><h10> " + obj[keys[i]].Sender_name + "</h10><br>\n" + obj[keys[i]].text + "</p>" +
+                    "\n" +
+                    "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-50px;position:relative; top:1px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
+                    "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> ";
 
-                    {% comment %} html_dropdown = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
-                         "                                        data-toggle=\"dropdown\">\n" +
-                         "                    <!--more options menu-->\n" +
-                         "                    <span class=\"\tglyphicon glyphicon-triangle-bottom \"\n" +
-                         "                          style=\"color: black;font-size:15px;\"></span></a>\n" +
-                         "                    <ul class=\"dropdown-menu\">\n" +
-                         "\n" +
-                         "                        <li onclick=\"RemoveConnection()\"><a style=\"font-size: 11px\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span\n" +
-                         "                                style=\"font-size: 15px\"\n" +
-                         "                                class=\"glyphicon glyphicon-user\"><span><a>\n" +
-                         "                        <li>\n" +
-                         "\n" +
-                         "                        <li class=\"divider\"><li>\n" +
-                         "\n" +
-                         "                        <li onclick=\"Delete_messages(\'"+ obj[keys[i]].Conversation_id  +"\')\"><a\n" +
-                         "                                style=\"font-size: 11px\">Remove Connection&nbsp;&nbsp;<span\n" +
-                         "                                style=\"font-size: 15px\"\n" +
-                         "                                class=\"fa fa-trash\"><span><a>\n" +
-                         "                        <li>\n" +
-                         "                    </ul>\n" +
-                         "                </li>";{% endcomment %}
+                {% comment %} html_dropdown = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
+                     "                                        data-toggle=\"dropdown\">\n" +
+                     "                    <!--more options menu-->\n" +
+                     "                    <span class=\"\tglyphicon glyphicon-triangle-bottom \"\n" +
+                     "                          style=\"color: black;font-size:15px;\"></span></a>\n" +
+                     "                    <ul class=\"dropdown-menu\">\n" +
+                     "\n" +
+                     "                        <li onclick=\"RemoveConnection()\"><a style=\"font-size: 11px\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span\n" +
+                     "                                style=\"font-size: 15px\"\n" +
+                     "                                class=\"glyphicon glyphicon-user\"><span><a>\n" +
+                     "                        <li>\n" +
+                     "\n" +
+                     "                        <li class=\"divider\"><li>\n" +
+                     "\n" +
+                     "                        <li onclick=\"Delete_messages(\'"+ obj[keys[i]].Conversation_id  +"\')\"><a\n" +
+                     "                                style=\"font-size: 11px\">Remove Connection&nbsp;&nbsp;<span\n" +
+                     "                                style=\"font-size: 15px\"\n" +
+                     "                                class=\"fa fa-trash\"><span><a>\n" +
+                     "                        <li>\n" +
+                     "                    </ul>\n" +
+                     "                </li>";{% endcomment %}
 
-                    }
-                    else {
+            } else {
 
-                    //window.alert("second");
+                //window.alert("second");
 
-                    html += "<li tabindex=\"1\" class=\"replies\">\n" +
-                        "<img src=\""+ obj[keys[i]].ProfilePic +"\" alt=\"\" />\n" +
-                        "<p> "+obj[keys[i]].text+"</p>" +
-                        "\n" +
-                        "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-850px;position:relative; top:-5px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
-                        "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> ";
+                html += "<li tabindex=\"1\" class=\"replies\">\n" +
+                    "<img src=\"" + obj[keys[i]].ProfilePic + "\" alt=\"\" />\n" +
+                    "<p> " + obj[keys[i]].text + "</p>" +
+                    "\n" +
+                    "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-850px;position:relative; top:-5px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
+                    "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> ";
 
-           {% comment %}  html_dropdown = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
-                        "                                        data-toggle=\"dropdown\">\n" +
-                        "                    <!--more options menu-->\n" +
-                        "                    <span class=\"\tglyphicon glyphicon-triangle-bottom \"\n" +
-                        "                          style=\"color: black;font-size:15px;\"></span></a>\n" +
-                        "                    <ul class=\"dropdown-menu\">\n" +
-                        "\n" +
-                        "                        <li onclick=\"RemoveConnection()\"><a style=\"font-size: 11px\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span\n" +
-                        "                                style=\"font-size: 15px\"\n" +
-                        "                                class=\"glyphicon glyphicon-user\"><span><a>\n" +
-                        "                        <li>\n" +
-                        "\n" +
-                        "                        <li class=\"divider\"><li>\n" +
-                        "\n" +
-                        "                        <li onclick=\"Delete_messages(\'"+ obj[keys[i]].Conversation_id +"\')\"><a\n" +
-                        "                                style=\"font-size: 11px\">Remove Connection&nbsp;&nbsp;<span\n" +
-                        "                                style=\"font-size: 15px\"\n" +
-                        "                                class=\"fa fa-trash\"><span><a>\n" +
-                        "                        <li>\n" +
-                        "                    </ul>\n" +
-                        "                </li>";{% endcomment %}
-                    }
+                {% comment %}  html_dropdown = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
+                             "                                        data-toggle=\"dropdown\">\n" +
+                             "                    <!--more options menu-->\n" +
+                             "                    <span class=\"\tglyphicon glyphicon-triangle-bottom \"\n" +
+                             "                          style=\"color: black;font-size:15px;\"></span></a>\n" +
+                             "                    <ul class=\"dropdown-menu\">\n" +
+                             "\n" +
+                             "                        <li onclick=\"RemoveConnection()\"><a style=\"font-size: 11px\">View Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span\n" +
+                             "                                style=\"font-size: 15px\"\n" +
+                             "                                class=\"glyphicon glyphicon-user\"><span><a>\n" +
+                             "                        <li>\n" +
+                             "\n" +
+                             "                        <li class=\"divider\"><li>\n" +
+                             "\n" +
+                             "                        <li onclick=\"Delete_messages(\'"+ obj[keys[i]].Conversation_id +"\')\"><a\n" +
+                             "                                style=\"font-size: 11px\">Remove Connection&nbsp;&nbsp;<span\n" +
+                             "                                style=\"font-size: 15px\"\n" +
+                             "                                class=\"fa fa-trash\"><span><a>\n" +
+                             "                        <li>\n" +
+                             "                    </ul>\n" +
+                             "                </li>";{% endcomment %}
+            }
 
-                }
-
+        }
 
 
-                $('#list_of_mgs').html(html);
+        $('#list_of_mgs').html(html);
 
 
-
-                //$('#Dropdown_for_user').html(html_dropdown);
-
-
-
+        //$('#Dropdown_for_user').html(html_dropdown);
 
 
     }
 
-     /*View Participants!*/
+    /*View Participants!*/
 
-    function ViewParticipants(){
+    function ViewParticipants() {
 
-    var Participants_fb = firebase.database().ref().child("Messages").child(conversation_id).child("Participants");
-    Participants_fb.on("value", function (snapshot_user_topics) {
+        var Participants_fb = firebase.database().ref().child("Messages").child(conversation_id).child("Participants");
+        Participants_fb.on("value", function (snapshot_user_topics) {
 
-        var j = 0;
-        var result = "<table>";
-        result += "<tr>";
+            var j = 0;
+            var result = "<table>";
+            result += "<tr>";
 
-        snapshot_user_topics.forEach(function (user_snapshot) {
-           // window.alert(conversation_id);
-            var user = user_snapshot.key;
-            var users_details = firebase.database().ref().child("Users").child(user);
-            users_details.on("value", function (snapshot_forum_topics) {
+            snapshot_user_topics.forEach(function (user_snapshot) {
+                // window.alert(conversation_id);
+                var user = user_snapshot.key;
+                var users_details = firebase.database().ref().child("Users").child(user);
+                users_details.on("value", function (snapshot_forum_topics) {
 
-                var forum_names = snapshot_forum_topics.val().Name;
-                var forum_pics = snapshot_forum_topics.val().ProfilePic;
-                var forum_num_participants = snapshot_forum_topics.val().numConnections;
-                var forum_num_BIO = snapshot_forum_topics.val().Bio;
-                var forum_num_country = snapshot_forum_topics.val().Country;
-
-
-                result += "<td>" + parts_All(forum_names, forum_num_BIO, forum_num_country, forum_pics) + "</td>";
-
-                if ((j + 1) % 2 == 0) {
-                    result += "</tr><tr>";
-                }
-                j++;
+                    var forum_names = snapshot_forum_topics.val().Name;
+                    var forum_pics = snapshot_forum_topics.val().ProfilePic;
+                    var forum_num_participants = snapshot_forum_topics.val().numConnections;
+                    var forum_num_BIO = snapshot_forum_topics.val().Bio;
+                    var forum_num_country = snapshot_forum_topics.val().Country;
 
 
+                    result += "<td>" + parts_All(forum_names, forum_num_BIO, forum_num_country, forum_pics) + "</td>";
 
+                    if ((j + 1) % 2 == 0) {
+                        result += "</tr><tr>";
+                    }
+                    j++;
+
+
+                });
             });
+            results = '</table>'
+            $('#ConnectionsListing_participants').html(result);
+
+
         });
-        results = '</table>'
-        $('#ConnectionsListing_participants').html(result);
-
-
-    });}
+    }
 
 
     // get a snapshot of a list of keys from firebase and convert it to an array
@@ -1848,15 +1914,14 @@ $(window).on('keydown', function(e) {
 
     }
 
-     /*View Participants*/
+    /*View Participants*/
 
 
-
-    function Delete_messages(msg_id){
+    function Delete_messages(msg_id) {
 
         /*Remove from Converstion or delete conversation*/
         var msg_fb = firebase.database().ref().child("Messages/" + msg_id + "/Participants");/*Messages*/
-        var msg_parts = firebase.database().ref().child("Messages" );/*Messages*/
+        var msg_parts = firebase.database().ref().child("Messages");/*Messages*/
         counter_participants = 0;
 
         msg_fb.on("value", function (snapshot_1) {
@@ -1865,50 +1930,52 @@ $(window).on('keydown', function(e) {
             });
         });
 
-        if (counter_participants ==1){
+        if (counter_participants == 1) {
 
-         msg_parts.child(msg_id).remove();
+            msg_parts.child(msg_id).remove();
 
-        }else{msg_fb.child('{{this_uid}}').remove();
+        } else {
+            msg_fb.child('{{this_uid}}').remove();
 
-        /*Create I am leaving message*/
-        var left_message = firebase.database().ref().child("Messages/" + conversation_id + "/Actual_Msgs");/*Messages*/
-        var date_for_post = Date.now();
+            /*Create I am leaving message*/
+            var left_message = firebase.database().ref().child("Messages/" + conversation_id + "/Actual_Msgs");/*Messages*/
+            var date_for_post = Date.now();
 
-        var created_id = left_message.push();
-        created_id.set({
-            Time: date_for_post,
-            ProfilePic: 'https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fleave.png?alt=media&token=acfd1767-bfa3-4a16-ada7-72e72db886b7',
-            Sender_id: '{{this_uid}}',
-            Sender_name: '{{ n }}',
-            text: '{{ n }}' + " left the conversation" ,
-            DateTime: date_for_post,
-            Conversation_id:conversation_id
+            var created_id = left_message.push();
+            created_id.set({
+                Time: date_for_post,
+                ProfilePic: 'https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fleave.png?alt=media&token=acfd1767-bfa3-4a16-ada7-72e72db886b7',
+                Sender_id: '{{this_uid}}',
+                Sender_name: '{{ n }}',
+                text: '{{ n }}' + " left the conversation",
+                DateTime: date_for_post,
+                Conversation_id: conversation_id
 
-        });
+            });
 
-        /*Saving_id*/
-        var hope = String(created_id);
-        var result = hope.substring(hope.lastIndexOf("/") + 1);
-        var save_id = firebase.database().ref().child("Messages/" + conversation_id + "/Actual_Msgs/" + result);/*Messages*/
-        save_id.update({
-            post_id: result
-        });
+            /*Saving_id*/
+            var hope = String(created_id);
+            var result = hope.substring(hope.lastIndexOf("/") + 1);
+            var save_id = firebase.database().ref().child("Messages/" + conversation_id + "/Actual_Msgs/" + result);/*Messages*/
+            save_id.update({
+                post_id: result
+            });
 
-        var messaging_db_latest = firebase.database().ref().child("Messages/" + conversation_id );/*Messages*/
-        messaging_db_latest.update({'latest': '{{ n }}' + " left the conversation" });
+            var messaging_db_latest = firebase.database().ref().child("Messages/" + conversation_id);/*Messages*/
+            messaging_db_latest.update({'latest': '{{ n }}' + " left the conversation"});
 
         }
 
-     /*Remove from my Messages*/
-         var msg_fb_2 = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Messages");/*Messages*/
-         msg_fb_2.child(msg_id).remove();
+        /*Remove from my Messages*/
+        var msg_fb_2 = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Messages");/*Messages*/
+        msg_fb_2.child(msg_id).remove();
 
-     }
+    }
 
 </script>
 <!-- Page Footer-->
-<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;font-family: 'Roboto', sans-serif;">
+<footer class="page-footer font-small cyan darken-3"
+        style="background-color: #D3D3D3;font-family: 'Roboto', sans-serif;">
 
 
     <div class="container">
@@ -1933,26 +2000,36 @@ $(window).on('keydown', function(e) {
                     <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
 
                         <p style="color:#e83e8c;font-size:20px;font-weight: bold;"><strong>Menu</strong></p><br>
-                        <a onclick="location.href='{% url 'nav_home' %}'" ><p style="color: white; font-size: 14px;">Home</p></a><br>
-                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p style="color: white; font-size: 14px;">Connections</p><br>
+                        <a onclick="location.href='{% url 'nav_home' %}'"><p style="color: white; font-size: 14px;">
+                            Home</p></a><br>
+                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p
+                                style="color: white; font-size: 14px;">Connections</p><br>
                         </a>
-                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p style="color: white; font-size: 14px;">Forums</p></a><br>
-                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p style="color: white; font-size: 14px;">Courses</p></a><br>
+                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p
+                                style="color: white; font-size: 14px;">Forums</p></a><br>
+                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p
+                                style="color: white; font-size: 14px;">Courses</p></a><br>
                     </div>
 
                     <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
 
                         <p style="color:#e83e8c;font-size:20px;font-weight: bold;"><strong>Help & FAQs</strong></p><br>
 
-                        <a onclick="location.href='{% url 'introHelp' %}'" ><p style="color: white; font-size: 14px;">What is
+                        <a onclick="location.href='{% url 'introHelp' %}'"><p style="color: white; font-size: 14px;">
+                            What is
                             GetConnected?</p></a><br>
-                        <a onclick="location.href='{% url 'accountHelp' %}'" ><p style="color: white; font-size: 14px;">Your Account</p>
+                        <a onclick="location.href='{% url 'accountHelp' %}'"><p style="color: white; font-size: 14px;">
+                            Your Account</p>
                         </a><br>
-                        <a onclick="location.href='{% url 'forumsHelp' %}'" ><p style="color: white; font-size: 14px;">Forums & Messaging</p></a><br>
-                        <a onclick="location.href='{% url 'helpconnections' %}'" ><p style="color: white; font-size: 14px;">Connection
+                        <a onclick="location.href='{% url 'forumsHelp' %}'"><p style="color: white; font-size: 14px;">
+                            Forums & Messaging</p></a><br>
+                        <a onclick="location.href='{% url 'helpconnections' %}'"><p
+                                style="color: white; font-size: 14px;">Connection
                             Management</p></a><br>
-                        <a onclick="location.href='{% url 'helpcourses' %}'" ><p style="color: white; font-size: 14px;">Courses Help</p></a><br>
-                        <a href="https://www.getsmarter.com/what-we-do" ><p style="color: white; font-size: 14px;">GetSmarter</p></a><br>
+                        <a onclick="location.href='{% url 'helpcourses' %}'"><p style="color: white; font-size: 14px;">
+                            Courses Help</p></a><br>
+                        <a href="https://www.getsmarter.com/what-we-do"><p style="color: white; font-size: 14px;">
+                            GetSmarter</p></a><br>
 
 
                     </div>
@@ -1960,9 +2037,12 @@ $(window).on('keydown', function(e) {
                     <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
 
                         <p style="color:#e83e8c;font-size:20px;font-weight: bold;"><strong>Contact Us</strong></p><br>
-                        <p style="color: white; font-size: 14px;"><strong style="font-weight: bold;">Tel: </strong> 456 4637</p><br>
-                        <p style="color: white; font-size: 14px;"><strong style="font-weight: bold;">Email: </strong> getConnected@GetSmarter.co.za</p><br>
-                        <p style="color: white; font-size: 14px;"><strong style="font-weight: bold;">Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p><br>
+                        <p style="color: white; font-size: 14px;"><strong style="font-weight: bold;">Tel: </strong> 456
+                            4637</p><br>
+                        <p style="color: white; font-size: 14px;"><strong style="font-weight: bold;">Email: </strong>
+                            getConnected@GetSmarter.co.za</p><br>
+                        <p style="color: white; font-size: 14px;"><strong style="font-weight: bold;">Working
+                            Hours:</strong> Mon - Fri, 09:00 - 17:00</p><br>
 
 
                     </div>
@@ -1984,40 +2064,44 @@ $(window).on('keydown', function(e) {
 </footer>
 <!--Modals -->
 
-<div class="modal fade" id="chooseparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          <p id="connections_check" style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select one connection</p>
-          <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: sans-serif; font-weight: bold"><i class="fa fa-user"></i> Select a connection and begin chatting! </h5>
+<div class="modal fade" id="chooseparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p id="connections_check"
+                   style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select one
+                    connection</p>
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: sans-serif; font-weight: bold"><i
+                        class="fa fa-user"></i> Select a connection and begin chatting! </h5>
 
-      </div>
+            </div>
 
-      <div class="modal-body">
+            <div class="modal-body">
 
-        <div class="centraliser" style="text-align: center">
-                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
-                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
-                     <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                        <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-search"></i>
                      </span>
-                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-map-marker"></i>
                      </span>
-                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-remove"></i>
                      </span>
-                 </div><!--end search bar-->
-             </div>
+                    </div><!--end search bar-->
+                </div>
 
-             <br>
+                <br>
 
-             <div id="ConnectionsListing"  class="row" >
+                <div id="ConnectionsListing" class="row">
 
-                {% comment %} <!--****************************-->
+                    {% comment %} <!--****************************-->
               <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
 
                 <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"style="border: 1px solid  #DCDCDC ; border-radius: 50px;" alt="">
@@ -2056,162 +2140,176 @@ $(window).on('keydown', function(e) {
 
               <!--END ROW-->{% endcomment %}
 
-          </div> <!--end row-->
+                </div> <!--end row-->
 
-          <br>
-
-
-
-      <div class="modal-footer">
-
-    <button onclick="SendMessage_Individual()" style = "border: 1px solid gray;
-            color: #e83e8c; background-color: white; border-radius: 8px; font-family: 'Roboto', sans-serif;margin-top: 20px;margin-bottom: 20px;" >Message</button>
+                <br>
 
 
+                <div class="modal-footer">
 
-      </div>
+                    <button onclick="SendMessage_Individual()" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white; border-radius: 8px; font-family: 'Roboto', sans-serif;margin-top: 20px;margin-bottom: 20px;">
+                        Message
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 
-<div class="modal fade" id="chooseparticipantsmodal_group" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button><br>
-          <p id="groupName_check" style="font-style: italic; color: red;font-family: sans-serif; visibility: hidden">Enter a group name</p>
-          <input style="background-color: #ebebeb" id="groupName" type="text" class="form-control" placeholder="Type group name....."/>
+<div class="modal fade" id="chooseparticipantsmodal_group" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <br>
+                <p id="groupName_check"
+                   style="font-style: italic; color: red;font-family: sans-serif; visibility: hidden">Enter a group
+                    name</p>
+                <input style="background-color: #ebebeb" id="groupName" type="text" class="form-control"
+                       placeholder="Type group name....."/>
 
 
+                <style>.btn span.glyphicon {
+                    opacity: 0;
+                }
 
-<style>.btn span.glyphicon {
-    opacity: 0;
-}
-.btn.active span.glyphicon {
-    opacity: 1;
-}</style>
-
-
-        <br><p id="image_check" style="font-style: italic; color: red;font-family: sans-serif; visibility: hidden">Select a group image</p>
-  <h5 style="font-family: sans-serif; font-weight: bold" class="modal-title" id="exampleModalLongTitle"><i class="fa fa-camera"></i> Select your group picture</h5><br>
-
-<table id="mainForm" name="mainForm" style="width:100%;  margin-left: 50px; ">
-
-  <tr>
-    <td><img  style="max-width: 60px; max-height: 60px;border-radius: 500px" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fone.jpg?alt=media&token=ba9c0457-179f-44fc-94d9-c960d1454ff4" alt="Italian Trulli">
-    <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fone.jpg?alt=media&token=ba9c0457-179f-44fc-94d9-c960d1454ff4" type="radio" name="rads" >
-    </td>
-    <td><img  style="max-width: 60px; max-height: 60px;border-radius: 500px" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fseven.jpeg?alt=media&token=4ab3c68f-cc5e-441b-abb1-b64883c8fb2e" alt="Italian Trulli">
-    <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fseven.jpeg?alt=media&token=4ab3c68f-cc5e-441b-abb1-b64883c8fb2e" type="radio" name="rads" >
-    </td>
-    <td><img  style="max-width: 60px; max-height: 60px;border-radius: 500px" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Ffour.jpg?alt=media&token=b16ed0b6-a0c5-44dd-ad30-e70e709d6c4f" alt="Italian Trulli">
-    <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Ffour.jpg?alt=media&token=b16ed0b6-a0c5-44dd-ad30-e70e709d6c4f" type="radio" name="rads" >
-    </td>
-  </tr>
-
-  <tr>
-    <td><img  style="max-width: 60px; max-height: 60px;border-radius: 500px" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fthree.jpg?alt=media&token=76f0ba35-d464-4b2b-adef-811e2defaee3" alt="Italian Trulli">
-    <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fthree.jpg?alt=media&token=76f0ba35-d464-4b2b-adef-811e2defaee3" type="radio" name="rads" >
-    </td>
-    <td><img  style="max-width: 60px; max-height: 60px;border-radius: 500px" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fsix.jpeg?alt=media&token=526217db-d823-41b3-a9f5-1d868f7b5d68" alt="Italian Trulli">
-        <input  value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fsix.jpeg?alt=media&token=526217db-d823-41b3-a9f5-1d868f7b5d68" type="radio" name="rads" >
-    </td>
-    <td><img  style="max-width: 60px; max-height: 60px;border-radius: 500px" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2FScience-week-article.jpg?alt=media&token=a26d8d14-14bc-4eb6-b8a1-f252ed976fb8" alt="Italian Trulli">
-        <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2FScience-week-article.jpg?alt=media&token=a26d8d14-14bc-4eb6-b8a1-f252ed976fb8" type="radio" name="rads" >
-    </td>
- </tr>
-
-</table>
+                .btn.active span.glyphicon {
+                    opacity: 1;
+                }</style>
 
 
+                <br>
+                <p id="image_check" style="font-style: italic; color: red;font-family: sans-serif; visibility: hidden">
+                    Select a group image</p>
+                <h5 style="font-family: sans-serif; font-weight: bold" class="modal-title" id="exampleModalLongTitle"><i
+                        class="fa fa-camera"></i> Select your group picture</h5><br>
+
+                <table id="mainForm" name="mainForm" style="width:100%;  margin-left: 50px; ">
+
+                    <tr>
+                        <td><img style="max-width: 60px; max-height: 60px;border-radius: 500px"
+                                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fone.jpg?alt=media&token=ba9c0457-179f-44fc-94d9-c960d1454ff4"
+                                 alt="Italian Trulli">
+                            <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fone.jpg?alt=media&token=ba9c0457-179f-44fc-94d9-c960d1454ff4"
+                                   type="radio" name="rads">
+                        </td>
+                        <td><img style="max-width: 60px; max-height: 60px;border-radius: 500px"
+                                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fseven.jpeg?alt=media&token=4ab3c68f-cc5e-441b-abb1-b64883c8fb2e"
+                                 alt="Italian Trulli">
+                            <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fseven.jpeg?alt=media&token=4ab3c68f-cc5e-441b-abb1-b64883c8fb2e"
+                                   type="radio" name="rads">
+                        </td>
+                        <td><img style="max-width: 60px; max-height: 60px;border-radius: 500px"
+                                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Ffour.jpg?alt=media&token=b16ed0b6-a0c5-44dd-ad30-e70e709d6c4f"
+                                 alt="Italian Trulli">
+                            <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Ffour.jpg?alt=media&token=b16ed0b6-a0c5-44dd-ad30-e70e709d6c4f"
+                                   type="radio" name="rads">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><img style="max-width: 60px; max-height: 60px;border-radius: 500px"
+                                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fthree.jpg?alt=media&token=76f0ba35-d464-4b2b-adef-811e2defaee3"
+                                 alt="Italian Trulli">
+                            <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fthree.jpg?alt=media&token=76f0ba35-d464-4b2b-adef-811e2defaee3"
+                                   type="radio" name="rads">
+                        </td>
+                        <td><img style="max-width: 60px; max-height: 60px;border-radius: 500px"
+                                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fsix.jpeg?alt=media&token=526217db-d823-41b3-a9f5-1d868f7b5d68"
+                                 alt="Italian Trulli">
+                            <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2Fsix.jpeg?alt=media&token=526217db-d823-41b3-a9f5-1d868f7b5d68"
+                                   type="radio" name="rads">
+                        </td>
+                        <td><img style="max-width: 60px; max-height: 60px;border-radius: 500px"
+                                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2FScience-week-article.jpg?alt=media&token=a26d8d14-14bc-4eb6-b8a1-f252ed976fb8"
+                                 alt="Italian Trulli">
+                            <input value="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/GroupMessages%2FScience-week-article.jpg?alt=media&token=a26d8d14-14bc-4eb6-b8a1-f252ed976fb8"
+                                   type="radio" name="rads">
+                        </td>
+                    </tr>
+
+                </table>
 
 
+            </div>
+
+            <div class="modal-body">
+                <p id="connections_check_1"
+                   style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select at least
+                    two connections</p>
+                <h5 style="font-family: sans-serif; font-weight: bold;" class="modal-title " id="exampleModalLongTitle">
+                    <i class="fa fa-users"></i> Select your connections and begin chatting! </h5><br>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-      <div class="modal-body">
-          <p id="connections_check_1" style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select at least two connections</p>
-          <h5 style="font-family: sans-serif; font-weight: bold;" class="modal-title " id="exampleModalLongTitle"><i class="fa fa-users"></i>  Select your connections and begin chatting! </h5><br>
-
-
-        <div class="centraliser" style="text-align: center">
-                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
-                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
-                     <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                        <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-search"></i>
                      </span>
-                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-map-marker"></i>
                      </span>
-                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-remove"></i>
                      </span>
-                 </div><!--end search bar-->
-             </div>
+                    </div><!--end search bar-->
+                </div>
 
-             <br>
+                <br>
 
-             <div id="ConnectionsListing_All"  class="row" >
-
-
-
-          </div> <!--end row-->
-
-          <br>
+                <div id="ConnectionsListing_All" class="row">
 
 
+                </div> <!--end row-->
 
-      <div class="modal-footer">
+                <br>
 
-    <button  onclick="SendMessage_Group()" style = "border: 1px solid gray;
-            color: #e83e8c; background-color: white; border-radius: 8px; font-family: 'Roboto', sans-serif;margin-top: 20px;margin-bottom: 20px;" >Create Group</button>
 
-<!--edited-->
+                <div class="modal-footer">
 
-      </div>
+                    <button onclick="SendMessage_Group()" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white; border-radius: 8px; font-family: 'Roboto', sans-serif;margin-top: 20px;margin-bottom: 20px;">
+                        Create Group
+                    </button>
+
+                    <!--edited-->
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 
 
 <!-- Send Individual Message -->
 
-<div class="modal fade" id="participantsmodal_inconversation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          <p id="connections_check" style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select one connection</p>
-          <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: sans-serif; font-weight: bold"><i class="fa fa-user"></i> Participants of the Conversation </h5>
+<div class="modal fade" id="participantsmodal_inconversation" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p id="connections_check"
+                   style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select one
+                    connection</p>
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: sans-serif; font-weight: bold"><i
+                        class="fa fa-user"></i> Participants of the Conversation </h5>
 
-      </div>
+            </div>
 
-      <div class="modal-body">
+            <div class="modal-body">
 
-        <div class="centraliser" style="text-align: center">
-                 {% comment %}<div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                <div class="centraliser" style="text-align: center">
+                    {% comment %}<div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
                      <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
                      <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-search"></i>
@@ -2223,44 +2321,41 @@ $(window).on('keydown', function(e) {
                          <i class="glyphicon glyphicon-remove"></i>
                      </span>
                  </div><!--end search bar-->{% endcomment %}
-             </div>
+                </div>
 
-             <br>
+                <br>
 
-             <div style="margin-left: 25px" id="ConnectionsListing_participants"  class="row" >
-
-
-
-          </div> <!--end row-->
-
-          <br>
+                <div style="margin-left: 25px" id="ConnectionsListing_participants" class="row">
 
 
+                </div> <!--end row-->
 
-      <div class="modal-footer">
+                <br>
 
-{% comment %}
+
+                <div class="modal-footer">
+
+                    {% comment %}
     <button onclick="SendMessage_Individual()"  >Message</button>
 {% endcomment %}
 
 
-
-      </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 
 <script>
 
     var connections_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
 
-    connections_fb_location.on("value",function (snapshot) {
+    connections_fb_location.on("value", function (snapshot) {
         var j = 0;
         var result = "<table >";
         result += "<tr>";
 
-        snapshot.forEach( function (childSnapshot) {
+        snapshot.forEach(function (childSnapshot) {
 
             //var key = childSnapshot.key;
             //var value = childSnapshot.val();
@@ -2270,7 +2365,7 @@ $(window).on('keydown', function(e) {
             var child_bio = childSnapshot.val().Bio;
             var child_propic = childSnapshot.val().ProfilePic;
 
-            result += "<td>" +  formCard(key,child_name,child_bio, child_country,child_propic)  + "</td>";
+            result += "<td>" + formCard(key, child_name, child_bio, child_country, child_propic) + "</td>";
             if ((j + 1) % 2 == 0) {
                 result += "</tr><tr>";
             }
@@ -2278,31 +2373,30 @@ $(window).on('keydown', function(e) {
         });
 
 
-
-         $('#ConnectionsListing').html(result);
+        $('#ConnectionsListing').html(result);
 
 
     });
 
 
-    function formCard (key, name, bio, country, profilepic) {
+    function formCard(key, name, bio, country, profilepic) {
 
 
         var card = "  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
             "\n" +
-            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profilepic+"\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
             "\n" +
             "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> "+ name+"  </p>\n" +
-            "                &nbsp;&nbsp;&nbsp; <p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> "+country+"</p>\n" +
+            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp; <p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + country + "</p>\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
             "             <div class=\"col-md-2\"><!--CHECK BOX GOES HERE-->\n" +
-            "               <input type=\"checkbox\" name=\"subject\" value=\""+ key+"\" >\n" +
+            "               <input type=\"checkbox\" name=\"subject\" value=\"" + key + "\" >\n" +
             "             </div>\n";
 
         return card;
@@ -2310,7 +2404,7 @@ $(window).on('keydown', function(e) {
     }
 
 
-    function SendMessage_Individual(){
+    function SendMessage_Individual() {
 
         var checkboxes = document.getElementsByName('subject');
         var vals = [];
@@ -2321,47 +2415,46 @@ $(window).on('keydown', function(e) {
         }
 
         var messaging_db = firebase.database().ref().child("Messages");/*Messages*/
-        var connections_fb = firebase.database().ref().child("Users/" + vals[0] );
+        var connections_fb = firebase.database().ref().child("Users/" + vals[0]);
         var date_for_post = Date.now();
         var result = "";
 
 
-    if (vals.length ==0 || vals.length > 1) {
+        if (vals.length == 0 || vals.length > 1) {
 
-        var tag_check_connections = document.getElementById('connections_check');
-        tag_check_connections.style.visibility = 'visible';
-        return
+            var tag_check_connections = document.getElementById('connections_check');
+            tag_check_connections.style.visibility = 'visible';
+            return
 
-    }
-    else {
-         var tag_check_connections = document.getElementById('connections_check');
-        tag_check_connections.style.visibility = 'hidden';
-    }
+        } else {
+            var tag_check_connections = document.getElementById('connections_check');
+            tag_check_connections.style.visibility = 'hidden';
+        }
 
 
-        connections_fb.once("value",function (snapshot) {
+        connections_fb.once("value", function (snapshot) {
 
-         var created_id = messaging_db.push();
-        created_id.set({
+            var created_id = messaging_db.push();
+            created_id.set({
 
-            Name_two: snapshot.val().Name,
-            Name_one: '{{ n }}',
-            ProfilePic_two: snapshot.val().ProfilePic,
-            ProfilePic_one: '{{ ProfilePic }}',
-            Sender_key: '{{ this_uid }}',
-            latest: "No Messages",
-            DateTime: date_for_post,
-        });
+                Name_two: snapshot.val().Name,
+                Name_one: '{{ n }}',
+                ProfilePic_two: snapshot.val().ProfilePic,
+                ProfilePic_one: '{{ ProfilePic }}',
+                Sender_key: '{{ this_uid }}',
+                latest: "No Messages",
+                DateTime: date_for_post,
+            });
 
-        /*Saving_id*/
-        var hope = String(created_id);
-        result = hope.substring(hope.lastIndexOf("/") + 1);
-        var save_id = firebase.database().ref().child("Messages/" + result);/*Messages*/
-        save_id.update({
-            key: result
-        });
+            /*Saving_id*/
+            var hope = String(created_id);
+            result = hope.substring(hope.lastIndexOf("/") + 1);
+            var save_id = firebase.database().ref().child("Messages/" + result);/*Messages*/
+            save_id.update({
+                key: result
+            });
 
-        var save_participants = firebase.database().ref().child("Messages/" + result + "/Participants");/*Messages*/
+            var save_participants = firebase.database().ref().child("Messages/" + result + "/Participants");/*Messages*/
 
             save_participants.update({
                 '{{this_uid}}': '{{this_uid}}'
@@ -2372,20 +2465,17 @@ $(window).on('keydown', function(e) {
 
         });
 
-var save_participants_user = firebase.database().ref().child("Users/" + vals[0] + "/Messages");/*Messages*/
+        var save_participants_user = firebase.database().ref().child("Users/" + vals[0] + "/Messages");/*Messages*/
 
-             save_participants_user.child(result).set("Individual");
+        save_participants_user.child(result).set("Individual");
 
-var save_participants_user_2 = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Messages");/*Messages*/
+        var save_participants_user_2 = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Messages");/*Messages*/
 
-             save_participants_user_2.child(result).set("Individual");
+        save_participants_user_2.child(result).set("Individual");
 
-$('input:checkbox').removeAttr('checked');
+        $('input:checkbox').removeAttr('checked');
 
     }
-
-
-
 
 
 </script>
@@ -2395,12 +2485,12 @@ $('input:checkbox').removeAttr('checked');
 
     var connections_All = firebase.database().ref().child("Users/");
 
-    connections_All.on("value",function (snapshot) {
+    connections_All.on("value", function (snapshot) {
         var j = 0;
         var result = "<table >";
         result += "<tr>";
 
-        snapshot.forEach( function (childSnapshot) {
+        snapshot.forEach(function (childSnapshot) {
 
             //var key = childSnapshot.key;
             //var value = childSnapshot.val();
@@ -2408,50 +2498,48 @@ $('input:checkbox').removeAttr('checked');
 
             var key = childSnapshot.key;
 
-            if (String(key).valueOf() != String('{{ this_uid }}').valueOf())
-            {
+            if (String(key).valueOf() != String('{{ this_uid }}').valueOf()) {
 
-            var child_name = childSnapshot.val().Name;
-            var child_country = childSnapshot.val().Country;
-            var child_bio = childSnapshot.val().Bio;
-            var child_propic = childSnapshot.val().ProfilePic;
+                var child_name = childSnapshot.val().Name;
+                var child_country = childSnapshot.val().Country;
+                var child_bio = childSnapshot.val().Bio;
+                var child_propic = childSnapshot.val().ProfilePic;
 
-            result += "<td>" + formCard_All(key, child_name, child_bio, child_country, child_propic) + "</td>";
-            if ((j + 1) % 2 == 0) {
-                result += "</tr><tr>";
-            }
-            j++;
+                result += "<td>" + formCard_All(key, child_name, child_bio, child_country, child_propic) + "</td>";
+                if ((j + 1) % 2 == 0) {
+                    result += "</tr><tr>";
+                }
+                j++;
 
             }
 
         });
 
 
-
-         $('#ConnectionsListing_All').html(result);
+        $('#ConnectionsListing_All').html(result);
 
 
     });
 
 
-    function formCard_All (key, name, bio, country, profilepic) {
+    function formCard_All(key, name, bio, country, profilepic) {
 
 
         var card = "  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
             "\n" +
-            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profilepic+"\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+            "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
             "\n" +
             "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> "+ name+"  </p>\n" +
-            "                &nbsp;&nbsp;&nbsp;<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> "+country+"</p>\n" +
+            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp;<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + country + "</p>\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
             "             <div class=\"col-md-2\"><!--CHECK BOX GOES HERE-->\n" +
-            "               <input type=\"checkbox\" name=\"subject_All\" value=\""+ key+"\" >\n" +
+            "               <input type=\"checkbox\" name=\"subject_All\" value=\"" + key + "\" >\n" +
             "             </div>\n";
 
         return card;
@@ -2459,10 +2547,10 @@ $('input:checkbox').removeAttr('checked');
     }
 
 
-    function SendMessage_Group(){
+    function SendMessage_Group() {
 
         var message_txt = "";
-         message_txt  = document.getElementById("groupName").value;
+        message_txt = document.getElementById("groupName").value;
 
 
         var checkboxes = document.getElementsByName('subject_All');
@@ -2478,208 +2566,206 @@ $('input:checkbox').removeAttr('checked');
         var image = "";
 
 
-       /*Get Image for goup*/
-            var ele = document.getElementsByName('rads');
+        /*Get Image for goup*/
+        var ele = document.getElementsByName('rads');
 
-            for(i = 0; i < ele.length; i++) {
-                if(ele[i].checked) {image =ele[i].value;}
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                image = ele[i].value;
             }
-
-            var result = "";
-
-
-/*Validation Check*/
-if ( message_txt == "" || image == "" || vals.length <=1  ) {
-
-    if (message_txt == "") {
-
-        var tag_check = document.getElementById('groupName_check');
-        tag_check.style.visibility = 'visible';
-    }
-
-    else {
-        var tag_check = document.getElementById('groupName_check');
-        tag_check.style.visibility = 'hidden';
-    }
-
-
-    if (image == "") {
-
-        var tag_check = document.getElementById('image_check');
-        tag_check.style.visibility = 'visible';
-    }
-    else{
-        var tag_check = document.getElementById('image_check');
-        tag_check.style.visibility = 'hidden';
-
-    }
-
-    if (vals.length <=1) {
-
-        var tag_check = document.getElementById('connections_check_1');
-        tag_check.style.visibility = 'visible';
-    }
-    else {
-         var tag_check = document.getElementById('connections_check_1');
-        tag_check.style.visibility = 'hidden';
-    }
-
-     return
-}
-
-        /*Saving Group to DB*/
-        messaging_db.once("value",function (snapshot) {
-
-         var created_id = messaging_db.push();
-        created_id.set({
-
-            Name_two: message_txt,
-            Name_one: message_txt,
-            ProfilePic_two: image,
-            ProfilePic_one: image,
-            Sender_key: '{{ this_uid }}',
-            latest: "No Messages",
-            DateTime: date_for_post,
-
-        });
-
-        /*Saving_id*/
-        var hope = String(created_id);
-        result = hope.substring(hope.lastIndexOf("/") + 1);
-        var save_id = firebase.database().ref().child("Messages/" + result);/*Messages*/
-        save_id.update({
-            key: result
-        });
-
-        var save_participants= firebase.database().ref().child("Messages/" + result +"/Participants");/*Messages*/
-        for(let i = 0; i < vals.length; i++){
-
-/*Adding to the conversation*/
-                    save_participants.child(vals[i]).set(vals[i]);
-/*Adding to the individual*/
-                    var update_user_msgs= firebase.database().ref().child("Users/" + vals[i] +"/Messages");/*Messages*/
-                    update_user_msgs.child(result).set("Group");
-
         }
 
-        var update_user_msgs= firebase.database().ref().child("Users/" + '{{ this_uid }}' +"/Messages");/*Messages*/
-        update_user_msgs.child(result).set("Group");
-
-        var save_participants= firebase.database().ref().child("Messages/" + result +"/Participants");/*Messages*/
-        save_participants.child('{{ this_uid }}').set('{{ this_uid }}');
+        var result = "";
 
 
-/*RESET ALL THE INPUTS*/
-document.getElementById("groupName").value = "";
-$('input:checkbox').removeAttr('checked');
-$('input[name=rads]').attr('checked',false);
+        /*Validation Check*/
+        if (message_txt == "" || image == "" || vals.length <= 1) {
 
-var tag_check = document.getElementById('groupName_check');
-        tag_check.style.visibility = 'hidden';
+            if (message_txt == "") {
 
-var tag_check = document.getElementById('image_check');
-tag_check.style.visibility = 'hidden';
-
-var tag_check = document.getElementById('connections_check');
-tag_check.style.visibility = 'hidden';
-/*END OF RESETTING ALL THE INPUTS*/
-
-    });}
+                var tag_check = document.getElementById('groupName_check');
+                tag_check.style.visibility = 'visible';
+            } else {
+                var tag_check = document.getElementById('groupName_check');
+                tag_check.style.visibility = 'hidden';
+            }
 
 
+            if (image == "") {
 
-/*Message_Notificationas*/
+                var tag_check = document.getElementById('image_check');
+                tag_check.style.visibility = 'visible';
+            } else {
+                var tag_check = document.getElementById('image_check');
+                tag_check.style.visibility = 'hidden';
 
-var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
-Message_Notifications_Check.on('value', function (snapshot) {
-                msg_messages_dropdown(snapshot.val());
-                msg_message_number(snapshot.val());
+            }
+
+            if (vals.length <= 1) {
+
+                var tag_check = document.getElementById('connections_check_1');
+                tag_check.style.visibility = 'visible';
+            } else {
+                var tag_check = document.getElementById('connections_check_1');
+                tag_check.style.visibility = 'hidden';
+            }
+
+            return
+        }
+
+        /*Saving Group to DB*/
+        messaging_db.once("value", function (snapshot) {
+
+            var created_id = messaging_db.push();
+            created_id.set({
+
+                Name_two: message_txt,
+                Name_one: message_txt,
+                ProfilePic_two: image,
+                ProfilePic_one: image,
+                Sender_key: '{{ this_uid }}',
+                latest: "No Messages",
+                DateTime: date_for_post,
+
             });
 
- function msg_messages_dropdown(obj) {
+            /*Saving_id*/
+            var hope = String(created_id);
+            result = hope.substring(hope.lastIndexOf("/") + 1);
+            var save_id = firebase.database().ref().child("Messages/" + result);/*Messages*/
+            save_id.update({
+                key: result
+            });
 
+            var save_participants = firebase.database().ref().child("Messages/" + result + "/Participants");/*Messages*/
+            for (let i = 0; i < vals.length; i++) {
 
-                var dropdown_item = '';
-                var keys = Object.keys(obj);
-                var counter_check = 0;
+                /*Adding to the conversation*/
+                save_participants.child(vals[i]).set(vals[i]);
+                /*Adding to the individual*/
+                var update_user_msgs = firebase.database().ref().child("Users/" + vals[i] + "/Messages");/*Messages*/
+                update_user_msgs.child(result).set("Group");
 
-
-                for (var i = keys.length - 1; i >= 0; i--) {
-
-                    if (obj[keys[i]].ProfilePic != undefined) {
-
-                        var display_time = obj[keys[i]].Time;
-                        display_time = Number(display_time); // cast it to a Number
-                        var ts_display = timeAgo(display_time);
-
-
-                        if (counter_check ==0){
-                            counter_check++;
-
-                            dropdown_item += " <a><div style=\"margin-top: 20px\" class=\"notification-item\">\n" +
-                                "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\""+ obj[keys[i]].ProfilePic  +"\"/>\n" +
-                                "                                    \n" +
-                                "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">"+ obj[keys[i]].Sender_name  +"</h5>\n" +
-                                "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \"> " + obj[keys[i]].text + "</p>\n" +
-                                "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp"+ ts_display +"</p>\n" +
-                                "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
-                                "                                </div>\n" +
-                                "                            </a>";
-
-                        }else{
-
-                            dropdown_item += " <a><div style=\"margin-top: -20px\" class=\"notification-item\">\n" +
-                                "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\""+ obj[keys[i]].ProfilePic  +"\"/>\n" +
-                                "                                    \n" +
-                                "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">"+ obj[keys[i]].Sender_name +"</h5>\n" +
-                                "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \">" + obj[keys[i]].text + "</p>\n" +
-                                "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp"+ ts_display +"</p>\n" +
-                                "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
-                                "                                </div>\n" +
-                                "                            </a>";
-                        }
-
-                    }}
-                $('#Message_dropdown_notifications').html(dropdown_item);
             }
 
+            var update_user_msgs = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Messages");/*Messages*/
+            update_user_msgs.child(result).set("Group");
 
-             function msg_message_number(obj) {
-               // var html = '';
-                var countholder = 0;
-                var keys = Object.keys(obj);
+            var save_participants = firebase.database().ref().child("Messages/" + result + "/Participants");/*Messages*/
+            save_participants.child('{{ this_uid }}').set('{{ this_uid }}');
 
-                for (var i = 0; i < keys.length; i++) {
-                    countholder++;
+
+            /*RESET ALL THE INPUTS*/
+            document.getElementById("groupName").value = "";
+            $('input:checkbox').removeAttr('checked');
+            $('input[name=rads]').attr('checked', false);
+
+            var tag_check = document.getElementById('groupName_check');
+            tag_check.style.visibility = 'hidden';
+
+            var tag_check = document.getElementById('image_check');
+            tag_check.style.visibility = 'hidden';
+
+            var tag_check = document.getElementById('connections_check');
+            tag_check.style.visibility = 'hidden';
+            /*END OF RESETTING ALL THE INPUTS*/
+
+        });
+    }
+
+
+    /*Message_Notificationas*/
+
+    var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
+    Message_Notifications_Check.on('value', function (snapshot) {
+        msg_messages_dropdown(snapshot.val());
+        msg_message_number(snapshot.val());
+    });
+
+    function msg_messages_dropdown(obj) {
+
+
+        var dropdown_item = '';
+        var keys = Object.keys(obj);
+        var counter_check = 0;
+
+
+        for (var i = keys.length - 1; i >= 0; i--) {
+
+            if (obj[keys[i]].ProfilePic != undefined) {
+
+                var display_time = obj[keys[i]].Time;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
+
+
+                if (counter_check == 0) {
+                    counter_check++;
+
+                    dropdown_item += " <a><div style=\"margin-top: 20px\" class=\"notification-item\">\n" +
+                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
+                        "                                    \n" +
+                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
+                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \"> " + obj[keys[i]].text + "</p>\n" +
+                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
+                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
+                        "                                </div>\n" +
+                        "                            </a>";
+
+                } else {
+
+                    dropdown_item += " <a><div style=\"margin-top: -20px\" class=\"notification-item\">\n" +
+                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
+                        "                                    \n" +
+                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
+                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \">" + obj[keys[i]].text + "</p>\n" +
+                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
+                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
+                        "                                </div>\n" +
+                        "                            </a>";
                 }
-{% comment %}
-                countholder--;
-{% endcomment %}
-
-                {% comment %}database_counter.update({'counter': countholder});
-                 /*Creating notification icon*/{% endcomment %}
-
-
-{% comment %}
-                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-{% endcomment %}
-
-
-                $('#number_of_msg_notifications').html(countholder);
-
-
 
             }
-
-function removeMessageNotifications() {
-
-     var other = firebase.database().ref().child("Users/" + '{{ this_uid }}' );/*Messages*/
-     other.child("Messages_Notifications").remove();
-
-}
+        }
+        $('#Message_dropdown_notifications').html(dropdown_item);
+    }
 
 
-/*Request Notifications*/
+    function msg_message_number(obj) {
+        // var html = '';
+        var countholder = 0;
+        var keys = Object.keys(obj);
+
+        for (var i = 0; i < keys.length; i++) {
+            countholder++;
+        }
+        {% comment %}
+                        countholder--;
+        {% endcomment %}
+
+        {% comment %}database_counter.update({'counter': countholder});
+         /*Creating notification icon*/{% endcomment %}
+
+
+        {% comment %}
+                        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+        {% endcomment %}
+
+
+        $('#number_of_msg_notifications').html(countholder);
+
+
+    }
+
+    function removeMessageNotifications() {
+
+        var other = firebase.database().ref().child("Users/" + '{{ this_uid }}');/*Messages*/
+        other.child("Messages_Notifications").remove();
+
+    }
+
+
+    /*Request Notifications*/
 
     var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
 
@@ -2693,154 +2779,157 @@ function removeMessageNotifications() {
     });
 
 
-            function renderUI(obj) {
-                var html = '';
-                var keys = Object.keys(obj);
-                for (var i = keys.length - 1; i >= 0; i--) {
-               // for (var i = 0; i <= keys.length - 1; i++) {
+    function renderUI(obj) {
+        var html = '';
+        var keys = Object.keys(obj);
+        for (var i = keys.length - 1; i >= 0; i--) {
+            // for (var i = 0; i <= keys.length - 1; i++) {
 
 
-                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
-                    /*Creating notification item*/
+            /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+            /*Creating notification item*/
 
-                    if (obj[keys[i]].sender_profilePic != undefined) {
+            if (obj[keys[i]].sender_profilePic != undefined) {
 
-                        var display_time = obj[keys[i]].time;
-                        display_time = Number(display_time); // cast it to a Number
-                        var ts_display = timeAgo(display_time);
-
-
-                        var decision = "true";
-                        var opp_decison = "false";
-                        html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
-                            "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> "+ ts_display +"</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+                var display_time = obj[keys[i]].time;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
 
 
-                    }}
-                $('#comment').html(html);
-            }
-
-             function renderCount(obj) {
-                var html = '';
-                var countholder = 0;
-
-                var keys = Object.keys(obj);
-                for (var i = 0; i < keys.length; i++) {
-                    countholder++;
-                }
-                countholder--;
-                database_counter.update({'counter': countholder});
-                 /*Creating notification icon*/
-
-
-                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-
-
-                $('#counter_number_notifications').html(html);
+                var decision = "true";
+                var opp_decison = "false";
+                html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
 
 
             }
+        }
+        $('#comment').html(html);
+    }
 
-     function Accept_request(sender_id, name, post_id,isAccept){
+    function renderCount(obj) {
+        var html = '';
+        var countholder = 0;
 
-
-     if (String(isAccept).valueOf() == String("true").valueOf()) {
-
-         /*Check Type of Request*/
-
-         firebase.database().ref("Users/"+ '{{this_uid}}'+"/RequestsReceived/" + post_id + "/Type" ).once("value", snapshot =>
-
-         {
-
-             if (snapshot.exists()) {
-
-
-             var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-              AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+        var keys = Object.keys(obj);
+        for (var i = 0; i < keys.length; i++) {
+            countholder++;
+        }
+        countholder--;
+        database_counter.update({'counter': countholder});
+        /*Creating notification icon*/
 
 
-               var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-              AddtoForum_Joined.child(sender_id).set(sender_id);
+        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
 
 
-               window.alert("You have joined a new forum!");
+        $('#counter_number_notifications').html(html);
 
 
+    }
 
-             }/*Forum Requests*/
-
-             else {
-
-
-                 var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
-                 var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+    function Accept_request(sender_id, name, post_id, isAccept) {
 
 
-                 //AddConnection.child(sender_id).set(name);
-                 var bio;
-                 var propic;
-                 var country;
-                 var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
-                 getAcceptcon.on("value", function (snapshot) {
-                     bio = snapshot.val().Bio;
-                     propic = snapshot.val().ProfilePic;
-                     country = snapshot.val().Country;
-                 });
+        if (String(isAccept).valueOf() == String("true").valueOf()) {
 
-                 //var created_id_target = AddConnection.push();
-                 AddConnection.child(sender_id).set({ /*Pushes to receiver*/
-                     Name: name,
-                     Bio: bio,
-                     ProfilePic: propic,
-                     Country: country,
+            /*Check Type of Request*/
 
-                 });
+            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
 
-                 AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
-                     Name: '{{ n }}',
-                     Bio: '{{ bio }}',
-                     ProfilePic: '{{ ProfilePic }}',
-                     Country: '{{ country }}',
-
-                 });
+                if (snapshot.exists()) {
 
 
-                 window.alert("You are now connected with " + name);
+                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
 
-             }/*Friend Reuest*/
-      }); /*Checking Type of Request*/
-     } /*If Accept*/
+                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
 
 
+                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
 
-         firebase.database().ref("Users/"+ '{{this_uid}}'+"/RequestsReceived/" + post_id + "/Type" ).once("value", snapshot => {
-
-             if (snapshot.exists()) {
-
-                 var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                 different_name.remove();
+                    AddtoForum_Joined.child(sender_id).set(sender_id);
 
 
-             }
-
-             else {
-
-                 var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                 different_name.remove();
-
-                 var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
-                 removesent.remove();
+                    // window.alert("You have joined a new forum!");
+                    var x = document.getElementById("forumJoined");
+                    x.show();
 
 
-             }
+                }/*Forum Requests*/
 
-         });
+                else {
 
 
+                    var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+                    var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
 
-     }
+
+                    //AddConnection.child(sender_id).set(name);
+                    var bio;
+                    var propic;
+                    var country;
+                    var html = '';
+                    var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+                    getAcceptcon.on("value", function (snapshot) {
+                        bio = snapshot.val().Bio;
+                        propic = snapshot.val().ProfilePic;
+                        country = snapshot.val().Country;
+                    });
+
+                    //var created_id_target = AddConnection.push();
+                    AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                        Name: name,
+                        Bio: bio,
+                        ProfilePic: propic,
+                        Country: country,
+
+                    });
+
+                    AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                        Name: '{{ n }}',
+                        Bio: '{{ bio }}',
+                        ProfilePic: '{{ ProfilePic }}',
+                        Country: '{{ country }}',
+
+                    });
+
+
+                   // window.alert("You are now connected with " + name);
+
+                    html += "You are now connected with " + name;
+                    $('#newconnectionmodal').html(html);
+
+                     var y = document.getElementById("connectedWith");
+                    y.show();
+
+                }/*Friend Reuest*/
+            }); /*Checking Type of Request*/
+        } /*If Accept*/
+
+
+        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+
+            if (snapshot.exists()) {
+
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                different_name.remove();
+
+
+            } else {
+
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                different_name.remove();
+
+                var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+                removesent.remove();
+
+
+            }
+
+        });
+
+
+    }
 
 
 </script>
@@ -2851,324 +2940,289 @@ Badges_Celebrations_3
 {% endcomment %}
 <script>
 
-        //Badge_1_Friend_Finder
+    //Badge_1_Friend_Finder
 
-        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+    var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
 
-        FriendFinder_Connections.on("value", function (snapshot) {
+    FriendFinder_Connections.on("value", function (snapshot) {
 
-            var counter = 0;
+        var counter = 0;
 
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
+        });
+
+        if (counter >= 1 && counter < 5) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Friend Finder Badge";
+
+                if (snapshot.val().FriendFinder == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+
+                    checkCelebration.update({'FriendFinder': "celebrated"});
+                }
             });
-
-            if (counter >=1 && counter<5)
-
-            {
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-               checkCelebration.on("value", function (snapshot) {
-                   var text = "Friend Finder Badge";
-
-                    if (snapshot.val().FriendFinder == "not_celebrated"){
-                      $('#Congrats_Pop_Up').html(text);
-                      $("#Celebrations").modal();
-
-                        checkCelebration.update({'FriendFinder': "celebrated"});
-               }
-                });
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_2_NetoworkingNinja
 
-            if (counter >=5 && counter < 10)
+        if (counter >= 5 && counter < 10) {
 
-            {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Networking Ninja Badge";
+                if (snapshot.val().NetworkingNinja == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'NetworkingNinja': "celebrated"});
+                }
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Networking Ninja Badge";
-                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'NetworkingNinja': "celebrated"});
-               }
+            })
 
-                })
-
-            }
-
-            else {}
+        } else {
+        }
 
 
-         //Badge_3_CrazyConnector
+        //Badge_3_CrazyConnector
 
-  if (counter >=10 && counter<15)
-
-            {
+        if (counter >= 10 && counter < 15) {
 
 
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                     var text = "Crazy Connector Badge";
-
-
-                      if (snapshot.val().CrazyConnector == "not_celebrated"){
-                          $('#Congrats_Pop_Up').html(text);
-                          $("#Celebrations").modal();
-                          checkCelebration.update({'CrazyConnector': "celebrated"});
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Crazy Connector Badge";
 
 
-               }
-
-                })
-
-            }
-
-            else {}
+                if (snapshot.val().CrazyConnector == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'CrazyConnector': "celebrated"});
 
 
-          //Badge_4_PopularProfile
+                }
 
- if (counter >=15)
+            })
 
-            {
-
-
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Popular Profile Badge";
-
-                      if (snapshot.val().PopularProfile == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'PopularProfile': "celebrated"});
+        } else {
+        }
 
 
-               }
+        //Badge_4_PopularProfile
 
-                })
-
-            }
-
-            else {
+        if (counter >= 15) {
 
 
-            }
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Popular Profile Badge";
+
+                if (snapshot.val().PopularProfile == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'PopularProfile': "celebrated"});
 
 
+                }
+
+            })
+
+        } else {
+
+
+        }
+
+
+    });
+
+    //Badge_5_BrightSpark
+
+    var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+    Badges_for_Courses.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-          //Badge_5_BrightSpark
 
-var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+        if (counter >= 3 && counter < 5) {
 
-        Badges_for_Courses.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-
-
-            if (counter >=3 && counter<5)
-
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                      if (snapshot.val().BrightSpark == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html(text);
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'BrightSpark': "celebrated"});
+                if (snapshot.val().BrightSpark == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'BrightSpark': "celebrated"});
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_6_FabAcademic
 
-         if (counter >=5 && counter<10 )
+        if (counter >= 5 && counter < 10) {
 
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                    var text = "FabAcademic Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "FabAcademic Badge";
 
 
-                      if (snapshot.val().FabAcademic == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'FabAcademic': "celebrated"});
+                if (snapshot.val().FabAcademic == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'FabAcademic': "celebrated"});
 
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {
-            }
+        } else {
+        }
 
 
-           //Badge_7_Got_Smarter
+        //Badge_7_Got_Smarter
 
 
-            if (counter >=10 )
-
-            {
+        if (counter >= 10) {
 
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                 var text = "GotSmarter Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "GotSmarter Badge";
 
-                      if (snapshot.val().GotSmarter == "not_celebrated"){
-                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
-                         $("#Celebrations").modal();
+                if (snapshot.val().GotSmarter == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                    $("#Celebrations").modal();
 
-                       checkCelebration.update({'GotSmarter': "celebrated"});
-
-
-               }
-
-                })
-
-            }
-
-            else {
+                    checkCelebration.update({'GotSmarter': "celebrated"});
 
 
-            }
+                }
+
+            })
+
+        } else {
 
 
+        }
 
+
+    });
+
+    //Badge_8_Got_Smarter
+
+    //Badge_9_Forum_Boffin
+
+    var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+    Badges_for_Forums.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-        //Badge_8_Got_Smarter
-
-        //Badge_9_Forum_Boffin
-
-var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
-
-        Badges_for_Forums.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-            if (counter >=5 )
-
-            {
+        if (counter >= 5) {
 
 
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+                if (snapshot.val().ForumBoffin == "not_celebrated") {
+                    var text = "GotSmarter Badge";
+                    $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'ForumBoffin': "celebrated"});
 
-                      if (snapshot.val().ForumBoffin == "not_celebrated"){
-                       var text = "GotSmarter Badge";
-                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'ForumBoffin': "celebrated"});
+                }
 
-               }
+            })
 
-                })
-
-            }
-
-            else {
+        } else {
 
 
-            }
+        }
 
-           });
-
-
- //Badge_10_Forum_Boffin
+    });
 
 
+    //Badge_10_Forum_Boffin
 
-    </script>
+
+</script>
 {% comment %}
 Badges_Celebrations_1
 {% endcomment %}
 
-    <div  id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div style="" class="modal-content">
-                <div style="" class="modal-header">
+<div id="Celebrations" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style="" class="modal-content">
+            <div style="" class="modal-header">
 
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
 
-                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
-                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
-
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <br>
-                <img style="margin-left: 50px"
-                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
-
-                <div class="modal-body">
+                <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"></h4>
 
 
-                    <div id="ConnectionsListing_All" class="row">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <img style="margin-left: 50px"
+                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+            <div class="modal-body">
 
 
-                    </div> <!--end row-->
+                <div id="ConnectionsListing_All" class="row">
 
 
-                    <div class="modal-footer">
+                </div> <!--end row-->
 
 
-                    </div>
+                <div class="modal-footer">
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% comment %}
 Badges_Celebrations_2
 {% endcomment %}
-    <script>
+<script>
 
-        $('#Celebrations').on('show.bs.modal', function (event) {
+    $('#Celebrations').on('show.bs.modal', function (event) {
 
-        })
-    </script>
-
+    })
+</script>
 
 
 </body>
