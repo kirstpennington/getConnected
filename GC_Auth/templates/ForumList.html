@@ -1377,9 +1377,6 @@ $(document).ready(function(){
                                                                                         creator_id = snapCreator.val();                     // send the message to this user id
                                                                                         message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
                                                                                         // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
-                                                                                        // ToDo: Later - send notification to the Forum Creator with the
-
-
 
                                                                                          /*Sending Forum Request to Creator*/
                                                                                         var other = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived");/*Messages*/

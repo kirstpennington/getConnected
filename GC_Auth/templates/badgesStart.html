@@ -704,116 +704,116 @@
     </style>
 
     <!--style for badge icons-->
-      <style>
+    <style>
 
-/* specify the font for the page*/
-      body {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 150;
-      }
-
-
-
-/*set font of the title*/
-      .badgeHeader h3 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 100;
-        font-size: 30px;
-       position: absolute;
-          top: 20%;
-          left:36%;
-
-      }
-      /*set the trophy image at the top's size*/
-      .badgeHeader img {
-        width: 50px;
-        height: 50px;
-        margin: auto;
-        display: block;
-        padding-top:0;
-          position: absolute;
-          top: 5%;
-          left:43%;
-
-      }
-
-/* the line underneath the heading*/
-      .logoclass hr{
-
-        background-color: silver;
-        border-color: silver;
-        border-width: 2px;
-        width: 60%;
-
-      }
-
-/* set the row's padding, so they don't spread out to the edges of the page*/
-   /*   .row{
-        padding-left: 200px;
-        padding-right: 200px;
-      }
-
-/*set the info for the images (badges) inside each block*/
-    .row .col-sm-3 img{
-        width: 180px;
-        height: 150px;
-        margin: auto;
-        display: block;
-        opacity: 1;
-        transition: .5s ease;
-        backface-visibility: hidden;
-      }
-/*this is used for the hover over the badges to show badge details*/
-      .middle {
-        transition: .5s ease;
-        opacity: 0;
-        position: absolute;
-        top: 80%;
-        left: 100%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        text-align: center;
-        height: 50px;
-        width: 200px;
+        /* specify the font for the page*/
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 150;
         }
 
-/*this is also used for the hover over the badges*/
+
+
+        /*set font of the title*/
+        .badgeHeader h3 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 100;
+            font-size: 30px;
+            position: absolute;
+            top: 20%;
+            left:36%;
+
+        }
+        /*set the trophy image at the top's size*/
+        .badgeHeader img {
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            display: block;
+            padding-top:0;
+            position: absolute;
+            top: 5%;
+            left:43%;
+
+        }
+
+        /* the line underneath the heading*/
+        .logoclass hr{
+
+            background-color: silver;
+            border-color: silver;
+            border-width: 2px;
+            width: 60%;
+
+        }
+
+        /* set the row's padding, so they don't spread out to the edges of the page*/
+        /*   .row{
+             padding-left: 200px;
+             padding-right: 200px;
+           }
+
+     /*set the info for the images (badges) inside each block*/
+        .row .col-sm-3 img{
+            width: 180px;
+            height: 150px;
+            margin: auto;
+            display: block;
+            opacity: 1;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+        /*this is used for the hover over the badges to show badge details*/
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 80%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+            height: 50px;
+            width: 200px;
+        }
+
+        /*this is also used for the hover over the badges*/
         .badgehover{
             position: relative;
             width: 50%;
         }
-/*for the badge hover*/
+        /*for the badge hover*/
         .badgehover:hover .image {
-          opacity: 0.3;
+            opacity: 0.3;
         }
-/*for the badge hover */
+        /*for the badge hover */
         .badgehover:hover .middle {
-          opacity: 1;
+            opacity: 1;
         }
-/*the text when you hover over a badge*/
+        /*the text when you hover over a badge*/
         .text {
-          background-color: #ce3298;
-          opacity: 0.8;
-          color: white;
-          font-size: 16px;
-          text-align: center;
-          font-family: 'Roboto', sans-serif;
+            background-color: #ce3298;
+            opacity: 0.8;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
 
         }
 
-/*this sets the look of the tooltip '?'*/
-         .tooltip-inner {
-           background-color: #ce3298;
-           opacity: 0.6 ;
-           color: #FFFFFF;
-           border: 1px #ce3298;
-           padding: 15px;
-           font-size: 12px;
-         }
+        /*this sets the look of the tooltip '?'*/
+        .tooltip-inner {
+            background-color: #ce3298;
+            opacity: 0.6 ;
+            color: #FFFFFF;
+            border: 1px #ce3298;
+            padding: 15px;
+            font-size: 12px;
+        }
 
-         .inf-content{
-           border:1px solid #DDDDDD;
-           margin: 20px;
+        .inf-content{
+            border:1px solid #DDDDDD;
+            margin: 20px;
 
         }
 
@@ -824,7 +824,7 @@
 
 
 
-  </style>
+    </style>
 
 
 </head>
@@ -847,7 +847,7 @@
 
             <!--Left-side (including search ) of navigation bar-->
             <ul class="nav navbar-nav navbar-left">
-                 <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
                 <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
                     Connections</a></li>
                 <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
@@ -1047,7 +1047,7 @@
 
 
 <div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/trophyBackground.jpg" %}); margin-top: 0px;
-                background-position:top; ">
+        background-position:top; ">
 
 
 </div>
@@ -1079,41 +1079,41 @@
             <div class="col-md-12">
 
 
-              {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3"  %}
-                <div id="{{ conn_id }}_background"  class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3"  %}
+                    <div id="{{ conn_id }}_background"  class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
                         <form action="/goConnectionsOpen/" method="post">
-                                <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
-                                        style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
-                                </button>
+                            <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
+                                    style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
+                            </button>
 
-                        <div class="row" style="margin-top: -15px">
-                            <img id="{{ conn_id }}_img"   class=" pull-left"
-                                 style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
-                                 src="{{ pictures }}"/>
+                            <div class="row" style="margin-top: -15px">
+                                <img id="{{ conn_id }}_img"   class=" pull-left"
+                                     style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
+                                     src="{{ pictures }}"/>
 
-                            <div class="connection_container">
-                                <div>
-                                    <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
-                                    <button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
-                                        {{ names }}
-                                    </button>
+                                <div class="connection_container">
+                                    <div>
+                                        <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                                        <button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
+                                            {{ names }}
+                                        </button>
+                                    </div>
+                                    <!-- hidden field that stores the id of the entity  -->
+                                    <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
+                                    <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family: serif; font-size: small; color: black">
+                                        mutual conections &nbsp;<span class="label label-default"
+                                                                      style="color: white"> {{ numConnections }} </span>
+                                    </h8>
+                                    <br>
+
+                                    <span class="badge badge-pill badge-dark"
+                                          style=" position:relative;color: white; font-size: x-small; margin-left: 10px; top: -3px">{{ bio }}</span>
                                 </div>
-                                <!-- hidden field that stores the id of the entity  -->
-                                <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
-                                <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family: serif; font-size: small; color: black">
-                                    mutual conections &nbsp;<span class="label label-default"
-                                                                  style="color: white"> {{ numConnections }} </span>
-                                </h8>
-                                <br>
 
-                                <span class="badge badge-pill badge-dark"
-                                      style=" position:relative;color: white; font-size: x-small; margin-left: 10px; top: -3px">{{ bio }}</span>
                             </div>
-
-                        </div>
                         </form>
                     </div><!--end of Connections Suggestions Card--><br style="height: 2px">
-                    {% empty %}
+                {% empty %}
                     <div>No Connection Suggestions</div>
                 {% endfor %}
 
@@ -1121,7 +1121,7 @@
 
         </div><!--col-md-4 rightColumn-->
 
-    <!--FORUM SUGGESTIONS-->
+        <!--FORUM SUGGESTIONS-->
 
         <div class="col-md-4 rightColumnTwo" style="position: relative; top: 190px;">
 
@@ -1137,9 +1137,9 @@
             <div class="col-md-12" style="margin-top: -3px">
 
 
-                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
-                <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
-                             <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
+                {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
+                    <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
+                        <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
 
                         <div style="position: relative; left: 235px; top: 3px;">
                             <h8><span class="label label-default"><span
@@ -1153,9 +1153,9 @@
 
                             <div class="connection_container">
                                 <div>
-                                        <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}','{{ forum_ids }}_hideForumSuggestion')"
-                                           style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit">{{ forum_names }}
-                                            </button>
+                                    <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}','{{ forum_ids }}_hideForumSuggestion')"
+                                            style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit">{{ forum_names }}
+                                    </button>
                                 </div>
                                 <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
 
@@ -1170,433 +1170,456 @@
 
                         </div>
                     </div><!--end of Forum Suggestions Card--><br>
-                    {% empty %}
+                {% empty %}
                     <div>No Forum Suggestions</div>
                 {% endfor %}
 
 
-            <script>
-                function joinForum(forum_id, this_uid, forum_name, hide_block){
+                <script>
+                    function joinForum(forum_id, this_uid, forum_name, hide_block){
 
-                    var db = firebase.database().ref('Forums');
-                    blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
-                    blockedUsersRef.once('value', function(snapshot) {
-                        blockedUsers = snapshotToArray(snapshot);
-                        if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
-                            forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
-                            forumPrivateRef.once('value', function(snapPrivate) {
-                                privacy = snapPrivate.val();
-                                if (privacy == false){                                    // if the forums is not private
-                                    json_dict = {};
-                                    json_dict[forum_id] = forum_id;
-                                    updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
-                                    updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the user
-                                    json_dict[this_uid] = this_uid;
-                                    updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
-                                    updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
-                                    this.hideDiv(hide_block);
-                                    //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
-                                    $("#modalForumJoined").modal('show');
-                                }
-                                else{                                                       // if the forum is private
-                                    forumCreatorRef = db.child(forum_id).child('Creator');
-                                    forumCreatorRef.once('value', function(snapCreator) {
-                                        creator_id = snapCreator.val();                     // send the message to this user id
-                                        message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
-                                        // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
-                                        // ToDo: Later - send notification to the Forum Creator with the
+                        var db = firebase.database().ref('Forums');
+                        blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
+                        blockedUsersRef.once('value', function(snapshot) {
+                            blockedUsers = snapshotToArray(snapshot);
+                            if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
+                                forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
+                                forumPrivateRef.once('value', function(snapPrivate) {
+                                    privacy = snapPrivate.val();
+                                    if (privacy == false){                                    // if the forums is not private
+                                        json_dict = {};
+                                        json_dict[forum_id] = forum_id;
+                                        updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
+                                        updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the user
+                                        json_dict[this_uid] = this_uid;
+                                        updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
+                                        updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
+                                        this.hideDiv(hide_block);
+                                        //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
+                                        $("#modalForumJoined").modal('show');
+                                    }
+                                    else{                                                       // if the forum is private
+                                        forumCreatorRef = db.child(forum_id).child('Creator');
+                                        forumCreatorRef.once('value', function(snapCreator) {
+                                            creator_id = snapCreator.val();                     // send the message to this user id
+                                            message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
+                                            // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
+                                            /*Sending Forum Request to Creator*/
+                                            var other = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived");/*Messages*/
+                                            var date_for_post = Date.now();
 
-                                        $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
-                                    })
+                                            var created_id_1 = other.push();
+                                            created_id_1.set({
 
-                                }
-                            })
+                                                time: date_for_post,
+                                                sender: '{{ n }}',
+                                                sender_id: '{{ this_uid }}',
+                                                message: message,
+                                                receiver_id: creator_id ,
+                                                sender_profilePic: '{{ ProfilePic }}',
+                                                Type: "Forum_Request",
 
-                        }
-                        else{                                                               // if the user is blocked, display a message to the user
-                            $("#modalBlockedFromForum").modal('show');
-                        }
+                                            });
 
+                                            var hope = String(created_id_1);
+                                            var result = hope.substring(hope.lastIndexOf("/") + 1);
+                                            var save_id = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived/" + result);/*Messages*/
+                                            save_id.update({
+                                                post_id: result  });
 
-                    });
+                                            /*End of Sending Forum Request to Creator*/
 
-                }
+                                            $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
+                                        })
 
-                // hides the div with the specified id
-                function hideDiv(div_name){
-                                                                    document.getElementById(div_name).hidden = true;     // remove forum from all forums
+                                    }
+                                })
 
-                                                                }
-
-                // get a snapshot of a list of keys from firebase and convert it to an array
-                function snapshotToArray(snapshot) {
-                                                                    let returnArr = [];
-
-                                                                    snapshot.forEach(childSnapshot => {
-                                                                        let item = childSnapshot.val();
-                                                                        item.key = childSnapshot.key;
-                                                                        returnArr.push(item);
-                                                                    });
-
-                                                                    return returnArr;
-                                                                }
-
-                // returns true if the array contains the value
-                function arrayContainsValue(array, value){
-                    if (array.length > 0)
-                    {
-                        for (let i = 0; i < array.length; i++)
-                        {
-                            if (array[i] == value){
-                                return true;
                             }
-                        }
-                        return false;
-                    }
-                    else{
-                        return false;
-                    }
-                }
+                            else{                                                               // if the user is blocked, display a message to the user
+                                $("#modalBlockedFromForum").modal('show');
+                            }
 
-            </script>
+
+                        });
+
+                    }
+
+                    // hides the div with the specified id
+                    function hideDiv(div_name){
+                        document.getElementById(div_name).hidden = true;     // remove forum from all forums
+
+                    }
+
+                    // get a snapshot of a list of keys from firebase and convert it to an array
+                    function snapshotToArray(snapshot) {
+                        let returnArr = [];
+
+                        snapshot.forEach(childSnapshot => {
+                            let item = childSnapshot.val();
+                            item.key = childSnapshot.key;
+                            returnArr.push(item);
+                        });
+
+                        return returnArr;
+                    }
+
+                    // returns true if the array contains the value
+                    function arrayContainsValue(array, value){
+                        if (array.length > 0)
+                        {
+                            for (let i = 0; i < array.length; i++)
+                            {
+                                if (array[i] == value){
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+                        else{
+                            return false;
+                        }
+                    }
+
+                </script>
 
             </div><!--col-md-12-->
 
         </div><!--col-md-4 rightColumnTwo-->
-    <!--END OF RIGHTHAND SIDE-->
+        <!--END OF RIGHTHAND SIDE-->
 
 
 
         <!-- FOR KIRSTEN, YOU CAN PASTE IT HERE. -->
 
-<div class="badgeHeader" style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -400px; overflow: hidden">
+        <div class="badgeHeader" style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -400px; overflow: hidden">
 
 
 
-    {% load staticfiles %}
-  <img src = "{% static "GC_Auth/badge_icon.png" %}" alt="trohy" >
+            {% load staticfiles %}
+            <img src = "{% static "GC_Auth/badge_icon.png" %}" alt="trohy" >
 
-  <h3> Your Badges </h3>
-
-
-  <div class="logoclass">
-
-        <hr style="position: relative; top: 90px;">
-      <br><br>
-
-</div>
+            <h3> Your Badges </h3>
 
 
+            <div class="logoclass">
 
-</div>
-<br>
-<div class="container-fluid">
-<!--row1-->
-    <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -540px; overflow: hidden">
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-        {% load staticfiles %}
-          <!--friend finder 1 connection-->
-        <div class ="badgehover"> <!--badge hover for the hovering over the badge-->
+                <hr style="position: relative; top: 90px;">
+                <br><br>
 
-            {% if numConnections >= 1 %}
-
-                <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
+            </div>
 
 
-
-       </div>
-      </div>
-
-
-      <!--coloumn-->
-        <div class="col-sm-3" style="background-color:white;">
-{% load staticfiles %}
-          <!--coloumn networking ninja-->
-      <div class ="badgehover">
-          {% if numConnections >= 5 %}
-
-                <img src="{% static "GC_Auth/Badges/networkingNinja2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Networking Ninja</strong> <br> 5 Connections</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-      </div>
-      </div>
-
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-
-<div class ="badgehover">
-           <!--coloumn crazy connector-->
-          {% if numConnections >= 10%}
-
-                <img src="{% static "GC_Auth/Badges/crazyConnector2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Crazy Connector</strong> <br> 10 Connections</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-      </div>
-      </div>
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-        <div class ="badgehover">
-           <!--coloumn popular profiler-->
-          {% if numConnections >= 15 %}
-
-                <img src="{% static "GC_Auth/Badges/PopularProfiler2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Popular Profiler</strong> <br> 15 Connections</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
 
         </div>
-      </div>
+        <br>
+        <div class="container-fluid">
+            <!--row1-->
+            <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -540px; overflow: hidden">
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    {% load staticfiles %}
+                    <!--friend finder 1 connection-->
+                    <div class ="badgehover"> <!--badge hover for the hovering over the badge-->
 
+                        {% if numConnections >= 1 %}
+
+                            <img src="{% static "GC_Auth/Badges/friendfinder5.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Friend Finder</strong> <br> 1 Connection</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+
+
+                    </div>
+                </div>
+
+
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    {% load staticfiles %}
+                    <!--coloumn networking ninja-->
+                    <div class ="badgehover">
+                        {% if numConnections >= 5 %}
+
+                            <img src="{% static "GC_Auth/Badges/networkingNinja2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Networking Ninja</strong> <br> 5 Connections</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+
+                    <div class ="badgehover">
+                        <!--coloumn crazy connector-->
+                        {% if numConnections >= 10%}
+
+                            <img src="{% static "GC_Auth/Badges/crazyConnector2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Crazy Connector</strong> <br> 10 Connections</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <div class ="badgehover">
+                        <!--coloumn popular profiler-->
+                        {% if numConnections >= 15 %}
+
+                            <img src="{% static "GC_Auth/Badges/PopularProfiler2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Popular Profiler</strong> <br> 15 Connections</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!--row2-->
+            <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -640px; overflow: hidden">
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;"><!-- 3 courses taken-->
+
+
+                    <div class ="badgehover">
+                        <!--coloumn popular profiler-->
+                        {% if numCourses >= 3 %}<!--bright spark 3 courses-->
+
+                            <img src="{% static "GC_Auth/Badges/brightSpark2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Bright Spark</strong> <br> 3 Courses</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+
+
+
+                </div>
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <!--fab academic 5 courses-->
+
+                    <div class ="badgehover">
+
+                        {% if numCourses >= 5 %}<!--5 courses-->
+
+                            <img src="{% static "GC_Auth/Badges/fabAcademic2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Fab Academic</strong> <br> 5 Courses</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+
+                </div>
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <!--got smarter 10 courses-->
+
+                    <div class ="badgehover">
+                        <!--coloumn popular profiler-->
+                        {% if numCourses >= 10 %}<!--bright spark 3 courses-->
+
+                            <img src="{% static "GC_Auth/Badges/gotSmarter2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Got-Smarter</strong> <br> 10 Courses</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <div class ="badgehover">
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                        <div class="middle">
+                            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--row3-->
+            <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -740px; overflow: hidden">
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <!--forum boffin , 1 forum-->
+
+                    <div class ="badgehover">
+                        <!--coloumn 5 forums-->
+                        {% if numForums >= 1 %}<!--forums-->
+
+                            <img src="{% static "GC_Auth/Badges/forumBoffin2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Forum Boffin</strong> <br>Active in 1 Forum </div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+
+
+                </div>
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
+
+                    <div class ="badgehover">
+                        <!--coloumn super security-->
+
+                        {% if privacyUp == "yes" %}
+
+                            <img src="{% static "GC_Auth/Badges/supersecurity1.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+
+                    <div class ="badgehover">
+                        <!--coloumn popular profiler-->
+                        {% if numConnections >= 1 %}<!--decorator update header-->
+
+                            <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <!--coloumn-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <div class ="badgehover">
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                        <div class="middle">
+                            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
     </div>
 
-  <!--row2-->
-    <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -640px; overflow: hidden">
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;"><!-- 3 courses taken-->
 
 
-        <div class ="badgehover">
-           <!--coloumn popular profiler-->
-          {% if numCourses >= 3 %}<!--bright spark 3 courses-->
-
-                <img src="{% static "GC_Auth/Badges/brightSpark2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Bright Spark</strong> <br> 3 Courses</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-        </div>
-
-
-
-
-
-      </div>
-      <!--coloumn-->
-        <div class="col-sm-3" style="background-color:white;">
-          <!--fab academic 5 courses-->
-
-        <div class ="badgehover">
-
-          {% if numCourses >= 5 %}<!--5 courses-->
-
-                <img src="{% static "GC_Auth/Badges/fabAcademic2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Fab Academic</strong> <br> 5 Courses</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-        </div>
-
-
-
-      </div>
-      <!--coloumn-->
-        <div class="col-sm-3" style="background-color:white;">
-         <!--got smarter 10 courses-->
-
-        <div class ="badgehover">
-           <!--coloumn popular profiler-->
-          {% if numCourses >= 10 %}<!--bright spark 3 courses-->
-
-                <img src="{% static "GC_Auth/Badges/gotSmarter2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Got-Smarter</strong> <br> 10 Courses</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-        </div>
-
-
-      </div>
-      <!--coloumn-->
-     <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-
-    </div>
-
-    <!--row3-->
-    <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -740px; overflow: hidden">
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-        <!--forum boffin , 1 forum-->
-
-        <div class ="badgehover">
-           <!--coloumn 5 forums-->
-          {% if numForums >= 1 %}<!--forums-->
-
-                <img src="{% static "GC_Auth/Badges/forumBoffin2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Forum Boffin</strong> <br>Active in 1 Forum </div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-        </div>
-
-
-
-
-      </div>
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
-
-        <div class ="badgehover">
-           <!--coloumn super security-->
-
-          {% if privacyUp == "yes" %}
-
-                <img src="{% static "GC_Auth/Badges/supersecurity1.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-        </div>
-
-
-      </div>
-      <!--coloumn-->
-     <div class="col-sm-3" style="background-color:white;">
-
- <div class ="badgehover">
-             <!--coloumn popular profiler-->
-          {% if numConnections >= 1 %}<!--decorator update header-->
-
-                <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-    </div>
-      </div>
-      <!--coloumn-->
-      <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-             <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-
-    </div>
-
-
-  </div>
-</div>
-
-
-
-<script>
-<!--tooltip functionality-->
-  $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-  });
-</script>
+    <script>
+        <!--tooltip functionality-->
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
 
 
@@ -1606,7 +1629,7 @@
 
 
 
-    </div>     <!-- description text-left -->
+</div>     <!-- description text-left -->
 </div><!-- ProfileContainer ProfileContainerLift -->
 <!--END OF PAGE CONTAINER-->
 
@@ -1689,73 +1712,73 @@
 
 
 
-                <!-- Modal for pop up message "forum joined" -->
-                <div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Joined</strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        You have joined this forum. It's now in your My Forums tab!
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-           <!-- Modal for pop up message "join request sent" -->
-            <div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Join Request Sent</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<!-- Modal for pop up message "forum joined" -->
+<div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Joined</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
-
-             <!-- Modal for pop up message "blocked from forum message" -->
-            <div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Blocked from Forum</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    Unfortunately, you have been blocked from this forum. Access to this forum is denied.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            <div class="modal-body">
+                You have joined this forum. It's now in your My Forums tab!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
-                  </div>
-                </div>
-              </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for pop up message "join request sent" -->
+<div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Join Request Sent</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for pop up message "blocked from forum message" -->
+<div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Blocked from Forum</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Unfortunately, you have been blocked from this forum. Access to this forum is denied.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 

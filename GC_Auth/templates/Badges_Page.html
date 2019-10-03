@@ -790,7 +790,7 @@
         .badgehover:hover .middle {
             opacity: 1;
         }
-         .badges_plus {
+        .badges_plus {
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
             background-color: white;
             border-radius: 10px;
@@ -851,7 +851,7 @@
 
     </style>
 
-    <body class="profileContainerDetails">
+<body class="profileContainerDetails">
 <!--*BODY* 1. Navigation Bar-->
 
 <nav class="navbar navbar-inverse  ">
@@ -869,7 +869,7 @@
 
             <!--Left-side (including search ) of navigation bar-->
             <ul class="nav navbar-nav navbar-left">
-                 <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home </a></li>
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span class="glyphicon glyphicon-home fa-lg"></span> Home </a></li>
                 <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
                     Connections</a></li>
                 <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
@@ -1063,9 +1063,9 @@
         </div><!--collapse nav-bar collapse-->
     </div><!--container fluid-->
 </nav><!--nav navbar-inverse-->
-    </head>
+</head>
 <div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/trophyBackground.jpg" %}); margin-top: 0px;
-                background-position:top; ">
+        background-position:top; ">
 
 
 </div>
@@ -1094,40 +1094,40 @@
             <div class="col-md-12">
 
 
-                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3"  %}
-                <div id="{{ conn_id }}_background"  class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3"  %}
+                    <div id="{{ conn_id }}_background"  class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
                         <form action="/goConnectionsOpen/" method="post">
-                                <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
-                                        style="position: relative; left: 240px; top: 3px;border-color: white; background-color: white; "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
-                                </button>
+                            <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
+                                    style="position: relative; left: 240px; top: 3px;border-color: white; background-color: white; "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
+                            </button>
 
-                        <div class="row" style="margin-top: -15px">
-                            <img id="{{ conn_id }}_img"   class=" pull-left"
-                                 style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
-                                 src="{{ pictures }}"/>
+                            <div class="row" style="margin-top: -15px">
+                                <img id="{{ conn_id }}_img"   class=" pull-left"
+                                     style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
+                                     src="{{ pictures }}"/>
 
-                            <div class="connection_container">
-                                <div>
-                                    <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
-                                    <button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
-                                        {{ names }}
-                                    </button>
+                                <div class="connection_container">
+                                    <div>
+                                        <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
+                                        <button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
+                                            {{ names }}
+                                        </button>
+                                    </div>
+                                    <!-- hidden field that stores the id of the entity  -->
+                                    <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
+                                    <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family:'Arial Narrow';font-weight:bold; font-size: small; color:#666666;">
+                                        Connections: &nbsp;<span> {{ numConnections }} </span>
+                                    </h8>
+                                    <br>
+
+                                    <span class="badge badge-pill badge-dark"
+                                          style=" position:relative;color: white; font-size: x-small; margin-left: 10px; top: -3px">{{ bio }}</span>
                                 </div>
-                                <!-- hidden field that stores the id of the entity  -->
-                                <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
-                                <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family:'Arial Narrow';font-weight:bold; font-size: small; color:#666666;">
-                                    Connections: &nbsp;<span> {{ numConnections }} </span>
-                                </h8>
-                                <br>
 
-                                <span class="badge badge-pill badge-dark"
-                                      style=" position:relative;color: white; font-size: x-small; margin-left: 10px; top: -3px">{{ bio }}</span>
                             </div>
-
-                        </div>
                         </form>
                     </div><!--end of Connections Suggestions Card--><br style="height: 2px">
-                    {% empty %}
+                {% empty %}
                     <div style="font-style: italic; font-size: small">No Connection Suggestions: : Select more topics you are interested in </div>
                 {% endfor %}
 
@@ -1135,7 +1135,7 @@
 
         </div><!--col-md-4 rightColumn-->
 
-         <!--FORUM SUGGESTIONS-->
+        <!--FORUM SUGGESTIONS-->
 
         <div class="col-md-4 rightColumnTwo" style="position: relative; top: 190px;">
 
@@ -1143,7 +1143,7 @@
                     class="fa fa-comments-o"></span>&nbsp;Forums you may want to join</p></div>
 
             <div style="font-size: smaller;position: relative;top: 175px; left: 200px; color: gray; font-weight: bold;"
-                onclick="location.href='{% url 'nav_forums' %}'">
+                 onclick="location.href='{% url 'nav_forums' %}'">
                 View More <i class="fa fa-angle-double-right"></i>
             </div>
 
@@ -1151,9 +1151,9 @@
             <div class="col-md-12" style="margin-top: -3px">
 
 
-                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
-                <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
-                             <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
+                {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
+                    <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
+                        <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
 
                         <div style="position: relative; left: 235px; top: 3px;">
                             <h8><span class="label label-default"><span
@@ -1167,9 +1167,9 @@
 
                             <div class="connection_container">
                                 <div>
-                                        <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}','{{ forum_ids }}_hideForumSuggestion')"
-                                           style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit">{{ forum_names }}
-                                            </button>
+                                    <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}','{{ forum_ids }}_hideForumSuggestion')"
+                                            style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit">{{ forum_names }}
+                                    </button>
                                 </div>
                                 <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
 
@@ -1184,359 +1184,277 @@
 
                         </div>
                     </div><!--end of Forum Suggestions Card--><br>
-                    {% empty %}
+                {% empty %}
                     <div style="font-style: italic; font-size: small">No Forum Suggestions: Select more topics you are interested in</div>
                 {% endfor %}
 
 
-             <script>
-                function joinForum(forum_id, this_uid, forum_name, hide_block){
+                <script>
+                    function joinForum(forum_id, this_uid, forum_name, hide_block){
 
-                    var db = firebase.database().ref('Forums');
-                    blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
-                    blockedUsersRef.once('value', function(snapshot) {
-                        blockedUsers = snapshotToArray(snapshot);
-                        if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
-                            forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
-                            forumPrivateRef.once('value', function(snapPrivate) {
-                                privacy = snapPrivate.val();
-                                if (privacy == false){                                    // if the forums is not private
-                                    json_dict = {};
-                                    json_dict[forum_id] = forum_id;
-                                    updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
-                                    updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the user
-                                    json_dict[this_uid] = this_uid;
-                                    updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
-                                    updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
-                                    updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
-                                    this.hideDiv(hide_block);
-                                    //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
-                                    getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
-                                    getNumParticipantsRef.once('value', function(snapshot) {
-                                        var numParticipants = snapshot.val();              // get the current number of participants
+                        var db = firebase.database().ref('Forums');
+                        blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
+                        blockedUsersRef.once('value', function(snapshot) {
+                            blockedUsers = snapshotToArray(snapshot);
+                            if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
+                                forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
+                                forumPrivateRef.once('value', function(snapPrivate) {
+                                    privacy = snapPrivate.val();
+                                    if (privacy == false){                                    // if the forums is not private
+                                        json_dict = {};
+                                        json_dict[forum_id] = forum_id;
+                                        updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
+                                        updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the user
+                                        json_dict[this_uid] = this_uid;
+                                        updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
+                                        updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
+                                        updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
+                                        this.hideDiv(hide_block);
+                                        //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
+                                        getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
+                                        getNumParticipantsRef.once('value', function(snapshot) {
+                                            var numParticipants = snapshot.val();              // get the current number of participants
 
-                                        json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
+                                            json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
 
-                                        reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
-                                        reduceNumParticipantsRef.update(json_dict);         // update database
+                                            reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
+                                            reduceNumParticipantsRef.update(json_dict);         // update database
 
-                                        $("#modalForumJoined").modal('show');
-                                    });
-                                }
-                                else{                                                       // if the forum is private
-                                    forumCreatorRef = db.child(forum_id).child('Creator');
-                                    forumCreatorRef.once('value', function(snapCreator) {
-                                        creator_id = snapCreator.val();                     // send the message to this user id
-                                        message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
-                                        // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
-                                        // ToDo: Later - send notification to the Forum Creator with the
+                                            $("#modalForumJoined").modal('show');
+                                        });
+                                    }
+                                    else{                                                       // if the forum is private
+                                        forumCreatorRef = db.child(forum_id).child('Creator');
+                                        forumCreatorRef.once('value', function(snapCreator) {
+                                            creator_id = snapCreator.val();                     // send the message to this user id
+                                            message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
+                                            // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
 
-                                        $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
-                                    })
+                                            /*Sending Forum Request to Creator*/
+                                            var other = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived");/*Messages*/
+                                            var date_for_post = Date.now();
 
-                                }
-                            })
+                                            var created_id_1 = other.push();
+                                            created_id_1.set({
 
-                        }
-                        else{                                                               // if the user is blocked, display a message to the user
-                            $("#modalBlockedFromForum").modal('show');
-                        }
+                                                time: date_for_post,
+                                                sender: '{{ n }}',
+                                                sender_id: '{{ this_uid }}',
+                                                message: message,
+                                                receiver_id: creator_id ,
+                                                sender_profilePic: '{{ ProfilePic }}',
+                                                Type: "Forum_Request",
 
+                                            });
 
-                    });
+                                            var hope = String(created_id_1);
+                                            var result = hope.substring(hope.lastIndexOf("/") + 1);
+                                            var save_id = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived/" + result);/*Messages*/
+                                            save_id.update({
+                                                post_id: result  });
 
-                }
+                                            /*End of Sending Forum Request to Creator*/
+                                            $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
+                                        })
 
-                // hides the div with the specified id
-                function hideDiv(div_name){
-                                                                    document.getElementById(div_name).hidden = true;     // remove forum from all forums
+                                    }
+                                })
 
-                                                                }
-
-                // get a snapshot of a list of keys from firebase and convert it to an array
-                function snapshotToArray(snapshot) {
-                                                                    let returnArr = [];
-
-                                                                    snapshot.forEach(childSnapshot => {
-                                                                        let item = childSnapshot.val();
-                                                                        item.key = childSnapshot.key;
-                                                                        returnArr.push(item);
-                                                                    });
-
-                                                                    return returnArr;
-                                                                }
-
-                // returns true if the array contains the value
-                function arrayContainsValue(array, value){
-                    if (array.length > 0)
-                    {
-                        for (let i = 0; i < array.length; i++)
-                        {
-                            if (array[i] == value){
-                                return true;
                             }
-                        }
-                        return false;
-                    }
-                    else{
-                        return false;
-                    }
-                }
+                            else{                                                               // if the user is blocked, display a message to the user
+                                $("#modalBlockedFromForum").modal('show');
+                            }
 
-            </script>
+
+                        });
+
+                    }
+
+                    // hides the div with the specified id
+                    function hideDiv(div_name){
+                        document.getElementById(div_name).hidden = true;     // remove forum from all forums
+
+                    }
+
+                    // get a snapshot of a list of keys from firebase and convert it to an array
+                    function snapshotToArray(snapshot) {
+                        let returnArr = [];
+
+                        snapshot.forEach(childSnapshot => {
+                            let item = childSnapshot.val();
+                            item.key = childSnapshot.key;
+                            returnArr.push(item);
+                        });
+
+                        return returnArr;
+                    }
+
+                    // returns true if the array contains the value
+                    function arrayContainsValue(array, value){
+                        if (array.length > 0)
+                        {
+                            for (let i = 0; i < array.length; i++)
+                            {
+                                if (array[i] == value){
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+                        else{
+                            return false;
+                        }
+                    }
+
+                </script>
 
             </div><!--col-md-12-->
 
         </div><!--col-md-4 rightColumnTwo-->
-    <!--END OF RIGHTHAND SIDE-->
+        <!--END OF RIGHTHAND SIDE-->
 
-    <div class="badgeHeader" style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -400px; overflow: hidden">
-
-
-
-    {% load staticfiles %}
-  <img src = "{% static "GC_Auth/badge_icon.png" %}" alt="trohy" >
-
-  <h3> Your Badges </h3>
-
-
-  <div class="logoclass">
-
-        <hr style="position: relative; top: 90px;">
-      <br><br>
-
-</div>
+        <div class="badgeHeader" style=" height: 250px ; margin-left:-259px; width: 850px; position: relative; top: -400px; overflow: hidden">
 
 
 
-</div>
-<br>
+            {% load staticfiles %}
+            <img src = "{% static "GC_Auth/badge_icon.png" %}" alt="trohy" >
+
+            <h3> Your Badges </h3>
 
 
-<div class="container-fluid">
+            <div class="logoclass">
 
-<!--row1-->
-    <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -540px; overflow: hidden">
-      <!--coloumn-->
-      <!--Badge 1: FriendFinder-->
-      <div class="col-sm-3" style="background-color:white;">
-        {% load staticfiles %}
-          <!--friend finder 1 connection-->
-        <div id ="FriendFinder" class ="badgehover"> <!--badge hover for the hovering over the badge-->
+                <hr style="position: relative; top: 90px;">
+                <br><br>
 
-       </div>
-      </div>
-
-
-      <!--coloumn-->
-      <!--Badge 2: NetworkingNinja-->
-        <div class="col-sm-3" style="background-color:white;">
-{% load staticfiles %}
-          <!--coloumn networking ninja-->
-      <div id ="NetworkingNinja" class ="badgehover">
-
-
-      </div>
-      </div>
-
-      <!--coloumn-->
-      <!--Badge 3: Crazy Connector-->
-      <div class="col-sm-3" style="background-color:white;">
-
-        <div id ="CrazyConnector" class ="badgehover">
-           <!--coloumn crazy connector-->
-
-      </div>
-      </div>
-
-      <!--coloumn-->
-      <!--Badge 4: Popular Profiler-->
-      <div class="col-sm-3" style="background-color:white;">
-        <div id ="PopularProfile" class ="badgehover">
-           <!--coloumn popular profiler-->
-
-
-        </div>
-      </div>
-
-    </div>
-
-  <!--row2-->
-    <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -640px; overflow: hidden">
-
-      <!--coloumn-->
-       <!--Badge 5: Bright Spark-->
-      <div class="col-sm-3" style="background-color:white;"><!-- 3 courses taken-->
-        <div id="BrightSpark" class ="badgehover">
-           <!--coloumn popular profiler-->
-        </div>
-      </div>
-
-      <!--coloumn-->
-      <!--Badge 6: Bright Spark-->
-        <div class="col-sm-3" style="background-color:white;">
-          <!--fab academic 5 courses-->
-
-        <div id="FabAcademic" class ="badgehover">
-
-        </div>
-
-      </div>
-
-      <!--coloumn-->
-      <!--Badge 7: Got_Smarter-->
-        <div class="col-sm-3" style="background-color:white;">
-         <!--got smarter 10 courses-->
-
-        <div id ="Got_Smarter" class ="badgehover">
-           <!--coloumn popular profiler-->
-
-        </div>
-
-
-      </div>
-      <!--coloumn-->
-        <!--Badge 8: Locked-->
-     <div class="col-sm-3" style="background-color:white;">
-          <div id="locked" class ="badgehover">
-              {% load staticfiles %}
-
-         </div>
-
-      </div>
-
-    </div>
-
-    <!--row3-->
-    <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -740px; overflow: hidden">
-      <!--coloumn-->
-      <!--Badge 9: ForumBoffin-->
-      <div class="col-sm-3" style="background-color:white;">
-        <!--forum boffin , 1 forum-->
-
-        <div id="ForumBoffin" class ="badgehover">
-           <!--coloumn 5 forums-->
-
-        </div>
-
-
-
-
-      </div>
-      <!--coloumn-->
-
-      <!--Badge 10: SuperSecurity-->
-      <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
-
-        <div id="SuperSecurity" class ="badgehover">
-           <!--coloumn super security-->
-
+            </div>
 
 
 
         </div>
+        <br>
 
 
-      </div>
+        <div class="container-fluid">
 
-        <!--coloumn-->
-      <!--Badge 11: SuperSecurity-->
-     <div class="col-sm-3" style="background-color:white;">
+            <!--row1-->
+            <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -540px; overflow: hidden">
+                <!--coloumn-->
+                <!--Badge 1: FriendFinder-->
+                <div class="col-sm-3" style="background-color:white;">
+                    {% load staticfiles %}
+                    <!--friend finder 1 connection-->
+                    <div id ="FriendFinder" class ="badgehover"> <!--badge hover for the hovering over the badge-->
 
- <div class ="badgehover">
-             <!--coloumn popular profiler-->
-          {% if numConnections >= 1 %}<!--decorator update header-->
-
-                <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt= "lock" class="image" >
-
-                <div class="middle">
-                   <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
-                     <!--text for the hover-->
-                 </div>
-                {% else %}<!--no badge-->
-                    <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-                    <div class="middle">
-                        <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-                         <!--text for the hover-->
-                     </div>
-             {% endif %}
-
-    </div>
-      </div>
-
-      <!--coloumn-->
-        <!--Badge 12: -->
-      <div class="col-sm-3" style="background-color:white;">
-          <div class ="badgehover">
-              {% load staticfiles %}
-              <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
-           <div class="middle">
-             <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
-           </div>
-         </div>
-
-      </div>
-
-    </div>
+                    </div>
+                </div>
 
 
-  </div>
-</div>
-<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+                <!--coloumn-->
+                <!--Badge 2: NetworkingNinja-->
+                <div class="col-sm-3" style="background-color:white;">
+                    {% load staticfiles %}
+                    <!--coloumn networking ninja-->
+                    <div id ="NetworkingNinja" class ="badgehover">
 
 
-    <div class="container">
-        <br></br>
-        <!-- Call to action -->
-        <ul class="list-unstyled list-inline text-center py-2">
-            <li class="list-inline-item">
-                <!--  <h5 class="mb-1">Log in now: </h5>-->
-            </li>
-            <li class="list-inline-item">
+                    </div>
+                </div>
+
+                <!--coloumn-->
+                <!--Badge 3: Crazy Connector-->
+                <div class="col-sm-3" style="background-color:white;">
+
+                    <div id ="CrazyConnector" class ="badgehover">
+                        <!--coloumn crazy connector-->
+
+                    </div>
+                </div>
+
+                <!--coloumn-->
+                <!--Badge 4: Popular Profiler-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <div id ="PopularProfile" class ="badgehover">
+                        <!--coloumn popular profiler-->
 
 
-                <div class="rowthis"><!--table row-->
+                    </div>
+                </div>
 
-                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
-                        <br>
+            </div>
+
+            <!--row2-->
+            <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -640px; overflow: hidden">
+
+                <!--coloumn-->
+                <!--Badge 5: Bright Spark-->
+                <div class="col-sm-3" style="background-color:white;"><!-- 3 courses taken-->
+                    <div id="BrightSpark" class ="badgehover">
+                        <!--coloumn popular profiler-->
+                    </div>
+                </div>
+
+                <!--coloumn-->
+                <!--Badge 6: Bright Spark-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <!--fab academic 5 courses-->
+
+                    <div id="FabAcademic" class ="badgehover">
+
+                    </div>
+
+                </div>
+
+                <!--coloumn-->
+                <!--Badge 7: Got_Smarter-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <!--got smarter 10 courses-->
+
+                    <div id ="Got_Smarter" class ="badgehover">
+                        <!--coloumn popular profiler-->
+
+                    </div>
+
+
+                </div>
+                <!--coloumn-->
+                <!--Badge 8: Locked-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <div id="locked" class ="badgehover">
                         {% load staticfiles %}
-                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
-                    </div>
-
-
-                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
-
-                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
-                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
-                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
-                        </a>
-                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
-                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
-                    </div>
-
-                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
-
-                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
-
-                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
-                            GetConnected?</p></a>
-                        <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
-                        </a>
-                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging</p></a>
-                        <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
-                            Management</p></a>
-                        <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p></a>
-                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
-
 
                     </div>
 
-                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+                </div>
 
-                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
-                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
-                        <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
-                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+            </div>
+
+            <!--row3-->
+            <div class="row" style=" height: 250px ; margin-left:-300px; width: 850px; position: relative; top: -740px; overflow: hidden">
+                <!--coloumn-->
+                <!--Badge 9: ForumBoffin-->
+                <div class="col-sm-3" style="background-color:white;">
+                    <!--forum boffin , 1 forum-->
+
+                    <div id="ForumBoffin" class ="badgehover">
+                        <!--coloumn 5 forums-->
+
+                    </div>
+
+
+
+
+                </div>
+                <!--coloumn-->
+
+                <!--Badge 10: SuperSecurity-->
+                <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
+
+                    <div id="SuperSecurity" class ="badgehover">
+                        <!--coloumn super security-->
+
+
 
 
                     </div>
@@ -1544,28 +1462,133 @@
 
                 </div>
 
-                <br>
-                <br>
+                <!--coloumn-->
+                <!--Badge 11: SuperSecurity-->
+                <div class="col-sm-3" style="background-color:white;">
+
+                    <div class ="badgehover">
+                        <!--coloumn popular profiler-->
+                        {% if numConnections >= 1 %}<!--decorator update header-->
+
+                            <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt= "lock" class="image" >
+
+                            <div class="middle">
+                                <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
+                                <!--text for the hover-->
+                            </div>
+                            {% else %}<!--no badge-->
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                            <div class="middle">
+                                <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                                <!--text for the hover-->
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <!--coloumn-->
+                <!--Badge 12: -->
+                <div class="col-sm-3" style="background-color:white;">
+                    <div class ="badgehover">
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                        <div class="middle">
+                            <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
 
-            </li>
-        </ul>
-        <!-- Call to action -->
-
+        </div>
     </div>
-
-</footer>
-
+    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
 
 
-<script>
-<!--tooltip functionality-->
-  $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-  });
-</script>
+        <div class="container">
+            <br></br>
+            <!-- Call to action -->
+            <ul class="list-unstyled list-inline text-center py-2">
+                <li class="list-inline-item">
+                    <!--  <h5 class="mb-1">Log in now: </h5>-->
+                </li>
+                <li class="list-inline-item">
 
-<script>
+
+                    <div class="rowthis"><!--table row-->
+
+                        <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
+                        </div>
+
+
+                        <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                            <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                            <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
+                            <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                            </a>
+                            <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
+                            <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
+                        </div>
+
+                        <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                            <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                            <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
+                                GetConnected?</p></a>
+                            <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                            </a>
+                            <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging</p></a>
+                            <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
+                                Management</p></a>
+                            <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p></a>
+                            <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
+
+
+                        </div>
+
+                        <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                            <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                            <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                            <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                            <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <br>
+                    <br>
+
+
+                </li>
+            </ul>
+            <!-- Call to action -->
+
+        </div>
+
+    </footer>
+
+
+
+    <script>
+        <!--tooltip functionality-->
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    <script>
 
         //Badge_1_Friend_Finder
 
@@ -1585,24 +1608,24 @@
 
             {
 
-               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ffriendfinder5.png?alt=media&token=ee0c7bd4-f4b6-492e-a9a0-e45b210b8284\" alt= \"lock\" class=\"image\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 1 Connection</div>\n" +
-                   "                 </div>";
+                display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ffriendfinder5.png?alt=media&token=ee0c7bd4-f4b6-492e-a9a0-e45b210b8284\" alt= \"lock\" class=\"image\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 1 Connection</div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-               checkCelebration.on("value", function (snapshot) {
-                   var text = "Friend Finder Badge";
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                    var text = "Friend Finder Badge";
 
                     if (snapshot.val().FriendFinder == "not_celebrated"){
-                      $('#Congrats_Pop_Up').html(text);
-                      $("#Celebrations").modal();
-                                         //window.alert("hah?");
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        //window.alert("hah?");
 
 
                         checkCelebration.update({'FriendFinder': "celebrated"});
-               }
+                    }
 
                 });
 
@@ -1619,28 +1642,28 @@
 
             $('#FriendFinder').html(display);
 
-        //Badge_2_NetoworkingNinja
+            //Badge_2_NetoworkingNinja
 
             if (counter >=5 && counter < 10)
 
             {
 
-               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FnetworkingNinja.jpg?alt=media&token=a8cac22b-a196-405c-a300-a1e601654717\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Networking Ninja</strong> <br> 5 Connection</div>\n" +
-                   "                 </div>";
+                display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FnetworkingNinja.jpg?alt=media&token=a8cac22b-a196-405c-a300-a1e601654717\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Networking Ninja</strong> <br> 5 Connection</div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
-                       var text = "Networking Ninja Badge";
-                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                    var text = "Networking Ninja Badge";
+                    if (snapshot.val().NetworkingNinja == "not_celebrated"){
                         $('#Congrats_Pop_Up').html(text);
                         $("#Celebrations").modal();
                         checkCelebration.update({'NetworkingNinja': "celebrated"});
 
 
-               }
+                    }
 
                 })
 
@@ -1658,30 +1681,30 @@
             $('#NetworkingNinja').html(display);
 
 
-         //Badge_3_CrazyConnector
+            //Badge_3_CrazyConnector
 
-  if (counter >=10 && counter<15)
+            if (counter >=10 && counter<15)
 
             {
 
-               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FcrazyConnector2.png?alt=media&token=98707036-4745-4cfe-a688-f4c7b71a89df\" alt= \"lock\" class=\"image\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 10 Connection</div>\n" +
-                   "                 </div>";
+                display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FcrazyConnector2.png?alt=media&token=98707036-4745-4cfe-a688-f4c7b71a89df\" alt= \"lock\" class=\"image\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 10 Connection</div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
-                     var text = "Crazy Connector Badge";
+                    var text = "Crazy Connector Badge";
 
 
-                      if (snapshot.val().CrazyConnector == "not_celebrated"){
-                          $('#Congrats_Pop_Up').html(text);
-                          $("#Celebrations").modal();
-                          checkCelebration.update({'CrazyConnector': "celebrated"});
+                    if (snapshot.val().CrazyConnector == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'CrazyConnector': "celebrated"});
 
 
-               }
+                    }
 
                 })
 
@@ -1698,29 +1721,29 @@
 
             $('#CrazyConnector').html(display);
 
-          //Badge_4_PopularProfile
+            //Badge_4_PopularProfile
 
- if (counter >=15)
+            if (counter >=15)
 
             {
 
-               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FPopularProfiler2.png?alt=media&token=bfed5700-f4ea-4b0f-a992-81346e9fcaee\">\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 15 Connection</div>\n" +
-                   "                 </div>";
+                display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FPopularProfiler2.png?alt=media&token=bfed5700-f4ea-4b0f-a992-81346e9fcaee\">\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 15 Connection</div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
-                       var text = "Popular Profile Badge";
+                    var text = "Popular Profile Badge";
 
-                      if (snapshot.val().PopularProfile == "not_celebrated"){
+                    if (snapshot.val().PopularProfile == "not_celebrated"){
                         $('#Congrats_Pop_Up').html(text);
                         $("#Celebrations").modal();
                         checkCelebration.update({'PopularProfile': "celebrated"});
 
 
-               }
+                    }
 
                 })
 
@@ -1739,9 +1762,9 @@
 
         });
 
-          //Badge_5_BrightSpark
+        //Badge_5_BrightSpark
 
-var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+        var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
 
         Badges_for_Courses.on("value", function (snapshot) {
 
@@ -1756,22 +1779,22 @@ var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid
 
             {
 
-               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FBrigthSpark.png?alt=media&token=2dec1cb8-31d6-4ce5-9519-01dfcd3380b9\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 3 Courses</div>\n" +
-                   "                 </div>";
+                display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FBrigthSpark.png?alt=media&token=2dec1cb8-31d6-4ce5-9519-01dfcd3380b9\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 3 Courses</div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
-                var text = "Bright Spark Badge";
+                    var text = "Bright Spark Badge";
 
-                      if (snapshot.val().BrightSpark == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html(text);
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'BrightSpark': "celebrated"});
+                    if (snapshot.val().BrightSpark == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'BrightSpark': "celebrated"});
 
-               }
+                    }
 
                 })
 
@@ -1788,30 +1811,30 @@ var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid
 
             $('#BrightSpark').html(display);
 
-        //Badge_6_FabAcademic
+            //Badge_6_FabAcademic
 
-         if (counter >=5 && counter<10 )
+            if (counter >=5 && counter<10 )
 
             {
 
-               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FfabAcademic2.png?alt=media&token=d198ff3c-f91a-4e20-90b5-52eba72c7508\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 5 Courses</div>\n" +
-                   "                 </div>";
+                display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FfabAcademic2.png?alt=media&token=d198ff3c-f91a-4e20-90b5-52eba72c7508\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 5 Courses</div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
                     var text = "FabAcademic Badge";
 
 
-                      if (snapshot.val().FabAcademic == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'FabAcademic': "celebrated"});
+                    if (snapshot.val().FabAcademic == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'FabAcademic': "celebrated"});
 
 
-               }
+                    }
 
                 })
 
@@ -1828,31 +1851,31 @@ var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid
 
             $('#FabAcademic').html(display);
 
-           //Badge_7_Got_Smarter
+            //Badge_7_Got_Smarter
 
 
             if (counter >=10 )
 
             {
 
-               display =  "<https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FgotSmarter2.png?alt=media&token=3f6b81be-2f2a-41e5-a727-7f48e6e05762\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 10 Courses</div>\n" +
-                   "                 </div>";
+                display =  "<https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FgotSmarter2.png?alt=media&token=3f6b81be-2f2a-41e5-a727-7f48e6e05762\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 10 Courses</div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
-                 var text = "GotSmarter Badge";
+                    var text = "GotSmarter Badge";
 
-                      if (snapshot.val().GotSmarter == "not_celebrated"){
-                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
-                         $("#Celebrations").modal();
+                    if (snapshot.val().GotSmarter == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                        $("#Celebrations").modal();
 
-                       checkCelebration.update({'GotSmarter': "celebrated"});
+                        checkCelebration.update({'GotSmarter': "celebrated"});
 
 
-               }
+                    }
 
                 })
 
@@ -1885,7 +1908,7 @@ var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid
 
         //Badge_9_Forum_Boffin
 
-var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+        var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
 
         Badges_for_Forums.on("value", function (snapshot) {
 
@@ -1900,22 +1923,22 @@ var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid 
 
             {
 
-               display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FforumBoffin2.png?alt=media&token=a31eff4e-d16e-4a1c-a5f6-31cd86f0c6fb\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Forum Boffin</strong> <br> Active in 1 Forum </div>\n" +
-                   "                 </div>";
+                display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FforumBoffin2.png?alt=media&token=a31eff4e-d16e-4a1c-a5f6-31cd86f0c6fb\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Forum Boffin</strong> <br> Active in 1 Forum </div>\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
 
-                      if (snapshot.val().ForumBoffin == "not_celebrated"){
-                       var text = "GotSmarter Badge";
-                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                    if (snapshot.val().ForumBoffin == "not_celebrated"){
+                        var text = "GotSmarter Badge";
+                        $('#Congrats_Pop_Up').html("ForumBoffin Badge");
                         $("#Celebrations").modal();
-                       checkCelebration.update({'ForumBoffin': "celebrated"});
+                        checkCelebration.update({'ForumBoffin': "celebrated"});
 
-               }
+                    }
 
                 })
 
@@ -1933,8 +1956,8 @@ var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid 
             $('#ForumBoffin').html(display);});
 
 
- //Badge_10_Forum_Boffin
-var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
+        //Badge_10_Forum_Boffin
+        var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
 
         Badges_for_Badges_Private.on("value", function (snapshot) {
 
@@ -1946,23 +1969,23 @@ var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ t
 
             {
 
-               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fsupersecurity1.png?alt=media&token=3f68e4d3-957b-41f0-bda0-7341025e260b\" alt= \"lock\" class=\"image\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
-                   "                     <!--text for the hover-->\n" +
-                   "                 </div>";
+                display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fsupersecurity1.png?alt=media&token=3f68e4d3-957b-41f0-bda0-7341025e260b\" alt= \"lock\" class=\"image\" >\n" +
+                    "\n" +
+                    "                <div class=\"middle\">\n" +
+                    "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                    "                     <!--text for the hover-->\n" +
+                    "                 </div>";
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
                 checkCelebration.on("value", function (snapshot) {
 
-                      if (snapshot.val().SuperSecurity == "not_celebrated"){
-                       var text = "Super Security Badge";
-                       $('#Congrats_Pop_Up').html("Super Security Badge");
+                    if (snapshot.val().SuperSecurity == "not_celebrated"){
+                        var text = "Super Security Badge";
+                        $('#Congrats_Pop_Up').html("Super Security Badge");
                         $("#Celebrations").modal();
-                       checkCelebration.update({'SuperSecurity': "celebrated"});
+                        checkCelebration.update({'SuperSecurity': "celebrated"});
 
-               }
+                    }
 
                 })
 
@@ -1984,12 +2007,12 @@ var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ t
     </script>
 
 
-    </div><!--description-text-left-->
-    </div><!--Profile container-->
+</div><!--description-text-left-->
+</div><!--Profile container-->
 
 
 
-   {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+{% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
         Open modal for @mdo
     </button>{% endcomment %}
 
@@ -1997,129 +2020,129 @@ var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ t
 Badges_Celebrations_1
 {% endcomment %}
 
-    <div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div style="" class="modal-content">
-                <div style="" class="modal-header">
+<div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style="" class="modal-content">
+            <div style="" class="modal-header">
 
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
 
-                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
-                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
-
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <br>
-                <img style="margin-left: 50px"
-                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
-
-                <div class="modal-body">
+                <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
 
 
-                    <div id="ConnectionsListing_All" class="row">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <img style="margin-left: 50px"
+                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+            <div class="modal-body">
 
 
-                    </div> <!--end row-->
+                <div id="ConnectionsListing_All" class="row">
 
 
-                    <div class="modal-footer">
+                </div> <!--end row-->
 
 
-                    </div>
+                <div class="modal-footer">
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% comment %}
 Badges_Celebrations_2
 {% endcomment %}
-    <script>
+<script>
 
-        $('#Celebrations').on('show.bs.modal', function (event) {
+    $('#Celebrations').on('show.bs.modal', function (event) {
 
-        })
-    </script>
+    })
+</script>
 
 <!-- Modal for pop up message "forum joined" -->
-                <div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Joined</strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        You have joined this forum. It's now in your My Forums tab!
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-           <!-- Modal for pop up message "join request sent" -->
-            <div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Join Request Sent</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Joined</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
-
-             <!-- Modal for pop up message "blocked from forum message" -->
-            <div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Blocked from Forum</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    Unfortunately, you have been blocked from this forum. Access to this forum is denied.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            <div class="modal-body">
+                You have joined this forum. It's now in your My Forums tab!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
-                  </div>
-                </div>
-              </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for pop up message "join request sent" -->
+<div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Join Request Sent</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for pop up message "blocked from forum message" -->
+<div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Blocked from Forum</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Unfortunately, you have been blocked from this forum. Access to this forum is denied.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
