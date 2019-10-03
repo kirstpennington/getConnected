@@ -658,7 +658,7 @@
                             <h5 class="card-title" style="color: #e83e8c;"><strong>Your Forums</strong></h5>
                             <br>
                             <!--styling allows for the image and text to be next to one another-->
-                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
+                          {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
 
                                 <form action="/goForumsOpen/" method="post">
                                     {% csrf_token %}
@@ -726,8 +726,7 @@
 
                 <!--FORUM MESSAGING HEADERS-->
                 <!--User's Details-->
-                <div style="border-style: solid;border-radius: 10px;border-width: 3px;border-color: darkgray"
-                     class="panel panel-default">
+
                     <div style="background-color: white" class="panel-heading">
                         <div class="row"><!--table for person info-->
                             <div class="col-sm-1">
@@ -806,19 +805,19 @@
 
                         </div>
                         <!--post button-->
-                        <div class="buttonbot" id="btnGetMessage"
+                        <div class="buttonbot" id="btnGetMessage_1"
                              style="position:absolute;left: 85%;display: inline-block;">
                             <button type="button"><strong>Post</strong></button>
                         </div>
 
                         <br>
                     </div>
-                </div>
+
 
                 <!-- End of Post Details-->
 
 
-                <hr style="width: 100%; color: #e83e8c; height: 2px; background-color:#e83e8c#; margin-top: 5px">
+                <hr style="width: 100%; color: #e83e8c; height: 2px; background-color:#e83e8c; margin-top: 5px">
                 <br>
                 <!-- Post /////-->
                 <br><br><!--spaces between posts-->
@@ -829,14 +828,7 @@
                 <div id="post_comment">
 
 
-                    <div class="container_2">
-                        <img style="height: 400px;width: 1365px; opacity: 0.2; width:100%;"
-                             src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a"
-                             alt="Snow">
-                        <div class="centered"><strong><h1
-                                style="font-family: 'Roboto', sans-serif; color: deeppink;margin-top: -200px;margin-left: 50px ">
-                            Be the first to post in the group!</h1></strong></div>
-                    </div>
+
 
 
                 </div>
@@ -1026,40 +1018,67 @@
 
 <script>
 
+
+
     /* View Participants*/
+
+
+
+
+         var users_details = firebase.database().ref().child("Users").child('{{ forum_creator }}');
+            users_details.on("value", function (snapshot_forum_topics) {
+
+                var forum_names = snapshot_forum_topics.val().Name;
+                var forum_pics = snapshot_forum_topics.val().ProfilePic;
+                var forum_c = snapshot_forum_topics.val().Country;
+
+
+                var display_creator = " <img class=\"rounded-circle\" width=\"50\" height=\"50\"\n" +
+                    "                                                   src=\""+ forum_pics +"\"> " + forum_names ;
+
+                display_creator += "<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top;-2px;\"> " + forum_c + "</p>"
+
+
+                $('#ID_Creator').html(display_creator);
+
+            });
 
 
     var Participants_fb = firebase.database().ref().child("Forums").child('{{forum_id}}').child("Participants");
     Participants_fb.on("value", function (snapshot_user_topics) {
+        $('#Title_ID').html('{{ forum_name }}');
 
-        //var group_participants = snapshotToArrayKey(snapshot_user_topics);   //List of participants
         var j = 0;
         var result = "<table >";
         result += "<tr>";
 
         snapshot_user_topics.forEach(function (user_snapshot) {
+
             var user = user_snapshot.key;
-            var users_details = firebase.database().ref().child("Users").child(user);
-            users_details.on("value", function (snapshot_forum_topics) {
 
-                var forum_names = snapshot_forum_topics.val().Name;
-                var forum_pics = snapshot_forum_topics.val().ProfilePic;
-                var forum_num_participants = snapshot_forum_topics.val().numConnections;
-                var forum_num_BIO = snapshot_forum_topics.val().Bio;
-                var forum_num_country = snapshot_forum_topics.val().Country;
+            if (String(user).valueOf()!=String('{{ forum_creator }}').valueOf()) {
+
+                var users_details = firebase.database().ref().child("Users").child(user);
+                users_details.on("value", function (snapshot_forum_topics) {
+
+                    var forum_names = snapshot_forum_topics.val().Name;
+                    var forum_pics = snapshot_forum_topics.val().ProfilePic;
+                    var forum_num_participants = snapshot_forum_topics.val().numConnections;
+                    var forum_num_BIO = snapshot_forum_topics.val().Bio;
+                    var forum_num_country = snapshot_forum_topics.val().Country;
 
 
-                result += "<td>" + parts_All(forum_names, forum_num_BIO, forum_num_country, forum_pics) + "</td>";
+                    result += "<td>" + parts_All(forum_names, forum_num_BIO, forum_num_country, forum_pics) + "</td>";
 
-                if ((j + 1) % 2 == 0) {
-                    result += "</tr><tr>";
-                }
-                j++;
+                    if ((j + 1) % 2 == 0) {
+                        result += "</tr><tr>";
+                    }
+                    j++;
 
-                $('#FP_modal').html(result);
+                    $('#FP_modal').html(result);
 
-            });
-        });
+                });
+            } });
 
 
     });
@@ -1178,14 +1197,54 @@
 
 <script>
 
+    /**Fetching document to be attached*/
+
+
+function closeFile_1(){document.getElementById("File_Link").value = "";}
+function closeImage_1(){document.getElementById("Image_Link").value = "";}
+
+
+function ViewFile() {document.getElementById("File_Frame").src = document.getElementById("File_Link").value;}
+function ViewImage() {document.getElementById("frameImage").src = document.getElementById("viewframe").value;}
+
+
+
+
     var database_msgs = firebase.database().ref().child("Forums/" + '{{forum_id}}' + "/Messages");/*Messages*/
 
     // window.alert('{{forum_id}}');
 
-    $('#btnGetMessage').click(function () {
+    $('#btnGetMessage_1').click(function () {
+
+        var Document = "";
+        var isDocument = "No_File"
+
+        var AttachFile ="";
+        var AttachImage ="";
+
+        AttachFile = document.getElementById("File_Link").value;
+        AttachImage = document.getElementById("Image_Link").value;
+
+      if ( String(AttachImage).valueOf() != String("").valueOf() && String(AttachFile).valueOf() != String("").valueOf() )
+      {
+          window.alert( "You can only attach one document to a post")
+          return;
+      }
+
+       if ( String(AttachImage).valueOf() != String("").valueOf() || String(AttachFile).valueOf() != String("").valueOf() )
+       {
+           if ( String(AttachImage).valueOf() == String("").valueOf() ){Document = AttachFile; isDocument = "File";}
+           else {Document = AttachImage; isDocument = "Image"}
+       }
+
+       else {Document = "";}
+
+        document.getElementById("File_Link").value = "";
+        document.getElementById("Image_Link").value = "";
+
 
         /*Fetching time when items were pushed*/
-
+        var upload_document = "";
         var d = new Date(),
             minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
             hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
@@ -1203,8 +1262,22 @@
 
         var date_for_post = Date.now();
 
+
+       /* Check for document being uploaded*/
+
+        {% comment %}var isDocument; /* Can either be Image, File or No_File*/
+
+        if (String(AttachFile).valueOf() == String("").valueOf()){upload_document = AttachImage; isDocument="Image"}
+        else {upload_document = AttachFile; isDocument="File"}
+
+        if (upload_document.toString()==""){ isDocument="No_File"}{% endcomment %}
+
+        /* Check Complete*/
+
+
+
         /*Changing items in the db*/
-        writeUserData(date_for_post, "{{this_uid}}", post_message, "0", "0", "{{ username }}", "{{ profilePic }}", mesaage_title);
+        writeUserData(date_for_post, "{{this_uid}}", post_message, "0", "0", "{{ username }}", "{{ profilePic }}", mesaage_title,Document,isDocument);
         date_for_post;
         post_message;
         "{{this_uid}}";
@@ -1213,6 +1286,8 @@
         "{{ username }}";
         "{{ profilePic }}";
         Title_element;
+        Document;
+        isDocument
     });
 
     /*Whenever items changes (added, modified, deleted) in database, this event is called*/
@@ -1228,7 +1303,7 @@
     /*Push time entered and Message entered from textboxes, creates entry in firebase
     * push gives a unique key*/
 
-    function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic, Title_element) {/*Pushes to current users*/
+    function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic, Title_element,Document,isDocument) {/*Pushes to current users*/
 
 //window.alert(Title_element);
 
@@ -1241,7 +1316,9 @@
             comments_num: comments_num_default,
             sender_name: username,
             sender_profilePic: profilePic,
-            title: Title_element
+            title: Title_element,
+            document:Document,
+            isDocument: isDocument
 
         });
 
@@ -1260,11 +1337,13 @@
     /*Always refreshing data being loaded*/
     function renderUI(obj) {
 
-        var html = '';
+        var html = "";
+        var ifemplty = true;
         var ProfilePic = '{{ profilePic }}'
         var keys = Object.keys(obj);
         for (var i = keys.length - 1; i >= 0; i--) {
 
+            ifemplty=false;
 
             var display_time = obj[keys[i]].DateTime;
             display_time = Number(display_time); // cast it to a Number
@@ -1303,7 +1382,7 @@
 
             html += "       <div  style=\"border-style: solid;border-width: 2px;border-color: darkgray\" class=\"messagePost\" >\n" +
                 "\n" +
-                "                        <div style=\"background-color: #D3D3D3; width: 583px;height:90px;margin-left: -4px; margin-top: -4px; border-radius: 8px\" class=\"panel-heading\">\n" +
+                "                        <div style=\"background-color: #D3D3D3; \" class=\"panel-heading\">\n" +
                 "                        <div class=\"card-header\">\n" +
                 "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
                 "                                <div class=\"d-flex justify-content-between align-items-center\">\n" +
@@ -1317,24 +1396,20 @@
                 "                                    </div><div style=\"margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic\" class=\"\"><i  class=\"fa fa-clock-o\"></i> " + ts_display + "</div>\n" +
                 "\n" +
                 "                                    <div class=\"dropdownmenu\"\n" +
-                "                                         style=\"display: inline-block;position: relative; left: 58%;color: #666666; \">\n" +
+                "                                         style=\"display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px; \">\n" +
                 "                                        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
                 "                                            <!--more options menu-->\n" +
-                "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;position:relative;left: 200px;top:-40px\"></span></a>\n" +
+                "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;\"></span></a>\n" +
                 "\n" +
                 "                                            <ul class=\"dropdown-menu\">\n" +
                 "\n" +
-                "                                                <li onclick=\"Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')\"><a>Direct Message <span\n" +
-                "                                                        class=\"glyphicon glyphicon glyphicon-comment pull-right\"></span></a>\n" +
-                "                                                </li>\n" +
+                "                                                \n" +
                 "                                                <li class=\"divider\"></li>\n" +
                 "                                                  <li  onclick=\"Delete_post(\'" + obj[keys[i]].post_id + "\',\'" + obj[keys[i]].sender + "\')\"  ><a> Delete Post <span\n" +
                 "                                                        class=\"fa fa-trash pull-right\"></span></a>\n" +
                 "                                                </li>\n" +
                 "                                                 <li class=\"divider\"></li>\n" +
-                "                                                <li><a>Report<span\n" +
-                "                                                        class=\"    glyphicon glyphicon-warning-sign pull-right\"></span></a>\n" +
-                "                                                </li>\n" +
+                "                                               \n" +
                 "                                            </ul>\n" +
                 "                                        </li>\n" +
                 "                                    </div>\n" +
@@ -1349,7 +1424,9 @@
                 "\n" +
                 "                        <div class=\"card-body\">\n" +
                 "\n" +
-                "                            <p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
+                "                            "+ DisplayDocument(obj[keys[i]].isDocument,obj[keys[i]].document) +"" +
+                "" +
+                "<br><br><p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
                 "                                " + obj[keys[i]].text + "\n" +
                 "                            </p>\n" +
                 "\n" +
@@ -1371,7 +1448,7 @@
                 "                            <details style=\"outline: none; \">\n" +
                 "\n" +
                 "                                <summary style=\"color: #e83e8c;margin-left: 450px;font-weight: bold\"> <!--title of the replies collapsible-->\n" +
-                "                                    View Replies &nbsp  " + getComments_num(obj[keys[i]].post_id) + " \n" +
+                "                                    View "+getComments_num(obj[keys[i]].post_id) + " Replies &nbsp \n" +
                 "                                </summary>\n" +
                 "\n" +
                 "\n" +
@@ -1404,9 +1481,43 @@
                 "                <br><br><!--spaces between posts-->";
 
         }
+
+        if (ifemplty == true){
+
+            html = " <div class=\"container_2\">\n" +
+            "                        <img style=\"height: 400px;width: 1365px; opacity: 0.2; width:100%;\"\n" +
+            "                             src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
+            "                             alt=\"Snow\">\n" +
+            "                        <div class=\"centered\"><strong><h1\n" +
+            "                                style=\"font-family: 'Roboto', sans-serif; color: deeppink;margin-top: -200px;margin-left: 50px \">\n" +
+            "                            Be the first to post in the group!</h1></strong></div>\n" +
+            "                    </div>";
+        }
+
         $('#post_comment').html(html);
 
     }
+
+    function DisplayDocument(isDocument, document) {
+
+
+        var document_display = "";
+
+        if (String(isDocument).valueOf() == String("Image").valueOf()) {
+
+            document_display = " <img src=\" "+  document +"\"   style=\"width:200px; height:200px; margin-left: 30%;\" > ";
+        } else {
+
+            if (String(isDocument).valueOf() == String("File").valueOf()) {
+            } else {
+            }
+
+        }
+
+        return  document_display;
+
+    }
+
 
 
     <!--script for shwoing and hiding comments-->
@@ -1781,7 +1892,7 @@
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"><strong>Attach a File </strong></h5>
@@ -1796,28 +1907,27 @@
                         <div class="form-group"><!--- file link input-->
 
                             <label class="sr-only" for="message">post</label>
-                            <textarea class="form-control" id="post_msg" rows="1"
+                            <textarea class="form-control" id="File_Link" rows="1"
                                       placeholder="Insert File Link Here"></textarea>
                         </div>
                     </div><!--end col-->
 
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c; background-color: white;">View
+                        <button type="button" class="btn btn-secondary" onclick="ViewFile()"  style="border: 1px solid gray; color: #e83e8c; background-color: white;">View
                         </button>
                     </div><!--end col -->
                 </div><!-- end row-->
-                <iframe src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
+                <iframe id="File_Frame" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+                <button onclick="closeFile_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+                <button id="Attach_File" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Attach
                 </button>
 
@@ -1834,7 +1944,7 @@
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"><strong>Attach an Image </strong></h5>
@@ -1849,28 +1959,27 @@
                         <div class="form-group"><!--- file link input-->
 
                             <label class="sr-only" for="message">post</label>
-                            <textarea class="form-control" id="post_msg" rows="1"
-                                      placeholder="Insert Image Link Here"></textarea>
+                            <textarea class="form-control" id="viewframe" rows="1"
+                                      placeholder="Insert File Link Here"></textarea>
                         </div>
                     </div><!--end col-->
 
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c; background-color: white;">View
+                        <button type="button" class="btn btn-secondary" onclick="ViewImage()"  style="border: 1px solid gray; color: #e83e8c; background-color: white;">View
                         </button>
                     </div><!--end col -->
                 </div><!-- end row-->
-                <iframe src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
+                <iframe id="frameImage" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+                <button onclick="closeFile_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+                <button id="Attach_File" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Attach
                 </button>
 
@@ -2298,7 +2407,7 @@ Badges_Celebrations_2
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title" id="exampleModalLongTitle_1"><strong> Investment Banker Participants </strong>
+                <h5 style="font-weight: bold" class="modal-title" id="Title_ID">
                 </h5>
                 <br>
 
@@ -2314,11 +2423,8 @@ Badges_Celebrations_2
 
 
                     <div class="col-md-8">
-                        <h6 class="text-center" style="color:gray;font-size: 20px;margin-left:20px;">
-                            <strong> </strong><img class="rounded-circle" width="50" height="50"
-                                                   src="https://picsum.photos/50/50"
-                                                   style="border: 1px solid #DCDCDC ; border-radius: 50px;" alt="">Rachel
-                            Pies </h6>
+                        <h6 id="ID_Creator" class="text-center" style="color:gray;font-size: 20px;margin-left:20px;">
+                            </h6>
 
 
                     </div>
