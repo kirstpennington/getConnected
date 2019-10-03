@@ -1,0 +1,171 @@
+
+        .login-form {
+            width: 800px;
+            margin: 50px auto;
+            top: 30%;
+            right: 22%;
+            position:absolute;
+
+        }
+        .login-form form {
+            margin-bottom: 15px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            background-color: white;
+            opacity: 0.7;
+            filter: alpha(opacity=60); /* For IE8 and earlier */
+        }
+
+         h2 {
+            margin: 0 0 15px;
+            color:  #e83e8c;
+
+        }
+
+        .form-control, .btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+
+        .input-group-addon .fa {
+            font-size: 18px;
+        }
+
+        .label-rem {
+            color:  #e83e8c;
+        }
+
+        .btn {
+            font-size: 15px;
+            font-weight: bold;
+            background-color: #e83e8c;
+            border-color: black;
+        }
+
+        body, html {
+            height: 100%;
+            position: top right;
+            margin: 0;
+        }
+
+        .bg {
+            /* The image used
+         background-image: url("headerpic.jpg");*/
+
+            /* Full height */
+            height: 25%;
+
+            /* Center and scale the image nicely */
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #D3D3D3;
+
+
+        }
+
+         /*Hover feature for the submit button*/
+      button:hover{
+        background-color: #e83e8c;
+        color: white;
+    }
+
+        .bg .logo{
+          position: absolute;
+        /* left: 2%;
+        //  top: 7%;
+        position:relative;*/
+          top:20%;
+          left:57%;
+          transform:translate(-50%, -50%)
+
+        }
+
+        .bg .logo img{
+          height: 80%;
+          width: 80% ;
+
+
+        }
+
+        .intro-form{
+          width: 800px;
+          margin: 50px auto;
+          top: 30%;
+          right: 23%;
+          position:absolute;
+
+    }
+
+
+
+        .intro-form form{
+          margin-bottom: 15px;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+          padding: 20px;
+          background-color: white;
+          opacity: 1;
+          border-color: gray;
+          filter: alpha(opacity=60); /* For IE8 and earlier */
+        }
+
+        .login-form {
+          top: 17%;
+          right: 22%;
+          position:absolute;
+        }
+
+        .login-form form{
+          opacity: 1;
+          border-color: gray;
+        }
+
+        .description p{
+
+        }
+
+        .description .functions img{
+          height: 8%;
+          width: 15% ;
+
+        }
+
+        .footer{
+          background-color: #D3D3D3;
+        }
+
+        .description .function img{
+          position:relative;
+          top:50%;
+          left:50%;
+          transform:translate(-50%, -50%);
+        }
+
+
+
+       .carousel-inner > .item > img {
+            width:1000px;
+            height:300px;
+
+          }
+
+     .intro-form .logger button{
+
+            border-radius: 8px;
+            color: black;
+           /* background-color: #e83e8c;*/
+            border: 2px  solid #e83e8c;
+            opacity: 0.8;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left:10px;
+            padding-right:10px;
+            font-size: 16px;
+       }
+
+
+
+          /*.carousel-inner img {
+            margin: auto;
+            background-position: center center;
+          }*/

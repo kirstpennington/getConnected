@@ -1085,6 +1085,7 @@ $(document).ready(function(){
                                         var forum_creators = childSnapshot.val().Creator;
                                         var topics_json = childSnapshot.val().TopicTags;
                                         var forum_descriptions = childSnapshot.val().Description;
+                                        var forum_private = childSnapshot.val().Private;
 
                                         // create a string with all forum topics
                                         forum_topics = " | ";
@@ -1094,10 +1095,16 @@ $(document).ready(function(){
                                             }
                                         }
 
-                                        if (!myforumsArray.includes(key)) {  // if the forum is my forum, then add it to my forums card instead of all forums
+                                        if (!myforumsArray.includes(key)) {                                             // if the forum is my forum, then add it to my forums card instead of all forums
                                             //adds to all forums
+                                            if (forum_private == true || forum_private == "true"){                                   // button indicates whether the user has to request to  join the forum (if the forum is private)
+                                                var button_text = "Request Join";
+                                            }
+                                            else{
+                                                var button_text = "Join";
+                                            }
 
-                                            result += "<td>" + ForumsCardsAll(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, key) + "</td>";
+                                            result += "<td>" + ForumsCardsAll(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, key, button_text) + "</td>";
                                             if ((j + 1) % 3 == 0) {
                                                 result += "</tr><tr>";
                                             }
@@ -1124,7 +1131,7 @@ $(document).ready(function(){
                  });
 
 
-                function ForumsCardsAll(forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
+                function ForumsCardsAll(forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids, button_text){
                     var hideBlock = forum_ids+"_hideAll";
                     var card= "<div id=\""+ forum_ids +"_hideAll\" class=\"col-sm-3\" style=\"width:180px; margin-bottom: 100px; margin-left:30px; margin-right:90px; margin-top: 70px;\">\n" +
                         "\n" +
@@ -1163,7 +1170,7 @@ $(document).ready(function(){
                         "                                                                    <input id=\"forum_id\" name=\"forum_id\" value=\""+ forum_ids +"\" hidden style=\"display: none;\">\n" +
                         "\n" +
                         "                                                                    <button onclick=\"joinForum('"+ forum_ids +"', '{{ this_uid }}', '"+ forum_names +"', '"+ forum_ids +"_hideSuggestion')\"\n" +
-                        "                                                                   style=\"border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\">JOIN\n" +
+                        "                                                                   style=\"border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\">"+ button_text +"\n" +
                         "                                                                    <i class=\"fa fa-angle-double-right\"></i></button>\n" +
                         "                                                                </div><!-- /card-hovercard -->\n" +
                         "                                                            </div>";

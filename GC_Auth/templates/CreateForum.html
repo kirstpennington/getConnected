@@ -1120,15 +1120,21 @@
                         new_forum_json['Creator'] = '{{ this_uid }}';
                         new_forum_json['Enabled'] = true;
                         new_forum_json['numReported'] = 0;
-                        new_forum_json['ForumPic']= displayRadioValue();                                                 // get the picture in the selected radio button
+                        new_forum_json['ForumPic']= displayRadioValue();                                                // get the picture in the selected radio button
                         new_forum_json['TopicTags'] = json_topics;
                         new_forum_json['Reporters'] = 0;
 
-                        var participants = {};                                                                          // add the creator as a participant
-                        participants['{{ this_uid }}'] = '{{ this_uid }}';
+                        var creator = {};                                                                               // add the creator as a participant
+                        creator['{{ this_uid }}'] = '{{ this_uid }}';
+
+                        var participants = {};
+                        var selectedUsers = getSelectedUsers();                                                         // add all selected users to the particiapnts list
+                        for (i=0; i< selectedUsers.length; i++){
+                            participants[selectedUsers[i]] = selectedUsers[i];
+                        }
 
                         new_forum_json['NumParticipants'] = 1;
-                        new_forum_json['Participants'] = participants;
+                        new_forum_json['Participants'] = creator;
 
                         var newKey = db.push(new_forum_json).getKey();
 
@@ -1138,20 +1144,11 @@
 
                         /*Sending Forum Invitations*/
 
-                        var checkboxes_create_forum = document.getElementsByName('participants_create_forum');
-                        var vals_create_forum = [];
-                        for (var i = 0, n = checkboxes_create_forum.length; i < n; i++) {
-                            if (checkboxes_create_forum[i].checked) {
-                                vals_create_forum.push(checkboxes_create_forum[i].value);
-                            }
-                        }
-
+                        var vals_create_forum = selectedUsers;
                         var date_for_post = Date.now();
 
                         for (var i = 0, n = vals_create_forum.length; i < n; i++) {
-
                             var other = firebase.database().ref().child("Users/" + vals_create_forum[i] + "/RequestsReceived");/*Messages*/
-
                             var created_id_1 = other.push();
                             created_id_1.set({
 
@@ -1171,21 +1168,8 @@
                             save_id.update({
                                 post_id: result
                             });
-
                         }
 
-
-                        function displayRadioValue() {
-                            var ele = document.getElementsByName('rads');
-
-                            for(i = 0; i < ele.length; i++) {
-                                if(ele[i].checked) {
-                                    return ele[i].value;
-                                }
-
-                            }
-                            return "";
-                        }
 
                         /*End of Sending Participant Invitations*/
 
@@ -1200,6 +1184,18 @@
 
 
 
+            }
+
+            function displayRadioValue() {
+                var ele = document.getElementsByName('rads');
+
+                for(i = 0; i < ele.length; i++) {
+                    if(ele[i].checked) {
+                        return ele[i].value;
+                    }
+
+                }
+                return "";
             }
 
             // function to uncheck all topics on the UI
@@ -1391,16 +1387,16 @@
                     <script>
                         var searchableUsers = [];
                         var j = 0;                                                                                                        // spacing for forum suggestions
-                        var result = "<table >";
+                        var result = "<table>";
                         result += "<tr>";                                                                                                 // cards added to the popup
 
                         var getForumsFromDB = firebase.database().ref("Users");
-                        getForumsFromDB.on("value", function (all_users_snapshot) {                                                       // get a list of all the users on the system
+                        getForumsFromDB.once("value", function (all_users_snapshot) {                                                       // get a list of all the users on the system
 
                             all_users_snapshot.forEach(function (each_user_snapshot) {                                                // search through each user
                                 var user_id = each_user_snapshot.key;
                                 searchableUsers.push(user_id);
-                                if(user_id!='{{ this_uid }}'){                                     // exclude all participants of the forum
+                                if(user_id != '{{ this_uid }}'){                                     // exclude all participants of the forum
                                     var profile_pic = each_user_snapshot.val().ProfilePic;
                                     var name = each_user_snapshot.val().Name;
                                     var country = each_user_snapshot.val().Country;
@@ -1503,11 +1499,10 @@
                                     }
                                 }
                                 catch(err){
-                                    // Do Nothing
+                                    // Do Nothing if user check box is not found
                                 }
 
                             }
-                            selectedUsers.push('{{ this_uid }}');                                                                        // add this user as a participant
                             return selectedUsers;
                         }
 
