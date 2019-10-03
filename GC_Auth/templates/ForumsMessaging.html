@@ -1227,7 +1227,9 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
 
       if ( String(AttachImage).valueOf() != String("").valueOf() && String(AttachFile).valueOf() != String("").valueOf() )
       {
-          window.alert( "You can only attach one document to a post")
+         //window.alert( "You can only attach one document to a post")
+          $("#attachOneOnlyModal").modal('show');
+
           return;
       }
 
@@ -1959,7 +1961,7 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
                         <div class="form-group"><!--- file link input-->
 
                             <label class="sr-only" for="message">post</label>
-                            <textarea class="form-control" id="viewframe" rows="1"
+                            <textarea class="form-control" id="Image_Link" rows="1"
                                       placeholder="Insert File Link Here"></textarea>
                         </div>
                     </div><!--end col-->
@@ -2003,6 +2005,31 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
             </div>
             <div class="modal-body">
                 You can only delete your own posts
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for pop up message "you can only attach one" -->
+<div class="modal fade" id="attachOneOnlyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Cannot Attach</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You can only attach one file to a post.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
