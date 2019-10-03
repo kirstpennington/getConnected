@@ -954,6 +954,124 @@
 
                 </div> <!---//Message Post-->
 
+<div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
+
+                    <div class="panel-heading" style="background-color: #D3D3D3;">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
+                                        <!--styling allows for the image and text to be next to one another-->
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    </div>
+                                    <div class="ml-2" style="display:inline-block;">
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic"
+                                         class=""><i class="fa fa-clock-o"></i> 10 min ago
+                                    </div>
+
+                                    <div class="dropdownmenu"
+                                         style="display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px;">
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <!--more options menu-->
+                                            <span class="glyphicon glyphicon-option-vertical"
+                                                  style="color: black;"></span></a>
+
+                                            <ul class="dropdown-menu">
+
+                                                <li onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')">
+                                                    <a>Direct Message <span
+                                                            class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a> Delete Post <span
+                                                        class="fa fa-trash pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a>Report<span
+                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                    <h5 style="color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold">
+                                        Message Title goes here</h5>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+
+                    <div class="card-body">
+
+                        <p class="card-text;" style="font-family: sans-serif">
+                            This card is the dummy card with the file modal!
+                        </p>
+
+                        <!--this is the image which shows up on a post-->
+
+                        <img  data-toggle="modal" href="#fileViewModal" src="{% static "GC_Auth/FileAttached.png" %}" style="margin-left: 40%;height: 10%; width: 10%;" >
+
+
+
+                        <div style="margin-bottom: 0px; margin-left: 530px;font-weight: bold ">
+                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                               style="color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold">10
+                                &nbsp;<span class="glyphicon glyphicon-thumbs-up " style="color: #e83e8c; "></span>
+                        </div>
+
+                        <hr style="margin-top: 0px;color: darkgrey">
+                    </div>
+
+
+                    <div style=" margin-top: 0px;">
+                        <!--styling ensures the like and comment are next to one another-->
+
+
+                        <details style="outline: none;">
+
+                            <summary style="color: #e83e8c;text-align: right"> <!--title of the replies collapsible-->
+                                View Replies
+                            </summary>
+
+
+                            <!--Winny add message replies from here-->
+                            <ul>
+                                <a><img class="profile_img"
+                                        src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/> Name
+
+                                    <i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close" style="margin-left: 10px;"></i> </a>
+                                <br><br>
+                                <p style="color: black">Marketing 101, Video Assignment</p>
+
+                                <div>
+
+
+                                    <a id=""><textarea maxlength="200" id="-LjHDWtigiRAkkdKO3gw"
+                                                       style="width: 90%;height: 25px;border-radius: 5px;"></textarea></a>
+                                    <br>
+                                    <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
+                                            style="position: absolute;left: 77%;" type="button">Reply
+                                    </button>
+                                </div>
+
+                                <!--post button-->
+                            </ul>
+
+                        </details><!--end of collapasible--><!--end of collapasible-->
+
+                        <!--Dummy Drop-down for comment_please don't remove-->
+                    </div>
+
+                </div> <!---//Message Post-->
 
                 <br><br><!--spaces between posts-->
 
@@ -1919,7 +2037,7 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
                         </button>
                     </div><!--end col -->
                 </div><!-- end row-->
-                <iframe id="File_Frame" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
+                <iframe id="File_Frame" src=""
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
@@ -1971,7 +2089,7 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
                         </button>
                     </div><!--end col -->
                 </div><!-- end row-->
-                <iframe id="frameImage" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
+                <iframe id="frameImage" src=""
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
@@ -2061,6 +2179,41 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
                 </button>
 
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for pop up message "File Viewing" -->
+
+<div class="modal fade" id="fileViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="vertical-align-center" role="document">
+        <div class="modal-content" style="width: 1000px;margin-left: 15%;">
+            <div class="modal-header">
+                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel"><strong>View File </strong></h5>
+            </div>
+
+            <div class="modal-body">
+
+
+                <iframe id="frameView" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
+                        style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
+
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button  type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Okay
+                </button>
+
+            </div>
+
+
         </div>
     </div>
 </div>
