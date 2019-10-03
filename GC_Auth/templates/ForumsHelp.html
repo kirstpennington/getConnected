@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-     <script>
+    <script>
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
@@ -217,7 +217,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30"  style="border-radius: 20px;" src="{{ profilePic }}" alt=""></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30"
+                                                                                  height="30"
+                                                                                  style="border-radius: 20px;"
+                                                                                  src="{{ profilePic }}" alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -394,385 +397,509 @@
 
 <div class="header">
     {% load staticfiles %}
-    <p><img src="{% static "GC_Auth/help/forums.png" %}" alt= "lock" class="image" > <strong> Forums & Messaging </strong></p>
+    <p><img src="{% static "GC_Auth/help/forums.png" %}" alt="lock" class="image"> <strong> Forums & Messaging </strong>
+    </p>
 
 </div>
 <!--short intro paragraph in pink strip-->
 <div class="intro">
     <p style="text-align: center;"> Create and use the GetConnected Forums to build your network.
-        Attach articles, manage your privacy and direct message your connections to build lasting relationships. </p><br>
+        Attach articles, manage your privacy and direct message your connections to build lasting relationships. </p>
+    <br>
 
 </div>
 
 <!--show connections,forums and messaging in blocks with description-->
 <br>
 <div class=" features">
-<div class="panel-group text" id="accordion" style="width: 100%;padding-left: 0px;"><!--accordion of details-->
+    <div class="panel-group text" id="accordion" style="width: 100%;padding-left: 0px;"><!--accordion of details-->
 
-    <!--panel Personlising-->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseProfile"
-                   style="color:#ce3298">
-                    <strong>
-                        Creating a Forum
-                    </strong>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseProfile" class="panel-collapse collapse">
-            <div class="panel-body">
-                <!--row1 Personalising the profile -->
-        <p>Creating a forum</p>
-        <p style="font-size:20px;padding-top: 2px;"> You can create a new forum at anytime and invite other people to participate!</p><br>
-        <div class="row">
-            <!--coloumn-->
-            <div class="col-sm-6" style="background-color:white;">
-                <!--description-->
-                <p> Starting the forum</p>
-                <h1 style="color:grey;"> To make a forum, you can click on the plus icon on your home page (see right) or you can navigate to the forums page and click "create"</h1>
-                <h1>Once you click the plus icon, you will be taken to the "Create Forum" page (see below) where you can start creating and customising your forum!  </h1>
-
-
+        <!--panel Personlising-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseProfile"
+                       style="color:#ce3298">
+                        <strong>
+                            Creating and Maintaining a Forum
+                        </strong>
+                    </a>
+                </h4>
             </div>
-            <!--coloumn-->
-            <!--image-->
-            <div class="col-sm-6" style="background-color:white;">
-                <br>
-                {% load staticfiles %}
-                <img src="{% static "GC_Auth/help/createForum.png" %}" alt="lock" class="image"
-                     style="width:25%; height:25%;">
+            <div id="collapseProfile" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <!--row1 Personalising the profile -->
+                    <p>Creating and Maintaining a forum</p>
+                    <p style="font-size:20px;padding-top: 2px;"> You can create a new forum at anytime and invite other
+                        people to participate!</p><br>
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Starting the forum</p>
+                            <h1 style="color:grey;"> To make a forum, you can click on the plus icon on your home page
+                                (see right) or you can navigate to the forums page and click "create"</h1>
+                            <h1>Once you click the plus icon, you will be taken to the "Create Forum" page (see below)
+                                where you can start creating and customising your forum! </h1>
 
 
-            </div>
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/createForum.png" %}" alt="lock" class="image"
+                                 style="width:25%; height:25%;">
 
 
-        </div>
-        <br>
+                        </div>
 
-    </div>
-    <!--row 2nd paragraph on right-->
 
-    <div class="row">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br>
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/createForumPage.png" %}" alt="lock" class="image" style="width:90%; height:90%; border: 1px solid silver;">
+                    </div>
+                    <br>
 
-        </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <h1 style="color:grey;"> On the Create Forum page you can specify the details of your forum and customise it to your preferences. This is your forum so
-            you are able to choose who the participants are, the topics it will discuss and give it a profile picture. The list below gives more details:</h1>
+                </div>
+                <!--row 2nd paragraph on right-->
 
-            <h1> 1. Give your forum a name and description so participants know what its about
-            <br><br>
-            2. Select if you want your forum public or private - private forums can only be viewed by participants whereas public forums can
-                be seen by anyone on GetConnected
+                <div class="row">
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <br>
+                        {% load staticfiles %}
+                         <img src="{% static "GC_Auth/help/createF.png" %}" alt="lock" class="image"
+                                 style="width:80%; height:80%; border: 1px solid grey;">
+
+                    </div>
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <h1 style="color:grey;"> On the Create Forum page you can specify the details of your forum and
+                            customise it to your preferences. This is your forum so
+                            you are able to choose who the participants are, the topics it will discuss and give it a
+                            profile picture. The list below gives more details:</h1>
+
+                        <h1> 1. Give your forum a name and description so participants know what its about
+                            <br><br>
+                            2. Select if you want your forum public or private - private forums can only be viewed by
+                            participants whereas public forums can
+                            be seen by anyone on GetConnected
+                            <br><br>
+                            3. Choose participants for your forum - participants will be able to add posts, image and
+                            partake in discussions
+                            <br><br>
+                            4. Each forum will also discuss certain information, topics or subjects. Here you can
+                            specify which subjects this forum relates to
+
+                        </h1>
+                        <h1>Click Create to make the forum!</h1>
+
+                    </div>
+
+
+                </div>
                 <br><br>
-                3.  Choose participants for your forum - participants will be able to add posts, image and partake in discussions
+                 <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Maintaining your Forum</p>
+                            <h1 style="color:grey;"> If you are the creator of a forum, you can easily maintain it through your forum settings. Simply open up
+                            the forum you want to edit. You will see a settings button in the top middle of the page (see image on the right). Click the settings button
+                            and you will be redirected to the forum settings page. </h1>
+                            <h1>The forum settings page is very similar to the creating a forum page. From here you are able to:</h1>
+                            <h1> - Add more participants to your forum </h1>
+                            <h1> - Change your forum picture, name and description</h1>
+                            <h1> - Edit forum topics </h1>
+
+
+
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br><br><br><br><br><br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/forumSettings.png" %}" alt="lock" class="image"
+                                 style="width:80%; height:80%;border: 1px solid grey;">
+
+
+                        </div>
+
+
+                    </div>
                 <br><br>
-                4. Each forum will also discuss certain information, topics or subjects. Here you can specify which subjects this forum relates to
 
-            </h1>
-            <h1>Click Create to make the forum!</h1>
 
+
+                <!--row-->
+
+
+            </div><!--end-->
         </div>
 
-
-    </div>
-    <br><br>
-
-
-
-
-
-    <!--row-->
-
-
-        </div><!--end-->
-    </div>
-
-    <!--panel finding a forum-->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFinding"
-                   style="color:#ce3298">
-                    <strong>
-                      Finding a Forum
-                    </strong>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFinding" class="panel-collapse collapse">
-            <div class="panel-body">
-
-
-<p>Finding a Forum</p>
-        <p style="font-size:20px;padding-top: 2px;"> We know there are tons of Forums to look through, so we've made it easier for you to find what you want.</p><br>
-        <div class="row">
-            <!--coloumn-->
-            <div class="col-sm-6" style="background-color:white;">
-                <!--description-->
-                <p> Searching & Filtering</p>
-                <h1 style="color:grey;"> If you want to see all the forums you are a particpant in you can click the "My Forums" tab.</h1>
-                <h1>Or, if you want to see all the forums on offer in GetConnected click the "All Forums" tab. This let's you find new forums to join! </h1>
-
-
+        <!--panel finding a forum-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFinding"
+                       style="color:#ce3298">
+                        <strong>
+                            Finding a Forum
+                        </strong>
+                    </a>
+                </h4>
             </div>
-            <!--coloumn-->
-            <!--image-->
-            <div class="col-sm-6" style="background-color:white;">
-                <br>
-                {% load staticfiles %}
-                <img src="{% static "GC_Auth/help/myallforums.png" %}" alt="lock" class="image"
-                     style="width:90%; height:90%;">
+            <div id="collapseFinding" class="panel-collapse collapse">
+                <div class="panel-body">
 
 
-            </div>
+                    <p>Finding a Forum</p>
+                    <p style="font-size:20px;padding-top: 2px;"> We know there are tons of Forums to look through, so
+                        we've made it easier for you to find what you want.</p><br>
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Searching & Filtering</p>
+                            <h1 style="color:grey;"> If you want to see all the forums you are a particpant in you can
+                                click the "My Forums" tab.</h1>
+                            <h1>Or, if you want to see all the forums on offer in GetConnected click the "All Forums"
+                                tab. This let's you find new forums to join! </h1>
 
 
-        </div>
-        <br>
-
-    </div>
-    <!--row 2nd paragraph on right-->
-
-    <div class="row">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br>
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image" style="width:50%; height:50%; border: 1px solid silver;">
-
-        </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br><br>
-            <h1 style="color:grey;"> You can use the filter pane on the left to filter forums by subject! This helps you to find forums that relate to your interests. Neat,right?</h1>
-<h1>If you are looking for a specific forum, you could also use the search bar at the top, just type in the name and click search. </h1>
-
-        </div>
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/myallforums.png" %}" alt="lock" class="image"
+                                 style="width:90%; height:90%;">
 
 
-    </div>
-
-<br><br>
+                        </div>
 
 
-            </div>
-        </div>
-
-
-    <!--panel Participating-->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title"><!--panel 1 heading-->
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapsePrivacy" style="color:#ce3298">
-                    <strong>
-                        Participating in a Forum
-                    </strong>
-                </a>
-            </h4>
-        </div>
-        <div id="collapsePrivacy" class="panel-collapse collapse">
-            <!--panel 1 content-->
-            <div class="panel-body">
-                <div class="row">
-                <!--coloumn-->
-            <div class="col-sm-6" style="background-color:white;">
-                <!--description-->
-                <p> Participating in a Forum</p>
-                <h1 style="color:grey;">Once you are a member of a forum, you can participate in the discussions, like messages, reply and create new posts.</h1>
-                <h1>The image seen on the right is the area of the forums page where you get to make a post. You can add a title to your post,
-                a message and even attach files or images. All forum participants will be able to see your post, like and comment on it. Any
-                inappropriate posts will, however, be removed.</h1>
-
-
-            </div>
-            <!--coloumn-->
-            <!--image-->
-            <div class="col-sm-6" style="background-color:white;">
-                <br>
-                {% load staticfiles %}
-                <img src="{% static "GC_Auth/help/forumpost.png" %}" alt="lock" class="image"
-                     style="width:90%; height:90%;">
-
-
-            </div>
+                    </div>
+                    <br>
 
                 </div>
-
-
-                <div class="row">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br>
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image" style="width:50%; height:50%; border: 1px solid silver;">
-
-        </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br><br>
-            <h1 style="color:grey;"> The item on the left is an example of a posted message. Here you can see you can reply, like and report other posts.
-            Forums are a great way to stay in touch with collegues and classmates, while also finding new people with shared interests. </h1>
-
-        </div>
-
-
-    </div>
-
-            </div>
-        </div>
-    </div><!--end panel-->
-
-     <!--panel Direct Messaging-->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title"><!--panel 1 heading-->
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseDM" style="color:#ce3298">
-                    <strong>
-                       Direct Messaging
-                    </strong>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseDM" class="panel-collapse collapse">
-            <!--panel 1 content-->
-            <div class="panel-body">
-                <div class="row">
-                <!--coloumn-->
-            <div class="col-sm-6" style="background-color:white;">
-                <!--description-->
-                <p>Direct Messaging</p>
-                <h1 style="color:grey;">Besides messaging in forums, you can also directly message your connections! This is a great way to keep in
-                contact with connections, plan a meet-up or even collaborate on projects.</h1>
-                <h1>Click the little message icon in your navigation bar, and select "view all" to start direct messaging people. The screen shown on the right should be seen.</h1>
-
-
-            </div>
-            <!--coloumn-->
-            <!--image-->
-            <div class="col-sm-6" style="background-color:white;">
-                <br>
-                {% load staticfiles %}
-                <img src="{% static "GC_Auth/help/forumpost.png" %}" alt="lock" class="image"
-                     style="width:90%; height:90%;">
-
-
-            </div>
-
-                </div>
-
+                <!--row 2nd paragraph on right-->
 
                 <div class="row">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br>
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image" style="width:50%; height:50%; border: 1px solid silver;">
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image"
+                             style="width:50%; height:50%; border: 1px solid silver;">
 
-        </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br><br>
-            <p> Starting a Direct Message</p>
-            <h1 style="color:grey;"> Click "New Conversation" to select someone to message. The pop-up seen on the left should show up with
-            a list of your connections. Select which one you want to chat to and tap "Message". You can also use the search bar to filter through all your connections. </h1>
-            <h1> Once you have chosen a person to message, simply type your message in the box where it says "Write your message" and tap send!</h1>
-        </div>
+                    </div>
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <br><br>
+                        <h1 style="color:grey;"> You can use the filter pane on the left to filter forums by subject!
+                            This helps you to find forums that relate to your interests. Neat,right?</h1>
+                        <h1>If you are looking for a specific forum, you could also use the search bar at the top, just
+                            type in the name and click search. </h1>
 
-
-    </div>
-
-                <div class="row">
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br><br><br>
-            <p> Group Messaging </p>
-            <h1> You can also message a group of people at once! To do this, click "New Group" and select multiple people from the pop-up ( on the right).
-            Everyone you select will be added to the group, and you can all start chatting.</h1>
-
-
-        </div>
-        <!--coloumn-->
-        <div class="col-sm-6" style="background-color:white;">
-            <br>
-            {% load staticfiles %}
-            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image" style="width:50%; height:50%; border: 1px solid silver;">
-
-
-        </div>
-
-
-    </div>
-
-
-
-            </div>
-        </div>
-    </div><!--end panel-->
-
-    <!--panel FAQ-->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title"><!--panel 1 heading-->
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseFaq" style="color:#ce3298">
-                    <strong>
-                        Frequently Asked Questions
-                    </strong>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFaq" class="panel-collapse collapse">
-            <!--panel 1 content-->
-            <div class="panel-body">
-
-                <!--Frequently asked questions section-->
-                <p style="font-size: 40px;color:gray;text-align: center;"> Frequently Asked Questions</p>
-                <!--grey block with questions & answers-->
-                <div class="faq">
-                    <!--question-->
-                    <h1>
-                        <div class="numbercircles">1</div>
-                        <i>
-                            What happens if a message is reported?</i></h1>
-                    <!--padding left indents the answer to the right-->
-                    <p style="padding-left: 40px;">Messages can be reported by any participant in a forum if they feel the message is inappropriate. Should a message be reported
-                        it will then be inspected by a member of the GetConnected team and removed if it is infact inappropriate.
-                    </p>
-
-                    <!--question-->
-                    <h1>
-                        <div class="numbercircles">2</div>
-                        <i>
-                            How can I add more people to a forum after creating it?</i></h1>
-                    <p style="padding-left: 40px;">You can edit a forum's information after creation by using the edit forum page. Here you can add or remove participants at anytime. </p>
-
-                    <!--question-->
-                    <h1>
-                        <div class="numbercircles">3</div>
-                        <i>
-                          Is there a limit to the number of forums I can create or be a member in? </i></h1>
-                    <p style="padding-left: 40px;">No ways! Create as many forums and participate in as many forums as you like.</p>
+                    </div>
 
 
                 </div>
 
+                <br><br>
+
+
             </div>
         </div>
-    </div><!--end panel-->
 
 
-</div><!--end of accordion-->
-    </div>
+        <!--panel Participating-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><!--panel 1 heading-->
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapsePrivacy" style="color:#ce3298">
+                        <strong>
+                            Participating in a Forum
+                        </strong>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapsePrivacy" class="panel-collapse collapse">
+                <!--panel 1 content-->
+                <div class="panel-body">
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p> Participating in a Forum</p>
+                            <h1 style="color:grey;">Once you are a member of a forum, you can participate in the
+                                discussions, like messages, reply and create new posts.</h1>
+                            <h1>The image seen on the right is the area of the forums page where you get to make a post.
+                                You can add a title to your post,
+                                a message and even attach files or images. All forum participants will be able to see
+                                your post, like and comment on it. Any
+                                inappropriate posts will, however, be removed.</h1>
+
+
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/forumpost.png" %}" alt="lock" class="image"
+                                 style="width:90%; height:90%;">
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image"
+                                 style="width:50%; height:50%; border: 1px solid silver;">
+
+                        </div>
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br><br>
+                            <h1 style="color:grey;"> The item on the left is an example of a posted message. Here you
+                                can see you can reply, like and report other posts.
+                                Forums are a great way to stay in touch with collegues and classmates, while also
+                                finding new people with shared interests. </h1>
+
+                        </div>
+
+
+                    </div>
+                    <br>
+                     <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+
+                             <br><br>
+                            <p> Reporting a Forum</p>
+                            <h1 style="color:grey;"> GetConnected aims to ensure a safe and inclusive environment for all its users. Any
+                            inapropriate behavior by users is not entertained. Should you feel a certain forum is not adhering to this, please do not hesistate to
+                            report the forum. A forum which has been reported five or more times will be immediately disabled from GetConnected and reviewed by a staff member.</h1>
+
+                            <h1>Open the forum you would like to report, click the menu in the middle ( see image on the right), then click "Report Forum".
+                                You are only able to report a forum once. </h1>
+
+                             <p> Leaving a Forum</p>
+                            <h1 style="color:grey;"> If you no longer wish to participate in a forum you can leave the forum
+                            by clicking the "Leave forum" button seen on the right. Once you leave a forum you will no longer be
+                            able to view or send posts to the forum. </h1>
+                        </div>
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+
+<br><br><br>
+                            <img src="{% static "GC_Auth/help/filters.png" %}" alt="lock" class="image"
+                                 style="width:50%; height:50%; border: 1px solid silver;">
+
+                        </div>
+
+
+                    </div>
+                    <br>
+
+
+                </div>
+            </div>
+        </div><!--end panel-->
+
+        <!--panel Direct Messaging-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><!--panel 1 heading-->
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseDM" style="color:#ce3298">
+                        <strong>
+                            Direct Messaging
+                        </strong>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseDM" class="panel-collapse collapse">
+                <!--panel 1 content-->
+                <div class="panel-body">
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <p>Direct Messaging</p>
+                            <h1 style="color:grey;">Besides messaging in forums, you can also directly message your
+                                connections! This is a great way to keep in
+                                contact with connections, plan a meet-up or even collaborate on projects.</h1>
+                            <h1>Click the little message icon in your navigation bar, and select "view all" to start
+                                direct messaging people. The screen shown on the right should be seen.</h1>
+
+
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/directMessaginPage.png" %}" alt="lock" class="image"
+                                 style="width:90%; height:90%; border: 1px solid gray;">
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <!--coloumn-->
+                        <br><br>
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/DirectMessaginPopUp.png" %}" alt="lock" class="image"
+                                 style="width:50%; height:50%; border: 1px solid silver;">
+
+                        </div>
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            <p> Starting a Direct Message</p>
+                            <h1 style="color:grey;"> Click "New Conversation" to select someone to message. The pop-up
+                                seen on the left will show up with
+                                a list of your connections. Select which one you want to chat to and tap "Message". You
+                                can also use the search bar to filter through all your connections. </h1>
+                            <h1> Once you have chosen a person to message, simply type your message in the box where it
+                                says "Write your message" and hit send!</h1>
+                        </div>
+
+
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br><br><br><br><br><br>
+                            <p> Group Messaging </p>
+                            <h1> You can also message a group of people at once! To do this, click "Create Group",
+                                add a group name at the top, choose a group picture and select multiple people from the pop-up (on the right).
+                                Everyone you select will be added to the group, and you can all start chatting.</h1>
+
+
+                        </div>
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/GroupMessagingPopUp.png" %}" alt="lock" class="image"
+                                 style="width:50%; height:50%; border: 1px solid silver;">
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <!--coloumn-->
+
+                        <div class="col-sm-6" style="background-color:white;">
+                             <br><br><br><br><br><br>
+                             {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/viewparticipants.png" %}" alt="lock" class="image"
+                                 style="width:80%; height:100%; border: 1px solid silver;">
+
+                        </div>
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+
+
+                            <br><br>
+                             <p>Viewing Participants</p>
+                            <h1> If you want to know who the other members of a group message are, open up the group and click the dropdown menu -
+                                the little arrow (seen in the image on the left). Then click the option "View Participants". A pop-up will be displayed with all members of the chat.</h1>
+
+                            <p>Leaving a Group </p>
+                            <h1>If you no longer wish to be part of a group or chat, you can easily delete the chat by selecting "Delete Conversation", as seen in the image on the left.
+                            If you decide to delete a conversation, you will no longer be able to participate in a chat or view the chat!</h1>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div><!--end panel-->
+
+        <!--panel FAQ-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><!--panel 1 heading-->
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseFaq" style="color:#ce3298">
+                        <strong>
+                            Frequently Asked Questions
+                        </strong>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFaq" class="panel-collapse collapse">
+                <!--panel 1 content-->
+                <div class="panel-body">
+
+                    <!--Frequently asked questions section-->
+                    <p style="font-size: 40px;color:gray;text-align: center;"> Frequently Asked Questions</p>
+                    <!--grey block with questions & answers-->
+                    <div class="faq">
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">1</div>
+                            <i>
+                                What happens if a message is reported?</i></h1>
+                        <!--padding left indents the answer to the right-->
+                        <p style="padding-left: 40px;">Messages can be reported by any participant in a forum if they
+                            feel the message is inappropriate. Should a message be reported
+                            it will then be inspected by a member of the GetConnected team and removed if it is infact
+                            inappropriate.
+                        </p>
+
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">2</div>
+                            <i>
+                                How can I add more people to a forum after creating it?</i></h1>
+                        <p style="padding-left: 40px;">You can edit a forum's information after creation by using the
+                            edit forum page. Here you can add or remove participants at anytime. </p>
+
+                        <!--question-->
+                        <h1>
+                            <div class="numbercircles">3</div>
+                            <i>
+                                Is there a limit to the number of forums I can create or be a member in? </i></h1>
+                        <p style="padding-left: 40px;">No ways! Create as many forums and participate in as many forums
+                            as you like.</p>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div><!--end panel-->
+
+
+    </div><!--end of accordion-->
+</div>
 
 
 <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
@@ -815,10 +942,12 @@
                             GetConnected?</p></a>
                         <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
                         </a>
-                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging</p></a>
+                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums &
+                            Messaging</p></a>
                         <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
                             Management</p></a>
-                        <a onclick="location.href='{% url 'helpcourses' %}'"  style="color: white"><p>Courses Help</p></a>
+                        <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p>
+                        </a>
                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
 
 
