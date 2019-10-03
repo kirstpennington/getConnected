@@ -1379,6 +1379,38 @@ $(document).ready(function(){
                                                                                         // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
                                                                                         // ToDo: Later - send notification to the Forum Creator with the
 
+
+
+                                                                                         /*Sending Forum Request to Creator*/
+                                                                                        var other = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived");/*Messages*/
+                                                                                        var date_for_post = Date.now();
+
+                                                                                        var created_id_1 = other.push();
+                                                                                        created_id_1.set({
+
+                                                                                            time: date_for_post,
+                                                                                            sender: '{{ n }}',
+                                                                                            sender_id: '{{ this_uid }}',
+                                                                                            message: message,
+                                                                                            receiver_id: creator_id ,
+                                                                                            sender_profilePic: '{{ ProfilePic }}',
+                                                                                            Type: "Forum_Request",
+
+                                                                                        });
+
+                                                                                        var hope = String(created_id_1);
+                                                                                        var result = hope.substring(hope.lastIndexOf("/") + 1);
+                                                                                        var save_id = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived/" + result);/*Messages*/
+                                                                                        save_id.update({
+                                                                                            post_id: result  });
+
+                                                                                        /*End of Sending Forum Request to Creator*/
+
+
+
+
+
+
                                                                                         $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
                                                                                     })
 

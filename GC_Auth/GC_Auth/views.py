@@ -538,7 +538,9 @@ def goCreateForum(request):
 
     return render(request, 'CreateForum.html', {'this_uid': the_user.uid,
                                                 'profilePic': the_user.profilePic,
-                                                'all_topics_list': all_topics_list})
+                                                'all_topics_list': all_topics_list,
+                                                'n': the_user.name
+                                                })
 
 def goForumsHelp(request):
     return render(request, 'ForumsHelp.html', {'profilePic': the_user.profilePic})
@@ -562,8 +564,8 @@ def goForumsOpen(request):
                                              'numConnections': the_user.numConnections,
                                              'numForums': the_user.numForums,
                                              'my_forums_list': forum_methods.getForumsInfoList(user_methods.getForumssList(the_user.uid)),
-                                             'suggested_forums_list': forum_methods.getForumsInfoList(
-                                               short_forum_suggestions),
+                                             #'suggested_forums_list': forum_methods.getForumsInfoList(
+                                              # short_forum_suggestions),
                                                     'forum_name': forum_methods.getForumName(forum_id),
                                                     'forum_description': forum_methods.getForumDescription(forum_id),
                                                     'num_participants': forum_methods.getForumNumParticipants(forum_id),
