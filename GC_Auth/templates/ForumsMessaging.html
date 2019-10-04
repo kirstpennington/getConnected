@@ -658,7 +658,7 @@
                             <h5 class="card-title" style="color: #e83e8c;"><strong>Your Forums</strong></h5>
                             <br>
                             <!--styling allows for the image and text to be next to one another-->
-                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
+                         {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
 
                                 <form action="/goForumsOpen/" method="post">
                                     {% csrf_token %}
@@ -719,92 +719,99 @@
                     </div> <!--end of dropdown-->
                 {% endif %}
 
+
+
+
+
+
                 <!--FORUM MESSAGING HEADERS-->
                 <!--User's Details-->
 
-                <div style="background-color: white" class="panel-heading">
-                    <div class="row"><!--table for person info-->
-                        <div class="col-sm-1">
-                            <div class="mr-2">
-                                <!--styling allows for the image and text to be next to one another-->
-                                <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
+                    <div style="background-color: white" class="panel-heading">
+                        <div class="row"><!--table for person info-->
+                            <div class="col-sm-1">
+                                <div class="mr-2">
+                                    <!--styling allows for the image and text to be next to one another-->
+                                    <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
+
+                                </div>
+
 
                             </div>
+                            <div class="col-sm-11">
+                                <div class="ml-2">
+                                    <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
+
+                                    <!--Number of Connections and Forums-->
+                                    <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: black;">
+                                        Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                    <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: black;">
+                                        Forums <span
+                                            class="label label-default">{{ numForums }}</span></h8>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of User's Details-->
+
+
+                        <!-- leave forum button-->
+
+                        {% if forum_creator != this_uid %}
+
+                        {% else %} <!-- only the forum creator can access forum settings -->
+                            <form action="/goForumSettings/" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
+                                <div>
+                                    <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
+                                            title="ForumSettings" data-placement="right"
+                                            style="margin-right:10px; background-color:#e83e8c; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                            type="submit"
+                                            class="btn btn-primary pull-right">
+                                        <a href="#"><i
+                                                class=" fa fa-gear" style="color: white"></i></a>
+                                    </button>
+                                </div>
+                            </form>
+                        {% endif %}
+
+
+                        <!-- Post Details-->
+
+                        <div hidden id="this_forum_id">{{ forum_id }}</div>
+                        <a style="font-family: sans-serif;  color: black;  font-weight: bold ">Title:
+                            &nbsp;&nbsp;</a><input maxlength="50" id="Title_element" type="text" name="title"
+                                                   style="border-radius: 4px;width: 60%;"><br><br>
+
+
+                        <div class="form-group"><!--- Make a new Post-->
+
+                            <label class="sr-only" for="message">post</label>
+                            <textarea class="form-control" id="post_msg" rows="3"
+                                      placeholder="What would you like to share?"></textarea>
+                        </div>
+
+                        <div class="form-group" style="display: inline-block; vertical-align: top;">
+                            <!--attach file button-->
+
+                            <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
+                                    class="glyphicon glyphicon-paperclip"></span></a>
+                            <a data-toggle="modal" data-target="#attachImageModal"
+                               style="color:#e83e8c;margin-left: 5px;"><span
+                                    class="glyphicon glyphicon-picture"></span></a>
 
 
                         </div>
-                        <div class="col-sm-11">
-                            <div class="ml-2">
-                                <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
-
-                                <!--Number of Connections and Forums-->
-                                <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: black;">
-                                    Connections <span class="label label-default">{{ numConnections }}</span></h8>
-                                <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: black;">
-                                    Forums <span
-                                        class="label label-default">{{ numForums }}</span></h8>
-
-
-                            </div>
+                        <!--post button-->
+                        <div class="buttonbot" id="btnGetMessage_1"
+                             style="position:absolute;left: 85%;display: inline-block;">
+                            <button type="button"><strong>Post</strong></button>
                         </div>
+
+                        <br>
                     </div>
-                    <!-- End of User's Details-->
-
-
-                    <!-- leave forum button-->
-
-                    {% if forum_creator != this_uid %}
-
-                    {% else %} <!-- only the forum creator can access forum settings -->
-                        <form action="/goForumSettings/" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
-                            <div>
-                                <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
-                                        title="ForumSettings" data-placement="right"
-                                        style="margin-right:10px; background-color:#e83e8c; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                        type="submit"
-                                        class="btn btn-primary pull-right">
-                                    <a href="#"><i
-                                            class=" fa fa-gear" style="color: white"></i></a>
-                                </button>
-                            </div>
-                        </form>
-                    {% endif %}
-
-
-                    <!-- Post Details-->
-
-                    <div hidden id="this_forum_id">{{ forum_id }}</div>
-                    <a style="font-family: sans-serif;  color: black;  font-weight: bold ">Title:
-                        &nbsp;&nbsp;</a><input maxlength="50" id="Title_element" type="text" name="title"
-                                               style="border-radius: 4px;width: 60%;"><br><br>
-
-
-                    <div class="form-group"><!--- Make a new Post-->
-
-                        <label class="sr-only" for="message">post</label>
-                        <textarea class="form-control" id="post_msg" rows="3"
-                                  placeholder="What would you like to share?"></textarea>
-                    </div>
-
-                    <div class="form-group" style="display: inline-block; vertical-align: top;">
-                        <!--attach file button-->
-
-                        <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
-                                class="glyphicon glyphicon-paperclip"></span></a>
-                        <a data-toggle="modal" data-target="#attachImageModal"
-                           style="color:#e83e8c;margin-left: 5px;"><span
-                                class="glyphicon glyphicon-picture"></span></a>
-                    </div>
-                    <!--post button-->
-                    <div class="buttonbot" id="btnGetMessage_1"
-                         style="position:absolute;left: 85%;display: inline-block;">
-                        <button type="button"><strong>Post</strong></button>
-                    </div>
-
-                    <br>
-                </div>
 
 
                 <!-- End of Post Details-->
@@ -820,7 +827,257 @@
                 <div id="comment"></div>
                 <div id="post_comment">
 
+
+
+
+
                 </div>
+                <!--- actual Posted message block-->
+               {% comment %}<div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
+
+                    <div class="panel-heading" style="background-color: #D3D3D3;">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
+                                        <!--styling allows for the image and text to be next to one another-->
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    </div>
+                                    <div class="ml-2" style="display:inline-block;">
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic"
+                                         class=""><i class="fa fa-clock-o"></i> 10 min ago
+                                    </div>
+
+                                    <div class="dropdownmenu"
+                                         style="display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px;">
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <!--more options menu-->
+                                            <span class="glyphicon glyphicon-option-vertical"
+                                                  style="color: black;"></span></a>
+
+                                            <ul class="dropdown-menu">
+
+                                                <li onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')">
+                                                    <a>Direct Message <span
+                                                            class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a> Delete Post <span
+                                                        class="fa fa-trash pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a>Report<span
+                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                    <h5 style="color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold">
+                                        Message Title goes here</h5>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+
+                    <div class="card-body">
+
+                        <p class="card-text;" style="font-family: sans-serif">
+                            This card is still a dummy, you can use this to test your designs..
+                        </p>
+
+                        <!--this is the image which shows up on a post-->
+
+                        <img  src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
+                             style="width:200px; height:200px; margin-left: 30%;" >
+
+
+
+                        <div style="margin-bottom: 0px; margin-left: 530px;font-weight: bold ">
+                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                               style="color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold">10
+                                &nbsp;<span class="glyphicon glyphicon-thumbs-up " style="color: #e83e8c; "></span>
+                        </div>
+
+                        <hr style="margin-top: 0px;color: darkgrey">
+                    </div>
+
+
+                    <div style=" margin-top: 0px;">
+                        <!--styling ensures the like and comment are next to one another-->
+
+
+                        <details style="outline: none;">
+
+                            <summary style="color: #e83e8c;text-align: right"> <!--title of the replies collapsible-->
+                                View Replies
+                            </summary>
+
+
+                            <!--Winny add message replies from here-->
+                            <ul>
+                                <a><img class="profile_img"
+                                        src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/> Name
+
+                                    <i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close" style="margin-left: 10px;"></i> </a>
+                                <br><br>
+                                <p style="color: black">Marketing 101, Video Assignment</p>
+
+                                <div>
+
+
+                                    <a id=""><textarea maxlength="200" id="-LjHDWtigiRAkkdKO3gw"
+                                                       style="width: 90%;height: 25px;border-radius: 5px;"></textarea></a>
+                                    <br>
+                                    <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
+                                            style="position: absolute;left: 77%;" type="button">Reply
+                                    </button>
+                                </div>
+
+                                <!--post button-->
+                            </ul>
+
+                        </details><!--end of collapasible--><!--end of collapasible-->
+
+                        <!--Dummy Drop-down for comment_please don't remove-->
+                    </div>
+
+                </div> <!---//Message Post-->
+
+<div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
+
+                    <div class="panel-heading" style="background-color: #D3D3D3;">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2" style="display: inline-block; vertical-align: top;">
+                                        <!--styling allows for the image and text to be next to one another-->
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    </div>
+                                    <div class="ml-2" style="display:inline-block;">
+                                        <div class="h5 m-0"><strong> Kirsten Pennington</strong>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic"
+                                         class=""><i class="fa fa-clock-o"></i> 10 min ago
+                                    </div>
+
+                                    <div class="dropdownmenu"
+                                         style="display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px;">
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <!--more options menu-->
+                                            <span class="glyphicon glyphicon-option-vertical"
+                                                  style="color: black;"></span></a>
+
+                                            <ul class="dropdown-menu">
+
+                                                <li onclick="Delete_post('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')">
+                                                    <a>Direct Message <span
+                                                            class="glyphicon glyphicon glyphicon-comment pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a> Delete Post <span
+                                                        class="fa fa-trash pull-right"></span></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a>Report<span
+                                                        class="    glyphicon glyphicon-warning-sign pull-right"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                    <h5 style="color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold">
+                                        Message Title goes here</h5>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+
+                    <div class="card-body">
+
+                        <p class="card-text;" style="font-family: sans-serif">
+                            This card is the dummy card with the file modal!
+                        </p>
+
+                        <!--this is the image which shows up on a post-->
+
+
+
+                            <a href="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64" target="_blank"> <img src="position: relative; top: 80%; right: 80%;" ></a>
+"
+
+                        <div style="margin-bottom: 0px; margin-left: 530px;font-weight: bold ">
+                            <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
+                               style="color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold">10
+                                &nbsp;<span class="glyphicon glyphicon-thumbs-up " style="color: #e83e8c; "></span>
+                        </div>
+
+                        <hr style="margin-top: 0px;color: darkgrey">
+                    </div>
+
+
+                    <div style=" margin-top: 0px;">
+                        <!--styling ensures the like and comment are next to one another-->
+
+
+                        <details style="outline: none;">
+
+                            <summary style="color: #e83e8c;text-align: right"> <!--title of the replies collapsible-->
+                                View Replies
+                            </summary>
+
+
+                            <!--Winny add message replies from here-->
+                            <ul>
+                                <a><img class="profile_img"
+                                        src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/> Name
+
+                                    <i
+                                            onclick="Delete_comment('-LjHx7ZqqoTe32nhvFht','-LjR8AlWuZAGc540fM0v')"
+                                            class="fa fa-close" style="margin-left: 10px;"></i> </a>
+                                <br><br>
+                                <p style="color: black">Marketing 101, Video Assignment</p>
+
+                                <div>
+
+
+                                    <a id=""><textarea maxlength="200" id="-LjHDWtigiRAkkdKO3gw"
+                                                       style="width: 90%;height: 25px;border-radius: 5px;"></textarea></a>
+                                    <br>
+                                    <button class="buttonbot2" onclick="saveComment('-LjHxLAZzrskdrbwxU1z')"
+                                            style="position: absolute;left: 77%;" type="button">Reply
+                                    </button>
+                                </div>
+
+                                <!--post button-->
+                            </ul>
+
+                        </details><!--end of collapasible--><!--end of collapasible-->
+
+                        <!--Dummy Drop-down for comment_please don't remove-->
+                    </div>
+
+                </div> <!---//Message Post-->
+
+                <br><br><!--spaces between posts-->{% endcomment %}
+
+
+                <!-- End of Post /////-->
+
 
             </div>
             <!--rhs item-->
@@ -886,28 +1143,27 @@
 
 
 
-    var users_details = firebase.database().ref().child("Users").child('{{ forum_creator }}');
-    users_details.on("value", function (snapshot_forum_topics) {
+         var users_details = firebase.database().ref().child("Users").child('{{ forum_creator }}');
+            users_details.on("value", function (snapshot_forum_topics) {
 
-        var forum_names = snapshot_forum_topics.val().Name;
-        var forum_pics = snapshot_forum_topics.val().ProfilePic;
-        var forum_c = snapshot_forum_topics.val().Country;
-
-
-        var display_creator = " <img class=\"rounded-circle\" width=\"50\" height=\"50\"\n" +
-            "                                                   src=\""+ forum_pics +"\"> " + forum_names ;
-
-        display_creator += "<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top;-2px;\"> " + forum_c + "</p>"
+                var forum_names = snapshot_forum_topics.val().Name;
+                var forum_pics = snapshot_forum_topics.val().ProfilePic;
+                var forum_c = snapshot_forum_topics.val().Country;
 
 
-        $('#ID_Creator').html(display_creator);
+                var display_creator = " <img class=\"rounded-circle\" width=\"50\" height=\"50\"\n" +
+                    "                                                   src=\""+ forum_pics +"\"> " + forum_names ;
 
-    });
+                display_creator += "<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top;-2px;\"> " + forum_c + "</p>"
+
+
+                $('#ID_Creator').html(display_creator);
+
+            });
 
 
     var Participants_fb = firebase.database().ref().child("Forums").child('{{forum_id}}').child("Participants");
-    Participants_fb.once("value", function (snapshot_user_topics) {
-        $('#FP_modal').html("");                                        // clear HTML
+    Participants_fb.on("value", function (snapshot_user_topics) {
         $('#Title_ID').html('{{ forum_name }}');
 
         var j = 0;
@@ -921,7 +1177,7 @@
             if (String(user).valueOf()!=String('{{ forum_creator }}').valueOf()) {
 
                 var users_details = firebase.database().ref().child("Users").child(user);
-                users_details.once("value", function (snapshot_forum_topics) {
+                users_details.on("value", function (snapshot_forum_topics) {
 
                     var forum_names = snapshot_forum_topics.val().Name;
                     var forum_pics = snapshot_forum_topics.val().ProfilePic;
@@ -1062,16 +1318,16 @@
     /**Fetching document to be attached*/
 
 
-    function closeFile_1(){
-        document.getElementById("File_Link").value = "";
-        document.getElementById("File_Frame").src = "";}
-    function closeImage_1(){
-        document.getElementById("frameImage").value = "";
-        document.getElementById("viewframe").src = "";}
+function closeFile_1(){
+                    document.getElementById("File_Link").value = "";
+                    document.getElementById("File_Frame").src = "";}
+function closeImage_1(){
+                    document.getElementById("frameImage").value = "";
+                    document.getElementById("viewframe").src = "";}
 
 
-    function ViewFile() {document.getElementById("File_Frame").src = document.getElementById("File_Link").value;}
-    function ViewImage() {document.getElementById("viewframe").src = document.getElementById("frameImage").value;}
+function ViewFile() {document.getElementById("File_Frame").src = document.getElementById("File_Link").value;}
+function ViewImage() {document.getElementById("viewframe").src = document.getElementById("frameImage").value;}
 
 
 
@@ -1091,21 +1347,21 @@
         AttachFile = document.getElementById("File_Link").value;
         AttachImage = document.getElementById("frameImage").value;
 
-        if ( (AttachImage.length != 0 )&& (AttachFile.length !=0) )
-        {
-            window.alert( "You can only attach one document to a post")
-            // $("#attachOneOnlyModal").modal('show');
+      if ( (AttachImage.length != 0 )&& (AttachFile.length !=0) )
+      {
+         window.alert( "You can only attach one document to a post")
+         // $("#attachOneOnlyModal").modal('show');
 
-            return;
-        }
+          return;
+      }
 
-        if ( String(AttachImage).valueOf() != String("").valueOf() || String(AttachFile).valueOf() != String("").valueOf() )
-        {
-            if ( String(AttachImage).valueOf() == String("").valueOf() ){Document = AttachFile; isDocument = "File";}
-            else {Document = AttachImage; isDocument = "Image"}
-        }
+       if ( String(AttachImage).valueOf() != String("").valueOf() || String(AttachFile).valueOf() != String("").valueOf() )
+       {
+           if ( String(AttachImage).valueOf() == String("").valueOf() ){Document = AttachFile; isDocument = "File";}
+           else {Document = AttachImage; isDocument = "Image"}
+       }
 
-        else {Document = "";}
+       else {Document = "";}
 
         document.getElementById("File_Link").value = "";
         document.getElementById("frameImage").value = "";
@@ -1133,7 +1389,7 @@
         var date_for_post = Date.now();
 
 
-        /* Check for document being uploaded*/
+       /* Check for document being uploaded*/
 
         {% comment %}var isDocument; /* Can either be Image, File or No_File*/
 
@@ -1213,149 +1469,149 @@
 
         try{
 
-            var keys = Object.keys(obj);
+        var keys = Object.keys(obj);
 
-            for (var i = keys.length - 1; i >= 0; i--) {
-
-
-                var display_time = obj[keys[i]].DateTime;
-                display_time = Number(display_time); // cast it to a Number
-                var ts_display = timeAgo(display_time);
-
-                var commects_object = obj[keys[i]].comments;
-
-                var profile = "";
-
-                var database_userdetails = firebase.database().ref().child("Users/" + obj[keys[i]].sender);/*Current users account*/
-                var username_name = "Nothing";
-
-                /*Name and Picture*/
-                database_userdetails.on("value", function (snapshot) {
-                    var username_check;
-                    username_check = snapshot.val().Name;
-                    username_name = username_check;
-                });
+        for (var i = keys.length - 1; i >= 0; i--) {
 
 
-                var num = getComments_num(obj[keys[i]].post_id);
-                var num_likes = getLikes_num(obj[keys[i]].post_id);
+            var display_time = obj[keys[i]].DateTime;
+            display_time = Number(display_time); // cast it to a Number
+            var ts_display = timeAgo(display_time);
 
-                /*Counter for comments*/
+            var commects_object = obj[keys[i]].comments;
+
+            var profile = "";
+
+            var database_userdetails = firebase.database().ref().child("Users/" + obj[keys[i]].sender);/*Current users account*/
+            var username_name = "Nothing";
+
+            /*Name and Picture*/
+            database_userdetails.on("value", function (snapshot) {
+                var username_check;
+                username_check = snapshot.val().Name;
+                username_name = username_check;
+            });
 
 
-                html += "       <div  style=\"border-style: solid;border-width: 2px;border-color: darkgray\" class=\"messagePost\" >\n" +
-                    "\n" +
-                    "                        <div style=\"background-color: #D3D3D3; \" class=\"panel-heading\">\n" +
-                    "                        <div class=\"card-header\">\n" +
-                    "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
-                    "                                <div class=\"d-flex justify-content-between align-items-center\">\n" +
-                    "                                    <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\">\n" +
-                    "                                        <!--styling allows for the image and text to be next to one another-->\n" +
-                    "                                        <img class=\"rounded-circle\" width=\"45\" src=\"" + obj[keys[i]].sender_profilePic + "\" alt=\"\">\n" +
-                    "                                    </div>\n" +
-                    "                                    <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
-                    "                                        <div class=\"h5 m-0\"><strong> " + obj[keys[i]].sender_name + "</strong>\n" +
-                    "                                           </div>\n" +
-                    "                                    </div><div style=\"margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic\" class=\"\"><i  class=\"fa fa-clock-o\"></i> " + ts_display + "</div>\n" +
-                    "\n" +
-                    "                                    <div class=\"dropdownmenu\"\n" +
-                    "                                         style=\"display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px; \">\n" +
-                    "                                        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-                    "                                            <!--more options menu-->\n" +
-                    "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;\"></span></a>\n" +
-                    "\n" +
-                    "                                            <ul class=\"dropdown-menu\">\n" +
-                    "\n" +
-                    "                                                \n" +
-                    "                                                <li class=\"divider\"></li>\n" +
-                    "                                                  <li  onclick=\"Delete_post(\'" + obj[keys[i]].post_id + "\',\'" + obj[keys[i]].sender + "\')\"  ><a> Delete Post <span\n" +
-                    "                                                        class=\"fa fa-trash pull-right\"></span></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                 <li class=\"divider\"></li>\n" +
-                    "                                               \n" +
-                    "                                            </ul>\n" +
-                    "                                        </li>\n" +
-                    "                                    </div>\n" +
-                    "\n" +
-                    "                                    <h5 style=\"color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold\"> " + obj[keys[i]].title + "</h5>\n" +
-                    "                                </div>\n" +
-                    "\n" +
-                    "\n" +
-                    "                            </div>\n" +
-                    "                        </div></div><br>\n" +
-                    "\n" +
-                    "\n" +
-                    "                        <div class=\"card-body\">\n" +
-                    "\n" +
-                    "                            "+ DisplayDocument(obj[keys[i]].isDocument,obj[keys[i]].document) +"" +
-                    "" +
-                    "<br><br><p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
-                    "                                " + obj[keys[i]].text + "\n" +
-                    "                            </p>\n" +
-                    "\n" +
-                    "                            <div style=\"margin-bottom: 0px; margin-left: 530px;font-weight: bold \">\n" +
-                    "                                <p onclick=\"Increase_Likes(\'" + obj[keys[i]].post_id + "\')\"style=\"color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold\">" + num_likes + " &nbsp;<span class=\"glyphicon glyphicon-thumbs-up \" style=\"color: #e83e8c; \"></span>\n" +
-                    "                            </div>\n" +
-                    "\n" +
-                    "                            <hr style=\"margin-top: 0px;color: darkgrey\">\n" +
-                    "                        </div>\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "                        <div style=\" margin-top: 0px;\">\n" +
-                    "                            <!--styling ensures the like and comment are next to one another-->\n" +
-                    "\n" +
-                    "\n" +
-                    "                            <details style=\"outline: none; \">\n" +
-                    "\n" +
-                    "                                <summary style=\"color: #e83e8c;margin-left: 450px;font-weight: bold\"> <!--title of the replies collapsible-->\n" +
-                    "                                    View "+getComments_num(obj[keys[i]].post_id) + " Replies &nbsp \n" +
-                    "                                </summary>\n" +
-                    "\n" +
-                    "\n" +
-                    "                                <!--Winny add message replies from here-->\n" +
-                    "                                <ul style=\"margin-left: -30px\">\n" +
-                    "                                   " + Reply_list(obj[keys[i]].post_id) + " \n" +
-                    "\n" +
-                    "                                        \n" +
-                    "                                    \n" +
-                    "                                        \n" +
-                    "                                    \n" +
-                    "\n" +
-                    "                                        \n" +
-                    "\n" +
-                    "                                      <img class=\"rounded-circle\" width=\"45\" src=\"" + "{{ profilePic }}" + "\" alt=\"\">  <a id=\"\"><textarea maxlength=\"200\" placeholder=\"Reply to this post\" id=\"" + obj[keys[i]].post_id + "\" style=\"width: 451px;height: 30px;border-radius: 5px; border-style: solid;border-width: 2px;border-color: darkgray;position: relative;top:15px\"></textarea></a>\n" +
-                    "                                       <br>\n" +
-                    "                                        <button class=\"buttonbot2\" onclick=\"saveComment(\'" + obj[keys[i]].post_id + "\')\" style=\"position: relative;left:505px;top:-32px\" type=\"button\">Reply</button>\n" +
-                    "                                    </div>\n" +
-                    "\n" +
-                    "                                    <!--post button-->\n" +
-                    "                                </ul>\n" +
-                    "\n" +
-                    "                            </details><!--end of collapasible-->\n" +
-                    "\n" +
-                    "                            <!--Dummy Drop-down for comment_please don't remove-->\n" +
-                    "                        </div>\n" +
-                    "\n" +
-                    "                </div> <!---//Message Post-->\n" +
-                    "\n" +
-                    "                <br><br><!--spaces between posts-->";
+            var num = getComments_num(obj[keys[i]].post_id);
+            var num_likes = getLikes_num(obj[keys[i]].post_id);
 
-            }}
+            /*Counter for comments*/
+
+
+            html += "       <div  style=\"border-style: solid;border-width: 2px;border-color: darkgray\" class=\"messagePost\" >\n" +
+                "\n" +
+                "                        <div style=\"background-color: #D3D3D3; \" class=\"panel-heading\">\n" +
+                "                        <div class=\"card-header\">\n" +
+                "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                "                                <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                "                                    <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\">\n" +
+                "                                        <!--styling allows for the image and text to be next to one another-->\n" +
+                "                                        <img class=\"rounded-circle\" width=\"45\" src=\"" + obj[keys[i]].sender_profilePic + "\" alt=\"\">\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
+                "                                        <div class=\"h5 m-0\"><strong> " + obj[keys[i]].sender_name + "</strong>\n" +
+                "                                           </div>\n" +
+                "                                    </div><div style=\"margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic\" class=\"\"><i  class=\"fa fa-clock-o\"></i> " + ts_display + "</div>\n" +
+                "\n" +
+                "                                    <div class=\"dropdownmenu\"\n" +
+                "                                         style=\"display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px; \">\n" +
+                "                                        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                "                                            <!--more options menu-->\n" +
+                "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;\"></span></a>\n" +
+                "\n" +
+                "                                            <ul class=\"dropdown-menu\">\n" +
+                "\n" +
+                "                                                \n" +
+                "                                                <li class=\"divider\"></li>\n" +
+                "                                                  <li  onclick=\"Delete_post(\'" + obj[keys[i]].post_id + "\',\'" + obj[keys[i]].sender + "\')\"  ><a> Delete Post <span\n" +
+                "                                                        class=\"fa fa-trash pull-right\"></span></a>\n" +
+                "                                                </li>\n" +
+                "                                                 <li class=\"divider\"></li>\n" +
+                "                                               \n" +
+                "                                            </ul>\n" +
+                "                                        </li>\n" +
+                "                                    </div>\n" +
+                "\n" +
+                "                                    <h5 style=\"color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold\"> " + obj[keys[i]].title + "</h5>\n" +
+                "                                </div>\n" +
+                "\n" +
+                "\n" +
+                "                            </div>\n" +
+                "                        </div></div><br>\n" +
+                "\n" +
+                "\n" +
+                "                        <div class=\"card-body\">\n" +
+                "\n" +
+                "                            "+ DisplayDocument(obj[keys[i]].isDocument,obj[keys[i]].document) +"" +
+                "" +
+                "<br><br><p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
+                "                                " + obj[keys[i]].text + "\n" +
+                "                            </p>\n" +
+                "\n" +
+                "                            <div style=\"margin-bottom: 0px; margin-left: 530px;font-weight: bold \">\n" +
+                "                                <p onclick=\"Increase_Likes(\'" + obj[keys[i]].post_id + "\')\"style=\"color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold\">" + num_likes + " &nbsp;<span class=\"glyphicon glyphicon-thumbs-up \" style=\"color: #e83e8c; \"></span>\n" +
+                "                            </div>\n" +
+                "\n" +
+                "                            <hr style=\"margin-top: 0px;color: darkgrey\">\n" +
+                "                        </div>\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "                        <div style=\" margin-top: 0px;\">\n" +
+                "                            <!--styling ensures the like and comment are next to one another-->\n" +
+                "\n" +
+                "\n" +
+                "                            <details style=\"outline: none; \">\n" +
+                "\n" +
+                "                                <summary style=\"color: #e83e8c;margin-left: 450px;font-weight: bold\"> <!--title of the replies collapsible-->\n" +
+                "                                    View "+getComments_num(obj[keys[i]].post_id) + " Replies &nbsp \n" +
+                "                                </summary>\n" +
+                "\n" +
+                "\n" +
+                "                                <!--Winny add message replies from here-->\n" +
+                "                                <ul style=\"margin-left: -30px\">\n" +
+                "                                   " + Reply_list(obj[keys[i]].post_id) + " \n" +
+                "\n" +
+                "                                        \n" +
+                "                                    \n" +
+                "                                        \n" +
+                "                                    \n" +
+                "\n" +
+                "                                        \n" +
+                "\n" +
+                "                                      <img class=\"rounded-circle\" width=\"45\" src=\"" + "{{ profilePic }}" + "\" alt=\"\">  <a id=\"\"><textarea maxlength=\"200\" placeholder=\"Reply to this post\" id=\"" + obj[keys[i]].post_id + "\" style=\"width: 451px;height: 30px;border-radius: 5px; border-style: solid;border-width: 2px;border-color: darkgray;position: relative;top:15px\"></textarea></a>\n" +
+                "                                       <br>\n" +
+                "                                        <button class=\"buttonbot2\" onclick=\"saveComment(\'" + obj[keys[i]].post_id + "\')\" style=\"position: relative;left:505px;top:-32px\" type=\"button\">Reply</button>\n" +
+                "                                    </div>\n" +
+                "\n" +
+                "                                    <!--post button-->\n" +
+                "                                </ul>\n" +
+                "\n" +
+                "                            </details><!--end of collapasible-->\n" +
+                "\n" +
+                "                            <!--Dummy Drop-down for comment_please don't remove-->\n" +
+                "                        </div>\n" +
+                "\n" +
+                "                </div> <!---//Message Post-->\n" +
+                "\n" +
+                "                <br><br><!--spaces between posts-->";
+
+        }}
 
         catch (e) {
 
 
             html = " <div class=\"container_2\">\n" +
-                "                        <img style=\"height: 400px;width: 1365px; opacity: 0.2; width:100%;\"\n" +
-                "                             src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
-                "                             alt=\"Snow\">\n" +
-                "                        <div class=\"centered\"><strong><h1\n" +
-                "                                style=\"font-family: 'Roboto', sans-serif; color: deeppink;margin-top: -200px;margin-left: 50px \">\n" +
-                "                            Be the first to post in the group!</h1></strong></div>\n" +
-                "                    </div><br><br><br><br><br><br><br><br><br><br>";
+            "                        <img style=\"height: 400px;width: 1365px; opacity: 0.2; width:100%;\"\n" +
+            "                             src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
+            "                             alt=\"Snow\">\n" +
+            "                        <div class=\"centered\"><strong><h1\n" +
+            "                                style=\"font-family: 'Roboto', sans-serif; color: deeppink;margin-top: -200px;margin-left: 50px \">\n" +
+            "                            Be the first to post in the group!</h1></strong></div>\n" +
+            "                    </div><br><br><br><br><br><br><br><br><br><br>";
 
         }
 
@@ -1371,9 +1627,9 @@
 
         if (String(isDocument).valueOf() == String("Image").valueOf()) {
 
-            {% comment %}
-                        document_display = " <img href=\""+ document_1 +"\" target=\"_blank\" src=\" "+  document_1 +"\" style=\"width:200px; height:200px; margin-left: 30%;\" > ";
-            {% endcomment %}
+{% comment %}
+            document_display = " <img href=\""+ document_1 +"\" target=\"_blank\" src=\" "+  document_1 +"\" style=\"width:200px; height:200px; margin-left: 30%;\" > ";
+{% endcomment %}
 
 
             document_display = "<a style=\"width:200px; height:200px; margin-left: 30%;\"  href=\""+ document_1  +"\" target=\"_blank\"> \n" +
@@ -1385,8 +1641,8 @@
 
             if (String(isDocument).valueOf() == String("File").valueOf()) {
 
-                document_display = "<a style=\"position: relative; top: 80px;color:deeppink ; left:5px\" href=\""+ document_1 +"\" target=\"_blank\"> <span\n" +
-                    "                                    class=\"glyphicon glyphicon-paperclip\"></span></a>\n";
+           document_display = "<a style=\"position: relative; top: 80px;color:deeppink ; left:5px\" href=\""+ document_1 +"\" target=\"_blank\"> <span\n" +
+               "                                    class=\"glyphicon glyphicon-paperclip\"></span></a>\n";
 
 
             } else {
@@ -1402,16 +1658,16 @@
     }
 
 
-    function display_modal(link_file){
+function display_modal(link_file){
 
-        {% comment %} document.getElementById("frameView_popup").src =link_file;
+      {% comment %} document.getElementById("frameView_popup").src =link_file;
 
-          $('#fileViewModal').modal('show');{% endcomment %}
+        $('#fileViewModal').modal('show');{% endcomment %}
 
-        window.alert("hey");
+    window.alert("hey");
 
 
-    }
+}
 
 
     <!--script for shwoing and hiding comments-->
@@ -1973,7 +2229,7 @@
             <div class="modal-body">
 
 
-                <iframe id="frameView_popup" src=""
+<iframe id="frameView_popup" src=""
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
@@ -2378,7 +2634,7 @@ Badges_Celebrations_2
 
                     <div class="col-md-8">
                         <h6 id="ID_Creator" class="text-center" style="color:gray;font-size: 20px;margin-left:20px;">
-                        </h6>
+                            </h6>
 
 
                     </div>
