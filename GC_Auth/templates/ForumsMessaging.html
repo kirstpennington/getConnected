@@ -833,7 +833,7 @@
 
                 </div>
                 <!--- actual Posted message block-->
-               <div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
+               {% comment %}<div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
 
                     <div class="panel-heading" style="background-color: #D3D3D3;">
                         <div class="card-header">
@@ -1073,7 +1073,7 @@
 
                 </div> <!---//Message Post-->
 
-                <br><br><!--spaces between posts-->
+                <br><br><!--spaces between posts-->{% endcomment %}
 
 
                 <!-- End of Post /////-->
@@ -1464,12 +1464,15 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
     function renderUI(obj) {
 
         var html = "";
-        var ifemplty = true;
+        var ifempty = true;
         var ProfilePic = '{{ profilePic }}'
+
+        try{
+
         var keys = Object.keys(obj);
+
         for (var i = keys.length - 1; i >= 0; i--) {
 
-            ifemplty=false;
 
             var display_time = obj[keys[i]].DateTime;
             display_time = Number(display_time); // cast it to a Number
@@ -1489,19 +1492,9 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
                 username_name = username_check;
             });
 
-            {% comment %}
-                                    var database_counter = firebase.database().ref().child("Forums/CTIB01/Messages/"+obj[keys[i]].post_id);
-            {% endcomment %}
+
             var num = getComments_num(obj[keys[i]].post_id);
-            {% comment %}
-                                    database_counter.update({'comments_num': num});
-            {% endcomment %}
-
             var num_likes = getLikes_num(obj[keys[i]].post_id);
-            {% comment %}
-                                    database_counter.update({'likes': num});
-            {% endcomment %}
-
 
             /*Counter for comments*/
 
@@ -1606,9 +1599,10 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
                 "\n" +
                 "                <br><br><!--spaces between posts-->";
 
-        }
+        }}
 
-        if (ifemplty == true){
+        catch (e) {
+
 
             html = " <div class=\"container_2\">\n" +
             "                        <img style=\"height: 400px;width: 1365px; opacity: 0.2; width:100%;\"\n" +
@@ -1617,8 +1611,10 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
             "                        <div class=\"centered\"><strong><h1\n" +
             "                                style=\"font-family: 'Roboto', sans-serif; color: deeppink;margin-top: -200px;margin-left: 50px \">\n" +
             "                            Be the first to post in the group!</h1></strong></div>\n" +
-            "                    </div>";
+            "                    </div><br><br><br><br><br><br><br><br><br><br>";
+
         }
+
 
         $('#post_comment').html(html);
 
