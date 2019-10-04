@@ -2744,6 +2744,9 @@
 
     /*Message_Notificationas*/
 
+
+    /*Message_Notificationas*/
+
     var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
     Message_Notifications_Check.on('value', function (snapshot) {
         msg_messages_dropdown(snapshot.val());
@@ -2863,11 +2866,15 @@
                 display_time = Number(display_time); // cast it to a Number
                 var ts_display = timeAgo(display_time);
 
+                var type_post = obj[keys[i]].Type;
+                var forum_id_id = obj[keys[i]].Forum_ID;
+
+
 
                 var decision = "true";
                 var opp_decison = "false";
                 html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
 
 
             }
@@ -2896,7 +2903,7 @@
 
     }
 
-    function Accept_request(sender_id, name, post_id, isAccept) {
+    function Accept_request(sender_id, name, post_id, isAccept, typepost, forum_id_id) {
 
 
         if (String(isAccept).valueOf() == String("true").valueOf()) {
@@ -2906,6 +2913,23 @@
             firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
 
                 if (snapshot.exists()) {
+
+
+
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
+
+                    {
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
+                        AddtoForum.child(sender_id).set(sender_id);
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
+                        AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
+
+                    }
+
+
+                    else {
 
 
                     var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
@@ -2920,7 +2944,12 @@
 
                     // window.alert("You have joined a new forum!");
                     var x = document.getElementById("forumJoined");
-                    x.show();
+                    x.show();}
+
+
+
+
+
 
 
                 }/*Forum Requests*/
@@ -2999,6 +3028,7 @@
 
     }
 
+    /*End of Message_Notificationas*/
 
 </script>
 
