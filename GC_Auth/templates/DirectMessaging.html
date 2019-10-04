@@ -2539,6 +2539,7 @@
 
         $('input:checkbox').removeAttr('checked');
 
+        $("#chooseparticipantsmodal").modal('hide');                        //close this modal
     }
 
 
@@ -2674,6 +2675,8 @@
                 tag_check.style.visibility = 'hidden';
             }
 
+            $("#chooseparticipantsmodal_group").modal('hide');
+
             return
         }
 
@@ -2735,6 +2738,7 @@
             /*END OF RESETTING ALL THE INPUTS*/
 
         });
+
     }
 
 

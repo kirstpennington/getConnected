@@ -898,6 +898,7 @@ $(document).ready(function(){
                                                                     if (topics_json.hasOwnProperty(k)) {
                                                                         forum_topics_str = forum_topics_str + k + " | ";
                                                                     }
+                                                                    break;
                                                                 }
                                                                 // list of all this user's topics
                                                                 if (arrayHasItemsInCommon(user_topics, forum_topics)) {                                                                     // check is user_topics and forum_topics have items in common
@@ -1096,6 +1097,7 @@ $(document).ready(function(){
                                             if (topics_json.hasOwnProperty(k)) {
                                                 forum_topics = forum_topics + k + " | ";
                                             }
+                                            break;
                                         }
 
                                         if (!myforumsArray.includes(key)) {                                             // if the forum is my forum, then add it to my forums card instead of all forums
