@@ -658,7 +658,7 @@
                             <h5 class="card-title" style="color: #e83e8c;"><strong>Your Forums</strong></h5>
                             <br>
                             <!--styling allows for the image and text to be next to one another-->
-                          {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
+                         {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
 
                                 <form action="/goForumsOpen/" method="post">
                                     {% csrf_token %}
@@ -833,8 +833,7 @@
 
                 </div>
                 <!--- actual Posted message block-->
-
-                <div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
+               <div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
 
                     <div class="panel-heading" style="background-color: #D3D3D3;">
                         <div class="card-header">
@@ -896,7 +895,7 @@
 
                         <!--this is the image which shows up on a post-->
 
-                        <img src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
+                        <img  src="https://yt3.ggpht.com/a-/ACSszfFqU21Wtz5ap2GwjaGy7adiyLG6n3_cqlvI9A=s900-mo-c-c0xffffffff-rj-k-no"
                              style="width:200px; height:200px; margin-left: 30%;" >
 
 
@@ -1016,9 +1015,10 @@
 
                         <!--this is the image which shows up on a post-->
 
-                        <img  data-toggle="modal" href="#fileViewModal" src="{% static "GC_Auth/FileAttached.png" %}" style="margin-left: 40%;height: 10%; width: 10%;" >
 
 
+                            <a href="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64" target="_blank"> <img src="position: relative; top: 80%; right: 80%;" ></a>
+"
 
                         <div style="margin-bottom: 0px; margin-left: 530px;font-weight: bold ">
                             <p onclick="Increase_Likes('-LjHxLAZzrskdrbwxU1z')"
@@ -1318,8 +1318,12 @@
     /**Fetching document to be attached*/
 
 
-function closeFile_1(){document.getElementById("File_Link").value = "";}
-function closeImage_1(){document.getElementById("frameImage").value = "";}
+function closeFile_1(){
+                    document.getElementById("File_Link").value = "";
+                    document.getElementById("File_Frame").src = "";}
+function closeImage_1(){
+                    document.getElementById("frameImage").value = "";
+                    document.getElementById("viewframe").src = "";}
 
 
 function ViewFile() {document.getElementById("File_Frame").src = document.getElementById("File_Link").value;}
@@ -1343,10 +1347,10 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
         AttachFile = document.getElementById("File_Link").value;
         AttachImage = document.getElementById("frameImage").value;
 
-      if ( (String(AttachImage).valueOf() != String("").valueOf() )&& (String(AttachFile).valueOf() != String("").valueOf()) )
+      if ( (AttachImage.length != 0 )&& (AttachFile.length !=0) )
       {
-         //window.alert( "You can only attach one document to a post")
-          $("#attachOneOnlyModal").modal('show');
+         window.alert( "You can only attach one document to a post")
+         // $("#attachOneOnlyModal").modal('show');
 
           return;
       }
@@ -1361,6 +1365,8 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
 
         document.getElementById("File_Link").value = "";
         document.getElementById("frameImage").value = "";
+        document.getElementById("File_Frame").src = "";
+        document.getElementById("viewframe").src = "";
 
 
         /*Fetching time when items were pushed*/
@@ -1618,21 +1624,35 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
 
     }
 
-    function DisplayDocument(isDocument, document) {
+    function DisplayDocument(isDocument, document_1) {
 
 
         var document_display = "";
 
         if (String(isDocument).valueOf() == String("Image").valueOf()) {
 
-            document_display = " <img src=\" "+  document +"\"   style=\"width:200px; height:200px; margin-left: 30%;\" > ";
+{% comment %}
+            document_display = " <img href=\""+ document_1 +"\" target=\"_blank\" src=\" "+  document_1 +"\" style=\"width:200px; height:200px; margin-left: 30%;\" > ";
+{% endcomment %}
+
+
+            document_display = "<a style=\"width:200px; height:200px; margin-left: 30%;\"  href=\""+ document_1  +"\" target=\"_blank\"> \n" +
+                "<img width=\"220\" height=\"250\" border=\"0\" align=\"center\"  src=\""+ document_1 +"\"/> \n" +
+                "</a>"
+
+
         } else {
 
             if (String(isDocument).valueOf() == String("File").valueOf()) {
+
+           document_display = "<a style=\"position: relative; top: 80px;color:deeppink ;\" href=\""+ document_1 +"\" target=\"_blank\"> <span\n" +
+               "                                    class=\"glyphicon glyphicon-paperclip\"></span></a>\n";
+
+
             } else {
 
 
-                document_display = "                        <img  data-toggle=\"modal\" href=\"#fileViewModal\" src=\""+ document +"\" style=\"margin-left: 40%;height: 10%; width: 10%;\" >\n";
+
             }
 
         }
@@ -1641,6 +1661,17 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
 
     }
 
+
+function display_modal(link_file){
+
+      {% comment %} document.getElementById("frameView_popup").src =link_file;
+
+        $('#fileViewModal').modal('show');{% endcomment %}
+
+    window.alert("hey");
+
+
+}
 
 
     <!--script for shwoing and hiding comments-->
@@ -2202,7 +2233,7 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
             <div class="modal-body">
 
 
-                <iframe id="frameView" src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Files%2FTest.pdf?alt=media&token=8ffc9bc6-9fff-4e9e-9366-1235580f5c64"
+<iframe id="frameView_popup" src=""
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
