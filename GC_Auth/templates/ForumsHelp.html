@@ -478,13 +478,13 @@
                             you are able to choose who the participants are, the topics it will discuss and give it a
                             profile picture. The list below gives more details:</h1>
 
-                        <h1> 1. Give your forum a name and description so participants know what its about
+                        <h1> 1. Give your forum a name and description so participants know what it's about
                             <br><br>
                             2. Select if you want your forum public or private - private forums can only be viewed by
                             participants whereas public forums can
                             be seen by anyone on GetConnected
                             <br><br>
-                            3. Choose participants for your forum - participants will be able to add posts, image and
+                            3. Choose participants for your forum - participants will be able to attach files and images, and
                             partake in discussions
                             <br><br>
                             4. Each forum will also discuss certain information, topics or subjects. Here you can
@@ -554,14 +554,14 @@
 
 
                     <p>Finding a Forum</p>
-                    <p style="font-size:20px;padding-top: 2px;"> We know there are tons of Forums to look through, so
+                    <p style="font-size:20px;padding-top: 2px;"> We know there are tons of forums to look through, so
                         we've made it easier for you to find what you want.</p><br>
                     <div class="row">
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
                             <!--description-->
                             <p> Searching & Filtering</p>
-                            <h1 style="color:grey;"> If you want to see all the forums you are a particpant in you can
+                            <h1 style="color:grey;"> If you want to see all the forums you are a participant in, you can
                                 click the "My Forums" tab.</h1>
                             <h1>Or, if you want to see all the forums on offer in GetConnected click the "All Forums"
                                 tab. This let's you find new forums to join! </h1>
@@ -651,7 +651,7 @@
                             <br>
                             {% load staticfiles %}
                             <img src="{% static "GC_Auth/help/ForumPost.png" %}" alt="lock" class="image"
-                                 style="width:90%; height:90%;">
+                                 style="width:80%; height:80%;border: 1px solid silver;">
 
 
                         </div>
@@ -662,15 +662,15 @@
                     <div class="row">
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
-                            <br>
+                            <br><br>
                             {% load staticfiles %}
                             <img src="{% static "GC_Auth/help/forumPostExample.png" %}" alt="lock" class="image"
-                                 style="width:50%; height:50%; border: 1px solid silver;">
+                                 style="width:70%; height:70%; border: 1px solid silver;">
 
                         </div>
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
-                            <br><br>
+                            <br><br><br><br>
                             <h1 style="color:grey;"> The item on the left is an example of a posted message. Here you
                                 can see, you are able to reply, like and report other posts.
                                 Forums are a great way to stay in touch with collegues and classmates, while also
@@ -681,6 +681,31 @@
 
                     </div>
                     <br>
+                       <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <!--description-->
+                            <br><br><br><br>
+                            <p> Attaching Articles and Images to a Post</p>
+                            <h1 style="color:grey;">If you have any interesting articles related to a forum discussion or just want to share a meme or two, you
+                            can do so by attaching a link to the media.</h1>
+                            <h1>When creating your post, tap either the little attach button or image button on the bottom left. A pop-up will appear,
+                            enter the link to your file/image and click view. Once you are happy with your attachment, click "Attach". Easy Peasy!</h1>
+
+
+                        </div>
+                        <!--coloumn-->
+                        <!--image-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/help/attachLink.png" %}" alt="lock" class="image"
+                                 style="width:80%; height:80%;border: 1px solid silver;">
+
+
+                        </div>
+
+                    </div>
                      <div class="row">
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
@@ -866,12 +891,12 @@
                         <h1>
                             <div class="numbercircles">1</div>
                             <i>
-                                What happens if a message is reported?</i></h1>
+                                What happens if a forum is reported?</i></h1>
                         <!--padding left indents the answer to the right-->
-                        <p style="padding-left: 40px;">Messages can be reported by any participant in a forum if they
-                            feel the message is inappropriate. Should a message be reported
+                        <p style="padding-left: 40px;">Forums can be reported by any participant in a forum if they
+                            feel the forum is inappropriate. Should a forum be reported
                             it will then be inspected by a member of the GetConnected team and removed if it is infact
-                            inappropriate.
+                            inappropriate. Should a forum be reported more than 5 times it will be automatically disabled.
                         </p>
 
                         <!--question-->

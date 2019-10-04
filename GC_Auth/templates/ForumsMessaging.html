@@ -1319,11 +1319,11 @@
 
 
 function closeFile_1(){document.getElementById("File_Link").value = "";}
-function closeImage_1(){document.getElementById("Image_Link").value = "";}
+function closeImage_1(){document.getElementById("frameImage").value = "";}
 
 
 function ViewFile() {document.getElementById("File_Frame").src = document.getElementById("File_Link").value;}
-function ViewImage() {document.getElementById("frameImage").src = document.getElementById("viewframe").value;}
+function ViewImage() {document.getElementById("viewframe").src = document.getElementById("frameImage").value;}
 
 
 
@@ -1341,9 +1341,9 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
         var AttachImage ="";
 
         AttachFile = document.getElementById("File_Link").value;
-        AttachImage = document.getElementById("Image_Link").value;
+        AttachImage = document.getElementById("frameImage").value;
 
-      if ( String(AttachImage).valueOf() != String("").valueOf() && String(AttachFile).valueOf() != String("").valueOf() )
+      if ( (String(AttachImage).valueOf() != String("").valueOf() )&& (String(AttachFile).valueOf() != String("").valueOf()) )
       {
          //window.alert( "You can only attach one document to a post")
           $("#attachOneOnlyModal").modal('show');
@@ -1360,7 +1360,7 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
        else {Document = "";}
 
         document.getElementById("File_Link").value = "";
-        document.getElementById("Image_Link").value = "";
+        document.getElementById("frameImage").value = "";
 
 
         /*Fetching time when items were pushed*/
@@ -1630,6 +1630,9 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
 
             if (String(isDocument).valueOf() == String("File").valueOf()) {
             } else {
+
+
+                document_display = "                        <img  data-toggle=\"modal\" href=\"#fileViewModal\" src=\""+ document +"\" style=\"margin-left: 40%;height: 10%; width: 10%;\" >\n";
             }
 
         }
@@ -2044,7 +2047,7 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
             </div>
 
             <div class="modal-footer">
-                <button onclick="closeFile_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+                <button onclick="closeFile_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left"  style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
                 <button id="Attach_File" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
@@ -2064,7 +2067,7 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
-                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button onclick="closeImage_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"><strong>Attach an Image </strong></h5>
@@ -2079,7 +2082,7 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
                         <div class="form-group"><!--- file link input-->
 
                             <label class="sr-only" for="message">post</label>
-                            <textarea class="form-control" id="Image_Link" rows="1"
+                            <textarea class="form-control" id="frameImage" rows="1"
                                       placeholder="Insert File Link Here"></textarea>
                         </div>
                     </div><!--end col-->
@@ -2089,14 +2092,14 @@ function ViewImage() {document.getElementById("frameImage").src = document.getEl
                         </button>
                     </div><!--end col -->
                 </div><!-- end row-->
-                <iframe id="frameImage" src=""
+                <iframe id="viewframe" src=""
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
             </div>
 
             <div class="modal-footer">
-                <button onclick="closeFile_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left" data-dismiss="modal" style="border: 1px solid gray;
+                <button onclick="closeImage_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left"  style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
                 <button id="Attach_File" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;

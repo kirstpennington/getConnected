@@ -84,22 +84,20 @@
         }
 
         .notification-item {
-           padding: 5px;
+            padding: 10px;
             margin: 5px;
+            background: #ebebeb;
             border-radius: 4px;
-            border-width: 5px;
-            border-color: black;
             height: 80px;
         }
 
         .profile_img {
-            width: 50px;
+            width: 25px;
             display: inline;
             float: left;
             border: 0px solid #111;
-            border-radius: 25px;
+            border-radius: 3px;
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
-            margin-right: -20px;
         }
 
         /*footer logo*/
@@ -478,91 +476,19 @@
                         class="fa fa-book fa-lg"></span> Courses</a></li>
             </ul>
 
-<!--RHS-->
+            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                <!--Search Input-->
+
+            </ul>
+
+            <!--Right-side (including help button ) of navigation bar-->
+
+            <!--1. User Profile icon + drop down-->
 
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                <!--MESSAGE NOTIFICATIONS -->
-                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
-
-                    <div style=""
-                         id="Messages_icons_notifications">
-                        &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
-                        <span id="number_of_msg_notifications" class="label label-default"
-                              style="background-color: red;color: white">0</span>&nbsp;
-                    </div>
-
-
-                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-                        <div class="notifications-wrapper" style="overflow-x: hidden"> <!--Messages Dropdown div-->
-
-                            <ul id="Message_dropdown_notifications">
-
-                                <a style="font-family: sans-serif;font-style: italic;color: black">No Messages</a>
-
-                                {% comment %}     <a><div style="" class="notification-item">
-                                <img class="profile_img" src="{{ ProfilePic }}"/>
-                                    <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
-                                    <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
-                                    <p style="font-family: sans-serif; color: black; margin-top: 3px;left: 30px;position:relative; font-size:small"> Hi Winny</p>
-                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
-                                </div>
-                            </a>
-
-                            <a><div style="margin-top: -20px" class="notification-item">
-                                <img class="profile_img" src="{{ ProfilePic }}"/>
-                                    <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
-                                    <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
-                                    <p style="font-family: sans-serif; color: black; margin-top: 3px;left: 30px;position:relative; font-size:small"> Hi Winny</p>
-                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
-                                </div>
-                            </a>{% endcomment %}
-
-                            </ul>
-
-                        </div><!--notifications-wrapper-->
-                        <li class="divider"></li>
-                        <li style="font-weight: bold; font-family: sans-serif; text-align: right"
-                            onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
-                            View All <i class="fa fa-angle-double-right"></i></li>
-                    </ul><!--Dropdown menu Messages--> </a>
-                </li><!--dropdown -->
-
-                <!--REQUESTS NOTIFICATIONS -->
-                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
-                                                                      data-target="#" href="#"
-                                                                      onclick="CloseIntroForm(); OpenLogIn();">
-
-                    <div id="">
-                        <span id="counter_number_notifications"></span>
-                    </div>
-
-                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
-                        aria-labelledby="dLabel">
-
-                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
-                            <!--Notifications Dropdown div-->
-                            <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
-                                Notifications</p></ul>
-                        </div><!--End of Notifications Dropdown div-->
-
-                        <!--Footer of notification drop down-->
-                        <li class="divider"></li>
-                        <li style="text-align: center"><a href="#"></a></li>
-
-                    </ul> <!--Dropdown menu Notification-->
-                </a>
-                </li><!--dropdown -->
-
-                <!--Profile Drop-Down -->
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
-
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20"
-                                                                                  height="20" src="{{ ProfilePic }}"
-                                                                                  alt=""></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src='{{ ProfilePic }}' alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -581,368 +507,125 @@
                                 class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                     </ul>
                 </li>
+            </ul>
+
+            <!--1. Notifications icon + drop down-->
+
+            <ul style="text-decoration: none" class="nav navbar-nav navbar-right ">
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <div id="counter_number_notifications"></div>
+
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
+
+                            <!-- <input type="button" id="btnGetMessage" value="Get Message"/><br/><br/>-->
+                            <ul id="comment"></ul>
 
 
-            </ul><!--nav navbar-nav navbar-right-->
+                            <!--      <a class="content" href="#">
+                                     <div class="notification-item">
+                                         <img class="profile_img"
+                                              src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                         <h4 class="item-title">James Coden · day ago</h4>
+                                         <p class="item-info">Marketing 101, Video Assignment</p>
+                                     </div>
+                                 </a>-->
 
 
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#">View All </a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </a></li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
+
+
+            <!--2. Message icon + drop down-->
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <span class="glyphicon glyphicon-envelope"></span> </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper"> <!--Messages Dropdown div-->
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <img class="profile_img"
+                                         src="http://gravatar.com/avatar/0e1e4e5e5c11835d34c0888921e78fd4?s=80"/>
+                                    <h4 class="item-title">James Coden · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                        </div><!--End of Messages Dropdown div-->
+                        <li class="divider"></li>
+                        <li><a href="#">View All <span class="glyphicon glyphicon-circle-arrow-right"></span></a></li>
+
+                    </ul><!--Dropdown menu Messages-->
+                </li><!--dropdown -->
+            </ul> <!--nav navbar-nav navbar-right-->
         </div><!--collapse nav-bar collapse-->
     </div><!--container fluid-->
 </nav><!--nav navbar-inverse-->
 
-
-
-<script>
-
-    /*Time for Posts Displayed*/
-        const MONTH_NAMES = [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
-        ];
-
-        function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-            const day = date.getDate();
-            const month = MONTH_NAMES[date.getMonth()];
-            const year = date.getFullYear();
-            const hours = date.getHours();
-            let minutes = date.getMinutes();
-
-            if (minutes < 10) {
-                // Adding leading zero to minutes
-                minutes = `0${minutes}`;
-            }
-
-            if (prefomattedDate) {
-                // Today at 10:20
-                // Yesterday at 10:20
-                return `${prefomattedDate} at ${hours}:${minutes}`;
-            }
-
-            if (hideYear) {
-                // 10. January at 10:20
-                return `${day}. ${month} at ${hours}:${minutes}`;
-            }
-
-            // 10. January 2017. at 10:20
-            return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
-        }
-
-        // --- Main function
-        function timeAgo(dateParam) {
-
-            if (!dateParam) {
-                return null;
-            }
-
-            const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-            const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-            const today = new Date();
-            const yesterday = new Date(today - DAY_IN_MS);
-            const seconds = Math.round((today - date) / 1000);
-            const minutes = Math.round(seconds / 60);
-            const isToday = today.toDateString() === date.toDateString();
-            const isYesterday = yesterday.toDateString() === date.toDateString();
-            const isThisYear = today.getFullYear() === date.getFullYear();
-
-
-            if (seconds < 5) {
-                return 'now';
-            } else if (seconds < 60) {
-                return `${seconds} seconds ago`;
-            } else if (seconds < 90) {
-                return 'about a minute ago';
-            } else if (minutes < 60) {
-                return `${minutes} minutes ago`;
-            } else if (isToday) {
-                return getFormattedDate(date, 'Today'); // Today at 10:20
-            } else if (isYesterday) {
-                return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-            } else if (isThisYear) {
-                return getFormattedDate(date, false, true); // 10. January at 10:20
-            }
-
-            return getFormattedDate(date); // 10. January 2017. at 10:20
-        };
-
-          /*Message_Notificationas*/
-
-    var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
-    Message_Notifications_Check.on('value', function (snapshot) {
-        msg_messages_dropdown(snapshot.val());
-        msg_message_number(snapshot.val());
-    });
-
-    function msg_messages_dropdown(obj) {
-
-
-        var dropdown_item = '';
-        var keys = Object.keys(obj);
-        var counter_check = 0;
-
-
-        for (var i = keys.length - 1; i >= 0; i--) {
-
-            if (obj[keys[i]].ProfilePic != undefined) {
-
-                var display_time = obj[keys[i]].Time;
-                display_time = Number(display_time); // cast it to a Number
-                var ts_display = timeAgo(display_time);
-
-
-                if (counter_check == 0) {
-                    counter_check++;
-
-                    dropdown_item += " <a><div style=\"margin-top: 20px\" class=\"notification-item\">\n" +
-                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
-                        "                                    \n" +
-                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
-                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \"> " + obj[keys[i]].text + "</p>\n" +
-                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
-                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
-                        "                                </div>\n" +
-                        "                            </a>";
-
-                } else {
-
-                    dropdown_item += " <a><div style=\"margin-top: -20px\" class=\"notification-item\">\n" +
-                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
-                        "                                    \n" +
-                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
-                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \">" + obj[keys[i]].text + "</p>\n" +
-                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
-                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
-                        "                                </div>\n" +
-                        "                            </a>";
-                }
-
-            }
-        }
-        $('#Message_dropdown_notifications').html(dropdown_item);
-    }
-
-
-    function msg_message_number(obj) {
-        // var html = '';
-        var countholder = 0;
-        var keys = Object.keys(obj);
-
-        for (var i = 0; i < keys.length; i++) {
-            countholder++;
-        }
-        {% comment %}
-                        countholder--;
-        {% endcomment %}
-
-        {% comment %}database_counter.update({'counter': countholder});
-         /*Creating notification icon*/{% endcomment %}
-
-
-        {% comment %}
-                        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-        {% endcomment %}
-
-
-        $('#number_of_msg_notifications').html(countholder);
-
-
-    }
-
-    function removeMessageNotifications() {
-
-        var other = firebase.database().ref().child("Users/" + '{{ this_uid }}');/*Messages*/
-        other.child("Messages_Notifications").remove();
-
-    }
-
-
-    /*Request Notifications*/
-
-    var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
-
-
-    database_counter.on('value', function (snapshot) {
-        renderCount(snapshot.val());
-        renderUI(snapshot.val());
-        //alert("Connection Request Received");
-
-
-    });
-
-
-    function renderUI(obj) {
-        var html = '';
-        var keys = Object.keys(obj);
-        start_count = 0;
-        for (var i = keys.length - 1; i >= 0; i--) {
-            // for (var i = 0; i <= keys.length - 1; i++) {
-            /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
-            /*Creating notification item*/
-
-            if (obj[keys[i]].sender_profilePic != undefined) {
-                start_count ++;
-
-                if (start_count ==1) {
-
-                    var display_time = obj[keys[i]].time;
-                    display_time = Number(display_time); // cast it to a Number
-                    var ts_display = timeAgo(display_time);
-
-
-                    var decision = "true";
-                    var opp_decison = "false";
-                    html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
-                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
-                }
-
-                else
-
-                {
-
-                    var display_time = obj[keys[i]].time;
-                    display_time = Number(display_time); // cast it to a Number
-                    var ts_display = timeAgo(display_time);
-
-
-                    var decision = "true";
-                    var opp_decison = "false";
-                    html += "<div href=\"#\" class=\"content\" style=\"top: 15px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
-                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
-
-                }
-
-            }
-        }
-        $('#comment').html(html);
-    }
-
-    function renderCount(obj) {
-        var html = '';
-        var countholder = 0;
-
-        var keys = Object.keys(obj);
-        for (var i = 0; i < keys.length; i++) {
-            countholder++;
-        }
-        countholder--;
-        database_counter.update({'counter': countholder});
-        /*Creating notification icon*/
-
-
-        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-
-
-        $('#counter_number_notifications').html(html);
-
-
-    }
-
-    function Accept_request(sender_id, name, post_id, isAccept) {
-
-
-        if (String(isAccept).valueOf() == String("true").valueOf()) {
-
-            /*Check Type of Request*/
-
-            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
-
-                if (snapshot.exists()) {
-
-
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();
-
-
-                }/*Forum Requests*/
-
-                else {
-
-
-                    var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
-                    var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
-
-
-                    //AddConnection.child(sender_id).set(name);
-                    var bio;
-                    var propic;
-                    var country;
-                    var html = '';
-                    var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
-                    getAcceptcon.on("value", function (snapshot) {
-                        bio = snapshot.val().Bio;
-                        propic = snapshot.val().ProfilePic;
-                        country = snapshot.val().Country;
-                    });
-
-                    //var created_id_target = AddConnection.push();
-                    AddConnection.child(sender_id).set({ /*Pushes to receiver*/
-                        Name: name,
-                        Bio: bio,
-                        ProfilePic: propic,
-                        Country: country,
-
-                    });
-
-                    AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
-                        Name: '{{ n }}',
-                        Bio: '{{ bio }}',
-                        ProfilePic: '{{ ProfilePic }}',
-                        Country: '{{ country }}',
-
-                    });
-
-
-                   // window.alert("You are now connected with " + name);
-
-                    html += "You are now connected with " + name;
-                    $('#newconnectionmodal').html(html);
-
-                     var y = document.getElementById("connectedWith");
-                    y.show();
-
-                }/*Friend Reuest*/
-            }); /*Checking Type of Request*/
-        } /*If Accept*/
-
-
-        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
-
-            if (snapshot.exists()) {
-
-                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                different_name.remove();
-
-
-            } else {
-
-                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                different_name.remove();
-
-                var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
-                removesent.remove();
-
-
-            }
-
-        });
-
-
-    }
-
-
-
-
-</script>
 
 <!--content of courses page start-->
 
@@ -1906,6 +1589,187 @@ $(document).ready(function(){
 
 
 <script>
+    // Fetching the date
+             const MONTH_NAMES = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+
+            function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+                const day = date.getDate();
+                const month = MONTH_NAMES[date.getMonth()];
+                const year = date.getFullYear();
+                const hours = date.getHours();
+                let minutes = date.getMinutes();
+
+                if (minutes < 10) {
+                    // Adding leading zero to minutes
+                    minutes = `0${minutes}`;
+                }
+
+                if (prefomattedDate) {
+                    // Today at 10:20
+                    // Yesterday at 10:20
+                    return `${prefomattedDate} at ${hours}:${minutes}`;
+                }
+
+                if (hideYear) {
+                    // 10. January at 10:20
+                    return `${day}. ${month} at ${hours}:${minutes}`;
+                }
+
+                // 10. January 2017. at 10:20
+                return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+            }
+
+
+            // --- Main function
+            function timeAgo(dateParam) {
+
+                if (!dateParam) {
+                    return null;
+                }
+
+                const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+                const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+                const today = new Date();
+                const yesterday = new Date(today - DAY_IN_MS);
+                const seconds = Math.round((today - date) / 1000);
+                const minutes = Math.round(seconds / 60);
+                const isToday = today.toDateString() === date.toDateString();
+                const isYesterday = yesterday.toDateString() === date.toDateString();
+                const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+                if (seconds < 5) {
+                    return 'now';
+                } else if (seconds < 60) {
+                    return `${seconds} seconds ago`;
+                } else if (seconds < 90) {
+                    return 'about a minute ago';
+                } else if (minutes < 60) {
+                    return `${minutes} minutes ago`;
+                } else if (isToday) {
+                    return getFormattedDate(date, 'Today'); // Today at 10:20
+                } else if (isYesterday) {
+                    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+                } else if (isThisYear) {
+                    return getFormattedDate(date, false, true); // 10. January at 10:20
+                }
+
+                return getFormattedDate(date); // 10. January 2017. at 10:20
+            };
+
+    // Realtime Updates
+
+    var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+    database_counter.on('value', function (snapshot) {
+        renderCount(snapshot.val());
+        renderUI(snapshot.val());
+    })
+
+
+    function renderUI(obj) {
+                var html = '';
+                var keys = Object.keys(obj);
+                for (var i = keys.length - 1; i >= 0; i--) {
+               // for (var i = 0; i <= keys.length - 1; i++) {
+
+
+                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+                    /*Creating notification item*/
+
+                    if (obj[keys[i]].sender_profilePic != undefined) {
+
+                        var display_time = obj[keys[i]].time;
+                        display_time = Number(display_time); // cast it to a Number
+                        var ts_display = timeAgo(display_time);
+
+
+                        var decision = "true";
+                        var opp_decison = "false";
+                        html += "<div href=\"#\" class=\"content\" style=\"top: -10px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + ts_display + "&nbsp;&nbsp;<i style=\"color: black;\"onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"fa fa-close\"></i></p> <h5 style=\"color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"color: black; margin-top: -10px;left: 25px;position:relative; font-size:small\">" + obj[keys[i]].message +
+                            "</p> <div style=\"margin-top: -10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+
+
+                    }}
+                $('#comment').html(html);
+            }
+
+
+            function renderCount(obj) {
+                var html = '';
+                var countholder = 0;
+
+                var keys = Object.keys(obj);
+                for (var i = 0; i < keys.length; i++) {
+                    countholder++;
+                }
+                countholder--;
+                database_counter.update({'counter': countholder});
+                 /*Creating notification icon*/
+
+
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+
+
+                $('#counter_number_notifications').html(html);
+
+
+            }
+
+
+              function Accept_request(sender_id, name, post_id,isAccept){
+
+
+                  if (String(isAccept).valueOf() == String("true").valueOf()) {
+                      var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+                      var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+
+
+                      //AddConnection.child(sender_id).set(name);
+                      var bio;
+                      var propic;
+                      var country;
+                      var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+                      getAcceptcon.on("value", function (snapshot) {
+                          bio = snapshot.val().Bio;
+                          propic = snapshot.val().ProfilePic;
+                          country = snapshot.val().Country;
+                      });
+
+                      //var created_id_target = AddConnection.push();
+                      AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                          Name: name,
+                          Bio: bio,
+                          ProfilePic: propic,
+                          Country: country,
+
+                      });
+
+                      AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                          Name: '{{ n }}',
+                          Bio: '{{ bio }}',
+                          ProfilePic: '{{ ProfilePic }}',
+                          Country: '{{ my_country }}',
+
+                      });
+
+
+                      window.alert("You are now connected with " + name);
+
+
+                  }
+                  var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                  different_name.remove();
+
+                  var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+                  removesent.remove();
+              }
+
+
+
 
 
 
