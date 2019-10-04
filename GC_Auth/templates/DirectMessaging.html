@@ -1710,7 +1710,7 @@
                     "           \n" +
                     "                               <li class= \"divider\"></li>\n" +
                     "           \n" +
-                    "                               <li onclick=\"Delete_messages(\'" + snapshot.val().key + "\' )\"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
+                    "                               <li onclick=\"Delete_messages(\'" + snapshot.val().key + "\' );location.href='{% url 'nav_DirectMessaging' %}' \"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
                     "                                       style=\"font-size: 15px\" class=\"fa fa-trash\"></span></a></li>\n" +
                     "                      </ul>\n" +
                     "</li></div>";
@@ -1731,7 +1731,7 @@
                     "           \n" +
                     "                               <li class= \"divider\"></li>\n" +
                     "           \n" +
-                    "                               <li onclick=\"Delete_messages(\'" + snapshot.val().key + "\')\"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
+                    "                               <li onclick=\"Delete_messages(\'" + snapshot.val().key + "\');location.href='{% url 'nav_DirectMessaging' %}'\"><a style=\"font-size: 11px\">Delete Conversation&nbsp;&nbsp;<span\n" +
                     "                                       style=\"font-size: 15px\" class=\"fa fa-trash\"></span></a></li>\n" +
                     "                      </ul>\n" +
                     "</li></div>";
