@@ -995,7 +995,11 @@
                                             //popup
                                         }
                                     </script>
-
+                                    <button   data-placement="right"
+                                            style="background-color:white; border-color: #e83e8c; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                            class="btn btn-primary pull-right">
+                                        <a data-toggle="modal" data-target="#viewmutualsmodal" style="color: darkgray;">Mutual Connections</a>
+                                    </button>
 
                                 </div>
                                 <script>
@@ -1067,10 +1071,11 @@
         <div class="col-md-4 rightColumn">
 
             <div><p class="rightColumnfont"><span
-                    class="fa fa-globe"></span>&nbsp;Mutual Connections</p></div>
+                    class="fa fa-globe"></span>&nbsp;People you may want to
+                connect with</p></div>
             <br>
             <div style="height:5px;"><br></div>
-            <a data-toggle="modal" data-target="#viewmutualsmodal"
+            <a onclick="location.href='{% url 'nav_networks' %}'"
                style="font-size: smaller;position: relative;top: 225px; left: 200px; color: gray; font-weight: bold;">
                 View More <i class="fa fa-angle-double-right"></i> <!--View More Forums-->
             </a>
@@ -1085,29 +1090,36 @@
             <div class="col-md-12" style="margin-top: -30px;">
 
                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
-                    <div id="{{ conn_id }}_background"  class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                    <div id="{{ conn_id }}_background" class=" rightColumnContainer" style="margin-top: -10px">
+                        <!--Connections Suggestions Card-->
                         <form action="/goConnectionsOpen/" method="post">
-                            <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
-                                    style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
+                            <button class="badges_plus" type="button" id="btnGetMessage"
+                                    onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
+                                    style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}"
+                                                                                            style="color: grey"
+                                                                                            class="fa fa-user-plus"></i>
                             </button>
 
                             <div class="row" style="margin-top: -15px">
-                                <img id="{{ conn_id }}_img"   class=" pull-left"
+                                <img id="{{ conn_id }}_img" class=" pull-left"
                                      style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
                                      src="{{ pictures }}"/>
 
                                 <div class="connection_container">
                                     <div>
-                                        <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
-                                        <button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
+                                        <input class="connection_id" id="connection_id" name="connection_id"
+                                               value="{{ conn_id }}" hidden style="display: none;">
+                                        <button id="{{ conn_id }}_name"
+                                                style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative"
+                                                onclick="location.href='{% url 'connectionsopen' %}'" type="submit"
+                                                value="goConnectionsOpen">
                                             {{ names }}
                                         </button>
                                     </div>
                                     <!-- hidden field that stores the id of the entity  -->
                                     <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
-                                    <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family:'Arial Narrow';font-weight:bold;color:#666666;font-size: small; ">
-                                        connections: &nbsp;<span
-                                    > {{ numConnections }} </span>
+                                    <h8 style="display: inline-block;margin-left: 5px;margin-top: -10px;font-family:'Arial Narrow'; color:#666666 ;font-weight:bold; font-size: small;">
+                                        &nbsp;<span>  {{ countries }} </span>
                                     </h8>
                                     <br>
 
@@ -1380,7 +1392,7 @@
         <div class="col-md-4 rightColumnTwo">
 
             <div><p class="rightColumnfont"><span
-                    class="fa fa-comments-o"></span>&nbsp;Mutual Forums</p></div>
+                    class="fa fa-comments-o"></span>&nbsp;Forums you may want to join</p></div>
 
             <a onclick="location.href='{% url 'nav_forums' %}'"
                style="font-size: smaller;position: relative;top: 175px; left: 200px; color: gray; font-weight: bold;"
@@ -1393,8 +1405,10 @@
 
 
                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
-                    <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
-                        <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
+                    <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer"
+                         style="margin-top: -10px"><!--Forum Suggestions Card-->
+                        <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden
+                               style="color: white;">
 
                         <div style="position: relative; left: 235px; top: 3px;">
                             <h8><span class="label label-default"><span
@@ -1409,7 +1423,8 @@
                             <div class="connection_container">
                                 <div>
                                     <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}','{{ forum_ids }}_hideForumSuggestion')"
-                                            style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit">{{ forum_names }}
+                                            style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px"
+                                            type="submit">{{ forum_names }}
                                     </button>
                                 </div>
                                 <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
@@ -1497,19 +1512,19 @@
 
         <script>
 
-            function joinForum(forum_id, thisUserid, forum_name, hide_block){
+            function joinForum(forum_id, thisUserid, forum_name, hide_block) {
                 var db = firebase.database().ref('Forums');
                 this_uid = '{{ my_uid }}';
 
                 blockedUsersRef = db.child(forum_id).child("Blocked");                                                  // get list of users blocked for this forum
-                blockedUsersRef.once('value', function(snapshot) {
+                blockedUsersRef.once('value', function (snapshot) {
                     blockedUsers = snapshotToArrayKey(snapshot);
 
-                    if (this.arrayContainsValue(blockedUsers, this_uid) == false){                                      // if this user is NOT blocked for the forum selected
+                    if (this.arrayContainsValue(blockedUsers, this_uid) == false) {                                      // if this user is NOT blocked for the forum selected
                         forumPrivateRef = db.child(forum_id).child('Private');                                          // get the privacy settings of the forum
-                        forumPrivateRef.once('value', function(snapPrivate) {
+                        forumPrivateRef.once('value', function (snapPrivate) {
                             privacy = snapPrivate.val();
-                            if (privacy == false){                                                                      // if the forums is not private
+                            if (privacy == false) {                                                                      // if the forums is not private
                                 json_dict = {};
                                 json_dict[forum_id] = forum_id;
 
@@ -1523,10 +1538,10 @@
                                 this.hideDiv(hide_block);
 
                                 getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
-                                getNumParticipantsRef.once('value', function(snapshot) {
+                                getNumParticipantsRef.once('value', function (snapshot) {
                                     var numParticipants = snapshot.val();                                               // get the current number of participants
 
-                                    json_dict = {NumParticipants: numParticipants+1};                                   // reduce num participants by 1
+                                    json_dict = {NumParticipants: numParticipants + 1};                                   // reduce num participants by 1
 
                                     reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
                                     reduceNumParticipantsRef.update(json_dict);                                         // update database
@@ -1535,10 +1550,9 @@
                                 });
 
 
-                            }
-                            else{                                                                                       // if the forum is private
+                            } else {                                                                                       // if the forum is private
                                 forumCreatorRef = db.child(forum_id).child('Creator');
-                                forumCreatorRef.once('value', function(snapCreator) {
+                                forumCreatorRef.once('value', function (snapCreator) {
                                     creator_id = snapCreator.val();                                                     // send the message to this user id
                                     message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
                                     // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
@@ -1553,7 +1567,7 @@
                                         sender: '{{ n }}',
                                         sender_id: '{{ this_uid }}',
                                         message: message,
-                                        receiver_id: creator_id ,
+                                        receiver_id: creator_id,
                                         sender_profilePic: '{{ ProfilePic }}',
                                         Type: "Forum_Request",
 
@@ -1563,7 +1577,8 @@
                                     var result = hope.substring(hope.lastIndexOf("/") + 1);
                                     var save_id = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived/" + result);/*Messages*/
                                     save_id.update({
-                                        post_id: result  });
+                                        post_id: result
+                                    });
 
                                     /*End of Sending Forum Request to Creator*/
 
@@ -1573,8 +1588,7 @@
                             }
                         })
 
-                    }
-                    else{                                                                                               // if the user is blocked, display a message to the user
+                    } else {                                                                                               // if the user is blocked, display a message to the user
                         $("#modalBlockedFromForum").modal('show');
                     }
 
@@ -1584,7 +1598,7 @@
             }
 
             // hides the div with the specified id
-            function hideDiv(div_name){
+            function hideDiv(div_name) {
                 document.getElementById(div_name).hidden = true;     // remove forum from all forums
 
             }
@@ -1603,18 +1617,15 @@
             }
 
             // returns true if the array contains the value
-            function arrayContainsValue(array, value){
-                if (array.length > 0)
-                {
-                    for (let i = 0; i < array.length; i++)
-                    {
-                        if (array[i] == value){
+            function arrayContainsValue(array, value) {
+                if (array.length > 0) {
+                    for (let i = 0; i < array.length; i++) {
+                        if (array[i] == value) {
                             return true;
                         }
                     }
                     return false;
-                }
-                else{
+                } else {
                     return false;
                 }
             }
@@ -1692,7 +1703,8 @@
     </div>
 
     <!-- Page Footer-->
-    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3; position: relative; top: -420px;">
+    <footer class="page-footer font-small cyan darken-3"
+            style="background-color: #D3D3D3; position: relative; top: -420px;">
 
 
         <div class="container">
@@ -1718,7 +1730,8 @@
 
                             <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
                             <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
-                            <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                            <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>
+                                Connections</p>
                             </a>
                             <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
                             <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
@@ -1730,12 +1743,15 @@
 
                             <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
                                 GetConnected?</p></a>
-                            <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                            <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your
+                                Account</p>
                             </a>
-                            <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging</p></a>
+                            <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums &
+                                Messaging</p></a>
                             <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
                                 Management</p></a>
-                            <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p></a>
+                            <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses
+                                Help</p></a>
                             <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
 
 
@@ -1769,11 +1785,6 @@
 </div>
 
 
-
-
-
-
-
 <!-- Badge Modal-->
 <div class="modal fade" id="BadgeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
      aria-hidden="true">
@@ -1796,7 +1807,7 @@
                     <div class="col-sm-3" style="background-color:white;">
                         {% load staticfiles %}
                         <!--friend finder 1 connection-->
-                        <div id ="FriendFinder" class ="badgehover"> <!--badge hover for the hovering over the badge-->
+                        <div id="FriendFinder" class="badgehover"> <!--badge hover for the hovering over the badge-->
 
                         </div>
                     </div>
@@ -1805,7 +1816,7 @@
                     <div class="col-sm-3" style="background-color:white;">
                         {% load staticfiles %}
                         <!--coloumn networking ninja-->
-                        <div id ="NetworkingNinja" class ="badgehover">
+                        <div id="NetworkingNinja" class="badgehover">
 
 
                         </div>
@@ -1813,7 +1824,7 @@
 
                     <!--Badge 3: Crazy Connector-->
                     <div class="col-sm-3" style="background-color:white;">
-                        <div id ="CrazyConnector" class ="badgehover">
+                        <div id="CrazyConnector" class="badgehover">
                             <!--coloumn crazy connector-->
 
                         </div>
@@ -1821,7 +1832,7 @@
 
                     <!--Badge 4: Popular Profiler-->
                     <div class="col-sm-3" style="background-color:white;">
-                        <div id ="PopularProfile" class ="badgehover">
+                        <div id="PopularProfile" class="badgehover">
                             <!--coloumn popular profiler-->
 
 
@@ -1833,7 +1844,7 @@
 
                     <!--Badge 5: Bright Spark-->
                     <div class="col-sm-3" style="background-color:white;"><!-- 3 courses taken-->
-                        <div id="BrightSpark" class ="badgehover">
+                        <div id="BrightSpark" class="badgehover">
                             <!--coloumn popular profiler-->
                         </div>
                     </div>
@@ -1841,7 +1852,7 @@
                     <!--Badge 6: Bright Spark-->
                     <div class="col-sm-3" style="background-color:white;">
                         <!--fab academic 5 courses-->
-                        <div id="FabAcademic" class ="badgehover">
+                        <div id="FabAcademic" class="badgehover">
 
                         </div>
                     </div>
@@ -1849,14 +1860,14 @@
                     <!--Badge 7: Got_Smarter-->
                     <div class="col-sm-3" style="background-color:white;">
                         <!--got smarter 10 courses-->
-                        <div id ="Got_Smarter" class ="badgehover">
+                        <div id="Got_Smarter" class="badgehover">
                             <!--coloumn popular profiler-->
                         </div>
                     </div>
 
                     <!--Badge 8: Locked-->
                     <div class="col-sm-3" style="background-color:white;">
-                        <div id="locked" class ="badgehover">
+                        <div id="locked" class="badgehover">
                             {% load staticfiles %}
 
                         </div>
@@ -1868,7 +1879,7 @@
                     <!--Badge 9: ForumBoffin-->
                     <div class="col-sm-3" style="background-color:white;">
                         <!--forum boffin , 1 forum-->
-                        <div id="ForumBoffin" class ="badgehover">
+                        <div id="ForumBoffin" class="badgehover">
                             <!--coloumn 5 forums-->
 
                         </div>
@@ -1876,16 +1887,18 @@
 
                     <!--Badge 10: SuperSecurity-->
                     <div class="col-sm-3" style="background-color:white;"><!--Privacy-->
-                        <div class ="badgehover">
+                        <div class="badgehover">
                             <!--coloumn super security-->
                             {% if privacyUp == "yes" %}
-                                <img src="{% static "GC_Auth/Badges/supersecurity1.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;" >
+                                <img src="{% static "GC_Auth/Badges/supersecurity1.png" %}" alt="lock" class="image"
+                                     style="width:150%;height:150%;margin-left: 17px;">
                                 <div class="middle">
-                                    <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>
+                                    <div class="text"><strong>Super Security</strong> <br> Updated you Privacy Settings
+                                    </div>
                                     <!--text for the hover-->
                                 </div>
                                 {% else %}<!--no badge-->
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" >
+                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image">
                                 <div class="middle">
                                     <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
                                     <!--text for the hover-->
@@ -1896,16 +1909,18 @@
 
                     <!--Badge 11: SuperSecurity-->
                     <div class="col-sm-3" style="background-color:white;">
-                        <div class ="badgehover">
+                        <div class="badgehover">
                             <!--coloumn popular profiler-->
                             {% if numConnections >= 1 %}<!--decorator update header-->
-                                <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;">
+                                <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt="lock" class="image"
+                                     style="width:150%;height:150%;margin-left: 17px;">
                                 <div class="middle">
-                                    <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture </div>
+                                    <div class="text"><strong>#Selfie</strong> <br> Adding a profile picture</div>
                                     <!--text for the hover-->
                                 </div>
                                 {% else %}<!--no badge-->
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;">
+                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
+                                     style="width:150%;height:150%;margin-left: 17px;">
                                 <div class="middle">
                                     <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
                                     <!--text for the hover-->
@@ -1916,9 +1931,10 @@
 
                     <!--Badge 12: -->
                     <div class="col-sm-3" style="background-color:white;">
-                        <div class ="badgehover">
+                        <div class="badgehover">
                             {% load staticfiles %}
-                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt= "lock" class="image" style="width:150%;height:150%;margin-left: 17px;">
+                            <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image"
+                                 style="width:150%;height:150%;margin-left: 17px;">
                             <div class="middle">
                                 <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
                             </div>
@@ -1949,11 +1965,9 @@
             counter++;
         });
 
-        if (counter >=1 && counter<5)
+        if (counter >= 1 && counter < 5) {
 
-        {
-
-            display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ffriendfinder5.png?alt=media&token=ee0c7bd4-f4b6-492e-a9a0-e45b210b8284\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ffriendfinder5.png?alt=media&token=ee0c7bd4-f4b6-492e-a9a0-e45b210b8284\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 1 Connection</div>\n" +
@@ -1963,7 +1977,7 @@
             checkCelebration.on("value", function (snapshot) {
                 var text = "Friend Finder Badge";
 
-                if (snapshot.val().FriendFinder == "not_celebrated"){
+                if (snapshot.val().FriendFinder == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     //window.alert("hah?");
@@ -1974,9 +1988,7 @@
 
             });
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -1989,11 +2001,9 @@
 
         //Badge_2_NetoworkingNinja
 
-        if (counter >=5 && counter < 10)
+        if (counter >= 5 && counter < 10) {
 
-        {
-
-            display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FnetworkingNinja.jpg?alt=media&token=a8cac22b-a196-405c-a300-a1e601654717\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FnetworkingNinja.jpg?alt=media&token=a8cac22b-a196-405c-a300-a1e601654717\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Networking Ninja</strong> <br> 5 Connection</div>\n" +
@@ -2002,7 +2012,7 @@
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Networking Ninja Badge";
-                if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                if (snapshot.val().NetworkingNinja == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'NetworkingNinja': "celebrated"});
@@ -2012,9 +2022,7 @@
 
             })
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2028,11 +2036,9 @@
 
         //Badge_3_CrazyConnector
 
-        if (counter >=10 && counter<15)
+        if (counter >= 10 && counter < 15) {
 
-        {
-
-            display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FcrazyConnector2.png?alt=media&token=98707036-4745-4cfe-a688-f4c7b71a89df\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FcrazyConnector2.png?alt=media&token=98707036-4745-4cfe-a688-f4c7b71a89df\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 10 Connection</div>\n" +
@@ -2043,7 +2049,7 @@
                 var text = "Crazy Connector Badge";
 
 
-                if (snapshot.val().CrazyConnector == "not_celebrated"){
+                if (snapshot.val().CrazyConnector == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'CrazyConnector': "celebrated"});
@@ -2053,9 +2059,7 @@
 
             })
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2068,11 +2072,9 @@
 
         //Badge_4_PopularProfile
 
-        if (counter >=15)
+        if (counter >= 15) {
 
-        {
-
-            display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FPopularProfiler2.png?alt=media&token=bfed5700-f4ea-4b0f-a992-81346e9fcaee\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FPopularProfiler2.png?alt=media&token=bfed5700-f4ea-4b0f-a992-81346e9fcaee\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Crazy Connector</strong> <br> 15 Connection</div>\n" +
@@ -2082,7 +2084,7 @@
             checkCelebration.on("value", function (snapshot) {
                 var text = "Popular Profile Badge";
 
-                if (snapshot.val().PopularProfile == "not_celebrated"){
+                if (snapshot.val().PopularProfile == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'PopularProfile': "celebrated"});
@@ -2092,9 +2094,7 @@
 
             })
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2120,11 +2120,9 @@
             counter++;
         });
 
-        if (counter >=3 && counter<5)
+        if (counter >= 3 && counter < 5) {
 
-        {
-
-            display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FBrigthSpark.png?alt=media&token=2dec1cb8-31d6-4ce5-9519-01dfcd3380b9\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FBrigthSpark.png?alt=media&token=2dec1cb8-31d6-4ce5-9519-01dfcd3380b9\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 3 Courses</div>\n" +
@@ -2134,7 +2132,7 @@
             checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                if (snapshot.val().BrightSpark == "not_celebrated"){
+                if (snapshot.val().BrightSpark == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'BrightSpark': "celebrated"});
@@ -2143,9 +2141,7 @@
 
             })
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2158,11 +2154,9 @@
 
         //Badge_6_FabAcademic
 
-        if (counter >=5 && counter<10 )
+        if (counter >= 5 && counter < 10) {
 
-        {
-
-            display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FfabAcademic2.png?alt=media&token=d198ff3c-f91a-4e20-90b5-52eba72c7508\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FfabAcademic2.png?alt=media&token=d198ff3c-f91a-4e20-90b5-52eba72c7508\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 5 Courses</div>\n" +
@@ -2173,7 +2167,7 @@
                 var text = "FabAcademic Badge";
 
 
-                if (snapshot.val().FabAcademic == "not_celebrated"){
+                if (snapshot.val().FabAcademic == "not_celebrated") {
                     $('#Congrats_Pop_Up').html("FabAcademic Badge");
                     $("#Celebrations").modal();
                     checkCelebration.update({'FabAcademic': "celebrated"});
@@ -2183,9 +2177,7 @@
 
             })
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2199,11 +2191,9 @@
         //Badge_7_Got_Smarter
 
 
-        if (counter >=10 )
+        if (counter >= 10) {
 
-        {
-
-            display =  "<https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FgotSmarter2.png?alt=media&token=3f6b81be-2f2a-41e5-a727-7f48e6e05762\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FgotSmarter2.png?alt=media&token=3f6b81be-2f2a-41e5-a727-7f48e6e05762\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Friend Finder</strong> <br> 10 Courses</div>\n" +
@@ -2213,7 +2203,7 @@
             checkCelebration.on("value", function (snapshot) {
                 var text = "GotSmarter Badge";
 
-                if (snapshot.val().GotSmarter == "not_celebrated"){
+                if (snapshot.val().GotSmarter == "not_celebrated") {
                     $('#Congrats_Pop_Up').html("GotSmarter Badge");
                     $("#Celebrations").modal();
 
@@ -2224,9 +2214,7 @@
 
             })
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2264,11 +2252,9 @@
             counter++;
         });
 
-        if (counter >=5 )
+        if (counter >= 5) {
 
-        {
-
-            display =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FforumBoffin2.png?alt=media&token=a31eff4e-d16e-4a1c-a5f6-31cd86f0c6fb\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
+            display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FforumBoffin2.png?alt=media&token=a31eff4e-d16e-4a1c-a5f6-31cd86f0c6fb\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Forum Boffin</strong> <br> Active in 1 Forum </div>\n" +
@@ -2277,7 +2263,7 @@
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
 
-                if (snapshot.val().ForumBoffin == "not_celebrated"){
+                if (snapshot.val().ForumBoffin == "not_celebrated") {
                     var text = "GotSmarter Badge";
                     $('#Congrats_Pop_Up').html("ForumBoffin Badge");
                     $("#Celebrations").modal();
@@ -2287,9 +2273,7 @@
 
             })
 
-        }
-
-        else {
+        } else {
 
             display = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" style=\"width:150%;height:150%;margin-left: 17px;\">\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2298,11 +2282,11 @@
                 "                     </div>";
         }
 
-        $('#ForumBoffin').html(display);});
+        $('#ForumBoffin').html(display);
+    });
 
 
     //Badge_10_Forum_Boffin
-
 
 
 </script>
@@ -2332,17 +2316,23 @@
                             </div><!--end col-->
 
                             <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-                                <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
-                                <p><button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative; margin-left:15px;" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
-                                    {{ names }}
-                                </button>
+                                <input class="connection_id" id="connection_id" name="connection_id"
+                                       value="{{ conn_id }}" hidden style="display: none;">
+                                <p>
+                                    <button id="{{ conn_id }}_name"
+                                            style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative; margin-left:15px;"
+                                            onclick="location.href='{% url 'connectionsopen' %}'" type="submit"
+                                            value="goConnectionsOpen">
+                                        {{ names }}
+                                    </button>
                                 </p>
                                 <p class="badge badge-pill badge-dark"
                                    style="color:white;font-size:10px;margin-left:20px;margin-top:5px;"> {{ countries }} </p>
                             </div><!--end col-->
                         </form>
                         {% if forloop.counter|divisibleby:2 %}
-                            </div><div class="row" style="margin-bottom: 20px; margin-left: 80px;">
+                            </div>
+                            <div class="row" style="margin-bottom: 20px; margin-left: 80px;">
                         {% endif %}
                     {% empty %}
                         <p>No Mutual Connections</p>
@@ -2361,7 +2351,8 @@
 <!-- End of 1.1 Pop Up modal-->
 
 <!-- Modal for pop up message "forum joined" -->
-<div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -2375,7 +2366,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
+            color: #e83e8c;">Close
+                </button>
 
             </div>
         </div>
@@ -2384,7 +2376,8 @@
 
 
 <!-- Modal for pop up message "join request sent" -->
-<div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -2394,11 +2387,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
+                Your join request has been sent to the forum owner. You will be notified once the owner has accepted
+                your request.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
+            color: #e83e8c;">Close
+                </button>
 
             </div>
         </div>
@@ -2407,7 +2402,8 @@
 
 
 <!-- Modal for pop up message "blocked from forum message" -->
-<div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -2421,7 +2417,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
+            color: #e83e8c;">Close
+                </button>
 
             </div>
         </div>
