@@ -1115,8 +1115,8 @@
                                     </div>
                                     <!-- hidden field that stores the id of the entity  -->
                                     <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
-                                    <h8 style="display: inline-block;margin-left: 10px;margin-top: -10px;font-family:'Arial Narrow';font-weight:bold; font-size: small; color:#666666;">
-                                        Connections: &nbsp;<span> {{ numConnections }} </span>
+                                      <h8 style="display: inline-block;margin-left: 5px;margin-top: -10px;font-family:'Arial Narrow'; color:#666666 ;font-weight:bold; font-size: small;">
+                                       &nbsp;<span>  {{ countries }} </span>
                                     </h8>
                                     <br>
 
@@ -1185,7 +1185,7 @@
                         </div>
                     </div><!--end of Forum Suggestions Card--><br>
                 {% empty %}
-                    <div style="font-style: italic; font-size: small">No Forum Suggestions: Select more topics you are interested in</div>
+                    <div style="font-style: italic; font-size: small"><p class="text-center">No Forum Suggestions</p><p class="text-center">Select more topics you are interested in</p></div>
                 {% endfor %}
 
 
