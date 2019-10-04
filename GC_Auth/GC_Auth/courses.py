@@ -34,12 +34,10 @@ class course_methods:
     def getCoursesTopicsString(course_id):
         # gets all topics and puts them into one string
         topics = database.child("Courses").child(course_id).child("Topic").shallow().get().val()
-        topics_string = ""
 
         if topics is not None:
             for topic in topics:
-                topics_string = topics_string + "|" + topic
-            topics_string += "|"
+                return "| " + topic + "|"
         else:
             topics_string = "No Topics"
 

@@ -58,15 +58,11 @@ class forum_methods:
     def getForumTopicsString(forum_id):
         # gets all topics and puts them into one string
         topics = database.child("Forums").child(forum_id).child("TopicTags").shallow().get().val()
-        topics_string = ""
         if topics is None:
-            return " "
+            return "No Topics"
         else:
             for topic in topics:
-                topics_string = topics_string + " | " + topic
-
-            topics_string += " | "
-            return topics_string
+                return "| " + topic + " |"              # return the first topic in the list
 
 
     def getForumTopicsList(forum_id):
