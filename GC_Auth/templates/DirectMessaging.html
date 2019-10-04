@@ -1208,7 +1208,7 @@
             bottom: 0;
             width: 100%;
             z-index: 99;
-            background-color: #ebebeb;
+            background-color: transparent;
         }
 
         #frame .content .message-input .wrap {
@@ -1396,7 +1396,7 @@
                 <div class="message-input">
                     <div class="wrap">
                         <input id="WriteYourMsg" disabled
-                               style="height:41px;background-color: #ebebeb;font-family: sans-serif; margin-top: 20px; border-style: solid;border-width: 2px; border-radius: 8px;border-color: darkgray"
+                               style="height:41px;background-color: transparent;font-family: sans-serif; margin-top: 20px; border-style: solid;border-width: 2px; border-radius: 8px;border-color: darkgray"
                                type="text" placeholder="Write your message..."/>
 
                         <button style="margin-top: 20px;border-radius: 8px" onclick="SendMessagePost()"
@@ -1769,8 +1769,8 @@
                     "<img src=\"" + obj[keys[i]].ProfilePic + "\" alt=\"\" />\n" +
                     "<p><h10> " + obj[keys[i]].Sender_name + "</h10><br>\n" + obj[keys[i]].text + "</p>" +
                     "\n" +
-                    "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-50px;position:relative; top:1px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
-                    "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> ";
+                    "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-50px;position:relative; top:0px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
+                    "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> <p style=\"color:transparent;\">hidden div</p><p style=\"color:transparent;\">hidden div</p>";
 
                 {% comment %} html_dropdown = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
                      "                                        data-toggle=\"dropdown\">\n" +
@@ -1802,8 +1802,8 @@
                     "<img src=\"" + obj[keys[i]].ProfilePic + "\" alt=\"\" />\n" +
                     "<p> " + obj[keys[i]].text + "</p>" +
                     "\n" +
-                    "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-850px;position:relative; top:-5px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
-                    "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> ";
+                    "</li><div style= \"width: 70%;height: 20px;border-radius: 5px;right:-850px;position:relative; top:-4px; color:grey; font-style:italic;font-size: x-small;font-family: sans-serif; \"\n" +
+                    "class= \" \"> <i class= \"fa fa-clock-o \"></i> " + ts_display + "</div> <p style=\"color:transparent;\">hidden div/p><p style=\"color:transparent\">hidden div</p>";
 
                 {% comment %}  html_dropdown = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\"\n" +
                              "                                        data-toggle=\"dropdown\">\n" +
