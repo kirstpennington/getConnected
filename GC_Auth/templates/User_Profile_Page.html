@@ -755,7 +755,7 @@
             <!--RHS of Navigation Bar-->
             <ul class="nav navbar-nav navbar-right">
 
-                 <!--MESSAGE NOTIFICATIONS -->
+                <!--MESSAGE NOTIFICATIONS -->
                 <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
                                         onclick="CloseIntroForm(); OpenLogIn();">
 
@@ -965,7 +965,7 @@
 
     /*Request Notifications*/
 
-     var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+    var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
 
 
     database_counter.on('value', function (snapshot) {
@@ -1110,12 +1110,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -1300,7 +1300,7 @@
                                     <!-- hidden field that stores the id of the entity  -->
                                     <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                     <h8 style="display: inline-block;margin-left: 5px;margin-top: -10px;font-family:'Arial Narrow'; color:#666666 ;font-weight:bold; font-size: small;">
-                                       &nbsp;<span>  {{ countries }} </span>
+                                        &nbsp;<span>  {{ countries }} </span>
                                     </h8>
                                     <br>
 
@@ -1531,14 +1531,14 @@
 
 
             /*NOTIFICATION ON ADD (to be places here): Specific to Add: Whenever items changes (added because of child_added) in database, this event is called, getKey is unique id of pop up*/
-     {% comment %}       function Delete_request(post_id){
+            {% comment %}       function Delete_request(post_id){
 
 
-                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
+                       var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
 
-                different_name.remove();
-                //window.alert( typeof post_id );
-            }{% endcomment %}
+                       different_name.remove();
+                       //window.alert( typeof post_id );
+                   }{% endcomment %}
 
 
 
@@ -1800,6 +1800,7 @@
                                             if (topics_json.hasOwnProperty(k)) {
                                                 forum_topics = forum_topics + k + " | ";
                                             }
+                                            break;                              // only show the main topic
                                         }
 
                                         if (myforumsArray.includes(key)) {  // if the forum is my forum, then add it to my forums card instead of all forums
