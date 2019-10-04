@@ -971,7 +971,6 @@
     database_counter.on('value', function (snapshot) {
         renderCount(snapshot.val());
         renderUI(snapshot.val());
-        //alert("Connection Request Received");
 
 
     });
@@ -1758,68 +1757,52 @@
 
             <script>
                 /*This JavaScript Section is for creating a table with forum cards. The table is called ExploreAllForumsTable*/
-                var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
-                myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
 
-                    myforumsArray = snapshotToArray(snapshot_1);
-                    var explore_forums = firebase.database().ref().child("Forums");    // Fetching a list of all forums
+                var explore_forums = firebase.database().ref().child("Forums");    // Fetching a list of all forums
 
-                    explore_forums.on("value", function (snapshot) {
-                        var m = 0;                  // spacing for my forums
-                        var myResult = "<table >";
-                        myResult += "<tr>";
+                explore_forums.on("value", function (snapshot) {
+                    var m = 0;                  // spacing for my forums
+                    var myResult = "<table >";
+                    myResult += "<tr>";
 
-                        snapshot.forEach(function (childSnapshot) {
-                            var key = childSnapshot.key;                                                               // get the forum id as key
+                    var numResults = 0;                                                                             // ensures ensures that only 3 elements are printed
+                    snapshot.forEach(function (childSnapshot) {
+                        var key = childSnapshot.key;                                                                // get the forum id as key
+                        var creator = childSnapshot.val().Creator;                                                       // get the id of the forum creator
+                        var enabled = childSnapshot.val().Enabled;                                                   // is the forum enbled
 
-                            var myforumcreator_fb_location = firebase.database().ref().child("Forums/" + key + "/Creator");
-                            myforumcreator_fb_location.on("value", function (creator_snapshot) {                        // check if im the creator
-                                creator = creator_snapshot.val();                                                       // get the id of the forum creator
+                        if (numResults <= 3 && creator == '{{ this_uid }}' && (enabled == true || enabled == 'true')) {                // if im not the creator and this forum is disabled, don't show the forum
 
+                            var forum_names = childSnapshot.val().Name;  // collect the data you need
+                            var forum_pics = childSnapshot.val().ForumPic;
+                            var forum_num_participants = childSnapshot.val().NumParticipants;
+                            var topics_json = childSnapshot.val().TopicTags;
+                            var forum_descriptions = childSnapshot.val().Description;
 
-                                var myforumdisabled_fb_location = firebase.database().ref().child("Forums/" + key + "/Enabled");
-                                myforumdisabled_fb_location.on("value", function (enabled_snapshot) {                   // check if this forum is disabled
-                                    enabled = enabled_snapshot.val();                                                   // is the forum enbled
+                            // create a string with all forum topics
+                            var forum_topics = " | ";
+                            for (var k in topics_json) {
+                                if (topics_json.hasOwnProperty(k)) {
+                                    forum_topics = forum_topics + k + " | ";
+                                }
+                                break;                              // only show the main topic
+                            }
 
-                                    if (creator!='{{ this_uid }}' && enabled == false) {                                  // ifim not the creator and this forum is disabled, don't show the forum
-                                        // do nothing
-                                    }
-                                    else{
+                            //adds to my forums
+                            myResult += "<td>" + MyForumCard(forum_names, forum_pics, forum_num_participants, creator, forum_topics, forum_descriptions, key) + "</td>";
+                            if ((m + 1) % 3 == 0) {
+                                myResult += "</tr><tr>";
+                            }
+                            m++;
 
-                                        var key = childSnapshot.key;
-                                        var forum_names = childSnapshot.val().Name;  // collect the data you need
-                                        var forum_pics = childSnapshot.val().ForumPic;
-                                        var forum_num_participants = childSnapshot.val().NumParticipants;
-                                        var forum_creators = childSnapshot.val().Creator;
-                                        var topics_json = childSnapshot.val().TopicTags;
-                                        var forum_descriptions = childSnapshot.val().Description;
-
-                                        // create a string with all forum topics
-                                        var forum_topics = " | ";
-                                        for (var k in topics_json) {
-                                            if (topics_json.hasOwnProperty(k)) {
-                                                forum_topics = forum_topics + k + " | ";
-                                            }
-                                            break;                              // only show the main topic
-                                        }
-
-                                        if (myforumsArray.includes(key)) {  // if the forum is my forum, then add it to my forums card instead of all forums
-                                            //adds to my forums
-                                            myResult += "<td>" + MyForumCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, key) + "</td>";
-                                            if ((m + 1) % 3 == 0) {
-                                                myResult += "</tr><tr>";
-                                            }
-                                            m++;
-                                        }
-                                    }
-                                });
-                            });
-                        });
-
-                        $('#MyForumsTable').html(myResult);
-
+                            numResults++;
+                            $('#MyForumsTable').html(myResult);                             // write to the table
+                        }
                     });
+
                 });
+
+
 
                 function MyForumCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
                     var card =  " <form action=\"/goForumsOpen/\" method=\"post\">\n" +
