@@ -1446,7 +1446,7 @@
                         function searchByCountry(){
                             for (let i = 0; i < searchableUsers.length; i++) {
                                 var this_country = document.getElementById(searchableUsers[i] + '_country').innerText;
-                                if (this_country == '{{ country }}') {
+                                if (this_country == '{{ my_country }}') {
                                     document.getElementById(searchableUsers[i] + "_hide").hidden = false;
                                 } else {
                                     document.getElementById(searchableUsers[i] + "_hide").hidden = true;

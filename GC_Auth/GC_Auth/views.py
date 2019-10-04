@@ -539,7 +539,8 @@ def goCreateForum(request):
     return render(request, 'CreateForum.html', {'this_uid': the_user.uid,
                                                 'profilePic': the_user.profilePic,
                                                 'all_topics_list': all_topics_list,
-                                                'n': the_user.username
+                                                'n': the_user.username,
+                                                'my_country': the_user.country
                                                 })
 
 def goForumsHelp(request):
