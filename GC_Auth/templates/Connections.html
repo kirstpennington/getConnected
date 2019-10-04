@@ -809,7 +809,6 @@
 
 <script>
 
-
     /*Time for Posts Displayed*/
     const MONTH_NAMES = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -1040,7 +1039,7 @@
                     var decision = "true";
                     var opp_decison = "false";
 
-                    searchByCountry();
+                   // searchByCountry();
 
 
 
@@ -1181,11 +1180,6 @@
     }
 
 
-
-
-
-
-
 </script>
 
 
@@ -1193,8 +1187,7 @@
 
 <!--used to encapsulate all content items of settings page, excl footer-->
 <!--background wallpaper-->
-<div class="UserWallpaper parallax" style="background-image:url(
-        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for page content -->
 
 

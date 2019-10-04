@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Forums</title>
+
+<head>
+
+    <!--*HEAD* Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+            authDomain: "getconnected-9dac0.firebaseapp.com",
+            databaseURL: "https://getconnected-9dac0.firebaseio.com",
+            projectId: "getconnected-9dac0",
+            storageBucket: "getconnected-9dac0.appspot.com",
+            messagingSenderId: "144309081376"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <!--Links to Bootstrap & to css-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../GC_Auth/static/GC_Auth/loginstyle.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Footer Bar Style -->
+    <link href="sticky-footer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+
+    <!--NavigationBar Style-->
+
+    <style>
+
+        .dropdown {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .glyphicon-bell {
+            font-size: 1.5rem;
+        }
+
+        .notifications {
+            min-width: 320px;
+        }
+
+        .notifications-wrapper {
+            overflow: auto;
+            max-height: 250px;
+        }
+
+        .glyphicon-circle-arrow-right {
+            margin-left: 10px;
+        }
+
+        .item-title {
+            font-size: 1.5rem;
+            color: black;
+            padding: 0px 50px;
+        }
+
+        .notifications a.content {
+            text-decoration: none;
+            background: white;
+        }
+
+        .notification-item {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px;
+            height: 80px;
+        }
+
+        .profile_img {
+            width: 25px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 3px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+        }
+
+        /*footer logo*/
+        footer img {
+
+
+            width: 200%;
+            height: 200%;
+            text-align: left;
+
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+
+        .navbar {
+
+            margin-bottom: 0;
+        }
+
+        .back {
+            background-color: #e83e8c;
+            opacity: 0.9;
+            color: white;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            text-align: left center;
+            height: 200px;
+            background-image: url("../static/GC_Auth/uni2.jpg");
+
+            /* Center and scale the image nicely */
+            background-position: left;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+
+        .intro-form {
+            width: 800px;
+            margin: 50px auto;
+            position: top center;
+            padding-top: 0px;
+        }
+
+
+        .intro-form form {
+            margin-bottom: 15px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            background-color: white;
+            opacity: 1;
+            border: 1px solid gray;
+            filter: alpha(opacity=60); /* For IE8 and earlier */
+            color: #666666;
+
+        }
+
+        form p {
+            font-size: 20px;
+        }
+
+        .row .courseCard {
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+            background-color: white;
+            opacity: 1;
+            border: 1px solid silver;
+        }
+
+        .cd-tab-filter-wrapper {
+            background-color: #ffffff;
+            z-index: 1;
+        }
+
+        .cd-filter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: #ffffff;
+            z-index: 2;
+            transform: translateX(-100%);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cd-filter-trigger {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 50px;
+            width: 60px;
+            z-index: 3;
+        }
+
+        .cd-main-content.is-fixed .cd-tab-filter-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .cd-main-content.is-fixed .cd-filter {
+            position: fixed;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .cd-main-content.is-fixed .cd-filter-trigger {
+            position: fixed;
+        }
+
+        .panel list-group h4 {
+            color: #4f4f4f;
+        }
+
+
+    </style>
+
+    <!--*HEAD-STYLE*  1.4. Cards Style-->
+
+    <style>
+
+
+        .card {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin: 10px 0 20px 0;
+            border-top-width: 0;
+            border-bottom-width: 2px;
+            box-sizing: border-box;
+            position: relative;
+            top: -50px;
+            margin-bottom: -50px;
+            left: 18px;
+            box-shadow: 0 4px 8px 0 silver;
+        }
+
+        .card.hovercard {
+            position: relative;
+            padding-top: 0;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+            border-radius: 10px
+        }
+
+        .card.hovercard:hover {
+            position: relative;
+            padding-top: 0;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .card.Ccard {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            border-width: 5px;
+
+            width: 255px; /* or whatever width you want. */
+            max-width: 255px; /* or whatever width you want. */
+            height: 275px;
+            max-height: 275px;
+            display: inline-block;
+
+            border-radius: 10px
+        }
+
+        .card.Ccard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+        .card.Ccard:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            border: 1px solid silver;
+            box-shadow: 5px 10px 8px #888888;
+        }
+
+        .cardheader {
+            background: url("http://lorempixel.com/850/280/nature/4/");
+            background-size: cover;
+            height: 170px;
+            width: 300px;
+
+            position: relative;
+            top: -50px;
+            margin-bottom: -50px;
+            box-shadow: 0 4px 8px 0 silver;
+        }
+
+        .card.hovercard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: black;
+            vertical-align: middle;
+            font-family: Arial;
+        }
+
+
+        .heartbutton {
+            top: -50px;
+            left: 280px;
+            position: absolute;
+            background: transparent;
+
+        }
+
+        .heartbutton {
+            top: -50px;
+            left: 280px;
+            position: absolute;
+            background: transparent;
+
+        }
+
+
+        .heartColour {
+            color: #e83e8c;
+            border: black;
+            border-width: 2px
+        }
+
+
+        /*footer logo*/
+        footer img {
+
+
+            width: 200%;
+            height: 200%;
+            text-align: left;
+
+        }
+
+
+        .well a:hover {
+            text-decoration: none;
+
+        }
+
+        .rounded-circle { /* Profile Picture 2/3 */
+            border-radius: 50% !important;
+        }
+
+    </style>
+    <!--recommendation card styles-->
+    <style>
+
+        .inf { /*Card Information*/
+
+            border-radius: 8px
+        }
+
+        .col-sm-4 .rightColumnContainer_lower:hover {
+            -ms-transform: scale(1); /* IE 9 */
+            -webkit-transform: scale(1); /* Safari 3-8 */
+            transform: scale(1);
+            background-color: #e83e8c;
+            color: white;
+
+
+        }
+
+
+        .rightColumnContainer_lower { /*Card Frame*/
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            border-radius: 8px;
+            border: solid #e83e8c;
+            height: 72px;
+            width: 280px;
+            position: relative;
+            right: 25px;
+            top: -5px;
+
+        }
+
+        .main-raised {
+            margin: -60px 30px 0;
+            border-radius: 6px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+        }
+
+        .main {
+            background: #FFF;
+            position: relative;
+            z-index: 3;
+        }
+
+          .AcceptDeclinebutton {
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: black;
+        }
+
+        .AcceptDeclinebutton:hover {
+            background-color: #e83e8c;
+            color: black;
+
+        }
+
+         .notification-item {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 4px;
+            border-width: 5px;
+            border-color: black;
+            height: 80px;
+        }
+
+         .profile_img_1 {
+            max-width: 50px;
+            min-width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+
+    </style>
+
+
+</head>
+
+<div hidden id="this_uid"> {{ this_uid }}</div>
+
+
+<body>
+
+
+<!--navigation bar at top of all pages-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>  <!--navbar-header-->
+
+        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+
+            <!--Left-side (including search ) of navigation bar-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a onclick="location.href='{% url 'nav_home' %}'"><span
+                        class="glyphicon glyphicon-home fa-lg"></span> Home</a></li>
+                <li><a onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    Connections</a></li>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'" style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a></li>
+                <li><a onclick="location.href='{% url 'nav_courses' %}'"><span
+                        class="fa fa-book fa-lg"></span> Courses</a></li>
+            </ul>
+
+                       <!--Right-side (including search ) of navigation bar-->
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <!--MESSAGE NOTIFICATIONS -->
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+
+                    <div style=""
+                         id="Messages_icons_notifications">
+                        &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
+                        <span id="number_of_msg_notifications" class="label label-default"
+                              style="background-color: red;color: white">0</span>&nbsp;
+                    </div>
+
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
+
+                            <ul id="Message_dropdown_notifications" style="">
+
+                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
+
+                                {% comment %}     <a><div style="" class="notification-item">
+                                <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
+                                    <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
+                                    <p style="font-family: sans-serif; color: black; margin-top: 3px;left: 30px;position:relative; font-size:small"> Hi Winny</p>
+                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
+                                </div>
+                            </a>
+
+                            <a><div style="margin-top: -20px" class="notification-item">
+                                <img class="profile_img" src="{{ ProfilePic }}"/>
+                                    <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
+                                    <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
+                                    <p style="font-family: sans-serif; color: black; margin-top: 3px;left: 30px;position:relative; font-size:small"> Hi Winny</p>
+                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
+                                </div>
+                            </a>{% endcomment %}
+
+                            </ul>
+
+                        </div><!--notifications-wrapper-->
+                        <li class="divider"></li>
+                        <li style="font-weight: bold; font-family: sans-serif; text-align: right"
+                            onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
+                            View All <i class="fa fa-angle-double-right"></i></li>
+                    </ul><!--Dropdown menu Messages--> </a>
+                </li><!--dropdown -->
+
+                <!--REQUESTS NOTIFICATIONS -->
+                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                      data-target="#" href="#"
+                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+
+                    <div id="">
+                        <span id="counter_number_notifications"></span>
+                    </div>
+
+                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                        aria-labelledby="dLabel">
+
+                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                            <!--Notifications Dropdown div-->
+                            <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
+                                Notifications</p></ul>
+                        </div><!--End of Notifications Dropdown div-->
+
+                        <!--Footer of notification drop down-->
+                        <li class="divider"></li>
+                        <li style="text-align: center"><a href="#"></a></li>
+
+                    </ul> <!--Dropdown menu Notification-->
+                </a>
+                </li><!--dropdown -->
+
+                <!--Profile Drop-Down -->
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                        onclick="CloseIntroForm(); OpenLogIn();">
+
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20"
+                                                                                  height="20" src="{{ ProfilePic }}"
+                                                                                  alt=""></span>
+
+                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                class="fa fa-comments-o pull-right"></span></a></li>
+                        <li class="divider"></li>
+
+                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+
+
+            </ul><!--nav navbar-nav navbar-right-->
+
+
+        </div><!--collapse nav-bar collapse-->
+    </div><!--container fluid-->
+</nav><!--nav navbar-inverse-->
+
+<script>
+    /*Time for Posts Displayed*/
+    const MONTH_NAMES = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+        const day = date.getDate();
+        const month = MONTH_NAMES[date.getMonth()];
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        let minutes = date.getMinutes();
+
+        if (minutes < 10) {
+            // Adding leading zero to minutes
+            minutes = `0${minutes}`;
+        }
+
+        if (prefomattedDate) {
+            // Today at 10:20
+            // Yesterday at 10:20
+            return `${prefomattedDate} at ${hours}:${minutes}`;
+        }
+
+        if (hideYear) {
+            // 10. January at 10:20
+            return `${day}. ${month} at ${hours}:${minutes}`;
+        }
+
+        // 10. January 2017. at 10:20
+        return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+    }
+
+    // --- Main function
+    function timeAgo(dateParam) {
+
+        if (!dateParam) {
+            return null;
+        }
+
+        const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+        const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+        const today = new Date();
+        const yesterday = new Date(today - DAY_IN_MS);
+        const seconds = Math.round((today - date) / 1000);
+        const minutes = Math.round(seconds / 60);
+        const isToday = today.toDateString() === date.toDateString();
+        const isYesterday = yesterday.toDateString() === date.toDateString();
+        const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+        if (seconds < 5) {
+            return 'now';
+        } else if (seconds < 60) {
+            return `${seconds} seconds ago`;
+        } else if (seconds < 90) {
+            return 'about a minute ago';
+        } else if (minutes < 60) {
+            return `${minutes} minutes ago`;
+        } else if (isToday) {
+            return getFormattedDate(date, 'Today'); // Today at 10:20
+        } else if (isYesterday) {
+            return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+        } else if (isThisYear) {
+            return getFormattedDate(date, false, true); // 10. January at 10:20
+        }
+
+        return getFormattedDate(date); // 10. January 2017. at 10:20
+    };
+
+
+    /*Message_Notificationas*/
+
+    var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
+    Message_Notifications_Check.on('value', function (snapshot) {
+        msg_messages_dropdown(snapshot.val());
+        msg_message_number(snapshot.val());
+    });
+
+    function msg_messages_dropdown(obj) {
+
+
+        var dropdown_item = '';
+        var keys = Object.keys(obj);
+        var counter_check = 0;
+
+
+        for (var i = keys.length - 1; i >= 0; i--) {
+
+            if (obj[keys[i]].ProfilePic != undefined) {
+
+                var display_time = obj[keys[i]].Time;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
+
+
+                if (counter_check == 0) {
+                    counter_check++;
+
+                    dropdown_item += " <a><div style= \"padding: 2px;\n" +
+                        "            margin: 5px;\n" +
+                        "            border-radius: 4px;\n" +
+                        "            border-width: 5px;\n" +
+                        "            border-color: black;\n" +
+                        "            height: 80px;\n" +
+                        "             margin-left: -20px;\n" +
+                        "            margin-top: 20px  \" class=\"notification-item\">\n" +
+                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
+                        "                                    \n" +
+                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
+                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \"> " + obj[keys[i]].text + "</p>\n" +
+                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
+                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
+                        "                                </div>\n" +
+                        "                            </a>";
+
+                } else {
+
+                    dropdown_item += " <a><div style= \"padding: 5px;\n" +
+                        "            margin: 5px;\n" +
+                        "            border-radius: 4px;\n" +
+                        "            border-width: 5px;\n" +
+                        "            border-color: black;\n" +
+                        "            height: 80px;\n" +
+                        "             margin-left: -20px;\n" +
+                        "            margin-top: 20px \" class=\"notification-item\">\n" +
+                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
+                        "                                    \n" +
+                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
+                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \">" + obj[keys[i]].text + "</p>\n" +
+                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
+                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
+                        "                                </div>\n" +
+                        "                            </a>";
+                }
+
+            }
+        }
+        $('#Message_dropdown_notifications').html(dropdown_item);
+    }
+
+
+    function msg_message_number(obj) {
+        // var html = '';
+        var countholder = 0;
+        var keys = Object.keys(obj);
+
+        for (var i = 0; i < keys.length; i++) {
+            countholder++;
+        }
+
+
+
+        $('#number_of_msg_notifications').html(countholder);
+
+
+    }
+
+    function removeMessageNotifications() {
+
+        var other = firebase.database().ref().child("Users/" + '{{ this_uid }}');/*Messages*/
+        other.child("Messages_Notifications").remove();
+
+    }
+
+
+    /*Request Notifications*/
+
+    var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+
+
+    database_counter.on('value', function (snapshot) {
+        renderCount(snapshot.val());
+        renderUI(snapshot.val());
+        //alert("Connection Request Received");
+
+
+    });
+
+
+    function renderUI(obj) {
+        var html = '';
+        var keys = Object.keys(obj);
+        start_count = 0;
+        for (var i = keys.length - 1; i >= 0; i--) {
+            // for (var i = 0; i <= keys.length - 1; i++) {
+            /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+            /*Creating notification item*/
+
+            if (obj[keys[i]].sender_profilePic != undefined) {
+                start_count ++;
+
+                if (start_count ==1) {
+
+                    var display_time = obj[keys[i]].time;
+                    display_time = Number(display_time); // cast it to a Number
+                    var ts_display = timeAgo(display_time);
+
+
+                    var decision = "true";
+                    var opp_decison = "false";
+
+
+
+                    html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\" padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -30px; \" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 0px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black;left: 25px;position:relative;margin-top: -5px; \">" + obj[keys[i]].message +
+                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+                }
+
+                else
+
+                {
+
+                    var display_time = obj[keys[i]].time;
+                    display_time = Number(display_time); // cast it to a Number
+                    var ts_display = timeAgo(display_time);
+
+
+                    var decision = "true";
+                    var opp_decison = "false";
+
+                    //searchByCountry();
+
+
+                    html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px;\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
+                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+
+                }
+
+            }
+        }
+        $('#comment').html(html);
+    }
+
+    function renderCount(obj) {
+        var html = '';
+        var countholder = 0;
+
+        var keys = Object.keys(obj);
+        for (var i = 0; i < keys.length; i++) {
+            countholder++;
+        }
+        countholder--;
+        database_counter.update({'counter': countholder});
+        /*Creating notification icon*/
+
+
+        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+
+
+        $('#counter_number_notifications').html(html);
+
+
+    }
+
+    function Accept_request(sender_id, name, post_id, isAccept) {
+
+
+        if (String(isAccept).valueOf() == String("true").valueOf()) {
+
+            /*Check Type of Request*/
+
+            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+
+                if (snapshot.exists()) {
+
+
+                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                    AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                    window.alert("You have joined a new forum!");
+                    //var x = document.getElementById("forumJoined");
+                    // x.show();
+
+
+                }/*Forum Requests*/
+
+                else {
+
+
+                    var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+                    var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+
+
+                    //AddConnection.child(sender_id).set(name);
+                    var bio;
+                    var propic;
+                    var country;
+                    var html = '';
+                    var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+                    getAcceptcon.on("value", function (snapshot) {
+                        bio = snapshot.val().Bio;
+                        propic = snapshot.val().ProfilePic;
+                        country = snapshot.val().Country;
+                    });
+
+                    //var created_id_target = AddConnection.push();
+                    AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                        Name: name,
+                        Bio: bio,
+                        ProfilePic: propic,
+                        Country: country,
+
+                    });
+
+                    AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                        Name: '{{ username }}',
+                        Bio: '{{ bio }}',
+                        ProfilePic: '{{ ProfilePic }}',
+                        Country: '{{ my_country }}',
+
+                    });
+
+
+                    //window.alert("You are now connected with " + name);
+
+                    html += "You are now connected with " + name;
+                    $('#newconnectionmodal').html(html);
+
+                    var y = document.getElementById("connectedWith");
+                    y.show();
+
+                }/*Friend Reuest*/
+            }); /*Checking Type of Request*/
+        } /*If Accept*/
+
+
+        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+
+            if (snapshot.exists()) {
+
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                different_name.remove();
+
+
+            } else {
+
+                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                different_name.remove();
+
+                var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+                removesent.remove();
+
+
+            }
+
+        });
+
+
+    }
+
+</script>
+
+
+<!--content of forums page start-->
+
+
+<!--recommended forums-->
+<div class="back">
+
+
+    <br><br><br><br>
+</div><!--end of header with background-->
+
+
+<!--tab heading-->
+<div class="main main-raised">
+    <br>
+    <ul class="nav nav-tabs" style="padding-right: 500px;padding-left: 20px;">
+        <!--the two tabs My Forums and All Forums-->
+        <li class="active">
+            <a data-toggle="pill" href="#Myforums">
+                <h2 class="text-center" style="color: silver">
+                    <strong> My Forums</strong>
+                </h2>
+            </a></li>
+        <li><a data-toggle="pill" href="#allforums">
+            <h2 class="text-center" style="color: silver">
+                <strong> All Forums</strong>
+            </h2>
+        </a></li>
+
+    </ul>
+    <br>
+
+
+    <br>
+<span onclick="location.href='{% url 'createForum' %}'" style="position: absolute; top:2%;left: 90%; color: gray; " data-toggle="tooltip"
+                  title="Add Forum" data-placement="right"
+                  class="glyphicon glyphicon-plus-sign fa-3x plus"></span>
+
+    <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
+    <div class="tab-content">
+
+        <!--my ForumsForums content-->
+        <!--this is the content for "my Forums" so put all the Forums the user takes here-->
+        <div id="Myforums" class="tab-pane fade in active">
+
+            <!--search bar with icon-->
+            <div class="centraliser" style="text-align: center">
+                <div class="input-group" style="width: 90%;padding-left: 30%;font-family: 'Roboto', sans-serif;">
+                    <input id="searchNameInput" type="text" class="form-control" placeholder="Search"/>
+                    <span onclick="searchByName()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                    <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </span>
+                </div><!--end search bar-->
+            </div>
+
+
+            <div class="row"><!--row one of page-->
+<!--filter-->
+                <div class="col-md-3"><!--filter panel-->
+                    <div class="container">
+                        <h2 style="color: silver;"><strong>Filters </strong></h2>
+
+
+                        <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="togSubject"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Subject
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+
+                                    <div class="collapseSubject" style="margin-left: 6px;">
+
+                                        <p onclick="showAll()"> All </p>
+                                        <p onclick="searchByTopic('Arts & Design')"> Arts & Design </p>
+                                        <p onclick="searchByTopic('Business & Management')"> Business & Management</p>
+                                        <p onclick="searchByTopic('Education')"> Education</p>
+                                        <p onclick="searchByTopic('Entrepreneurship')"> Entrepreneurship </p>
+                                        <p onclick="searchByTopic('Executive Education')"> Executive Education</p>
+                                        <p onclick="searchByTopic('Finance')" id='financeFilter'>Finance</p>
+                                        <p onclick="searchByTopic('Health')"> Health</p>
+                                        <p onclick="searchByTopic('Hospitality & Events')"> Hospitality & Events</p>
+                                        <p onclick="searchByTopic('Law')"> Law</p>
+                                        <p onclick="searchByTopic('Marketing')"> Marketing </p>
+                                        <p onclick="searchByTopic('Project Management')"> Project Management</p>
+                                        <p onclick="searchByTopic('Real Estate')"> Real Estate</p>
+                                        <p onclick="searchByTopic('Systems & Technology')"> Systems & Technology </p>
+                                        <p onclick="searchByTopic('Talent Management (HR)')"> Talent Management (HR)</p>
+                                        <p onclick="searchByTopic('Writing')"> Writing</p>
+
+                                    </div>
+
+                            </div>
+
+                        </div><!--end of accordion-->
+ <script><!--handles opening and closing filter-->
+$(document).ready(function(){
+  $(".togSubject").click(function(){
+    $(".collapseSubject").collapse('toggle');
+  });
+
+
+});
+</script>
+
+
+                    </div>
+                </div><!--end col-->
+
+            <!--start a new row here inside the other row-->
+
+                <div class="col-md-9"><!--Forums-->
+
+                <div class="row">
+                <div class="col-md-9">
+                    <div class="intro-form"><!--form at the top with recommendations-->
+                        <div class="main-raised" style="margin-top: 60px; padding-top:10px; padding-bottom: 10px;">
+                            <!--recommended course cards-->
+                            <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span
+                                    class="fa fa-book fa-lg"></span> Recommended for you</p>
+                            <br>
+
+
+                            <!--make a table of 1 row and 3 coloumns-->
+                            <div class="row"
+                                 style="width: 850px; position: relative; overflow: hidden; padding-left: 120px;">
+
+
+                                <!-- Style for confirm join suggested connection popup-->
+                                <style>
+                                    body {font-family: Arial, Helvetica, sans-serif;}
+                                    * {box-sizing: border-box;}
+
+                                    /* Button used to open the contact form - fixed at the bottom of the page */
+                                    .open-button {
+                                      background-color: #555;
+                                      color: white;
+                                      padding: 16px 20px;
+                                      border: none;
+                                      cursor: pointer;
+                                      opacity: 0.8;
+                                      position: fixed;
+                                      bottom: 23px;
+                                      right: 28px;
+                                      width: 280px;
+                                    }
+
+                                    /* The popup form - hidden by default */
+                                    .form-popup {
+                                      display: none;
+                                      position: fixed;
+                                      bottom: 0;
+                                      right: 15px;
+                                      border: 3px solid #f1f1f1;
+                                      z-index: 9;
+                                    }
+
+                                    /* Add styles to the form container */
+                                    .form-container {
+                                      max-width: 300px;
+                                      padding: 10px;
+                                      background-color: white;
+                                    }
+
+                                    /* Full-width input fields */
+                                    .form-container input[type=text], .form-container input[type=password] {
+                                      width: 100%;
+                                      padding: 15px;
+                                      margin: 5px 0 22px 0;
+                                      border: none;
+                                      background: #f1f1f1;
+                                    }
+
+                                    /* When the inputs get focus, do something */
+                                    .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+                                      background-color: #ddd;
+                                      outline: none;
+                                    }
+
+                                    /* Set a style for the submit/login button */
+                                    .form-container .btn {
+                                      background-color: #4CAF50;
+                                      color: white;
+                                      padding: 16px 20px;
+                                      border: none;
+                                      cursor: pointer;
+                                      width: 100%;
+                                      margin-bottom:10px;
+                                      opacity: 0.8;
+                                    }
+
+                                    /* Add a red background color to the cancel button */
+                                    .form-container .cancel {
+                                      background-color: red;
+                                    }
+
+                                    /* Add some hover effects to buttons */
+                                    .form-container .btn:hover, .open-button:hover {
+                                      opacity: 1;
+                                    }
+                                </style>
+                                <table id="ForumSuggestionsTable">
+
+                                </table>
+
+                                <script>
+
+                                    var results_count = 0;          //  how many results were found thus far
+                                    var max_results = 3;            // how many results we want to receive
+
+                                    var user_topics_fb_location = firebase.database().ref().child("Users").child('{{ this_uid }}').child("Topics");             // get all topic tags for this user
+                                    user_topics_fb_location.on("value", function (snapshot_user_topics) {
+                                        var user_topics = snapshotToArrayKey(snapshot_user_topics);
+
+                                        var allforums_fb_location = firebase.database().ref().child("Forums");
+                                        allforums_fb_location.on("value", function (snapshot_all_forums) {                                                                          //Fetching list of all Forums
+
+                                            var myforums_fb_location = firebase.database().ref().child("Users").child('{{ this_uid }}').child("ForumsJoined");
+                                            myforums_fb_location.on("value", function (snapshot_my_forums) {            // get a list of the forums that I have joined
+                                                var my_forums = snapshotToArrayKey(snapshot_my_forums);
+
+                                                var j = 0;                   // spacing for forum suggestions
+                                                var result = "<table >";
+                                                result += "<tr>";
+
+                                                snapshot_all_forums.forEach(function (forum) {                                                                                       // Loop through each forum in the database
+
+                                                    var forum_id = forum.key;
+
+                                                    if(!arrayContainsValue(my_forums, forum_id)) {              // only include the suggestion if the user is not already apart of the forum
+
+                                                        if (results_count == max_results) {
+                                                            // do nothing to each element in the array
+                                                        } else {
+
+                                                            var forum_topics_fb_location = firebase.database().ref().child("Forums").child(forum_id).child("TopicTags");                                                       // get all topic tags for this forum
+                                                            forum_topics_fb_location.on("value", function (snapshot_forum_topics) {
+
+                                                                var forum_topics = snapshotToArrayKey(snapshot_forum_topics);                                                               // list of all this forum's topics
+
+                                                                var forum_names = forum.val().Name;  // collect the data you need
+                                                                var forum_pics = forum.val().ForumPic;
+                                                                var forum_num_participants = forum.val().NumParticipants;
+                                                                var forum_creators = forum.val().Creator;
+                                                                var topics_json = forum.val().TopicTags;
+                                                                var forum_descriptions = forum.val().Description;                                                          // list of all this user's topics
+
+                                                                // create a string with all forum topics
+                                                                var forum_topics_str = " | ";
+                                                                for (var k in topics_json) {
+                                                                    if (topics_json.hasOwnProperty(k)) {
+                                                                        forum_topics_str = forum_topics_str + k + " | ";
+                                                                    }
+                                                                    break;
+                                                                }
+                                                                // list of all this user's topics
+                                                                if (arrayHasItemsInCommon(user_topics, forum_topics)) {                                                                     // check is user_topics and forum_topics have items in common
+
+                                                                    result += "<td>" + forumSuggestionCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics_str, forum_descriptions, forum_id) + "</td>";
+
+                                                                    if ((j + 1) % 3 == 0) {                                     // update spacing in table
+                                                                        result += "</tr><tr>";
+                                                                    }
+                                                                    j++;
+
+                                                                    results_count += 1;                                         // increment the number of results found
+                                                                }
+
+                                                                $('#ForumSuggestionsTable').html(result);
+
+                                                            });
+                                                        }
+                                                    }
+                                                });
+
+                                            });
+                                        });
+
+                                    });
+
+
+                                    function arrayHasItemsInCommon(array1, array2){                                        // checks whether both arrays have items in common (mutual items)
+                                        if(array1.length>0 && array2.length>0){
+                                            for (item1 in array1){
+                                                for (item2 in array2){
+                                                    if (item1 == item2){
+                                                        return true;
+                                                    }
+                                                }
+
+                                            }
+
+                                        }
+                                        return false;
+                                    }
+
+                                    function forumSuggestionCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
+                                        return "<div id=\""+ forum_ids +"_hideSuggestion\" class=\"col-sm-4  \" style=\" width: 202px;margin-top: 5px; \">\n" +
+                                            "\n" +
+                                            "                                        <div class=\" rightColumnContainer_lower\" style=\"width: 175px; height: 90px; \">\n" +
+                                            "\n" +
+                                            "                                            <div class=\"inf\" style=\"margin-top: -5px; text-align: center; \">\n" +
+                                            "\n" +
+                                            "                                                <div style=\"height:2px;\"><br></div>\n" +
+                                            "\n" +
+                                            "                                                <div style=\"font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative\">\n" +
+                                            "                                                    "+ forum_names +"\n" +
+                                            "                                                </div>\n" +
+                                            "                                                <!-- hidden field that stores the id of the entity  -->\n" +
+                                            "                                                <div id=\"course_id\" style=\"display: none;\"> "+ forum_ids +"</div>\n" +
+                                            "\n" +
+                                            "                                                <div style=\"height:2px;\"><br></div>\n" +
+                                            "\n" +
+                                            "                                                <span class=\"badge badge-pill badge-dark\"\n" +
+                                            "                                                      style=\"color: white; font-size: x-small;  top: 10px\">"+ forum_topics +"</span><br>\n" +
+                                            "                                                <div style=\"height:5px;\"><br></div>\n" +
+                                            "\n" +
+                                            "                                                <input type=\"hidden\" class=\"forum_id\" id=\"forum_id\" value=\""+ forum_ids +"\" hidden style=\"display: none; visibility: hidden;\">\n" +
+                                            "\n" +
+                                            "                                                 <button type=\"submit\" onclick=\"joinForum('"+ forum_ids +"', '{{ this_uid }}', '"+ forum_names +"', '"+ forum_ids +"_hideSuggestion')\"\n" +
+                                            "                                                   style=\"border: none; background: rgba(0,0,0,0);font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\"  >JOIN\n" +
+                                            "                                                    <i class=\"fa fa-angle-double-right\"></i></button>\n" +
+                                            "                                            </div><!-- inf-->\n" +
+                                            "\n" +
+                                            "                                        </div><!-- RighColumnContainer-->\n" +
+                                            "\n" +
+                                            "                                    </div> <!-- col-sm-3-->";
+                                    }
+
+
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end col-->
+
+                </div>
+
+                <div class="row" >
+                    <div id="refreshSectionFilter" class="row" style="margin-top: 60px;margin-bottom: 80px;"><!--row two of page--><!--move this inside the encaps row-->
+
+
+                    <div class="row"><!--row one of page-->
+                        <table id="MyForumsTable"></table>
+                    </div>
+
+                    </div><!--end row-->
+                </div>
+
+
+                </div><!--end col-9 one of inside table-->
+
+
+            <!--row two of inside table-->
+
+
+            </div><!--end row-->
+
+
+        </div><!--end my forums-->
+
+        <!-- content for all Forums tab-->
+        <div id="allforums" class="tab-pane fade">
+
+        <script>
+             /*This JavaScript Section is for creating a table with forum cards. The table is called ExploreAllForumsTable*/
+
+                 var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+                 myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
+
+                     myforumsArray = snapshotToArrayKey(snapshot_1);
+                     var explore_forums = firebase.database().ref().child("Forums");    // Fetching a list of all forums
+
+                     explore_forums.on("value", function (snapshot) {
+
+                         var j = 0;                   // spacing for all forums
+                         var result = "<table >";
+                         result += "<tr>";
+
+                         var m = 0;                  // spacing for my forums
+                         var myResult = "<table >";
+                         myResult += "<tr>";
+
+                         snapshot.forEach(function (childSnapshot) {
+                             var key = childSnapshot.key;                                                               // get the forum id as key
+
+                             var myforumcreator_fb_location = firebase.database().ref().child("Forums/" + key + "/Creator");
+                             myforumcreator_fb_location.on("value", function (creator_snapshot) {                        // check if im the creator
+                                creator = creator_snapshot.val();                                                       // get the id of the forum creator
+
+
+                                 var myforumdisabled_fb_location = firebase.database().ref().child("Forums/" + key + "/Enabled");
+                                myforumdisabled_fb_location.on("value", function (enabled_snapshot) {                   // check if this forum is disabled
+                                    enabled = enabled_snapshot.val();                                                   // is the forum enbled
+
+                                    if (creator!='{{ this_uid }}' && enabled == false) {                                  // ifim not the creator and this forum is disabled, don't show the forum
+                                        // do nothing
+                                    }
+                                    else{
+
+                                        var forum_names = childSnapshot.val().Name;  // collect the data you need
+                                        var forum_pics = childSnapshot.val().ForumPic;
+                                        var forum_num_participants = childSnapshot.val().NumParticipants;
+                                        var forum_creators = childSnapshot.val().Creator;
+                                        var topics_json = childSnapshot.val().TopicTags;
+                                        var forum_descriptions = childSnapshot.val().Description;
+                                        var forum_private = childSnapshot.val().Private;
+
+                                        // create a string with all forum topics
+                                        forum_topics = " | ";
+                                        for (var k in topics_json) {
+                                            if (topics_json.hasOwnProperty(k)) {
+                                                forum_topics = forum_topics + k + " | ";
+                                            }
+                                            break;
+                                        }
+
+                                        if (!myforumsArray.includes(key)) {                                             // if the forum is my forum, then add it to my forums card instead of all forums
+                                            //adds to all forums
+                                            if (forum_private == true || forum_private == "true"){                                   // button indicates whether the user has to request to  join the forum (if the forum is private)
+                                                var button_text = "Request Join";
+                                            }
+                                            else{
+                                                var button_text = "Join";
+                                            }
+
+                                            result += "<td>" + ForumsCardsAll(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, key, button_text) + "</td>";
+                                            if ((j + 1) % 3 == 0) {
+                                                result += "</tr><tr>";
+                                            }
+                                            j++;
+                                        } else {
+                                            //adds to my forums
+                                            myResult += "<td>" + MyForumsCards(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, key) + "</td>";
+
+                                            if ((m + 1) % 3 == 0) {
+                                                myResult += "</tr><tr>";
+                                            }
+                                            m++;
+                                        }
+                                    }
+                                });
+                            });
+                         });
+
+
+                         $('#AllForumsTable').html(result);
+                         $('#MyForumsTable').html(myResult);
+
+                     });
+                 });
+
+
+                function ForumsCardsAll(forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids, button_text){
+                    var hideBlock = forum_ids+"_hideAll";
+                    var card= "<div id=\""+ forum_ids +"_hideAll\" class=\"col-sm-3\" style=\"width:180px; margin-bottom: 100px; margin-left:30px; margin-right:90px; margin-top: 70px;\">\n" +
+                        "\n" +
+                        "                                                                <div hidden id=\""+ forum_ids +"_topicsAll\">"+ forum_topics +"</div>\n" +
+                        "                                                                <!-- forum wallpaper -->\n" +
+                        "                                                                <div class=\"cardheader\"\n" +
+                        "                                                                     style=\"background-image: url("+ forum_pics +"); border-radius: 8px; width:280px;\">\n" +
+                        "                                                                </div>\n" +
+                        "                                                                <!-- Go into forum -->\n" +
+                        "                                                                 <div hidden id=\""+ forum_ids +"_topicsAll\">"+ forum_topics +"</div>\n" +
+                        "                                                                <!--<div class=\"heartbutton\"><span style=\"background: transparent; \" type=\"button\"\n" +
+                        "                                                                                               class=\"fa fa-sign-in fa-lg viewForum\"></span></div> -->\n" +
+                        "                                                                <!-- card with forum detains -->\n" +
+                        "                                                                <div class=\"card hovercard \" style=\"margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;\">\n" +
+                        "\n" +
+                        "                                                                    <div>\n" +
+                        "                                                                        <!-- Number fo forum users -->\n" +
+                        "                                                                        <div style=\"top: 2px; margin-left: 70%\">\n" +
+                        "                                                                            <h8><span class=\"label label-default\"><span\n" +
+                        "                                                                                    class=\"fa fa-users\"> </span>"+ forum_num_participants +"</span></h8>\n" +
+                        "                                                                            <div style=\"height:5px;\"><br></div>\n" +
+                        "                                                                        </div>\n" +
+                        "\n" +
+                        "                                                                        <div id=\""+ forum_ids +"_nameAll\" style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px \">"+ forum_names +"\n" +
+                        "                                                                        </div>\n" +
+                        "                                                                        <div id=\"forum_id\" style=\"display: none;\"> "+ forum_ids +"</div>\n" +
+                        "                                                                        <!-- forum tags -->\n" +
+                        "                                                                        <span class=\"badge badge-pill badge-dark\" style=\"font-size: 11px\">"+ forum_topics +"</span>\n" +
+                        "\n" +
+                        "\n" +
+                        "                                                                    </div>\n" +
+                        "                                                                    <!-- card line -->\n" +
+                        "\n" +
+                        "                                                                    <hr style=\"width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px\"/>\n" +
+                        "                                                                    <!-- Open forum button -->\n" +
+                        "                                                                    <input id=\"forum_id\" name=\"forum_id\" value=\""+ forum_ids +"\" hidden style=\"display: none;\">\n" +
+                        "\n" +
+                        "                                                                    <button onclick=\"joinForum('"+ forum_ids +"', '{{ this_uid }}', '"+ forum_names +"', '"+ forum_ids +"_hideSuggestion')\"\n" +
+                        "                                                                   style=\"border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\">"+ button_text +"\n" +
+                        "                                                                    <i class=\"fa fa-angle-double-right\"></i></button>\n" +
+                        "                                                                </div><!-- /card-hovercard -->\n" +
+                        "                                                            </div>";
+
+
+                    return card;
+                }
+
+                // this section is not running for some reason
+                 function MyForumsCards(forum_names,forum_pics,forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
+                    var card= "<div id=\""+ forum_ids +"_hide\" class=\"col-sm-3  \" style=\" width: 180px; margin-bottom: 100px; margin-left:30px; margin-right:90px;  \">\n" +
+                        "                           <form action=\"/goForumsOpen/\" method=\"post\">\n" +
+                        "                   <!-- forum wallpaper -->\n" +
+                        "                   <div class=\"cardheader\"\n" +
+                        "                        style=\"background-image: url("+ forum_pics +"); border-radius: 8px;width:280px;\">\n" +
+                        "                   </div>\n" +
+                        "                   <!-- Go into forum -->\n" +
+                        "                    <div hidden id=\""+ forum_ids +"_topics\">"+ forum_topics +"</div>\n" +
+                        "                   <!-- <div class=\"heartbutton\"><span style=\"background: transparent; \" type=\"button\"\n" +
+                        "                                                  class=\"fa fa-sign-in fa-lg viewForum\"></span></div>-->\n" +
+                        "                   <!-- card with forum detains -->\n" +
+                        "                   <div class=\"card hovercard \" style=\"margin-top: -50px; margin-left: 11px; width: 220px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;\">\n" +
+                        "\n" +
+                        "                       <div>\n" +
+                        "                           <!-- Number fo forum users -->\n" +
+                        "                           <div style=\"top: 2px; margin-left: 70%\">\n" +
+                        "                               <h8><span class=\"label label-default\"><span\n" +
+                        "                                       class=\"fa fa-users\"> </span>"+ forum_num_participants +"</span></h8>\n" +
+                        "                               <div style=\"height:5px;\"><br></div>\n" +
+                        "                           </div>\n" +
+                        "\n" +
+                        "                           <div id='"+ forum_ids +"_name' style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px \">"+ forum_names +"\n" +
+                        "                           </div>\n" +
+                        "                           <div id=\"forum_id\" style=\"display: none;\"> "+ forum_ids +"</div>\n" +
+                        "                           <!-- forum tags -->\n" +
+                        "                           <span class=\"badge badge-pill badge-dark\" style=\"font-size: 11px\">"+ forum_topics +"</span>\n" +
+                        "\n" +
+                        "\n" +
+                        "                       </div>\n" +
+                        "                       <!-- card line -->\n" +
+                        "\n" +
+                        "                       <hr style=\"width: 80%; color: hotpink; height: 2px; background-color:hotpink; margin-top: 5px\"/>\n" +
+                        "                       <!-- Open forum button -->\n" +
+                        "                       <input type='hidden' class=\"forum_id\" id=\"forum_id\" name=\"forum_id\" value=\""+ forum_ids +"\" hidden style=\"display: none;\">\n" +
+                        "\n" +
+                        "                                                <button onclick=\"location.href='{% url 'forumsopen' %}'\"\n" +
+                        "                                                  style=\"border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\" type=\"submit\" value=\"goForumsOpen\">OPEN\n" +
+                        "                                                   <i class=\"fa fa-angle-double-right\"></i></button>\n" +
+                        "                   </div><!-- /card-hovercard -->\n" +
+                        "                </form>\n" +
+                        "                       </div>";
+
+                    return card;
+                }
+
+
+
+        </script>
+
+
+            <!--search bar with icon-->
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 77%;padding-left: 24%;font-family: 'Roboto', sans-serif;" >
+                        <input id="searchNameInputAll" type="text"  class="form-control" placeholder="Search"/>
+                        <span onclick="searchByNameAll()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                        <span onclick="showAllAll()" class="input-group-addon" style="color: #e83e8c; ">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </span>
+                    </div>
+                </div>
+
+
+
+               <div class="row"><!--row one of page-->
+                <!--filter panel-->
+                    <div class="col-md-3"  >
+                        <div class="container"  >
+                          <h2 style="color: silver;"><strong>Filters </strong></h2>
+
+
+                          <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
+
+                            <!--panel-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="toggerallone"
+                                           style="color:#ce3298">
+                                            <strong>
+                                                Subject
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                </div>
+
+                                    <div class="collapseSuball" style="margin-left: 6px;">
+
+                                        <p onclick="showAllAll()"> All </p>
+                                        <p onclick="searchByTopicAll('Arts & Design')"> Arts & Design </p>
+                                        <p onclick="searchByTopicAll('Business & Management')"> Business & Management</p>
+                                        <p onclick="searchByTopicAll('Education')"> Education</p>
+                                        <p onclick="searchByTopicAll('Entrepreneurship')"> Entrepreneurship </p>
+                                        <p onclick="searchByTopicAll('Executive Education')"> Executive Education</p>
+                                        <p onclick="searchByTopicAll('Finance')" id='financeFilter'>Finance</p>
+                                        <p onclick="searchByTopicAll('Health')"> Health</p>
+                                        <p onclick="searchByTopicAll('Hospitality & Events')"> Hospitality & Events</p>
+                                        <p onclick="searchByTopicAll('Law')"> Law</p>
+                                        <p onclick="searchByTopicAll('Marketing')"> Marketing </p>
+                                        <p onclick="searchByTopicAll('Project Management')"> Project Management</p>
+                                        <p onclick="searchByTopicAll('Real Estate')"> Real Estate</p>
+                                        <p onclick="searchByTopicAll('Systems & Technology')"> Systems & Technology </p>
+                                        <p onclick="searchByTopicAll('Talent Management (HR)')"> Talent Management (HR)</p>
+                                        <p onclick="searchByTopicAll('Writing')"> Writing</p>
+
+                                    </div>
+
+                            </div>
+
+                              <div hidden id="all_courses_str">{{ all_courses_str }}</div>
+
+                            <!--div hidden id="all_forums_str">{{ all_forums_str }}</div-->
+
+
+                        </div><!--end of accordion-->
+
+<script>//handles opening and closing filter
+$(document).ready(function(){
+  $(".toggerallone").click(function(){
+    $(".collapseSuball").collapse('toggle');
+  });
+
+
+});
+</script>
+
+                           <!-- <form class="  search-form" role="search">
+                                    <input type="text" class="form-control" placeholder="Search" />
+
+                                </form>-->
+
+                        </div>
+                        </div><!--end col-->
+
+                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
+
+                         <!-- My Courses: Item 1 -->
+                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+                                                <div class="container">
+
+                                                    <div class="row" style="margin-bottom: 80px;">
+
+                                                       <div class="row"><!--row one of page-->
+                                                            <table id="AllForumsTable"></table>
+                                                       </div>
+
+                                                        <script>
+
+                                                                function joinForum(forum_id, thisUserid, forum_name, hide_block){
+                                                                    var db = firebase.database().ref('Forums');
+                                                                    this_uid = '{{ this_uid }}';
+
+                                                                    blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
+                                                                    blockedUsersRef.once('value', function(snapshot) {
+                                                                        blockedUsers = snapshotToArrayKey(snapshot);
+
+                                                                        if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
+                                                                            forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
+                                                                            forumPrivateRef.once('value', function(snapPrivate) {
+                                                                                privacy = snapPrivate.val();
+                                                                                if (privacy == false){                                    // if the forums is not private
+                                                                                    json_dict = {};
+                                                                                    json_dict[forum_id] = forum_id;
+
+                                                                                    updateUserForumsRef = firebase.database().ref().child("Users").child(this_uid).child("ForumsJoined");
+                                                                                    updateUserForumsRef.update(json_dict);                 // add the forum to the ForumsJoined for the userf
+
+                                                                                    json_dict[this_uid] = this_uid;
+                                                                                    updateForumParticipantsRef = firebase.database().ref().child("Forums").child(forum_id).child("Participants");
+                                                                                    updateForumParticipantsRef.update(json_dict);          // add the user to the list of forum participants
+
+                                                                                    this.hideDiv(hide_block);
+                                                                                    //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
+
+                                                                                     getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
+                                                                                      getNumParticipantsRef.once('value', function(snapshot) {
+                                                                                            var numParticipants = snapshot.val();              // get the current number of participants
+
+                                                                                            json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
+
+                                                                                            reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
+                                                                                            reduceNumParticipantsRef.update(json_dict);         // update database
+
+                                                                                            $("#modalForumJoined").modal('show');
+                                                                                       });
+
+
+                                                                                }
+                                                                                else{                                                       // if the forum is private
+                                                                                    forumCreatorRef = db.child(forum_id).child('Creator');
+                                                                                    forumCreatorRef.once('value', function(snapCreator) {
+                                                                                        creator_id = snapCreator.val();                     // send the message to this user id
+                                                                                        message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
+                                                                                        // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
+
+                                                                                         /*Sending Forum Request to Creator*/
+                                                                                        var other = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived");/*Messages*/
+                                                                                        var date_for_post = Date.now();
+
+                                                                                        var created_id_1 = other.push();
+                                                                                        created_id_1.set({
+
+                                                                                            time: date_for_post,
+                                                                                            sender: '{{ n }}',
+                                                                                            sender_id: '{{ this_uid }}',
+                                                                                            message: message,
+                                                                                            receiver_id: creator_id ,
+                                                                                            sender_profilePic: '{{ ProfilePic }}',
+                                                                                            Type: "Forum_Request",
+                                                                                            Forum_ID:forum_id,
+                                                                                            Type_check:"Type_check"
+
+                                                                                        });
+
+                                                                                        var hope = String(created_id_1);
+                                                                                        var result = hope.substring(hope.lastIndexOf("/") + 1);
+                                                                                        var save_id = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived/" + result);/*Messages*/
+                                                                                        save_id.update({
+                                                                                            post_id: result  });
+
+                                                                                        /*End of Sending Forum Request to Creator*/
+
+
+
+
+
+
+                                                                                        $("#modalJoinRequestSent").modal('show');           // popup notifies user of join request being sent
+                                                                                    })
+
+                                                                                }
+                                                                            })
+
+                                                                        }
+                                                                        else{                                                               // if the user is blocked, display a message to the user
+                                                                            $("#modalBlockedFromForum").modal('show');
+                                                                        }
+
+
+                                                                    });
+
+                                                                }
+
+                                                                // hides the div with the specified id
+                                                                function hideDiv(div_name){
+                                                                    document.getElementById(div_name).hidden = true;     // remove forum from all forums
+
+                                                                }
+
+                                                                // get a snapshot of a list of keys from firebase and convert it to an array
+                                                                function snapshotToArray(snapshot) {
+                                                                    let returnArr = [];
+
+                                                                    snapshot.forEach(childSnapshot => {
+                                                                        let item = childSnapshot.val();
+                                                                        item.key = childSnapshot.key;
+                                                                        returnArr.push(item);
+                                                                    });
+
+                                                                    return returnArr;
+                                                                }
+
+                                                                // returns true if the array contains the value
+                                                                function arrayContainsValue(array, value){
+                                                                    if (array.length > 0)
+                                                                    {
+                                                                        for (let i = 0; i < array.length; i++)
+                                                                        {
+                                                                            if (array[i] == value){
+                                                                                return true;
+                                                                            }
+                                                                        }
+                                                                        return false;
+                                                                    }
+                                                                    else{
+                                                                        return false;
+                                                                    }
+                                                                }
+
+                                                       </script>
+
+                                                        <script>
+                                                               // shows all blocks in the list of my courses
+                                                                function showAllAll(){
+                                                                    var allforums_fb_location = firebase.database().ref().child("Forums");
+                                                                    allForumList = [];
+                                                                    //Fetching list of all forums
+                                                                    allforums_fb_location.on("value", function (snapshot_1) {
+                                                                        allForumList = snapshotToArrayKey(snapshot_1);
+
+                                                                        //  loop through course_ids
+                                                                        for (let i = 0; i < allForumList.length; i++){
+                                                                            try{
+                                                                                document.getElementById(allForumList[i] + "_hideAll").hidden = false;           // show all blocks
+                                                                            }
+                                                                            catch(err){
+                                                                                // Do nothing if the card is not found on this page
+                                                                            }
+                                                                        }
+                                                                    });                                     // split string into array by the delimiter ","
+
+
+                                                                }
+
+
+                                                                // replace list of my courses with filtered courses based on topic selected
+                                                                function searchByTopicAll(searchTopic) {
+                                                                    var allforums_fb_location = firebase.database().ref().child("Forums");
+
+                                                                    //Fetching list of all forums
+                                                                    allforums_fb_location.on("value", function (snapshot_1) {
+                                                                        allForumList = snapshotToArrayKey(snapshot_1);
+
+                                                                        // hides the block that don't appear in the list
+                                                                        //  loop through course_ids
+                                                                        for (let i = 0; i < allForumList.length; i++){
+                                                                            // check if topics list for this course_id contains Finance
+                                                                            try{
+                                                                                elementIdName = allForumList[i] + "_topicsAll";
+                                                                                strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
+                                                                                strTopics =  strTopics1.substring(1, strTopics1.length-1);
+                                                                                courseTopicsList = strTopics.split(" ");                                // creates an array of the course's topics
+                                                                                if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
+                                                                                    document.getElementById(allForumList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                                                                }
+                                                                                else{
+                                                                                    document.getElementById(allForumList[i] + "_hideAll").hidden = true;
+                                                                                }
+                                                                            }
+                                                                            catch (err){
+                                                                                // Do nothing if the card is not found on this page
+                                                                            }
+
+                                                                        }
+
+                                                                        });
+
+
+                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
+                                                                }
+                                                                // get a snapshot of a list of keys from firebase and convert it to an array
+                                                                function snapshotToArrayKey(snapshot) {
+                                                                    let returnArr = [];
+
+                                                                    snapshot.forEach(childSnapshot => {
+                                                                        //let item = childSnapshot.val();
+                                                                        var key = childSnapshot.key;
+                                                                        returnArr.push(key);
+                                                                    });
+
+                                                                    return returnArr;
+                                                                }
+
+                                                                //  check if name contains string typed - search button
+                                                               function searchByNameAll() {
+                                                                   searchTerm = document.getElementById('searchNameInputAll').value;                   // get the value in the search input field
+                                                                   var allforums_fb_location = firebase.database().ref().child("Forums");
+                                                                    //Fetching list of all forums
+                                                                    allforums_fb_location.on("value", function (snapshot_1) {
+                                                                        allForumList = snapshotToArrayKey(snapshot_1);
+                                                                        //  loop through course_ids
+                                                                        for (let i = 0; i < allForumList.length; i++){
+                                                                            // check if topics list for this course_id contains Finance
+                                                                            try{
+                                                                                courseName = document.getElementById(allForumList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                                                                if (courseName.includes(searchTerm)){                                               // if the rating searched is in the list
+                                                                                    document.getElementById(allForumList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                                                                }
+                                                                                else{
+                                                                                    document.getElementById(allForumList[i] + "_hideAll").hidden = true;
+                                                                                }
+                                                                            }
+                                                                            catch(err){
+                                                                                // Do nothing if the card is not found on this page
+                                                                            }
+
+                                                                        }
+                                                                    });                                      // split string into array by the delimiter ","
+
+
+                                                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+                                                                }
+
+                                                            </script>
+
+                                                    </div>
+                                                </div><!-- /container -->
+
+                    </div><!--end col-->
+
+                </div><!--end row-->
+
+        </div>
+    </div>
+
+    <br><br>
+
+    <!--pagination-->
+  <!--  <div class="centraliser" style="text-align: center;">
+        <nav aria-label="Page navigation example" style="display: inline-block;">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous" style="color: #e83e8c">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">1</a></li>
+                <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">2</a></li>
+                <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next" style="color: #e83e8c">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>-->
+
+
+</div>
+
+
+<br>
+<!--footer-->
+<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+
+
+    <div class="container">
+        <br></br>
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <!--  <h5 class="mb-1">Log in now: </h5>-->
+            </li>
+            <li class="list-inline-item">
+
+
+                <div class="row"><!--table row-->
+
+                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                        <br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
+                    </div>
+
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                        </a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
+                            GetConnected?</p></a>
+                        <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                        </a>
+                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging</p></a>
+                        <a onclick="location.href='{% url 'helpconnections' %}'"  style="color: white"><p>Connection
+                            Management</p></a>
+                        <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
+
+
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                        <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+                    </div>
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+    </div>
+    </div>
+</footer>
+
+
+<!--carousel script-->
+<!-- Script for Carousel -->
+
+<script>
+
+
+    / Carousel Auto-Cycle
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: 6000
+        })
+    });
+
+</script>
+
+<div hidden id="user_email">{{ email }}</div>
+<div hidden id="user_password">{{ password }}</div>
+<div hidden id="my_forums_ids">{{ my_forums_ids }}</div>
+
+   <script>
+
+       // shows all blocks in the list of my courses
+        function showAll(){
+            var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+            myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
+
+                    myForumsList = snapshotToArrayKey(snapshot_1);
+                    //strForumsList = document.getElementById("my_forums_ids").innerText.substr(1);    // removes first letter from string version of array
+                    //myForumsList = strForumsList.split(",");                                        // split string into array by the delimiter ","
+
+                    //  loop through course_ids
+                    for (let i = 0; i < myForumsList.length; i++) {
+                        try{
+                            document.getElementById(myForumsList[i] + "_hide").hidden = false;           // show all blocks
+                        }catch (err){
+                            //alert(err);
+                        }
+                    }
+
+
+            });
+        }
+
+
+        // replace list of my courses with filtered courses based on topic selected
+        function searchByTopic(searchTopic) {
+            // hide unwanted items from view
+            // hides the block that don't appear in the list
+
+            //  loop through course_ids
+            var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+            myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
+                myForumsList = snapshotToArrayKey(snapshot_1);
+                for (let i = 0; i < myForumsList.length; i++){
+                    // check if topics list for this course_id contains Finance
+                    try{
+                        elementIdName = myForumsList[i] + "_topics";
+                        strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
+                        strTopics =  strTopics1.substring(1, strTopics1.length-1);
+                        courseTopicsList = strTopics.split(" ");                                // creates an array of the course's topics
+                        if (courseTopicsList.includes(searchTopic)){                            // if the topic searched is in the list
+                            document.getElementById(myForumsList[i] + "_hide").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                        }
+                        else{
+                            document.getElementById(myForumsList[i] + "_hide").hidden = true;
+                        }
+                    }
+                    catch(err){
+                        // Do Nothing
+                    }
+
+                }
+                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
+            });
+
+        }
+
+        //  check if name contains string typed - search button
+       function searchByName() {
+           searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
+            //  loop through course_ids
+            var myforums_fb_location = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+            myforums_fb_location.on("value", function (snapshot_1) {       //Fetching list of User's forums
+
+                    myForumsList = snapshotToArrayKey(snapshot_1);
+
+                    for (let i = 0; i < myForumsList.length; i++) {
+                        try{
+                            // check if topics list for this course_id contains Finance
+                            courseName = document.getElementById(myForumsList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+
+
+                            if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
+                                document.getElementById(myForumsList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                            } else {
+                                document.getElementById(myForumsList[i] + "_hide").hidden = true;
+                            }
+                        }catch(err){
+                            //alert(err);
+                        }
+                    }
+                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+
+
+            });
+        }
+
+        // get a snapshot of a list of keys from firebase and convert it to an array
+       function snapshotToArrayKey(snapshot) {
+           let returnArr = [];
+           snapshot.forEach(childSnapshot => {
+               //let item = childSnapshot.val();
+               var key = childSnapshot.key;
+               returnArr.push(key);
+           });
+           return returnArr;
+       }
+
+    </script>
+
+
+
+                <!-- Modal for pop up message "forum joined" -->
+                <div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Joined </strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        You have joined this forum. It's now in your My Forums tab!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+            <!-- Modal for pop up message "join request sent" -->
+            <div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><strong>Join Request Sent</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+             <!-- Modal for pop up message "blocked from forum message" -->
+
+<div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><strong>Blocked from Forum</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Unfortunately, you have been blocked from this forum. Access to this forum is denied.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %}
+Badges_Celebrations_3
+{% endcomment %}
+<script>
+
+        //Badge_1_Friend_Finder
+
+        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+
+        FriendFinder_Connections.on("value", function (snapshot) {
+
+            var counter = 0;
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+            if (counter >=1 && counter<5)
+
+            {
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+               checkCelebration.on("value", function (snapshot) {
+                   var text = "Friend Finder Badge";
+
+                    if (snapshot.val().FriendFinder == "not_celebrated"){
+                      $('#Congrats_Pop_Up').html(text);
+                      $("#Celebrations").modal();
+
+                        checkCelebration.update({'FriendFinder': "celebrated"});
+               }
+                });
+            }
+
+            else {}
+
+
+        //Badge_2_NetoworkingNinja
+
+            if (counter >=5 && counter < 10)
+
+            {
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                       var text = "Networking Ninja Badge";
+                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'NetworkingNinja': "celebrated"});
+               }
+
+                })
+
+            }
+
+            else {}
+
+
+         //Badge_3_CrazyConnector
+
+  if (counter >=10 && counter<15)
+
+            {
+
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                     var text = "Crazy Connector Badge";
+
+
+                      if (snapshot.val().CrazyConnector == "not_celebrated"){
+                          $('#Congrats_Pop_Up').html(text);
+                          $("#Celebrations").modal();
+                          checkCelebration.update({'CrazyConnector': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {}
+
+
+          //Badge_4_PopularProfile
+
+ if (counter >=15)
+
+            {
+
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                       var text = "Popular Profile Badge";
+
+                      if (snapshot.val().PopularProfile == "not_celebrated"){
+                        $('#Congrats_Pop_Up').html(text);
+                        $("#Celebrations").modal();
+                        checkCelebration.update({'PopularProfile': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+
+            }
+
+
+        });
+
+          //Badge_5_BrightSpark
+
+var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+        Badges_for_Courses.on("value", function (snapshot) {
+
+            var counter = 0;
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+
+
+            if (counter >=3 && counter<5)
+
+            {
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                var text = "Bright Spark Badge";
+
+                      if (snapshot.val().BrightSpark == "not_celebrated"){
+                       $('#Congrats_Pop_Up').html(text);
+                       $("#Celebrations").modal();
+                       checkCelebration.update({'BrightSpark': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {}
+
+
+        //Badge_6_FabAcademic
+
+         if (counter >=5 && counter<10 )
+
+            {
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                    var text = "FabAcademic Badge";
+
+
+                      if (snapshot.val().FabAcademic == "not_celebrated"){
+                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                       $("#Celebrations").modal();
+                       checkCelebration.update({'FabAcademic': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+            }
+
+
+           //Badge_7_Got_Smarter
+
+
+            if (counter >=10 )
+
+            {
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+                 var text = "GotSmarter Badge";
+
+                      if (snapshot.val().GotSmarter == "not_celebrated"){
+                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                         $("#Celebrations").modal();
+
+                       checkCelebration.update({'GotSmarter': "celebrated"});
+
+
+               }
+
+                })
+
+            }
+
+            else {
+
+
+            }
+
+
+
+        });
+
+        //Badge_8_Got_Smarter
+
+        //Badge_9_Forum_Boffin
+
+var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+        Badges_for_Forums.on("value", function (snapshot) {
+
+            var counter = 0;
+
+            snapshot.forEach(function (childSnapshot) {
+                counter++;
+            });
+
+            if (counter >=5 )
+
+            {
+
+
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+
+                      if (snapshot.val().ForumBoffin == "not_celebrated"){
+                       var text = "GotSmarter Badge";
+                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                        $("#Celebrations").modal();
+                       checkCelebration.update({'ForumBoffin': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+
+            }
+
+           });
+
+
+ //Badge_10_Forum_Boffin
+
+var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
+
+        Badges_for_Badges_Private.on("value", function (snapshot) {
+
+            var isPrivate = snapshot.val().privacyUpdated;
+            var display_1 = "";
+
+
+            if (isPrivate == "yes" )
+
+            {
+
+               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                   "\n" +
+                   "                <div class=\"middle\">\n" +
+                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                   "                     <!--text for the hover-->\n" +
+                   "                 </div>";
+
+               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+                checkCelebration.on("value", function (snapshot) {
+
+                      if (snapshot.val().SuperSecurity == "not_celebrated"){
+                       var text = "Super Security Badge";
+                       $('#Congrats_Pop_Up').html("Super Security Badge");
+                        $("#Celebrations").modal();
+                       checkCelebration.update({'SuperSecurity': "celebrated"});
+
+               }
+
+                })
+
+            }
+
+            else {
+
+                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                    "                    <div class=\"middle\">\n" +
+                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                    "                         <!--text for the hover-->\n" +
+                    "                     </div>";
+            }
+
+            $('#SuperSecurity').html(display_1);});
+
+    </script>
+{% comment %}
+Badges_Celebrations_1
+{% endcomment %}
+
+    <div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div style="" class="modal-content">
+                <div style="" class="modal-header">
+
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                    <img style="margin-left: 30px; width: 100px; height: 100px"
+                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+
+                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <br>
+                <img style="margin-left: 50px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+                <div class="modal-body">
+
+
+                    <div id="ConnectionsListing_All" class="row">
+
+
+                    </div> <!--end row-->
+
+
+                    <div class="modal-footer">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% comment %}
+Badges_Celebrations_2
+{% endcomment %}
+    <script>
+
+        $('#Celebrations').on('show.bs.modal', function (event) {
+
+        })
+    </script>
+
+</body>
+
