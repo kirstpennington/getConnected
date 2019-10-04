@@ -2087,57 +2087,73 @@
                         <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-search"></i>
                      </span>
-                        <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
-                         <i class="glyphicon glyphicon-map-marker"></i>
-                     </span>
                         <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-remove"></i>
                      </span>
                     </div><!--end search bar-->
                 </div>
 
+                <script>
+
+                            // shows all blocks in the list of my connections
+                            function showAll() {
+                                var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
+
+                                    //  loop through connection_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        try {
+                                            document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
+                                        }catch(err){
+                                            // skip
+                                        }
+                                    }
+                                });
+
+                            }
+
+                            //  check if name, coutnry or bio contains string typed - search button
+                            function searchByTerm() {
+                                searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
+
+                                var myConnList = [];
+                                var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                                //Fetching list of User's connections
+                                list_conn_db.on("value", function (snapshot_1) {
+                                    myConnList = [];
+                                    snapshot_1.forEach(function (childSnapshot_1) {
+                                        var w = childSnapshot_1.key;
+                                        myConnList.push(w);
+                                    });
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myConnList.length; i++) {
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                        connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm) || connBio.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        } else {
+                                            document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                        }
+                                    }
+                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                });
+
+
+                            }
+                        </script>
+
                 <br>
 
                 <div id="ConnectionsListing" class="row">
 
-                    {% comment %} <!--****************************-->
-              <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-                <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}"style="border: 1px solid  #DCDCDC ; border-radius: 50px;" alt="">
-
-             </div><!--end col-->
-
-
-             <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-               <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
-               <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-             </div><!--end col-->
-
-             <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-               <input type="checkbox" name="subject" value="name" >
-             </div>
-
-             <!--NEXT USER COLOUMN--><!--****************************-->
-
-             <div class="col-md-1"><!--USER PROFILE IMAGE GOES HERE-->
-
-               <img class="rounded-circle" width="50" height="50" src="{% static "GC_Auth/UserProfile_images/beyonce.jpg" %}" style="border: 1px solid  #DCDCDC ; border-radius: 50px;" alt="">
-
-            </div><!--end col-->
-
-
-            <div class="col-md-4"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->
-              <p style="margin-left:20px;margin-bottom:1px;font-size: 12px;"> Kirsten Pennington  </p>
-              <p class="badge badge-pill badge-dark" style="color:white;font-size:10px;margin-left:20px;margin-top:0px;"> Connection</p>
-
-            </div><!--end col-->
-
-            <div class="col-md-1"><!--CHECK BOX GOES HERE-->
-              <input type="checkbox" name="subject" value="name" >
-            </div>
-
-              <!--END ROW-->{% endcomment %}
 
                 </div> <!--end row-->
 
@@ -2243,23 +2259,88 @@
                    style="font-style: italic; color: red; visibility: hidden;font-family: sans-serif">Select at least
                     two connections</p>
                 <h5 style="font-family: sans-serif; font-weight: bold;" class="modal-title " id="exampleModalLongTitle">
-                    <i class="fa fa-users"></i> Select your connections and begin chatting! </h5><br>
+                    <i class="fa fa-users"></i> Select a user and begin chatting! </h5><br>
 
 
                 <div class="centraliser" style="text-align: center">
                     <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
-                        <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
-                        <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
+                        <input id="searchTermInputAll" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTermAll()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-search"></i>
                      </span>
-                        <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
-                         <i class="glyphicon glyphicon-map-marker"></i>
-                     </span>
-                        <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="showAllAll()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-remove"></i>
                      </span>
                     </div><!--end search bar-->
                 </div>
+                <script>
+
+
+                        // shows all blocks in the list of my connections
+                        function showAllAll() {
+                            var myConnList = [];
+                            var list_conn_db = firebase.database().ref().child("Users");
+                            //Fetching list of User's connections
+                            list_conn_db.on("value", function (snapshot_1) {
+                                myConnList = [];
+                                snapshot_1.forEach(function (childSnapshot_1) {
+                                    var w = childSnapshot_1.key;
+                                    myConnList.push(w);
+                                });
+
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++) {
+                                    try{
+                                        document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
+                                    }
+                                    catch(err){
+                                        //  do nothing is connection id not found on a card
+                                    }
+                                }
+                            });
+
+                        }
+
+
+                        //  check if name, coutnry or bio contains string typed - search button
+                        function searchByTermAll() {
+                            searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
+
+                            var myConnList = [];
+                            var list_conn_db = firebase.database().ref().child("Users");
+                            //Fetching list of User's connections
+                            list_conn_db.on("value", function (snapshot_1) {
+                                myConnList = [];
+                                snapshot_1.forEach(function (childSnapshot_1) {
+                                    var w = childSnapshot_1.key;
+                                    myConnList.push(w);
+                                });
+
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++) {
+                                    try {
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                        connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        } else if (connBio.includes(searchTerm)) {
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        } else {
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                        }
+
+                                        // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                    } catch (err) {
+                                        // skip is element not found
+                                    }
+                                }
+
+                            });
+
+
+                        }
+                    </script>
 
                 <br>
 
@@ -2308,18 +2389,7 @@
             <div class="modal-body">
 
                 <div class="centraliser" style="text-align: center">
-                    {% comment %}<div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
-                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
-                     <span onclick="searchByTerm()" class="input-group-addon" style="color: #e83e8c; ">
-                         <i class="glyphicon glyphicon-search"></i>
-                     </span>
-                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
-                         <i class="glyphicon glyphicon-map-marker"></i>
-                     </span>
-                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
-                         <i class="glyphicon glyphicon-remove"></i>
-                     </span>
-                 </div><!--end search bar-->{% endcomment %}
+
                 </div>
 
                 <br>
@@ -2333,11 +2403,6 @@
 
 
                 <div class="modal-footer">
-
-                    {% comment %}
-    <button onclick="SendMessage_Individual()"  >Message</button>
-{% endcomment %}
-
 
                 </div>
             </div>
@@ -2381,7 +2446,7 @@
     function formCard(key, name, bio, country, profilepic) {
 
 
-        var card = "  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+        var card = " <div id=\""+key+"_hide\"> <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
             "\n" +
             "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
             "\n" +
@@ -2389,14 +2454,14 @@
             "\n" +
             "\n" +
             "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
-            "                &nbsp;&nbsp;&nbsp; <p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + country + "</p>\n" +
+            "               <p id=\""+key+"_name\" style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp; <p id=\""+key+"_bio\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + bio + "</p>\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
             "             <div class=\"col-md-2\"><!--CHECK BOX GOES HERE-->\n" +
             "               <input type=\"checkbox\" name=\"subject\" value=\"" + key + "\" >\n" +
-            "             </div>\n";
+            "             </div></div>\n";
 
         return card;
 
@@ -2524,7 +2589,7 @@
     function formCard_All(key, name, bio, country, profilepic) {
 
 
-        var card = "  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+        var card = "<div id=\""+key+"_hideAll\">  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
             "\n" +
             "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
             "\n" +
@@ -2532,14 +2597,14 @@
             "\n" +
             "\n" +
             "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-            "               <p style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
-            "                &nbsp;&nbsp;&nbsp;<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + country + "</p>\n" +
+            "               <p id=\""+key+"_nameAll\" style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp;<p id=\""+key+"_bioAll\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + bio + "</p>\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
             "             <div class=\"col-md-2\"><!--CHECK BOX GOES HERE-->\n" +
             "               <input type=\"checkbox\" name=\"subject_All\" value=\"" + key + "\" >\n" +
-            "             </div>\n";
+            "             </div></div>\n";
 
         return card;
 

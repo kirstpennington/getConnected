@@ -631,7 +631,7 @@
 <!--dialog pop-ups-->
 <dialog class="text-center" id="connectedWith"
         style="box-shadow: 2px 2px 2px 2px grey;color: white;position: absolute; top: 30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
- <div id="newconnectionmodal"></div>
+    <div id="newconnectionmodal"></div>
     <br>
     <button id="close" style="border: 1px solid #e83e8c;border-radius: 8px;
         color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
@@ -809,78 +809,78 @@
 <script>
 
 
-          /*Time for Posts Displayed*/
-        const MONTH_NAMES = [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
-        ];
+    /*Time for Posts Displayed*/
+    const MONTH_NAMES = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
-        function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-            const day = date.getDate();
-            const month = MONTH_NAMES[date.getMonth()];
-            const year = date.getFullYear();
-            const hours = date.getHours();
-            let minutes = date.getMinutes();
+    function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+        const day = date.getDate();
+        const month = MONTH_NAMES[date.getMonth()];
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        let minutes = date.getMinutes();
 
-            if (minutes < 10) {
-                // Adding leading zero to minutes
-                minutes = `0${minutes}`;
-            }
-
-            if (prefomattedDate) {
-                // Today at 10:20
-                // Yesterday at 10:20
-                return `${prefomattedDate} at ${hours}:${minutes}`;
-            }
-
-            if (hideYear) {
-                // 10. January at 10:20
-                return `${day}. ${month} at ${hours}:${minutes}`;
-            }
-
-            // 10. January 2017. at 10:20
-            return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+        if (minutes < 10) {
+            // Adding leading zero to minutes
+            minutes = `0${minutes}`;
         }
 
-        // --- Main function
-        function timeAgo(dateParam) {
+        if (prefomattedDate) {
+            // Today at 10:20
+            // Yesterday at 10:20
+            return `${prefomattedDate} at ${hours}:${minutes}`;
+        }
 
-            if (!dateParam) {
-                return null;
-            }
+        if (hideYear) {
+            // 10. January at 10:20
+            return `${day}. ${month} at ${hours}:${minutes}`;
+        }
 
-            const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-            const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-            const today = new Date();
-            const yesterday = new Date(today - DAY_IN_MS);
-            const seconds = Math.round((today - date) / 1000);
-            const minutes = Math.round(seconds / 60);
-            const isToday = today.toDateString() === date.toDateString();
-            const isYesterday = yesterday.toDateString() === date.toDateString();
-            const isThisYear = today.getFullYear() === date.getFullYear();
+        // 10. January 2017. at 10:20
+        return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+    }
 
+    // --- Main function
+    function timeAgo(dateParam) {
 
-            if (seconds < 5) {
-                return 'now';
-            } else if (seconds < 60) {
-                return `${seconds} seconds ago`;
-            } else if (seconds < 90) {
-                return 'about a minute ago';
-            } else if (minutes < 60) {
-                return `${minutes} minutes ago`;
-            } else if (isToday) {
-                return getFormattedDate(date, 'Today'); // Today at 10:20
-            } else if (isYesterday) {
-                return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-            } else if (isThisYear) {
-                return getFormattedDate(date, false, true); // 10. January at 10:20
-            }
+        if (!dateParam) {
+            return null;
+        }
 
-            return getFormattedDate(date); // 10. January 2017. at 10:20
-        };
+        const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+        const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+        const today = new Date();
+        const yesterday = new Date(today - DAY_IN_MS);
+        const seconds = Math.round((today - date) / 1000);
+        const minutes = Math.round(seconds / 60);
+        const isToday = today.toDateString() === date.toDateString();
+        const isYesterday = yesterday.toDateString() === date.toDateString();
+        const isThisYear = today.getFullYear() === date.getFullYear();
 
 
-   /*Message_Notificationas*/
+        if (seconds < 5) {
+            return 'now';
+        } else if (seconds < 60) {
+            return `${seconds} seconds ago`;
+        } else if (seconds < 90) {
+            return 'about a minute ago';
+        } else if (minutes < 60) {
+            return `${minutes} minutes ago`;
+        } else if (isToday) {
+            return getFormattedDate(date, 'Today'); // Today at 10:20
+        } else if (isYesterday) {
+            return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+        } else if (isThisYear) {
+            return getFormattedDate(date, false, true); // 10. January at 10:20
+        }
+
+        return getFormattedDate(date); // 10. January 2017. at 10:20
+    };
+
+
+    /*Message_Notificationas*/
 
     var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
     Message_Notifications_Check.on('value', function (snapshot) {
@@ -1100,7 +1100,7 @@
 
                     window.alert("You have joined a new forum!");
                     //var x = document.getElementById("forumJoined");
-                   // x.show();
+                    // x.show();
 
 
                 }/*Forum Requests*/
@@ -1142,12 +1142,12 @@
                     });
 
 
-                   //window.alert("You are now connected with " + name);
+                    //window.alert("You are now connected with " + name);
 
-                   html += "You are now connected with " + name;
+                    html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -1524,7 +1524,7 @@
 
                                     }
                                 }
-                             });
+                            });
                         });
 
                         $('#MyConnectionsTable').html(result);
@@ -1648,56 +1648,56 @@
                         // shows all blocks in the list of my connections
                         function showAllAll() {
                             var myConnList = [];
-                                var list_conn_db = firebase.database().ref().child("Users");
-                                //Fetching list of User's connections
-                                list_conn_db.on("value", function (snapshot_1) {
-                                    myConnList = [];
-                                    snapshot_1.forEach(function (childSnapshot_1) {
-                                        var w = childSnapshot_1.key;
-                                        myConnList.push(w);
-                                    });
-
-                                    //  loop through course_ids
-                                    for (let i = 0; i < myConnList.length; i++) {
-                                        try{
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
-                                        }
-                                        catch(err){
-                                                //  do nothing is connection id not found on a card
-                                        }
-                                    }
+                            var list_conn_db = firebase.database().ref().child("Users");
+                            //Fetching list of User's connections
+                            list_conn_db.on("value", function (snapshot_1) {
+                                myConnList = [];
+                                snapshot_1.forEach(function (childSnapshot_1) {
+                                    var w = childSnapshot_1.key;
+                                    myConnList.push(w);
                                 });
+
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++) {
+                                    try{
+                                        document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
+                                    }
+                                    catch(err){
+                                        //  do nothing is connection id not found on a card
+                                    }
+                                }
+                            });
 
                         }
 
                         function searchByCountryAll() {
                             myCountry = document.getElementById('my_country').innerText;
                             var myConnList = [];
-                                var list_conn_db = firebase.database().ref().child("Users");
-                                //Fetching list of User's connections
-                                list_conn_db.on("value", function (snapshot_1) {
-                                    myConnList = [];
-                                    snapshot_1.forEach(function (childSnapshot_1) {
-                                        var w = childSnapshot_1.key;
-                                        myConnList.push(w);
-                                    });
-
-                                    //  loop through connection_ids
-                                    for (let i = 0; i < myConnList.length; i++) {
-                                        try{
-                                            this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
-                                            if (this_country == myCountry) {
-                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                            } else {
-                                                document.getElementById(myConnList[i] + "_hideAll").hidden = true;
-                                            }
-                                        }
-                                        catch(err){
-                                            // do nothing if element not found
-                                        }
-
-                                    }
+                            var list_conn_db = firebase.database().ref().child("Users");
+                            //Fetching list of User's connections
+                            list_conn_db.on("value", function (snapshot_1) {
+                                myConnList = [];
+                                snapshot_1.forEach(function (childSnapshot_1) {
+                                    var w = childSnapshot_1.key;
+                                    myConnList.push(w);
                                 });
+
+                                //  loop through connection_ids
+                                for (let i = 0; i < myConnList.length; i++) {
+                                    try{
+                                        this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
+                                        if (this_country == myCountry) {
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        } else {
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                        }
+                                    }
+                                    catch(err){
+                                        // do nothing if element not found
+                                    }
+
+                                }
+                            });
 
 
                         }
@@ -1707,39 +1707,39 @@
                             searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
 
                             var myConnList = [];
-                                var list_conn_db = firebase.database().ref().child("Users");
-                                //Fetching list of User's connections
-                                list_conn_db.on("value", function (snapshot_1) {
-                                    myConnList = [];
-                                    snapshot_1.forEach(function (childSnapshot_1) {
-                                        var w = childSnapshot_1.key;
-                                        myConnList.push(w);
-                                    });
-
-                                    //  loop through course_ids
-                                    for (let i = 0; i < myConnList.length; i++) {
-                                        try {
-                                            // check if topics list for this course_id contains Finance
-                                            connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
-                                            connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
-                                            connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
-                                            if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
-                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                            } else if (connCountry.includes(searchTerm)) {
-                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                            } else if (connBio.includes(searchTerm)) {
-                                                document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                            } else {
-                                                document.getElementById(myConnList[i] + "_hideAll").hidden = true;
-                                            }
-
-                                            // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
-                                        } catch (err) {
-                                            // do nothing is element not found
-                                        }
-                                    }
-
+                            var list_conn_db = firebase.database().ref().child("Users");
+                            //Fetching list of User's connections
+                            list_conn_db.on("value", function (snapshot_1) {
+                                myConnList = [];
+                                snapshot_1.forEach(function (childSnapshot_1) {
+                                    var w = childSnapshot_1.key;
+                                    myConnList.push(w);
                                 });
+
+                                //  loop through course_ids
+                                for (let i = 0; i < myConnList.length; i++) {
+                                    try {
+                                        // check if topics list for this course_id contains Finance
+                                        connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                        connCountry = document.getElementById(myConnList[i] + "_countryAll").innerText;    // check country for matching text
+                                        connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
+                                        if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        } else if (connCountry.includes(searchTerm)) {
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        } else if (connBio.includes(searchTerm)) {
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                        } else {
+                                            document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                        }
+
+                                        // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                    } catch (err) {
+                                        // do nothing is element not found
+                                    }
+                                }
+
+                            });
 
 
                         }
@@ -2054,15 +2054,6 @@
                     });
 
 
-                    {% comment %}  /*Saving_id*/
-                     var hope = String(created_id);
-                     var result = hope.substring(hope.lastIndexOf("/") + 1);
-                     var save_id = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent/"+result);/*Messages*/
-                     save_id.update({
-                         post_id: result
-                     });{% endcomment %}
-
-
                     var database_target = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived");/*Where the message is going*/
                     //var created_id_target = database_target.push();
                     database_target.child(request_sender_id).set({ /*Pushes to receiver*/
@@ -2292,365 +2283,365 @@ Badges_Celebrations_3
 {% endcomment %}
 <script>
 
-        //Badge_1_Friend_Finder
+    //Badge_1_Friend_Finder
 
-        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+    var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
 
-        FriendFinder_Connections.on("value", function (snapshot) {
+    FriendFinder_Connections.on("value", function (snapshot) {
 
-            var counter = 0;
+        var counter = 0;
 
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
+        });
+
+        if (counter >=1 && counter<5)
+
+        {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Friend Finder Badge";
+
+                if (snapshot.val().FriendFinder == "not_celebrated"){
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+
+                    checkCelebration.update({'FriendFinder': "celebrated"});
+                }
             });
+        }
 
-            if (counter >=1 && counter<5)
-
-            {
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-               checkCelebration.on("value", function (snapshot) {
-                   var text = "Friend Finder Badge";
-
-                    if (snapshot.val().FriendFinder == "not_celebrated"){
-                      $('#Congrats_Pop_Up').html(text);
-                      $("#Celebrations").modal();
-
-                        checkCelebration.update({'FriendFinder': "celebrated"});
-               }
-                });
-            }
-
-            else {}
+        else {}
 
 
         //Badge_2_NetoworkingNinja
 
-            if (counter >=5 && counter < 10)
+        if (counter >=5 && counter < 10)
 
-            {
+        {
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Networking Ninja Badge";
-                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'NetworkingNinja': "celebrated"});
-               }
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Networking Ninja Badge";
+                if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'NetworkingNinja': "celebrated"});
+                }
 
-                })
+            })
 
-            }
+        }
 
-            else {}
-
-
-         //Badge_3_CrazyConnector
-
-  if (counter >=10 && counter<15)
-
-            {
+        else {}
 
 
+        //Badge_3_CrazyConnector
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                     var text = "Crazy Connector Badge";
+        if (counter >=10 && counter<15)
 
-
-                      if (snapshot.val().CrazyConnector == "not_celebrated"){
-                          $('#Congrats_Pop_Up').html(text);
-                          $("#Celebrations").modal();
-                          checkCelebration.update({'CrazyConnector': "celebrated"});
-
-
-               }
-
-                })
-
-            }
-
-            else {}
-
-
-          //Badge_4_PopularProfile
-
- if (counter >=15)
-
-            {
+        {
 
 
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Popular Profile Badge";
-
-                      if (snapshot.val().PopularProfile == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'PopularProfile': "celebrated"});
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Crazy Connector Badge";
 
 
-               }
-
-                })
-
-            }
-
-            else {
+                if (snapshot.val().CrazyConnector == "not_celebrated"){
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'CrazyConnector': "celebrated"});
 
 
-            }
+                }
+
+            })
+
+        }
+
+        else {}
 
 
+        //Badge_4_PopularProfile
+
+        if (counter >=15)
+
+        {
+
+
+
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Popular Profile Badge";
+
+                if (snapshot.val().PopularProfile == "not_celebrated"){
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'PopularProfile': "celebrated"});
+
+
+                }
+
+            })
+
+        }
+
+        else {
+
+
+        }
+
+
+    });
+
+    //Badge_5_BrightSpark
+
+    var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+    Badges_for_Courses.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-          //Badge_5_BrightSpark
-
-var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
-
-        Badges_for_Courses.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
 
 
+        if (counter >=3 && counter<5)
 
-            if (counter >=3 && counter<5)
+        {
 
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                      if (snapshot.val().BrightSpark == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html(text);
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'BrightSpark': "celebrated"});
+                if (snapshot.val().BrightSpark == "not_celebrated"){
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'BrightSpark': "celebrated"});
 
-               }
+                }
 
-                })
+            })
 
-            }
+        }
 
-            else {}
+        else {}
 
 
         //Badge_6_FabAcademic
 
-         if (counter >=5 && counter<10 )
+        if (counter >=5 && counter<10 )
 
-            {
+        {
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                    var text = "FabAcademic Badge";
-
-
-                      if (snapshot.val().FabAcademic == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'FabAcademic': "celebrated"});
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "FabAcademic Badge";
 
 
-               }
-
-                })
-
-            }
-
-            else {
-            }
+                if (snapshot.val().FabAcademic == "not_celebrated"){
+                    $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'FabAcademic': "celebrated"});
 
 
-           //Badge_7_Got_Smarter
+                }
+
+            })
+
+        }
+
+        else {
+        }
 
 
-            if (counter >=10 )
-
-            {
+        //Badge_7_Got_Smarter
 
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                 var text = "GotSmarter Badge";
+        if (counter >=10 )
 
-                      if (snapshot.val().GotSmarter == "not_celebrated"){
-                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
-                         $("#Celebrations").modal();
-
-                       checkCelebration.update({'GotSmarter': "celebrated"});
+        {
 
 
-               }
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "GotSmarter Badge";
 
-                })
+                if (snapshot.val().GotSmarter == "not_celebrated"){
+                    $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                    $("#Celebrations").modal();
 
-            }
-
-            else {
-
-
-            }
-
+                    checkCelebration.update({'GotSmarter': "celebrated"});
 
 
+                }
+
+            })
+
+        }
+
+        else {
+
+
+        }
+
+
+
+    });
+
+    //Badge_8_Got_Smarter
+
+    //Badge_9_Forum_Boffin
+
+    var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+    Badges_for_Forums.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-        //Badge_8_Got_Smarter
+        if (counter >=5 )
 
-        //Badge_9_Forum_Boffin
-
-var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
-
-        Badges_for_Forums.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-            if (counter >=5 )
-
-            {
+        {
 
 
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
 
-                      if (snapshot.val().ForumBoffin == "not_celebrated"){
-                       var text = "GotSmarter Badge";
-                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'ForumBoffin': "celebrated"});
+                if (snapshot.val().ForumBoffin == "not_celebrated"){
+                    var text = "GotSmarter Badge";
+                    $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'ForumBoffin': "celebrated"});
 
-               }
+                }
 
-                })
+            })
 
-            }
+        }
 
-            else {
-
-
-            }
-
-           });
+        else {
 
 
- //Badge_10_Forum_Boffin
-var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
+        }
 
-        Badges_for_Badges_Private.on("value", function (snapshot) {
-
-            var isPrivate = snapshot.val().privacyUpdated;
-            var display_1 = "";
+    });
 
 
-            if (isPrivate == "yes" )
+    //Badge_10_Forum_Boffin
+    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
 
-            {
+    Badges_for_Badges_Private.on("value", function (snapshot) {
 
-               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
-                   "                     <!--text for the hover-->\n" +
-                   "                 </div>";
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-
-                      if (snapshot.val().SuperSecurity == "not_celebrated"){
-                       var text = "Super Security Badge";
-                       $('#Congrats_Pop_Up').html("Super Security Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'SuperSecurity': "celebrated"});
-
-               }
-
-                })
-
-            }
-
-            else {
-
-                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
-                    "                    <div class=\"middle\">\n" +
-                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
-                    "                         <!--text for the hover-->\n" +
-                    "                     </div>";
-            }
-
-            $('#SuperSecurity').html(display_1);});
+        var isPrivate = snapshot.val().privacyUpdated;
+        var display_1 = "";
 
 
-    </script>
+        if (isPrivate == "yes" )
+
+        {
+
+            display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                "\n" +
+                "                <div class=\"middle\">\n" +
+                "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                "                     <!--text for the hover-->\n" +
+                "                 </div>";
+
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+
+                if (snapshot.val().SuperSecurity == "not_celebrated"){
+                    var text = "Super Security Badge";
+                    $('#Congrats_Pop_Up').html("Super Security Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'SuperSecurity': "celebrated"});
+
+                }
+
+            })
+
+        }
+
+        else {
+
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                "                    <div class=\"middle\">\n" +
+                "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                "                         <!--text for the hover-->\n" +
+                "                     </div>";
+        }
+
+        $('#SuperSecurity').html(display_1);});
+
+
+</script>
 {% comment %}
 Badges_Celebrations_1
 {% endcomment %}
 
-    <div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div style="" class="modal-content">
-                <div style="" class="modal-header">
+<div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style="" class="modal-content">
+            <div style="" class="modal-header">
 
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
 
-                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
-                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
-
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <br>
-                <img style="margin-left: 50px"
-                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
-
-                <div class="modal-body">
+                <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
 
 
-                    <div id="ConnectionsListing_All" class="row">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <img style="margin-left: 50px"
+                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+            <div class="modal-body">
 
 
-                    </div> <!--end row-->
+                <div id="ConnectionsListing_All" class="row">
 
 
-                    <div class="modal-footer">
+                </div> <!--end row-->
 
 
-                    </div>
+                <div class="modal-footer">
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% comment %}
 Badges_Celebrations_2
 {% endcomment %}
-    <script>
+<script>
 
-        $('#Celebrations').on('show.bs.modal', function (event) {
+    $('#Celebrations').on('show.bs.modal', function (event) {
 
-        })
-    </script>
+    })
+</script>
 
 </body>
