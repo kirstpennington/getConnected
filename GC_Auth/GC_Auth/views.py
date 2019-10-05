@@ -513,11 +513,18 @@ def goBadges(request):
 
 def goHelpUserProfile(request):
     global the_user
-    return render(request, "helpUserProfile.html", {'profilePic': the_user.profilePic})
+    return render(request, "helpUserProfile.html", {'ProfilePic': the_user.profilePic,
+                                               'n': the_user.username,
+                                               'my_country': the_user.country,
+                                                'bio': the_user.bio,})
 
 
 def goHelpCourses(request):
-    return render(request, "courseHelp.html", {'profilePic': the_user.profilePic})
+    return render(request, "courseHelp.html", {'profilePic': the_user.profilePic,
+                                               'country': the_user.country,
+                                               'bio': the_user.bio,
+                                               'n': the_user.username
+                                               })
 
 
 def goHelpConnections(request):
@@ -526,12 +533,19 @@ def goHelpConnections(request):
 
 def goIntroHelp(request):
     global the_user
-    return render(request, 'introducingHelp.html',{'profilePic': the_user.profilePic})
+    return render(request, 'introducingHelp.html',{'ProfilePic': the_user.profilePic,
+                                               'n': the_user.username,
+                                               'my_country': the_user.country,
+                                               'bio': the_user.bio})
 
 
 def goAccountHelp(request):
     global the_user
-    return render(request, 'accountHelp.html', {'profilePic': the_user.profilePic})
+    return render(request, 'accountHelp.html', {'profilePic': the_user.profilePic,'n': the_user.username,
+                                                'country': the_user.country,
+                                                'bio': the_user.bio,
+                                                'n': the_user.username
+})
 
 
 def goCreateForum(request):
@@ -549,7 +563,12 @@ def goCreateForum(request):
                                                 })
 
 def goForumsHelp(request):
-    return render(request, 'ForumsHelp.html', {'profilePic': the_user.profilePic})
+    return render(request, 'ForumsHelp.html', {'ProfilePic': the_user.profilePic,
+                                               'n': the_user.username,
+                                               'my_country': the_user.country,
+                                                'bio': the_user.bio,
+
+    })
 
 
 def goForumsOpen(request):
