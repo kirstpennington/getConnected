@@ -752,9 +752,7 @@
             </ul>
 
 
-
-            <!--RHS of the navigation bar -->
-
+            <!--RHS of Navigation Bar-->
             <ul class="nav navbar-nav navbar-right">
 
                 <!--MESSAGE NOTIFICATIONS -->
@@ -860,6 +858,7 @@
 
             </ul><!--nav navbar-nav navbar-right-->
 
+
         </div><!--collapse nav-bar collapse-->
     </div><!--container fluid-->
 </nav><!--nav navbar-inverse-->
@@ -867,81 +866,9 @@
 
 
 
-
 <script>
+    /* Messaging*/
 
-    /*Time for Posts Displayed*/
-    const MONTH_NAMES = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
-    function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-        const day = date.getDate();
-        const month = MONTH_NAMES[date.getMonth()];
-        const year = date.getFullYear();
-        const hours = date.getHours();
-        let minutes = date.getMinutes();
-
-        if (minutes < 10) {
-            // Adding leading zero to minutes
-            minutes = `0${minutes}`;
-        }
-
-        if (prefomattedDate) {
-            // Today at 10:20
-            // Yesterday at 10:20
-            return `${prefomattedDate} at ${hours}:${minutes}`;
-        }
-
-        if (hideYear) {
-            // 10. January at 10:20
-            return `${day}. ${month} at ${hours}:${minutes}`;
-        }
-
-        // 10. January 2017. at 10:20
-        return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
-    }
-
-    // --- Main function
-    function timeAgo(dateParam) {
-
-        if (!dateParam) {
-            return null;
-        }
-
-        const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-        const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-        const today = new Date();
-        const yesterday = new Date(today - DAY_IN_MS);
-        const seconds = Math.round((today - date) / 1000);
-        const minutes = Math.round(seconds / 60);
-        const isToday = today.toDateString() === date.toDateString();
-        const isYesterday = yesterday.toDateString() === date.toDateString();
-        const isThisYear = today.getFullYear() === date.getFullYear();
-
-
-        if (seconds < 5) {
-            return 'now';
-        } else if (seconds < 60) {
-            return `${seconds} seconds ago`;
-        } else if (seconds < 90) {
-            return 'about a minute ago';
-        } else if (minutes < 60) {
-            return `${minutes} minutes ago`;
-        } else if (isToday) {
-            return getFormattedDate(date, 'Today'); // Today at 10:20
-        } else if (isYesterday) {
-            return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-        } else if (isThisYear) {
-            return getFormattedDate(date, false, true); // 10. January at 10:20
-        }
-
-        return getFormattedDate(date); // 10. January 2017. at 10:20
-    };
-
-
-    /*Message_Notificationas*/
 
     var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
     Message_Notifications_Check.on('value', function (snapshot) {
@@ -969,14 +896,7 @@
                 if (counter_check == 0) {
                     counter_check++;
 
-                    dropdown_item += " <a><div style= \"padding: 2px;\n" +
-                        "            margin: 5px;\n" +
-                        "            border-radius: 4px;\n" +
-                        "            border-width: 5px;\n" +
-                        "            border-color: black;\n" +
-                        "            height: 80px;\n" +
-                        "             margin-left: -20px;\n" +
-                        "            margin-top: 20px  \" class=\"notification-item\">\n" +
+                    dropdown_item += " <a><div style=\"margin-top: 20px\" class=\"notification-item\">\n" +
                         "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
                         "                                    \n" +
                         "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
@@ -984,18 +904,11 @@
                         "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
                         "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
                         "                                </div>\n" +
-                        "                            </a>";
+                        "                            </a><br>";
 
                 } else {
 
-                    dropdown_item += " <a><div style= \"padding: 5px;\n" +
-                        "            margin: 5px;\n" +
-                        "            border-radius: 4px;\n" +
-                        "            border-width: 5px;\n" +
-                        "            border-color: black;\n" +
-                        "            height: 80px;\n" +
-                        "             margin-left: -20px;\n" +
-                        "            margin-top: 20px \" class=\"notification-item\">\n" +
+                    dropdown_item += " <a><div style=\"margin-top: -20px\" class=\"notification-item\">\n" +
                         "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
                         "                                    \n" +
                         "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
@@ -1003,14 +916,13 @@
                         "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
                         "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
                         "                                </div>\n" +
-                        "                            </a>";
+                        "                            </a><br>";
                 }
 
             }
         }
         $('#Message_dropdown_notifications').html(dropdown_item);
     }
-
 
     function msg_message_number(obj) {
         // var html = '';
@@ -1046,20 +958,22 @@
     }
 
 
+    /* End of Messaging*/
+
     /*Request Notifications*/
 
-    var database_counter = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+    var database_counter_1 = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
 
 
-    database_counter.on('value', function (snapshot) {
-        renderCount(snapshot.val());
-        renderUI(snapshot.val());
+    database_counter_1.on('value', function (snapshot) {
+        renderCount_1(snapshot.val());
+        renderUI_1(snapshot.val());
 
 
     });
 
 
-    function renderUI(obj) {
+    function renderUI_1(obj) {
         var html = '';
         var keys = Object.keys(obj);
         start_count = 0;
@@ -1080,11 +994,8 @@
 
                     var decision = "true";
                     var opp_decison = "false";
-
-
-
-                    html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\" padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -30px; \" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 0px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black;left: 25px;position:relative;margin-top: -5px; \">" + obj[keys[i]].message +
-                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+                    html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
+                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br><br>";
                 }
 
                 else
@@ -1098,15 +1009,8 @@
 
                     var decision = "true";
                     var opp_decison = "false";
-
-                   // searchByCountry();
-
-
-
-
-
-                    html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px;\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+                    html += "<div href=\"#\" class=\"content\" style=\"top: 15px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
+                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
 
                 }
 
@@ -1115,7 +1019,7 @@
         $('#comment').html(html);
     }
 
-    function renderCount(obj) {
+    function renderCount_1(obj) {
         var html = '';
         var countholder = 0;
 
@@ -1124,7 +1028,7 @@
             countholder++;
         }
         countholder--;
-        database_counter.update({'counter': countholder});
+        database_counter_1.update({'counter': countholder});
         /*Creating notification icon*/
 
 
@@ -1158,9 +1062,9 @@
                     AddtoForum_Joined.child(sender_id).set(sender_id);
 
 
-                    window.alert("You have joined a new forum!");
-                    //var x = document.getElementById("forumJoined");
-                    // x.show();
+                    // window.alert("You have joined a new forum!");
+                    var x = document.getElementById("forumJoined");
+                    x.show();
 
 
                 }/*Forum Requests*/
@@ -1202,7 +1106,7 @@
                     });
 
 
-                    //window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
@@ -1238,6 +1142,9 @@
 
 
     }
+
+
+    /*End of Request Notifications*/
 
 
 </script>
@@ -1389,7 +1296,7 @@
                                     <!-- hidden field that stores the id of the entity  -->
                                     <div id="{{ conn_id }}" style="display: none;"> {{ conn_id }}</div>
                                     <h8 style="display: inline-block;margin-left: 5px;margin-top: -10px;font-family:'Arial Narrow'; color:#666666 ;font-weight:bold; font-size: small;">
-                                       &nbsp;<span>  {{ countries }} </span>
+                                        &nbsp;<span>  {{ countries }} </span>
                                     </h8>
                                     <br>
 
@@ -1620,14 +1527,14 @@
 
 
             /*NOTIFICATION ON ADD (to be places here): Specific to Add: Whenever items changes (added because of child_added) in database, this event is called, getKey is unique id of pop up*/
-     {% comment %}       function Delete_request(post_id){
+            {% comment %}       function Delete_request(post_id){
 
 
-                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
+                       var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' +"/RequestsReceived/"+ post_id);/*Messages*/
 
-                different_name.remove();
-                //window.alert( typeof post_id );
-            }{% endcomment %}
+                       different_name.remove();
+                       //window.alert( typeof post_id );
+                   }{% endcomment %}
 
 
 
@@ -1742,6 +1649,8 @@
                                                 receiver_id: creator_id ,
                                                 sender_profilePic: '{{ ProfilePic }}',
                                                 Type: "Forum_Request",
+                                                Forum_ID:forum_id,
+                                                Type_check:"Type_check"
 
                                             });
 
@@ -1888,13 +1797,7 @@
                         }
                     });
 
-                                        // create a string with all forum topics
-                                        var forum_topics = " | ";
-                                        for (var k in topics_json) {
-                                            if (topics_json.hasOwnProperty(k)) {
-                                                forum_topics = forum_topics + k + " | ";
-                                            }
-                                        }
+                });
 
 
 
