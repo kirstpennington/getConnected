@@ -1359,8 +1359,6 @@
 
 
                     window.alert("You have joined a new forum!");
-                    //var x = document.getElementById("forumJoined");
-                    // x.show();
 
 
                 }/*Forum Requests*/
@@ -1700,11 +1698,16 @@
 
                     <div class="buttonbot" style="padding-top: 140px;padding-left: 140px;">
                         {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                            <button id="saveChangesBtn" type="submit">Save Changes</button>
+                            <button onclick="changesSavedPopupShow()" id="saveChangesBtn" type="submit">Save Changes</button>
                         {% else %}
                             <button hidden="true" id="saveChangesBtn" type="submit">Save Changes</button>
                         {% endif %}
                         <button id="cancelBtn" type="submit" value="cancel" name="cancel">Cancel</button>
+                    <script>
+                        function changesSavedPopupShow(){
+                            $("#changesSavedModal").modal('show');
+                        }
+                    </script>
                     </div>
 
 
@@ -2242,21 +2245,6 @@ Badges_Celebrations_2
                       }
                     });
 
-                    /*function enableAccount(){
-                          updateUserEnabledRef = firebase.database().ref("Users").child('//  this_uid ');
-                          updateUserEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
-
-                          document.getElementById("enableAccBtn").innerText = "Disable Account";                                      // change button to "Disable account"
-                          document.getElementById("enableAccBtn").disabled = true;
-
-                          document.getElementById("firstname").disabled = false;                                     // enable all settings boxes
-                          document.getElementById("country").disabled = false;
-                          document.getElementById("bioGet").disabled = false;
-                          document.getElementById("saveChangesBtn").hidden = false;
-                          document.getElementById("nav_bar_disable").hidden = false;
-
-                          $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
-                    }*/
             </script>
                 </div>
 
@@ -2276,7 +2264,6 @@ Badges_Celebrations_2
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"  style=" border: 1px solid gray;
             color: #e83e8c;">Close</button>
-
                   </div>
                 </div>
               </div>
@@ -2298,6 +2285,29 @@ Badges_Celebrations_2
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border: 1px solid gray;
+            color: #e83e8c;">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+   <!-- Modal for pop up message "Changes Saved" -->
+            <div class="modal fade" id="changesSavedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><strong>Save Successful</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      Changes saved to your profile
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
                   </div>
