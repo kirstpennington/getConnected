@@ -1061,11 +1061,22 @@
                                     <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
 
                                     <!--Number of Connections and Forums-->
+                                    <script>
+                                        //  count the number of forums and connections in db
+                                        var numForumsRef = firebase.database().ref("Users").child("{{ this_uid }}").child("ForumsJoined");
+                                        numForumsRef.on("value", function(numForums_snapshot) {
+                                            document.getElementById("numForumsSpan").innerText = numForums_snapshot.numChildren();
+                                            var numConnRef = firebase.database().ref("Users").child("{{ this_uid }}").child("Connections");
+                                            numConnRef.on("value", function(numConnections_snapshot) {
+                                                document.getElementById("numConnectionsSpan").innerText = numConnections_snapshot.numChildren();
+                                            });
+                                        });
+                                    </script>
                                     <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: black;">
-                                        Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                        Connections <span id="numConnectionsSpan" class="label label-default"></span></h8>
                                     <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: black;">
-                                        Forums <span
-                                            class="label label-default">{{ numForums }}</span></h8>
+                                        Forums <span id="numForumsSpan"
+                                            class="label label-default"></span></h8>
 
 
                                 </div>
@@ -1499,7 +1510,6 @@
 
                     var forum_names = snapshot_forum_topics.val().Name;
                     var forum_pics = snapshot_forum_topics.val().ProfilePic;
-                    var forum_num_participants = snapshot_forum_topics.val().numConnections;
                     var forum_num_BIO = snapshot_forum_topics.val().Bio;
                     var forum_num_country = snapshot_forum_topics.val().Country;
 
