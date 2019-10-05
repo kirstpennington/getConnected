@@ -469,6 +469,20 @@
     </button>
 </dialog>
 
+<script>
+
+
+    var x = document.getElementById("forumJoined");
+    var y = document.getElementById("connectedWith");
+
+    document.querySelector('#close').onclick = function () {
+        y.close();
+    };
+    document.querySelector('#shut').onclick = function () {
+        x.close();
+    };
+</script>
+
 
 
 <!--navigation bar at top of all pages-->
@@ -559,8 +573,9 @@
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div id="">
-                        <span id="counter_number_notifications"></span>
+                      <div id="">
+                        <span ><span class="glyphicon glyphicon-bell"></span>&nbsp;<span id="counter_number_notifications" class="label label-default"   style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
+
                     </div>
 
                     <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
@@ -842,6 +857,7 @@
 
             }
         }
+         if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
         $('#comment').html(html);
     }
 
@@ -858,10 +874,12 @@
         /*Creating notification icon*/
 
 
+{% comment %}
         html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+{% endcomment %}
 
 
-        $('#counter_number_notifications').html(html);
+        $('#counter_number_notifications').html(countholder);
 
 
     }
@@ -967,7 +985,7 @@
         } /*If Accept*/
 
 
-        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
 
             if (snapshot.exists()) {
 

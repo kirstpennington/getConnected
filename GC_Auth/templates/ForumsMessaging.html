@@ -97,12 +97,13 @@
 
         /*icon for user profile img*/
         .profile_img {
-            width: 25px;
+            width: 50px;
             display: inline;
             float: left;
             border: 0px solid #111;
-            border-radius: 3px;
+            border-radius: 25px;
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
         }
 
 
@@ -431,6 +432,20 @@
     </button>
 </dialog>
 
+<script>
+
+
+    var x = document.getElementById("forumJoined");
+    var y = document.getElementById("connectedWith");
+
+    document.querySelector('#close').onclick = function () {
+        y.close();
+    };
+    document.querySelector('#shut').onclick = function () {
+        x.close();
+    };
+</script>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
 
@@ -511,13 +526,14 @@
                     </ul><!--Dropdown menu Messages--> </a>
                 </li><!--dropdown -->
 
-                <!--REQUESTS NOTIFICATIONS -->
+                {% comment %}<!--REQUESTS NOTIFICATIONS -->
                 <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
 
                     <div id="">
-                        <span id="counter_number_notifications"></span>
+                        <span ><span class="glyphicon glyphicon-bell"></span>&nbsp;<span id="counter_number_notifications" class="label label-default"   style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
+
                     </div>
 
                     <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
@@ -535,7 +551,7 @@
 
                     </ul> <!--Dropdown menu Notification-->
                 </a>
-                </li><!--dropdown -->
+                </li><!--dropdown -->{% endcomment %}
 
                 <!--Profile Drop-Down -->
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -793,6 +809,8 @@
 
             }
         }
+        if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
+
         $('#comment').html(html);
     }
 
@@ -812,7 +830,7 @@
         html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
 
 
-        $('#counter_number_notifications').html(html);
+        $('#counter_number_notifications').html(countholder);
 
 
     }
@@ -918,7 +936,7 @@
         } /*If Accept*/
 
 
-        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
 
             if (snapshot.exists()) {
 

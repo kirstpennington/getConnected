@@ -1593,12 +1593,11 @@
         /*Send Notifications*/
 
         var parts_loop = firebase.database().ref().child("Messages/" + conversation_id + "/Participants");/*Messages*/
-        parts_loop.on("value", function (snapshot_1) {
+        {% comment %}parts_loop.on("value", function (snapshot_1) {
             snapshot_1.forEach(function (childSnapshot_1) {
 
-                {% comment %}
-                                if ('{{ this_uid }}' != childSnapshot_1.val());
-                {% endcomment %}
+                                                if ('{{ this_uid }}' != childSnapshot_1.val());
+
 
 
                 var other = firebase.database().ref().child("Users/" + childSnapshot_1.val() + "/Messages_Notifications");/*Messages*/
@@ -1610,7 +1609,7 @@
                     text: message_txt,
                 });
             });
-        });
+        });{% endcomment %}
         /*END*/
 
     };
@@ -2747,7 +2746,7 @@
 
     /*Message_Notificationas*/
 
-    var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
+    {% comment %}var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
     Message_Notifications_Check.on('value', function (snapshot) {
         msg_messages_dropdown(snapshot.val());
         msg_message_number(snapshot.val());
@@ -2810,17 +2809,15 @@
         for (var i = 0; i < keys.length; i++) {
             countholder++;
         }
-        {% comment %}
-                        countholder--;
-        {% endcomment %}
-
-        {% comment %}database_counter.update({'counter': countholder});
-         /*Creating notification icon*/{% endcomment %}
+                                countholder--;
 
 
-        {% comment %}
-                        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-        {% endcomment %}
+        database_counter.update({'counter': countholder});
+         /*Creating notification icon*/
+
+
+                                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+
 
 
         $('#number_of_msg_notifications').html(countholder);
@@ -2833,7 +2830,7 @@
         var other = firebase.database().ref().child("Users/" + '{{ this_uid }}');/*Messages*/
         other.child("Messages_Notifications").remove();
 
-    }
+    }{% endcomment %}
 
 
     /*Request Notifications*/
@@ -3004,7 +3001,7 @@
         } /*If Accept*/
 
 
-        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
 
             if (snapshot.exists()) {
 

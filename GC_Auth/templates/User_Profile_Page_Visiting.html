@@ -802,78 +802,10 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <!--MESSAGE NOTIFICATIONS -->
-                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div style=""
-                         id="Messages_icons_notifications">
-                        &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
-                        <span id="number_of_msg_notifications" class="label label-default"
-                              style="background-color: red;color: white">0</span>&nbsp;
-                    </div>
-
-
-                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
-
-                            <ul id="Message_dropdown_notifications" style="">
-
-                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
-
-                                {% comment %}     <a><div style="" class="notification-item">
-                                <img class="profile_img" src="{{ ProfilePic }}"/>
-                                    <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
-                                    <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
-                                    <p style="font-family: sans-serif; color: black; margin-top: 3px;left: 30px;position:relative; font-size:small"> Hi Winny</p>
-                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
-                                </div>
-                            </a>
-
-                            <a><div style="margin-top: -20px" class="notification-item">
-                                <img class="profile_img" src="{{ ProfilePic }}"/>
-                                    <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
-                                    <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
-                                    <p style="font-family: sans-serif; color: black; margin-top: 3px;left: 30px;position:relative; font-size:small"> Hi Winny</p>
-                                    <hr style="width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px"/>
-                                </div>
-                            </a>{% endcomment %}
-
-                            </ul>
-
-                        </div><!--notifications-wrapper-->
-                        <li class="divider"></li>
-                        <li style="font-weight: bold; font-family: sans-serif; text-align: right"
-                            onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
-                            View All <i class="fa fa-angle-double-right"></i></li>
-                    </ul><!--Dropdown menu Messages--> </a>
-                </li><!--dropdown -->
 
                 <!--REQUESTS NOTIFICATIONS -->
-                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
-                                                                      data-target="#" href="#"
-                                                                      onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div id="">
-                        <span id="counter_number_notifications"></span>
-                    </div>
-
-                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
-                        aria-labelledby="dLabel">
-
-                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
-                            <!--Notifications Dropdown div-->
-                            <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
-                                Notifications</p></ul>
-                        </div><!--End of Notifications Dropdown div-->
-
-                        <!--Footer of notification drop down-->
-                        <li class="divider"></li>
-                        <li style="text-align: center"><a href="#"></a></li>
-
-                    </ul> <!--Dropdown menu Notification-->
-                </a>
-                </li><!--dropdown -->
 
                 <!--Profile Drop-Down -->
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
