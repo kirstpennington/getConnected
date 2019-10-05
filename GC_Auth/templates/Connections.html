@@ -750,8 +750,9 @@
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div id="">
-                        <span id="counter_number_notifications"></span>
+                     <div id="">
+                        <span ><span class="glyphicon glyphicon-bell"></span>&nbsp;<span id="counter_number_notifications" class="label label-default"   style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
+
                     </div>
 
                     <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
@@ -1046,10 +1047,13 @@
         /*Creating notification icon*/
 
 
+{% comment %}
         html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+{% endcomment %}
 
+        if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
 
-        $('#counter_number_notifications').html(html);
+        $('#counter_number_notifications').html(countholder);
 
 
     }
