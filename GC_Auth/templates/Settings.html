@@ -1520,9 +1520,9 @@
                 <div class="inputformsLeft">
                     <p>Username: </p>
                     {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                        <input maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                        <input required maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
                     {% else %}
-                        <input disabled="true" maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                        <input required disabled="true" maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
                     {% endif %}
                 </div>
             </div>
@@ -1711,10 +1711,10 @@
 
                 <div class="form-group">
                     {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                        <textarea name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                        <textarea required name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
                               style="width: 70%;">{{ bio }}</textarea>
                     {% else %}
-                        <textarea disabled="true" name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                        <textarea required disabled="true" name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
                               style="width: 70%;">{{ bio }}</textarea>
                     {% endif %}
                 </div>

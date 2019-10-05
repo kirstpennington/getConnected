@@ -37,7 +37,7 @@ class course_methods:
 
         if topics is not None:
             for topic in topics:
-                return "| " + topic + "|"
+                return "|" + topic + "|"
         else:
             topics_string = "No Topics"
 
