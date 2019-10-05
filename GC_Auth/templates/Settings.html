@@ -565,6 +565,48 @@
         .image-right-detail-section2 span {
             color: #7F7F7F;
         }
+         /*icon for user profile img**/
+        .profile_img {
+            width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+        .profile_img_1 {
+            max-width: 50px;
+            min-width: 50px;
+            display: inline;
+            float: left;
+            border: 0px solid #111;
+            border-radius: 25px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+            margin-right: -20px;
+
+        }
+
+        .AcceptDeclinebutton {
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+            opacity: 0.8;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: black;
+        }
+
+        .AcceptDeclinebutton:hover {
+            background-color: #e83e8c;
+            color: black;
+
+        }
 
 
     </style>
@@ -776,35 +818,6 @@
     </button>
 </dialog>
 
-
-<script>
-
-
-    var x = document.getElementById("forumJoined");
-    var y = document.getElementById("connectedWith");
-
-    document.querySelector('#close').onclick = function () {
-        y.close();
-    };
-    document.querySelector('#shut').onclick = function () {
-        x.close();
-    };
-</script>
-
-<script>
-
-
-    var x = document.getElementById("forumJoined");
-    var y = document.getElementById("connectedWith");
-
-    document.querySelector('#close').onclick = function () {
-        y.close();
-    };
-    document.querySelector('#shut').onclick = function () {
-        x.close();
-    };
-</script>
-
 {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
     <nav id="nav_bar_disable" class="navbar navbar-inverse  ">
     <div class="container-fluid">
@@ -919,7 +932,7 @@
                                         onclick="CloseIntroForm(); OpenLogIn();">
 
                     <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20"
-                                                                                  height="20" src="{{ profilePic }}"
+                                                                                  height="20" src="{{ ProfilePic }}"
                                                                                   alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
@@ -1040,9 +1053,8 @@
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
 
-                   <div id="">
-                        <span ><span class="glyphicon glyphicon-bell"></span>&nbsp;<span id="counter_number_notifications" class="label label-default"   style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
-
+                    <div id="">
+                        <span id="counter_number_notifications"></span>
                     </div>
 
                     <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
@@ -1292,35 +1304,56 @@
     function renderUI(obj) {
         var html = '';
         var keys = Object.keys(obj);
+        start_count = 0;
         for (var i = keys.length - 1; i >= 0; i--) {
             // for (var i = 0; i <= keys.length - 1; i++) {
-
-
             /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
             /*Creating notification item*/
 
             if (obj[keys[i]].sender_profilePic != undefined) {
+                start_count ++;
 
-                var display_time = obj[keys[i]].time;
-                display_time = Number(display_time); // cast it to a Number
-                var ts_display = timeAgo(display_time);
+                if (start_count ==1) {
 
-                var type_post = obj[keys[i]].Type;
-                var forum_id_id = obj[keys[i]].Forum_ID;
+                    var display_time = obj[keys[i]].time;
+                    display_time = Number(display_time); // cast it to a Number
+                    var ts_display = timeAgo(display_time);
 
 
-                var decision = "true";
-                var opp_decison = "false";
-                html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+                    var decision = "true";
+                    var opp_decison = "false";
 
 
 
+                    html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\" padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -30px; \" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 0px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black;left: 25px;position:relative;margin-top: -5px; font-size:14px;\">" + obj[keys[i]].message +
+                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white; border:0px;\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; border:0px;font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
+                }
 
+                else
+
+                {
+
+                    var display_time = obj[keys[i]].time;
+                    display_time = Number(display_time); // cast it to a Number
+                    var ts_display = timeAgo(display_time);
+
+
+                    var decision = "true";
+                    var opp_decison = "false";
+
+                   // searchByCountry();
+
+
+
+
+
+                    html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px;\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative;font-size:14px; \">" + obj[keys[i]].message +
+                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" border:0px;font-size: 85%; position: relative;left: 60px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; border:0px;font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"border:0px;width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+
+                }
 
             }
         }
-         if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
         $('#comment').html(html);
     }
 
@@ -1337,43 +1370,24 @@
         /*Creating notification icon*/
 
 
-{% comment %}
         html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-{% endcomment %}
 
 
-        $('#counter_number_notifications').html(countholder);
+        $('#counter_number_notifications').html(html);
 
 
     }
 
-    function Accept_request(sender_id, name, post_id, isAccept, typepost, forum_id_id) {
+    function Accept_request(sender_id, name, post_id, isAccept) {
 
 
         if (String(isAccept).valueOf() == String("true").valueOf()) {
 
             /*Check Type of Request*/
 
-            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
+            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
 
                 if (snapshot.exists()) {
-
-
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
-
-                        var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
-                        AddtoForum.child(sender_id).set(sender_id);
-
-                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
-                        AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
-
-                    }
-
-
-                    else {
 
 
                     var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
@@ -1386,14 +1400,9 @@
                     AddtoForum_Joined.child(sender_id).set(sender_id);
 
 
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
+                    window.alert("You have joined a new forum!");
+                    //var x = document.getElementById("forumJoined");
+                    // x.show();
 
 
                 }/*Forum Requests*/
@@ -1435,12 +1444,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    //window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -1448,7 +1457,7 @@
         } /*If Accept*/
 
 
-        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
+        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
 
             if (snapshot.exists()) {
 
@@ -1520,9 +1529,9 @@
                 <div class="inputformsLeft">
                     <p>Username: </p>
                     {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                        <input required maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                        <input maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
                     {% else %}
-                        <input required disabled="true" maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                        <input disabled="true" maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
                     {% endif %}
                 </div>
             </div>
@@ -1711,10 +1720,10 @@
 
                 <div class="form-group">
                     {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                        <textarea required name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                        <textarea name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
                               style="width: 70%;">{{ bio }}</textarea>
                     {% else %}
-                        <textarea required disabled="true" name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
+                        <textarea disabled="true" name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
                               style="width: 70%;">{{ bio }}</textarea>
                     {% endif %}
                 </div>
@@ -1733,16 +1742,11 @@
 
                     <div class="buttonbot" style="padding-top: 140px;padding-left: 140px;">
                         {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                            <button onclick="changesSavedPopupShow()" id="saveChangesBtn" type="submit">Save Changes</button>
+                            <button id="saveChangesBtn" type="submit">Save Changes</button>
                         {% else %}
                             <button hidden="true" id="saveChangesBtn" type="submit">Save Changes</button>
                         {% endif %}
                         <button id="cancelBtn" type="submit" value="cancel" name="cancel">Cancel</button>
-                    <script>
-                        function changesSavedPopupShow(){
-                            $("#changesSavedModal").modal('show');
-                        }
-                    </script>
                     </div>
 
 
@@ -2280,6 +2284,21 @@ Badges_Celebrations_2
                       }
                     });
 
+                    /*function enableAccount(){
+                          updateUserEnabledRef = firebase.database().ref("Users").child('//  this_uid ');
+                          updateUserEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
+
+                          document.getElementById("enableAccBtn").innerText = "Disable Account";                                      // change button to "Disable account"
+                          document.getElementById("enableAccBtn").disabled = true;
+
+                          document.getElementById("firstname").disabled = false;                                     // enable all settings boxes
+                          document.getElementById("country").disabled = false;
+                          document.getElementById("bioGet").disabled = false;
+                          document.getElementById("saveChangesBtn").hidden = false;
+                          document.getElementById("nav_bar_disable").hidden = false;
+
+                          $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
+                    }*/
             </script>
                 </div>
 
@@ -2299,6 +2318,7 @@ Badges_Celebrations_2
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"  style=" border: 1px solid gray;
             color: #e83e8c;">Close</button>
+
                   </div>
                 </div>
               </div>
@@ -2320,29 +2340,6 @@ Badges_Celebrations_2
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border: 1px solid gray;
-            color: #e83e8c;">Close</button>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-   <!-- Modal for pop up message "Changes Saved" -->
-            <div class="modal fade" id="changesSavedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Save Successful</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                      Changes saved to your profile
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
                   </div>
