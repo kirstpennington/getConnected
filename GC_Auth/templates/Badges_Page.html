@@ -848,6 +848,25 @@
 
 <body class="profileContainerDetails">
 <!--*BODY* 1. Navigation Bar-->
+<!--dialog pop-ups-->
+<dialog class="text-center" id="connectedWith"
+        style="box-shadow: 2px 2px 2px 2px grey;color: white;position: absolute; top: 30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
+    <div id="newconnectionmodal"></div>
+    <br>
+    <button id="close" style="border: 1px solid #e83e8c;border-radius: 8px;
+        color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
+    </button>
+</dialog>
+
+
+<dialog class="text-center" id="forumJoined"
+        style="box-shadow: 2px 2px 2px 2px grey;;color: white;position: absolute; top:30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
+    <p>You have joined a new forum!</p>
+    <br>
+    <button id="shut" style="border: 1px solid #e83e8c;border-radius: 8px;
+        color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
+    </button>
+</dialog>
 
 <nav class="navbar navbar-inverse  ">
     <div class="container-fluid">
@@ -1184,53 +1203,31 @@
     function renderUI(obj) {
         var html = '';
         var keys = Object.keys(obj);
-        start_count = 0;
         for (var i = keys.length - 1; i >= 0; i--) {
             // for (var i = 0; i <= keys.length - 1; i++) {
+
+
             /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
             /*Creating notification item*/
 
             if (obj[keys[i]].sender_profilePic != undefined) {
-                start_count ++;
 
-                if (start_count ==1) {
+                var display_time = obj[keys[i]].time;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
 
-                    var display_time = obj[keys[i]].time;
-                    display_time = Number(display_time); // cast it to a Number
-                    var ts_display = timeAgo(display_time);
-
-
-                    var decision = "true";
-                    var opp_decison = "false";
+                var type_post = obj[keys[i]].Type;
+                var forum_id_id = obj[keys[i]].Forum_ID;
 
 
-
-                    html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\" padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -30px; \" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 0px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black;left: 25px;position:relative;margin-top: -5px; \">" + obj[keys[i]].message +
-                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
-                }
-
-                else
-
-                {
-
-                    var display_time = obj[keys[i]].time;
-                    display_time = Number(display_time); // cast it to a Number
-                    var ts_display = timeAgo(display_time);
-
-
-                    var decision = "true";
-                    var opp_decison = "false";
-
-                   // searchByCountry();
+                var decision = "true";
+                var opp_decison = "false";
+                html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
 
 
 
 
-
-                    html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px;\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                        "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
-
-                }
 
             }
         }
@@ -1258,16 +1255,33 @@
 
     }
 
-    function Accept_request(sender_id, name, post_id, isAccept) {
+    function Accept_request(sender_id, name, post_id, isAccept, typepost, forum_id_id) {
 
 
         if (String(isAccept).valueOf() == String("true").valueOf()) {
 
             /*Check Type of Request*/
 
-            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
 
                 if (snapshot.exists()) {
+
+
+
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
+
+                    {
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
+                        AddtoForum.child(sender_id).set(sender_id);
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
+                        AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
+
+                    }
+
+
+                    else {
 
 
                     var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
@@ -1280,9 +1294,14 @@
                     AddtoForum_Joined.child(sender_id).set(sender_id);
 
 
-                    window.alert("You have joined a new forum!");
-                    //var x = document.getElementById("forumJoined");
-                    // x.show();
+                    // window.alert("You have joined a new forum!");
+                    var x = document.getElementById("forumJoined");
+                    x.show();}
+
+
+
+
+
 
 
                 }/*Forum Requests*/
@@ -1324,12 +1343,12 @@
                     });
 
 
-                    //window.alert("You are now connected with " + name);
+                   // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                    var y = document.getElementById("connectedWith");
+                     var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/

@@ -756,6 +756,25 @@
 
 <body class="profileContainerDetails">
 <!--*BODY* 1. Navigation Bar-->
+<!--dialog pop-ups-->
+<dialog class="text-center" id="connectedWith"
+        style="box-shadow: 2px 2px 2px 2px grey;color: white;position: absolute; top: 30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
+    <div id="newconnectionmodal"></div>
+    <br>
+    <button id="close" style="border: 1px solid #e83e8c;border-radius: 8px;
+        color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
+    </button>
+</dialog>
+
+
+<dialog class="text-center" id="forumJoined"
+        style="box-shadow: 2px 2px 2px 2px grey;;color: white;position: absolute; top:30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
+    <p>You have joined a new forum!</p>
+    <br>
+    <button id="shut" style="border: 1px solid #e83e8c;border-radius: 8px;
+        color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
+    </button>
+</dialog>
 
 {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
     <nav id="nav_bar_disable" class="navbar navbar-inverse  ">
