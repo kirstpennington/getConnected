@@ -1441,8 +1441,8 @@
                 height: auto; ">
 
                     <div style="top: 2px; margin-left: 80%">
-                        <h8><span class="label label-default"><span
-                                class="fa fa-users"> </span>{{ num_participants }}</span></h8>
+                        <h8 id=""><span  class="label label-default"><span
+                                class="fa fa-users"> </span><i id="number_of_participants_in_forum"></i></span></h8>
                         <div style="height:5px;"><br></div>
                     </div>
 
@@ -1579,6 +1579,25 @@
         return card;
 
     }
+
+
+   // number_of_participants_in_forum
+
+    var forum_number = firebase.database().ref().child("Forums").child('{{forum_id}}').child("Participants");
+    forum_number.on("value", function (snapshot_user_topics) {
+
+
+        var countholder = 0;
+
+         snapshot_user_topics.forEach(function (snapshot_user_topics) {
+                                    countholder++;
+                                });
+         countholder--;
+
+        $('#number_of_participants_in_forum').html(countholder);
+
+    });
+
 
 
     /* View Participants*/
