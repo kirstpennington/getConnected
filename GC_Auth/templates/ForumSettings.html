@@ -3,396 +3,396 @@
 
 
 
-    <!--*HEAD* Firebase-->
+<!--*HEAD* Firebase-->
 
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
-            authDomain: "getconnected-9dac0.firebaseapp.com",
-            databaseURL: "https://getconnected-9dac0.firebaseio.com",
-            projectId: "getconnected-9dac0",
-            storageBucket: "getconnected-9dac0.appspot.com",
-            messagingSenderId: "144309081376"
-        };
-        firebase.initializeApp(config);
-    </script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCW2DTUu_qEhCG9xpj5gGkG2_QC_CmsGQE",
+        authDomain: "getconnected-9dac0.firebaseapp.com",
+        databaseURL: "https://getconnected-9dac0.firebaseio.com",
+        projectId: "getconnected-9dac0",
+        storageBucket: "getconnected-9dac0.appspot.com",
+        messagingSenderId: "144309081376"
+    };
+    firebase.initializeApp(config);
+</script>
 
-    <!--*HEAD* 1. Title-->
+<!--*HEAD* 1. Title-->
 
-    <title>Forum Settings </title>
+<title>Forum Settings </title>
 
-    <!--*HEAD* 2. Bootstrap & CSS Links-->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--*HEAD* 2. Bootstrap & CSS Links-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../GC_Auth/GC_Auth/static/GC_Auth/loginstyle.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../GC_Auth/GC_Auth/static/GC_Auth/loginstyle.css">
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- footer style -->
-    <link href="sticky-footer.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- footer style -->
+<link href="sticky-footer.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!--*HEAD-STYLE*  1.1. Navigation Bar Style + Body Style -->
+<!--*HEAD-STYLE*  1.1. Navigation Bar Style + Body Style -->
 
-    <style>
+<style>
 
-        .dropdown {
+    .dropdown {
+        display: inline-block;
+        margin-left: 20px;
+    }
+
+    .glyphicon-bell {
+        font-size: 1.5rem;
+    }
+
+    .notifications {
+        min-width: 320px;
+    }
+
+    .notifications-wrapper {
+        overflow: auto;
+        max-height: 250px;
+    }
+
+    .glyphicon-circle-arrow-right {
+        margin-left: 10px;
+    }
+
+    .item-title {
+        font-size: 1.5rem;
+        color: black;
+        padding: 0px 50px;
+    }
+
+    .notifications a.content {
+        text-decoration: none;
+        background: white;
+    }
+
+    .notification-item {
+        padding: 10px;
+        margin: 5px;
+        background: #ebebeb;
+        border-radius: 4px;
+        height: 80px;
+    }
+
+    .profile_img {
+        width: 25px;
+        display: inline;
+        float: left;
+        border: 0px solid #111;
+        border-radius: 3px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+    }
+</style>
+
+<!--Page format-->
+
+<style>
+
+
+    .profileContainerDetails .UserWallpaper {
+        height: 380px;
+        background-position: center;
+    }
+
+    .UserWallpaper {
+        height: 100vh;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .parallax {
+        /* The image used */
+
+        /* Set a specific height */
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+    .profileContainerLift {
+        margin: -280px 30px 0; /* Up and down control */
+        border-radius: 8px;
+        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+        height: 900px; /* For Mandy to adjust size of pafe */
+        margin-bottom: 30px;
+    }
+
+    .profileContainer { /* Container Control */
+        background: #FFF;
+        position: relative;
+        z-index: 3;
+    }
+
+    .profileContainerDetails .profile img {
+        max-width: 160px;
+        width: 100%;
+        margin: 0 auto;
+        -webkit-transform: translate3d(0, -50%, 0);
+        -moz-transform: translate3d(0, -50%, 0);
+        -o-transform: translate3d(0, -50%, 0);
+        -ms-transform: translate3d(0, -50%, 0);
+        transform: translate3d(0, -50%, 0);
+    }
+
+    .img-raised { /* Profile Picture 1/3 */
+        box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+
+    }
+
+    .avatar:hover .changeImageLabel {
+        opacity: 0.9;
+        display: inline-block;
+    }
+
+    .rounded-circle { /* Profile Picture 2/3 */
+        border-radius: 50% !important;
+    }
+
+    .img-fluid { /* Profile Picture 3/3 */
+        max-width: 100%;
+        max-height: 160px;
+    }
+
+    .profileContainerDetails .description {
+        margin: 1.071rem auto 0;
+        max-width: 600px;
+        color: #999;
+        font-weight: 300;
+    }
+
+    .profileContainerDetails, html {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .profileContainerDetails .gallery img {
+        width: 100%;
+        margin-bottom: 2.142rem;
+    }
+
+    .profileContainerDetails .profile .name {
+        margin-top: -80px;
+    }
+
+</style>
+
+<style>
+
+    .SettingsHead {
+        font-size: 45px;
+        font-weight: lighter;
+        color: darkgray;
+
+    }
+
+    .inputformsLeft {
+        padding-left: 150px;
+        font-size: 20px;
+
+        color: #666666;
+
+    }
+
+    .inputformsLeft input {
+        border-radius: 4px;
+        width: 60%;
+    }
+
+
+    p {
+        font-size: 20px;
+
+        color: #666666;
+    }
+
+    option {
+        padding-top: 1000px;
+        padding-bottom: 10px;
+    }
+
+    button:hover {
+        -ms-transform: scale(1); /* IE 9 */
+        -webkit-transform: scale(1); /* Safari 3-8 */
+        transform: scale(1);
+        border: 1px solid silver;
+        box-shadow: 3px 3px 3px #888888;
+    }
+
+
+    button {
+
+        border-radius: 8px;
+        color: #666666;
+        background-color: white;
+        border: 2px solid #e83e8c;
+        display: inline-block;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 16px;
+
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+</style>
+<!--*STYLE for pop up model-->
+<style>
+
+    .modal {
+        text-align: center;
+    }
+
+    @media screen and (min-width: 768px) {
+        .modal:before {
             display: inline-block;
-            margin-left: 20px;
-        }
-
-        .glyphicon-bell {
-            font-size: 1.5rem;
-        }
-
-        .notifications {
-            min-width: 320px;
-        }
-
-        .notifications-wrapper {
-            overflow: auto;
-            max-height: 250px;
-        }
-
-        .glyphicon-circle-arrow-right {
-            margin-left: 10px;
-        }
-
-        .item-title {
-            font-size: 1.5rem;
-            color: black;
-            padding: 0px 50px;
-        }
-
-        .notifications a.content {
-            text-decoration: none;
-            background: white;
-        }
-
-        .notification-item {
-            padding: 10px;
-            margin: 5px;
-            background: #ebebeb;
-            border-radius: 4px;
-            height: 80px;
-        }
-
-        .profile_img {
-            width: 25px;
-            display: inline;
-            float: left;
-            border: 0px solid #111;
-            border-radius: 3px;
-            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
-        }
-    </style>
-
-    <!--Page format-->
-
-    <style>
-
-
-        .profileContainerDetails .UserWallpaper {
-            height: 380px;
-            background-position: center;
-        }
-
-        .UserWallpaper {
-            height: 100vh;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            display: flex;
-            align-items: center;
-
-        }
-
-        .parallax {
-            /* The image used */
-
-            /* Set a specific height */
-
-            /* Create the parallax scrolling effect */
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-
-        .profileContainerLift {
-            margin: -280px 30px 0; /* Up and down control */
-            border-radius: 8px;
-            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
-            height: 900px; /* For Mandy to adjust size of pafe */
-            margin-bottom: 30px;
-        }
-
-        .profileContainer { /* Container Control */
-            background: #FFF;
-            position: relative;
-            z-index: 3;
-        }
-
-        .profileContainerDetails .profile img {
-            max-width: 160px;
-            width: 100%;
-            margin: 0 auto;
-            -webkit-transform: translate3d(0, -50%, 0);
-            -moz-transform: translate3d(0, -50%, 0);
-            -o-transform: translate3d(0, -50%, 0);
-            -ms-transform: translate3d(0, -50%, 0);
-            transform: translate3d(0, -50%, 0);
-        }
-
-        .img-raised { /* Profile Picture 1/3 */
-            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
-
-        }
-
-        .avatar:hover .changeImageLabel {
-            opacity: 0.9;
-            display: inline-block;
-        }
-
-        .rounded-circle { /* Profile Picture 2/3 */
-            border-radius: 50% !important;
-        }
-
-        .img-fluid { /* Profile Picture 3/3 */
-            max-width: 100%;
-            max-height: 160px;
-        }
-
-        .profileContainerDetails .description {
-            margin: 1.071rem auto 0;
-            max-width: 600px;
-            color: #999;
-            font-weight: 300;
-        }
-
-        .profileContainerDetails, html {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        .profileContainerDetails .gallery img {
-            width: 100%;
-            margin-bottom: 2.142rem;
-        }
-
-        .profileContainerDetails .profile .name {
-            margin-top: -80px;
-        }
-
-    </style>
-
-    <style>
-
-        .SettingsHead {
-            font-size: 45px;
-            font-weight: lighter;
-            color: darkgray;
-
-        }
-
-        .inputformsLeft {
-            padding-left: 150px;
-            font-size: 20px;
-
-            color: #666666;
-
-        }
-
-        .inputformsLeft input {
-            border-radius: 4px;
-            width: 60%;
-        }
-
-
-        p {
-            font-size: 20px;
-
-            color: #666666;
-        }
-
-        option {
-            padding-top: 1000px;
-            padding-bottom: 10px;
-        }
-
-        button:hover {
-            -ms-transform: scale(1); /* IE 9 */
-            -webkit-transform: scale(1); /* Safari 3-8 */
-            transform: scale(1);
-            border: 1px solid silver;
-            box-shadow: 3px 3px 3px #888888;
-        }
-
-
-        button {
-
-            border-radius: 8px;
-            color: #666666;
-            background-color: white;
-            border: 2px solid #e83e8c;
-            display: inline-block;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 16px;
-
-        }
-
-        button:focus {
-            outline: none;
-        }
-
-    </style>
-    <!--*STYLE for pop up model-->
-    <style>
-
-        .modal {
-            text-align: center;
-        }
-
-        @media screen and (min-width: 768px) {
-            .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-
-            }
-        }
-
-        .modal-dialog {
-            display: inline-block;
-            text-align: left;
             vertical-align: middle;
+            content: " ";
+            height: 100%;
 
         }
+    }
 
-        /* drag and Drop */
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
 
-        .files input {
-            outline: 2px dashed #e83e8c;
-            outline-offset: -10px;
-            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            padding: 120px 0px 85px 35%;
-            text-align: center !important;
-            margin: 0;
-            width: 100% !important;
-        }
+    }
 
-        .files input:focus {
-            outline: 2px dashed #e83e8c;
-            outline-offset: -10px;
-            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            border: 1px solid #92b0b3;
-        }
+    /* drag and Drop */
 
-        .files {
-            position: relative
-        }
+    .files input {
+        outline: 2px dashed #e83e8c;
+        outline-offset: -10px;
+        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        padding: 120px 0px 85px 35%;
+        text-align: center !important;
+        margin: 0;
+        width: 100% !important;
+    }
 
-        .files:after {
-            pointer-events: none;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            width: 50px;
-            right: 0;
-            height: 56px;
-            content: "";
-            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
-            display: block;
-            margin: 0 auto;
-            background-size: 100%;
-            background-repeat: no-repeat;
-        }
+    .files input:focus {
+        outline: 2px dashed #e83e8c;
+        outline-offset: -10px;
+        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        border: 1px solid #92b0b3;
+    }
 
-        .color input {
-            background-color: silver;
-        }
+    .files {
+        position: relative
+    }
 
-        .files:before {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            pointer-events: none;
-            width: 100%;
-            right: 0;
-            height: 57px;
-            content: " or drag and drop it here. ";
-            display: block;
-            margin: 0 auto;
-            color: #e83e8c;
-            font-weight: 600;
-            text-transform: capitalize;
-            text-align: center;
-        }
+    .files:after {
+        pointer-events: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 50px;
+        right: 0;
+        height: 56px;
+        content: "";
+        background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+        display: block;
+        margin: 0 auto;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
 
+    .color input {
+        background-color: silver;
+    }
 
-
-
-     .ParticipantsButton {
-       border-radius: 8px;
-            color: #666666;
-            background-color: white;
-            border: 2px solid #e83e8c;
-            display: inline-block;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 16px;
-          width: 20%;
+    .files:before {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        pointer-events: none;
+        width: 100%;
+        right: 0;
+        height: 57px;
+        content: " or drag and drop it here. ";
+        display: block;
+        margin: 0 auto;
+        color: #e83e8c;
+        font-weight: 600;
+        text-transform: capitalize;
+        text-align: center;
+    }
 
 
-     }
-div.col-sm-12{
-
-Left:150px;
 
 
-}
+    .ParticipantsButton {
+        border-radius: 8px;
+        color: #666666;
+        background-color: white;
+        border: 2px solid #e83e8c;
+        display: inline-block;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 16px;
+        width: 20%;
 
-  .DeleteForumButt{
 
-    border-radius: 8px;
-            color: #666666;
-            background-color: white;
-            border: 2px solid #e83e8c;
-            display: inline-block;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 16px;
-            width: 30%;
-      position:absolute;
-      left:13%;
+    }
+    div.col-sm-12{
 
-  }
+        Left:150px;
 
-    </style>
+
+    }
+
+    .DeleteForumButt{
+
+        border-radius: 8px;
+        color: #666666;
+        background-color: white;
+        border: 2px solid #e83e8c;
+        display: inline-block;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 16px;
+        width: 30%;
+        position:absolute;
+        left:13%;
+
+    }
+
+</style>
 
 
 
@@ -435,7 +435,7 @@ Left:150px;
             <!--1. User Profile icon + drop down-->
 
             <ul class="nav navbar-nav navbar-right">
-               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                     <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" src="{{ profilePic }}" alt=""></span>
 
@@ -601,28 +601,28 @@ Left:150px;
 <div class="UserWallpaper parallax" style="background-image:url(
         {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
-<form id="prospects_form">
-    <!--2. Pic + Description -->
-    <!--make a table with one row and 2 coloumns-->
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="profile">
-				<div class="avatar">
-                    <img style="margin-left: 200px; background-color: white" src="{% static "GC_Auth/help/forums.png" %}"
-                         alt="Circle Image"
-                         class="img-raised rounded-circle img-fluid">
-                    <label class="changeImageLabel" type='button' data-toggle="modal" data-target="#exampleModal">Change
-                        Image </label>
+    <form id="prospects_form">
+        <!--2. Pic + Description -->
+        <!--make a table with one row and 2 coloumns-->
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="profile">
+                    <div class="avatar">
+                        <img style="margin-left: 200px; background-color: white" src="{% static "GC_Auth/help/forums.png" %}"
+                             alt="Circle Image"
+                             class="img-raised rounded-circle img-fluid">
+                        <label class="changeImageLabel" type='button' data-toggle="modal" data-target="#exampleModal">Change
+                            Image </label>
+                    </div>
                 </div>
-            </div>
-        </div><!--end coloumn-->
-        <div class="col-sm-5">
-            <br>
-            <br>
-            <h2 class="SettingsHead" style="padding-right: 10px;"> Forum Settings <span class="glyphicon glyphicon-cog"></span></h2>
+            </div><!--end coloumn-->
+            <div class="col-sm-5">
+                <br>
+                <br>
+                <h2 class="SettingsHead" style="padding-right: 10px;"> Forum Settings <span class="glyphicon glyphicon-cog"></span></h2>
 
 
-        </div><!--end col-->
+            </div><!--end col-->
 
             {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}   <!-- allow the user to disable only when the account is enabled-->
                 <button onclick="enableAccount()" id="enableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default" hidden>Enable Forum</button>
@@ -630,63 +630,55 @@ Left:150px;
 
                 <button id="disableAccBtn" style="margin-top: 45px; margin-bottom: 10px; border-color: hotpink;" class="btn btn-default">Disable Forum</button>
             {% endif %}
-        <div class="col-sm-2"></div>
-</form>
+            <div class="col-sm-2"></div>
+    </form>
 
-    </div><!--end of row-->
+</div><!--end of row-->
 
-    <!--make a table with 2 coloumns and 4 rows-->
+<!--make a table with 2 coloumns and 4 rows-->
 
-        <div class="row"><!--row one-->
+<div class="row"><!--row one-->
 
-            <div class="col-md-12" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one name -->
-                <div class="inputformsLeft">
-                    <p>Forum Name: </p>
-                    {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
-                        <input value="{{ forum_name }}" required disabled="true" id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
-                    {% else %}
-                        <input value="{{ forum_name }}" required id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
-                    {% endif %}
-                </div>
-            </div>
-
-        </div> <!--row one-->
-
-    <br>
-    <div class="row" style=" padding-left: 275px;"><!--row three -->
-        <p>Topics:</p>
-            <!-- four columns for each item-->
-        {% for topic in all_topics_list %}
-            <td>
-                <div class="col-md-4" style=" padding-left: 10px;padding-bottom: 2px;">
-                    {% if topic in forum_topics_list %}
-                        <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }} checked> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
-                    {% else %}
-                        <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }}> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
-                    {% endif %}
-                </div>
-            </td>
-            {% if forloop.counter|divisibleby:2 %}
-                </div><div class="row" style=" padding-left: 275px;">
-            {% endif %}
-        {% endfor %}
+    <div class="col-md-12" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one name -->
+        <div class="inputformsLeft">
+            <p>Forum Name: </p>
+                <input value="{{ forum_name }}" required id="nameTxt" type="text" class="form-control" name="forumname" maxlength="20" placeholder="Type here...">
         </div>
+    </div>
+
+</div> <!--row one-->
+
+<br>
+<div class="row" style=" padding-left: 275px;"><!--row three -->
+    <p>Topics:</p>
+    <!-- four columns for each item-->
+    {% for topic in all_topics_list %}
+        <td>
+            <div class="col-md-4" style=" padding-left: 10px;padding-bottom: 2px;">
+                {% if topic in forum_topics_list %}
+                    <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }} checked> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
+                {% else %}
+                    <input type="checkbox" id="{{ topic }}" name="Topic" value={{ topic }}> <label style="color: #9d9d9d ;font-size: 14px; ">{{ topic }}</label>
+                {% endif %}
+            </div>
+        </td>
+        {% if forloop.counter|divisibleby:2 %}
+            </div><div class="row" style=" padding-left: 275px;">
+        {% endif %}
+    {% endfor %}
+    </div>
 
 
 <br><br>
-    <div class="row"><!--row two-->
-            <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--Description -->
-               <p>Description: </p>
-                {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
-                    <textarea value="{{ forum_description }}" disabled="true" name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;" required>{{ forum_description }}</textarea>
-                {% else %}
-                    <textarea value="{{ forum_description }}" name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;" required>{{ forum_description }}</textarea>
-                {% endif %}
-            </div>
+<div class="row"><!--row two-->
+    <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--Description -->
+        <p>Description: </p>
+            <textarea value="{{ forum_description }}" name="ForumDescrip" class="form-control" maxlength="100" rows="5" id="comment" placeholder="Type here...." style="width: 70%;" required>{{ forum_description }}</textarea>
+    </div>
 
 
-        <div>
-        </div><!--row three-->
+    <div>
+    </div><!--row three-->
 
 
 
@@ -697,7 +689,7 @@ Left:150px;
 
     {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
         <button data-toggle="modal" data-target="#chooseparticipantsmodal" disabled="true" id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
-        <button disabled="true" id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
+        <button disabled="true" data-toggle="modal" data-target="#blockparticipantsmodal" id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
     {% else %}
         <button data-toggle="modal" data-target="#chooseparticipantsmodal" id="addPartBtn" class="ParticipantsButton">Add Participants</button><br><br>
         <button data-toggle="modal" data-target="#blockparticipantsmodal" id="blockPartBtn" class="ParticipantsButton">Block Participants</button>
@@ -706,131 +698,127 @@ Left:150px;
 
 </div>
 
-  <div class="col-sm-12" style="padding-left: 120px; padding-bottom: 30px;"><!--more topics-->
-                <p>Privacy: </p>
-                    {% if forum_private == 'True' or forum_private == 'true' or forum_private == true or forum_private == True %}
-                        <label class="radio-inline"> <input id="public_rb" type="radio" name="privacy" value="Public"> Public</label>
-                        <label class="radio-inline"> <input id="private_rb" type="radio" name="privacy" value="Private" checked> Private</label>
-                    {% else %}
-                        <label class="radio-inline"> <input id="public_rb" type="radio" name="privacy" value="Public" checked> Public</label>
-                        <label class="radio-inline"> <input id="private_rb" type="radio" name="privacy" value="Private"> Private</label>
-                    {% endif %}
+<div class="col-sm-12" style="padding-left: 120px; padding-bottom: 30px;"><!--more topics-->
+    <p>Privacy: </p>
+    {% if forum_private == 'True' or forum_private == 'true' or forum_private == true or forum_private == True %}
+        <label class="radio-inline"> <input id="public_rb" type="radio" name="privacy" value="Public"> Public</label>
+        <label class="radio-inline"> <input id="private_rb" type="radio" name="privacy" value="Private" checked> Private</label>
+    {% else %}
+        <label class="radio-inline"> <input id="public_rb" type="radio" name="privacy" value="Public" checked> Public</label>
+        <label class="radio-inline"> <input id="private_rb" type="radio" name="privacy" value="Private"> Private</label>
+    {% endif %}
 
 </div>
 
 <div style="position: absolute; left:72%;margin-top: 50px; ">
     <button id="cancelBtn">Cancel</button>
-        {% if forum_enabled == 'False' or forum_enabled == 'false' or forum_enabled == False or forum_enabled == false %}
-            <button disabled="true" id="saveChangesBtn">Save Changes</button>
-        {% else %}
-            <button type="submit" id="saveChangesBtn" onclick="saveChanges()">Save Changes</button>
-        {% endif %}
-    </div>
+        <button type="submit" id="saveChangesBtn" onclick="saveChanges()">Save Changes</button>
+</div>
 
-    <script>
-        $("#prospects_form").submit(function(e) {   // prevents submit from reloading form
-            e.preventDefault();
-        });
-        function saveChanges() {
-            // saves changes made by user to the forum
-            var updateRef = firebase.database().ref('Forums').child('{{ forum_id }}');
-            var newName = document.getElementById('nameTxt').value;                                                     // get new forum name
-            var newDescription = document.getElementById('comment').value;                                              // update forum description
-            if (newName != "" && newDescription != "") {
-                if (document.getElementById('public_rb').checked == true) {                                             // update forum privacy
-                    var newPrivate = false;
-                } else {
-                    var newPrivate = true;
-                }
+<script>
+    $("#prospects_form").submit(function(e) {   // prevents submit from reloading form
+        e.preventDefault();
+    });
+    function saveChanges() {
+        // saves changes made by user to the forum
+        var updateRef = firebase.database().ref('Forums').child('{{ forum_id }}');
+        var newName = document.getElementById('nameTxt').value;                                                     // get new forum name
+        var newDescription = document.getElementById('comment').value;                                              // update forum description
+        if (newName != "" && newDescription != "") {
+            if (document.getElementById('public_rb').checked == true) {                                             // update forum privacy
+                var newPrivate = false;
+            } else {
+                var newPrivate = true;
+            }
 
-                var selectedUsers = getSelectedUsers();
-                var participants = arrayToJson(selectedUsers);                                                          // get a list of the participants selected and convert to json
+            var selectedUsers = getSelectedUsers();
+            var participants = arrayToJson(selectedUsers);                                                          // get a list of the participants selected and convert to json
 
-                updateRef.update({
-                    Name: newName,
-                    Description: newDescription,
-                    Private: newPrivate
-                });                                                                                                     // update db
+            updateRef.update({
+                Name: newName,
+                Description: newDescription,
+                Private: newPrivate
+            });                                                                                                     // update db
 
-                var updateParticpantsRef = firebase.database().ref('Forums').child('{{ forum_id }}').child("Participants");
-                updateParticpantsRef.update(participants);                                                              // updates the participants list for the forum
-                updateUsers(selectedUsers);                                                                             // update the forums joined list for each new participant
+            var updateParticpantsRef = firebase.database().ref('Forums').child('{{ forum_id }}').child("Participants");
+            updateParticpantsRef.update(participants);                                                              // updates the participants list for the forum
+            updateUsers(selectedUsers);                                                                             // update the forums joined list for each new participant
 
-                var blockUsersArray = getSelectedUsersBlock();                                                  // update users bloccked fromselected users
-                var blockUsersJson = arrayToJson(blockUsersArray);
-                var updateBlockedParticpantsRef = firebase.database().ref('Forums').child('{{ forum_id }}').child("Blocked");
-                updateBlockedParticpantsRef.update(blockUsersJson);                                                              // updates the participants list for the forum
-                updateUsersBocked(blockUsersArray);                                                                             // update the forums joined list for each new participant
+            var blockUsersArray = getSelectedUsersBlock();                                                  // update users bloccked fromselected users
+            var blockUsersJson = arrayToJson(blockUsersArray);
+            var updateBlockedParticpantsRef = firebase.database().ref('Forums').child('{{ forum_id }}').child("Blocked");
+            updateBlockedParticpantsRef.update(blockUsersJson);                                                              // updates the participants list for the forum
+            updateUsersBocked(blockUsersArray);                                                                             // update the forums joined list for each new participant
 
 
-                var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
+            var all_topics_list = ['Arts & Design', 'Business & Management', 'Education', 'Entrepreneurship', 'Executive Education', 'Finance', 'Health', 'Hospitality & Events', 'Law', 'Marketing', 'Project Management', 'Real Estate', 'Systems & Technology', 'Talent Management (HR)', 'Writing'];
 
-                var at_least_one_checked = false;                                                                       // Check at least one checkbox selected topic_chb
-                var json_topics = {};
-                for (i = 0; i < all_topics_list.length; i++) {                                                          // loop through all topics
-                    var topic = all_topics_list[i];
-                    try {
-                        if (document.getElementById(topic).checked) {                                                   // find the topic's checkbox
-                            at_least_one_checked = true;                                                                // at least one topic has been checked
-                            json_topics[topic] = topic;                                                                 // add topics to the json variable
-                        }
-                    } catch (err) {
-                        // Do nothing
+            var at_least_one_checked = false;                                                                       // Check at least one checkbox selected topic_chb
+            var json_topics = {};
+            for (i = 0; i < all_topics_list.length; i++) {                                                          // loop through all topics
+                var topic = all_topics_list[i];
+                try {
+                    if (document.getElementById(topic).checked) {                                                   // find the topic's checkbox
+                        at_least_one_checked = true;                                                                // at least one topic has been checked
+                        json_topics[topic] = topic;                                                                 // add topics to the json variable
                     }
-                }
-
-                if (at_least_one_checked) {                                                                             // if one or more topics were selected, update topics
-                    updateRef.update({TopicTags: json_topics});                                                         // update topic changes
-                } else {
-                    $("#modalSelectTopic").modal('show');                                                               // no topics have been selected - display error message
-                }
-                $("#modalChangesSaved").modal('show');
-            }
-        }
-
-        // function converts an array to a Json object
-        function arrayToJson(array){
-            var json_object = {};
-            for (var i = 0; i < array.length; i++) {
-                json_object[array[i]] = array[i];
-            }
-            return json_object;
-        }
-
-        // function to update the ForumsJoined list for each user that is added as a participant
-        function updateUsers(user_list){
-            var forum = '{{ forum_id }}';
-            for (var i = 0; i < user_list.length; i++) {
-                var userUpdateForumsJoinedRef = firebase.database().ref("Users").child(user_list[i]).child("ForumsJoined");
-                var addForum = {};
-                addForum[forum] = new Date();
-                userUpdateForumsJoinedRef.update(addForum);                                                             // add forum to user in the db
-
-                try {
-                    document.getElementById(user_list[i] + "_hide").hidden = true;                                          // hide selectable item in the popup
-                }catch(err){
-
+                } catch (err) {
+                    // Do nothing
                 }
             }
+
+            if (at_least_one_checked) {                                                                             // if one or more topics were selected, update topics
+                updateRef.update({TopicTags: json_topics});                                                         // update topic changes
+            } else {
+                $("#modalSelectTopic").modal('show');                                                               // no topics have been selected - display error message
+            }
+            $("#modalChangesSaved").modal('show');
         }
+    }
 
-        // function to update the Blocked list for each user that is added as a participant
-        function updateUsersBocked(user_list){
-            var forum = '{{ forum_id }}';
-            for (var i = 0; i < user_list.length; i++) {
-                var userUpdateForumsJoinedRef = firebase.database().ref("Users").child(user_list[i]).child("ForumsJoined");
-                userUpdateForumsJoinedRef.child(forum).remove();                                                        // add forum to user in the db
+    // function converts an array to a Json object
+    function arrayToJson(array){
+        var json_object = {};
+        for (var i = 0; i < array.length; i++) {
+            json_object[array[i]] = array[i];
+        }
+        return json_object;
+    }
 
-                firebase.database().ref("Forums").child(forum).child("Participants").child(user_list[i]).remove();      // remove user from this forum's participants
+    // function to update the ForumsJoined list for each user that is added as a participant
+    function updateUsers(user_list){
+        var forum = '{{ forum_id }}';
+        for (var i = 0; i < user_list.length; i++) {
+            var userUpdateForumsJoinedRef = firebase.database().ref("Users").child(user_list[i]).child("ForumsJoined");
+            var addForum = {};
+            addForum[forum] = new Date();
+            userUpdateForumsJoinedRef.update(addForum);                                                             // add forum to user in the db
 
-                try {
-                    document.getElementById(user_list[i] + "_hideBlock").hidden = true;                                          // hide selectable item in the popup
-                }catch(err){
+            try {
+                document.getElementById(user_list[i] + "_hide").hidden = true;                                          // hide selectable item in the popup
+            }catch(err){
 
-                }
             }
         }
-    </script>
+    }
+
+    // function to update the Blocked list for each user that is added as a participant
+    function updateUsersBocked(user_list){
+        var forum = '{{ forum_id }}';
+        for (var i = 0; i < user_list.length; i++) {
+            var userUpdateForumsJoinedRef = firebase.database().ref("Users").child(user_list[i]).child("ForumsJoined");
+            userUpdateForumsJoinedRef.child(forum).remove();                                                        // add forum to user in the db
+
+            firebase.database().ref("Forums").child(forum).child("Participants").child(user_list[i]).remove();      // remove user from this forum's participants
+
+            try {
+                document.getElementById(user_list[i] + "_hideBlock").hidden = true;                                          // hide selectable item in the popup
+            }catch(err){
+
+            }
+        }
+    }
+</script>
 
 </div>
 </body>
@@ -910,7 +898,7 @@ Left:150px;
         <!-- Call to action -->
 
     </div>
-</form>
+    </form>
 </footer>
 <!-- 1.1 Pop Up modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -952,128 +940,125 @@ Left:150px;
 
 
 
-<!-- Confirm Disable Account Popup -->
-                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Are you sure you want to disable this forum?</h4>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" id="modal-btn-si">Yes</button>
-                        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
-                      </div>
-                    </div>
-                  </div>
-                    <script>
+<!-- Confirm Disable Forum Popup -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog">
 
-
-                // disable account functionality for confirm dialogue using Bootstrap modal
-                var modalConfirm = function(callback){
-
-                      $("#disableAccBtn").on("click", function(){
-                        $("#mi-modal").modal('show');
-                      });
-
-                      $("#modal-btn-si").on("click", function(){
-                        callback(true);
-                        $("#mi-modal").modal('hide');
-                      });
-
-                      $("#modal-btn-no").on("click", function(){
-                        callback(false);
-                        $("#mi-modal").modal('hide');
-                      });
-                    };
-
-                    // results of the confirmation
-                    modalConfirm(function(confirm){
-                      if(confirm){                                                                                      // Disable Account confirmed
-                          updateForumEnabledRef = firebase.database().ref("Forums").child('{{ forum_id }}');
-                          updateForumEnabledRef.update({Enabled: false});                                                // update database - set user to disabled
-
-                          document.getElementById("addPartBtn").disabled = true;                                         // disable all settings boxes
-                          document.getElementById("removePartBtn").disabled = true;
-                          document.getElementById("blockPartBtn").disabled = true;
-                          document.getElementById("comment").disabled = true;
-                          document.getElementById("saveChangesBtn").disabled = true;
-                          document.getElementById("nameTxt").disabled = true;
-
-                          $("#mi-modal").modal('hide');
-                          $("#modalAccountDisabled").modal('show');                                                     // notify user that their account has been disabled
-
-                          document.getElementById("disableAccBtn").disabled=true;                        // change button to "Enable account"
-                          document.getElementById("disableAccBtn").innerText= "Enable Forum";
-                      }else{                //Do not disable account
-                        $("#mi-modal").modal('hide');
-                      }
-                    });
-
-                    function enableAccount(){
-                          updateForumEnabledRef = firebase.database().ref("Forums").child('{{ forum_id }}');
-                          updateForumEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
-
-                          document.getElementById("enableAccBtn").innerText = "Disable Forum";                                      // change button to "Disable account"
-                          document.getElementById("enableAccBtn").disabled = true;
-
-                          // enable all settings boxes
-                          document.getElementById("addPartBtn").disabled = false;                                         // disable all settings boxes
-                          document.getElementById("removePartBtn").disabled = false;
-                          document.getElementById("blockPartBtn").disabled = false;
-                          document.getElementById("comment").disabled = false;
-                          document.getElementById("saveChangesBtn").disabled = false;
-                          document.getElementById("nameTxt").disabled = false;
-
-                          $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
-                    }
-            </script>
+        <div class="modal-content">
+            <div class="modal-body" style="padding:10px;">
+                <h4 class="text-center">Are you sure you want to leave this forum?</h4>
+                <br>
+                <div class="text-right">
+                    <a id="modal-btn-yes" class="btn btn-yes" style=" border: 1px solid gray;
+            color: #e83e8c;">
+                        Confirm</a>
+                    <a class="btn btn-no" id="modal-btn-no" style=" border: 1px solid gray;
+            color: #e83e8c;">Cancel</a>
                 </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+        // disable account functionality for confirm dialogue using Bootstrap modal
+        var modalConfirm = function(callback){
+
+            $("#disableAccBtn").on("click", function(){
+                $("#mi-modal").modal('show');
+            });
+
+            $("#modal-btn-yes").on("click", function(){
+                callback(true);
+                $("#mi-modal").modal('hide');
+            });
+
+            $("#modal-btn-no").on("click", function(){
+                callback(false);
+                $("#mi-modal").modal('hide');
+            });
+        };
+
+        // results of the confirmation
+        modalConfirm(function(confirm){
+            if(confirm){                                                                                      // Disable Account confirmed
+                updateForumEnabledRef = firebase.database().ref("Forums").child('{{ forum_id }}');
+                updateForumEnabledRef.update({Enabled: false});                                                // update database - set user to disabled
+
+                document.getElementById("addPartBtn").disabled = true;                                         // disable all settings boxes
+                document.getElementById("blockPartBtn").disabled = true;
+
+
+                $("#mi-modal").modal('hide');
+                $("#modalAccountDisabled").modal('show');                                                     // notify user that their account has been disabled
+
+                document.getElementById("disableAccBtn").disabled=true;                        // change button to "Enable account"
+                document.getElementById("disableAccBtn").innerText= "Enable Forum";
+            }else{                //Do not disable account
+                $("#mi-modal").modal('hide');
+            }
+        });
+
+        function enableAccount(){
+            updateForumEnabledRef = firebase.database().ref("Forums").child('{{ forum_id }}');
+            updateForumEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
+
+            document.getElementById("enableAccBtn").innerText = "Disable Forum";                                      // change button to "Disable account"
+            document.getElementById("enableAccBtn").disabled = true;
+
+            // enable all settings boxes
+            document.getElementById("addPartBtn").disabled = false;                                         // disable all settings boxes
+            document.getElementById("blockPartBtn").disabled = false;
+
+            $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
+        }
+    </script>
+</div>
 
 
 
 <!-- Modal for pop up message "User has disabled forum" -->
-            <div class="modal fade" id="modalAccountDisabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Forum Disabled</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    You have disabled this forum. You can post to this forum but other users cannot. You may enable this forum at any time.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalAccountDisabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Forum Disabled</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                You have disabled this forum. You can post to this forum but other users cannot. You may enable this forum at any time.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Modal for pop up message "User has enabled forum" -->
-            <div class="modal fade" id="modalAccountEnabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Forum Enabled</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    You have enabled this forum. Participants can now interact on this forum.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalAccountEnabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Forum Enabled</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                You have enabled this forum. Participants can now interact on this forum.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -1082,27 +1067,27 @@ Left:150px;
 
 
 
-             <!-- Modal for pop up message "Changes saved" -->
+<!-- Modal for pop up message "Changes saved" -->
 
 <div class="modal fade" id="modalChangesSaved" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><strong>Changes Saved</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       Your changes have been saved to your forum.
-      </div>
-      <div class="modal-footer">
-        <button onclick="location.href='{% url 'nav_forums' %}'" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Changes Saved</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your changes have been saved to your forum.
+            </div>
+            <div class="modal-footer">
+                <button onclick="location.href='{% url 'nav_forums' %}'" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -1113,24 +1098,24 @@ Left:150px;
 <!-- Modal for pop up message "Select a Topic" -->
 
 <div class="modal fade" id="modalSelectTopic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><strong>No Topics Selected</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       Your topics will not be updated until you have selected at least one topic. Please select at least one topic.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>No Topics Selected</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your topics will not be updated until you have selected at least one topic. Please select at least one topic.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c;">Close</button>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -1139,229 +1124,229 @@ Left:150px;
 <div class="modal fade" id="chooseparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Choose Forum Participants </strong> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Choose Forum Participants </strong> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-      <div class="modal-body">
+            <div class="modal-body">
 
-        <div class="centraliser" style="text-align: center">
-                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
-                     <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
-                     <span onclick="searchByTermParticipant()" class="input-group-addon" style="color: #e83e8c; ">
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                        <input id="searchTermInput" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTermParticipant()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-search"></i>
                      </span>
-                     <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="searchByCountry()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-map-marker"></i>
                      </span>
-                     <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="showAll()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-remove"></i>
                      </span>
-                 </div><!--end search bar-->
-             </div>
+                    </div><!--end search bar-->
+                </div>
 
-             <br>
-                 <div class="row" >
-                     <table id="SelectableUsersTable" style="margin-left: 40px">
+                <br>
+                <div class="row" >
+                    <table id="SelectableUsersTable" style="margin-left: 40px">
 
                     </table>
-          <script>
-      /*try {
-          document.getElementById("SelectableUsersTable").innerHTML = "";                  // clear popup before writing
-      }catch(err){
-          alert(err);
-      }*/
+                    <script>
+                        /*try {
+                            document.getElementById("SelectableUsersTable").innerHTML = "";                  // clear popup before writing
+                        }catch(err){
+                            alert(err);
+                        }*/
 
-      var searchableUsers = [];
-      var j = 0;                                                                                                        // spacing for forum suggestions
-      var result = "<table >";
-      result += "<tr>";                                                                                                 // cards added to the popup
+                        var searchableUsers = [];
+                        var j = 0;                                                                                                        // spacing for forum suggestions
+                        var result = "<table >";
+                        result += "<tr>";                                                                                                 // cards added to the popup
 
-      var searchableUsersBlock = [];
-      var k = 0;                                                                                                        // spacing for forum suggestions
-      var resultBlock = "<table >";
-      resultBlock += "<tr>";                                                                                                 // cards added to the popup
+                        var searchableUsersBlock = [];
+                        var k = 0;                                                                                                        // spacing for forum suggestions
+                        var resultBlock = "<table >";
+                        resultBlock += "<tr>";                                                                                                 // cards added to the popup
 
-      var getForumsFromDB = firebase.database().ref("Users");
-      getForumsFromDB.on("value", function (all_users_snapshot) {                                                       // get a list of all the users on the system
+                        var getForumsFromDB = firebase.database().ref("Users");
+                        getForumsFromDB.on("value", function (all_users_snapshot) {                                                       // get a list of all the users on the system
 
-          var getParticipantsFromDB =  firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants");
-          getParticipantsFromDB.on("value", function (participants_snapshot) {                                          // get a list of all participants in this forum
-              var participants = snapshotToArrayKey(participants_snapshot);                                             // get an array of all participants in this forum
+                            var getParticipantsFromDB =  firebase.database().ref("Forums").child('{{ forum_id }}').child("Participants");
+                            getParticipantsFromDB.on("value", function (participants_snapshot) {                                          // get a list of all participants in this forum
+                                var participants = snapshotToArrayKey(participants_snapshot);                                             // get an array of all participants in this forum
 
-              all_users_snapshot.forEach(function (each_user_snapshot) {                                                // search through each user
-                  var user_id = each_user_snapshot.key;
+                                all_users_snapshot.forEach(function (each_user_snapshot) {                                                // search through each user
+                                    var user_id = each_user_snapshot.key;
 
-                  if((contains(participants, user_id)==false) && user_id!='{{ this_uid }}'){                                     // exclude all participants of the forum
-                      searchableUsers.push(user_id);
-                      var profile_pic = each_user_snapshot.val().ProfilePic;
-                        var name = each_user_snapshot.val().Name;
-                        var country = each_user_snapshot.val().Country;
+                                    if((contains(participants, user_id)==false) && user_id!='{{ this_uid }}'){                                     // exclude all participants of the forum
+                                        searchableUsers.push(user_id);
+                                        var profile_pic = each_user_snapshot.val().ProfilePic;
+                                        var name = each_user_snapshot.val().Name;
+                                        var country = each_user_snapshot.val().Country;
 
-                        result += "<td>" +userCard(user_id, profile_pic, name, country) + "</td>";                      // add more cards to the result
+                                        result += "<td>" +userCard(user_id, profile_pic, name, country) + "</td>";                      // add more cards to the result
 
-                        if ((j + 1) % 2 == 0) {                                     // update spacing in table
-                            result += "</tr><tr>";
+                                        if ((j + 1) % 2 == 0) {                                     // update spacing in table
+                                            result += "</tr><tr>";
+                                        }
+                                        j++;
+
+                                    }
+                                    else if (user_id!='{{ this_uid }}'){                              // if the user is a participant in the forum add them to the block particpants list
+                                        searchableUsersBlock.push(user_id);
+                                        var profile_pic = each_user_snapshot.val().ProfilePic;
+                                        var name = each_user_snapshot.val().Name;
+                                        var country = each_user_snapshot.val().Country;
+
+                                        resultBlock += "<td>" +userCardBlock(user_id, profile_pic, name, country) + "</td>";                      // add more cards to the result
+
+                                        if ((k + 1) % 2 == 0) {                                     // update spacing in table
+                                            resultBlock += "</tr><tr>";
+                                        }
+                                        k++;
+                                    }
+                                });
+                                $('#SelectableUsersTable').html(result);
+                                $('#SelectableUsersTableBlock').html(resultBlock);
+                            });
+
+                        });
+
+                        // function to add selectable user cards to the popup
+                        function userCard(uid, profile_pic, name, country){
+                            return "<div id=\""+ uid +"_hide\" style=\"margin-bottom: 20px\">\n" +
+                                "                 <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+                                "                   <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profile_pic +"\" style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+                                "                </div><!--end col-->\n" +
+                                "\n" +
+                                "\n" +
+                                "                <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+                                "                  <p id=\""+uid+"_name\" style=\"margin-left:20px;margin-bottom:1px;font-size: 12px;\"> "+ name +"  </p>\n" +
+                                "                  <p id=\""+uid+"_country\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+ country +"</p>\n" +
+                                "\n" +
+                                "                </div><!--end col-->\n" +
+                                "\n" +
+                                "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
+                                "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
+                                "                </div>\n" +
+                                "             </div>";
                         }
-                        j++;
 
-                  }
-                  else if (user_id!='{{ this_uid }}'){                              // if the user is a participant in the forum add them to the block particpants list
-                      searchableUsersBlock.push(user_id);
-                      var profile_pic = each_user_snapshot.val().ProfilePic;
-                        var name = each_user_snapshot.val().Name;
-                        var country = each_user_snapshot.val().Country;
-
-                        resultBlock += "<td>" +userCardBlock(user_id, profile_pic, name, country) + "</td>";                      // add more cards to the result
-
-                        if ((k + 1) % 2 == 0) {                                     // update spacing in table
-                            resultBlock += "</tr><tr>";
+                        // function to add selectable user cards to the popup
+                        function userCardBlock(uid, profile_pic, name, country){
+                            return "<div id=\""+ uid +"_hideBlock\" style=\"margin-bottom: 20px\">\n" +
+                                "                 <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+                                "                   <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profile_pic +"\" style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
+                                "                </div><!--end col-->\n" +
+                                "\n" +
+                                "\n" +
+                                "                <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
+                                "                  <p id=\""+uid+"_nameBlock\" style=\"margin-left:20px;margin-bottom:1px;font-size: 12px;\"> "+ name +"  </p>\n" +
+                                "                  <p id=\""+uid+"_countryBlock\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+ country +"</p>\n" +
+                                "\n" +
+                                "                </div><!--end col-->\n" +
+                                "\n" +
+                                "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
+                                "                  <input id=\""+ uid +"_checkedBlock\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
+                                "                </div>\n" +
+                                "             </div>";
                         }
-                        k++;
-                  }
-              });
-              $('#SelectableUsersTable').html(result);
-              $('#SelectableUsersTableBlock').html(resultBlock);
-          });
 
-      });
+                        // get a snapshot of a list of keys from firebase and convert it to an array
+                        function snapshotToArrayKey(snapshot) {
+                            let returnArr = [];
+                            snapshot.forEach(childSnapshot => {
+                                var key = childSnapshot.key;
+                                returnArr.push(key);
+                            });
+                            return returnArr;
+                        }
 
-      // function to add selectable user cards to the popup
-      function userCard(uid, profile_pic, name, country){
-            return "<div id=\""+ uid +"_hide\" style=\"margin-bottom: 20px\">\n" +
-                "                 <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
-                "                   <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profile_pic +"\" style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
-                "                </div><!--end col-->\n" +
-                "\n" +
-                "\n" +
-                "                <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-                "                  <p id=\""+uid+"_name\" style=\"margin-left:20px;margin-bottom:1px;font-size: 12px;\"> "+ name +"  </p>\n" +
-                "                  <p id=\""+uid+"_country\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+ country +"</p>\n" +
-                "\n" +
-                "                </div><!--end col-->\n" +
-                "\n" +
-                "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
-                "                  <input id=\""+ uid +"_checked\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
-                "                </div>\n" +
-                "             </div>";
-      }
+                        // get a snapshot of a list of keys from firebase and convert it to an array
+                        function snapshotToArray(snapshot) {
+                            let returnArr = [];
+                            snapshot.forEach(childSnapshot => {
+                                let item = childSnapshot.val();
+                                returnArr.push(item);
+                            });
+                            return returnArr;
+                        }
 
-      // function to add selectable user cards to the popup
-      function userCardBlock(uid, profile_pic, name, country){
-            return "<div id=\""+ uid +"_hideBlock\" style=\"margin-bottom: 20px\">\n" +
-                "                 <div class=\"col-md-1\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
-                "                   <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\""+ profile_pic +"\" style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
-                "                </div><!--end col-->\n" +
-                "\n" +
-                "\n" +
-                "                <div class=\"col-md-4\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-                "                  <p id=\""+uid+"_nameBlock\" style=\"margin-left:20px;margin-bottom:1px;font-size: 12px;\"> "+ name +"  </p>\n" +
-                "                  <p id=\""+uid+"_countryBlock\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:20px;margin-top:0px;\"> "+ country +"</p>\n" +
-                "\n" +
-                "                </div><!--end col-->\n" +
-                "\n" +
-                "                <div class=\"col-md-1\"><!--CHECK BOX GOES HERE-->\n" +
-                "                  <input id=\""+ uid +"_checkedBlock\" type=\"checkbox\" name=\"subject\" value=\"name\" style=\"margin-left: 50px\">\n" +
-                "                </div>\n" +
-                "             </div>";
-      }
+                        // FILTERING FUNCTIONALITY
+                        function showAll(){
+                            for (let i = 0; i < searchableUsers.length; i++) {
+                                document.getElementById(searchableUsers[i] + "_hide").hidden = false;           // show all blocks
+                            }
+                        }
 
-      // get a snapshot of a list of keys from firebase and convert it to an array
-      function snapshotToArrayKey(snapshot) {
-          let returnArr = [];
-          snapshot.forEach(childSnapshot => {
-              var key = childSnapshot.key;
-              returnArr.push(key);
-          });
-          return returnArr;
-      }
+                        function searchByTermParticipant(){
+                            searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
+                            //  loop through course_ids
 
-      // get a snapshot of a list of keys from firebase and convert it to an array
-      function snapshotToArray(snapshot) {
-          let returnArr = [];
-          snapshot.forEach(childSnapshot => {
-              let item = childSnapshot.val();
-              returnArr.push(item);
-          });
-          return returnArr;
-      }
+                            for (let i = 0; i < searchableUsers.length; i++) {
+                                // check if topics list for this course_id contains Finance
+                                courseName = document.getElementById(searchableUsers[i] + "_name").innerText;          // get data from the element that contains the university name for that course
 
-      // FILTERING FUNCTIONALITY
-      function showAll(){
-          for (let i = 0; i < searchableUsers.length; i++) {
-              document.getElementById(searchableUsers[i] + "_hide").hidden = false;           // show all blocks
-          }
-      }
+                                if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
+                                    document.getElementById(searchableUsers[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                } else {
+                                    document.getElementById(searchableUsers[i] + "_hide").hidden = true;
+                                }
+                            }
+                            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+                        }
 
-      function searchByTermParticipant(){
-            searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
-            //  loop through course_ids
+                        function searchByCountry(){
+                            for (let i = 0; i < searchableUsers.length; i++) {
+                                var this_country = document.getElementById(searchableUsers[i] + '_country').innerText;
+                                if (this_country == '{{ country }}') {
+                                    document.getElementById(searchableUsers[i] + "_hide").hidden = false;
+                                } else {
+                                    document.getElementById(searchableUsers[i] + "_hide").hidden = true;
+                                }
+                            }
+                        }
 
-                for (let i = 0; i < searchableUsers.length; i++) {
-                    // check if topics list for this course_id contains Finance
-                    courseName = document.getElementById(searchableUsers[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                        // GET a list of the users selected in this popup
+                        function getSelectedUsers(){
+                            var selectedUsers=[];
+                            for (let i = 0; i < searchableUsers.length; i++) {                                                            // search through all users in the popup
+                                try {
+                                    if (document.getElementById(searchableUsers[i] + "_checked").checked == true) {                             // if the user is selected, add the user to the list
+                                        selectedUsers.push(searchableUsers[i]);
+                                    }
+                                }
+                                catch(err){
+                                    // Do Nothing
+                                }
 
-                    if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
-                        document.getElementById(searchableUsers[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                    } else {
-                        document.getElementById(searchableUsers[i] + "_hide").hidden = true;
-                    }
-                }
-                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
-      }
+                            }
+                            return selectedUsers;
+                        }
 
-        function searchByCountry(){
-            for (let i = 0; i < searchableUsers.length; i++) {
-                var this_country = document.getElementById(searchableUsers[i] + '_country').innerText;
-                if (this_country == '{{ country }}') {
-                    document.getElementById(searchableUsers[i] + "_hide").hidden = false;
-                } else {
-                    document.getElementById(searchableUsers[i] + "_hide").hidden = true;
-                }
-            }
-        }
-
-        // GET a list of the users selected in this popup
-        function getSelectedUsers(){
-          var selectedUsers=[];
-          for (let i = 0; i < searchableUsers.length; i++) {                                                            // search through all users in the popup
-              try {
-                  if (document.getElementById(searchableUsers[i] + "_checked").checked == true) {                             // if the user is selected, add the user to the list
-                      selectedUsers.push(searchableUsers[i]);
-                  }
-              }
-              catch(err){
-                  // Do Nothing
-              }
-
-          }
-          return selectedUsers;
-        }
-
-        function contains(array, value){
-          for (var j = 0; j < array.length; j++){
-              if (array[j] == value){
-                  return true;
-              }
-          }
-          return false;
-        }
-  </script>
-    </div> <!--end row-->
-            <br>
-      <div class="modal-footer">
+                        function contains(array, value){
+                            for (var j = 0; j < array.length; j++){
+                                if (array[j] == value){
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+                    </script>
+                </div> <!--end row-->
+                <br>
+                <div class="modal-footer">
 
 
 
 
-      </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 <!-- End Participants Popup-->
 
@@ -1371,102 +1356,102 @@ Left:150px;
 <div class="modal fade" id="blockparticipantsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Block Forum Participants </strong> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Block Forum Participants </strong> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-      <div class="modal-body">
+            <div class="modal-body">
 
-        <div class="centraliser" style="text-align: center">
-                 <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
-                     <input id="searchTermInputBlock" type="text" class="form-control" placeholder="Search"/>
-                     <span onclick="searchByTermParticipantBlock()" class="input-group-addon" style="color: #e83e8c; ">
+                <div class="centraliser" style="text-align: center">
+                    <div class="input-group" style="width: 100%;font-family: 'Roboto', sans-serif;margin-bottom:10px;">
+                        <input id="searchTermInputBlock" type="text" class="form-control" placeholder="Search"/>
+                        <span onclick="searchByTermParticipantBlock()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-search"></i>
                      </span>
-                     <span onclick="searchByCountryBlock()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="searchByCountryBlock()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-map-marker"></i>
                      </span>
-                     <span onclick="showAllBlock()" class="input-group-addon" style="color: #e83e8c; ">
+                        <span onclick="showAllBlock()" class="input-group-addon" style="color: #e83e8c; ">
                          <i class="glyphicon glyphicon-remove"></i>
                      </span>
-                 </div><!--end search bar-->
-             </div>
+                    </div><!--end search bar-->
+                </div>
 
-             <br>
-                 <div class="row" >
-                     <table id="SelectableUsersTableBlock" style="margin-left: 40px">
+                <br>
+                <div class="row" >
+                    <table id="SelectableUsersTableBlock" style="margin-left: 40px">
 
                     </table>
-          <script>
+                    <script>
 
-      // FILTERING FUNCTIONALITY
-      function showAllBlock(){
-          for (let i = 0; i < searchableUsersBlock.length; i++) {
-              document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;           // show all blocks
-          }
-      }
+                        // FILTERING FUNCTIONALITY
+                        function showAllBlock(){
+                            for (let i = 0; i < searchableUsersBlock.length; i++) {
+                                document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;           // show all blocks
+                            }
+                        }
 
-      function searchByTermParticipantBlock(){
-            searchTerm = document.getElementById('searchTermInputBlock').value;                   // get the value in the search input field
-            //  loop through course_ids
+                        function searchByTermParticipantBlock(){
+                            searchTerm = document.getElementById('searchTermInputBlock').value;                   // get the value in the search input field
+                            //  loop through course_ids
 
-                for (let i = 0; i < searchableUsersBlock.length; i++) {
-                    // check if topics list for this course_id contains Finance
-                    courseName = document.getElementById(searchableUsersBlock[i] + "_nameBlock").innerText;          // get data from the element that contains the university name for that course
+                            for (let i = 0; i < searchableUsersBlock.length; i++) {
+                                // check if topics list for this course_id contains Finance
+                                courseName = document.getElementById(searchableUsersBlock[i] + "_nameBlock").innerText;          // get data from the element that contains the university name for that course
 
-                    if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
-                        document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                    } else {
-                        document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = true;
-                    }
-                }
-                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
-      }
+                                if (courseName.includes(searchTerm)) {                                              // if the rating searched is in the list
+                                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                } else {
+                                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = true;
+                                }
+                            }
+                            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+                        }
 
-        function searchByCountryBlock(){
-            for (let i = 0; i < searchableUsersBlock.length; i++) {
-                var this_country = document.getElementById(searchableUsersBlock[i] + '_countryBlock').innerText;
-                if (this_country == '{{ country }}') {
-                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;
-                } else {
-                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = true;
-                }
-            }
-        }
+                        function searchByCountryBlock(){
+                            for (let i = 0; i < searchableUsersBlock.length; i++) {
+                                var this_country = document.getElementById(searchableUsersBlock[i] + '_countryBlock').innerText;
+                                if (this_country == '{{ country }}') {
+                                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = false;
+                                } else {
+                                    document.getElementById(searchableUsersBlock[i] + "_hideBlock").hidden = true;
+                                }
+                            }
+                        }
 
-        // GET a list of the users selected in this popup
-        function getSelectedUsersBlock(){
-          var selectedUsers=[];
-          for (let i = 0; i < searchableUsersBlock.length; i++) {                                                            // search through all users in the popup
-              try {
-                  if (document.getElementById(searchableUsersBlock[i] + "_checkedBlock").checked == true) {                             // if the user is selected, add the user to the list
-                      selectedUsers.push(searchableUsersBlock[i]);
-                  }
-              }
-              catch(err){
-                  // Do Nothing
-              }
+                        // GET a list of the users selected in this popup
+                        function getSelectedUsersBlock(){
+                            var selectedUsers=[];
+                            for (let i = 0; i < searchableUsersBlock.length; i++) {                                                            // search through all users in the popup
+                                try {
+                                    if (document.getElementById(searchableUsersBlock[i] + "_checkedBlock").checked == true) {                             // if the user is selected, add the user to the list
+                                        selectedUsers.push(searchableUsersBlock[i]);
+                                    }
+                                }
+                                catch(err){
+                                    // Do Nothing
+                                }
 
-          }
-          return selectedUsers;
-        }
+                            }
+                            return selectedUsers;
+                        }
 
-  </script>
-    </div> <!--end row-->
-            <br>
-      <div class="modal-footer">
-
-
+                    </script>
+                </div> <!--end row-->
+                <br>
+                <div class="modal-footer">
 
 
-      </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 </div>
 

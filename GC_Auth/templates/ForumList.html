@@ -1411,7 +1411,7 @@ $(document).ready(function(){
                              var key = childSnapshot.key;                                                               // get the forum id as key
 
                              var myforumcreator_fb_location = firebase.database().ref().child("Forums/" + key + "/Creator");
-                             myforumcreator_fb_location.on("value", function (creator_snapshot) {                        // check if im the creator
+                             myforumcreator_fb_location.on("value", function (creator_snapshot) {                       // check if im the creator
                                 creator = creator_snapshot.val();                                                       // get the id of the forum creator
 
 
@@ -1419,11 +1419,7 @@ $(document).ready(function(){
                                 myforumdisabled_fb_location.on("value", function (enabled_snapshot) {                   // check if this forum is disabled
                                     enabled = enabled_snapshot.val();                                                   // is the forum enbled
 
-                                    if (creator!='{{ this_uid }}' && enabled == false) {                                  // ifim not the creator and this forum is disabled, don't show the forum
-                                        // do nothing
-                                    }
-                                    else{
-
+                                    if (creator=='{{ this_uid }}' || enabled == true) {                                 // if I'm the creator or the forum is enabled, show the forum
                                         var forum_names = childSnapshot.val().Name;  // collect the data you need
                                         var forum_pics = childSnapshot.val().ForumPic;
                                         var forum_num_participants = childSnapshot.val().NumParticipants;
@@ -1443,7 +1439,7 @@ $(document).ready(function(){
 
                                         if (!myforumsArray.includes(key)) {                                             // if the forum is my forum, then add it to my forums card instead of all forums
                                             //adds to all forums
-                                            if (forum_private == true || forum_private == "true"){                                   // button indicates whether the user has to request to  join the forum (if the forum is private)
+                                            if (forum_private == true || forum_private == "true"){                      // button indicates whether the user has to request to  join the forum (if the forum is private)
                                                 var button_text = "Request Join";
                                             }
                                             else{

@@ -1832,13 +1832,13 @@
                     var myResult = "<table >";
                     myResult += "<tr>";
 
-                    var numResults = 0;                                                                             // ensures ensures that only 3 elements are printed
+                    var numResults = 0;                                                                                 // ensures ensures that only 3 elements are printed
                     snapshot.forEach(function (childSnapshot) {
-                        var key = childSnapshot.key;                                                                // get the forum id as key
-                        var creator = childSnapshot.val().Creator;                                                       // get the id of the forum creator
-                        var enabled = childSnapshot.val().Enabled;                                                   // is the forum enbled
+                        var key = childSnapshot.key;                                                                    // get the forum id as key
+                        var creator = childSnapshot.val().Creator;                                                      // get the id of the forum creator
+                        var enabled = childSnapshot.val().Enabled;                                                      // is the forum enabled
 
-                        if (numResults <= 3 && creator == '{{ this_uid }}' && (enabled == true || enabled == 'true')) {                // if im not the creator and this forum is disabled, don't show the forum
+                        if (numResults <= 3 && creator == '{{ this_uid }}') {                                           // show the forum if the user is the creator
 
                             var forum_names = childSnapshot.val().Name;  // collect the data you need
                             var forum_pics = childSnapshot.val().ForumPic;
