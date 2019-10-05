@@ -373,8 +373,6 @@ def returnUserProfileCarousels(request):
                                                       'bio': the_user.bio,
                                                       'email': the_user.email,
                                                       'country': the_user.country,
-                                                      'numConnections': the_user.numConnections,
-                                                      'numForums': the_user.numForums,
                                                       'ProfilePic': the_user.profilePic,
                                                       'backgroundPic': the_user.backgroundPic,
                                                       'course_list': course_methods.getCoursesInfoList(
@@ -488,8 +486,6 @@ def goBadges(request):
     # user authentication with Firebase
     name = user_methods.getUsername(u['localId'])
     conn = user_methods.getNumConnecions(u['localId'])
-    course = user_methods.getNumCourses(u['localId'])
-    forum = user_methods.getNumForums(u['localId'])
     privacyUpdate = user_methods.getPrivacyUpdated(u['localId'])
 
     global the_user
@@ -499,10 +495,8 @@ def goBadges(request):
         'country': the_user.country,
         'bio': the_user.bio,
         'profilePic': the_user.profilePic,
-        'numConnections': conn,
-        'numCourses': course,
-        'numForums': forum,
         'privacyUp': privacyUpdate,
+        'numConnections': conn,
         'connections_suggestions_list': connection_methods.getConnectionsInfoList(
             connection_methods.getConnectionsSuggestions(the_user.uid, 3, the_user)),
         'forums_suggestions_list': forum_methods.getForumsInfoList(forum_methods.getForumSuggestions(the_user.uid, 3, the_user)),
@@ -586,11 +580,7 @@ def goForumsOpen(request):
                                              'email': the_user.email,
                                              'bio': the_user.bio,
                                              'this_uid': the_user.uid,
-                                             'numConnections': the_user.numConnections,
-                                             'numForums': the_user.numForums,
                                              'my_forums_list': forum_methods.getForumsInfoList(user_methods.getForumssList(the_user.uid)),
-                                             #'suggested_forums_list': forum_methods.getForumsInfoList(
-                                              # short_forum_suggestions),
                                                     'forum_name': forum_methods.getForumName(forum_id),
                                                     'forum_description': forum_methods.getForumDescription(forum_id),
                                                     'num_participants': forum_methods.getForumNumParticipants(forum_id),
@@ -615,8 +605,6 @@ def goForumSettings(request):
                                                     'email': the_user.email,
                                                     'bio': the_user.bio,
                                                     'this_uid': the_user.uid,
-                                                    'numConnections': the_user.numConnections,
-                                                    'numForums': the_user.numForums,
                                                     'my_forums_list': forum_methods.getForumsInfoList(
                                                         the_user.forumsInfoList),
                                                     'suggested_forums_list': forum_methods.getForumsInfoList(
@@ -645,9 +633,6 @@ def goConnectionsOpen(request):
     if request.method == "POST":  # get data from UI
         connection_id = request.POST.get("connection_id")  # get data from UI using POST method
 
-    conn = user_methods.getNumConnecions(connection_id)
-    course = user_methods.getNumCourses(connection_id)
-    forum = user_methods.getNumForums(connection_id)
     privacyUpdate = user_methods.getPrivacyUpdated(connection_id)
 
     # get mutual connections and check if this user is a connection
@@ -696,8 +681,8 @@ def goConnectionsOpen(request):
                                                       'bio': bio,
                                                       'email': "MZVWIN001@myuct.ac.za",
                                                       'country': country_transfer,
-                                                      'numConnections': user_methods.getNumConnecions(connection_id),
-                                                      'numForums': user_methods.getNumForums(connection_id),
+                                                      'numConnections': user_methods.getNumConnecions(
+                                                                   connection_id),
                                                       'ProfilePic': pic_transfer,
                                                       'my_profile_pic': the_user.profilePic,
                                                       'backgroundPic': user_methods.getBackgroundPic(connection_id),
@@ -709,9 +694,6 @@ def goConnectionsOpen(request):
                                                       'this_uid': connection_id,
                                                       'my_uid': the_user.uid,
                                                       'the_user_is_connection': the_user_is_connection,
-                                                      'numConnections': conn,
-                                                      'numCourses': course,
-                                                      'numForums': forum,
                                                       'privacyUp': privacyUpdate,
                                                       'mutual_connections': connection_methods.getConnectionsInfoList(connection_methods.getMutualConnections(connection_id, the_user.uid))
                                                       })

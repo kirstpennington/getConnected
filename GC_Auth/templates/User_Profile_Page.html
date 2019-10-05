@@ -1225,12 +1225,23 @@
 
                                 </script>
 
+                                <script>
+                                    //  count the number of forums and connections in db
+                                    var numForumsRef = firebase.database().ref("Users").child("{{ this_uid }}").child("ForumsJoined");
+                                    numForumsRef.on("value", function(numForums_snapshot) {
+                                        document.getElementById("numForumsSpan").innerText = numForums_snapshot.numChildren();
+                                        var numConnRef = firebase.database().ref("Users").child("{{ this_uid }}").child("Connections");
+                                        numConnRef.on("value", function(numConnections_snapshot) {
+                                            document.getElementById("numConnectionsSpan").innerText = numConnections_snapshot.numChildren();
+                                        });
+                                    });
+                                </script>
                                 <!--Number of Connections and Forums-->
                                 <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px; ">
-                                    Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                    Connections <span id="numConnectionsSpan" class="label label-default"></span></h8>
                                 <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px">
-                                    Forums <span
-                                        class="label label-default">{{ numForums }}</span></h8>
+                                    Forums <span id="numForumsSpan"
+                                        class="label label-default"></span></h8>
                             </div>
                             <!--Container for bio, email, country-->
                             <div style="margin-top:-5px">

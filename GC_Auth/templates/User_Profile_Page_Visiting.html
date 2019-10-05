@@ -880,7 +880,7 @@
                                         onclick="CloseIntroForm(); OpenLogIn();">
 
                     <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20"
-                                                                                  height="20" src="{{ ProfilePic }}"
+                                                                                  height="20" src="{{ my_profile_pic }}"
                                                                                   alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
@@ -1312,60 +1312,6 @@
                                 <div class="settings ">
                                     <!--Settings Bar-->
 
-                                    <script>
-                                        // connect to this user
-                                        function connect() {
-                                            user_id = '{{ this_uid }}';
-
-                                            var updateRef = firebase.database().ref("Users");
-
-                                            var numConnRef = updateRef.child('{{ this_uid }}').child("numConnections");             // reduce the connection's number of connections
-                                            numConnRef.once('value', function (snapshot) {
-                                                var currNumConn = snapshot.val();
-                                                firebase.database().ref("Users").child('{{ this_uid }}').update({numConnections: currNumConn + 1});
-                                            });
-                                            numConnRef = updateRef.child('{{ my_uid }}').child("numConnections");                   // reduce my number of connections
-                                            numConnRef.once('value', function (snapshot2) {
-                                                var currNumConn = snapshot2.val();
-                                                firebase.database().ref("Users").child('{{ my_uid }}').update({numConnections: currNumConn + 1});
-                                            });
-
-                                            var add_json = {};
-                                            add_json['{{ my_uid }}'] = '{{ my_uid }}';
-                                            updateRef.child('{{ this_uid }}').child('Connections').update(add_json);                // add my uid to this user's list of connections
-
-                                            add_json = {};
-                                            add_json['{{ this_uid }}'] = '{{ this_uid }}';
-                                            updateRef.child('{{ my_uid }}').child('Connections').update(add_json);                  // add my uid to this user's list of connections
-
-                                            document.getElementById('btnConnect').style.display = 'none';                                    // swithch to disconnect button
-                                            document.getElementById('btnDisconnect').style.display = 'block';
-                                        }
-
-                                        // disconnect with this user
-                                        function disconnect() {
-                                            var updateRef = firebase.database().ref().child("Users");
-
-                                            var numConnRef = updateRef.child('{{ this_uid }}').child("numConnections");             // reduce the connection's number of connections
-                                            numConnRef.once('value', function (snapshot) {
-                                                var currNumConn = snapshot.val();
-                                                firebase.database().ref("Users").child('{{ this_uid }}').update({numConnections: currNumConn - 1});
-                                            });
-                                            numConnRef = updateRef.child('{{ my_uid }}').child("numConnections");                   // reduce my number of connections
-                                            numConnRef.once('value', function (snapshot2) {
-                                                var currNumConn = snapshot2.val();
-                                                firebase.database().ref("Users").child('{{ my_uid }}').update({numConnections: currNumConn - 1});
-                                            });
-
-                                            updateRef.child('{{ this_uid }}').child('Connections').child('{{ my_uid }}').remove();  // remove me from the user's connections list
-
-                                            updateRef.child('{{ my_uid }}').child('Connections').child('{{ this_uid }}').remove();  // remove the user from my connections list
-
-                                            document.getElementById('btnConnect').style.display = 'block';                          // switch to disconnect button
-                                            document.getElementById('btnDisconnect').style.display = 'none';
-                                            //popup
-                                        }
-                                    </script>
                                     <button   data-placement="right"
                                             style="background-color:white; border-color: #e83e8c; margin-right: -31%; margin-top: -48px; border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
                                             class="btn btn-primary pull-right">
@@ -1381,12 +1327,24 @@
 
                                 </script>
 
+                                <script>
+                                    //  count the number of forums and connections in db
+                                    var numForumsRef = firebase.database().ref("Users").child("{{ this_uid }}").child("ForumsJoined");
+                                    numForumsRef.on("value", function(numForums_snapshot) {
+                                        document.getElementById("numForumsSpan").innerText = numForums_snapshot.numChildren();
+                                        var numConnRef = firebase.database().ref("Users").child("{{ this_uid }}").child("Connections");
+                                        numConnRef.on("value", function(numConnections_snapshot) {
+                                            document.getElementById("numConnectionsSpan").innerText = numConnections_snapshot.numChildren();
+                                        });
+                                    });
+                                </script>
+
                                 <!--Number of Connections and Forums-->
                                 <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px; ">
-                                    Connections <span class="label label-default">{{ numConnections }}</span></h8>
+                                    Connections <span id="numConnectionsSpan" class="label label-default"></span></h8>
                                 <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px">
-                                    Forums <span
-                                        class="label label-default">{{ numForums }}</span></h8>
+                                    Forums <span id="numForumsSpan"
+                                        class="label label-default"></span></h8>
 
                             </div>
                             <!--Container for bio, email, country-->
@@ -2272,7 +2230,7 @@
                                     <!--text for the hover-->
                                 </div>
                                 {% else %}<!--no badge-->
-                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image">
+                                <img src="{% static "GC_Auth/lockCircle.png" %}" alt="lock" class="image" style="width:150%;height:150%;margin-left: 17px;">
                                 <div class="middle">
                                     <div class="text"><strong>Oops!</strong> <br> Badge Locked</div>
                                     <!--text for the hover-->
@@ -2283,7 +2241,8 @@
 
                     <!--Badge 11: SuperSecurity-->
                     <div class="col-sm-3" style="background-color:white;">
-                        <div class="badgehover">
+
+                        <div id="numConnectionsBadge" class="badgehover">
                             <!--coloumn popular profiler-->
                             {% if numConnections >= 1 %}<!--decorator update header-->
                                 <img src="{% static "GC_Auth/Badges/decorator2.png" %}" alt="lock" class="image"
