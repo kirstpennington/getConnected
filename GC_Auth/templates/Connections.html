@@ -1155,7 +1155,7 @@
         } /*If Accept*/
 
 
-        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type").once("value", snapshot => {
+        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
 
             if (snapshot.exists()) {
 
