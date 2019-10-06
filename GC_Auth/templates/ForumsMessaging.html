@@ -769,7 +769,7 @@
 
 
                     renderCount_1(snapshot.val());
-                    window.alert("ggg");
+                   // window.alert("ggg");
                     renderUI_1(snapshot.val());
                     //alert("Connection Request Received");
 
@@ -1622,8 +1622,8 @@
         AttachImage = document.getElementById("frameImage").value;
 
         if ((AttachImage.length != 0) && (AttachFile.length != 0)) {
-            window.alert("You can only attach one document to a post")
-            // $("#attachOneOnlyModal").modal('show');
+            //window.alert("You can only attach one document to a post")
+            $("#modalOneFile").modal('show');
 
             return;
         }
@@ -1938,7 +1938,7 @@
 
           $('#fileViewModal').modal('show');{% endcomment %}
 
-        window.alert("hey");
+        //window.alert("hey");
 
 
     }
@@ -2985,6 +2985,29 @@ Badges_Celebrations_2
     </div>
 </div>
 
+<!-- Modal for pop up message "You can only attach one file" -->
+<div class="modal fade" id="modalOneFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Forum Left</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You can only attach one document to a post.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+            color: #e83e8c; background-color: white;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal for pop up message "User has already reported this forum" -->
 <div class="modal fade" id="modalReportedForumAlready" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
