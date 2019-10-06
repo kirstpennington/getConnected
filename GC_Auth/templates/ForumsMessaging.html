@@ -94,7 +94,6 @@
         }
 
 
-
         /*icon for user profile img*/
         .profile_img {
             width: 50px;
@@ -400,7 +399,6 @@
         }
 
 
-
         ::placeholder {
             font-style: italic;
             font-family: Arial;
@@ -473,7 +471,6 @@
             </ul>
 
 
-
             <!--RHS of the navigation bar -->
 
             <ul class="nav navbar-nav navbar-right">
@@ -492,11 +489,13 @@
 
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
+                        <div class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
 
                             <ul id="Message_dropdown_notifications" style="">
 
-                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
+                                <a class="text-center"
+                                   style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No
+                                    Messages</a>
 
                                 {% comment %}     <a><div style="" class="notification-item">
                                 <img class="profile_img" src="{{ ProfilePic }}"/>
@@ -583,386 +582,374 @@
             </ul><!--nav navbar-nav navbar-right-->
 
 
-      <script>
-
-    /*Time for Posts Displayed*/
-    const MONTH_NAMES = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
-    function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-        const day = date.getDate();
-        const month = MONTH_NAMES[date.getMonth()];
-        const year = date.getFullYear();
-        const hours = date.getHours();
-        let minutes = date.getMinutes();
-
-        if (minutes < 10) {
-            // Adding leading zero to minutes
-            minutes = `0${minutes}`;
-        }
-
-        if (prefomattedDate) {
-            // Today at 10:20
-            // Yesterday at 10:20
-            return `${prefomattedDate} at ${hours}:${minutes}`;
-        }
-
-        if (hideYear) {
-            // 10. January at 10:20
-            return `${day}. ${month} at ${hours}:${minutes}`;
-        }
-
-        // 10. January 2017. at 10:20
-        return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
-    }
-
-    // --- Main function
-    function timeAgo(dateParam) {
-
-        if (!dateParam) {
-            return null;
-        }
-
-        const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-        const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-        const today = new Date();
-        const yesterday = new Date(today - DAY_IN_MS);
-        const seconds = Math.round((today - date) / 1000);
-        const minutes = Math.round(seconds / 60);
-        const isToday = today.toDateString() === date.toDateString();
-        const isYesterday = yesterday.toDateString() === date.toDateString();
-        const isThisYear = today.getFullYear() === date.getFullYear();
-
-
-        if (seconds < 5) {
-            return 'now';
-        } else if (seconds < 60) {
-            return `${seconds} seconds ago`;
-        } else if (seconds < 90) {
-            return 'about a minute ago';
-        } else if (minutes < 60) {
-            return `${minutes} minutes ago`;
-        } else if (isToday) {
-            return getFormattedDate(date, 'Today'); // Today at 10:20
-        } else if (isYesterday) {
-            return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-        } else if (isThisYear) {
-            return getFormattedDate(date, false, true); // 10. January at 10:20
-        }
-
-        return getFormattedDate(date); // 10. January 2017. at 10:20
-    };
-
-
-    /*Message_Notificationas*/
-
-    var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
-    Message_Notifications_Check.on('value', function (snapshot) {
-        msg_messages_dropdown(snapshot.val());
-        msg_message_number(snapshot.val());
-    });
-
-    function msg_messages_dropdown(obj) {
-
-
-        var dropdown_item = '';
-        var keys = Object.keys(obj);
-        var counter_check = 0;
-
-
-        for (var i = keys.length - 1; i >= 0; i--) {
-
-            if (obj[keys[i]].ProfilePic != undefined) {
-
-                var display_time = obj[keys[i]].Time;
-                display_time = Number(display_time); // cast it to a Number
-                var ts_display = timeAgo(display_time);
-
-
-                if (counter_check == 0) {
-                    counter_check++;
-
-                    dropdown_item += " <a><div style= \"padding: 2px;\n" +
-                        "            margin: 5px;\n" +
-                        "            border-radius: 4px;\n" +
-                        "            border-width: 5px;\n" +
-                        "            border-color: black;\n" +
-                        "            height: 80px;\n" +
-                        "             margin-left: -20px;\n" +
-                        "            margin-top: 20px  \" class=\"notification-item\">\n" +
-                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
-                        "                                    \n" +
-                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
-                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \"> " + obj[keys[i]].text + "</p>\n" +
-                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
-                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
-                        "                                </div>\n" +
-                        "                            </a>";
-
-                } else {
-
-                    dropdown_item += " <a><div style= \"padding: 5px;\n" +
-                        "            margin: 5px;\n" +
-                        "            border-radius: 4px;\n" +
-                        "            border-width: 5px;\n" +
-                        "            border-color: black;\n" +
-                        "            height: 80px;\n" +
-                        "             margin-left: -20px;\n" +
-                        "            margin-top: 20px \" class=\"notification-item\">\n" +
-                        "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
-                        "                                    \n" +
-                        "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
-                        "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \">" + obj[keys[i]].text + "</p>\n" +
-                        "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
-                        "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
-                        "                                </div>\n" +
-                        "                            </a>";
-                }
-
-            }
-        }
-        $('#Message_dropdown_notifications').html(dropdown_item);
-    }
-
-
-    function msg_message_number(obj) {
-        // var html = '';
-        var countholder = 0;
-        var keys = Object.keys(obj);
-
-        for (var i = 0; i < keys.length; i++) {
-            countholder++;
-        }
-        {% comment %}
-                        countholder--;
-        {% endcomment %}
-
-        {% comment %}database_counter.update({'counter': countholder});
-         /*Creating notification icon*/{% endcomment %}
-
-
-        {% comment %}
-                        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-        {% endcomment %}
-
-
-        $('#number_of_msg_notifications').html(countholder);
-
-
-    }
-
-    function removeMessageNotifications() {
-
-        var other = firebase.database().ref().child("Users/" + '{{ this_uid }}');/*Messages*/
-        other.child("Messages_Notifications").remove();
-
-    }
-
-
-    /*Request Notifications*/
-
-    var database_counter_1 = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
-
-
-    database_counter_1.on('value', function (snapshot) {
-
-
-        renderCount_1(snapshot.val());
-         window.alert("ggg");
-        renderUI_1(snapshot.val());
-        //alert("Connection Request Received");
-
-
-    });
-
-
-    function renderUI_1(obj) {
-        var html = '';
-        var keys = Object.keys(obj);
-        for (var i = keys.length - 1; i >= 0; i--) {
-            // for (var i = 0; i <= keys.length - 1; i++) {
-
-
-            /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
-            /*Creating notification item*/
-
-            if (obj[keys[i]].sender_profilePic != undefined) {
-
-                var display_time = obj[keys[i]].time;
-                display_time = Number(display_time); // cast it to a Number
-                var ts_display = timeAgo(display_time);
-
-                var type_post = obj[keys[i]].Type;
-                var forum_id_id = obj[keys[i]].Forum_ID;
-
-
-                var decision = "true";
-                var opp_decison = "false";
-                html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
-
-
-
-
-
-            }
-        }
-        if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
-
-        $('#comment').html(html);
-    }
-
-    function renderCount_1(obj) {
-        var html = '';
-        var countholder = 0;
-
-        var keys = Object.keys(obj);
-        for (var i = 0; i < keys.length; i++) {
-            countholder++;
-        }
-        countholder--;
-        database_counter.update({'counter': countholder});
-        /*Creating notification icon*/
-
-
-        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-
-
-        $('#counter_number_notifications').html(countholder);
-
-
-    }
-
-     function Accept_request(sender_id, name, post_id, isAccept, typepost, forum_id_id) {
-
-
-        if (String(isAccept).valueOf() == String("true").valueOf()) {
-
-            /*Check Type of Request*/
-
-            firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
-
-                if (snapshot.exists()) {
-
-
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
-
-                        var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
-                        AddtoForum.child(sender_id).set(sender_id);
-
-                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
-                        AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
-
+            <script>
+
+                /*Time for Posts Displayed*/
+                const MONTH_NAMES = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+
+                function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+                    const day = date.getDate();
+                    const month = MONTH_NAMES[date.getMonth()];
+                    const year = date.getFullYear();
+                    const hours = date.getHours();
+                    let minutes = date.getMinutes();
+
+                    if (minutes < 10) {
+                        // Adding leading zero to minutes
+                        minutes = `0${minutes}`;
                     }
 
+                    if (prefomattedDate) {
+                        // Today at 10:20
+                        // Yesterday at 10:20
+                        return `${prefomattedDate} at ${hours}:${minutes}`;
+                    }
 
-                    else {
+                    if (hideYear) {
+                        // 10. January at 10:20
+                        return `${day}. ${month} at ${hours}:${minutes}`;
+                    }
+
+                    // 10. January 2017. at 10:20
+                    return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+                }
+
+                // --- Main function
+                function timeAgo(dateParam) {
+
+                    if (!dateParam) {
+                        return null;
+                    }
+
+                    const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+                    const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+                    const today = new Date();
+                    const yesterday = new Date(today - DAY_IN_MS);
+                    const seconds = Math.round((today - date) / 1000);
+                    const minutes = Math.round(seconds / 60);
+                    const isToday = today.toDateString() === date.toDateString();
+                    const isYesterday = yesterday.toDateString() === date.toDateString();
+                    const isThisYear = today.getFullYear() === date.getFullYear();
 
 
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+                    if (seconds < 5) {
+                        return 'now';
+                    } else if (seconds < 60) {
+                        return `${seconds} seconds ago`;
+                    } else if (seconds < 90) {
+                        return 'about a minute ago';
+                    } else if (minutes < 60) {
+                        return `${minutes} minutes ago`;
+                    } else if (isToday) {
+                        return getFormattedDate(date, 'Today'); // Today at 10:20
+                    } else if (isYesterday) {
+                        return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+                    } else if (isThisYear) {
+                        return getFormattedDate(date, false, true); // 10. January at 10:20
+                    }
 
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
-
-
-                }/*Forum Requests*/
-
-                else {
+                    return getFormattedDate(date); // 10. January 2017. at 10:20
+                };
 
 
-                    var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
-                    var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+                /*Message_Notificationas*/
+
+                var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
+                Message_Notifications_Check.on('value', function (snapshot) {
+                    msg_messages_dropdown(snapshot.val());
+                    msg_message_number(snapshot.val());
+                });
+
+                function msg_messages_dropdown(obj) {
 
 
-                    //AddConnection.child(sender_id).set(name);
-                    var bio;
-                    var propic;
-                    var country;
+                    var dropdown_item = '';
+                    var keys = Object.keys(obj);
+                    var counter_check = 0;
+
+
+                    for (var i = keys.length - 1; i >= 0; i--) {
+
+                        if (obj[keys[i]].ProfilePic != undefined) {
+
+                            var display_time = obj[keys[i]].Time;
+                            display_time = Number(display_time); // cast it to a Number
+                            var ts_display = timeAgo(display_time);
+
+
+                            if (counter_check == 0) {
+                                counter_check++;
+
+                                dropdown_item += " <a><div style= \"padding: 2px;\n" +
+                                    "            margin: 5px;\n" +
+                                    "            border-radius: 4px;\n" +
+                                    "            border-width: 5px;\n" +
+                                    "            border-color: black;\n" +
+                                    "            height: 80px;\n" +
+                                    "             margin-left: -20px;\n" +
+                                    "            margin-top: 20px  \" class=\"notification-item\">\n" +
+                                    "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
+                                    "                                    \n" +
+                                    "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
+                                    "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \"> " + obj[keys[i]].text + "</p>\n" +
+                                    "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
+                                    "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
+                                    "                                </div>\n" +
+                                    "                            </a>";
+
+                            } else {
+
+                                dropdown_item += " <a><div style= \"padding: 5px;\n" +
+                                    "            margin: 5px;\n" +
+                                    "            border-radius: 4px;\n" +
+                                    "            border-width: 5px;\n" +
+                                    "            border-color: black;\n" +
+                                    "            height: 80px;\n" +
+                                    "             margin-left: -20px;\n" +
+                                    "            margin-top: 20px \" class=\"notification-item\">\n" +
+                                    "                                <img style=\"margin-top:-12px\" class=\"profile_img\" src=\"" + obj[keys[i]].ProfilePic + "\"/>\n" +
+                                    "                                    \n" +
+                                    "                                    <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 55px; position:relative\">" + obj[keys[i]].Sender_name + "</h5>\n" +
+                                    "                                    <p style=\"font-family: sans-serif; color: black; margin-top: 3px;left: 28px;position:relative; \">" + obj[keys[i]].text + "</p>\n" +
+                                    "                                    <p style=\"font-family:sans-serif;font-style:italic;margin-left: 58px;margin-top:2px; color: grey;font-size:x-small\"><i class= \"fa fa-clock-o \"></i>&nbsp" + ts_display + "</p>\n" +
+                                    "                                    <hr style=\"width: 100%; color: grey; height: 2px; background-color:grey; margin-top: 5px\"/>\n" +
+                                    "                                </div>\n" +
+                                    "                            </a>";
+                            }
+
+                        }
+                    }
+                    $('#Message_dropdown_notifications').html(dropdown_item);
+                }
+
+
+                function msg_message_number(obj) {
+                    // var html = '';
+                    var countholder = 0;
+                    var keys = Object.keys(obj);
+
+                    for (var i = 0; i < keys.length; i++) {
+                        countholder++;
+                    }
+                    {% comment %}
+                                    countholder--;
+                    {% endcomment %}
+
+                    {% comment %}database_counter.update({'counter': countholder});
+                     /*Creating notification icon*/{% endcomment %}
+
+
+                    {% comment %}
+                                    html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+                    {% endcomment %}
+
+
+                    $('#number_of_msg_notifications').html(countholder);
+
+
+                }
+
+                function removeMessageNotifications() {
+
+                    var other = firebase.database().ref().child("Users/" + '{{ this_uid }}');/*Messages*/
+                    other.child("Messages_Notifications").remove();
+
+                }
+
+
+                /*Request Notifications*/
+
+                var database_counter_1 = firebase.database().ref().child("Users/{{this_uid}}/RequestsReceived");/*current user's account*/
+
+
+                database_counter_1.on('value', function (snapshot) {
+
+
+                    renderCount_1(snapshot.val());
+                    window.alert("ggg");
+                    renderUI_1(snapshot.val());
+                    //alert("Connection Request Received");
+
+
+                });
+
+
+                function renderUI_1(obj) {
                     var html = '';
-                    var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
-                    getAcceptcon.on("value", function (snapshot) {
-                        bio = snapshot.val().Bio;
-                        propic = snapshot.val().ProfilePic;
-                        country = snapshot.val().Country;
+                    var keys = Object.keys(obj);
+                    for (var i = keys.length - 1; i >= 0; i--) {
+                        // for (var i = 0; i <= keys.length - 1; i++) {
+
+
+                        /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+                        /*Creating notification item*/
+
+                        if (obj[keys[i]].sender_profilePic != undefined) {
+
+                            var display_time = obj[keys[i]].time;
+                            display_time = Number(display_time); // cast it to a Number
+                            var ts_display = timeAgo(display_time);
+
+                            var type_post = obj[keys[i]].Type;
+                            var forum_id_id = obj[keys[i]].Forum_ID;
+
+
+                            var decision = "true";
+                            var opp_decison = "false";
+                            html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
+                                "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+
+
+                        }
+                    }
+                    if (html.length == 0) {
+                        html = "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";
+                    }
+
+                    $('#comment').html(html);
+                }
+
+                function renderCount_1(obj) {
+                    var html = '';
+                    var countholder = 0;
+
+                    var keys = Object.keys(obj);
+                    for (var i = 0; i < keys.length; i++) {
+                        countholder++;
+                    }
+                    countholder--;
+                    database_counter.update({'counter': countholder});
+                    /*Creating notification icon*/
+
+
+                    html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+
+
+                    $('#counter_number_notifications').html(countholder);
+
+
+                }
+
+                function Accept_request(sender_id, name, post_id, isAccept, typepost, forum_id_id) {
+
+
+                    if (String(isAccept).valueOf() == String("true").valueOf()) {
+
+                        /*Check Type of Request*/
+
+                        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
+
+                            if (snapshot.exists()) {
+
+
+                                if (String(typepost).valueOf() == String("Forum_Request").valueOf()) {
+
+                                    var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
+                                    AddtoForum.child(sender_id).set(sender_id);
+
+                                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
+                                    AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
+
+                                } else {
+
+
+                                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                                    AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                                    // window.alert("You have joined a new forum!");
+                                    var x = document.getElementById("forumJoined");
+                                    x.show();
+                                }
+
+
+                            }/*Forum Requests*/
+
+                            else {
+
+
+                                var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+                                var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+
+
+                                //AddConnection.child(sender_id).set(name);
+                                var bio;
+                                var propic;
+                                var country;
+                                var html = '';
+                                var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+                                getAcceptcon.on("value", function (snapshot) {
+                                    bio = snapshot.val().Bio;
+                                    propic = snapshot.val().ProfilePic;
+                                    country = snapshot.val().Country;
+                                });
+
+                                //var created_id_target = AddConnection.push();
+                                AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                                    Name: name,
+                                    Bio: bio,
+                                    ProfilePic: propic,
+                                    Country: country,
+
+                                });
+
+                                AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                                    Name: '{{ username }}',
+                                    Bio: '{{ bio }}',
+                                    ProfilePic: '{{ profilePic }}',
+                                    Country: '{{ country }}',
+
+                                });
+
+
+                                // window.alert("You are now connected with " + name);
+
+                                html += "You are now connected with " + name;
+                                $('#newconnectionmodal').html(html);
+
+                                var y = document.getElementById("connectedWith");
+                                y.show();
+
+                            }/*Friend Reuest*/
+                        }); /*Checking Type of Request*/
+                    } /*If Accept*/
+
+
+                    firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
+
+                        if (snapshot.exists()) {
+
+                            var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                            different_name.remove();
+
+
+                        } else {
+
+                            var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+                            different_name.remove();
+
+                            var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+                            removesent.remove();
+
+
+                        }
+
                     });
 
-                    //var created_id_target = AddConnection.push();
-                    AddConnection.child(sender_id).set({ /*Pushes to receiver*/
-                        Name: name,
-                        Bio: bio,
-                        ProfilePic: propic,
-                        Country: country,
 
-                    });
-
-                    AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
-                        Name: '{{ username }}',
-                        Bio: '{{ bio }}',
-                        ProfilePic: '{{ profilePic }}',
-                        Country: '{{ country }}',
-
-                    });
+                }
 
 
-                   // window.alert("You are now connected with " + name);
-
-                    html += "You are now connected with " + name;
-                    $('#newconnectionmodal').html(html);
-
-                     var y = document.getElementById("connectedWith");
-                    y.show();
-
-                }/*Friend Reuest*/
-            }); /*Checking Type of Request*/
-        } /*If Accept*/
-
-
-        firebase.database().ref("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id + "/Type_check").once("value", snapshot => {
-
-            if (snapshot.exists()) {
-
-                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                different_name.remove();
-
-
-            } else {
-
-                var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                different_name.remove();
-
-                var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
-                removesent.remove();
-
-
-            }
-
-        });
-
-
-    }
-
-
-</script>
-
+            </script>
 
 
         </div><!--collapse nav-bar collapse-->
@@ -994,7 +981,7 @@
                             <h5 class="card-title" style="color: #e83e8c;"><strong>Your Forums</strong></h5>
                             <br>
                             <!--styling allows for the image and text to be next to one another-->
-                         {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
+                            {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in my_forums_list %}
 
                                 <form action="/goForumsOpen/" method="post">
                                     {% csrf_token %}
@@ -1063,102 +1050,102 @@
                 <!--FORUM MESSAGING HEADERS-->
                 <!--User's Details-->
 
-                    <div style="background-color: white" class="panel-heading">
-                        <div class="row"><!--table for person info-->
-                            <div class="col-sm-1">
-                                <div class="mr-2">
-                                    <!--styling allows for the image and text to be next to one another-->
-                                    <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
-
-                                </div>
-
+                <div style="background-color: white" class="panel-heading">
+                    <div class="row"><!--table for person info-->
+                        <div class="col-sm-1">
+                            <div class="mr-2">
+                                <!--styling allows for the image and text to be next to one another-->
+                                <img class="rounded-circle" width="45" src="{{ profilePic }}" alt="">
 
                             </div>
-                            <div class="col-sm-11">
-                                <div class="ml-2">
-                                    <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
 
-                                    <!--Number of Connections and Forums-->
-                                    <script>
-                                        //  count the number of forums and connections in db
-                                        var numForumsRef = firebase.database().ref("Users").child("{{ this_uid }}").child("ForumsJoined");
-                                        numForumsRef.on("value", function(numForums_snapshot) {
-                                            document.getElementById("numForumsSpan").innerText = numForums_snapshot.numChildren();
-                                            var numConnRef = firebase.database().ref("Users").child("{{ this_uid }}").child("Connections");
-                                            numConnRef.on("value", function(numConnections_snapshot) {
-                                                document.getElementById("numConnectionsSpan").innerText = numConnections_snapshot.numChildren();
-                                            });
+
+                        </div>
+                        <div class="col-sm-11">
+                            <div class="ml-2">
+                                <div class="h5 m-0" style="text-align: left;"><strong> {{ username }}</strong></div>
+
+                                <!--Number of Connections and Forums-->
+                                <script>
+                                    //  count the number of forums and connections in db
+                                    var numForumsRef = firebase.database().ref("Users").child("{{ this_uid }}").child("ForumsJoined");
+                                    numForumsRef.on("value", function (numForums_snapshot) {
+                                        document.getElementById("numForumsSpan").innerText = numForums_snapshot.numChildren();
+                                        var numConnRef = firebase.database().ref("Users").child("{{ this_uid }}").child("Connections");
+                                        numConnRef.on("value", function (numConnections_snapshot) {
+                                            document.getElementById("numConnectionsSpan").innerText = numConnections_snapshot.numChildren();
                                         });
-                                    </script>
-                                    <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: black;">
-                                        Connections <span id="numConnectionsSpan" class="label label-default"></span></h8>
-                                    <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: black;">
-                                        Forums <span id="numForumsSpan"
-                                            class="label label-default"></span></h8>
+                                    });
+                                </script>
+                                <h8 style="display: inline-block;padding-right:10px; position: relative; top: -14px;padding-top: 2px;color: black;">
+                                    Connections <span id="numConnectionsSpan" class="label label-default"></span></h8>
+                                <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px; color: black;">
+                                    Forums <span id="numForumsSpan"
+                                                 class="label label-default"></span></h8>
 
 
-                                </div>
                             </div>
                         </div>
-                        <!-- End of User's Details-->
-
-
-                        <!-- leave forum button-->
-
-                        {% if forum_creator != this_uid %}
-
-                        {% else %} <!-- only the forum creator can access forum settings -->
-                            <form action="/goForumSettings/" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
-                                <div>
-                                    <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
-                                            title="ForumSettings" data-placement="right"
-                                            style="margin-right:10px; background-color:#e83e8c; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
-                                            type="submit"
-                                            class="btn btn-primary pull-right">
-                                        <a href="#"><i
-                                                class=" fa fa-gear" style="color: white"></i></a>
-                                    </button>
-                                </div>
-                            </form>
-                        {% endif %}
-
-
-                        <!-- Post Details-->
-
-                        <div hidden id="this_forum_id">{{ forum_id }}</div>
-                        <a style="font-family: sans-serif;  color: black;  font-weight: bold ">Title:
-                            &nbsp;&nbsp;</a><input maxlength="50" id="Title_element" type="text" name="title"
-                                                   style="border-radius: 4px;width: 60%;"><br><br>
-
-
-                        <div class="form-group"><!--- Make a new Post-->
-
-                            <label class="sr-only" for="message">post</label>
-                            <textarea class="form-control" id="post_msg" rows="3"
-                                      placeholder="What would you like to share?"></textarea>
-                        </div>
-
-                        <div class="form-group" style="display: inline-block; vertical-align: top;">
-                            <!--attach file button-->
-
-                            <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
-                                    class="glyphicon glyphicon-paperclip"></span></a>
-                            <a data-toggle="modal" data-target="#attachImageModal"
-                               style="color:#e83e8c;margin-left: 5px;"><span
-                                    class="glyphicon glyphicon-picture"></span></a>
-
-
-                        </div>
-                        <!--post button-->
-                        <div class="buttonbot" id="btnGetMessage_1"
-                             style="position:absolute;left: 85%;display: inline-block;">
-                            <button type="button"><strong>Post</strong></button>
-                        </div>
-
-                        <br>
                     </div>
+                    <!-- End of User's Details-->
+
+
+                    <!-- leave forum button-->
+
+                    {% if forum_creator != this_uid %}
+
+                    {% else %} <!-- only the forum creator can access forum settings -->
+                        <form action="/goForumSettings/" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" hidden id="this_forum_id" name="forum_id" value="{{ forum_id }}">
+                            <div>
+                                <button onclick="location.href='{% url 'goForumSettings' %}'" data-toggle="tooltip"
+                                        title="ForumSettings" data-placement="right"
+                                        style="margin-right:10px; background-color:#e83e8c; border-color: transparent;   border-radius: 10px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset "
+                                        type="submit"
+                                        class="btn btn-primary pull-right">
+                                    <a href="#"><i
+                                            class=" fa fa-gear" style="color: white"></i></a>
+                                </button>
+                            </div>
+                        </form>
+                    {% endif %}
+
+
+                    <!-- Post Details-->
+
+                    <div hidden id="this_forum_id">{{ forum_id }}</div>
+                    <a style="font-family: sans-serif;  color: black;  font-weight: bold ">Title:
+                        &nbsp;&nbsp;</a><input maxlength="50" id="Title_element" type="text" name="title"
+                                               style="border-radius: 4px;width: 60%;"><br><br>
+
+
+                    <div class="form-group"><!--- Make a new Post-->
+
+                        <label class="sr-only" for="message">post</label>
+                        <textarea class="form-control" id="post_msg" rows="3"
+                                  placeholder="What would you like to share?"></textarea>
+                    </div>
+
+                    <div class="form-group" style="display: inline-block; vertical-align: top;">
+                        <!--attach file button-->
+
+                        <a data-toggle="modal" data-target="#attachFileModal" style="color:#e83e8c;"><span
+                                class="glyphicon glyphicon-paperclip"></span></a>
+                        <a data-toggle="modal" data-target="#attachImageModal"
+                           style="color:#e83e8c;margin-left: 5px;"><span
+                                class="glyphicon glyphicon-picture"></span></a>
+
+
+                    </div>
+                    <!--post button-->
+                    <div class="buttonbot" id="btnGetMessage_1"
+                         style="position:absolute;left: 85%;display: inline-block;">
+                        <button type="button"><strong>Post</strong></button>
+                    </div>
+
+                    <br>
+                </div>
 
 
                 <!-- End of Post Details-->
@@ -1175,12 +1162,9 @@
                 <div id="post_comment">
 
 
-
-
-
                 </div>
                 <!--- actual Posted message block-->
-               {% comment %}<div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
+                {% comment %}<div style="border-style: solid;border-width: 2px;border-color: darkgray" class="messagePost">
 
                     <div class="panel-heading" style="background-color: #D3D3D3;">
                         <div class="card-header">
@@ -1441,7 +1425,6 @@
                 height: auto; ">
 
 
-
                     <div class="text-center"
                          style="font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px; color: #8c8c8c; ">{{ forum_name }}
                     </div>
@@ -1480,29 +1463,26 @@
 <script>
 
 
-
     /* View Participants*/
 
 
+    var users_details = firebase.database().ref().child("Users").child('{{ forum_creator }}');
+    users_details.on("value", function (snapshot_forum_topics) {
+
+        var forum_names = snapshot_forum_topics.val().Name;
+        var forum_pics = snapshot_forum_topics.val().ProfilePic;
+        var forum_c = snapshot_forum_topics.val().Country;
 
 
-         var users_details = firebase.database().ref().child("Users").child('{{ forum_creator }}');
-            users_details.on("value", function (snapshot_forum_topics) {
+        var display_creator = " <img class=\"rounded-circle\" width=\"50\" height=\"50\"\n" +
+            "                                                   src=\"" + forum_pics + "\"> " + forum_names;
 
-                var forum_names = snapshot_forum_topics.val().Name;
-                var forum_pics = snapshot_forum_topics.val().ProfilePic;
-                var forum_c = snapshot_forum_topics.val().Country;
+        display_creator += "<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top;-2px;\"> " + forum_c + "</p>"
 
 
-                var display_creator = " <img class=\"rounded-circle\" width=\"50\" height=\"50\"\n" +
-                    "                                                   src=\""+ forum_pics +"\"> " + forum_names ;
+        $('#ID_Creator').html(display_creator);
 
-                display_creator += "<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top;-2px;\"> " + forum_c + "</p>"
-
-
-                $('#ID_Creator').html(display_creator);
-
-            });
+    });
 
 
     var Participants_fb = firebase.database().ref().child("Forums").child('{{forum_id}}').child("Participants");
@@ -1517,7 +1497,7 @@
 
             var user = user_snapshot.key;
 
-            if (String(user).valueOf()!=String('{{ forum_creator }}').valueOf()) {
+            if (String(user).valueOf() != String('{{ forum_creator }}').valueOf()) {
 
                 var users_details = firebase.database().ref().child("Users").child(user);
                 users_details.on("value", function (snapshot_forum_topics) {
@@ -1538,7 +1518,8 @@
                     $('#FP_modal').html(result);
 
                 });
-            } });
+            }
+        });
 
 
     });
@@ -1577,7 +1558,7 @@
     }
 
 
-   // number_of_participants_in_forum
+    // number_of_participants_in_forum
 
     var forum_number = firebase.database().ref().child("Forums").child('{{forum_id}}').child("Participants");
     forum_number.on("value", function (snapshot_user_topics) {
@@ -1585,15 +1566,14 @@
 
         var countholder = 0;
 
-         snapshot_user_topics.forEach(function (a) {
-                                    countholder++;
-                                });
-         countholder--;
+        snapshot_user_topics.forEach(function (a) {
+            countholder++;
+        });
+        countholder--;
 
         $('#number_of_participants_in_forum').html(countholder);
 
     });
-
 
 
     /* View Participants*/
@@ -1606,18 +1586,24 @@
     /**Fetching document to be attached*/
 
 
-function closeFile_1(){
-                    document.getElementById("File_Link").value = "";
-                    document.getElementById("File_Frame").src = "";}
-function closeImage_1(){
-                    document.getElementById("frameImage").value = "";
-                    document.getElementById("viewframe").src = "";}
+    function closeFile_1() {
+        document.getElementById("File_Link").value = "";
+        document.getElementById("File_Frame").src = "";
+    }
+
+    function closeImage_1() {
+        document.getElementById("frameImage").value = "";
+        document.getElementById("viewframe").src = "";
+    }
 
 
-function ViewFile() {document.getElementById("File_Frame").src = document.getElementById("File_Link").value;}
-function ViewImage() {document.getElementById("viewframe").src = document.getElementById("frameImage").value;}
+    function ViewFile() {
+        document.getElementById("File_Frame").src = document.getElementById("File_Link").value;
+    }
 
-
+    function ViewImage() {
+        document.getElementById("viewframe").src = document.getElementById("frameImage").value;
+    }
 
 
     var database_msgs = firebase.database().ref().child("Forums/" + '{{forum_id}}' + "/Messages");/*Messages*/
@@ -1629,27 +1615,30 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
         var Document = "";
         var isDocument = "No_File"
 
-        var AttachFile ="";
-        var AttachImage ="";
+        var AttachFile = "";
+        var AttachImage = "";
 
         AttachFile = document.getElementById("File_Link").value;
         AttachImage = document.getElementById("frameImage").value;
 
-      if ( (AttachImage.length != 0 )&& (AttachFile.length !=0) )
-      {
-         window.alert( "You can only attach one document to a post")
-         // $("#attachOneOnlyModal").modal('show');
+        if ((AttachImage.length != 0) && (AttachFile.length != 0)) {
+            window.alert("You can only attach one document to a post")
+            // $("#attachOneOnlyModal").modal('show');
 
-          return;
-      }
+            return;
+        }
 
-       if ( String(AttachImage).valueOf() != String("").valueOf() || String(AttachFile).valueOf() != String("").valueOf() )
-       {
-           if ( String(AttachImage).valueOf() == String("").valueOf() ){Document = AttachFile; isDocument = "File";}
-           else {Document = AttachImage; isDocument = "Image"}
-       }
-
-       else {Document = "";}
+        if (String(AttachImage).valueOf() != String("").valueOf() || String(AttachFile).valueOf() != String("").valueOf()) {
+            if (String(AttachImage).valueOf() == String("").valueOf()) {
+                Document = AttachFile;
+                isDocument = "File";
+            } else {
+                Document = AttachImage;
+                isDocument = "Image"
+            }
+        } else {
+            Document = "";
+        }
 
         document.getElementById("File_Link").value = "";
         document.getElementById("frameImage").value = "";
@@ -1677,7 +1666,7 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
         var date_for_post = Date.now();
 
 
-       /* Check for document being uploaded*/
+        /* Check for document being uploaded*/
 
         {% comment %}var isDocument; /* Can either be Image, File or No_File*/
 
@@ -1689,9 +1678,8 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
         /* Check Complete*/
 
 
-
         /*Changing items in the db*/
-        writeUserData(date_for_post, "{{this_uid}}", post_message, "0", "0", "{{ username }}", "{{ profilePic }}", mesaage_title,Document,isDocument);
+        writeUserData(date_for_post, "{{this_uid}}", post_message, "0", "0", "{{ username }}", "{{ profilePic }}", mesaage_title, Document, isDocument);
         date_for_post;
         post_message;
         "{{this_uid}}";
@@ -1717,7 +1705,7 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
     /*Push time entered and Message entered from textboxes, creates entry in firebase
     * push gives a unique key*/
 
-    function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic, Title_element,Document,isDocument) {/*Pushes to current users*/
+    function writeUserData(message_time, messageFrom, actual_message, likes_num, comments_num_default, username, profilePic, Title_element, Document, isDocument) {/*Pushes to current users*/
 
 //window.alert(Title_element);
 
@@ -1731,7 +1719,7 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
             sender_name: username,
             sender_profilePic: profilePic,
             title: Title_element,
-            document:Document,
+            document: Document,
             isDocument: isDocument
 
         });
@@ -1755,151 +1743,150 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
         var ifempty = true;
         var ProfilePic = '{{ profilePic }}'
 
-        try{
+        try {
 
-        var keys = Object.keys(obj);
+            var keys = Object.keys(obj);
 
-        for (var i = keys.length - 1; i >= 0; i--) {
-
-
-            var display_time = obj[keys[i]].DateTime;
-            display_time = Number(display_time); // cast it to a Number
-            var ts_display = timeAgo(display_time);
-
-            var commects_object = obj[keys[i]].comments;
-
-            var profile = "";
-
-            var database_userdetails = firebase.database().ref().child("Users/" + obj[keys[i]].sender);/*Current users account*/
-            var username_name = "Nothing";
-
-            /*Name and Picture*/
-            database_userdetails.on("value", function (snapshot) {
-                var username_check;
-                username_check = snapshot.val().Name;
-                username_name = username_check;
-            });
+            for (var i = keys.length - 1; i >= 0; i--) {
 
 
-            var num = getComments_num(obj[keys[i]].post_id);
-            var num_likes = getLikes_num(obj[keys[i]].post_id);
+                var display_time = obj[keys[i]].DateTime;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
 
-            /*Counter for comments*/
+                var commects_object = obj[keys[i]].comments;
+
+                var profile = "";
+
+                var database_userdetails = firebase.database().ref().child("Users/" + obj[keys[i]].sender);/*Current users account*/
+                var username_name = "Nothing";
+
+                /*Name and Picture*/
+                database_userdetails.on("value", function (snapshot) {
+                    var username_check;
+                    username_check = snapshot.val().Name;
+                    username_name = username_check;
+                });
 
 
-            html += "       <div  style=\"border-style: solid;border-width: 2px;border-color: darkgray\" class=\"messagePost\" >\n" +
-                "\n" +
-                "                        <div style=\"background-color: #D3D3D3; \" class=\"panel-heading\">\n" +
-                "                        <div class=\"card-header\">\n" +
-                "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
-                "                                <div class=\"d-flex justify-content-between align-items-center\">\n" +
-                "                                    <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\">\n" +
-                "                                        <!--styling allows for the image and text to be next to one another-->\n" +
-                "                                        <img class=\"rounded-circle\" width=\"45\" src=\"" + obj[keys[i]].sender_profilePic + "\" alt=\"\">\n" +
-                "                                    </div>\n" +
-                "                                    <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
-                "                                        <div class=\"h5 m-0\"><strong> " + obj[keys[i]].sender_name + "</strong>\n" +
-                "                                           </div>\n" +
-                "                                    </div><div style=\"margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic\" class=\"\"><i  class=\"fa fa-clock-o\"></i> " + ts_display + "</div>\n" +
-                "\n" +
-                "                                    <div class=\"dropdownmenu\"\n" +
-                "                                         style=\"display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px; \">\n" +
-                "                                        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-                "                                            <!--more options menu-->\n" +
-                "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;\"></span></a>\n" +
-                "\n" +
-                "                                            <ul class=\"dropdown-menu\">\n" +
-                "\n" +
-                "                                                \n" +
-                "                                                <li class=\"divider\"></li>\n" +
-                "                                                  <li  onclick=\"Delete_post(\'" + obj[keys[i]].post_id + "\',\'" + obj[keys[i]].sender + "\')\"  ><a> Delete Post <span\n" +
-                "                                                        class=\"fa fa-trash pull-right\"></span></a>\n" +
-                "                                                </li>\n" +
-                "                                                 <li class=\"divider\"></li>\n" +
-                "                                               \n" +
-                "                                            </ul>\n" +
-                "                                        </li>\n" +
-                "                                    </div>\n" +
-                "\n" +
-                "                                    <h5 style=\"color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold\"> " + obj[keys[i]].title + "</h5>\n" +
-                "                                </div>\n" +
-                "\n" +
-                "\n" +
-                "                            </div>\n" +
-                "                        </div></div><br>\n" +
-                "\n" +
-                "\n" +
-                "                        <div class=\"card-body\">\n" +
-                "\n" +
-                "                            "+ DisplayDocument(obj[keys[i]].isDocument,obj[keys[i]].document) +"" +
-                "" +
-                "<br><br><p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
-                "                                " + obj[keys[i]].text + "\n" +
-                "                            </p>\n" +
-                "\n" +
-                "                            <div style=\"margin-bottom: 0px; margin-left: 530px;font-weight: bold \">\n" +
-                "                                <p onclick=\"Increase_Likes(\'" + obj[keys[i]].post_id + "\')\"style=\"color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold\">" + num_likes + " &nbsp;<span class=\"glyphicon glyphicon-thumbs-up \" style=\"color: #e83e8c; \"></span>\n" +
-                "                            </div>\n" +
-                "\n" +
-                "                            <hr style=\"margin-top: 0px;color: darkgrey\">\n" +
-                "                        </div>\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "                        <div style=\" margin-top: 0px;\">\n" +
-                "                            <!--styling ensures the like and comment are next to one another-->\n" +
-                "\n" +
-                "\n" +
-                "                            <details style=\"outline: none; \">\n" +
-                "\n" +
-                "                                <summary style=\"color: #e83e8c;margin-left: 450px;font-weight: bold\"> <!--title of the replies collapsible-->\n" +
-                "                                    View "+getComments_num(obj[keys[i]].post_id) + " Replies &nbsp \n" +
-                "                                </summary>\n" +
-                "\n" +
-                "\n" +
-                "                                <!--Winny add message replies from here-->\n" +
-                "                                <ul style=\"margin-left: -30px\">\n" +
-                "                                   " + Reply_list(obj[keys[i]].post_id) + " \n" +
-                "\n" +
-                "                                        \n" +
-                "                                    \n" +
-                "                                        \n" +
-                "                                    \n" +
-                "\n" +
-                "                                        \n" +
-                "\n" +
-                "                                      <img class=\"rounded-circle\" width=\"45\" src=\"" + "{{ profilePic }}" + "\" alt=\"\">  <a id=\"\"><textarea maxlength=\"200\" placeholder=\"Reply to this post\" id=\"" + obj[keys[i]].post_id + "\" style=\"width: 451px;height: 30px;border-radius: 5px; border-style: solid;border-width: 2px;border-color: darkgray;position: relative;top:15px\"></textarea></a>\n" +
-                "                                       <br>\n" +
-                "                                        <button class=\"buttonbot2\" onclick=\"saveComment(\'" + obj[keys[i]].post_id + "\')\" style=\"position: relative;left:505px;top:-32px\" type=\"button\">Reply</button>\n" +
-                "                                    </div>\n" +
-                "\n" +
-                "                                    <!--post button-->\n" +
-                "                                </ul>\n" +
-                "\n" +
-                "                            </details><!--end of collapasible-->\n" +
-                "\n" +
-                "                            <!--Dummy Drop-down for comment_please don't remove-->\n" +
-                "                        </div>\n" +
-                "\n" +
-                "                </div> <!---//Message Post-->\n" +
-                "\n" +
-                "                <br><br><!--spaces between posts-->";
+                var num = getComments_num(obj[keys[i]].post_id);
+                var num_likes = getLikes_num(obj[keys[i]].post_id);
 
-        }}
+                /*Counter for comments*/
 
-        catch (e) {
+
+                html += "       <div  style=\"border-style: solid;border-width: 2px;border-color: darkgray\" class=\"messagePost\" >\n" +
+                    "\n" +
+                    "                        <div style=\"background-color: #D3D3D3; \" class=\"panel-heading\">\n" +
+                    "                        <div class=\"card-header\">\n" +
+                    "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                    "                                <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                    "                                    <div class=\"mr-2\" style=\"display: inline-block; vertical-align: top;\">\n" +
+                    "                                        <!--styling allows for the image and text to be next to one another-->\n" +
+                    "                                        <img class=\"rounded-circle\" width=\"45\" src=\"" + obj[keys[i]].sender_profilePic + "\" alt=\"\">\n" +
+                    "                                    </div>\n" +
+                    "                                    <div class=\"ml-2\" style=\"display:inline-block;\">\n" +
+                    "                                        <div class=\"h5 m-0\"><strong> " + obj[keys[i]].sender_name + "</strong>\n" +
+                    "                                           </div>\n" +
+                    "                                    </div><div style=\"margin-left: 50px;margin-top: -10px;font-size: x-small;font-style: italic\" class=\"\"><i  class=\"fa fa-clock-o\"></i> " + ts_display + "</div>\n" +
+                    "\n" +
+                    "                                    <div class=\"dropdownmenu\"\n" +
+                    "                                         style=\"display: inline-block;margin-left: 97%;color: #666666;position: relative; top: -55px; \">\n" +
+                    "                                        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                    "                                            <!--more options menu-->\n" +
+                    "                                            <span class=\"glyphicon glyphicon-option-vertical\" style=\"color: black;\"></span></a>\n" +
+                    "\n" +
+                    "                                            <ul class=\"dropdown-menu\">\n" +
+                    "\n" +
+                    "                                                \n" +
+                    "                                                <li class=\"divider\"></li>\n" +
+                    "                                                  <li  onclick=\"Delete_post(\'" + obj[keys[i]].post_id + "\',\'" + obj[keys[i]].sender + "\')\"  ><a> Delete Post <span\n" +
+                    "                                                        class=\"fa fa-trash pull-right\"></span></a>\n" +
+                    "                                                </li>\n" +
+                    "                                                 <li class=\"divider\"></li>\n" +
+                    "                                               \n" +
+                    "                                            </ul>\n" +
+                    "                                        </li>\n" +
+                    "                                    </div>\n" +
+                    "\n" +
+                    "                                    <h5 style=\"color:#e83e8c;margin-left: 50px; margin-top: -10px;font-weight: bold\"> " + obj[keys[i]].title + "</h5>\n" +
+                    "                                </div>\n" +
+                    "\n" +
+                    "\n" +
+                    "                            </div>\n" +
+                    "                        </div></div><br>\n" +
+                    "\n" +
+                    "\n" +
+                    "                        <div class=\"card-body\">\n" +
+                    "\n" +
+                    "                            " + DisplayDocument(obj[keys[i]].isDocument, obj[keys[i]].document) + "" +
+                    "" +
+                    "<br><br><p class=\"card-text;\" style=\"font-family: sans-serif\">\n" +
+                    "                                " + obj[keys[i]].text + "\n" +
+                    "                            </p>\n" +
+                    "\n" +
+                    "                            <div style=\"margin-bottom: 0px; margin-left: 530px;font-weight: bold \">\n" +
+                    "                                <p onclick=\"Increase_Likes(\'" + obj[keys[i]].post_id + "\')\"style=\"color: #e83e8c;display: inline-block;vertical-align: top; font-weight: bold\">" + num_likes + " &nbsp;<span class=\"glyphicon glyphicon-thumbs-up \" style=\"color: #e83e8c; \"></span>\n" +
+                    "                            </div>\n" +
+                    "\n" +
+                    "                            <hr style=\"margin-top: 0px;color: darkgrey\">\n" +
+                    "                        </div>\n" +
+                    "\n" +
+                    "\n" +
+                    "\n" +
+                    "\n" +
+                    "\n" +
+                    "                        <div style=\" margin-top: 0px;\">\n" +
+                    "                            <!--styling ensures the like and comment are next to one another-->\n" +
+                    "\n" +
+                    "\n" +
+                    "                            <details style=\"outline: none; \">\n" +
+                    "\n" +
+                    "                                <summary style=\"color: #e83e8c;margin-left: 450px;font-weight: bold\"> <!--title of the replies collapsible-->\n" +
+                    "                                    View " + getComments_num(obj[keys[i]].post_id) + " Replies &nbsp \n" +
+                    "                                </summary>\n" +
+                    "\n" +
+                    "\n" +
+                    "                                <!--Winny add message replies from here-->\n" +
+                    "                                <ul style=\"margin-left: -30px\">\n" +
+                    "                                   " + Reply_list(obj[keys[i]].post_id) + " \n" +
+                    "\n" +
+                    "                                        \n" +
+                    "                                    \n" +
+                    "                                        \n" +
+                    "                                    \n" +
+                    "\n" +
+                    "                                        \n" +
+                    "\n" +
+                    "                                      <img class=\"rounded-circle\" width=\"45\" src=\"" + "{{ profilePic }}" + "\" alt=\"\">  <a id=\"\"><textarea maxlength=\"200\" placeholder=\"Reply to this post\" id=\"" + obj[keys[i]].post_id + "\" style=\"width: 451px;height: 30px;border-radius: 5px; border-style: solid;border-width: 2px;border-color: darkgray;position: relative;top:15px\"></textarea></a>\n" +
+                    "                                       <br>\n" +
+                    "                                        <button class=\"buttonbot2\" onclick=\"saveComment(\'" + obj[keys[i]].post_id + "\')\" style=\"position: relative;left:505px;top:-32px\" type=\"button\">Reply</button>\n" +
+                    "                                    </div>\n" +
+                    "\n" +
+                    "                                    <!--post button-->\n" +
+                    "                                </ul>\n" +
+                    "\n" +
+                    "                            </details><!--end of collapasible-->\n" +
+                    "\n" +
+                    "                            <!--Dummy Drop-down for comment_please don't remove-->\n" +
+                    "                        </div>\n" +
+                    "\n" +
+                    "                </div> <!---//Message Post-->\n" +
+                    "\n" +
+                    "                <br><br><!--spaces between posts-->";
+
+            }
+        } catch (e) {
 
 
             html = " <div class=\"container_2\">\n" +
-            "                        <img style=\"height: 400px;width: 1365px; opacity: 0.2; width:100%;\"\n" +
-            "                             src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
-            "                             alt=\"Snow\">\n" +
-            "                        <div class=\"centered\"><strong><h1\n" +
-            "                                style=\"font-family: 'Roboto', sans-serif; color: deeppink;margin-top: -200px;margin-left: 50px \">\n" +
-            "                            Be the first to post in the group!</h1></strong></div>\n" +
-            "                    </div><br><br><br><br><br><br><br><br><br><br>";
+                "                        <img style=\"height: 400px;width: 1365px; opacity: 0.2; width:100%;\"\n" +
+                "                             src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/images%2FprofileHeaders%2Fnoconnections.jpg?alt=media&token=0f232c78-956b-46eb-85c6-f4a483fd480a\"\n" +
+                "                             alt=\"Snow\">\n" +
+                "                        <div class=\"centered\"><strong><h1\n" +
+                "                                style=\"font-family: 'Roboto', sans-serif; color: deeppink;margin-top: -200px;margin-left: 50px \">\n" +
+                "                            Be the first to post in the group!</h1></strong></div>\n" +
+                "                    </div><br><br><br><br><br><br><br><br><br><br>";
 
         }
 
@@ -1915,13 +1902,13 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
 
         if (String(isDocument).valueOf() == String("Image").valueOf()) {
 
-{% comment %}
-            document_display = " <img href=\""+ document_1 +"\" target=\"_blank\" src=\" "+  document_1 +"\" style=\"width:200px; height:200px; margin-left: 30%;\" > ";
-{% endcomment %}
+            {% comment %}
+                        document_display = " <img href=\""+ document_1 +"\" target=\"_blank\" src=\" "+  document_1 +"\" style=\"width:200px; height:200px; margin-left: 30%;\" > ";
+            {% endcomment %}
 
 
-            document_display = "<a style=\"width:200px; height:200px; margin-left: 30%;\"  href=\""+ document_1  +"\" target=\"_blank\"> \n" +
-                "<img width=\"220\" height=\"250\" border=\"0\" align=\"center\"  src=\""+ document_1 +"\"/> \n" +
+            document_display = "<a style=\"width:200px; height:200px; margin-left: 30%;\"  href=\"" + document_1 + "\" target=\"_blank\"> \n" +
+                "<img width=\"220\" height=\"250\" border=\"0\" align=\"center\"  src=\"" + document_1 + "\"/> \n" +
                 "</a>"
 
 
@@ -1929,33 +1916,32 @@ function ViewImage() {document.getElementById("viewframe").src = document.getEle
 
             if (String(isDocument).valueOf() == String("File").valueOf()) {
 
-           document_display = "<a style=\"position: relative; top: 80px;color:deeppink ; left:5px\" href=\""+ document_1 +"\" target=\"_blank\"> <span\n" +
-               "                                    class=\"glyphicon glyphicon-paperclip\"></span></a>\n";
+                document_display = "<a style=\"position: relative; top: 80px;color:deeppink ; left:5px\" href=\"" + document_1 + "\" target=\"_blank\"> <span\n" +
+                    "                                    class=\"glyphicon glyphicon-paperclip\"></span></a>\n";
 
 
             } else {
-
 
 
             }
 
         }
 
-        return  document_display;
+        return document_display;
 
     }
 
 
-function display_modal(link_file){
+    function display_modal(link_file) {
 
-      {% comment %} document.getElementById("frameView_popup").src =link_file;
+        {% comment %} document.getElementById("frameView_popup").src =link_file;
 
-        $('#fileViewModal').modal('show');{% endcomment %}
+          $('#fileViewModal').modal('show');{% endcomment %}
 
-    window.alert("hey");
+        window.alert("hey");
 
 
-}
+    }
 
 
     <!--script for shwoing and hiding comments-->
@@ -2330,7 +2316,8 @@ function display_modal(link_file){
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
-                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"><strong>Attach a File </strong></h5>
@@ -2351,7 +2338,8 @@ function display_modal(link_file){
                     </div><!--end col-->
 
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-secondary" onclick="ViewFile()"  style="border: 1px solid gray; color: #e83e8c; background-color: white;">View
+                        <button type="button" class="btn btn-secondary" onclick="ViewFile()"
+                                style="border: 1px solid gray; color: #e83e8c; background-color: white;">View
                         </button>
                     </div><!--end col -->
                 </div><!-- end row-->
@@ -2362,7 +2350,8 @@ function display_modal(link_file){
             </div>
 
             <div class="modal-footer">
-                <button onclick="closeFile_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left"  style="border: 1px solid gray;
+                <button onclick="closeFile_1()" id="Cancel_Attach_File" type="button"
+                        class="btn btn-secondary pull-left" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
                 <button id="Attach_File" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
@@ -2382,7 +2371,8 @@ function display_modal(link_file){
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
-                <button onclick="closeImage_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button onclick="closeImage_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"><strong>Attach an Image </strong></h5>
@@ -2403,7 +2393,8 @@ function display_modal(link_file){
                     </div><!--end col-->
 
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-secondary" onclick="ViewImage()"  style="border: 1px solid gray; color: #e83e8c; background-color: white;">View
+                        <button type="button" class="btn btn-secondary" onclick="ViewImage()"
+                                style="border: 1px solid gray; color: #e83e8c; background-color: white;">View
                         </button>
                     </div><!--end col -->
                 </div><!-- end row-->
@@ -2414,7 +2405,8 @@ function display_modal(link_file){
             </div>
 
             <div class="modal-footer">
-                <button onclick="closeImage_1()" id="Cancel_Attach_File" type="button" class="btn btn-secondary pull-left"  style="border: 1px solid gray;
+                <button onclick="closeImage_1()" id="Cancel_Attach_File" type="button"
+                        class="btn btn-secondary pull-left" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Cancel
                 </button>
                 <button id="Attach_File" type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
@@ -2508,7 +2500,8 @@ function display_modal(link_file){
     <div class="vertical-align-center" role="document">
         <div class="modal-content" style="width: 1000px;margin-left: 15%;">
             <div class="modal-header">
-                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button onclick="closeFile_1()" id="Close_Attach_File" type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"><strong>View File </strong></h5>
@@ -2517,7 +2510,7 @@ function display_modal(link_file){
             <div class="modal-body">
 
 
-<iframe id="frameView_popup" src=""
+                <iframe id="frameView_popup" src=""
                         style="width:900px; height:500px;margin-left: 3%;" frameborder="0"></iframe>
 
 
@@ -2525,7 +2518,7 @@ function display_modal(link_file){
 
             <div class="modal-footer">
 
-                <button  type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
             color: #e83e8c; background-color: white;">Okay
                 </button>
 
@@ -2922,7 +2915,7 @@ Badges_Celebrations_2
 
                     <div class="col-md-8">
                         <h6 id="ID_Creator" class="text-center" style="color:gray;font-size: 20px;margin-left:20px;">
-                            </h6>
+                        </h6>
 
 
                     </div>
@@ -3094,8 +3087,7 @@ Badges_Celebrations_2
                                 $("#mi-modal2").modal('hide');
                                 $("#modalReportedForum").modal('show');
                             });
-                        }
-                        else{
+                        } else {
                             document.getElementById('reportForumBtn').style.display = 'none';
                             $("#mi-modal2").modal('hide');
                             $("#modalReportedForum").modal('show');

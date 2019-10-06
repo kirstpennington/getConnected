@@ -43,9 +43,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-
-
-
     <!--NavigationBar Style-->
 
     <style>
@@ -174,7 +171,8 @@
             background-color: #ffffff;
             z-index: 1;
         }
-         .rounded-circle { /* Profile Picture 2/3 */
+
+        .rounded-circle { /* Profile Picture 2/3 */
             border-radius: 50% !important;
         }
 
@@ -322,8 +320,6 @@
         }
 
 
-
-
         .heartbutton {
             top: -50px;
             left: 260px;
@@ -400,7 +396,7 @@
             z-index: 3;
         }
 
-         .AcceptDeclinebutton {
+        .AcceptDeclinebutton {
             border-radius: 8px;
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
             opacity: 0.8;
@@ -419,7 +415,7 @@
 
         }
 
-         .notification-item {
+        .notification-item {
             padding: 5px;
             margin: 5px;
             border-radius: 4px;
@@ -428,7 +424,7 @@
             height: 80px;
         }
 
-         .profile_img_1 {
+        .profile_img_1 {
             max-width: 50px;
             min-width: 50px;
             display: inline;
@@ -441,7 +437,6 @@
         }
 
 
-
     </style>
 
 
@@ -452,7 +447,7 @@
 <!--dialog pop-ups-->
 <dialog class="text-center" id="connectedWith"
         style="box-shadow: 2px 2px 2px 2px grey;color: white;position: absolute; top: 30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
- <div id="newconnectionmodal"></div>
+    <div id="newconnectionmodal"></div>
     <br>
     <button id="close" style="border: 1px solid #e83e8c;border-radius: 8px;
         color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
@@ -468,7 +463,7 @@
         color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
     </button>
 </dialog>
-
+<!--script to close dialog pop-ups-->
 <script>
 
 
@@ -482,7 +477,6 @@
         x.close();
     };
 </script>
-
 
 
 <!--navigation bar at top of all pages-->
@@ -534,11 +528,13 @@
 
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
+                        <div class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
 
                             <ul id="Message_dropdown_notifications" style="">
 
-                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
+                                <a class="text-center"
+                                   style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No
+                                    Messages</a>
 
                                 {% comment %}     <a><div style="" class="notification-item">
                                 <img class="profile_img" src="{{ ProfilePic }}"/>
@@ -573,8 +569,10 @@
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
 
-                      <div id="">
-                        <span ><span class="glyphicon glyphicon-bell"></span>&nbsp;<span id="counter_number_notifications" class="label label-default"   style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
+                    <div id="">
+                        <span><span class="glyphicon glyphicon-bell"></span>&nbsp;<span
+                                id="counter_number_notifications" class="label label-default"
+                                style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
 
                     </div>
 
@@ -623,10 +621,6 @@
 
 
             </ul><!--nav navbar-nav navbar-right-->
-
-
-
-
 
 
         </div><!--collapse nav-bar collapse-->
@@ -849,15 +843,14 @@
                 var decision = "true";
                 var opp_decison = "false";
                 html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
-
-
-
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
 
 
             }
         }
-         if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
+        if (html.length == 0) {
+            html = "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";
+        }
         $('#comment').html(html);
     }
 
@@ -874,9 +867,9 @@
         /*Creating notification icon*/
 
 
-{% comment %}
-        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-{% endcomment %}
+        {% comment %}
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+        {% endcomment %}
 
 
         $('#counter_number_notifications').html(countholder);
@@ -896,10 +889,7 @@
                 if (snapshot.exists()) {
 
 
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf()) {
 
                         var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
                         AddtoForum.child(sender_id).set(sender_id);
@@ -907,30 +897,23 @@
                         var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
                         AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
 
+                    } else {
+
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                        AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                        AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                        // window.alert("You have joined a new forum!");
+                        var x = document.getElementById("forumJoined");
+                        x.show();
                     }
-
-
-                    else {
-
-
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
 
 
                 }/*Forum Requests*/
@@ -972,12 +955,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -1069,7 +1052,7 @@
             </div>
 
 
-            <div class="row" ><!--row one of page-->
+            <div class="row"><!--row one of page-->
 
                 <div class="col-md-3"><!--filter panel-->
                     <div class="container">
@@ -1082,7 +1065,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a  class="togger"
+                                        <a class="togger"
                                            style="color:#ce3298">
                                             <strong>
                                                 Subject
@@ -1091,27 +1074,27 @@
 
                                         </a>
                                     </h4>
+                                </div> <!--filter items-->
+
+                                <div class="collapseSubject" style="margin-left: 6px;">
+                                    <p onclick="showAll()"> All </p>
+                                    <p onclick="searchByTopic('Arts & Design')"> Arts & Design </p>
+                                    <p onclick="searchByTopic('Business & Management')"> Business & Management</p>
+                                    <p onclick="searchByTopic('Education')"> Education</p>
+                                    <p onclick="searchByTopic('Entrepreneurship')"> Entrepreneurship </p>
+                                    <p onclick="searchByTopic('Executive Education')"> Executive Education</p>
+                                    <p onclick="searchByTopic('Finance')" id='financeFilter'>Finance</p>
+                                    <p onclick="searchByTopic('Health')"> Health</p>
+                                    <p onclick="searchByTopic('Hospitality & Events')"> Hospitality & Events</p>
+                                    <p onclick="searchByTopic('Law')"> Law</p>
+                                    <p onclick="searchByTopic('Marketing')"> Marketing </p>
+                                    <p onclick="searchByTopic('Project Management')"> Project Management</p>
+                                    <p onclick="searchByTopic('Real Estate')"> Real Estate</p>
+                                    <p onclick="searchByTopic('Systems & Technology')"> Systems & Technology </p>
+                                    <p onclick="searchByTopic('Talent Management (HR)')"> Talent Management (HR)</p>
+                                    <p onclick="searchByTopic('Writing')"> Writing</p>
+
                                 </div>
-
-                                    <div class="collapseSubject" style="margin-left: 6px;">
-                                        <p onclick="showAll()"> All </p>
-                                        <p onclick="searchByTopic('Arts & Design')"> Arts & Design </p>
-                                        <p onclick="searchByTopic('Business & Management')"> Business & Management</p>
-                                        <p onclick="searchByTopic('Education')"> Education</p>
-                                        <p onclick="searchByTopic('Entrepreneurship')"> Entrepreneurship </p>
-                                        <p onclick="searchByTopic('Executive Education')"> Executive Education</p>
-                                        <p onclick="searchByTopic('Finance')" id='financeFilter'>Finance</p>
-                                        <p onclick="searchByTopic('Health')"> Health</p>
-                                        <p onclick="searchByTopic('Hospitality & Events')"> Hospitality & Events</p>
-                                        <p onclick="searchByTopic('Law')"> Law</p>
-                                        <p onclick="searchByTopic('Marketing')"> Marketing </p>
-                                        <p onclick="searchByTopic('Project Management')"> Project Management</p>
-                                        <p onclick="searchByTopic('Real Estate')"> Real Estate</p>
-                                        <p onclick="searchByTopic('Systems & Technology')"> Systems & Technology </p>
-                                        <p onclick="searchByTopic('Talent Management (HR)')"> Talent Management (HR)</p>
-                                        <p onclick="searchByTopic('Writing')"> Writing</p>
-
-                                    </div>
 
                             </div>
 
@@ -1129,27 +1112,33 @@
                                     </h4>
                                 </div>
 
-                                    <div class="collapseUniversity" style="margin-left: 6px;">
+                                <div class="collapseUniversity" style="margin-left: 6px;"><!--filter items-->
 
-                                        <p onclick="showAll()"> All </p>
-                                        <p onclick="searchByUniversity('Cambridge CSL')">Cambridge CSL</p>
-                                        <p onclick="searchByUniversity('Harvard University<')"> Harvard University</p>
-                                        <p onclick="searchByUniversity('LSE')"> LSE</p>
-                                        <p onclick="searchByUniversity('MIT')">MIT</p>
-                                        <p onclick="searchByUniversity('Oxford Saïd')">Oxford Saïd</p>
-                                        <p onclick="searchByUniversity('Rice University')"> Rice University</p>
-                                        <p onclick="searchByUniversity('Stanford Center for Health Education')">Stanford Center for Health Education</p>
-                                        <p onclick="searchByUniversity('The University of Chicago')"> The University of Chicago</p>
-                                        <p onclick="searchByUniversity('UC Berkeley')"> UC Berkeley</p>
-                                        <p onclick="searchByUniversity('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
-                                        <p onclick="searchByUniversity('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
-                                        <p onclick="searchByUniversity('USB-ED')">USB-ED</p>
-                                        <p onclick="searchByUniversity('University of Cape Town')"> University of Cape Town</p>
-                                        <p onclick="searchByUniversity('University of Dayton')">University of Dayton</p>
-                                        <p onclick="searchByUniversity('WITS')"> WITS</p>
-                                        <p onclick="searchByUniversity('Yale SOM Executive Education')">Yale SOM Executive Education</p>
+                                    <p onclick="showAll()"> All </p>
+                                    <p onclick="searchByUniversity('Cambridge CSL')">Cambridge CSL</p>
+                                    <p onclick="searchByUniversity('Harvard University<')"> Harvard University</p>
+                                    <p onclick="searchByUniversity('LSE')"> LSE</p>
+                                    <p onclick="searchByUniversity('MIT')">MIT</p>
+                                    <p onclick="searchByUniversity('Oxford Saïd')">Oxford Saïd</p>
+                                    <p onclick="searchByUniversity('Rice University')"> Rice University</p>
+                                    <p onclick="searchByUniversity('Stanford Center for Health Education')">Stanford
+                                        Center for Health Education</p>
+                                    <p onclick="searchByUniversity('The University of Chicago')"> The University of
+                                        Chicago</p>
+                                    <p onclick="searchByUniversity('UC Berkeley')"> UC Berkeley</p>
+                                    <p onclick="searchByUniversity('UC Davis Graduate School of Management')">UC Davis
+                                        Graduate School of Management</p>
+                                    <p onclick="searchByUniversity('UCT Graduate School of Business')"> UCT Graduate
+                                        School of Business</p>
+                                    <p onclick="searchByUniversity('USB-ED')">USB-ED</p>
+                                    <p onclick="searchByUniversity('University of Cape Town')"> University of Cape
+                                        Town</p>
+                                    <p onclick="searchByUniversity('University of Dayton')">University of Dayton</p>
+                                    <p onclick="searchByUniversity('WITS')"> WITS</p>
+                                    <p onclick="searchByUniversity('Yale SOM Executive Education')">Yale SOM Executive
+                                        Education</p>
 
-                                    </div>
+                                </div>
 
                             </div>
 
@@ -1165,244 +1154,246 @@
                                     </h4>
                                 </div>
 
-                                    <!--panel 1 content-->
-                                    <div class="collapseRecommendations" style="margin-left: 6px;">
-                                        <p onclick="showAll()"> All </p>
-                                        <p onclick="searchByRating('Highly Rated')"> Highly Rated</p>
-                                        <p onclick="searchByRating('Well Rated')"> Well Rated</p>
-                                        <p onclick="searchByRating('')"> No Rating</p>
+                                <!--panel 1 content-->
+                                <div class="collapseRecommendations" style="margin-left: 6px;"><!--filter items-->
+                                    <p onclick="showAll()"> All </p>
+                                    <p onclick="searchByRating('Highly Rated')"> Highly Rated</p>
+                                    <p onclick="searchByRating('Well Rated')"> Well Rated</p>
+                                    <p onclick="searchByRating('')"> No Rating</p>
 
 
-                                    </div>
+                                </div>
 
                             </div><!--end panel-->
 
 
-
                         </div><!--end of accordion-->
-<script><!--handles opening and closing filter mycourses-->
-$(document).ready(function(){
-  $(".togger").click(function(){
-    $(".collapseSubject").collapse('toggle');
-  });
-  $(".toggertwo").click(function(){
-    $(".collapseUniversity").collapse('toggle');
-  });
-   $(".toggerThree").click(function(){
-    $(".collapseRecommendations").collapse('toggle');
-  });
+                        <script> <!--handles opening and closing filter mycourses-->
+                        $(document).ready(function () {
+                            $(".togger").click(function () {
+                                $(".collapseSubject").collapse('toggle');
+                            });
+                            $(".toggertwo").click(function () {
+                                $(".collapseUniversity").collapse('toggle');
+                            });
+                            $(".toggerThree").click(function () {
+                                $(".collapseRecommendations").collapse('toggle');
+                            });
 
-});
-</script>
-                        <!-- <form class="  search-form" role="search">
-                                 <input type="text" class="form-control" placeholder="Search" />
+                        });
+                        </script>
 
-                             </form>-->
 
                     </div>
                 </div><!--end col-->
 
-            <div class="col-md-9">
-                <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
 
-                    <div class="col-md-9" ><!--courses--><!--form at the top with recommendations-->
-                    <div class="intro-form">
-                        <form>
-                            <!--recommended course cards-->
-                            <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span
-                                    class="fa fa-book fa-lg"></span> Recommended for you</p>
-                            <br>
-
-
-                            <!--make a table of 1 row and 3 coloumns-->
-                            <div class="row"
-                                 style="width: 850px; position: relative; overflow: hidden; padding-left: 120px;">
+                        <div class="col-md-9"><!--courses--><!--form at the top with recommendations-->
+                            <div class="intro-form">
+                                <form>
+                                    <!--recommended course cards-->
+                                    <p style="opacity: 1;text-align: center;margin-bottom: 0px"><span
+                                            class="fa fa-book fa-lg"></span> Recommended for you</p>
+                                    <br>
 
 
-                                <!-- Item 2-->
-
-                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in suggested_courses_list %}
-                                    <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
-
-
-                                        <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
-
-                                            <div class="inf" style="margin-top: -5px; text-align: center; ">
-
-                                                <div style="height:2px;"><br></div>
-
-                                                <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
-                                                    {{ course_names }}
-                                                </div>
-                                                <!-- hidden field that stores the id of the entity  -->
-                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-
-                                                <div style="height:2px;"><br></div>
-
-                                                <span class="badge badge-pill badge-dark"
-                                                      style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
-                                                <div style="height:5px;"><br></div>
-
-                                                <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
-                                                   href={{ course_urls }}>VIEW
-                                                    COURSE <i class="fa fa-angle-double-right"></i></a>
-                                            </div><!-- inf-->
-
-                                        </div><!-- RighColumnContainer-->
+                                    <!--make a table of 1 row and 3 coloumns-->
+                                    <div class="row"
+                                         style="width: 850px; position: relative; overflow: hidden; padding-left: 120px;">
 
 
-                                    </div> <!-- col-sm-3-->
-                                {% endfor %}
+                                        <!-- Item 2-->
+
+                                        {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in suggested_courses_list %}
+                                            <div id="" class="col-sm-4  " style=" width: 202px;margin-top: 5px  ">
+
+
+                                                <div class=" rightColumnContainer_lower"
+                                                     style="width: 175px; height: 90px; ">
+
+                                                    <div class="inf" style="margin-top: -5px; text-align: center; ">
+
+                                                        <div style="height:2px;"><br></div>
+
+                                                        <div style="font-family: 'Arial Narrow'; text-align: center; font-weight: bold; font-size: small; top: 5px; position: relative">
+                                                            {{ course_names }}
+                                                        </div>
+                                                        <!-- hidden field that stores the id of the entity  -->
+                                                        <div id="course_id"
+                                                             style="display: none;"> {{ courses_ids }}</div>
+
+                                                        <div style="height:2px;"><br></div>
+
+                                                        <span class="badge badge-pill badge-dark"
+                                                              style="color: white; font-size: x-small;  top: 10px">{{ course_recommendations }}</span><br>
+                                                        <div style="height:5px;"><br></div>
+
+                                                        <a style="font-size: smaller; margin-left: 0px;color: black; font-weight: bold; "
+                                                           href={{ course_urls }}>VIEW
+                                                            COURSE <i class="fa fa-angle-double-right"></i></a>
+                                                    </div><!-- inf-->
+
+                                                </div><!-- RighColumnContainer-->
+
+
+                                            </div> <!-- col-sm-3-->
+                                        {% endfor %}
+
+
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+
+
+                        </div><!--recommendations-->
+
+
+                    </div><!--inside row 1 end-->
+
+                    <div class="row" style="padding-top: 30px;">
+
+
+                        <div id="refreshSectionFilter" class="row" style="margin-bottom: 80px;"><!--row two of page-->
+
+                            {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in courses_list %}
+                                <td>
+                                    <div id="{{ courses_ids }}_hide" class="col-md-3"
+                                         style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-right:40px;">
+
+                                        <!-- My Courses: Item 1 -->
+                                        <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
+                                        <div hidden id="{{ courses_ids }}_topics">{{ course_topics }}</div>
+                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                                              rel="stylesheet">
+
+                                        <div class="container">
+
+                                            <div class="row">
+
+                                                <div class="col-lg-3 col-sm-6" style="margin-right:20px;">
+                                                    <div class="cardheader" style="background-image: url(
+                                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
+
+                                                    {% comment %}
+                                   // var isHearted = "false";
+{% endcomment %}
+                                                    <!--1. KIMONE: If ishearted == false implement the following div + please replace isHearted below with the actual value in the db-->
+                                                    {% if course_hearted == True or course_hearted == 'True' or course_hearted == 'true' %}
+                                                        <div onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')"
+                                                             class="heartbutton"><span id="{{ courses_ids }}_heart"
+                                                                                       style="background: transparent;"
+                                                                                       class="fa fa-heart fa-2x heartColour"></span>
+                                                        </div>
+                                                        <!--2. KIMONE: If ishearted == true implement the following div + please replace isHearted below with the actual value in the db-->
+                                                    {% else %}
+                                                        <div onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')"
+                                                             class="heartbutton"><span id="{{ courses_ids }}_heart"
+                                                                                       style="background: transparent;padding-right: 60px;"
+                                                                                       class="fa fa-heart fa-2x grey"></span>
+                                                        </div>
+                                                    {% endif %}
+
+
+
+                                                    <div class="card hovercard  "
+                                                         style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
+                                                        <div class="avatar"><br>
+                                                            {% load staticfiles %}
+                                                            <img src='{{ course_pictures }}'/>
+                                                        </div>
+                                                        <br>
+                                                        <div class="info">
+                                                            <div class="title"></div>
+                                                            <div id="{{ courses_ids }}_name"
+                                                                 style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                                            </div>
+                                                            <!-- hidden field that stores the id of the entity  -->
+                                                            <div id="course_id"
+                                                                 style="display: none;"> {{ courses_ids }}</div>
+                                                            <br><span id="{{ courses_ids }}_rating"
+                                                                      class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
+                                                        </div>
+
+                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
+
+                                                        <!--this link should open the course card drill down-->
+                                                        <!--<a style="font-size: smaller; color: gray; font-weight: bold"
+                                           href={{ course_urls }}>
+                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
+                                        </a>-->
+
+                                                        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                           data-toggle="modal"
+                                                           href="#exampleModalLong_{{ courses_ids }}" class=" button">
+                                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
+                                                        </a>
+
+                                                    </div>
+                                                </div><!-- /col-lg-3 col-sm-6 -->
+
+                                            </div><!-- /row -->
+                                        </div><!-- /container -->
+
+
+                                    </div><!--end col-->
+                                </td>
+                                {% if forloop.counter|divisibleby:3 %}
+                                    </div>
+                                    <div class="row" style="margin-bottom: 60px;">
+                                {% endif %}
+                            {% endfor %}
+
+
+
+
 
 
                             </div>
 
 
-                        </form>
-
                     </div>
 
 
-                </div><!--recommendations-->
+                    <script>
+
+                        function Like_Unlike_Course(course_id, ishearted) {
+
+                            var course_hearting = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses/" + course_id);/*locating user's course*/
+
+                            course_hearting.on("value", function (snapshot) {
+
+                                var ishearted_db = snapshot.val().hearted;
 
 
+                                if (ishearted_db == "true" || ishearted_db == 'True') {
 
-                </div><!--inside row 1 end-->
+                                    course_hearting.update({
+                                        hearted: "false"
+                                    });
+                                    document.getElementById(course_id + "_heart").className = "fa fa-heart fa-2x grey";
 
-            <div class="row" style="padding-top: 30px;">
+                                } else {
+                                    course_hearting.update({
+                                        hearted: "true"
+                                    });
+                                    document.getElementById(course_id + "_heart").className = "fa fa-heart fa-2x heartColour";
 
+                                }
 
-                 <div id="refreshSectionFilter" class="row" style="margin-bottom: 80px;"><!--row two of page-->
+                            });
 
-                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in courses_list %}
-                    <td>
-                        <div id="{{ courses_ids }}_hide" class="col-md-3"
-                         style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-right:40px;">
+                        }
 
-                        <!-- My Courses: Item 1 -->
-                        <div hidden id="{{ courses_ids }}_uni">{{ course_uni }}</div>
-                        <div hidden id="{{ courses_ids }}_topics">{{ course_topics }}</div>
-                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                              rel="stylesheet">
-
-                        <div class="container">
-
-                            <div class="row">
-
-                                <div class="col-lg-3 col-sm-6" style="margin-right:20px;">
-                                    <div class="cardheader" style="background-image: url(
-                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
-
-{% comment %}
-                                   // var isHearted = "false";
-{% endcomment %}
-                                    <!--1. KIMONE: If ishearted == false implement the following div + please replace isHearted below with the actual value in the db-->
-                                    {% if course_hearted == True or course_hearted == 'True' or course_hearted == 'true' %}
-                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton" ><span id="{{ courses_ids }}_heart" style="background: transparent;" class="fa fa-heart fa-2x heartColour"></span></div>
-                                    <!--2. KIMONE: If ishearted == true implement the following div + please replace isHearted below with the actual value in the db-->
-                                    {% else %}
-                                        <div  onclick="Like_Unlike_Course('{{ courses_ids }}', '{{ course_hearted }}')" class="heartbutton" ><span id="{{ courses_ids }}_heart" style="background: transparent;padding-right: 60px;" class="fa fa-heart fa-2x grey"></span></div>
-                                    {% endif %}
+                    </script>
 
 
-
-                                    <div class="card hovercard  " style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
-                                        <div class="avatar"><br>
-                                            {% load staticfiles %}
-                                            <img src='{{ course_pictures }}'/>
-                                        </div>
-                                        <br>
-                                        <div class="info">
-                                            <div class="title"></div>
-                                            <div id="{{ courses_ids }}_name" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                            </div>
-                                            <!-- hidden field that stores the id of the entity  -->
-                                            <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                            <br><span id="{{ courses_ids }}_rating"
-                                                      class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                        </div>
-
-                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                       <!--this link should open the course card drill down-->
-                                        <!--<a style="font-size: smaller; color: gray; font-weight: bold"
-                                           href={{ course_urls }}>
-                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
-                                        </a>-->
-
-                                        <a style="font-size: smaller; color: gray; font-weight: bold"
-                                          data-toggle="modal" href="#exampleModalLong_{{ courses_ids }}" class=" button">
-                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
-                                        </a>
-
-                                    </div>
-                                </div><!-- /col-lg-3 col-sm-6 -->
-
-                            </div><!-- /row -->
-                        </div><!-- /container -->
-
-
-                    </div><!--end col-->
-                    </td>
-                    {% if forloop.counter|divisibleby:3 %}
-                        </div><div class="row" style="margin-bottom: 60px;">
-                    {% endif %}
-                {% endfor %}
-
-
-
-
-
-
-            </div>
-
-
-            </div>
-
-
-        <script>
-
-            function Like_Unlike_Course(course_id, ishearted) {
-
-            var course_hearting = firebase.database().ref().child("Users/"+ '{{ this_uid }}' + "/Courses/"+ course_id);/*locating user's course*/
-
-                course_hearting.on("value", function (snapshot) {
-
-                        var ishearted_db  = snapshot.val().hearted;
-
-
-
-                 if (ishearted_db == "true" || ishearted_db == 'True'){
-
-                         course_hearting.update({
-                            hearted: "false"
-                        });
-                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x grey";
-
-                 }else{
-                              course_hearting.update({
-                            hearted: "true"
-                        });
-                         document.getElementById(course_id+"_heart").className = "fa fa-heart fa-2x heartColour";
-
-                 }
-
-                   });
-
-             }
-
-        </script>
-
-
-
-
-
-
-
-
-
- </div><!--end row encaps-->
-        </div><!--end mycourses-->
+                </div><!--end row encaps-->
+            </div><!--end mycourses-->
         </div>
 
         <!-- content for all courses tab-->
@@ -1410,28 +1401,27 @@ $(document).ready(function(){
 
 
             <!--search bar with icon-->
-                <div class="centraliser" style="text-align: center">
-                    <div class="input-group" style="width: 77%;padding-left: 24%;font-family: 'Roboto', sans-serif;" >
-                        <input id="searchNameInputAll" type="text"  class="form-control" placeholder="Search"/>
-                        <span onclick="searchByNameAll()" class="input-group-addon" style="color: #e83e8c; ">
+            <div class="centraliser" style="text-align: center">
+                <div class="input-group" style="width: 77%;padding-left: 24%;font-family: 'Roboto', sans-serif;">
+                    <input id="searchNameInputAll" type="text" class="form-control" placeholder="Search"/>
+                    <span onclick="searchByNameAll()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
-                        <span onclick="showAllAll()" class="input-group-addon" style="color: #e83e8c; ">
+                    <span onclick="showAllAll()" class="input-group-addon" style="color: #e83e8c; ">
                             <i class="glyphicon glyphicon-remove"></i>
                         </span>
-                    </div>
                 </div>
+            </div>
 
 
+            <div class="row"><!--row one of page-->
+                <!--filter panel-->
+                <div class="col-md-3">
+                    <div class="container">
+                        <h2 style="color: silver;"><strong>Filters </strong></h2>
 
-                <div class="row"><!--row one of page-->
- <!--filter panel-->
-                    <div class="col-md-3"  >
-                        <div class="container"  >
-                          <h2 style="color: silver;"><strong>Filters </strong></h2>
 
-
-                          <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
+                        <div class="panel-group text" id="accordion" style="width: 25%;padding-left: 0px;">
 
                             <!--panel-->
                             <div class="panel panel-default">
@@ -1446,31 +1436,31 @@ $(document).ready(function(){
                                     </h4>
                                 </div>
 
-                                    <div class="collapseSubjectall" style="margin-left: 6px;">
-                                        <p onclick="showAllAll()"> All </p>
-                                        <p onclick="searchByTopicAll('Arts & Design')"> Arts & Design </p>
-                                        <p onclick="searchByTopicAll('Business & Management')"> Business & Management</p>
-                                        <p onclick="searchByTopicAll('Education')"> Education</p>
-                                        <p onclick="searchByTopicAll('Entrepreneurship')"> Entrepreneurship </p>
-                                        <p onclick="searchByTopicAll('Executive Education')"> Executive Education</p>
-                                        <p onclick="searchByTopicAll('Finance')" id='financeFilter'>Finance</p>
-                                        <p onclick="searchByTopicAll('Health')"> Health</p>
-                                        <p onclick="searchByTopicAll('Hospitality & Events')"> Hospitality & Events</p>
-                                        <p onclick="searchByTopicAll('Law')"> Law</p>
-                                        <p onclick="searchByTopicAll('Marketing')"> Marketing </p>
-                                        <p onclick="searchByTopicAll('Project Management')"> Project Management</p>
-                                        <p onclick="searchByTopicAll('Real Estate')"> Real Estate</p>
-                                        <p onclick="searchByTopicAll('Systems & Technology')"> Systems & Technology </p>
-                                        <p onclick="searchByTopicAll('Talent Management (HR)')"> Talent Management (HR)</p>
-                                        <p onclick="searchByTopicAll('Writing')"> Writing</p>
+                                <div class="collapseSubjectall" style="margin-left: 6px;"><!--filter items-->
+                                    <p onclick="showAllAll()"> All </p>
+                                    <p onclick="searchByTopicAll('Arts & Design')"> Arts & Design </p>
+                                    <p onclick="searchByTopicAll('Business & Management')"> Business & Management</p>
+                                    <p onclick="searchByTopicAll('Education')"> Education</p>
+                                    <p onclick="searchByTopicAll('Entrepreneurship')"> Entrepreneurship </p>
+                                    <p onclick="searchByTopicAll('Executive Education')"> Executive Education</p>
+                                    <p onclick="searchByTopicAll('Finance')" id='financeFilter'>Finance</p>
+                                    <p onclick="searchByTopicAll('Health')"> Health</p>
+                                    <p onclick="searchByTopicAll('Hospitality & Events')"> Hospitality & Events</p>
+                                    <p onclick="searchByTopicAll('Law')"> Law</p>
+                                    <p onclick="searchByTopicAll('Marketing')"> Marketing </p>
+                                    <p onclick="searchByTopicAll('Project Management')"> Project Management</p>
+                                    <p onclick="searchByTopicAll('Real Estate')"> Real Estate</p>
+                                    <p onclick="searchByTopicAll('Systems & Technology')"> Systems & Technology </p>
+                                    <p onclick="searchByTopicAll('Talent Management (HR)')"> Talent Management (HR)</p>
+                                    <p onclick="searchByTopicAll('Writing')"> Writing</p>
 
-                                    </div>
+                                </div>
 
                             </div>
 
                             <!--panel-->
                             <div class="panel panel-default">
-                               <div class="panel-heading">
+                                <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a class="toggertwoall"
                                            style="color:#ce3298">
@@ -1481,30 +1471,36 @@ $(document).ready(function(){
                                     </h4>
                                 </div>
 
-                                    <div class="collapseUniversityall" style="margin-left: 6px;">
+                                <div class="collapseUniversityall" style="margin-left: 6px;"><!--filter items-->
 
-                                        <p onclick="showAllAll()"> All </p>
-                                        <p onclick="searchByUniversityAll('Cambridge CSL')">Cambridge CSL</p>
-                                        <p onclick="searchByUniversityAll('Harvard University<')"> Harvard University</p>
-                                        <p onclick="searchByUniversityAll('LSE')"> LSE</p>
-                                        <p onclick="searchByUniversityAll('MIT')">MIT</p>
-                                        <p onclick="searchByUniversityAll('Oxford Saïd')">Oxford Saïd</p>
-                                        <p onclick="searchByUniversityAll('Rice University')"> Rice University</p>
-                                        <p onclick="searchByUniversityAll('Stanford Center for Health Education')">Stanford Center for Health Education</p>
-                                        <p onclick="searchByUniversityAll('The University of Chicago')"> The University of Chicago</p>
-                                        <p onclick="searchByUniversityAll('UC Berkeley')"> UC Berkeley</p>
-                                        <p onclick="searchByUniversityAll('UC Davis Graduate School of Management')">UC Davis Graduate School of Management</p>
-                                        <p onclick="searchByUniversityAll('UCT Graduate School of Business')"> UCT Graduate School of Business</p>
-                                        <p onclick="searchByUniversityAll('USB-ED')">USB-ED</p>
-                                        <p onclick="searchByUniversityAll('University of Cape Town')"> University of Cape Town</p>
-                                        <p onclick="searchByUniversityAll('University of Dayton')">University of Dayton</p>
-                                        <p onclick="searchByUniversityAll('WITS')"> WITS</p>
-                                        <p onclick="searchByUniversityAll('Yale SOM Executive Education')">Yale SOM Executive Education</p>
+                                    <p onclick="showAllAll()"> All </p>
+                                    <p onclick="searchByUniversityAll('Cambridge CSL')">Cambridge CSL</p>
+                                    <p onclick="searchByUniversityAll('Harvard University<')"> Harvard University</p>
+                                    <p onclick="searchByUniversityAll('LSE')"> LSE</p>
+                                    <p onclick="searchByUniversityAll('MIT')">MIT</p>
+                                    <p onclick="searchByUniversityAll('Oxford Saïd')">Oxford Saïd</p>
+                                    <p onclick="searchByUniversityAll('Rice University')"> Rice University</p>
+                                    <p onclick="searchByUniversityAll('Stanford Center for Health Education')">Stanford
+                                        Center for Health Education</p>
+                                    <p onclick="searchByUniversityAll('The University of Chicago')"> The University of
+                                        Chicago</p>
+                                    <p onclick="searchByUniversityAll('UC Berkeley')"> UC Berkeley</p>
+                                    <p onclick="searchByUniversityAll('UC Davis Graduate School of Management')">UC
+                                        Davis Graduate School of Management</p>
+                                    <p onclick="searchByUniversityAll('UCT Graduate School of Business')"> UCT Graduate
+                                        School of Business</p>
+                                    <p onclick="searchByUniversityAll('USB-ED')">USB-ED</p>
+                                    <p onclick="searchByUniversityAll('University of Cape Town')"> University of Cape
+                                        Town</p>
+                                    <p onclick="searchByUniversityAll('University of Dayton')">University of Dayton</p>
+                                    <p onclick="searchByUniversityAll('WITS')"> WITS</p>
+                                    <p onclick="searchByUniversityAll('Yale SOM Executive Education')">Yale SOM
+                                        Executive Education</p>
 
-                                    </div>
+                                </div>
 
                             </div>
-                              <div hidden id="all_courses_str">{{ all_courses_str }}</div>
+                            <div hidden id="all_courses_str">{{ all_courses_str }}</div>
 
                             <!--panel-->
                             <div class="panel panel-default">
@@ -1518,261 +1514,241 @@ $(document).ready(function(){
                                     </h4>
                                 </div>
 
-                                    <!--panel 1 content-->
-                                    <div class="collapseRecommendationsall" style="margin-left: 6px;">
-                                        <p onclick="showAllAll()"> All </p>
-                                        <p onclick="searchByRatingAll('Highly Rated')"> Highly Rated</p>
-                                        <p onclick="searchByRatingAll('Well Rated')"> Well Rated</p>
-                                        <p onclick="searchByRatingAll('')"> No Rating</p>
+                                <!--panel 1 content-->
+                                <div class="collapseRecommendationsall" style="margin-left: 6px;"><!--filter items-->
+                                    <p onclick="showAllAll()"> All </p>
+                                    <p onclick="searchByRatingAll('Highly Rated')"> Highly Rated</p>
+                                    <p onclick="searchByRatingAll('Well Rated')"> Well Rated</p>
+                                    <p onclick="searchByRatingAll('')"> No Rating</p>
 
 
-                                    </div>
+                                </div>
 
                             </div><!--end panel-->
 
 
-
                         </div><!--end of accordion-->
-                            <script><!--handles opening and closing filter allcourses-->
-$(document).ready(function(){
-  $(".toggeroneall").click(function(){
-    $(".collapseSubjectall").collapse('toggle');
-  });
-  $(".toggertwoall").click(function(){
-    $(".collapseUniversityall").collapse('toggle');
-  });
-   $(".toggerthreeall").click(function(){
-    $(".collapseRecommendationsall").collapse('toggle');
-  });
+                        <script><!--handles opening and closing filter allcourses-->
+                        $(document).ready(function () {
+                            $(".toggeroneall").click(function () {
+                                $(".collapseSubjectall").collapse('toggle');
+                            });
+                            $(".toggertwoall").click(function () {
+                                $(".collapseUniversityall").collapse('toggle');
+                            });
+                            $(".toggerthreeall").click(function () {
+                                $(".collapseRecommendationsall").collapse('toggle');
+                            });
 
-});
-</script>
-                           <!-- <form class="  search-form" role="search">
-                                    <input type="text" class="form-control" placeholder="Search" />
+                        });
+                        </script>
+                        <!-- <form class="  search-form" role="search">
+                                 <input type="text" class="form-control" placeholder="Search" />
 
-                                </form>-->
+                             </form>-->
 
-                        </div>
-                        </div><!--end col-->
+                    </div>
+                </div><!--end col-->
 
-                    <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;" >
+                <div class="col-md-3" style="padding-top: 105px;padding-left: 0px;margin-left: -14px;">
 
-                         <!-- My Courses: Item 1 -->
+                    <!-- My Courses: Item 1 -->
 
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-                                                <div class="container">
+                    <div class="container">
 
-                                                    <div class="row" style="margin-bottom: 60px;">
+                        <div class="row" style="margin-bottom: 60px;">
 
 
-                                                                {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in all_courses_list %}
-                                                                    <td>
-                                                                        <div id="{{ courses_ids }}_hideAll" class="col-md-3"
-                                                                             style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-bottom: 14px;">
+                            {% for course_names, course_pictures, course_recommendations, course_urls, course_uni_pics, courses_ids, course_topics, course_uni, course_hearted in all_courses_list %}
+                                <td>
+                                    <div id="{{ courses_ids }}_hideAll" class="col-md-3"
+                                         style="padding-top: 0px;padding-left: 0px;margin-left: 14px; margin-bottom: 14px;">
 
-                                                                            <!-- My Courses: Item 1 -->
-                                                                            <div hidden id="{{ courses_ids }}_uniAll">{{ course_uni }}</div>
-                                                                            <div hidden id="{{ courses_ids }}_topicsAll">{{ course_topics }}</div>
-                                                                            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                                                                                  rel="stylesheet">
+                                        <!-- My Courses: Item 1 -->
+                                        <div hidden id="{{ courses_ids }}_uniAll">{{ course_uni }}</div>
+                                        <div hidden id="{{ courses_ids }}_topicsAll">{{ course_topics }}</div>
+                                        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                                              rel="stylesheet">
 
-                                                                            <div class="container">
+                                        <div class="container">
 
-                                                                                <div class="row">
+                                            <div class="row">
 
-                                                                                    <div class="col-lg-3 col-sm-6">
-                                                                                        <div class="cardheader" style="background-image: url(
-                                                                                                {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="cardheader" style="background-image: url(
+                                                            {% load staticfiles %}{{ course_uni_pics }});border-radius: 10px; width:280px;"></div>
 
-                                                                                        <div class="card hovercard  " style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
-                                                                                            <div class="avatar"><br>
-                                                                                                {% load staticfiles %}
-                                                                                                <img src='{{ course_pictures }}'/>
-                                                                                            </div>
-                                                                                            <br>
-                                                                                            <div class="info">
-                                                                                                <div class="title"></div>
-                                                                                                <div id="{{ courses_ids }}_nameAll" style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
-                                                                                                </div>
-                                                                                                <!-- hidden field that stores the id of the entity  -->
-                                                                                                <div id="course_id" style="display: none;"> {{ courses_ids }}</div>
-                                                                                                <br><span id="{{ courses_ids }}_ratingAll"
-                                                                                                          class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
-                                                                                            </div>
-
-                                                                                            <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
-
-                                                                                            <a style="font-size: smaller; color: gray; font-weight: bold"
-                                          data-toggle="modal" href="#exampleModalLong_{{ courses_ids }}" class=" button">
-                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
-                                        </a>
-                                                                                        </div>
-                                                                                    </div><!-- /col-lg-3 col-sm-6 -->
-
-                                                                                </div><!-- /row -->
-                                                                            </div><!-- /container -->
-                                                                        </div><!--end col-->
-                                                                    </td>
-
-                                                                    {% if forloop.counter|divisibleby:3 %}
-                                                                        </div><div class="row" style="margin-bottom: 60px;">
-                                                                    {% endif %}
-                                                                {% endfor %}
+                                                    <div class="card hovercard  "
+                                                         style="width: 240px; padding:10px;padding-right: 10px; padding-bottom: 10px; padding-top: 10px;">
+                                                        <div class="avatar"><br>
+                                                            {% load staticfiles %}
+                                                            <img src='{{ course_pictures }}'/>
+                                                        </div>
+                                                        <br>
+                                                        <div class="info">
+                                                            <div class="title"></div>
+                                                            <div id="{{ courses_ids }}_nameAll"
+                                                                 style="font-family: 'Arial Narrow'; font-weight: bold; font-size: medium">{{ course_names }}
+                                                            </div>
+                                                            <!-- hidden field that stores the id of the entity  -->
+                                                            <div id="course_id"
+                                                                 style="display: none;"> {{ courses_ids }}</div>
+                                                            <br><span id="{{ courses_ids }}_ratingAll"
+                                                                      class="badge badge-pill badge-dark">{{ course_recommendations }}</span>
                                                         </div>
 
-                                                    <script>
-                                                        // shows all blocks in the list of my courses
-                                                        function showAllAll(){
-                                                            var allCoursesRef = firebase.database().ref("Courses");
-                                                            allCoursesRef.on("value", function (snapshot_all_courses) {
-                                                                var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
+                                                        <hr style="width: 80%; color: hotpink; height: 1px; background-color:hotpink;"/>
 
-                                                                //  loop through course_ids
-                                                                for (let i = 0; i < myCourseList.length; i++) {
-                                                                    document.getElementById(myCourseList[i] + "_hideAll").hidden = false;           // show all blocks
-                                                                }
-                                                            });
-                                                        }
+                                                        <a style="font-size: smaller; color: gray; font-weight: bold"
+                                                           data-toggle="modal"
+                                                           href="#exampleModalLong_{{ courses_ids }}" class=" button">
+                                                            VIEW COURSE<i class="fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div><!-- /col-lg-3 col-sm-6 -->
 
+                                            </div><!-- /row -->
+                                        </div><!-- /container -->
+                                    </div><!--end col-->
+                                </td>
 
-                                                        // replace list of my courses with filtered courses based on topic selected
-                                                        function searchByTopicAll(searchTopic) {
+                                {% if forloop.counter|divisibleby:3 %}
+                                    </div>
+                                    <div class="row" style="margin-bottom: 60px;">
+                                {% endif %}
+                            {% endfor %}
+                            </div>
 
-                                                            var allCoursesRef = firebase.database().ref("Courses");
-                                                            allCoursesRef.on("value", function (snapshot_all_courses) {
-                                                                var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
+                        <script>
+                            // shows all blocks in the list of my courses
+                            function showAllAll() {
+                                var allCoursesRef = firebase.database().ref("Courses");
+                                allCoursesRef.on("value", function (snapshot_all_courses) {
+                                    var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
 
-                                                                for (let i = 0; i < myCourseList.length; i++) {
-                                                                    // check if topics list for this course_id contains Finance
-                                                                    var elementIdName = myCourseList[i] + "_topicsAll";
-                                                                    strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
-                                                                    strTopics = strTopics1.substring(1, strTopics1.length - 1);
-                                                                    var courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
-                                                                    if (courseTopicsList.includes(searchTopic)) {                            // if the topic searched is in the list
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                                                                    } else {
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
-                                                                    }
-                                                                }
-                                                                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
-                                                            });
-                                                        }
-
-                                                        // replace list of my courses with filtered courses based on university selected
-                                                        function searchByUniversityAll(searchUni) {
-
-                                                            var allCoursesRef = firebase.database().ref("Courses");
-                                                            allCoursesRef.on("value", function (snapshot_all_courses) {
-                                                                var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
-
-                                                                for (let i = 0; i < myCourseList.length; i++) {
-                                                                    // check if topics list for this course_id contains Finance
-                                                                    elementIdName = myCourseList[i] + "_uniAll";
-                                                                    courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                                                                    if (courseUniCheck == searchUni) {                            // if the topic searched is in the list
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                                                                    } else {
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
-                                                                    }
-                                                                }
-                                                                // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
-                                                            });
-                                                        }
+                                    //  loop through course_ids
+                                    for (let i = 0; i < myCourseList.length; i++) {
+                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = false;           // show all blocks
+                                    }
+                                });
+                            }
 
 
-                                                        // replace list of my courses with filtered courses based on rating selected
-                                                        function searchByRatingAll(searchRating) {
+                            // replace list of my courses with filtered courses based on topic selected
+                            function searchByTopicAll(searchTopic) {
 
-                                                            var allCoursesRef = firebase.database().ref("Courses");
-                                                            allCoursesRef.on("value", function (snapshot_all_courses) {
-                                                                var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
+                                var allCoursesRef = firebase.database().ref("Courses");
+                                allCoursesRef.on("value", function (snapshot_all_courses) {
+                                    var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
 
-                                                                for (let i = 0; i < myCourseList.length; i++) {
-                                                                    // check if topics list for this course_id contains Finance
-                                                                    elementIdName = myCourseList[i] + "_ratingAll";
-                                                                    courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
-                                                                    if (courseRatingCheck == searchRating) {                                         // if the rating searched is in the list
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
-                                                                    } else {
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
-                                                                    }
-                                                                }
-                                                            });
-                                                            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
-                                                        }
+                                    for (let i = 0; i < myCourseList.length; i++) {
+                                        // check if topics list for this course_id contains Finance
+                                        var elementIdName = myCourseList[i] + "_topicsAll";
+                                        strTopics1 = document.getElementById(elementIdName).innerText;          // get data from the element that ontains the topics for that course
+                                        strTopics = strTopics1.substring(1, strTopics1.length - 1);
+                                        var courseTopicsList = strTopics.split("|");                                // creates an array of the course's topics
+                                        if (courseTopicsList.includes(searchTopic)) {                            // if the topic searched is in the list
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                        } else {
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
+                                        }
+                                    }
+                                    // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
+                                });
+                            }
 
+                            // replace list of my courses with filtered courses based on university selected
+                            function searchByUniversityAll(searchUni) {
 
+                                var allCoursesRef = firebase.database().ref("Courses");
+                                allCoursesRef.on("value", function (snapshot_all_courses) {
+                                    var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
 
-                                                        //  check if name contains string typed - search button
-                                                        function searchByNameAll() {
-                                                            searchTerm = document.getElementById('searchNameInputAll').value;                   // get the value in the search input field
-                                                            var allCoursesRef = firebase.database().ref("Courses");
-                                                            allCoursesRef.on("value", function (snapshot_all_courses) {
-                                                                var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
-
-                                                                for (let i = 0; i < myCourseList.length; i++) {
-                                                                    // check if topics list for this course_id contains Finance
-                                                                    courseName = document.getElementById(myCourseList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
-                                                                    if (courseName.includes(searchTerm)) {                                               // if the rating searched is in the list
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                                                    } else {
-                                                                        document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
-                                                                    }
-                                                                }
-                                                            });
-                                                            // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
-                                                        }
-
-                                                        // get a snapshot of a list of keys from firebase and convert it to an array
-                                                        function snapshotToArrayKey(snapshot) {
-                                                            let returnArr = [];
-                                                            snapshot.forEach(childSnapshot => {
-                                                                //let item = childSnapshot.val();
-                                                                var key = childSnapshot.key;
-                                                                returnArr.push(key);
-                                                            });
-                                                            return returnArr;
-                                                        }
-
-                                                    </script>
+                                    for (let i = 0; i < myCourseList.length; i++) {
+                                        // check if topics list for this course_id contains Finance
+                                        elementIdName = myCourseList[i] + "_uniAll";
+                                        courseUniCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
+                                        if (courseUniCheck == searchUni) {                            // if the topic searched is in the list
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                        } else {
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
+                                        }
+                                    }
+                                    // labels are placed on ech element in the array "course_id_uni", _topics, _recommendation, _hide
+                                });
+                            }
 
 
-                                                    <!-- </div> /row -->
+                            // replace list of my courses with filtered courses based on rating selected
+                            function searchByRatingAll(searchRating) {
 
-                                                </div><!-- /container -->
+                                var allCoursesRef = firebase.database().ref("Courses");
+                                allCoursesRef.on("value", function (snapshot_all_courses) {
+                                    var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
 
-                    </div><!--end col-->
+                                    for (let i = 0; i < myCourseList.length; i++) {
+                                        // check if topics list for this course_id contains Finance
+                                        elementIdName = myCourseList[i] + "_ratingAll";
+                                        courseRatingCheck = document.getElementById(elementIdName).innerText;          // get data from the element that contains the university name for that course
+                                        if (courseRatingCheck == searchRating) {                                         // if the rating searched is in the list
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;               // if the topic is not found in the list, hide the block for the course
+                                        } else {
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
+                                        }
+                                    }
+                                });
+                                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide
+                            }
 
-                </div><!--end row-->
+
+                            //  check if name contains string typed - search button
+                            function searchByNameAll() {
+                                searchTerm = document.getElementById('searchNameInputAll').value;                   // get the value in the search input field
+                                var allCoursesRef = firebase.database().ref("Courses");
+                                allCoursesRef.on("value", function (snapshot_all_courses) {
+                                    var myCourseList = snapshotToArrayKey(snapshot_all_courses);                                        // split string into array by the delimiter ","
+
+                                    for (let i = 0; i < myCourseList.length; i++) {
+                                        // check if topics list for this course_id contains Finance
+                                        courseName = document.getElementById(myCourseList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                        if (courseName.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                        } else {
+                                            document.getElementById(myCourseList[i] + "_hideAll").hidden = true;
+                                        }
+                                    }
+                                });
+                                // labels are placed on ech element in the array "course_id_uni", _topics, _rating, _hide, _name
+                            }
+
+                            // get a snapshot of a list of keys from firebase and convert it to an array
+                            function snapshotToArrayKey(snapshot) {
+                                let returnArr = [];
+                                snapshot.forEach(childSnapshot => {
+                                    //let item = childSnapshot.val();
+                                    var key = childSnapshot.key;
+                                    returnArr.push(key);
+                                });
+                                return returnArr;
+                            }
+
+                        </script>
+
+
+                        <!-- </div> /row -->
+
+                    </div><!-- /container -->
+
+                </div><!--end col-->
+
+            </div><!--end row-->
 
         </div>
     </div>
 
     <br><br>
-
-    <!--pagination-->
-   <!-- <div class="centraliser" style="text-align: center;">
-        <nav aria-label="Page navigation example" style="display: inline-block;">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous" style="color: #e83e8c">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">1</a></li>
-                <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">2</a></li>
-                <li class="page-item"><a class="page-link" href="#" style="color: #e83e8c">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next" style="color: #e83e8c">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>-->
 
 
 </div>
@@ -1820,10 +1796,12 @@ $(document).ready(function(){
                             GetConnected?</p></a>
                         <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
                         </a>
-                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging</p></a>
-                        <a onclick="location.href='{% url 'helpconnections' %}'"  style="color: white"><p>Connection
+                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums &
+                            Messaging</p></a>
+                        <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
                             Management</p></a>
-                        <a onclick="location.href='{% url 'helpcourses' %}'"  style="color: white"><p>Courses Help</p></a>
+                        <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p>
+                        </a>
                         <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
 
 
@@ -1861,8 +1839,6 @@ $(document).ready(function(){
 <script>
 
 
-
-
     / Carousel Auto-Cycle
     $(document).ready(function () {
         $('.carousel').carousel({
@@ -1879,7 +1855,7 @@ $(document).ready(function(){
 <script>
 
     // shows all blocks in the list of my courses
-    function showAll(){
+    function showAll() {
         var myCoursesRef = firebase.database().ref("Users").child('{{ this_uid }}').child('Courses');
         myCoursesRef.on("value", function (snapshot_my_courses) {
             var myCourseList = snapshotToArrayKey(snapshot_my_courses);                                        // split string into array by the delimiter ","
@@ -1958,7 +1934,6 @@ $(document).ready(function(){
     }
 
 
-
     //  check if name contains string typed - search button
     function searchByName() {
         searchTerm = document.getElementById('searchNameInput').value;                   // get the value in the search input field
@@ -1984,76 +1959,76 @@ $(document).ready(function(){
 
 <script>
     // Fetching the date
-             const MONTH_NAMES = [
-                'January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'
-            ];
+    const MONTH_NAMES = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
 
-            function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
-                const day = date.getDate();
-                const month = MONTH_NAMES[date.getMonth()];
-                const year = date.getFullYear();
-                const hours = date.getHours();
-                let minutes = date.getMinutes();
+    function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+        const day = date.getDate();
+        const month = MONTH_NAMES[date.getMonth()];
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        let minutes = date.getMinutes();
 
-                if (minutes < 10) {
-                    // Adding leading zero to minutes
-                    minutes = `0${minutes}`;
-                }
+        if (minutes < 10) {
+            // Adding leading zero to minutes
+            minutes = `0${minutes}`;
+        }
 
-                if (prefomattedDate) {
-                    // Today at 10:20
-                    // Yesterday at 10:20
-                    return `${prefomattedDate} at ${hours}:${minutes}`;
-                }
+        if (prefomattedDate) {
+            // Today at 10:20
+            // Yesterday at 10:20
+            return `${prefomattedDate} at ${hours}:${minutes}`;
+        }
 
-                if (hideYear) {
-                    // 10. January at 10:20
-                    return `${day}. ${month} at ${hours}:${minutes}`;
-                }
+        if (hideYear) {
+            // 10. January at 10:20
+            return `${day}. ${month} at ${hours}:${minutes}`;
+        }
 
-                // 10. January 2017. at 10:20
-                return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
-            }
-
-
-            // --- Main function
-            function timeAgo(dateParam) {
-
-                if (!dateParam) {
-                    return null;
-                }
-
-                const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-                const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-                const today = new Date();
-                const yesterday = new Date(today - DAY_IN_MS);
-                const seconds = Math.round((today - date) / 1000);
-                const minutes = Math.round(seconds / 60);
-                const isToday = today.toDateString() === date.toDateString();
-                const isYesterday = yesterday.toDateString() === date.toDateString();
-                const isThisYear = today.getFullYear() === date.getFullYear();
+        // 10. January 2017. at 10:20
+        return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+    }
 
 
-                if (seconds < 5) {
-                    return 'now';
-                } else if (seconds < 60) {
-                    return `${seconds} seconds ago`;
-                } else if (seconds < 90) {
-                    return 'about a minute ago';
-                } else if (minutes < 60) {
-                    return `${minutes} minutes ago`;
-                } else if (isToday) {
-                    return getFormattedDate(date, 'Today'); // Today at 10:20
-                } else if (isYesterday) {
-                    return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
-                } else if (isThisYear) {
-                    return getFormattedDate(date, false, true); // 10. January at 10:20
-                }
+    // --- Main function
+    function timeAgo(dateParam) {
 
-                return getFormattedDate(date); // 10. January 2017. at 10:20
-            };
+        if (!dateParam) {
+            return null;
+        }
+
+        const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+        const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+        const today = new Date();
+        const yesterday = new Date(today - DAY_IN_MS);
+        const seconds = Math.round((today - date) / 1000);
+        const minutes = Math.round(seconds / 60);
+        const isToday = today.toDateString() === date.toDateString();
+        const isYesterday = yesterday.toDateString() === date.toDateString();
+        const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+        if (seconds < 5) {
+            return 'now';
+        } else if (seconds < 60) {
+            return `${seconds} seconds ago`;
+        } else if (seconds < 90) {
+            return 'about a minute ago';
+        } else if (minutes < 60) {
+            return `${minutes} minutes ago`;
+        } else if (isToday) {
+            return getFormattedDate(date, 'Today'); // Today at 10:20
+        } else if (isYesterday) {
+            return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+        } else if (isThisYear) {
+            return getFormattedDate(date, false, true); // 10. January at 10:20
+        }
+
+        return getFormattedDate(date); // 10. January 2017. at 10:20
+    };
 
     // Realtime Updates
 
@@ -2065,570 +2040,539 @@ $(document).ready(function(){
 
 
     function renderUI(obj) {
-                var html = '';
-                var keys = Object.keys(obj);
-                for (var i = keys.length - 1; i >= 0; i--) {
-               // for (var i = 0; i <= keys.length - 1; i++) {
+        var html = '';
+        var keys = Object.keys(obj);
+        for (var i = keys.length - 1; i >= 0; i--) {
+            // for (var i = 0; i <= keys.length - 1; i++) {
 
 
-                    /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
-                    /*Creating notification item*/
+            /* html += "<li><b><i>" + obj[keys[i]].time + "</i></b> girl " + obj[keys[i]].receiver + "</li>";*/
+            /*Creating notification item*/
 
-                    if (obj[keys[i]].sender_profilePic != undefined) {
+            if (obj[keys[i]].sender_profilePic != undefined) {
 
-                        var display_time = obj[keys[i]].time;
-                        display_time = Number(display_time); // cast it to a Number
-                        var ts_display = timeAgo(display_time);
-
-
-                        var decision = "true";
-                        var opp_decison = "false";
-                        html += "<div href=\"#\" class=\"content\" style=\"padding:5px;; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px;margin-top:-8px; \"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+                var display_time = obj[keys[i]].time;
+                display_time = Number(display_time); // cast it to a Number
+                var ts_display = timeAgo(display_time);
 
 
-                    }}
-                $('#comment').html(html);
-            }
-
-
-            function renderCount(obj) {
-                var html = '';
-                var countholder = 0;
-
-                var keys = Object.keys(obj);
-                for (var i = 0; i < keys.length; i++) {
-                    countholder++;
-                }
-                countholder--;
-                database_counter.update({'counter': countholder});
-                 /*Creating notification icon*/
-
-
-                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-
-
-                $('#counter_number_notifications').html(html);
+                var decision = "true";
+                var opp_decison = "false";
+                html += "<div href=\"#\" class=\"content\" style=\"padding:5px;; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px;margin-top:-8px; \"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
 
 
             }
+        }
+        $('#comment').html(html);
+    }
 
 
-              function Accept_request(sender_id, name, post_id,isAccept){
+    function renderCount(obj) {
+        var html = '';
+        var countholder = 0;
+
+        var keys = Object.keys(obj);
+        for (var i = 0; i < keys.length; i++) {
+            countholder++;
+        }
+        countholder--;
+        database_counter.update({'counter': countholder});
+        /*Creating notification icon*/
 
 
-                  if (String(isAccept).valueOf() == String("true").valueOf()) {
-                      var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
-                      var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
+        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
 
 
-                      //AddConnection.child(sender_id).set(name);
-                      var bio;
-                      var propic;
-                      var country;
-                      var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
-                      getAcceptcon.on("value", function (snapshot) {
-                          bio = snapshot.val().Bio;
-                          propic = snapshot.val().ProfilePic;
-                          country = snapshot.val().Country;
-                      });
-
-                      //var created_id_target = AddConnection.push();
-                      AddConnection.child(sender_id).set({ /*Pushes to receiver*/
-                          Name: name,
-                          Bio: bio,
-                          ProfilePic: propic,
-                          Country: country,
-
-                      });
-
-                      AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
-                          Name: '{{ n }}',
-                          Bio: '{{ bio }}',
-                          ProfilePic: '{{ ProfilePic }}',
-                          Country: '{{ my_country }}',
-
-                      });
+        $('#counter_number_notifications').html(html);
 
 
-                      window.alert("You are now connected with " + name);
+    }
 
 
-                  }
-                  var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
-                  different_name.remove();
-
-                  var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
-                  removesent.remove();
-              }
+    function Accept_request(sender_id, name, post_id, isAccept) {
 
 
+        if (String(isAccept).valueOf() == String("true").valueOf()) {
+            var AddConnection = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/Connections");/*Messages*/
+            var AddConnection_other = firebase.database().ref().child("Users/" + sender_id + "/Connections");/*Messages*/
 
 
+            //AddConnection.child(sender_id).set(name);
+            var bio;
+            var propic;
+            var country;
+            var getAcceptcon = firebase.database().ref().child("Users/" + sender_id);
+            getAcceptcon.on("value", function (snapshot) {
+                bio = snapshot.val().Bio;
+                propic = snapshot.val().ProfilePic;
+                country = snapshot.val().Country;
+            });
+
+            //var created_id_target = AddConnection.push();
+            AddConnection.child(sender_id).set({ /*Pushes to receiver*/
+                Name: name,
+                Bio: bio,
+                ProfilePic: propic,
+                Country: country,
+
+            });
+
+            AddConnection_other.child('{{this_uid}}').set({ /*Pushes to receiver*/
+                Name: '{{ n }}',
+                Bio: '{{ bio }}',
+                ProfilePic: '{{ ProfilePic }}',
+                Country: '{{ my_country }}',
+
+            });
+
+
+            window.alert("You are now connected with " + name);
+
+
+        }
+        var different_name = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/RequestsReceived/" + post_id);/*Messages*/
+        different_name.remove();
+
+        var removesent = firebase.database().ref().child("Users/" + post_id + "/RequestsSent/" + '{{this_uid}}');/*Messages*/
+        removesent.remove();
+    }
 
 
 </script>
 
 <!-- Modal for view course  -->
 {% for course_id, course_image, course_name, course_description, course_start, course_topics, course_rating, reg_closes, course_length, course_effort, course_url in course_detail_list %}
-<div class="modal fade" id="exampleModalLong_{{ course_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle"> <strong> Course Details </strong> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    <div class="modal fade" id="exampleModalLong_{{ course_id }}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><strong> Course Details </strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-      <div class="modal-body">
-
-
-          <!--  <img src="COURSES_HAVARD.jpg" class="rounded-circle"  alt="course image" style="border: 1px solid gray;width: 30% ; height: 40%;border-radius: 10px;"  >-->
-           <img src="{{ course_image }}" alt="course image" style="width:25% ; height:25%;margin-left:38%;" >
-           <hr style="border: 1px solid #e83e8c;">
-           <h2 style="text-align: center; color: gray;"> {{ course_name }}<h2>
-
-             <p class="text-center" style="font-size: 15px; color: gray;">{{ course_description }}  <a href="{{ course_url }}" style="font-size: 10px; ">[Read more]</a></p>
+                <div class="modal-body">
 
 
-             <div class="row" >
-               <div class="col-sm-1"></div>
-                <div class="col-sm-4">
-                   <h5 style="font-size:20px;">Course Start:</h5>
-                 </div>
+                    <!--  <img src="COURSES_HAVARD.jpg" class="rounded-circle"  alt="course image" style="border: 1px solid gray;width: 30% ; height: 40%;border-radius: 10px;"  >-->
+                    <img src="{{ course_image }}" alt="course image" style="width:25% ; height:25%;margin-left:38%;">
+                    <hr style="border: 1px solid #e83e8c;">
+                    <h2 style="text-align: center; color: gray;"> {{ course_name }}
+                        <h2>
 
-                 <div class="col-sm-7">
-                    <h5 style="font-size: 20px; color: gray;">{{ course_start }}</h5>
-                  </div>
+                            <p class="text-center" style="font-size: 15px; color: gray;">{{ course_description }} <a
+                                    href="{{ course_url }}" style="font-size: 10px; ">[Read more]</a></p>
 
-             </div><!--end row-->
 
-             <div class="row" >
-<div class="col-sm-1"></div>
-                <div class="col-sm-4">
-                   <h5 style="font-size:20px;">Topics:</h5>
-                 </div>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-4">
+                                    <h5 style="font-size:20px;">Course Start:</h5>
+                                </div>
 
-                 <div class="col-sm-7">
-                    <h5 style="font-size: 20px; color: white; margin: 10px;" class="badge badge-pill badge-dark"> {{ course_topics }}</h5>
-                  </div>
-             </div><!--end row-->
-<p class="text-center" style="font-size: 15px; color:#e83e8c;"> <span class="glyphicon glyphicon-star" style="font-size:25px;"></span> This course is {{ course_rating }}</p>
+                                <div class="col-sm-7">
+                                    <h5 style="font-size: 20px; color: gray;">{{ course_start }}</h5>
+                                </div>
 
-                             <div class="collapseAdditional" style="color:white; background-color:gray;border-radius: 8px;margin-top:15px;">
+                            </div><!--end row-->
 
-                                     <div class="row" >
-                                       <div class="col-sm-1"></div>
-                                        <div class="col-sm-3">
-                                           <h5 style="font-size:12px;"><strong>Registration Closes:</strong></h5>
-                                         </div>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-4">
+                                    <h5 style="font-size:20px;">Topics:</h5>
+                                </div>
 
-                                         <div class="col-sm-7">
-                                            <h5 style="font-size: 12px;">{{ reg_closes }}</h5>
-                                          </div>
+                                <div class="col-sm-7">
+                                    <h5 style="font-size: 20px; color: white; margin: 10px;"
+                                        class="badge badge-pill badge-dark"> {{ course_topics }}</h5>
+                                </div>
+                            </div><!--end row-->
+                            <p class="text-center" style="font-size: 15px; color:#e83e8c;"><span
+                                    class="glyphicon glyphicon-star" style="font-size:25px;"></span> This course
+                                is {{ course_rating }}</p>
 
-                                     </div><!--end row-->
+                            <div class="collapseAdditional"
+                                 style="color:white; background-color:gray;border-radius: 8px;margin-top:15px;">
 
-                                     <div class="row" >
-                                       <div class="col-sm-1"></div>
-                                        <div class="col-sm-3">
-                                           <h5 style="font-size:12px;"><strong>Length:</strong></h5>
-                                         </div>
+                                <div class="row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3">
+                                        <h5 style="font-size:12px;"><strong>Registration Closes:</strong></h5>
+                                    </div>
 
-                                         <div class="col-sm-7">
-                                            <h5 style="font-size: 12px;">{{ course_length }}</h5>
-                                          </div>
+                                    <div class="col-sm-7">
+                                        <h5 style="font-size: 12px;">{{ reg_closes }}</h5>
+                                    </div>
 
-                                     </div><!--end row-->
+                                </div><!--end row-->
 
-                                     <div class="row" >
-                                       <div class="col-sm-1"></div>
-                                        <div class="col-sm-3">
-                                           <h5 style="font-size:12px;"><strong>Effort:</strong></h5>
-                                         </div>
+                                <div class="row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3">
+                                        <h5 style="font-size:12px;"><strong>Length:</strong></h5>
+                                    </div>
 
-                                         <div class="col-sm-7">
-                                            <h5 style="font-size: 12px;">{{ course_effort }}</h5>
-                                          </div>
+                                    <div class="col-sm-7">
+                                        <h5 style="font-size: 12px;">{{ course_length }}</h5>
+                                    </div>
 
-                                     </div><!--end row-->
+                                </div><!--end row-->
 
-                                   </div>
+                                <div class="row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3">
+                                        <h5 style="font-size:12px;"><strong>Effort:</strong></h5>
+                                    </div>
 
-</div>
-      <div class="modal-footer">
-        <a style="font-size: smaller; color: gray; font-weight: bold" href={{ course_url }}> VIEW COURSE <i class="fa fa-angle-double-right"></i> </a>
-      </div>
+                                    <div class="col-sm-7">
+                                        <h5 style="font-size: 12px;">{{ course_effort }}</h5>
+                                    </div>
+
+                                </div><!--end row-->
+
+                            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a style="font-size: smaller; color: gray; font-weight: bold" href={{ course_url }}> VIEW COURSE <i
+                            class="fa fa-angle-double-right"></i> </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {% endfor %}
-                     <!--end of modal-->
+<!--end of modal-->
 
 {% comment %}
 Badges_Celebrations_3
 {% endcomment %}
 <script>
 
-        //Badge_1_Friend_Finder
+    //Badge_1_Friend_Finder
 
-        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+    var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
 
-        FriendFinder_Connections.on("value", function (snapshot) {
+    FriendFinder_Connections.on("value", function (snapshot) {
 
-            var counter = 0;
+        var counter = 0;
 
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
+        });
+
+        if (counter >= 1 && counter < 5) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Friend Finder Badge";
+
+                if (snapshot.val().FriendFinder == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+
+                    checkCelebration.update({'FriendFinder': "celebrated"});
+                }
             });
-
-            if (counter >=1 && counter<5)
-
-            {
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-               checkCelebration.on("value", function (snapshot) {
-                   var text = "Friend Finder Badge";
-
-                    if (snapshot.val().FriendFinder == "not_celebrated"){
-                      $('#Congrats_Pop_Up').html(text);
-                      $("#Celebrations").modal();
-
-                        checkCelebration.update({'FriendFinder': "celebrated"});
-               }
-                });
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_2_NetoworkingNinja
 
-            if (counter >=5 && counter < 10)
+        if (counter >= 5 && counter < 10) {
 
-            {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Networking Ninja Badge";
+                if (snapshot.val().NetworkingNinja == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'NetworkingNinja': "celebrated"});
+                }
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Networking Ninja Badge";
-                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'NetworkingNinja': "celebrated"});
-               }
+            })
 
-                })
-
-            }
-
-            else {}
+        } else {
+        }
 
 
-         //Badge_3_CrazyConnector
+        //Badge_3_CrazyConnector
 
-  if (counter >=10 && counter<15)
-
-            {
+        if (counter >= 10 && counter < 15) {
 
 
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                     var text = "Crazy Connector Badge";
-
-
-                      if (snapshot.val().CrazyConnector == "not_celebrated"){
-                          $('#Congrats_Pop_Up').html(text);
-                          $("#Celebrations").modal();
-                          checkCelebration.update({'CrazyConnector': "celebrated"});
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Crazy Connector Badge";
 
 
-               }
-
-                })
-
-            }
-
-            else {}
+                if (snapshot.val().CrazyConnector == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'CrazyConnector': "celebrated"});
 
 
-          //Badge_4_PopularProfile
+                }
 
- if (counter >=15)
+            })
 
-            {
-
-
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Popular Profile Badge";
-
-                      if (snapshot.val().PopularProfile == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'PopularProfile': "celebrated"});
+        } else {
+        }
 
 
-               }
+        //Badge_4_PopularProfile
 
-                })
-
-            }
-
-            else {
+        if (counter >= 15) {
 
 
-            }
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Popular Profile Badge";
+
+                if (snapshot.val().PopularProfile == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'PopularProfile': "celebrated"});
 
 
+                }
+
+            })
+
+        } else {
+
+
+        }
+
+
+    });
+
+    //Badge_5_BrightSpark
+
+    var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+    Badges_for_Courses.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-          //Badge_5_BrightSpark
 
-var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+        if (counter >= 3 && counter < 5) {
 
-        Badges_for_Courses.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-
-
-            if (counter >=3 && counter<5)
-
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                      if (snapshot.val().BrightSpark == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html(text);
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'BrightSpark': "celebrated"});
+                if (snapshot.val().BrightSpark == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'BrightSpark': "celebrated"});
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_6_FabAcademic
 
-         if (counter >=5 && counter<10 )
+        if (counter >= 5 && counter < 10) {
 
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                    var text = "FabAcademic Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "FabAcademic Badge";
 
 
-                      if (snapshot.val().FabAcademic == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'FabAcademic': "celebrated"});
+                if (snapshot.val().FabAcademic == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'FabAcademic': "celebrated"});
 
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {
-            }
+        } else {
+        }
 
 
-           //Badge_7_Got_Smarter
+        //Badge_7_Got_Smarter
 
 
-            if (counter >=10 )
-
-            {
+        if (counter >= 10) {
 
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                 var text = "GotSmarter Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "GotSmarter Badge";
 
-                      if (snapshot.val().GotSmarter == "not_celebrated"){
-                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
-                         $("#Celebrations").modal();
+                if (snapshot.val().GotSmarter == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                    $("#Celebrations").modal();
 
-                       checkCelebration.update({'GotSmarter': "celebrated"});
-
-
-               }
-
-                })
-
-            }
-
-            else {
+                    checkCelebration.update({'GotSmarter': "celebrated"});
 
 
-            }
+                }
+
+            })
+
+        } else {
 
 
+        }
 
+
+    });
+
+    //Badge_8_Got_Smarter
+
+    //Badge_9_Forum_Boffin
+
+    var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+    Badges_for_Forums.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-        //Badge_8_Got_Smarter
-
-        //Badge_9_Forum_Boffin
-
-var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
-
-        Badges_for_Forums.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-            if (counter >=5 )
-
-            {
+        if (counter >= 5) {
 
 
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+                if (snapshot.val().ForumBoffin == "not_celebrated") {
+                    var text = "GotSmarter Badge";
+                    $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'ForumBoffin': "celebrated"});
 
-                      if (snapshot.val().ForumBoffin == "not_celebrated"){
-                       var text = "GotSmarter Badge";
-                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'ForumBoffin': "celebrated"});
+                }
 
-               }
+            })
 
-                })
-
-            }
-
-            else {
+        } else {
 
 
-            }
+        }
 
-           });
-
-
- //Badge_10_Forum_Boffin
-
-var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
-
-        Badges_for_Badges_Private.on("value", function (snapshot) {
-
-            var isPrivate = snapshot.val().privacyUpdated;
-            var display_1 = "";
+    });
 
 
-            if (isPrivate == "yes" )
+    //Badge_10_Forum_Boffin
 
-            {
+    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}');
 
-               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
-                   "                     <!--text for the hover-->\n" +
-                   "                 </div>";
+    Badges_for_Badges_Private.on("value", function (snapshot) {
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+        var isPrivate = snapshot.val().privacyUpdated;
+        var display_1 = "";
 
-                      if (snapshot.val().SuperSecurity == "not_celebrated"){
-                       var text = "Super Security Badge";
-                       $('#Congrats_Pop_Up').html("Super Security Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'SuperSecurity': "celebrated"});
 
-               }
+        if (isPrivate == "yes") {
 
-                })
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                "\n" +
+                "                <div class=\"middle\">\n" +
+                "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                "                     <!--text for the hover-->\n" +
+                "                 </div>";
 
-            }
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
 
-            else {
+                if (snapshot.val().SuperSecurity == "not_celebrated") {
+                    var text = "Super Security Badge";
+                    $('#Congrats_Pop_Up').html("Super Security Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'SuperSecurity': "celebrated"});
 
-                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
-                    "                    <div class=\"middle\">\n" +
-                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
-                    "                         <!--text for the hover-->\n" +
-                    "                     </div>";
-            }
+                }
 
-            $('#SuperSecurity').html(display_1);});
+            })
 
-    </script>
+        } else {
+
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                "                    <div class=\"middle\">\n" +
+                "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                "                         <!--text for the hover-->\n" +
+                "                     </div>";
+        }
+
+        $('#SuperSecurity').html(display_1);
+    });
+
+</script>
 {% comment %}
 Badges_Celebrations_1
 {% endcomment %}
 
-    <div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div style="" class="modal-content">
-                <div style="" class="modal-header">
+<div id="Celebrations" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style="" class="modal-content">
+            <div style="" class="modal-header">
 
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
 
-                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
-                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
-
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <br>
-                <img style="margin-left: 50px"
-                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
-
-                <div class="modal-body">
+                <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"></h4>
 
 
-                    <div id="ConnectionsListing_All" class="row">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <img style="margin-left: 50px"
+                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+            <div class="modal-body">
 
 
-                    </div> <!--end row-->
+                <div id="ConnectionsListing_All" class="row">
 
 
-                    <div class="modal-footer">
+                </div> <!--end row-->
 
 
-                    </div>
+                <div class="modal-footer">
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% comment %}
 Badges_Celebrations_2
 {% endcomment %}
-    <script>
+<script>
 
-        $('#Celebrations').on('show.bs.modal', function (event) {
+    $('#Celebrations').on('show.bs.modal', function (event) {
 
-        })
-    </script>
+    })
+</script>
 </body>

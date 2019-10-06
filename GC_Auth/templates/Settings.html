@@ -82,7 +82,6 @@
         }
 
 
-
         .profile_img {
             width: 25px;
             display: inline;
@@ -565,7 +564,8 @@
         .image-right-detail-section2 span {
             color: #7F7F7F;
         }
-         /*icon for user profile img**/
+
+        /*icon for user profile img**/
         .profile_img {
             width: 50px;
             display: inline;
@@ -818,62 +818,69 @@
     </button>
 </dialog>
 
-{% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+{% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}
+    <!-- allow the user to disable only when the account is enabled-->
     <nav id="nav_bar_disable" class="navbar navbar-inverse  ">
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>  <!--navbar-header-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>  <!--navbar-header-->
 
-        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
+            <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
 
-            <!--Left-side (including search ) of navigation bar-->
-            <ul class="nav navbar-nav navbar-left">
-                <li><a onclick="location.href='{% url 'nav_home' %}'">
-                    <span class="glyphicon glyphicon-home fa-lg"></span>
-                    Home
-                </a></li>
+                <!--Left-side (including search ) of navigation bar-->
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a onclick="location.href='{% url 'nav_home' %}'">
+                        <span class="glyphicon glyphicon-home fa-lg"></span>
+                        Home
+                    </a></li>
 
-                    <li><a id="nav_connections_btn" onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
+                    <li><a id="nav_connections_btn" onclick="location.href='{% url 'nav_networks' %}'"><span
+                            class="fa fa-globe fa-lg"></span>
                         Connections</a></li>
-                    <li><a id="nav_forums_btn" onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    <li><a id="nav_forums_btn" onclick="location.href='{% url 'nav_forums' %}'"><span
+                            class="fa fa-comments-o fa-lg"></span>
                         Forums</a></li>
-                    <li><a id="nav_courses_btn" onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                    <li><a id="nav_courses_btn" onclick="location.href='{% url 'nav_courses' %}'"><span
+                            class="fa fa-book fa-lg"></span> Courses</a>
                     </li>
 
-            </ul>
+                </ul>
 
 
-            <!--RHS of the navigation bar -->
+                <!--RHS of the navigation bar -->
 
-            <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
 
-                <!--MESSAGE NOTIFICATIONS -->
-                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <!--MESSAGE NOTIFICATIONS -->
+                    <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                            onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div style=""
-                         id="Messages_icons_notifications">
-                        &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
-                        <span id="number_of_msg_notifications" class="label label-default"
-                              style="background-color: red;color: white">0</span>&nbsp;
-                    </div>
+                        <div style=""
+                             id="Messages_icons_notifications">
+                            &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
+                            <span id="number_of_msg_notifications" class="label label-default"
+                                  style="background-color: red;color: white">0</span>&nbsp;
+                        </div>
 
 
-                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
+                            <div class="notifications-wrapper" style="overflow-x: hidden; ">
+                                <!--Messages Dropdown div-->
 
-                            <ul id="Message_dropdown_notifications" style="">
+                                <ul id="Message_dropdown_notifications" style="">
 
-                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
+                                    <a class="text-center"
+                                       style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No
+                                        Messages</a>
 
-                                {% comment %}     <a><div style="" class="notification-item">
+                                    {% comment %}     <a><div style="" class="notification-item">
                                 <img class="profile_img" src="{{ ProfilePic }}"/>
                                     <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
                                     <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
@@ -891,136 +898,142 @@
                                 </div>
                             </a>{% endcomment %}
 
-                            </ul>
+                                </ul>
 
-                        </div><!--notifications-wrapper-->
-                        <li class="divider"></li>
-                        <li style="font-weight: bold; font-family: sans-serif; text-align: right"
-                            onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
-                            View All <i class="fa fa-angle-double-right"></i></li>
-                    </ul><!--Dropdown menu Messages--> </a>
-                </li><!--dropdown -->
+                            </div><!--notifications-wrapper-->
+                            <li class="divider"></li>
+                            <li style="font-weight: bold; font-family: sans-serif; text-align: right"
+                                onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
+                                View All <i class="fa fa-angle-double-right"></i></li>
+                        </ul><!--Dropdown menu Messages--> </a>
+                    </li><!--dropdown -->
 
-                <!--REQUESTS NOTIFICATIONS -->
-                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
-                                                                      data-target="#" href="#"
-                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <!--REQUESTS NOTIFICATIONS -->
+                    <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                          data-target="#" href="#"
+                                                                          onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div id="">
-                        <span id="counter_number_notifications"></span>
-                    </div>
+                        <div id="">
+                            <span id="counter_number_notifications"></span>
+                        </div>
 
-                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
-                        aria-labelledby="dLabel">
+                        <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                            aria-labelledby="dLabel">
 
-                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
-                            <!--Notifications Dropdown div-->
-                            <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
-                                Notifications</p></ul>
-                        </div><!--End of Notifications Dropdown div-->
+                            <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                                <!--Notifications Dropdown div-->
+                                <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
+                                    Notifications</p></ul>
+                            </div><!--End of Notifications Dropdown div-->
 
-                        <!--Footer of notification drop down-->
-                        <li class="divider"></li>
-                        <li style="text-align: center"><a href="#"></a></li>
+                            <!--Footer of notification drop down-->
+                            <li class="divider"></li>
+                            <li style="text-align: center"><a href="#"></a></li>
 
-                    </ul> <!--Dropdown menu Notification-->
-                </a>
-                </li><!--dropdown -->
+                        </ul> <!--Dropdown menu Notification-->
+                    </a>
+                    </li><!--dropdown -->
 
-                <!--Profile Drop-Down -->
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <!--Profile Drop-Down -->
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                            onclick="CloseIntroForm(); OpenLogIn();">
 
                     <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20"
                                                                                   height="20" src="{{ ProfilePic }}"
                                                                                   alt=""></span>
 
-                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                        <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
-                    <ul class="dropdown-menu">
-                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
-                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                        <li class="divider"></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
-                                class="fa fa-comments-o pull-right"></span></a></li>
-                        <li class="divider"></li>
+                        <ul class="dropdown-menu">
+                            <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                    class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                    class="fa fa-comments-o pull-right"></span></a></li>
+                            <li class="divider"></li>
 
-                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
-                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
-                        <li class="divider"></li>
-                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
-                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                    </ul>
-                </li>
-
-
-            </ul><!--nav navbar-nav navbar-right-->
-        </div><!--collapse nav-bar collapse-->
-    </div><!--container fluid-->
-</nav><!--nav navbar-inverse-->
-{% else %}
-    <nav hidden id="nav_bar_disable" class="navbar navbar-inverse  ">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>  <!--navbar-header-->
-
-        <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
-
-            <!--Left-side (including search ) of navigation bar-->
-            <ul class="nav navbar-nav navbar-left">
-                <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
-                    <span class="glyphicon glyphicon-home fa-lg"></span>
-                    Home
-                </a></li>
-
-                    <li><a id="nav_connections_btn" onclick="location.href='{% url 'nav_networks' %}'"><span class="fa fa-globe fa-lg"></span>
-                        Connections</a></li>
-                    <li><a id="nav_forums_btn" onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
-                        Forums</a></li>
-                    <li><a id="nav_courses_btn" onclick="location.href='{% url 'nav_courses' %}'"><span class="fa fa-book fa-lg"></span> Courses</a>
+                            <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                    class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                    class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                        </ul>
                     </li>
 
-            </ul>
 
-            <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
-                <!--Search Input-->
-                <form class="  search-form" role="search">
-                    <input type="text" class="form-control" placeholder="Search"/>
-                </form>
+                </ul><!--nav navbar-nav navbar-right-->
+            </div><!--collapse nav-bar collapse-->
+        </div><!--container fluid-->
+    </nav><!--nav navbar-inverse-->
+{% else %}
+    <nav hidden id="nav_bar_disable" class="navbar navbar-inverse  ">
+        <div class="container-fluid">
 
-            </ul>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>  <!--navbar-header-->
 
-            <!--RHS of the navigation bar -->
+            <div class="collapse navbar-collapse" id="myNavbar"> <!--Navigation bar contents-->
 
-            <ul class="nav navbar-nav navbar-right">
+                <!--Left-side (including search ) of navigation bar-->
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a style="color:white;border-left: 1px solid white;border-right: 1px solid white;">
+                        <span class="glyphicon glyphicon-home fa-lg"></span>
+                        Home
+                    </a></li>
 
-                <!--MESSAGE NOTIFICATIONS -->
-                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <li><a id="nav_connections_btn" onclick="location.href='{% url 'nav_networks' %}'"><span
+                            class="fa fa-globe fa-lg"></span>
+                        Connections</a></li>
+                    <li><a id="nav_forums_btn" onclick="location.href='{% url 'nav_forums' %}'"><span
+                            class="fa fa-comments-o fa-lg"></span>
+                        Forums</a></li>
+                    <li><a id="nav_courses_btn" onclick="location.href='{% url 'nav_courses' %}'"><span
+                            class="fa fa-book fa-lg"></span> Courses</a>
+                    </li>
 
-                    <div style=""
-                         id="Messages_icons_notifications">
-                        &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
-                        <span id="number_of_msg_notifications" class="label label-default"
-                              style="background-color: red;color: white">0</span>&nbsp;
-                    </div>
+                </ul>
+
+                <ul class="nav navbar-nav" style="left: 80px; position: relative; width:500px; padding-top: 8px">
+                    <!--Search Input-->
+                    <form class="  search-form" role="search">
+                        <input type="text" class="form-control" placeholder="Search"/>
+                    </form>
+
+                </ul>
+
+                <!--RHS of the navigation bar -->
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <!--MESSAGE NOTIFICATIONS -->
+                    <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                            onclick="CloseIntroForm(); OpenLogIn();">
+
+                        <div style=""
+                             id="Messages_icons_notifications">
+                            &nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;
+                            <span id="number_of_msg_notifications" class="label label-default"
+                                  style="background-color: red;color: white">0</span>&nbsp;
+                        </div>
 
 
-                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
+                            <div class="notifications-wrapper" style="overflow-x: hidden; ">
+                                <!--Messages Dropdown div-->
 
-                            <ul id="Message_dropdown_notifications" style="">
+                                <ul id="Message_dropdown_notifications" style="">
 
-                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
+                                    <a class="text-center"
+                                       style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No
+                                        Messages</a>
 
-                                {% comment %}     <a><div style="" class="notification-item">
+                                    {% comment %}     <a><div style="" class="notification-item">
                                 <img class="profile_img" src="{{ ProfilePic }}"/>
                                     <p style="font-family:sans-serif;font-style:italic;margin-left: 240px; color: grey">14:50</p>
                                     <h5 style="font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative">Winfreda Mazvidza</h5>
@@ -1038,74 +1051,74 @@
                                 </div>
                             </a>{% endcomment %}
 
-                            </ul>
+                                </ul>
 
-                        </div><!--notifications-wrapper-->
-                        <li class="divider"></li>
-                        <li style="font-weight: bold; font-family: sans-serif; text-align: right"
-                            onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
-                            View All <i class="fa fa-angle-double-right"></i></li>
-                    </ul><!--Dropdown menu Messages--> </a>
-                </li><!--dropdown -->
+                            </div><!--notifications-wrapper-->
+                            <li class="divider"></li>
+                            <li style="font-weight: bold; font-family: sans-serif; text-align: right"
+                                onclick="removeMessageNotifications() ;location.href='{% url 'nav_DirectMessaging' %}' ">
+                                View All <i class="fa fa-angle-double-right"></i></li>
+                        </ul><!--Dropdown menu Messages--> </a>
+                    </li><!--dropdown -->
 
-                <!--REQUESTS NOTIFICATIONS -->
-                <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
-                                                                      data-target="#" href="#"
-                                                                      onclick="CloseIntroForm(); OpenLogIn();">
+                    <!--REQUESTS NOTIFICATIONS -->
+                    <li style="text-decoration: none" class="dropdown"><a id="idLabel" data-toggle="dropdown"
+                                                                          data-target="#" href="#"
+                                                                          onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <div id="">
-                        <span id="counter_number_notifications"></span>
-                    </div>
+                        <div id="">
+                            <span id="counter_number_notifications"></span>
+                        </div>
 
-                    <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
-                        aria-labelledby="dLabel">
+                        <ul style="text-decoration: none" class="dropdown-menu notifications" role="menu"
+                            aria-labelledby="dLabel">
 
-                        <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
-                            <!--Notifications Dropdown div-->
-                            <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
-                                Notifications</p></ul>
-                        </div><!--End of Notifications Dropdown div-->
+                            <div class="notifications-wrapper" style="overflow-x: hidden;text-decoration: none">
+                                <!--Notifications Dropdown div-->
+                                <ul id="comment"><p style="font-family: sans-serif;font-style: italic;color: black">No
+                                    Notifications</p></ul>
+                            </div><!--End of Notifications Dropdown div-->
 
-                        <!--Footer of notification drop down-->
-                        <li class="divider"></li>
-                        <li style="text-align: center"><a href="#"></a></li>
+                            <!--Footer of notification drop down-->
+                            <li class="divider"></li>
+                            <li style="text-align: center"><a href="#"></a></li>
 
-                    </ul> <!--Dropdown menu Notification-->
-                </a>
-                </li><!--dropdown -->
+                        </ul> <!--Dropdown menu Notification-->
+                    </a>
+                    </li><!--dropdown -->
 
-                <!--Profile Drop-Down -->
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
+                    <!--Profile Drop-Down -->
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                            onclick="CloseIntroForm(); OpenLogIn();">
 
                     <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="20"
                                                                                   height="20" src="{{ profilePic }}"
                                                                                   alt=""></span>
 
-                    <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                        <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
-                    <ul class="dropdown-menu">
-                        <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
-                                class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                        <li class="divider"></li>
-                        <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
-                                class="fa fa-comments-o pull-right"></span></a></li>
-                        <li class="divider"></li>
+                        <ul class="dropdown-menu">
+                            <li><a onclick="location.href='{% url 'settings' %}'">Settings <span
+                                    class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a onclick="location.href='{% url 'nav_forums' %}'">Forums <span
+                                    class="fa fa-comments-o pull-right"></span></a></li>
+                            <li class="divider"></li>
 
-                        <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
-                                class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
-                        <li class="divider"></li>
-                        <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
-                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                    </ul>
-                </li>
+                            <li><a onclick="location.href='{% url 'helpUserProfile' %}'">Help<span
+                                    class="glyphicon glyphicon-question-sign pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a onclick="location.href='{% url 'log' %}'">Sign Out <span
+                                    class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                        </ul>
+                    </li>
 
 
-            </ul><!--nav navbar-nav navbar-right-->
+                </ul><!--nav navbar-nav navbar-right-->
 
-        </div><!--collapse nav-bar collapse-->
-    </div><!--container fluid-->
-</nav><!--nav navbar-inverse-->
+            </div><!--collapse nav-bar collapse-->
+        </div><!--container fluid-->
+    </nav><!--nav navbar-inverse-->
 {% endif %}
 
 
@@ -1311,9 +1324,9 @@
             /*Creating notification item*/
 
             if (obj[keys[i]].sender_profilePic != undefined) {
-                start_count ++;
+                start_count++;
 
-                if (start_count ==1) {
+                if (start_count == 1) {
 
                     var display_time = obj[keys[i]].time;
                     display_time = Number(display_time); // cast it to a Number
@@ -1322,16 +1335,11 @@
 
                     var decision = "true";
                     var opp_decison = "false";
-
 
 
                     html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\" padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -30px; \" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 0px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black;left: 25px;position:relative;margin-top: -5px; font-size:14px;\">" + obj[keys[i]].message +
                         "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + decision + " )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 60px;color: white; border:0px;\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; border:0px;font-size: 85%;position: relative;left: 60px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div>";
-                }
-
-                else
-
-                {
+                } else {
 
                     var display_time = obj[keys[i]].time;
                     display_time = Number(display_time); // cast it to a Number
@@ -1341,10 +1349,7 @@
                     var decision = "true";
                     var opp_decison = "false";
 
-                   // searchByCountry();
-
-
-
+                    // searchByCountry();
 
 
                     html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px;\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative;font-size:14px; \">" + obj[keys[i]].message +
@@ -1485,7 +1490,6 @@
 </script>
 
 
-
 <div class="UserWallpaper parallax" style="background-image:url(
         {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
@@ -1501,16 +1505,14 @@
                          class="img-raised rounded-circle img-fluid">
 
 
-
                 </div>
             </div>
         </div><!--end coloumn-->
         <div class="col-sm-5">
             <br>
-            <h2 class="SettingsHead" style="padding-right: 10px;"> Account Settings  <span
+            <h2 class="SettingsHead" style="padding-right: 10px;"> Account Settings <span
                     class="glyphicon glyphicon-cog"></span></h2>
         </div><!--end col-->
-
 
 
         <div class="col-sm-2"></div>
@@ -1528,39 +1530,23 @@
             <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!--coloumn one username -->
                 <div class="inputformsLeft">
                     <p>Username: </p>
-                    {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                        <input maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                    {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}
+                        <!-- allow the user to disable only when the account is enabled-->
+                        <input maxlength="15" type="text" class="form-control" name="firstname" id="firstname"
+                               value={{ username }}>
                     {% else %}
-                        <input disabled="true" maxlength="15" type="text" class="form-control" name="firstname" id="firstname" value={{ username }}>
+                        <input disabled="true" maxlength="15" type="text" class="form-control" name="firstname"
+                               id="firstname" value={{ username }}>
                     {% endif %}
                 </div>
             </div>
 
             <div class="col-md-6" style="padding-left: 120px; padding-bottom: 30px;"><!-coloumn combo boxes -->
-                <!--   <p>University Attended:</p>
-                   <select id="university" name="university"
-                           style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
-                       <option value="None">None</option>
-                       <option value="Cambridge CSL">Cambridge CSL</option>
-                       <option value="Harvard"> Harvard University</option>
-                       <option value="LSE"> LSE</option>
-                       <option value="MIT">MIT</option>
-                       <option value="Oxford Saïd">Oxford Saïd</option>
-                       <option value="Rice University"> Rice University</option>
-                       <option value="Stanford health">Stanford Center for Health Education</option>
-                       <option value="Chicago Univeristy"> The University of Chicago</option>
-                       <option value="UC Berkely"> UC Berkeley</option>
-                       <option value="UC Davis">UC Davis Graduate School of Management</option>
-                       <option value="UCT GSB"> UCT Graduate School of Business</option>
-                       <option value="USB-ED">USB-ED</option>
-                       <option value="UCT"> University of Cape Town</option>
-                       <option value="Univeristy Dayton">University of Dayton</option>
-                       <option value="WITS"> WITS</option>
-                       <option value="Yale">Yale SOM Executive Education</option>
-                   </select>-->
+
 
                 <p>Your Country:</p>
-                {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+                {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}
+                    <!-- allow the user to disable only when the account is enabled-->
                     <select id="country" name="country"
                             style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
                         <!-- dynamically instantiate options list-->
@@ -1574,7 +1560,7 @@
                         {% endfor %}
                     </select>
                 {% else %}
-                      <select disabled="true" id="country" name="country"
+                    <select disabled="true" id="country" name="country"
                             style="border: 2px solid #e83e8c;width: 40% ;height: 100%;background-color:  #e83e8c;color:white; ">
                         <!-- dynamically instantiate options list-->
                         {% for option in total_country_list %}
@@ -1593,10 +1579,7 @@
 
         <div class="row"><!--row two-->
             <div class="col-md-6" style="padding-left: 275px; padding-bottom: 30px;"><!--My Courses -->
-                <!--  <div style="display: none;" class="inputformsLeft">
-                <p>Email Address: </p>
-                <input type="email" class="form-control" name="email" value='{{ email }}'>
-            </div> -->
+
                 <p>My Courses</p>
                 <!-- courses hide/show hide-->
                 {% if coursesPrivacy == "True" %}
@@ -1719,36 +1702,40 @@
                 {% endif %}
 
                 <div class="form-group">
-                    {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
+                    {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}
+                        <!-- allow the user to disable only when the account is enabled-->
                         <textarea name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
-                              style="width: 70%;">{{ bio }}</textarea>
+                                  style="width: 70%;">{{ bio }}</textarea>
                     {% else %}
-                        <textarea disabled="true" name="bioGet" id="bioGet" class="form-control" maxlength="100" rows="5" id="comment"
-                              style="width: 70%;">{{ bio }}</textarea>
+                        <textarea disabled="true" name="bioGet" id="bioGet" class="form-control" maxlength="100"
+                                  rows="5" id="comment"
+                                  style="width: 70%;">{{ bio }}</textarea>
                     {% endif %}
                 </div>
 
 
-             <div>
+                <div>
 
-            </div>
+                </div>
 
             </div><!--end col-->
 
 
             <div class="col-md-6" style="padding-left: 70px; padding-bottom: 30px;"><!--save button  -->
 
-            <button id="disableAccBtn" style="border-color:#e83e8c; margin-left: 50px;" class="btn btn-default">Disable Account</button>
+                <button id="disableAccBtn" style="border-color:#e83e8c; margin-left: 50px;" class="btn btn-default">
+                    Disable Account
+                </button>
 
-                    <div class="buttonbot" style="padding-top: 140px;padding-left: 140px;">
-                        {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}   <!-- allow the user to disable only when the account is enabled-->
-                            <button id="saveChangesBtn" type="submit">Save Changes</button>
-                        {% else %}
-                            <button hidden="true" id="saveChangesBtn" type="submit">Save Changes</button>
-                        {% endif %}
-                        <button id="cancelBtn" type="submit" value="cancel" name="cancel">Cancel</button>
-                    </div>
-
+                <div class="buttonbot" style="padding-top: 140px;padding-left: 140px;">
+                    {% if enabled == 'True' or enabled == 'true' or enabled == True or enabled == true %}
+                        <!-- allow the user to disable only when the account is enabled-->
+                        <button id="saveChangesBtn" type="submit">Save Changes</button>
+                    {% else %}
+                        <button hidden="true" id="saveChangesBtn" type="submit">Save Changes</button>
+                    {% endif %}
+                    <button id="cancelBtn" type="submit" value="cancel" name="cancel">Cancel</button>
+                </div>
 
 
             </div><!--end col-->
@@ -1797,26 +1784,36 @@
                     <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
 
                         <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
-                        <a onclick="location.href='{% url 'nav_home' %}'"><p style="color: white; font-size: 14px;">Home</p></a>
-                        <a onclick="location.href='{% url 'nav_networks' %}'" ><p style="color: white; font-size: 14px;">Connections</p>
+                        <a onclick="location.href='{% url 'nav_home' %}'"><p style="color: white; font-size: 14px;">
+                            Home</p></a>
+                        <a onclick="location.href='{% url 'nav_networks' %}'"><p style="color: white; font-size: 14px;">
+                            Connections</p>
                         </a>
-                        <a onclick="location.href='{% url 'nav_forums' %}'" ><p style="color: white; font-size: 14px;">Forums</p></a>
-                        <a onclick="location.href='{% url 'nav_courses' %}'" ><p style="color: white; font-size: 14px;">Courses</p></a>
+                        <a onclick="location.href='{% url 'nav_forums' %}'"><p style="color: white; font-size: 14px;">
+                            Forums</p></a>
+                        <a onclick="location.href='{% url 'nav_courses' %}'"><p style="color: white; font-size: 14px;">
+                            Courses</p></a>
                     </div>
 
                     <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
 
                         <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
 
-                        <a onclick="location.href='{% url 'introHelp' %}'" ><p style="color: white; font-size: 14px;">What is
+                        <a onclick="location.href='{% url 'introHelp' %}'"><p style="color: white; font-size: 14px;">
+                            What is
                             GetConnected?</p></a>
-                        <a onclick="location.href='{% url 'accountHelp' %}'" ><p style="color: white; font-size: 14px;">Your Account</p>
+                        <a onclick="location.href='{% url 'accountHelp' %}'"><p style="color: white; font-size: 14px;">
+                            Your Account</p>
                         </a>
-                        <a onclick="location.href='{% url 'forumsHelp' %}'" ><p style="color: white; font-size: 14px;">Forums & Messaging</p></a>
-                        <a onclick="location.href='{% url 'helpconnections' %}'" ><p style="color: white; font-size: 14px;">Connection
+                        <a onclick="location.href='{% url 'forumsHelp' %}'"><p style="color: white; font-size: 14px;">
+                            Forums & Messaging</p></a>
+                        <a onclick="location.href='{% url 'helpconnections' %}'"><p
+                                style="color: white; font-size: 14px;">Connection
                             Management</p></a>
-                        <a onclick="location.href='{% url 'helpcourses' %}'" ><p style="color: white; font-size: 14px;">Courses Help</p></a>
-                        <a href="https://www.getsmarter.com/what-we-do" ><p style="color: white; font-size: 14px;">GetSmarter</p></a>
+                        <a onclick="location.href='{% url 'helpcourses' %}'"><p style="color: white; font-size: 14px;">
+                            Courses Help</p></a>
+                        <a href="https://www.getsmarter.com/what-we-do"><p style="color: white; font-size: 14px;">
+                            GetSmarter</p></a>
 
 
                     </div>
@@ -1825,8 +1822,10 @@
 
                         <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
                         <p style="color: white; font-size: 14px;"><strong>Tel: </strong> 456 4637</p>
-                        <p style="color: white; font-size: 14px;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
-                        <p style="color: white; font-size: 14px;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+                        <p style="color: white; font-size: 14px;"><strong>Email: </strong> getConnected@GetSmarter.co.za
+                        </p>
+                        <p style="color: white; font-size: 14px;"><strong>Working Hours:</strong> Mon - Fri, 09:00 -
+                            17:00</p>
 
 
                     </div>
@@ -1849,500 +1848,466 @@
 <!-- End of 1.1 Pop Up modal-->
 
 
-
 {% comment %}
 Badges_Celebrations_3
 {% endcomment %}
 <script>
 
-        //Badge_1_Friend_Finder
+    //Badge_1_Friend_Finder
 
-        var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+    var FriendFinder_Connections = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
 
-        FriendFinder_Connections.on("value", function (snapshot) {
+    FriendFinder_Connections.on("value", function (snapshot) {
 
-            var counter = 0;
+        var counter = 0;
 
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
+        });
+
+        if (counter >= 1 && counter < 5) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Friend Finder Badge";
+
+                if (snapshot.val().FriendFinder == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+
+                    checkCelebration.update({'FriendFinder': "celebrated"});
+                }
             });
-
-            if (counter >=1 && counter<5)
-
-            {
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-               checkCelebration.on("value", function (snapshot) {
-                   var text = "Friend Finder Badge";
-
-                    if (snapshot.val().FriendFinder == "not_celebrated"){
-                      $('#Congrats_Pop_Up').html(text);
-                      $("#Celebrations").modal();
-
-                        checkCelebration.update({'FriendFinder': "celebrated"});
-               }
-                });
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_2_NetoworkingNinja
 
-            if (counter >=5 && counter < 10)
+        if (counter >= 5 && counter < 10) {
 
-            {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Networking Ninja Badge";
+                if (snapshot.val().NetworkingNinja == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'NetworkingNinja': "celebrated"});
+                }
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Networking Ninja Badge";
-                      if (snapshot.val().NetworkingNinja == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'NetworkingNinja': "celebrated"});
-               }
+            })
 
-                })
-
-            }
-
-            else {}
+        } else {
+        }
 
 
-         //Badge_3_CrazyConnector
+        //Badge_3_CrazyConnector
 
-  if (counter >=10 && counter<15)
-
-            {
+        if (counter >= 10 && counter < 15) {
 
 
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                     var text = "Crazy Connector Badge";
-
-
-                      if (snapshot.val().CrazyConnector == "not_celebrated"){
-                          $('#Congrats_Pop_Up').html(text);
-                          $("#Celebrations").modal();
-                          checkCelebration.update({'CrazyConnector': "celebrated"});
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Crazy Connector Badge";
 
 
-               }
-
-                })
-
-            }
-
-            else {}
+                if (snapshot.val().CrazyConnector == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'CrazyConnector': "celebrated"});
 
 
-          //Badge_4_PopularProfile
+                }
 
- if (counter >=15)
+            })
 
-            {
-
-
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                       var text = "Popular Profile Badge";
-
-                      if (snapshot.val().PopularProfile == "not_celebrated"){
-                        $('#Congrats_Pop_Up').html(text);
-                        $("#Celebrations").modal();
-                        checkCelebration.update({'PopularProfile': "celebrated"});
+        } else {
+        }
 
 
-               }
+        //Badge_4_PopularProfile
 
-                })
-
-            }
-
-            else {
+        if (counter >= 15) {
 
 
-            }
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "Popular Profile Badge";
+
+                if (snapshot.val().PopularProfile == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'PopularProfile': "celebrated"});
 
 
+                }
+
+            })
+
+        } else {
+
+
+        }
+
+
+    });
+
+    //Badge_5_BrightSpark
+
+    var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+
+    Badges_for_Courses.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-          //Badge_5_BrightSpark
 
-var Badges_for_Courses = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Courses");
+        if (counter >= 3 && counter < 5) {
 
-        Badges_for_Courses.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-
-
-            if (counter >=3 && counter<5)
-
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                      if (snapshot.val().BrightSpark == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html(text);
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'BrightSpark': "celebrated"});
+                if (snapshot.val().BrightSpark == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html(text);
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'BrightSpark': "celebrated"});
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {}
+        } else {
+        }
 
 
         //Badge_6_FabAcademic
 
-         if (counter >=5 && counter<10 )
+        if (counter >= 5 && counter < 10) {
 
-            {
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                    var text = "FabAcademic Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "FabAcademic Badge";
 
 
-                      if (snapshot.val().FabAcademic == "not_celebrated"){
-                       $('#Congrats_Pop_Up').html("FabAcademic Badge");
-                       $("#Celebrations").modal();
-                       checkCelebration.update({'FabAcademic': "celebrated"});
+                if (snapshot.val().FabAcademic == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("FabAcademic Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'FabAcademic': "celebrated"});
 
 
-               }
+                }
 
-                })
+            })
 
-            }
-
-            else {
-            }
+        } else {
+        }
 
 
-           //Badge_7_Got_Smarter
+        //Badge_7_Got_Smarter
 
 
-            if (counter >=10 )
-
-            {
+        if (counter >= 10) {
 
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-                 var text = "GotSmarter Badge";
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+                var text = "GotSmarter Badge";
 
-                      if (snapshot.val().GotSmarter == "not_celebrated"){
-                         $('#Congrats_Pop_Up').html("GotSmarter Badge");
-                         $("#Celebrations").modal();
+                if (snapshot.val().GotSmarter == "not_celebrated") {
+                    $('#Congrats_Pop_Up').html("GotSmarter Badge");
+                    $("#Celebrations").modal();
 
-                       checkCelebration.update({'GotSmarter': "celebrated"});
-
-
-               }
-
-                })
-
-            }
-
-            else {
+                    checkCelebration.update({'GotSmarter': "celebrated"});
 
 
-            }
+                }
+
+            })
+
+        } else {
 
 
+        }
 
+
+    });
+
+    //Badge_8_Got_Smarter
+
+    //Badge_9_Forum_Boffin
+
+    var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
+
+    Badges_for_Forums.on("value", function (snapshot) {
+
+        var counter = 0;
+
+        snapshot.forEach(function (childSnapshot) {
+            counter++;
         });
 
-        //Badge_8_Got_Smarter
-
-        //Badge_9_Forum_Boffin
-
-var Badges_for_Forums = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/ForumsJoined");
-
-        Badges_for_Forums.on("value", function (snapshot) {
-
-            var counter = 0;
-
-            snapshot.forEach(function (childSnapshot) {
-                counter++;
-            });
-
-            if (counter >=5 )
-
-            {
+        if (counter >= 5) {
 
 
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
 
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
+                if (snapshot.val().ForumBoffin == "not_celebrated") {
+                    var text = "GotSmarter Badge";
+                    $('#Congrats_Pop_Up').html("ForumBoffin Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'ForumBoffin': "celebrated"});
 
-                      if (snapshot.val().ForumBoffin == "not_celebrated"){
-                       var text = "GotSmarter Badge";
-                       $('#Congrats_Pop_Up').html("ForumBoffin Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'ForumBoffin': "celebrated"});
+                }
 
-               }
+            })
 
-                })
-
-            }
-
-            else {
+        } else {
 
 
-            }
+        }
 
-           });
-
-
- //Badge_10_Forum_Boffin
-var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
-
-        Badges_for_Badges_Private.on("value", function (snapshot) {
-
-            var isPrivate = snapshot.val().privacyUpdated;
-            var display_1 = "";
+    });
 
 
-            if (isPrivate == "yes" )
+    //Badge_10_Forum_Boffin
+    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}');
 
-            {
+    Badges_for_Badges_Private.on("value", function (snapshot) {
 
-               display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
-                   "\n" +
-                   "                <div class=\"middle\">\n" +
-                   "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
-                   "                     <!--text for the hover-->\n" +
-                   "                 </div>";
-
-               var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
-                checkCelebration.on("value", function (snapshot) {
-
-                      if (snapshot.val().SuperSecurity == "not_celebrated"){
-                       var text = "Super Security Badge";
-                       $('#Congrats_Pop_Up').html("Super Security Badge");
-                        $("#Celebrations").modal();
-                       checkCelebration.update({'SuperSecurity': "celebrated"});
-
-               }
-
-                })
-
-            }
-
-            else {
-
-                display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
-                    "                    <div class=\"middle\">\n" +
-                    "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
-                    "                         <!--text for the hover-->\n" +
-                    "                     </div>";
-            }
-
-            $('#SuperSecurity').html(display_1);});
+        var isPrivate = snapshot.val().privacyUpdated;
+        var display_1 = "";
 
 
-    </script>
+        if (isPrivate == "yes") {
+
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+                "\n" +
+                "                <div class=\"middle\">\n" +
+                "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
+                "                     <!--text for the hover-->\n" +
+                "                 </div>";
+
+            var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
+            checkCelebration.on("value", function (snapshot) {
+
+                if (snapshot.val().SuperSecurity == "not_celebrated") {
+                    var text = "Super Security Badge";
+                    $('#Congrats_Pop_Up').html("Super Security Badge");
+                    $("#Celebrations").modal();
+                    checkCelebration.update({'SuperSecurity': "celebrated"});
+
+                }
+
+            })
+
+        } else {
+
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
+                "                    <div class=\"middle\">\n" +
+                "                        <div class=\"text\"><strong>Oops!</strong> <br> Badge Locked</div>\n" +
+                "                         <!--text for the hover-->\n" +
+                "                     </div>";
+        }
+
+        $('#SuperSecurity').html(display_1);
+    });
+
+
+</script>
 {% comment %}
 Badges_Celebrations_1
 {% endcomment %}
 
-    <div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div style="" class="modal-content">
-                <div style="" class="modal-header">
+<div id="Celebrations" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style="" class="modal-content">
+            <div style="" class="modal-header">
 
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
-                    <img style="margin-left: 30px; width: 100px; height: 100px"
-                         src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fparty_face_256_1.gif?alt=media&token=4c859e3c-a29b-469e-b275-5208cff0e46d">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fconfetti_ball_256.gif?alt=media&token=28226457-860e-48db-b443-07052b333515">
+                <img style="margin-left: 30px; width: 100px; height: 100px"
+                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Fstuffcelebration.gif?alt=media&token=77be32d2-cdbb-4356-ba92-bc8fc69ca31c">
 
-                    <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
-                    <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                    <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
-
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <br>
-                <img style="margin-left: 50px"
-                     src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
-
-                <div class="modal-body">
+                <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
+                <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"></h4>
 
 
-                    <div id="ConnectionsListing_All" class="row">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <img style="margin-left: 50px"
+                 src="https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2Ftumblr_inline_pk7haw87391r9r3iy_540.gif?alt=media&token=f11fda16-ae48-4560-9abd-c5e4dd78a141">
+
+            <div class="modal-body">
 
 
-                    </div> <!--end row-->
+                <div id="ConnectionsListing_All" class="row">
 
 
-                    <div class="modal-footer">
+                </div> <!--end row-->
 
 
-                    </div>
+                <div class="modal-footer">
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% comment %}
 Badges_Celebrations_2
 {% endcomment %}
-    <script>
+<script>
 
-        $('#Celebrations').on('show.bs.modal', function (event) {
+    $('#Celebrations').on('show.bs.modal', function (event) {
 
-        })
-    </script>
+    })
+</script>
 
 </body>
 
 <!-- Confirm Disable Account Popup -->
 
-                    <div class="modal fade" id="mi-modal" role="dialog">
-                        <div class="modal-dialog">
+<div class="modal fade" id="mi-modal" role="dialog">
+    <div class="modal-dialog">
 
-                            <div class="modal-content">
-                            <div class="modal-body" style="padding:10px;">
-                            <h4 class="text-center">Are you sure you want to disable your account?</h4>
-                            <br>
-                            <div class="text-right">
-                            <a onclick="location.href={% url 'log'%}" id="modal-btn-si" class="btn btn-yes" style=" border: 1px solid gray;
+        <div class="modal-content">
+            <div class="modal-body" style="padding:10px;">
+                <h4 class="text-center">Are you sure you want to disable your account?</h4>
+                <br>
+                <div class="text-right">
+                    <a onclick="location.href={% url 'log' %}" id="modal-btn-si" class="btn btn-yes" style=" border: 1px solid gray;
             color: #e83e8c;">
-                                Confirm</a>
-                            <a class="btn btn-no" id="modal-btn-no" style=" border: 1px solid gray;
+                        Confirm</a>
+                    <a class="btn btn-no" id="modal-btn-no" style=" border: 1px solid gray;
             color: #e83e8c;">Cancel</a>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-
-                    <script>
-
-
-                // disable account functionality for confirm dialogue using Bootstrap modal
-                var modalConfirm = function(callback){
-
-                      $("#disableAccBtn").on("click", function(){
-                        $("#mi-modal").modal('show');
-                      });
-
-                      $("#modal-btn-si").on("click", function(){
-                        callback(true);
-                        $("#mi-modal").modal('hide');
-                      });
-
-                      $("#modal-btn-no").on("click", function(){
-                        callback(false);
-                        $("#mi-modal").modal('hide');
-                      });
-                    };
-
-                    // results of the confirmation
-                    modalConfirm(function(confirm){
-                      if(confirm){                                                                                      // Disable Account confirmed
-                          updateUserEnabledRef = firebase.database().ref("Users").child('{{ this_uid }}');
-                          updateUserEnabledRef.update({Enabled: false});                                                // update database - set user to disabled
-
-                          document.getElementById("firstname").disabled = true;                                         // disable all settings boxes so that user cannot make changes while the system is logging them out
-                          document.getElementById("country").disabled = true;
-                          document.getElementById("bioGet").disabled = true;
-                          document.getElementById("saveChangesBtn").hidden = true;
-                          document.getElementById("nav_bar_disable").hidden = true;
-                          document.getElementById("cancelBtn").hidden = true;
-                          document.getElementById("disableAccBtn").disabled=true;                        // change button to "Enable account"
-
-
-
-                          $("#mi-modal").modal('hide');
-                          $("#modalAccountDisabled").modal('show');                                                     // notify user that their account has been disabled
-
-                      }else{                //Do not disable account
-                        $("#mi-modal").modal('hide');
-                      }
-                    });
-
-                    /*function enableAccount(){
-                          updateUserEnabledRef = firebase.database().ref("Users").child('//  this_uid ');
-                          updateUserEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
-
-                          document.getElementById("enableAccBtn").innerText = "Disable Account";                                      // change button to "Disable account"
-                          document.getElementById("enableAccBtn").disabled = true;
-
-                          document.getElementById("firstname").disabled = false;                                     // enable all settings boxes
-                          document.getElementById("country").disabled = false;
-                          document.getElementById("bioGet").disabled = false;
-                          document.getElementById("saveChangesBtn").hidden = false;
-                          document.getElementById("nav_bar_disable").hidden = false;
-
-                          $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
-                    }*/
-            </script>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    // disable account functionality for confirm dialogue using Bootstrap modal
+    var modalConfirm = function (callback) {
+
+        $("#disableAccBtn").on("click", function () {
+            $("#mi-modal").modal('show');
+        });
+
+        $("#modal-btn-si").on("click", function () {
+            callback(true);
+            $("#mi-modal").modal('hide');
+        });
+
+        $("#modal-btn-no").on("click", function () {
+            callback(false);
+            $("#mi-modal").modal('hide');
+        });
+    };
+
+    // results of the confirmation
+    modalConfirm(function (confirm) {
+        if (confirm) {                                                                                      // Disable Account confirmed
+            updateUserEnabledRef = firebase.database().ref("Users").child('{{ this_uid }}');
+            updateUserEnabledRef.update({Enabled: false});                                                // update database - set user to disabled
+
+            document.getElementById("firstname").disabled = true;                                         // disable all settings boxes so that user cannot make changes while the system is logging them out
+            document.getElementById("country").disabled = true;
+            document.getElementById("bioGet").disabled = true;
+            document.getElementById("saveChangesBtn").hidden = true;
+            document.getElementById("nav_bar_disable").hidden = true;
+            document.getElementById("cancelBtn").hidden = true;
+            document.getElementById("disableAccBtn").disabled = true;                        // change button to "Enable account"
+
+
+            $("#mi-modal").modal('hide');
+            $("#modalAccountDisabled").modal('show');                                                     // notify user that their account has been disabled
+
+        } else {                //Do not disable account
+            $("#mi-modal").modal('hide');
+        }
+    });
+
+    /*function enableAccount(){
+          updateUserEnabledRef = firebase.database().ref("Users").child('//  this_uid ');
+          updateUserEnabledRef.update({Enabled: true});                                                 // update database - set user to enabled
+
+          document.getElementById("enableAccBtn").innerText = "Disable Account";                                      // change button to "Disable account"
+          document.getElementById("enableAccBtn").disabled = true;
+
+          document.getElementById("firstname").disabled = false;                                     // enable all settings boxes
+          document.getElementById("country").disabled = false;
+          document.getElementById("bioGet").disabled = false;
+          document.getElementById("saveChangesBtn").hidden = false;
+          document.getElementById("nav_bar_disable").hidden = false;
+
+          $("#modalAccountEnabled").modal('show');                                                      // notify user that they have been re enabled
+    }*/
+</script>
+</div>
 
 <!-- Modal for pop up message "User has disabled account" -->
-            <div class="modal fade" id="modalAccountDisabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Account Disabled</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    You have disabled your account. You may enable your account at any time by logging in again.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"  style=" border: 1px solid gray;
-            color: #e83e8c;">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalAccountDisabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Account Disabled</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                You have disabled your account. You may enable your account at any time by logging in again.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border: 1px solid gray;
+            color: #e83e8c;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Modal for pop up message "User has enabled account" -->
-            <div class="modal fade" id="modalAccountEnabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Account Enabled</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    You have enabled your account. You may now interact on this platform.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border: 1px solid gray;
-            color: #e83e8c;">Close</button>
-
-                  </div>
-                </div>
-              </div>
+<div class="modal fade" id="modalAccountEnabled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Account Enabled</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                You have enabled your account. You may now interact on this platform.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border: 1px solid gray;
+            color: #e83e8c;">Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

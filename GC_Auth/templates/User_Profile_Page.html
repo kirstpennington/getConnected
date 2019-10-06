@@ -367,7 +367,8 @@
         }
 
         .well a:hover {
-            text-decoration: none;}
+            text-decoration: none;
+        }
 
     </style>
 
@@ -560,11 +561,6 @@
         }
 
 
-
-
-
-
-
         .rightColumnfont {
             color: gray;
             position: relative;
@@ -718,7 +714,7 @@
 <!--dialog pop-ups-->
 <dialog class="text-center" id="connectedWith"
         style="box-shadow: 2px 2px 2px 2px grey;color: white;position: absolute; top: 30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
- <div id="newconnectionmodal"></div>
+    <div id="newconnectionmodal"></div>
     <br>
     <button id="close" style="border: 1px solid #e83e8c;border-radius: 8px;
         color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
@@ -765,7 +761,7 @@
 </script>
 
 <!--*BODY* 1. Navigation Bar-->
-<nav  class="navbar navbar-inverse  ">
+<nav class="navbar navbar-inverse  ">
     <div class="container-fluid">
 
         <div class="navbar-header">
@@ -810,11 +806,13 @@
 
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
+                        <div class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
 
                             <ul id="Message_dropdown_notifications" style="">
 
-                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
+                                <a class="text-center"
+                                   style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No
+                                    Messages</a>
 
                                 {% comment %}     <a><div style="" class="notification-item">
                                 <img class="profile_img" src="{{ ProfilePic }}"/>
@@ -849,8 +847,10 @@
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
 
-                     <div id="">
-                        <span ><span class="glyphicon glyphicon-bell"></span>&nbsp;<span id="counter_number_notifications" class="label label-default"   style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
+                    <div id="">
+                        <span><span class="glyphicon glyphicon-bell"></span>&nbsp;<span
+                                id="counter_number_notifications" class="label label-default"
+                                style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
 
                     </div>
 
@@ -904,8 +904,6 @@
         </div><!--collapse nav-bar collapse-->
     </div><!--container fluid-->
 </nav><!--nav navbar-inverse-->
-
-
 
 
 <script>
@@ -1038,15 +1036,14 @@
                 var decision = "true";
                 var opp_decison = "false";
                 html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br><br>";
-
-
-
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br><br>";
 
 
             }
         }
-        if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
+        if (html.length == 0) {
+            html = "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";
+        }
 
         $('#comment').html(html);
     }
@@ -1064,9 +1061,9 @@
         /*Creating notification icon*/
 
 
-{% comment %}
-        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-{% endcomment %}
+        {% comment %}
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+        {% endcomment %}
 
 
         $('#counter_number_notifications').html(countholder);
@@ -1086,10 +1083,7 @@
                 if (snapshot.exists()) {
 
 
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf()) {
 
                         var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
                         AddtoForum.child(sender_id).set(sender_id);
@@ -1097,30 +1091,23 @@
                         var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
                         AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
 
+                    } else {
+
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                        AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                        AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                        // window.alert("You have joined a new forum!");
+                        var x = document.getElementById("forumJoined");
+                        x.show();
                     }
-
-
-                    else {
-
-
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
 
 
                 }/*Forum Requests*/
@@ -1162,12 +1149,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -1206,21 +1193,12 @@
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
 <!--End of Navigation Bar-->
 
 <!--User Profile Container-->
 <!--Background Image-->
-<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for the whole user profile -->
 
     <div class="row"> <!--2. Pic + Description -->
@@ -1262,10 +1240,10 @@
                                 <script>
                                     //  count the number of forums and connections in db
                                     var numForumsRef = firebase.database().ref("Users").child("{{ this_uid }}").child("ForumsJoined");
-                                    numForumsRef.on("value", function(numForums_snapshot) {
+                                    numForumsRef.on("value", function (numForums_snapshot) {
                                         document.getElementById("numForumsSpan").innerText = numForums_snapshot.numChildren();
                                         var numConnRef = firebase.database().ref("Users").child("{{ this_uid }}").child("Connections");
-                                        numConnRef.on("value", function(numConnections_snapshot) {
+                                        numConnRef.on("value", function (numConnections_snapshot) {
                                             document.getElementById("numConnectionsSpan").innerText = numConnections_snapshot.numChildren();
                                         });
                                     });
@@ -1275,7 +1253,7 @@
                                     Connections <span id="numConnectionsSpan" class="label label-default"></span></h8>
                                 <h8 style="display: inline-block;padding-right:50px; position: relative; top: -14px">
                                     Forums <span id="numForumsSpan"
-                                        class="label label-default"></span></h8>
+                                                 class="label label-default"></span></h8>
                             </div>
                             <!--Container for bio, email, country-->
                             <div style="margin-top:-5px">
@@ -1301,8 +1279,6 @@
                                      title="" class="badges  "/>
                             </a>
                             <hr style="width: 210%; color: #e83e8c; height: 2px; background-color:gray; margin-top: 10px; margin-left: -250px"/>
-
-
 
 
                         </div><!--profile-header-page1-->
@@ -1333,30 +1309,37 @@
             <script>
                 function firebase_check_sent(connecion_id) {
                     var firebase_check = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/RequestsSent");
-                    return("true")
+                    return ("true")
                 }
             </script>
 
             <div class="col-md-12">
 
 
-
                 {% for names, countries, pictures, bio, conn_id in connections_suggestions_list|slice:":3" %}
-                    <div id="{{ conn_id }}_background"  class=" rightColumnContainer" style="margin-top: -10px"><!--Connections Suggestions Card-->
+                    <div id="{{ conn_id }}_background" class=" rightColumnContainer" style="margin-top: -10px">
+                        <!--Connections Suggestions Card-->
                         <form action="/goConnectionsOpen/" method="post">
-                            <button class="badges_plus" type="button" id="btnGetMessage" onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
-                                    style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}" style="color: grey" class="fa fa-user-plus"></i>
+                            <button class="badges_plus" type="button" id="btnGetMessage"
+                                    onclick=" send_friend_request('{{ conn_id }}')" value="Get Message"
+                                    style="position: relative; left: 240px; top: 3px;  "><i id="{{ conn_id }}"
+                                                                                            style="color: grey"
+                                                                                            class="fa fa-user-plus"></i>
                             </button>
 
                             <div class="row" style="margin-top: -15px">
-                                <img id="{{ conn_id }}_img"   class=" pull-left"
+                                <img id="{{ conn_id }}_img" class=" pull-left"
                                      style="border-radius: 10px; margin-left: 20px; position:relative; width: 60px; height: 60px"
                                      src="{{ pictures }}"/>
 
                                 <div class="connection_container">
                                     <div>
-                                        <input class="connection_id" id="connection_id" name="connection_id" value="{{ conn_id }}" hidden style="display: none;">
-                                        <button id="{{ conn_id }}_name" style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative" onclick="location.href='{% url 'connectionsopen' %}'" type="submit" value="goConnectionsOpen">
+                                        <input class="connection_id" id="connection_id" name="connection_id"
+                                               value="{{ conn_id }}" hidden style="display: none;">
+                                        <button id="{{ conn_id }}_name"
+                                                style=" background-color: #FCFCFC;font-family: 'Arial Narrow';border:none;left: 5px; font-weight: bold; font-size: small; top: 5px; position: relative"
+                                                onclick="location.href='{% url 'connectionsopen' %}'" type="submit"
+                                                value="goConnectionsOpen">
                                             {{ names }}
                                         </button>
                                     </div>
@@ -1375,7 +1358,9 @@
                         </form>
                     </div><!--end of Connections Suggestions Card--><br style="height: 2px">
                 {% empty %}
-                    <div style="font-style: italic; font-size: small">No Connection Suggestions: Select more topics you are interested in</div>
+                    <div style="font-style: italic; font-size: small">No Connection Suggestions: Select more topics you
+                        are interested in
+                    </div>
                 {% endfor %}
             </div><!--col-md-12-->
         </div><!--col-md-4 rightColumn-->
@@ -1474,16 +1459,14 @@
 
 
                 document.getElementById(request_receiver_id).className = "fa fa-hourglass";
-                document.getElementById(request_receiver_id + "_background").style.backgroundColor="lightgrey";
+                document.getElementById(request_receiver_id + "_background").style.backgroundColor = "lightgrey";
                 document.getElementById(request_receiver_id + "_img").style.opacity = "0.1";
                 document.getElementById(request_receiver_id + "_name").style.backgroundColor = "whitesmoke";
-
 
 
                 //$(this).find("i").removeClass("fa fa-user-plus").addClass("fa fa-hourglass");
                 // document.getElementById('play').classList.add('fa fa-hourglass');
                 /*Fetching time when items were pushed*/
-
 
 
                 var d = new Date(),
@@ -1499,7 +1482,7 @@
                 var date_for_post = Date.now();
 
 
-                writeUserData(date_for_post, "{{ n }}",'{{this_uid}}', "Connection Request", request_receiver_id);
+                writeUserData(date_for_post, "{{ n }}", '{{this_uid}}', "Connection Request", request_receiver_id);
                 dateTime;
                 "Connection Request";
                 "{{ n }}";
@@ -1507,15 +1490,13 @@
                 request_receiver_id;
 
 
-
             }
 
             /*Push time entered and Message entered from textboxes, creates entry in firebase
             * push gives a unique key*/
 
-            function writeUserData(message_time, messageFrom,request_sender_id, actual_message,request_receiver_id) {/*Pushes to current users*/
-                var database = firebase.database().ref().child("Users/"+request_sender_id+"/RequestsSent");/*Current users account*/
-
+            function writeUserData(message_time, messageFrom, request_sender_id, actual_message, request_receiver_id) {/*Pushes to current users*/
+                var database = firebase.database().ref().child("Users/" + request_sender_id + "/RequestsSent");/*Current users account*/
 
 
                 // var created_id =  database.push();
@@ -1524,15 +1505,13 @@
                 database.child(request_receiver_id).set({
                     time: message_time,
                     sender: messageFrom,
-                    sender_id:request_sender_id,
+                    sender_id: request_sender_id,
                     message: actual_message,
-                    receiver_id:request_receiver_id,
+                    receiver_id: request_receiver_id,
                     sender_profilePic: '{{ ProfilePic }}',
                     post_id: request_receiver_id,
-                    Type:"Friend_Request",
+                    Type: "Friend_Request",
                     Forum_ID: "noForum_ID"
-
-
 
 
                 });
@@ -1547,19 +1526,18 @@
                  });{% endcomment %}
 
 
-                var database_target = firebase.database().ref().child("Users/" + request_receiver_id +"/RequestsReceived");/*Where the message is going*/
+                var database_target = firebase.database().ref().child("Users/" + request_receiver_id + "/RequestsReceived");/*Where the message is going*/
                 //var created_id_target = database_target.push();
                 database_target.child(request_sender_id).set({ /*Pushes to receiver*/
                     time: message_time,
                     sender: messageFrom,
-                    sender_id:request_sender_id,
+                    sender_id: request_sender_id,
                     message: actual_message,
-                    receiver_id:request_receiver_id,
+                    receiver_id: request_receiver_id,
                     sender_profilePic: '{{ ProfilePic }}',
                     post_id: request_sender_id,
                     Type: "Friend_Request",
-                    Forum_ID:"noForum_ID"
-
+                    Forum_ID: "noForum_ID"
 
 
                 });
@@ -1607,7 +1585,6 @@
                    }{% endcomment %}
 
 
-
         </script>
 
 
@@ -1625,8 +1602,10 @@
             <div class="col-md-12" style="margin-top: -3px">
 
                 {% for forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids in forums_suggestions_list|slice:":3" %}
-                    <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer" style="margin-top: -10px"><!--Forum Suggestions Card-->
-                        <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden style="color: white;">
+                    <div id="{{ forum_ids }}_hideForumSuggestion" class=" rightColumnContainer"
+                         style="margin-top: -10px"><!--Forum Suggestions Card-->
+                        <input type="hidden" class="forum_id" id="forum_id" value="{{ forum_ids }}" hidden
+                               style="color: white;">
 
                         <div style="position: relative; left: 235px; top: 3px;">
                             <h8><span class="label label-default"><span
@@ -1641,7 +1620,8 @@
                             <div class="connection_container">
                                 <div>
                                     <button onclick="joinForum('{{ forum_ids }}', '{{ this_uid }}', '{{ forum_names }}','{{ forum_ids }}_hideForumSuggestion')"
-                                            style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px" type="submit">{{ forum_names }}
+                                            style=" border: none; font-family: 'Arial Narrow';background: #FCFCFC;left: 5px;font-size: small; font-weight: bold; color: gray; font-weight: bold; position: relative; top: 5px"
+                                            type="submit">{{ forum_names }}
                                     </button>
                                 </div>
                                 <div id="forum_id" style="display: none;"> {{ forum_ids }}</div>
@@ -1658,21 +1638,24 @@
                         </div>
                     </div><!--end of Forum Suggestions Card--><br>
                 {% empty %}
-                    <div style="font-style: italic; font-size: small"><p class="text-center">No Forum Suggestions<p><p class="text-center">Select more topics you are interested in to get more suggestions!</p></div>
+                    <div style="font-style: italic; font-size: small"><p class="text-center">No Forum Suggestions
+                        <p>
+                        <p class="text-center">Select more topics you are interested in to get more suggestions!</p>
+                    </div>
                 {% endfor %}
 
                 <script>
-                    function joinForum(forum_id, this_uid, forum_name, hide_block){
+                    function joinForum(forum_id, this_uid, forum_name, hide_block) {
                         var db = firebase.database().ref('Forums');
                         blockedUsersRef = db.child(forum_id).child("Blocked");                  // get list of users blocked for this forum
-                        blockedUsersRef.once('value', function(snapshot) {
+                        blockedUsersRef.once('value', function (snapshot) {
                             blockedUsers = snapshotToArrayKey(snapshot);
 
-                            if (this.arrayContainsValue(blockedUsers, this_uid) == false){      // if this user is NOT blocked for the forum selected
+                            if (this.arrayContainsValue(blockedUsers, this_uid) == false) {      // if this user is NOT blocked for the forum selected
                                 forumPrivateRef = db.child(forum_id).child('Private');          // get the privacy settings of the forum
-                                forumPrivateRef.once('value', function(snapPrivate) {
+                                forumPrivateRef.once('value', function (snapPrivate) {
                                     privacy = snapPrivate.val();
-                                    if (privacy == false){                                    // if the forums is not private
+                                    if (privacy == false) {                                    // if the forums is not private
                                         json_dict = {};
                                         json_dict[forum_id] = forum_id;
 
@@ -1687,10 +1670,10 @@
                                         //document.getElementById(forum_id+"_hideAll").hidden = true;     // remove forum from all forums
 
                                         getNumParticipantsRef = firebase.database().ref("Forums").child(forum_id).child("NumParticipants");         // reduce nunm participants in this forum
-                                        getNumParticipantsRef.once('value', function(snapshot) {
+                                        getNumParticipantsRef.once('value', function (snapshot) {
                                             var numParticipants = snapshot.val();              // get the current number of participants
 
-                                            json_dict = {NumParticipants: numParticipants+1};   // reduce num participants by 1
+                                            json_dict = {NumParticipants: numParticipants + 1};   // reduce num participants by 1
 
                                             reduceNumParticipantsRef = firebase.database().ref("Forums").child(forum_id);
                                             reduceNumParticipantsRef.update(json_dict);         // update database
@@ -1698,10 +1681,9 @@
                                             $("#modalForumJoined").modal('show');
                                         });
 
-                                    }
-                                    else{                                                       // if the forum is private
+                                    } else {                                                       // if the forum is private
                                         forumCreatorRef = db.child(forum_id).child('Creator');
-                                        forumCreatorRef.once('value', function(snapCreator) {
+                                        forumCreatorRef.once('value', function (snapCreator) {
                                             creator_id = snapCreator.val();                     // send the message to this user id
                                             message = '{{ username }}' + " has requested to join your forum, " + forum_name + ".";
                                             // code for the resolve/accept button is the code in the if(privacy == "false") if statement above. i.e. the if statement that is above this else statement
@@ -1716,11 +1698,11 @@
                                                 sender: '{{ n }}',
                                                 sender_id: '{{ this_uid }}',
                                                 message: message,
-                                                receiver_id: creator_id ,
+                                                receiver_id: creator_id,
                                                 sender_profilePic: '{{ ProfilePic }}',
                                                 Type: "Forum_Request",
-                                                Forum_ID:forum_id,
-                                                Type_check:"Type_check"
+                                                Forum_ID: forum_id,
+                                                Type_check: "Type_check"
 
                                             });
 
@@ -1728,7 +1710,8 @@
                                             var result = hope.substring(hope.lastIndexOf("/") + 1);
                                             var save_id = firebase.database().ref().child("Users/" + creator_id + "/RequestsReceived/" + result);/*Messages*/
                                             save_id.update({
-                                                post_id: result  });
+                                                post_id: result
+                                            });
 
                                             /*End of Sending Forum Request to Creator*/
 
@@ -1738,8 +1721,7 @@
                                     }
                                 })
 
-                            }
-                            else{                                                               // if the user is blocked, display a message to the user
+                            } else {                                                               // if the user is blocked, display a message to the user
                                 $("#modalBlockedFromForum").modal('show');
                             }
 
@@ -1779,18 +1761,15 @@
                     }
 
                     // returns true if the array contains the value
-                    function arrayContainsValue(array, value){
-                        if (array.length > 0)
-                        {
-                            for (let i = 0; i < array.length; i++)
-                            {
-                                if (array[i] == value){
+                    function arrayContainsValue(array, value) {
+                        if (array.length > 0) {
+                            for (let i = 0; i < array.length; i++) {
+                                if (array[i] == value) {
                                     return true;
                                 }
                             }
                             return false;
-                        }
-                        else{
+                        } else {
                             return false;
                         }
                     }
@@ -1814,9 +1793,8 @@
             <!-- My Forums: Item  -->
 
 
-
-
-            <span onclick="location.href='{% url 'createForum' %}'" style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
+            <span onclick="location.href='{% url 'createForum' %}'"
+                  style="position: absolute;top: 5px; left: 706px; color: gray; " data-toggle="tooltip"
                   title="Add Forum" data-placement="right"
                   class="glyphicon glyphicon-plus-sign fa-3x plus"></span>
 
@@ -1870,13 +1848,12 @@
                 });
 
 
-
-                function MyForumCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids){
-                    var card =  " <form action=\"/goForumsOpen/\" method=\"post\">\n" +
+                function MyForumCard(forum_names, forum_pics, forum_num_participants, forum_creators, forum_topics, forum_descriptions, forum_ids) {
+                    var card = " <form action=\"/goForumsOpen/\" method=\"post\">\n" +
                         "                <div class=\"col-sm-3  \" style=\"; width: 180px; margin-left:30px; margin-bottom:50px; \">\n" +
                         "                    <!-- forum wallpaper -->\n" +
                         "                    <div class=\"cardheader\"\n" +
-                        "                         style=\"background-image: url("+ forum_pics +"); border-radius: 8px\">\n" +
+                        "                         style=\"background-image: url(" + forum_pics + "); border-radius: 8px\">\n" +
                         "                    </div>\n" +
                         "                    <!-- Go into forum -->\n" +
                         "                    <div class=\"heartbutton\"><span style=\"background: transparent; \" type=\"button\"\n" +
@@ -1888,15 +1865,15 @@
                         "                            <!-- Number fo forum users -->\n" +
                         "                            <div style=\"top: 2px; margin-left: 70%\">\n" +
                         "                                <h8><span class=\"label label-default\"><span\n" +
-                        "                                        class=\"fa fa-users\"> </span>"+ forum_num_participants +"</span></h8>\n" +
+                        "                                        class=\"fa fa-users\"> </span>" + forum_num_participants + "</span></h8>\n" +
                         "                                <div style=\"height:5px;\"><br></div>\n" +
                         "                            </div>\n" +
                         "\n" +
-                        "                            <div style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px \">"+ forum_names +"\n" +
+                        "                            <div style=\"font-family: 'Arial Narrow'; font-weight: bold; font-size: 13px \">" + forum_names + "\n" +
                         "                            </div>\n" +
-                        "                            <div id=\"forum_id\" style=\"display: none;\"> "+ forum_ids +"</div>\n" +
+                        "                            <div id=\"forum_id\" style=\"display: none;\"> " + forum_ids + "</div>\n" +
                         "                            <!-- forum tags -->\n" +
-                        "                            <span class=\"badge badge-pill badge-dark\" style=\"font-size: 11px\">"+ forum_topics +"</span>\n" +
+                        "                            <span class=\"badge badge-pill badge-dark\" style=\"font-size: 11px\">" + forum_topics + "</span>\n" +
                         "\n" +
                         "\n" +
                         "                        </div>\n" +
@@ -1904,7 +1881,7 @@
                         "\n" +
                         "                        <hr style=\"width: 80%; color: ; height: 2px; background-color:#e83e8c; margin-top: 5px\"/>\n" +
                         "\n" +
-                        "                        <input type=\"hidden\" class=\"forum_id\" id=\"forum_id\" name=\"forum_id\" value=\""+  forum_ids  +"\" hidden style=\"color: white;\">\n" +
+                        "                        <input type=\"hidden\" class=\"forum_id\" id=\"forum_id\" name=\"forum_id\" value=\"" + forum_ids + "\" hidden style=\"color: white;\">\n" +
                         "                        <!-- Open forum button -->\n" +
                         "                            <button onclick=\"location.href='{% url 'forumsopen' %}'\"\n" +
                         "                               style=\"border: none; background: white;font-size: smaller; color: gray; font-weight: bold; position: relative; top: -10px\" type=\"submit\" value=\"goForumsOpen\">OPEN\n" +
@@ -1957,7 +1934,7 @@
 
                     <div class=" rightColumnContainer_lower" style="width: 175px; height: 90px; ">
 
-                        <div  style="margin-top: -15px; text-align: center;border-radius: 8px ">
+                        <div style="margin-top: -15px; text-align: center;border-radius: 8px ">
 
                             <div style="height:2px;"><br></div>
 
@@ -1990,15 +1967,15 @@
         </div>
 
 
-        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_courses'  %}'"
+        <button type="button" class="ViewMorebutton" onclick="location.href='{% url 'nav_courses' %}'"
                 style="position: absolute; left: 810px; top: 600px; font-size: 85%">View More <i
                 class="fa fa-angle-double-right"></i></button>
 
 
-
     </div>
 
-    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;position: relative; top: -420px; width: 100%;">
+    <footer class="page-footer font-small cyan darken-3"
+            style="background-color: #D3D3D3;position: relative; top: -420px; width: 100%;">
 
 
         <div class="container">
@@ -2024,7 +2001,8 @@
 
                             <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
                             <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
-                            <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
+                            <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>
+                                Connections</p>
                             </a>
                             <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums</p></a>
                             <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
@@ -2036,12 +2014,15 @@
 
                             <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
                                 GetConnected?</p></a>
-                            <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
+                            <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your
+                                Account</p>
                             </a>
-                            <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging</p></a>
+                            <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums &
+                                Messaging</p></a>
                             <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
                                 Management</p></a>
-                            <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p></a>
+                            <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses
+                                Help</p></a>
                             <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
 
 
@@ -2075,20 +2056,14 @@
 </div>
 
 
-
-
-
-
 <!-- Page Footer-->
-
-
-
 
 
 <!-- End of 1.1 Pop Up modal-->
 
 <!-- Modal for pop up message "forum joined" -->
-<div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalForumJoined" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -2102,7 +2077,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
+            color: #e83e8c;">Close
+                </button>
 
             </div>
         </div>
@@ -2111,7 +2087,8 @@
 
 
 <!-- Modal for pop up message "join request sent" -->
-<div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalJoinRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -2121,11 +2098,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                Your join request has been sent to the forum owner. You will be notified once the owner has accepted your request.
+                Your join request has been sent to the forum owner. You will be notified once the owner has accepted
+                your request.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
+            color: #e83e8c;">Close
+                </button>
 
             </div>
         </div>
@@ -2134,7 +2113,8 @@
 
 
 <!-- Modal for pop up message "blocked from forum message" -->
-<div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalBlockedFromForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -2148,14 +2128,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid gray;
-            color: #e83e8c;">Close</button>
+            color: #e83e8c;">Close
+                </button>
 
             </div>
         </div>
     </div>
 </div>
-
-
 
 
 {% comment %}
@@ -2175,35 +2154,30 @@ Badges_Celebrations_3
             counter++;
         });
 
-        if (counter >=1 && counter<5)
-
-        {
+        if (counter >= 1 && counter < 5) {
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Friend Finder Badge";
 
-                if (snapshot.val().FriendFinder == "not_celebrated"){
+                if (snapshot.val().FriendFinder == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
 
                     checkCelebration.update({'FriendFinder': "celebrated"});
                 }
             });
+        } else {
         }
-
-        else {}
 
 
         //Badge_2_NetoworkingNinja
 
-        if (counter >=5 && counter < 10)
-
-        {
+        if (counter >= 5 && counter < 10) {
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Networking Ninja Badge";
-                if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                if (snapshot.val().NetworkingNinja == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'NetworkingNinja': "celebrated"});
@@ -2211,17 +2185,13 @@ Badges_Celebrations_3
 
             })
 
+        } else {
         }
-
-        else {}
 
 
         //Badge_3_CrazyConnector
 
-        if (counter >=10 && counter<15)
-
-        {
-
+        if (counter >= 10 && counter < 15) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
@@ -2229,7 +2199,7 @@ Badges_Celebrations_3
                 var text = "Crazy Connector Badge";
 
 
-                if (snapshot.val().CrazyConnector == "not_celebrated"){
+                if (snapshot.val().CrazyConnector == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'CrazyConnector': "celebrated"});
@@ -2239,24 +2209,20 @@ Badges_Celebrations_3
 
             })
 
+        } else {
         }
-
-        else {}
 
 
         //Badge_4_PopularProfile
 
-        if (counter >=15)
-
-        {
-
+        if (counter >= 15) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Popular Profile Badge";
 
-                if (snapshot.val().PopularProfile == "not_celebrated"){
+                if (snapshot.val().PopularProfile == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'PopularProfile': "celebrated"});
@@ -2266,9 +2232,7 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
 
         }
@@ -2289,16 +2253,13 @@ Badges_Celebrations_3
         });
 
 
-
-        if (counter >=3 && counter<5)
-
-        {
+        if (counter >= 3 && counter < 5) {
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                if (snapshot.val().BrightSpark == "not_celebrated"){
+                if (snapshot.val().BrightSpark == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'BrightSpark': "celebrated"});
@@ -2307,23 +2268,20 @@ Badges_Celebrations_3
 
             })
 
+        } else {
         }
-
-        else {}
 
 
         //Badge_6_FabAcademic
 
-        if (counter >=5 && counter<10 )
-
-        {
+        if (counter >= 5 && counter < 10) {
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "FabAcademic Badge";
 
 
-                if (snapshot.val().FabAcademic == "not_celebrated"){
+                if (snapshot.val().FabAcademic == "not_celebrated") {
                     $('#Congrats_Pop_Up').html("FabAcademic Badge");
                     $("#Celebrations").modal();
                     checkCelebration.update({'FabAcademic': "celebrated"});
@@ -2333,25 +2291,21 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
         }
 
 
         //Badge_7_Got_Smarter
 
 
-        if (counter >=10 )
-
-        {
+        if (counter >= 10) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "GotSmarter Badge";
 
-                if (snapshot.val().GotSmarter == "not_celebrated"){
+                if (snapshot.val().GotSmarter == "not_celebrated") {
                     $('#Congrats_Pop_Up').html("GotSmarter Badge");
                     $("#Celebrations").modal();
 
@@ -2362,13 +2316,10 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
 
         }
-
 
 
     });
@@ -2387,16 +2338,13 @@ Badges_Celebrations_3
             counter++;
         });
 
-        if (counter >=5 )
-
-        {
-
+        if (counter >= 5) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
 
-                if (snapshot.val().ForumBoffin == "not_celebrated"){
+                if (snapshot.val().ForumBoffin == "not_celebrated") {
                     var text = "GotSmarter Badge";
                     $('#Congrats_Pop_Up').html("ForumBoffin Badge");
                     $("#Celebrations").modal();
@@ -2406,9 +2354,7 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
 
         }
@@ -2418,7 +2364,7 @@ Badges_Celebrations_3
 
     //Badge_10_Forum_Boffin
 
-    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
+    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}');
 
     Badges_for_Badges_Private.on("value", function (snapshot) {
 
@@ -2426,11 +2372,9 @@ Badges_Celebrations_3
         var display_1 = "";
 
 
-        if (isPrivate == "yes" )
+        if (isPrivate == "yes") {
 
-        {
-
-            display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
@@ -2440,7 +2384,7 @@ Badges_Celebrations_3
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
 
-                if (snapshot.val().SuperSecurity == "not_celebrated"){
+                if (snapshot.val().SuperSecurity == "not_celebrated") {
                     var text = "Super Security Badge";
                     $('#Congrats_Pop_Up').html("Super Security Badge");
                     $("#Celebrations").modal();
@@ -2450,9 +2394,7 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
             display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2461,14 +2403,15 @@ Badges_Celebrations_3
                 "                     </div>";
         }
 
-        $('#SuperSecurity').html(display_1);});
+        $('#SuperSecurity').html(display_1);
+    });
 
 </script>
 {% comment %}
 Badges_Celebrations_1
 {% endcomment %}
 
-<div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div id="Celebrations" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div style="" class="modal-content">
@@ -2485,7 +2428,7 @@ Badges_Celebrations_1
 
                 <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
                 <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"></h4>
 
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

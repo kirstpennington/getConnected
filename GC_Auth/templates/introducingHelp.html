@@ -252,20 +252,16 @@
 
             </ul>
 
-           <!--RHS of the navigation bar -->
+            <!--RHS of the navigation bar -->
 
             <ul class="nav navbar-nav navbar-right">
 
                 <!--MESSAGE NOTIFICATIONS -->
-               <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
                                         onclick="CloseIntroForm(); OpenLogIn();">
 
 
-
-
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-
 
 
                     </ul><!--Dropdown menu Messages--> </a>
@@ -275,7 +271,8 @@
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                         onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img style="border-radius: 10px;" class="rounded-circle" width="20"
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img style="border-radius: 10px;"
+                                                                                  class="rounded-circle" width="20"
                                                                                   height="20" src="{{ ProfilePic }}"
                                                                                   alt=""></span>
 
@@ -496,7 +493,7 @@
     });
 
 
-     function renderUI(obj) {
+    function renderUI(obj) {
         var html = '';
         var keys = Object.keys(obj);
         for (var i = keys.length - 1; i >= 0; i--) {
@@ -519,10 +516,7 @@
                 var decision = "true";
                 var opp_decison = "false";
                 html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
-
-
-
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
 
 
             }
@@ -563,10 +557,7 @@
                 if (snapshot.exists()) {
 
 
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf()) {
 
                         var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
                         AddtoForum.child(sender_id).set(sender_id);
@@ -574,30 +565,23 @@
                         var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
                         AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
 
+                    } else {
+
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                        AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                        AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                        // window.alert("You have joined a new forum!");
+                        var x = document.getElementById("forumJoined");
+                        x.show();
                     }
-
-
-                    else {
-
-
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
 
 
                 }/*Forum Requests*/
@@ -639,12 +623,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -710,8 +694,9 @@
                     <p><img src="{% static "GC_Auth/help/connections.png" %}" alt="lock" class="image"> <strong>
                         Connections </strong>
                     </p>
-                     <a onclick="location.href='{% url 'helpconnections' %}'" ><h1 > Build your GetConnected community with Connections. Connect with people who share your interests
-                         and courses. Click here to learn more.</h1></a>
+                    <a onclick="location.href='{% url 'helpconnections' %}'"><h1> Build your GetConnected community with
+                        Connections. Connect with people who share your interests
+                        and courses. Click here to learn more.</h1></a>
 
                 </div>
             </div>
@@ -723,8 +708,9 @@
                     <p><img src="{% static "GC_Auth/help/forums.png" %}" alt="lock" class="image"> <strong> Forums &
                         Messaging </strong>
                     </p>
-                   <a onclick="location.href='{% url 'forumsHelp' %}'" > <h1> Create and use the GetConnected Forums to build your network. Attach articles and links to
-                    engage your participants. Click here to learn more. </h1></a>
+                    <a onclick="location.href='{% url 'forumsHelp' %}'"><h1> Create and use the GetConnected Forums to
+                        build your network. Attach articles and links to
+                        engage your participants. Click here to learn more. </h1></a>
                 </div>
             </div>
             <!--coloumn-->
@@ -734,8 +720,9 @@
                     <p><img src="{% static "GC_Auth/help/courses.png" %}" alt="lock" class="image"> <strong>
                         Courses</strong>
                     </p>
-                   <a onclick="location.href='{% url 'helpcourses' %}'"> <h1> We know you loved your GetSmarter courses! Use the Courses pages to find new courses or
-                       recommended completed courses. Click here to learn more. </h1></a>
+                    <a onclick="location.href='{% url 'helpcourses' %}'"><h1> We know you loved your GetSmarter courses!
+                        Use the Courses pages to find new courses or
+                        recommended completed courses. Click here to learn more. </h1></a>
 
                 </div>
             </div>

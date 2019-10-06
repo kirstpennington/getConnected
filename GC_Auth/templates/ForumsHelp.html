@@ -225,7 +225,7 @@
                 </li>
             </ul>
 
-           <!--RHS of the navigation bar -->
+            <!--RHS of the navigation bar -->
 
             <ul class="nav navbar-nav navbar-right">
 
@@ -233,11 +233,7 @@
                                         onclick="CloseIntroForm(); OpenLogIn();">
 
 
-
-
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-
 
 
                     </ul><!--Dropdown menu Messages--> </a>
@@ -247,7 +243,8 @@
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                         onclick="CloseIntroForm(); OpenLogIn();">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img style="border-radius: 10px;" class="rounded-circle" width="20"
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img style="border-radius: 10px;"
+                                                                                  class="rounded-circle" width="20"
                                                                                   height="20" src="{{ ProfilePic }}"
                                                                                   alt=""></span>
 
@@ -466,7 +463,7 @@
     });
 
 
-     function renderUI(obj) {
+    function renderUI(obj) {
         var html = '';
         var keys = Object.keys(obj);
         for (var i = keys.length - 1; i >= 0; i--) {
@@ -489,10 +486,7 @@
                 var decision = "true";
                 var opp_decison = "false";
                 html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; margin-top: 40px;\"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
-
-
-
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
 
 
             }
@@ -533,10 +527,7 @@
                 if (snapshot.exists()) {
 
 
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf()) {
 
                         var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
                         AddtoForum.child(sender_id).set(sender_id);
@@ -544,30 +535,23 @@
                         var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
                         AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
 
+                    } else {
+
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                        AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                        AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                        // window.alert("You have joined a new forum!");
+                        var x = document.getElementById("forumJoined");
+                        x.show();
                     }
-
-
-                    else {
-
-
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
 
 
                 }/*Forum Requests*/
@@ -609,12 +593,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -683,7 +667,7 @@
             </div>
             <div id="collapseProfile" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <!--row1 Personalising the profile -->
+                    <!--row1 creating and maintaining -->
                     <p>Creating and Maintaining a forum</p>
                     <p style="font-size:20px;padding-top: 2px;"> You can create a new forum at anytime and invite other
                         people to participate!</p><br>
@@ -722,8 +706,8 @@
                     <div class="col-sm-6" style="background-color:white;">
                         <br>
                         {% load staticfiles %}
-                         <img src="{% static "GC_Auth/help/createF.png" %}" alt="lock" class="image"
-                                 style="width:80%; height:80%; border: 1px solid grey;">
+                        <img src="{% static "GC_Auth/help/createF.png" %}" alt="lock" class="image"
+                             style="width:80%; height:80%; border: 1px solid grey;">
 
                     </div>
                     <!--coloumn-->
@@ -739,7 +723,8 @@
                             participants whereas public forums can
                             be seen by anyone on GetConnected
                             <br><br>
-                            3. Choose participants for your forum - participants will be able to attach files and images, and
+                            3. Choose participants for your forum - participants will be able to attach files and
+                            images, and
                             partake in discussions
                             <br><br>
                             4. Each forum will also discuss certain information, topics or subjects. Here you can
@@ -753,37 +738,38 @@
 
                 </div>
                 <br><br>
-                 <div class="row">
-                        <!--coloumn-->
-                        <div class="col-sm-6" style="background-color:white;">
-                            <!--description-->
-                            <p> Maintaining your Forum</p>
-                            <h1 style="color:grey;"> If you are the creator of a forum, you can easily maintain it through your forum settings. Simply open up
-                            the forum you want to edit. You will see a settings button in the top middle of the page (see image on the right). Click the settings button
+                <div class="row">
+                    <!--coloumn-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <!--description-->
+                        <p> Maintaining your Forum</p>
+                        <h1 style="color:grey;"> If you are the creator of a forum, you can easily maintain it through
+                            your forum settings. Simply open up
+                            the forum you want to edit. You will see a settings button in the top middle of the page
+                            (see image on the right). Click the settings button
                             and you will be redirected to the forum settings page. </h1>
-                            <h1>The forum settings page is very similar to the creating a forum page. From here you are able to:</h1>
-                            <h1> - Add more participants to your forum </h1>
-                            <h1> - Change your forum picture, name and description</h1>
-                            <h1> - Edit forum topics </h1>
-
-
-
-                        </div>
-                        <!--coloumn-->
-                        <!--image-->
-                        <div class="col-sm-6" style="background-color:white;">
-                            <br><br><br><br><br><br>
-                            {% load staticfiles %}
-                            <img src="{% static "GC_Auth/help/forumSettings.png" %}" alt="lock" class="image"
-                                 style="width:80%; height:80%;border: 1px solid grey;">
-
-
-                        </div>
+                        <h1>The forum settings page is very similar to the creating a forum page. From here you are able
+                            to:</h1>
+                        <h1> - Add more participants to your forum </h1>
+                        <h1> - Change your forum picture, name and description</h1>
+                        <h1> - Edit forum topics </h1>
 
 
                     </div>
-                <br><br>
+                    <!--coloumn-->
+                    <!--image-->
+                    <div class="col-sm-6" style="background-color:white;">
+                        <br><br><br><br><br><br>
+                        {% load staticfiles %}
+                        <img src="{% static "GC_Auth/help/forumSettings.png" %}" alt="lock" class="image"
+                             style="width:80%; height:80%;border: 1px solid grey;">
 
+
+                    </div>
+
+
+                </div>
+                <br><br>
 
 
                 <!--row-->
@@ -936,16 +922,19 @@
 
                     </div>
                     <br>
-                       <div class="row">
+                    <div class="row">
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
                             <!--description-->
                             <br><br><br><br>
                             <p> Attaching Articles and Images to a Post</p>
-                            <h1 style="color:grey;">If you have any interesting articles related to a forum discussion or just want to share a meme or two, you
-                            can do so by attaching a link to the media.</h1>
-                            <h1>When creating your post, tap either the little attach button or image button on the bottom left. A pop-up will appear,
-                            enter the link to your file/image and click view. Once you are happy with your attachment, click "Attach". Easy Peasy!</h1>
+                            <h1 style="color:grey;">If you have any interesting articles related to a forum discussion
+                                or just want to share a meme or two, you
+                                can do so by attaching a link to the media.</h1>
+                            <h1>When creating your post, tap either the little attach button or image button on the
+                                bottom left. A pop-up will appear,
+                                enter the link to your file/image and click view. Once you are happy with your
+                                attachment, click "Attach". Easy Peasy!</h1>
 
 
                         </div>
@@ -961,29 +950,35 @@
                         </div>
 
                     </div>
-                     <div class="row">
+                    <div class="row">
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
                             <br>
 
-                             <br><br>
+                            <br><br>
                             <p> Reporting a Forum</p>
-                            <h1 style="color:grey;"> GetConnected aims to ensure a safe and inclusive environment for all its users. Any
-                            inapropriate behavior by users is not entertained. Should you feel a certain forum is not adhering to this, please do not hesistate to
-                            report the forum. A forum which has been reported five or more times will be immediately disabled from GetConnected and reviewed by a staff member.</h1>
+                            <h1 style="color:grey;"> GetConnected aims to ensure a safe and inclusive environment for
+                                all its users. Any
+                                inapropriate behavior by users is not entertained. Should you feel a certain forum is
+                                not adhering to this, please do not hesistate to
+                                report the forum. A forum which has been reported five or more times will be immediately
+                                disabled from GetConnected and reviewed by a staff member.</h1>
 
-                            <h1>Open the forum you would like to report, click the menu in the middle ( see image on the right), then click "Report Forum".
+                            <h1>Open the forum you would like to report, click the menu in the middle ( see image on the
+                                right), then click "Report Forum".
                                 You are only able to report a forum once. </h1>
 
-                             <p> Leaving a Forum</p>
-                            <h1 style="color:grey;"> If you no longer wish to participate in a forum you can leave the forum
-                            by clicking the "Leave forum" button seen on the right. Once you leave a forum you will no longer be
-                            able to view or send posts to the forum. </h1>
+                            <p> Leaving a Forum</p>
+                            <h1 style="color:grey;"> If you no longer wish to participate in a forum you can leave the
+                                forum
+                                by clicking the "Leave forum" button seen on the right. Once you leave a forum you will
+                                no longer be
+                                able to view or send posts to the forum. </h1>
                         </div>
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
 
-<br><br><br>                <br><br>
+                            <br><br><br> <br><br>
                             <img src="{% static "GC_Auth/help/ReportingForum.png" %}" alt="lock" class="image"
                                  style="width:100%; height:100%; border: 1px solid silver;">
 
@@ -1071,7 +1066,8 @@
                             <br><br><br><br><br><br>
                             <p> Group Messaging </p>
                             <h1> You can also message a group of people at once! To do this, click "Create Group",
-                                add a group name at the top, choose a group picture and select multiple people from the pop-up (on the right).
+                                add a group name at the top, choose a group picture and select multiple people from the
+                                pop-up (on the right).
                                 Everyone you select will be added to the group, and you can all start chatting.</h1>
 
 
@@ -1093,8 +1089,8 @@
                         <!--coloumn-->
 
                         <div class="col-sm-6" style="background-color:white;">
-                             <br><br><br><br><br><br>
-                             {% load staticfiles %}
+                            <br><br><br><br><br><br>
+                            {% load staticfiles %}
                             <img src="{% static "GC_Auth/help/viewparticipants.png" %}" alt="lock" class="image"
                                  style="width:80%; height:100%; border: 1px solid silver;">
 
@@ -1104,13 +1100,17 @@
 
 
                             <br><br>
-                             <p>Viewing Participants</p>
-                            <h1> If you want to know who the other members of a group message are, open up the group and click the dropdown menu -
-                                the little arrow (seen in the image on the left). Then click the option "View Participants". A pop-up will be displayed with all members of the chat.</h1>
+                            <p>Viewing Participants</p>
+                            <h1> If you want to know who the other members of a group message are, open up the group and
+                                click the dropdown menu -
+                                the little arrow (seen in the image on the left). Then click the option "View
+                                Participants". A pop-up will be displayed with all members of the chat.</h1>
 
                             <p>Leaving a Group </p>
-                            <h1>If you no longer wish to be part of a group or chat, you can easily delete the chat by selecting "Delete Conversation", as seen in the image on the left.
-                            If you decide to delete a conversation, you will no longer be able to participate in a chat or view the chat!</h1>
+                            <h1>If you no longer wish to be part of a group or chat, you can easily delete the chat by
+                                selecting "Delete Conversation", as seen in the image on the left.
+                                If you decide to delete a conversation, you will no longer be able to participate in a
+                                chat or view the chat!</h1>
 
                         </div>
 
@@ -1151,7 +1151,8 @@
                         <p style="padding-left: 40px;">Forums can be reported by any participant in a forum if they
                             feel the forum is inappropriate. Should a forum be reported
                             it will then be inspected by a member of the GetConnected team and removed if it is infact
-                            inappropriate. Should a forum be reported more than 5 times it will be automatically disabled.
+                            inappropriate. Should a forum be reported more than 5 times it will be automatically
+                            disabled.
                         </p>
 
                         <!--question-->

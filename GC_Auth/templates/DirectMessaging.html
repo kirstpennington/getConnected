@@ -723,7 +723,7 @@
 <!--dialog pop-ups-->
 <dialog class="text-center" id="connectedWith"
         style="box-shadow: 2px 2px 2px 2px grey;color: white;position: absolute; top: 30%;z-index: 4;border: 1px solid white;font-family: 'Roboto', sans-serif;border-radius: 8px;background-color: darkgray;width: 400px; height:100px;">
- <div id="newconnectionmodal"></div>
+    <div id="newconnectionmodal"></div>
     <br>
     <button id="close" style="border: 1px solid #e83e8c;border-radius: 8px;
         color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
@@ -739,7 +739,6 @@
         color: #e83e8c; background-color:white; font-family: 'Roboto', sans-serif;position: center; ">Okay
     </button>
 </dialog>
-
 
 
 <script>
@@ -1295,7 +1294,8 @@
 
                 <div id="search">
                     <br>
-                   <h1 class= "text-center" style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 20px;"> Your Chats</h1>
+                    <h1 class="text-center"
+                        style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 20px;"> Your Chats</h1>
                 </div>
                 <hr style="margin-top: 9px">
 
@@ -1596,8 +1596,7 @@
         parts_loop.on("value", function (snapshot_1) {
             snapshot_1.forEach(function (childSnapshot_1) {
 
-                                                if ('{{ this_uid }}' != childSnapshot_1.val());
-
+                if ('{{ this_uid }}' != childSnapshot_1.val()) ;
 
 
                 var other = firebase.database().ref().child("Users/" + childSnapshot_1.val() + "/Messages_Notifications");/*Messages*/
@@ -2094,60 +2093,60 @@
 
                 <script>
 
-                            // shows all blocks in the list of my connections
-                            function showAll() {
-                                var myConnList = [];
-                                var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
-                                //Fetching list of User's connections
-                                list_conn_db.on("value", function (snapshot_1) {
-                                    myConnList = [];
-                                    snapshot_1.forEach(function (childSnapshot_1) {
-                                        var w = childSnapshot_1.key;
-                                        myConnList.push(w);
-                                    });
+                    // shows all blocks in the list of my connections
+                    function showAll() {
+                        var myConnList = [];
+                        var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                        //Fetching list of User's connections
+                        list_conn_db.on("value", function (snapshot_1) {
+                            myConnList = [];
+                            snapshot_1.forEach(function (childSnapshot_1) {
+                                var w = childSnapshot_1.key;
+                                myConnList.push(w);
+                            });
 
-                                    //  loop through connection_ids
-                                    for (let i = 0; i < myConnList.length; i++) {
-                                        try {
-                                            document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
-                                        }catch(err){
-                                            // skip
-                                        }
-                                    }
-                                });
-
+                            //  loop through connection_ids
+                            for (let i = 0; i < myConnList.length; i++) {
+                                try {
+                                    document.getElementById(myConnList[i] + "_hide").hidden = false;           // show all blocks
+                                } catch (err) {
+                                    // skip
+                                }
                             }
+                        });
 
-                            //  check if name, coutnry or bio contains string typed - search button
-                            function searchByTerm() {
-                                searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
+                    }
 
-                                var myConnList = [];
-                                var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
-                                //Fetching list of User's connections
-                                list_conn_db.on("value", function (snapshot_1) {
-                                    myConnList = [];
-                                    snapshot_1.forEach(function (childSnapshot_1) {
-                                        var w = childSnapshot_1.key;
-                                        myConnList.push(w);
-                                    });
-                                    //  loop through course_ids
-                                    for (let i = 0; i < myConnList.length; i++) {
-                                        // check if topics list for this course_id contains Finance
-                                        connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
-                                        connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
-                                        if (connName.includes(searchTerm) || connBio.includes(searchTerm)) {                                               // if the rating searched is in the list
-                                            document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                        } else {
-                                            document.getElementById(myConnList[i] + "_hide").hidden = true;
-                                        }
-                                    }
-                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
-                                });
+                    //  check if name, coutnry or bio contains string typed - search button
+                    function searchByTerm() {
+                        searchTerm = document.getElementById('searchTermInput').value;                   // get the value in the search input field
 
-
+                        var myConnList = [];
+                        var list_conn_db = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Connections");
+                        //Fetching list of User's connections
+                        list_conn_db.on("value", function (snapshot_1) {
+                            myConnList = [];
+                            snapshot_1.forEach(function (childSnapshot_1) {
+                                var w = childSnapshot_1.key;
+                                myConnList.push(w);
+                            });
+                            //  loop through course_ids
+                            for (let i = 0; i < myConnList.length; i++) {
+                                // check if topics list for this course_id contains Finance
+                                connName = document.getElementById(myConnList[i] + "_name").innerText;          // get data from the element that contains the university name for that course
+                                connBio = document.getElementById(myConnList[i] + "_bio").innerText;            // check bio for matching text
+                                if (connName.includes(searchTerm) || connBio.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                    document.getElementById(myConnList[i] + "_hide").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                } else {
+                                    document.getElementById(myConnList[i] + "_hide").hidden = true;
+                                }
                             }
-                        </script>
+                            // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                        });
+
+
+                    }
+                </script>
 
                 <br>
 
@@ -2161,7 +2160,7 @@
 
                 <div class="modal-footer">
 
-                    <button data-dismiss = "modal" onclick="SendMessage_Individual()" style="border: 1px solid gray;
+                    <button data-dismiss="modal" onclick="SendMessage_Individual()" style="border: 1px solid gray;
             color: #e83e8c; background-color: white; border-radius: 8px; font-family: 'Roboto', sans-serif;margin-top: 20px;margin-bottom: 20px;">
                         Message
                     </button>
@@ -2275,71 +2274,70 @@
                 <script>
 
 
-                        // shows all blocks in the list of my connections
-                        function showAllAll() {
-                            var myConnList = [];
-                            var list_conn_db = firebase.database().ref().child("Users");
-                            //Fetching list of User's connections
-                            list_conn_db.on("value", function (snapshot_1) {
-                                myConnList = [];
-                                snapshot_1.forEach(function (childSnapshot_1) {
-                                    var w = childSnapshot_1.key;
-                                    myConnList.push(w);
-                                });
-
-                                //  loop through course_ids
-                                for (let i = 0; i < myConnList.length; i++) {
-                                    try{
-                                        document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
-                                    }
-                                    catch(err){
-                                        //  do nothing is connection id not found on a card
-                                    }
-                                }
+                    // shows all blocks in the list of my connections
+                    function showAllAll() {
+                        var myConnList = [];
+                        var list_conn_db = firebase.database().ref().child("Users");
+                        //Fetching list of User's connections
+                        list_conn_db.on("value", function (snapshot_1) {
+                            myConnList = [];
+                            snapshot_1.forEach(function (childSnapshot_1) {
+                                var w = childSnapshot_1.key;
+                                myConnList.push(w);
                             });
 
-                        }
-
-
-                        //  check if name, coutnry or bio contains string typed - search button
-                        function searchByTermAll() {
-                            searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
-
-                            var myConnList = [];
-                            var list_conn_db = firebase.database().ref().child("Users");
-                            //Fetching list of User's connections
-                            list_conn_db.on("value", function (snapshot_1) {
-                                myConnList = [];
-                                snapshot_1.forEach(function (childSnapshot_1) {
-                                    var w = childSnapshot_1.key;
-                                    myConnList.push(w);
-                                });
-
-                                //  loop through course_ids
-                                for (let i = 0; i < myConnList.length; i++) {
-                                    try {
-                                        // check if topics list for this course_id contains Finance
-                                        connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
-                                        connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
-                                        if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
-                                        } else if (connBio.includes(searchTerm)) {
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = false;
-                                        } else {
-                                            document.getElementById(myConnList[i] + "_hideAll").hidden = true;
-                                        }
-
-                                        // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
-                                    } catch (err) {
-                                        // skip is element not found
-                                    }
+                            //  loop through course_ids
+                            for (let i = 0; i < myConnList.length; i++) {
+                                try {
+                                    document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
+                                } catch (err) {
+                                    //  do nothing is connection id not found on a card
                                 }
+                            }
+                        });
 
+                    }
+
+
+                    //  check if name, coutnry or bio contains string typed - search button
+                    function searchByTermAll() {
+                        searchTerm = document.getElementById('searchTermInputAll').value;                   // get the value in the search input field
+
+                        var myConnList = [];
+                        var list_conn_db = firebase.database().ref().child("Users");
+                        //Fetching list of User's connections
+                        list_conn_db.on("value", function (snapshot_1) {
+                            myConnList = [];
+                            snapshot_1.forEach(function (childSnapshot_1) {
+                                var w = childSnapshot_1.key;
+                                myConnList.push(w);
                             });
 
+                            //  loop through course_ids
+                            for (let i = 0; i < myConnList.length; i++) {
+                                try {
+                                    // check if topics list for this course_id contains Finance
+                                    connName = document.getElementById(myConnList[i] + "_nameAll").innerText;          // get data from the element that contains the university name for that course
+                                    connBio = document.getElementById(myConnList[i] + "_bioAll").innerText;            // check bio for matching text
+                                    if (connName.includes(searchTerm)) {                                               // if the rating searched is in the list
+                                        document.getElementById(myConnList[i] + "_hideAll").hidden = false;              // if the topic is not found in the list, hide the block for the course
+                                    } else if (connBio.includes(searchTerm)) {
+                                        document.getElementById(myConnList[i] + "_hideAll").hidden = false;
+                                    } else {
+                                        document.getElementById(myConnList[i] + "_hideAll").hidden = true;
+                                    }
 
-                        }
-                    </script>
+                                    // labels are placed on ech element in the array "course_id_bio", _country, _hide, _name
+                                } catch (err) {
+                                    // skip is element not found
+                                }
+                            }
+
+                        });
+
+
+                    }
+                </script>
 
                 <br>
 
@@ -2445,7 +2443,7 @@
     function formCard(key, name, bio, country, profilepic) {
 
 
-        var card = " <div id=\""+key+"_hide\"> <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+        var card = " <div id=\"" + key + "_hide\"> <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
             "\n" +
             "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
             "\n" +
@@ -2453,8 +2451,8 @@
             "\n" +
             "\n" +
             "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-            "               <p id=\""+key+"_name\" style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
-            "                &nbsp;&nbsp;&nbsp; <p id=\""+key+"_bio\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + bio + "</p>\n" +
+            "               <p id=\"" + key + "_name\" style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp; <p id=\"" + key + "_bio\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + bio + "</p>\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
@@ -2589,7 +2587,7 @@
     function formCard_All(key, name, bio, country, profilepic) {
 
 
-        var card = "<div id=\""+key+"_hideAll\">  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
+        var card = "<div id=\"" + key + "_hideAll\">  <div class=\"col-md-2\"><!--USER PROFILE IMAGE GOES HERE-->\n" +
             "\n" +
             "                <img class=\"rounded-circle\" width=\"50\" height=\"50\" src=\"" + profilepic + "\"style=\"border: 1px solid \t#DCDCDC ; border-radius: 50px;\" alt=\"\">\n" +
             "\n" +
@@ -2597,8 +2595,8 @@
             "\n" +
             "\n" +
             "             <div class=\"col-md-8\"><!--USERNAME AND IF THEY ARE A CONNECTION OR NOT -->\n" +
-            "               <p id=\""+key+"_nameAll\" style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
-            "                &nbsp;&nbsp;&nbsp;<p id=\""+key+"_bioAll\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + bio + "</p>\n" +
+            "               <p id=\"" + key + "_nameAll\" style=\"margin-left:20px;margin-bottom:1px;font-size: 15px;\"> " + name + "  </p>\n" +
+            "                &nbsp;&nbsp;&nbsp;<p id=\"" + key + "_bioAll\" class=\"badge badge-pill badge-dark\" style=\"color:white;font-size:10px;margin-left:10px;margin-top:2px;\"> " + bio + "</p>\n" +
             "\n" +
             "             </div><!--end col-->\n" +
             "\n" +
@@ -2741,9 +2739,6 @@
     }
 
 
-
-
-
     /*Message_Notificationas*/
 
     var Message_Notifications_Check = firebase.database().ref().child("Users/{{this_uid}}/Messages_Notifications");/*current user's account*/
@@ -2809,15 +2804,14 @@
         for (var i = 0; i < keys.length; i++) {
             countholder++;
         }
-                                countholder--;
+        countholder--;
 
 
         database_counter.update({'counter': countholder});
-         /*Creating notification icon*/
+        /*Creating notification icon*/
 
 
-                                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-
+        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
 
 
         $('#number_of_msg_notifications').html(countholder);
@@ -2867,11 +2861,10 @@
                 var forum_id_id = obj[keys[i]].Forum_ID;
 
 
-
                 var decision = "true";
                 var opp_decison = "false";
                 html += "<div href=\"#\" class=\"content\" style=\"top: 0px; position:relative;text-decoration: none\"> <div style=\"text-decoration: none\" class=\"notification-item\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: -15px; left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: 2px;left: 25px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br>";
 
 
             }
@@ -2912,10 +2905,7 @@
                 if (snapshot.exists()) {
 
 
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf()) {
 
                         var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
                         AddtoForum.child(sender_id).set(sender_id);
@@ -2923,30 +2913,23 @@
                         var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
                         AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
 
+                    } else {
+
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                        AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                        AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                        // window.alert("You have joined a new forum!");
+                        var x = document.getElementById("forumJoined");
+                        x.show();
                     }
-
-
-                    else {
-
-
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
 
 
                 }/*Forum Requests*/
@@ -2988,12 +2971,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/

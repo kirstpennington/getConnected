@@ -3,7 +3,7 @@
 <head>
 
 
-     <!--Firebase-->
+    <!--Firebase-->
 
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
     <script>
@@ -91,7 +91,6 @@
             text-align: left;
 
         }
-
 
 
         /*text for the blocks which show the features*/
@@ -223,7 +222,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30" height="30" style="border-radius: 20px;" src="{{ profilePic }}" alt=""></span>
+                    <span onclick="location.href='{% url 'userprofile' %}'"> <img class="rounded-circle" width="30"
+                                                                                  height="30"
+                                                                                  style="border-radius: 20px;"
+                                                                                  src="{{ profilePic }}" alt=""></span>
 
                     <span class="glyphicon glyphicon-triangle-bottom"></span></a>
 
@@ -244,19 +246,15 @@
                 </li>
             </ul>
 
-           <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
-                                        onclick="CloseIntroForm(); OpenLogIn();">
+            <li class="dropdown"><a id="idMessage" data-toggle="dropdown" data-target="#" href="#"
+                                    onclick="CloseIntroForm(); OpenLogIn();">
 
 
+                <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
 
-                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-
-
-
-                    </ul><!--Dropdown menu Messages--> </a>
-                </li><!--dropdown -->
+                </ul><!--Dropdown menu Messages--> </a>
+            </li><!--dropdown -->
         </div><!--collapse nav-bar collapse-->
     </div><!--container fluid-->
 </nav><!--nav navbar-inverse-->
@@ -265,12 +263,14 @@
 
 <div class="header">
     {% load staticfiles %}
-    <p><img src="{% static "GC_Auth/help/connections.png" %}" alt="lock" class="image" style="width:10%; height: 10%;"> <strong> Connections </strong></p>
+    <p><img src="{% static "GC_Auth/help/connections.png" %}" alt="lock" class="image" style="width:10%; height: 10%;">
+        <strong> Connections </strong></p>
 
 </div>
 <!--short intro paragraph in pink strip-->
 <div class="intro">
-    <p style="text-align: center;"> Build you GetConnected community with Connections. Find tips for managing your connections, improving your privacy settings and meeting new people.</p>
+    <p style="text-align: center;"> Build you GetConnected community with Connections. Find tips for managing your
+        connections, improving your privacy settings and meeting new people.</p>
     <br>
 
 </div>
@@ -280,7 +280,7 @@
 <div class=" features">
     <div class="panel-group text" id="accordion" style="width: 100%;padding-left: 0px;"><!--accordion of details-->
 
-        <!--panel Viewing courses -->
+        <!--panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -296,15 +296,16 @@
                 <div class="panel-body">
 
 
-
                     <div class="row">
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
                             <!--description-->
                             <p> Connections</p>
-                            <h1 style="color:grey;"> GetConnected is a networking platform aimed at facilitating the building of relationships between like-minded
-                            individuals. So how do you do this? Well through connections, of course. Connections are other users of the GetConnected
-                            platform who have similar interests to you and who you can connect with. </h1>
+                            <h1 style="color:grey;"> GetConnected is a networking platform aimed at facilitating the
+                                building of relationships between like-minded
+                                individuals. So how do you do this? Well through connections, of course. Connections are
+                                other users of the GetConnected
+                                platform who have similar interests to you and who you can connect with. </h1>
 
 
                         </div>
@@ -329,7 +330,7 @@
                 <div class="row">
                     <!--coloumn-->
                     <div class="col-sm-6" style="background-color:white;">
-<br><br>
+                        <br><br>
                         {% load staticfiles %}
                         <img src="{% static "GC_Auth/connectionFilter.png" %}" alt="lock" class="image"
                              style="width:40%; height:40%; border: 1px solid silver;">
@@ -339,9 +340,11 @@
                     <!--coloumn-->
                     <div class="col-sm-6" style="background-color:white;">
                         <br><br>
-                        <h1 style="color:grey;">To find connections, navigate to the connections page through the navigation bar. Here you will see all the people you are connected with
-                        under the "My connections" tab (seen above). You can also find new connections on this page by clicking the "explore" tab. You can search through
-                            connections using the search bar seen on the left.  </h1>
+                        <h1 style="color:grey;">To find connections, navigate to the connections page through the
+                            navigation bar. Here you will see all the people you are connected with
+                            under the "My connections" tab (seen above). You can also find new connections on this page
+                            by clicking the "explore" tab. You can search through
+                            connections using the search bar seen on the left. </h1>
 
                     </div>
 
@@ -352,7 +355,7 @@
             </div><!--end-->
         </div>
 
-        <!--panel Recommending courses -->
+        <!--panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -374,11 +377,13 @@
                         <!--coloumn-->
                         <div class="col-sm-6" style="background-color:white;">
                             <!--description-->
-                            <p> Adding & Removing  </p>
-                            <h1 style="color:grey;"> If you see someone you would be interested in connecting with, click the "Connect" button, seen on the right.
-                            Before you become connected with someone else, they have to first accept your connection request. If they accept, they will
-                            show up under "My Connections", you can view their profile and send them direct messages!</h1>
-
+                            <p> Adding & Removing </p>
+                            <h1 style="color:grey;"> If you see someone you would be interested in connecting with,
+                                click the "Connect" button, seen on the right.
+                                Before you become connected with someone else, they have to first accept your connection
+                                request. If they accept, they will
+                                show up under "My Connections", you can view their profile and send them direct
+                                messages!</h1>
 
 
                         </div>
@@ -397,29 +402,32 @@
                     </div>
                     <br>
 
-                      <div class="row">
-                    <!--coloumn-->
-                    <div class="col-sm-6" style="background-color:white;">
-                        <br><br>
-                        {% load staticfiles %}
-                        <img src="{% static "GC_Auth/removeconnection.png" %}" alt="lock" class="image"
-                            style="width: 50% ; height: 50% ;">
+                    <div class="row">
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br><br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/removeconnection.png" %}" alt="lock" class="image"
+                                 style="width: 50% ; height: 50% ;">
+
+
+                        </div>
+                        <!--coloumn-->
+                        <div class="col-sm-6" style="background-color:white;">
+                            <br><br>
+
+                            <h1 style="color:grey;">If you no longer wish to be connected with someone, simply navigate
+                                to "my connections" and click "remove connection".
+                                The person will be removed from your connections and you will no longer be
+                                connected.</h1>
+
+                            <h1> If you are connected with someone and want to view their profile, you can click "view
+                                profile". </h1>
+
+                        </div>
 
 
                     </div>
-                    <!--coloumn-->
-                    <div class="col-sm-6" style="background-color:white;">
-                        <br><br>
-
-                        <h1 style="color:grey;">If you no longer wish to be connected with someone, simply navigate to "my connections" and click "remove connection".
-                        The person will be removed from your connections and you will no longer be connected.</h1>
-
-                        <h1> If you are connected with someone and want to view their profile, you can click "view profile". </h1>
-
-                    </div>
-
-
-                </div>
 
 
                 </div>
@@ -451,9 +459,11 @@
                         <h1>
                             <div class="numbercircles">1</div>
                             <i>
-                               What do I do if someone keeps trying to add me as a connection and I do not accept?</i></h1>
+                                What do I do if someone keeps trying to add me as a connection and I do not accept?</i>
+                        </h1>
                         <!--padding left indents the answer to the right-->
-                        <p style="padding-left: 40px;"> You can block other profiles from your profile so they will be unable to send you messages, connect with you or view your profile.
+                        <p style="padding-left: 40px;"> You can block other profiles from your profile so they will be
+                            unable to send you messages, connect with you or view your profile.
                         </p>
 
                         <!--question-->
@@ -468,7 +478,8 @@
                             <div class="numbercircles">3</div>
                             <i>
                                 How do I view more information about a person?</i></h1>
-                        <p style="padding-left: 40px;">Click on the person's profile in the connections page and a more detailed view will open.</p>
+                        <p style="padding-left: 40px;">Click on the person's profile in the connections page and a more
+                            detailed view will open.</p>
 
 
                     </div>
@@ -481,81 +492,85 @@
     </div><!--end of accordion-->
 </div>
 <div class="footeritems">
-<!--footer-->
-<footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
+    <!--footer-->
+    <footer class="page-footer font-small cyan darken-3" style="background-color: #D3D3D3;">
 
 
-    <div class="container">
-        <br></br>
-        <!-- Call to action -->
-        <ul class="list-unstyled list-inline text-center py-2">
-            <li class="list-inline-item">
-                <!--  <h5 class="mb-1">Log in now: </h5>-->
-            </li>
-            <li class="list-inline-item">
+        <div class="container">
+            <br></br>
+            <!-- Call to action -->
+            <ul class="list-unstyled list-inline text-center py-2">
+                <li class="list-inline-item">
+                    <!--  <h5 class="mb-1">Log in now: </h5>-->
+                </li>
+                <li class="list-inline-item">
 
 
-                <div class="rowthis"><!--table row-->
+                    <div class="rowthis"><!--table row-->
 
-                    <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
-                        <br>
-                        {% load staticfiles %}
-                        <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
+                        <div class="col-sm-3" style="text-align:left;padding-right: 100px;">
+                            <br>
+                            {% load staticfiles %}
+                            <img src="{% static "GC_Auth/logotrans.png" %}" alt="lock" class="image">
+                        </div>
+
+
+                        <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
+
+                            <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
+                            <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
+                            <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>
+                                Connections</p>
+                            </a>
+                            <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums </p></a>
+                            <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
+                        </div>
+
+                        <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                            <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
+
+                            <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
+                                GetConnected?</p></a>
+                            <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your
+                                Account</p>
+                            </a>
+                            <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums &
+                                Messaging Help</p></a>
+                            <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
+                                Management</p></a>
+                            <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses
+                                Help</p></a>
+                            <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
+
+
+                        </div>
+
+                        <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+
+                            <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
+                            <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
+                            <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
+                            <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
+
+
+                        </div>
+
+
                     </div>
 
-
-                    <div class="col-sm-3" style="text-align:left;padding-left: 120px;">
-
-                        <p style="color:#e83e8c;font-size:20px;"><strong>Menu</strong></p>
-                        <a onclick="location.href='{% url 'nav_home' %}'" style="color: white"><p>Home</p></a>
-                        <a onclick="location.href='{% url 'nav_networks' %}'" style="color: white"><p>Connections</p>
-                        </a>
-                        <a onclick="location.href='{% url 'nav_forums' %}'" style="color: white"><p>Forums </p></a>
-                        <a onclick="location.href='{% url 'nav_courses' %}'" style="color: white"><p>Courses</p></a>
-                    </div>
-
-                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
-
-                        <p style="color:#e83e8c;font-size:20px;"><strong>Help & FAQs</strong></p>
-
-                        <a onclick="location.href='{% url 'introHelp' %}'" style="color: white"><p>What is
-                            GetConnected?</p></a>
-                        <a onclick="location.href='{% url 'accountHelp' %}'" style="color: white"><p>Your Account</p>
-                        </a>
-                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white"><p>Forums & Messaging Help</p></a>
-                        <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white"><p>Connection
-                            Management</p></a>
-                        <a onclick="location.href='{% url 'helpcourses' %}'" style="color: white"><p>Courses Help</p></a>
-                        <a href="https://www.getsmarter.com/what-we-do" style="color: white"><p>GetSmarter</p></a>
+                    <br>
+                    <br>
 
 
-                    </div>
+                </li>
+            </ul>
+            <!-- Call to action -->
 
-                    <div class="col-sm-3" style="text-align:left;padding-left: 80px;"><!--coloumn-->
+        </div>
 
-                        <p style="color:#e83e8c;font-size:20px;"><strong>Contact Us</strong></p>
-                        <p style="color:white;"><strong>Tel: </strong> 456 4637</p>
-                        <p style="color:white;"><strong>Email: </strong> getConnected@GetSmarter.co.za</p>
-                        <p style="color:white;"><strong>Working Hours:</strong> Mon - Fri, 09:00 - 17:00</p>
-
-
-                    </div>
-
-
-                </div>
-
-                <br>
-                <br>
-
-
-            </li>
-        </ul>
-        <!-- Call to action -->
-
-    </div>
-
-</footer>
-    </div>
+    </footer>
+</div>
 
 
 </body>

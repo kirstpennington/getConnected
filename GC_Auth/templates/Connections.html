@@ -84,8 +84,6 @@
         }
 
 
-
-
         /*icon for user profile img**/
         .profile_img {
             width: 50px;
@@ -488,10 +486,7 @@
     </style>
 
 
-    <style>
 
-
-    </style>
     <style>
 
 
@@ -595,7 +590,6 @@
         }
 
 
-
         .profile_img_1 {
             max-width: 50px;
             min-width: 50px;
@@ -649,7 +643,6 @@
 </dialog>
 
 
-
 <script>
 
 
@@ -687,7 +680,8 @@
                 <li><a onclick="location.href='{% url 'nav_networks' %}'"
                        style="color:white;border-left: 1px solid white;border-right: 1px solid white;"><span
                         class="fa fa-globe fa-lg"></span> Connections </a></li>
-                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span> Forums</a>
+                <li><a onclick="location.href='{% url 'nav_forums' %}'"><span class="fa fa-comments-o fa-lg"></span>
+                    Forums</a>
                 </li>
                 <li><a onclick="location.href='{% url 'nav_courses' %}'"><span
                         class="fa fa-book fa-lg"></span> Courses</a></li>
@@ -711,11 +705,13 @@
 
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-                        <div  class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
+                        <div class="notifications-wrapper" style="overflow-x: hidden; "> <!--Messages Dropdown div-->
 
                             <ul id="Message_dropdown_notifications" style="">
 
-                                <a class="text-center" style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No Messages</a>
+                                <a class="text-center"
+                                   style="font-family: sans-serif;font-style: italic;color: black; margin-left: 25%;">No
+                                    Messages</a>
 
                                 {% comment %}     <a><div style="" class="notification-item">
                                 <img class="profile_img" src="{{ ProfilePic }}"/>
@@ -750,8 +746,10 @@
                                                                       data-target="#" href="#"
                                                                       onclick="CloseIntroForm(); OpenLogIn();">
 
-                     <div id="">
-                        <span ><span class="glyphicon glyphicon-bell"></span>&nbsp;<span id="counter_number_notifications" class="label label-default"   style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
+                    <div id="">
+                        <span><span class="glyphicon glyphicon-bell"></span>&nbsp;<span
+                                id="counter_number_notifications" class="label label-default"
+                                style="background-color: red;color: white;font-family: Roboto, sans-serif"></span></span>
 
                     </div>
 
@@ -805,7 +803,6 @@
         </div><!--collapse nav-bar collapse-->
     </div><!--container fluid-->
 </nav><!--nav navbar-inverse-->
-
 
 
 <script>
@@ -1000,7 +997,7 @@
     });
 
 
-     function renderUI(obj) {
+    function renderUI(obj) {
         var html = "";
         var keys = Object.keys(obj);
         for (var i = keys.length - 1; i >= 0; i--) {
@@ -1023,15 +1020,14 @@
                 var decision = "true";
                 var opp_decison = "false";
                 html += "<div href=\"#\" class=\"content\" style=\"padding:5px;margin: 5px; border-radius: 4px; border-width: 5px; border-color: black; height: 80px; margin-left: -20px; \"> <div style=\"padding:2px;margin:5px;border-radius:4px;border-width:5px;border-color:black;height:80px;margin-left: -10px\"><img  class=\"profile_img_1\" src=\" " + obj[keys[i]].sender_profilePic + "\"/> <p style=\"margin-left: 155px;font-size: 60%; color: darkgray;text-decoration: none\">" + "" + "&nbsp;&nbsp;</p> <h5 style=\"font-family: sans-serif; font-weight: bold; color: black; margin-top: 0px; top: -20px;left: 25px; position:relative\">" + obj[keys[i]].sender + "</h5> <p style=\"font-family: sans-serif; color: black; margin-top: -25px;left: 28px;position:relative; \">" + obj[keys[i]].message +
-                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" +",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br><br>";
-
-
-
+                    "</p> <p style=\"font-family:sans-serif;font-style:italic;margin-left: 55px;margin-top:5px; color: grey;font-size: x-small\"><i class= \"fa fa-clock-o \"></i> " + ts_display + "</p>  <div style=\"margin-top: 10px\"> <button  id=\"dntrigger\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + "\'" + decision + "\'" + ",\'" + type_post + "\',\'" + forum_id_id + "\' )\" class=\"AcceptDeclinebutton\" style=\" font-size: 85%; position: relative;left: 80px;color: white\">Accept</button> <button id=\"DeclineRemove\" onclick=\"Accept_request(" + "\'" + obj[keys[i]].sender_id + "\'" + "," + "\'" + obj[keys[i]].sender + "\'" + "," + "\'" + obj[keys[i]].post_id + "\'" + "," + opp_decison + ")\" class=\"AcceptDeclinebutton\" style=\"; font-size: 85%;position: relative;left: 80px;color: white \">Decline </button> </div> <hr style=\"width: 100%; color: gray; height: 2px; background-color:grey; margin-top: 5px\"/> </div> </div><br><br>";
 
 
             }
         }
-        if (html.length == 0){html= "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";}
+        if (html.length == 0) {
+            html = "<div style = \"font-family: sans-serif;font-style: italic;color: black\"  > No Notifications</div>";
+        }
 
         $('#comment').html(html);
     }
@@ -1049,9 +1045,9 @@
         /*Creating notification icon*/
 
 
-{% comment %}
-        html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
-{% endcomment %}
+        {% comment %}
+                html += "<span class=\"glyphicon glyphicon-bell\"></span>&nbsp;<span class=\"label label-default\" style=\"background-color: red;color: white\">" + countholder + "</span></a>";
+        {% endcomment %}
 
 
         $('#counter_number_notifications').html(countholder);
@@ -1071,10 +1067,7 @@
                 if (snapshot.exists()) {
 
 
-
-                    if (String(typepost).valueOf() == String("Forum_Request").valueOf())
-
-                    {
+                    if (String(typepost).valueOf() == String("Forum_Request").valueOf()) {
 
                         var AddtoForum = firebase.database().ref().child("Forums/" + forum_id_id + "/Participants");/*Messages*/
                         AddtoForum.child(sender_id).set(sender_id);
@@ -1082,30 +1075,23 @@
                         var AddtoForum_Joined = firebase.database().ref().child("Users/" + sender_id + "/ForumsJoined");/*Messages*/
                         AddtoForum_Joined.child(forum_id_id).set(forum_id_id);
 
+                    } else {
+
+
+                        var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
+
+                        AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
+
+
+                        var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
+
+                        AddtoForum_Joined.child(sender_id).set(sender_id);
+
+
+                        // window.alert("You have joined a new forum!");
+                        var x = document.getElementById("forumJoined");
+                        x.show();
                     }
-
-
-                    else {
-
-
-                    var AddtoForum = firebase.database().ref().child("Forums/" + sender_id + "/Participants");/*Messages*/
-
-                    AddtoForum.child('{{this_uid}}').set('{{ this_uid }}');
-
-
-                    var AddtoForum_Joined = firebase.database().ref().child("Users/" + '{{this_uid}}' + "/ForumsJoined");/*Messages*/
-
-                    AddtoForum_Joined.child(sender_id).set(sender_id);
-
-
-                    // window.alert("You have joined a new forum!");
-                    var x = document.getElementById("forumJoined");
-                    x.show();}
-
-
-
-
-
 
 
                 }/*Forum Requests*/
@@ -1147,12 +1133,12 @@
                     });
 
 
-                   // window.alert("You are now connected with " + name);
+                    // window.alert("You are now connected with " + name);
 
                     html += "You are now connected with " + name;
                     $('#newconnectionmodal').html(html);
 
-                     var y = document.getElementById("connectedWith");
+                    var y = document.getElementById("connectedWith");
                     y.show();
 
                 }/*Friend Reuest*/
@@ -1188,11 +1174,10 @@
 </script>
 
 
-
-
 <!--used to encapsulate all content items of settings page, excl footer-->
 <!--background wallpaper-->
-<div class="UserWallpaper parallax" style="background-image:url({% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
+<div class="UserWallpaper parallax" style="background-image:url(
+        {% load staticfiles %}{% static "GC_Auth/UserProfile_images/campus.jpg" %}); margin-top: -20px;"></div>
 <div class="profileContainer profileContainerLift"><!--1. Container for page content -->
 
 
@@ -1218,7 +1203,7 @@
         <div id="my_country" hidden>{{ my_country }}</div>
         <br>
 
-        <!--tab content style="padding-right: 1000px;padding-left: 0px;"-->
+        <!--actual body of the tabs-->
         <div class="tab-content">
             <div hidden id="my_conn_ids">{{ my_conn_ids }}</div>
 
@@ -1403,7 +1388,7 @@
                 </script>
 
 
-                <!-- My Connections -->
+                <!-- My Connections tab-->
 
                 <div class="connectionitems" style="margin-left: 90px">
                     <div style="" class="row">
@@ -1430,7 +1415,7 @@
                             connection_enabled.on("value", function (enabled_snapshot) {                                    // check if the user is snabled firs
                                 user_enabled = enabled_snapshot.val();
 
-                                if(user_enabled == true || user_enabled == "true") {
+                                if (user_enabled == true || user_enabled == "true") {
                                     isempty = false;
                                     //var key = childSnapshot.key;
                                     //var value = childSnapshot.val();
@@ -1585,10 +1570,9 @@
 
                                 //  loop through course_ids
                                 for (let i = 0; i < myConnList.length; i++) {
-                                    try{
+                                    try {
                                         document.getElementById(myConnList[i] + "_hideAll").hidden = false;           // show all blocks
-                                    }
-                                    catch(err){
+                                    } catch (err) {
                                         //  do nothing is connection id not found on a card
                                     }
                                 }
@@ -1610,15 +1594,14 @@
 
                                 //  loop through connection_ids
                                 for (let i = 0; i < myConnList.length; i++) {
-                                    try{
+                                    try {
                                         this_country = document.getElementById(myConnList[i] + '_countryAll').innerText;
                                         if (this_country == myCountry) {
                                             document.getElementById(myConnList[i] + "_hideAll").hidden = false;
                                         } else {
                                             document.getElementById(myConnList[i] + "_hideAll").hidden = true;
                                         }
-                                    }
-                                    catch(err){
+                                    } catch (err) {
                                         // do nothing if element not found
                                     }
 
@@ -1758,8 +1741,7 @@
                 });
 
 
-                //var results = "happy";
-                // $('#ExploreConnectionsTable').append(results);
+
 
 
                 function ExploreformCard(key, child_name, child_bio, child_country, child_propic) {
@@ -1873,7 +1855,6 @@
                 function Pending(connection_id, child_name) {
 
 
-
                     var message = "Are you sure you want to unsend connection request to  " + child_name + " ?"
 
 
@@ -1982,8 +1963,7 @@
                         sender_profilePic: '{{ ProfilePic }}',
                         post_id: request_sender_id,
                         Type: "Friend_Request",
-                        Forum_ID:"noForum_ID"
-
+                        Forum_ID: "noForum_ID"
 
 
                     });
@@ -2001,33 +1981,7 @@
 
     <br><br>
 
-    <!--pagination-->
-   <!-- <div class="centraliser" style="text-align: center;">
-        <nav aria-label="Page navigation example" style="display: inline-block;">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous"
-                       style="color: #e83e8c">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#"
-                                         style="color: #e83e8c">1</a></li>
-                <li class="page-item"><a class="page-link" href="#"
-                                         style="color: #e83e8c">2</a></li>
-                <li class="page-item"><a class="page-link" href="#"
-                                         style="color: #e83e8c">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next"
-                       style="color: #e83e8c">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>-->
+
 
 
 </div>
@@ -2116,7 +2070,7 @@
                         <a onclick="location.href='{% url 'accountHelp' %}'"
                            style="color: white"><p>Your Account</p>
                         </a>
-                        <a onclick="location.href='{% url 'forumsHelp' %}'"  style="color: white">
+                        <a onclick="location.href='{% url 'forumsHelp' %}'" style="color: white">
                             <p>Forums & Messaging Help</p></a>
                         <a onclick="location.href='{% url 'helpconnections' %}'" style="color: white">
                             <p>Connection
@@ -2157,11 +2111,7 @@
     </div>
 </footer>
 
-<script>
 
-
-
-</script>
 
 <!-- Modal for pop up message "you are now connected with" -->
 <div class="modal fade" id="modalResetSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -2190,9 +2140,7 @@
 </div>
 
 
-{% comment %}
-Badges_Celebrations_3
-{% endcomment %}
+
 <script>
 
     //Badge_1_Friend_Finder
@@ -2207,35 +2155,30 @@ Badges_Celebrations_3
             counter++;
         });
 
-        if (counter >=1 && counter<5)
-
-        {
+        if (counter >= 1 && counter < 5) {
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Friend Finder Badge";
 
-                if (snapshot.val().FriendFinder == "not_celebrated"){
+                if (snapshot.val().FriendFinder == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
 
                     checkCelebration.update({'FriendFinder': "celebrated"});
                 }
             });
+        } else {
         }
-
-        else {}
 
 
         //Badge_2_NetoworkingNinja
 
-        if (counter >=5 && counter < 10)
-
-        {
+        if (counter >= 5 && counter < 10) {
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Networking Ninja Badge";
-                if (snapshot.val().NetworkingNinja == "not_celebrated"){
+                if (snapshot.val().NetworkingNinja == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'NetworkingNinja': "celebrated"});
@@ -2243,17 +2186,13 @@ Badges_Celebrations_3
 
             })
 
+        } else {
         }
-
-        else {}
 
 
         //Badge_3_CrazyConnector
 
-        if (counter >=10 && counter<15)
-
-        {
-
+        if (counter >= 10 && counter < 15) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
@@ -2261,7 +2200,7 @@ Badges_Celebrations_3
                 var text = "Crazy Connector Badge";
 
 
-                if (snapshot.val().CrazyConnector == "not_celebrated"){
+                if (snapshot.val().CrazyConnector == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'CrazyConnector': "celebrated"});
@@ -2271,24 +2210,20 @@ Badges_Celebrations_3
 
             })
 
+        } else {
         }
-
-        else {}
 
 
         //Badge_4_PopularProfile
 
-        if (counter >=15)
-
-        {
-
+        if (counter >= 15) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Popular Profile Badge";
 
-                if (snapshot.val().PopularProfile == "not_celebrated"){
+                if (snapshot.val().PopularProfile == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'PopularProfile': "celebrated"});
@@ -2298,9 +2233,7 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
 
         }
@@ -2321,16 +2254,13 @@ Badges_Celebrations_3
         });
 
 
-
-        if (counter >=3 && counter<5)
-
-        {
+        if (counter >= 3 && counter < 5) {
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "Bright Spark Badge";
 
-                if (snapshot.val().BrightSpark == "not_celebrated"){
+                if (snapshot.val().BrightSpark == "not_celebrated") {
                     $('#Congrats_Pop_Up').html(text);
                     $("#Celebrations").modal();
                     checkCelebration.update({'BrightSpark': "celebrated"});
@@ -2339,23 +2269,20 @@ Badges_Celebrations_3
 
             })
 
+        } else {
         }
-
-        else {}
 
 
         //Badge_6_FabAcademic
 
-        if (counter >=5 && counter<10 )
-
-        {
+        if (counter >= 5 && counter < 10) {
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "FabAcademic Badge";
 
 
-                if (snapshot.val().FabAcademic == "not_celebrated"){
+                if (snapshot.val().FabAcademic == "not_celebrated") {
                     $('#Congrats_Pop_Up').html("FabAcademic Badge");
                     $("#Celebrations").modal();
                     checkCelebration.update({'FabAcademic': "celebrated"});
@@ -2365,25 +2292,21 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
         }
 
 
         //Badge_7_Got_Smarter
 
 
-        if (counter >=10 )
-
-        {
+        if (counter >= 10) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
                 var text = "GotSmarter Badge";
 
-                if (snapshot.val().GotSmarter == "not_celebrated"){
+                if (snapshot.val().GotSmarter == "not_celebrated") {
                     $('#Congrats_Pop_Up').html("GotSmarter Badge");
                     $("#Celebrations").modal();
 
@@ -2394,13 +2317,10 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
 
         }
-
 
 
     });
@@ -2419,16 +2339,13 @@ Badges_Celebrations_3
             counter++;
         });
 
-        if (counter >=5 )
-
-        {
-
+        if (counter >= 5) {
 
 
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
 
-                if (snapshot.val().ForumBoffin == "not_celebrated"){
+                if (snapshot.val().ForumBoffin == "not_celebrated") {
                     var text = "GotSmarter Badge";
                     $('#Congrats_Pop_Up').html("ForumBoffin Badge");
                     $("#Celebrations").modal();
@@ -2438,9 +2355,7 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
 
         }
@@ -2449,7 +2364,7 @@ Badges_Celebrations_3
 
 
     //Badge_10_Forum_Boffin
-    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}' );
+    var Badges_for_Badges_Private = firebase.database().ref().child("Users/" + '{{ this_uid }}');
 
     Badges_for_Badges_Private.on("value", function (snapshot) {
 
@@ -2457,11 +2372,9 @@ Badges_Celebrations_3
         var display_1 = "";
 
 
-        if (isPrivate == "yes" )
+        if (isPrivate == "yes") {
 
-        {
-
-            display_1 =  "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
+            display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FsuperSecurity.png?alt=media&token=503cf33c-c79b-4710-b12d-ffbb2a7477b7\" alt= \"lock\" class=\"image\" >\n" +
                 "\n" +
                 "                <div class=\"middle\">\n" +
                 "                   <div class=\"text\"><strong>Super Security</strong> <br> Updated you Privacy Settings</div>\n" +
@@ -2471,7 +2384,7 @@ Badges_Celebrations_3
             var checkCelebration = firebase.database().ref().child("Users/" + '{{ this_uid }}' + "/Badges");
             checkCelebration.on("value", function (snapshot) {
 
-                if (snapshot.val().SuperSecurity == "not_celebrated"){
+                if (snapshot.val().SuperSecurity == "not_celebrated") {
                     var text = "Super Security Badge";
                     $('#Congrats_Pop_Up').html("Super Security Badge");
                     $("#Celebrations").modal();
@@ -2481,9 +2394,7 @@ Badges_Celebrations_3
 
             })
 
-        }
-
-        else {
+        } else {
 
             display_1 = "<img src=\"https://firebasestorage.googleapis.com/v0/b/getconnected-9dac0.appspot.com/o/Badges%2FlockCircle.png?alt=media&token=d204d5fe-9d37-4269-9e73-0a54571a5ce6\" alt= \"lock\" class=\"image\" >\n" +
                 "                    <div class=\"middle\">\n" +
@@ -2492,7 +2403,8 @@ Badges_Celebrations_3
                 "                     </div>";
         }
 
-        $('#SuperSecurity').html(display_1);});
+        $('#SuperSecurity').html(display_1);
+    });
 
 
 </script>
@@ -2500,7 +2412,8 @@ Badges_Celebrations_3
 Badges_Celebrations_1
 {% endcomment %}
 
-<div id="Celebrations" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!--badge celebration modal-->
+<div id="Celebrations" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div style="" class="modal-content">
@@ -2517,7 +2430,7 @@ Badges_Celebrations_1
 
                 <h1 style="margin-left: 140px; color: orange">Congratulations!!!!</h1>
                 <h3 style="margin-left: 140px; color: purple">You unlocked a new badge!</h3>
-                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"> </h4>
+                <h4 id="Congrats_Pop_Up" style=" margin-left: 200px; color: orangered; font-style: italic"></h4>
 
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
